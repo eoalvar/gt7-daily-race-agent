@@ -218,35 +218,92 @@ for car_code, count in car_counts.most_common(20):
 # 9. Best lap for each car
 # ---------------------------------------------------------
 
-print("\nBEST TIME BY CAR")
+# ---------------------------------------------------------
+# BEST TIME + COMPETITIVENESS BY CAR
+# ---------------------------------------------------------
+
+print("\nCAR COMPETITIVENESS")
 print("=" * 80)
 
-best_by_car = {}
+# Number of top drivers we want to evaluate
+TOP_N = 1000
 
-for driver in drivers:
+top_drivers = drivers[:TOP_N]
+
+car_stats = {}
+
+for position, driver in enumerate(top_drivers, start=1):
 
     car = driver["car_code"]
 
     if car is None:
         continue
 
+    if car not in car_stats:
+
+        car_stats[car] = {
+            "count": 0,
+            "best_score": None,
+            "best_driver": None,
+            "positions": []
+        }
+
+    stats = car_stats[car]
+
+    stats["count"] += 1
+    stats["positions"].append(position)
+
     if (
-        car not in best_by_car
-        or driver["score"]
-        < best_by_car[car]["score"]
+        stats["best_score"] is None
+        or driver["score"] < stats["best_score"]
     ):
-        best_by_car[car] = driver
+
+        stats["best_score"] = driver["score"]
+        stats["best_driver"] = driver
 
 
-for car_code, driver in sorted(
-    best_by_car.items(),
-    key=lambda x: x[1]["score"]
-)[:20]:
+# ---------------------------------------------------------
+# Calculate averages
+# ---------------------------------------------------------
+
+for car, stats in car_stats.items():
+
+    stats["average_position"] = (
+        sum(stats["positions"])
+        / len(stats["positions"])
+    )
+
+
+# ---------------------------------------------------------
+# Sort by average position
+# ---------------------------------------------------------
+
+sorted_cars = sorted(
+    car_stats.items(),
+    key=lambda item: item[1]["average_position"]
+)
+
+
+print(
+    f"Analysis based on TOP {TOP_N} drivers"
+)
+
+print()
+
+for rank, (car, stats) in enumerate(
+    sorted_cars[:20],
+    start=1
+):
+
+    best_driver = stats["best_driver"]
 
     print(
-        f"CarCode {car_code} | "
-        f"{driver['laptime']} | "
-        f"{driver['name']}"
+        f"{rank:2}. "
+        f"CarCode {car:4} | "
+        f"Drivers {stats['count']:3} | "
+        f"Avg Pos {stats['average_position']:7.1f} | "
+        f"Best {format_laptime(stats['best_score'])} | "
+        f"{best_driver['name']}"
     )
 
 
