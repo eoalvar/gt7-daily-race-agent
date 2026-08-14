@@ -82,6 +82,207 @@ if leaderboard_response.status_code != 200:
 
 html = leaderboard_response.text
 
+import re
+import json
+from collections import Counter
+
+
+# ---------------------------------------------------------
+# 4. Extract initialRanking JavaScript data
+# ---------------------------------------------------------
+
+print("\nEXTRACTING LEADERBOARD DATA")
+print("=" * 80)
+
+match = re.search(
+    r'const\s+initialRanking\s*=\s*(\[[\s\S]*?\]);',
+    html
+)
+
+if not match:
+    raise Exception(
+        "Could not find initialRanking in leaderboard HTML"
+    )
+
+ranking_json = match.group(1)
+
+try:
+    ranking = json.loads(ranking_json)
+except json.JSONDecodeError as e:
+    raise Exception(
+        f"Could not decode initialRanking JSON: {e}"
+    )
+
+print(
+    "Drivers found in initialRanking:",
+    len(ranking)
+)
+
+
+# ---------------------------------------------------------
+# 5. Normalize driver data
+# ---------------------------------------------------------
+
+drivers = []
+
+for entry in ranking:
+
+    user = entry.get("user", {})
+    stats = entry.get("ranking_stats", {})
+
+    driver = {
+        "rank": entry.get("display_rank"),
+        "name": user.get("nick_name"),
+        "np_online_id": user.get("np_online_id"),
+        "country": user.get("country_code"),
+        "driver_rating": user.get("driver_rating"),
+        "sportsmanship_rating": user.get(
+            "sportsmanship_rating"
+        ),
+        "car_code": stats.get("car_code"),
+        "score": entry.get("score"),
+        "update_time": entry.get("update_time"),
+    }
+
+    drivers.append(driver)
+
+
+# ---------------------------------------------------------
+# 6. Convert score to lap time
+# ---------------------------------------------------------
+
+def format_laptime(milliseconds):
+
+    if milliseconds is None:
+        return "N/A"
+
+    total_seconds = milliseconds / 1000
+
+    minutes = int(total_seconds // 60)
+
+    seconds = total_seconds - (
+        minutes * 60
+    )
+
+    return f"{minutes}:{seconds:06.3f}"
+
+
+for driver in drivers:
+
+    driver["laptime"] = format_laptime(
+        driver["score"]
+    )
+
+
+# ---------------------------------------------------------
+# 7. Display TOP 20
+# ---------------------------------------------------------
+
+print("\nTOP 20")
+print("=" * 80)
+
+for driver in drivers[:20]:
+
+    print(
+        f"{driver['rank']:4} | "
+        f"{driver['laptime']:>8} | "
+        f"{str(driver['name']):25} | "
+        f"{driver['country']:2} | "
+        f"DR {driver['driver_rating']} | "
+        f"CarCode {driver['car_code']}"
+    )
+
+
+# ---------------------------------------------------------
+# 8. Car distribution
+# ---------------------------------------------------------
+
+print("\nCAR DISTRIBUTION")
+print("=" * 80)
+
+car_counts = Counter(
+    driver["car_code"]
+    for driver in drivers
+    if driver["car_code"] is not None
+)
+
+for car_code, count in car_counts.most_common(20):
+
+    print(
+        f"CarCode {car_code}: "
+        f"{count} drivers"
+    )
+
+
+# ---------------------------------------------------------
+# 9. Best lap for each car
+# ---------------------------------------------------------
+
+print("\nBEST TIME BY CAR")
+print("=" * 80)
+
+best_by_car = {}
+
+for driver in drivers:
+
+    car = driver["car_code"]
+
+    if car is None:
+        continue
+
+    if (
+        car not in best_by_car
+        or driver["score"]
+        < best_by_car[car]["score"]
+    ):
+        best_by_car[car] = driver
+
+
+for car_code, driver in sorted(
+    best_by_car.items(),
+    key=lambda x: x[1]["score"]
+)[:20]:
+
+    print(
+        f"CarCode {car_code} | "
+        f"{driver['laptime']} | "
+        f"{driver['name']}"
+    )
+
+
+# ---------------------------------------------------------
+# 10. Race summary
+# ---------------------------------------------------------
+
+print("\nRACE C SUMMARY")
+print("=" * 80)
+
+if drivers:
+
+    leader = drivers[0]
+
+    print(
+        "Best time:",
+        leader["laptime"]
+    )
+
+    print(
+        "Driver:",
+        leader["name"]
+    )
+
+    print(
+        "Country:",
+        leader["country"]
+    )
+
+    print(
+        "Car code:",
+        leader["car_code"]
+    )
+
+print("\nEND")
+
 # ---------------------------------------------------------
 # 4. Extract initialRanking from JavaScript
 # ---------------------------------------------------------
