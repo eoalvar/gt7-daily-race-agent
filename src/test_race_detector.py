@@ -1,4 +1,5 @@
 import requests
+import json
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
@@ -55,6 +56,7 @@ if not race_c_link:
 print("\nCURRENT DAILY RACE C")
 print("=" * 80)
 print(race_c_text)
+
 print("\nURL:")
 print(race_c_link)
 
@@ -80,99 +82,153 @@ if leaderboard_response.status_code != 200:
 
 html = leaderboard_response.text
 
-leaderboard_soup = BeautifulSoup(
-    html,
-    "html.parser"
+# ---------------------------------------------------------
+# 4. Extract initialRanking from JavaScript
+# ---------------------------------------------------------
+
+print("\nEXTRACTING LEADERBOARD DATA")
+print("=" * 80)
+
+marker = "const initialRanking = "
+
+start = html.find(marker)
+
+if start == -1:
+    raise Exception(
+        "Could not find initialRanking in leaderboard page"
+    )
+
+start += len(marker)
+
+# JSONDecoder allows us to decode exactly the JSON array,
+# without relying on fragile regular expressions.
+
+decoder = json.JSONDecoder()
+
+ranking, end_position = decoder.raw_decode(
+    html[start:].lstrip()
+)
+
+print(
+    "Drivers found in initialRanking:",
+    len(ranking)
 )
 
 # ---------------------------------------------------------
-# 4. Look for tables
+# 5. Show first 20 drivers
 # ---------------------------------------------------------
 
-print("\nTABLE ANALYSIS")
+print("\nTOP 20")
 print("=" * 80)
 
-tables = leaderboard_soup.find_all("table")
+for driver in ranking[:20]:
 
-print("Tables found:", len(tables))
+    position = driver.get("display_rank")
 
-for i, table in enumerate(tables, start=1):
+    score = driver.get("score")
 
-    print(f"\nTABLE #{i}")
-    print("-" * 80)
+    user = driver.get("user", {})
 
-    rows = table.find_all("tr")
+    name = user.get(
+        "nick_name",
+        "Unknown"
+    )
 
-    print("Rows:", len(rows))
+    country = user.get(
+        "country_code",
+        ""
+    )
 
-    for row in rows[:10]:
+    driver_rating = user.get(
+        "driver_rating",
+        ""
+    )
 
-        cells = row.find_all(
-            ["th", "td"]
+    car_code = driver.get(
+        "ranking_stats",
+        {}
+    ).get(
+        "car_code",
+        ""
+    )
+
+    # Convert milliseconds to GT7 lap-time format
+    if isinstance(score, int):
+
+        total_seconds = score / 1000
+
+        minutes = int(
+            total_seconds // 60
         )
 
-        values = [
-            cell.get_text(" ", strip=True)
-            for cell in cells
-        ]
+        seconds = total_seconds % 60
 
-        print(values)
+        laptime = (
+            f"{minutes}:{seconds:06.3f}"
+        )
 
-# ---------------------------------------------------------
-# 5. Search JavaScript / HTML for API references
-# ---------------------------------------------------------
+    else:
+        laptime = str(score)
 
-print("\nPOSSIBLE DATA SOURCES")
-print("=" * 80)
-
-keywords = [
-    "fetch(",
-    "ajax",
-    "api/",
-    "/api",
-    "leaderboard",
-    "json",
-    "datatable",
-    "DataTable",
-    "XMLHttpRequest"
-]
-
-lines = html.splitlines()
-
-found = set()
-
-for line in lines:
-
-    lower = line.lower()
-
-    for keyword in keywords:
-
-        if keyword.lower() in lower:
-
-            cleaned = line.strip()
-
-            if cleaned and cleaned not in found:
-                print(cleaned[:2000])
-                found.add(cleaned)
-
-            break
+    print(
+        f"{position:>4} | "
+        f"{laptime:>9} | "
+        f"{name:<25} | "
+        f"{country:<3} | "
+        f"DR {driver_rating:<2} | "
+        f"CarCode {car_code}"
+    )
 
 # ---------------------------------------------------------
-# 6. List script sources
+# 6. Basic statistics
 # ---------------------------------------------------------
 
-print("\nJAVASCRIPT FILES")
-print("=" * 80)
+if ranking:
 
-scripts = leaderboard_soup.find_all("script")
+    best = ranking[0]
 
-print("Scripts found:", len(scripts))
+    best_time = best.get("score")
 
-for script in scripts:
+    if isinstance(best_time, int):
 
-    src = script.get("src")
+        total_seconds = best_time / 1000
 
-    if src:
-        print(urljoin(race_c_link, src))
+        minutes = int(
+            total_seconds // 60
+        )
+
+        seconds = total_seconds % 60
+
+        best_laptime = (
+            f"{minutes}:{seconds:06.3f}"
+        )
+
+    else:
+        best_laptime = str(best_time)
+
+    print("\nRACE C SUMMARY")
+    print("=" * 80)
+
+    print("Best time:", best_laptime)
+    print(
+        "Driver:",
+        best.get("user", {}).get(
+            "nick_name"
+        )
+    )
+
+    print(
+        "Country:",
+        best.get("user", {}).get(
+            "country_code"
+        )
+    )
+
+    print(
+        "Car code:",
+        best.get("ranking_stats", {}).get(
+            "car_code"
+        )
+    )
 
 print("\nEND")
