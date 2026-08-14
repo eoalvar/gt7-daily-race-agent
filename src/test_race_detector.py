@@ -17,37 +17,40 @@ response = requests.get(
 print("HTTP status:", response.status_code)
 
 if response.status_code != 200:
-    raise Exception(f"Could not access GTSH-Rank: HTTP {response.status_code}")
+    raise Exception(
+        f"Could not access GTSH-Rank: HTTP {response.status_code}"
+    )
 
 soup = BeautifulSoup(response.text, "html.parser")
 
 print("Page title:", soup.title.get_text(strip=True))
 
-# Procurar todos os links da página
-links = soup.find_all("a")
+print("\nALL LINKS FOUND:")
+print("-" * 80)
 
-print(f"Total links found: {len(links)}")
-
-print("\nPossible VictoryDash links:")
-
-for link in links:
+for i, link in enumerate(soup.find_all("a"), start=1):
     href = link.get("href")
+    text = link.get_text(" ", strip=True)
 
-    if href and "victorydash" in href.lower():
-        print(urljoin(GTSH_URL, href))
+    if href:
+        full_url = urljoin(GTSH_URL, href)
 
-print("\nSearching for Race C...")
+        print(f"{i}. TEXT: {text}")
+        print(f"   URL:  {full_url}")
+
+print("-" * 80)
 
 text = soup.get_text(" ", strip=True)
 
-if "Daily Race C" in text:
-    print("Daily Race C found on page.")
-else:
-    print("Daily Race C NOT found on page.")
+print("\nRACE DETECTION")
+print("-" * 80)
 
-print("\nSearching for Grand Valley...")
+if "Daily Race C" in text:
+    print("Daily Race C: FOUND")
+else:
+    print("Daily Race C: NOT FOUND")
 
 if "Grand Valley" in text:
-    print("Grand Valley found on page.")
+    print("Grand Valley: FOUND")
 else:
-    print("Grand Valley NOT found on page.")
+    print("Grand Valley: NOT FOUND")
