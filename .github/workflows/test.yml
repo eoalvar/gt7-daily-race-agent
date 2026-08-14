@@ -23,3 +23,6 @@ jobs:
 
       - name: Run VictoryDash test
         run: python src/test_victorydash.py
+
+      - name: Run Race Detector test
+        run: python src/test_race_detector.py
