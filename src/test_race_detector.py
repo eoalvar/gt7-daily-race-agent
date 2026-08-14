@@ -25,32 +25,46 @@ soup = BeautifulSoup(response.text, "html.parser")
 
 print("Page title:", soup.title.get_text(strip=True))
 
-print("\nALL LINKS FOUND:")
-print("-" * 80)
+print("\nLEADERBOARD LINKS")
+print("=" * 80)
 
-for i, link in enumerate(soup.find_all("a"), start=1):
+leaderboard_links = soup.select('a[href*="/daily/leaderboard?event="]')
+
+print(f"Found {len(leaderboard_links)} leaderboard links.")
+
+for i, link in enumerate(leaderboard_links, start=1):
+
     href = link.get("href")
-    text = link.get_text(" ", strip=True)
+    full_url = urljoin(GTSH_URL, href)
 
-    if href:
-        full_url = urljoin(GTSH_URL, href)
+    print(f"\nLEADERBOARD #{i}")
+    print("-" * 80)
 
-        print(f"{i}. TEXT: {text}")
-        print(f"   URL:  {full_url}")
+    # Mostrar o texto do próprio link
+    print("Link text:", link.get_text(" ", strip=True))
 
-print("-" * 80)
+    # Mostrar o texto do elemento pai
+    parent = link.parent
 
-text = soup.get_text(" ", strip=True)
+    if parent:
+        parent_text = parent.get_text(" ", strip=True)
+        print("Parent text:", parent_text[:1000])
 
-print("\nRACE DETECTION")
-print("-" * 80)
+    # Mostrar os elementos ancestrais próximos
+    ancestor = link
 
-if "Daily Race C" in text:
-    print("Daily Race C: FOUND")
-else:
-    print("Daily Race C: NOT FOUND")
+    for level in range(1, 4):
 
-if "Grand Valley" in text:
-    print("Grand Valley: FOUND")
-else:
-    print("Grand Valley: NOT FOUND")
+        if ancestor.parent:
+            ancestor = ancestor.parent
+
+            text = ancestor.get_text(" ", strip=True)
+
+            print(
+                f"Ancestor level {level}: "
+                f"{text[:1500]}"
+            )
+
+    print("URL:", full_url)
+
+print("\nEND")
