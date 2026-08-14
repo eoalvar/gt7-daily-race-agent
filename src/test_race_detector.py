@@ -14,57 +14,84 @@ response = requests.get(
     timeout=30
 )
 
-print("HTTP status:", response.status_code)
+print("Main page HTTP status:", response.status_code)
 
 if response.status_code != 200:
-    raise Exception(
-        f"Could not access GTSH-Rank: HTTP {response.status_code}"
-    )
+    raise Exception("Could not access GTSH-Rank")
 
 soup = BeautifulSoup(response.text, "html.parser")
 
-print("Page title:", soup.title.get_text(strip=True))
+# ---------------------------------------------------------
+# Find the current Race C
+# ---------------------------------------------------------
 
-print("\nLEADERBOARD LINKS")
+race_c_link = None
+
+for link in soup.select('a[href*="/daily/leaderboard?event="]'):
+
+    parent_text = link.parent.get_text(" ", strip=True)
+
+    if (
+        "Running" in parent_text
+        and "Daily Race C" in parent_text
+    ):
+        race_c_link = urljoin(
+            GTSH_URL,
+            link.get("href")
+        )
+        break
+
+if not race_c_link:
+    raise Exception("Could not find current Daily Race C leaderboard")
+
+print("\nCURRENT DAILY RACE C")
+print("=" * 80)
+print("Leaderboard URL:")
+print(race_c_link)
+
+print("\nRace information:")
+print(parent_text)
+
+# ---------------------------------------------------------
+# Open Race C leaderboard
+# ---------------------------------------------------------
+
+leaderboard_response = requests.get(
+    race_c_link,
+    headers=headers,
+    timeout=30
+)
+
+print("\nLeaderboard HTTP status:",
+      leaderboard_response.status_code)
+
+if leaderboard_response.status_code != 200:
+    raise Exception(
+        "Could not access Race C leaderboard"
+    )
+
+leaderboard_soup = BeautifulSoup(
+    leaderboard_response.text,
+    "html.parser"
+)
+
+print(
+    "Leaderboard title:",
+    leaderboard_soup.title.get_text(strip=True)
+)
+
+# ---------------------------------------------------------
+# Show page text
+# ---------------------------------------------------------
+
+print("\nLEADERBOARD PAGE TEXT")
 print("=" * 80)
 
-leaderboard_links = soup.select('a[href*="/daily/leaderboard?event="]')
+page_text = leaderboard_soup.get_text(
+    "\n",
+    strip=True
+)
 
-print(f"Found {len(leaderboard_links)} leaderboard links.")
-
-for i, link in enumerate(leaderboard_links, start=1):
-
-    href = link.get("href")
-    full_url = urljoin(GTSH_URL, href)
-
-    print(f"\nLEADERBOARD #{i}")
-    print("-" * 80)
-
-    # Mostrar o texto do próprio link
-    print("Link text:", link.get_text(" ", strip=True))
-
-    # Mostrar o texto do elemento pai
-    parent = link.parent
-
-    if parent:
-        parent_text = parent.get_text(" ", strip=True)
-        print("Parent text:", parent_text[:1000])
-
-    # Mostrar os elementos ancestrais próximos
-    ancestor = link
-
-    for level in range(1, 4):
-
-        if ancestor.parent:
-            ancestor = ancestor.parent
-
-            text = ancestor.get_text(" ", strip=True)
-
-            print(
-                f"Ancestor level {level}: "
-                f"{text[:1500]}"
-            )
-
-    print("URL:", full_url)
+print(page_text[:12000])
 
 print("\nEND")
