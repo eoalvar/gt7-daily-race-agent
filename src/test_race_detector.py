@@ -50,13 +50,6 @@ CAR_DATABASE = load_car_database()
 
 # ============================================================
 # VALIDATED DRIVETRAIN DATABASE
-#
-# This database contains objective drivetrain metadata only.
-#
-# Brake Bias values are NOT stored here because they are not
-# official GT7 specifications.
-#
-# Genesis G70 GR4 corrected to 4WD.
 # ============================================================
 
 CAR_TECHNICAL_INFO = {
@@ -90,11 +83,76 @@ CAR_TECHNICAL_INFO = {
     3399: {"layout": "FR"},
     3477: {"layout": "FR"},
     3480: {"layout": "FF"},
-
-    # IMPORTANT CORRECTION:
     3501: {"layout": "4WD"},
-
     3537: {"layout": "FF"}
+}
+
+
+# ============================================================
+# BRAKE BIAS V2
+#
+# Conservative heuristic starting ranges.
+#
+# Negative = more front
+# Positive = more rear
+#
+# Tyre wear no longer pushes the range to extremes.
+# It only changes the recommendation inside the same range.
+# ============================================================
+
+BRAKE_BIAS_BASELINES = {
+
+    "FF": {
+        "qualifying": (1, 2),
+        "race": (2, 3),
+        "reason":
+            (
+                "FF cars place substantial braking and cornering "
+                "load on the front axle. A modest rearward bias "
+                "can aid rotation and reduce front tyre stress."
+            )
+    },
+
+    "FR": {
+        "qualifying": (0, 1),
+        "race": (1, 2),
+        "reason":
+            (
+                "FR cars generally tolerate a mild rearward "
+                "bias while retaining predictable braking stability."
+            )
+    },
+
+    "MR": {
+        "qualifying": (-1, 0),
+        "race": (-1, 0),
+        "reason":
+            (
+                "MR cars can become sensitive to rear instability "
+                "under braking. A neutral to slightly forward bias "
+                "is a conservative starting point."
+            )
+    },
+
+    "4WD": {
+        "qualifying": (1, 2),
+        "race": (2, 3),
+        "reason":
+            (
+                "4WD cars generally tolerate a modest rearward bias, "
+                "helping rotation while retaining strong braking stability."
+            )
+    },
+
+    "RR": {
+        "qualifying": (-1, 0),
+        "race": (-2, -1),
+        "reason":
+            (
+                "RR cars carry substantial rear mass and may benefit "
+                "from a modestly forward brake bias to protect rear stability."
+            )
+    }
 }
 
 
@@ -122,7 +180,6 @@ def laptime_to_score(text):
         return None
 
     try:
-
         minutes, rest = text.split(":")
         seconds, milliseconds = rest.split(".")
 
@@ -133,7 +190,6 @@ def laptime_to_score(text):
         )
 
     except Exception:
-
         return None
 
 
@@ -184,10 +240,8 @@ def find_my_driver(
                 online_id,
                 str
             )
-            and online_id.strip().lower()
-            == target
+            and online_id.strip().lower() == target
         ):
-
             return driver
 
     return None
@@ -236,7 +290,6 @@ def parse_race_date_from_text(text):
         )
 
     except ValueError:
-
         return None
 
 
@@ -317,9 +370,7 @@ def find_current_race_c(
             reverse=True
         )
 
-        selected = (
-            running_candidates[0]
-        )
+        selected = running_candidates[0]
 
         selected[
             "detection_mode"
@@ -343,9 +394,7 @@ def find_current_race_c(
 
     if current_week_candidates:
 
-        selected = (
-            current_week_candidates[0]
-        )
+        selected = current_week_candidates[0]
 
         selected[
             "detection_mode"
@@ -398,7 +447,6 @@ def position_score(
         or total is None
         or total <= 1
     ):
-
         return None
 
     result = 10 * (
@@ -429,11 +477,9 @@ def elite_score(
         or total <= 1
         or rank < 1
     ):
-
         return None
 
     if rank == 1:
-
         return 10.0
 
     result = 10 * (
@@ -460,7 +506,6 @@ def composite_rating(
         general is None
         or elite is None
     ):
-
         return None
 
     return (
@@ -479,7 +524,6 @@ def percentile_ahead(
         or total is None
         or total <= 1
     ):
-
         return None
 
     return (
@@ -518,7 +562,6 @@ def pace_band(
 def load_weekly_history():
 
     if not WEEKLY_HISTORY_FILE.exists():
-
         return []
 
     try:
@@ -533,11 +576,9 @@ def load_weekly_history():
             data,
             list
         ):
-
             return data
 
     except Exception:
-
         pass
 
     return []
@@ -614,11 +655,9 @@ def build_weekly_record(
             )
 
         except Exception:
-
             week_start = None
 
     else:
-
         week_start = None
 
     general = my.get(
@@ -729,7 +768,6 @@ def upsert_weekly_record(
 ):
 
     if not record:
-
         return history
 
     url = record.get(
@@ -749,16 +787,11 @@ def upsert_weekly_record(
             == url
         ):
 
-            history[
-                index
-            ] = record
-
+            history[index] = record
             replaced = True
-
             break
 
     if not replaced:
-
         history.append(
             record
         )
@@ -792,7 +825,6 @@ def average_metric(
     ]
 
     if not values:
-
         return None
 
     return (
@@ -822,13 +854,10 @@ def metric_trend(
     ]
 
     if len(records) < 3:
-
         return "Insufficient history"
 
     values = [
-        record[
-            key
-        ]
+        record[key]
         for record in records
     ]
 
@@ -854,7 +883,6 @@ def metric_trend(
     )
 
     if denominator == 0:
-
         return "STABLE"
 
     slope = (
@@ -871,15 +899,12 @@ def metric_trend(
     )
 
     if not higher_is_better:
-
         slope = -slope
 
     if slope > 0.05:
-
         return "IMPROVING"
 
     if slope < -0.05:
-
         return "DECLINING"
 
     return "STABLE"
@@ -894,7 +919,6 @@ def signed_seconds(
 ):
 
     if delta_ms is None:
-
         return "N/A"
 
     sign = (
@@ -918,7 +942,6 @@ def position_change(
         old_rank is None
         or new_rank is None
     ):
-
         return "N/A"
 
     difference = (
@@ -927,13 +950,11 @@ def position_change(
     )
 
     if difference > 0:
-
         return (
             f"+{difference} positions"
         )
 
     if difference < 0:
-
         return (
             f"{difference} positions"
         )
@@ -1002,128 +1023,15 @@ def extract_start_date(
 
 
 # ============================================================
-# BRAKE BIAS RECOMMENDATION ENGINE
-#
-# IMPORTANT:
-#
-# GT7 does not publish an optimum Brake Balance value by car.
-#
-# The recommendations below are deliberately expressed as
-# starting RANGES rather than supposedly exact settings.
-#
-# Convention used in this report:
-#
-# Negative = more front
-# Positive = more rear
-#
-# The drivetrain provides the baseline.
-# Tyre wear adjusts the race range.
-#
-# Confidence remains HEURISTIC unless future telemetry or
-# car-specific evidence is incorporated.
+# BRAKE BIAS V2 HELPERS
 # ============================================================
-
-BRAKE_BIAS_BASELINES = {
-
-    "FF": {
-        "qualifying":
-            (2, 4),
-
-        "race":
-            (3, 5),
-
-        "reason":
-            (
-                "FF cars place substantial braking and cornering "
-                "load on the front axle. A rearward starting bias "
-                "can help rotation and reduce front tyre stress."
-            )
-    },
-
-    "FR": {
-        "qualifying":
-            (0, 2),
-
-        "race":
-            (1, 3),
-
-        "reason":
-            (
-                "FR cars generally tolerate a mildly rearward "
-                "bias to improve rotation while retaining "
-                "predictable braking stability."
-            )
-    },
-
-    "MR": {
-        "qualifying":
-            (-1, 1),
-
-        "race":
-            (-2, 0),
-
-        "reason":
-            (
-                "MR cars can become sensitive to rear instability "
-                "under braking. A neutral to slightly forward bias "
-                "is used as the starting range."
-            )
-    },
-
-    "4WD": {
-        "qualifying":
-            (1, 3),
-
-        "race":
-            (2, 4),
-
-        "reason":
-            (
-                "4WD cars often tolerate a moderate rearward "
-                "brake bias, helping rotation while retaining "
-                "strong braking stability."
-            )
-    },
-
-    "RR": {
-        "qualifying":
-            (-2, 0),
-
-        "race":
-            (-3, -1),
-
-        "reason":
-            (
-                "RR cars carry substantial rear mass and may "
-                "benefit from a more forward brake bias to reduce "
-                "rear instability under heavy braking."
-            )
-    }
-}
-
-
-def clamp_bb(
-    value
-):
-
-    return max(
-        -5,
-        min(
-            5,
-            value
-        )
-    )
-
 
 def format_bb_value(
     value
 ):
 
     if value > 0:
-
-        return (
-            f"+{value}"
-        )
+        return f"+{value}"
 
     return str(
         value
@@ -1135,13 +1043,11 @@ def format_bb_range(
 ):
 
     if not range_value:
-
         return "N/A"
 
     low, high = range_value
 
     if low == high:
-
         return format_bb_value(
             low
         )
@@ -1174,6 +1080,12 @@ def brake_bias_recommendation(
                 None,
 
             "race_range":
+                None,
+
+            "qualifying_start":
+                None,
+
+            "race_start":
                 None,
 
             "confidence":
@@ -1211,12 +1123,18 @@ def brake_bias_recommendation(
             "race_range":
                 None,
 
+            "qualifying_start":
+                None,
+
+            "race_start":
+                None,
+
             "confidence":
                 "UNVALIDATED",
 
             "reason":
                 (
-                    "Validated drivetrain exists, but no heuristic "
+                    "Validated drivetrain exists, but no "
                     "Brake Bias model is defined for this layout."
                 ),
 
@@ -1224,41 +1142,58 @@ def brake_bias_recommendation(
                 "No recommendation generated."
         }
 
-    qual_low, qual_high = baseline[
-        "qualifying"
-    ]
+    qual_low, qual_high = (
+        baseline[
+            "qualifying"
+        ]
+    )
 
-    race_low, race_high = baseline[
-        "race"
-    ]
-
-    wear_adjustment = (
-        "Standard race adjustment."
+    race_low, race_high = (
+        baseline[
+            "race"
+        ]
     )
 
     # ========================================================
-    # TYRE-WEAR ADJUSTMENT
+    # STARTING VALUE
     #
-    # We do not try to pretend that tyre multiplier alone
-    # determines optimum BB.
-    #
-    # Instead, it slightly widens/shifts the race starting
-    # window in the direction generally useful for the layout.
+    # Instead of moving the entire range because of tyre wear,
+    # we choose a conservative starting point inside it.
     # ========================================================
+
+    qualifying_start = int(
+        round(
+            (
+                qual_low
+                + qual_high
+            )
+            / 2
+        )
+    )
 
     if tyre_multiplier <= 1:
 
-        race_low = qual_low
-        race_high = qual_high
+        race_start = qualifying_start
 
         wear_adjustment = (
-            "Low tyre wear: race range kept close to qualifying."
+            "Low tyre wear: start close to the qualifying setting."
         )
 
     elif tyre_multiplier <= 2:
 
+        race_start = int(
+            round(
+                (
+                    race_low
+                    + race_high
+                )
+                / 2
+            )
+        )
+
         wear_adjustment = (
-            "Moderate tyre wear: small race-specific adjustment."
+            "Moderate tyre wear: use the middle of the "
+            "conservative race range."
         )
 
     elif tyre_multiplier <= 4:
@@ -1269,12 +1204,11 @@ def brake_bias_recommendation(
             "4WD"
         ):
 
-            race_low += 1
-            race_high += 1
+            race_start = race_high
 
             wear_adjustment = (
-                "Meaningful tyre wear: race range shifted "
-                "one step rearward to reduce front-axle load."
+                "Meaningful tyre wear: start toward the rearward "
+                "end of the race range to reduce front-axle load."
             )
 
         elif layout in (
@@ -1282,12 +1216,27 @@ def brake_bias_recommendation(
             "RR"
         ):
 
-            race_low -= 1
-            race_high -= 1
+            race_start = race_low
 
             wear_adjustment = (
-                "Meaningful tyre wear: race range shifted "
-                "one step forward to prioritize rear stability."
+                "Meaningful tyre wear: start toward the forward "
+                "end of the race range to prioritize rear stability."
+            )
+
+        else:
+
+            race_start = int(
+                round(
+                    (
+                        race_low
+                        + race_high
+                    )
+                    / 2
+                )
+            )
+
+            wear_adjustment = (
+                "Meaningful tyre wear: use the middle of the range."
             )
 
     else:
@@ -1298,12 +1247,11 @@ def brake_bias_recommendation(
             "4WD"
         ):
 
-            race_low += 1
-            race_high += 2
+            race_start = race_high
 
             wear_adjustment = (
-                "High tyre wear: race window moved further "
-                "rearward, but driver stability must be monitored."
+                "High tyre wear: begin at the rearward end of the "
+                "validated heuristic range, without exceeding it."
             )
 
         elif layout in (
@@ -1311,29 +1259,28 @@ def brake_bias_recommendation(
             "RR"
         ):
 
-            race_low -= 2
-            race_high -= 1
+            race_start = race_low
 
             wear_adjustment = (
-                "High tyre wear: race window moved further "
-                "forward to protect rear stability."
+                "High tyre wear: begin at the forward end of the "
+                "validated heuristic range, without exceeding it."
             )
 
-    qual_low = clamp_bb(
-        qual_low
-    )
+        else:
 
-    qual_high = clamp_bb(
-        qual_high
-    )
+            race_start = int(
+                round(
+                    (
+                        race_low
+                        + race_high
+                    )
+                    / 2
+                )
+            )
 
-    race_low = clamp_bb(
-        race_low
-    )
-
-    race_high = clamp_bb(
-        race_high
-    )
+            wear_adjustment = (
+                "High tyre wear: remain inside the conservative range."
+            )
 
     return {
         "layout":
@@ -1350,6 +1297,12 @@ def brake_bias_recommendation(
                 race_low,
                 race_high
             ),
+
+        "qualifying_start":
+            qualifying_start,
+
+        "race_start":
+            race_start,
 
         "confidence":
             "HEURISTIC",
@@ -1371,7 +1324,6 @@ def brake_bias_recommendation(
 def load_previous_snapshot():
 
     if not LATEST_SNAPSHOT_FILE.exists():
-
         return None
 
     try:
@@ -1383,7 +1335,6 @@ def load_previous_snapshot():
         )
 
     except Exception:
-
         return None
 
 
@@ -1394,7 +1345,6 @@ def load_history_for_race(
     snapshots = []
 
     if not HISTORY_DIR.exists():
-
         return snapshots
 
     for path in sorted(
@@ -1422,13 +1372,11 @@ def load_history_for_race(
                 )
                 == leaderboard_url
             ):
-
                 snapshots.append(
                     data
                 )
 
         except Exception:
-
             pass
 
     return snapshots
@@ -1476,7 +1424,6 @@ def snapshot_metric_score(
             value,
             dict
         ):
-
             return value.get(
                 "score"
             )
@@ -1485,14 +1432,12 @@ def snapshot_metric_score(
             value,
             int
         ):
-
             return value
 
         if isinstance(
             value,
             str
         ):
-
             return laptime_to_score(
                 value
             )
@@ -1545,7 +1490,6 @@ def linear_forecast(
             )
 
             if key in seen:
-
                 continue
 
             seen.add(
@@ -1566,7 +1510,6 @@ def linear_forecast(
                 )
 
             except Exception:
-
                 pass
 
     points.sort(
@@ -1575,7 +1518,6 @@ def linear_forecast(
     )
 
     if len(points) < 3:
-
         return None
 
     first_time = points[
@@ -1604,7 +1546,6 @@ def linear_forecast(
     )
 
     if span_hours < 4:
-
         return None
 
     x_mean = (
@@ -1623,7 +1564,6 @@ def linear_forecast(
     )
 
     if denominator == 0:
-
         return None
 
     slope = (
@@ -1772,7 +1712,6 @@ def build_targets(
         my_rank is None
         or my_score is None
     ):
-
         return []
 
     total = len(
@@ -1871,7 +1810,6 @@ def build_targets(
     for label, rank in definitions:
 
         if rank < my_rank:
-
             unique_targets[
                 rank
             ] = label
@@ -1890,7 +1828,6 @@ def build_targets(
         )
 
         if target_score is None:
-
             continue
 
         results.append({
@@ -2019,7 +1956,6 @@ def car_performance_indices(
         )
 
         if overall_share <= 0:
-
             continue
 
         top100_count = (
@@ -2931,6 +2867,16 @@ def main():
                     "race_range"
                 ],
 
+            "qualifying_start":
+                bb[
+                    "qualifying_start"
+                ],
+
+            "race_start":
+                bb[
+                    "race_start"
+                ],
+
             "confidence":
                 bb[
                     "confidence"
@@ -3357,8 +3303,7 @@ def main():
 
         if (
             previous_url
-            and previous_url
-            != race_c_link
+            and previous_url != race_c_link
             and not weekly_record_exists(
                 weekly_history,
                 previous_url
@@ -3855,8 +3800,18 @@ def main():
         )
 
         lines.append(
+            f"Qualifying start: "
+            f"{format_bb_value(my_brake_bias['qualifying_start'])}"
+        )
+
+        lines.append(
             f"Race range      : "
             f"{format_bb_range(my_brake_bias['race_range'])}"
+        )
+
+        lines.append(
+            f"Race start      : "
+            f"{format_bb_value(my_brake_bias['race_start'])}"
         )
 
         lines.append(
@@ -3890,7 +3845,7 @@ def main():
     )
 
     lines.append(
-        "These are heuristic starting ranges, "
+        "Conservative heuristic starting ranges, "
         "not telemetry-proven optimum settings."
     )
 
@@ -3907,9 +3862,11 @@ def main():
             f"{car['car']} | "
             f"{car['layout']} | "
             f"Quali "
-            f"{format_bb_range(car['qualifying_range'])} | "
+            f"{format_bb_range(car['qualifying_range'])} "
+            f"(start {format_bb_value(car['qualifying_start'])}) | "
             f"Race "
-            f"{format_bb_range(car['race_range'])} | "
+            f"{format_bb_range(car['race_range'])} "
+            f"(start {format_bb_value(car['race_start'])}) | "
             f"{car['confidence']}"
         )
 
@@ -4272,27 +4229,21 @@ def main():
             assessment_score = 0
 
             if delta_composite > 0.05:
-
                 assessment_score += 2
 
             elif delta_composite < -0.05:
-
                 assessment_score -= 2
 
             if delta_top < -0.50:
-
                 assessment_score += 1
 
             elif delta_top > 0.50:
-
                 assessment_score -= 1
 
             if delta_wr < -0.05:
-
                 assessment_score += 1
 
             elif delta_wr > 0.05:
-
                 assessment_score -= 1
 
             if assessment_score >= 2:
