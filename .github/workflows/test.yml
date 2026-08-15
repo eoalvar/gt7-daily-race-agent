@@ -1,10 +1,14 @@
-name: Test GT7 Collector
+name: GT7 Daily Race C
 
 on:
   workflow_dispatch:
 
+  schedule:
+    - cron: "7 8 * * 1"
+      timezone: "America/Sao_Paulo"
+
 jobs:
-  test:
+  run-gt7-agent:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,8 +25,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Run VictoryDash test
-        run: python src/test_victorydash.py
-
-      - name: Run Race Detector test
+      - name: Run GT7 Daily Race C Agent
         run: python src/test_race_detector.py
