@@ -5,7 +5,10 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from collections import Counter, defaultdict
 
+
 GTSH_URL = "https://gtsh-rank.com/daily/"
+
+MY_PSN_ID = "crazy_rooster74"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (GT7 Daily Race Agent)"
@@ -67,8 +70,17 @@ CAR_NAMES = {
 # ============================================================
 
 def score_to_laptime(score):
-    if not isinstance(score, int):
+    """
+    Converts milliseconds to GT7 lap time.
+
+    Example:
+    114623 -> 1:54.623
+    """
+
+    if not isinstance(score, (int, float)):
         return "N/A"
+
+    score = int(round(score))
 
     minutes = score // 60000
     seconds = (score % 60000) // 1000
@@ -96,6 +108,50 @@ def get_user(driver):
     return driver.get("user", {})
 
 
+def percentage_of_world_record(driver_score, world_record_score):
+    """
+    Example:
+    WR = 100.000
+    Driver = 103.000
+    Result = 103.000%
+    """
+
+    if not world_record_score:
+        return None
+
+    return (
+        driver_score
+        / world_record_score
+        * 100
+    )
+
+
+def find_my_driver(ranking, psn_id):
+    """
+    Searches leaderboard by PSN Online ID.
+    Comparison is case-insensitive.
+    """
+
+    target = psn_id.strip().lower()
+
+    for driver in ranking:
+
+        user = get_user(driver)
+
+        online_id = user.get(
+            "np_online_id",
+            ""
+        )
+
+        if (
+            isinstance(online_id, str)
+            and online_id.strip().lower() == target
+        ):
+            return driver
+
+    return None
+
+
 # ============================================================
 # 1. OPEN GTSH DAILY RACE PAGE
 # ============================================================
@@ -108,7 +164,10 @@ response = requests.get(
     timeout=30
 )
 
-print("Main page HTTP status:", response.status_code)
+print(
+    "Main page HTTP status:",
+    response.status_code
+)
 
 response.raise_for_status()
 
@@ -157,6 +216,7 @@ for link in leaderboard_links:
 
 
 if not race_c_link:
+
     raise RuntimeError(
         "Could not find the RUNNING Daily Race C."
     )
@@ -210,6 +270,7 @@ match = re.search(
 )
 
 if not match:
+
     raise RuntimeError(
         "Could not find initialRanking in leaderboard HTML."
     )
@@ -221,7 +282,9 @@ ranking = json.loads(
     ranking_json
 )
 
+
 if not ranking:
+
     raise RuntimeError(
         "initialRanking contains no drivers."
     )
@@ -229,10 +292,11 @@ if not ranking:
 
 ranking = sorted(
     ranking,
-    key=lambda driver: driver.get(
-        "display_rank",
-        999999999
-    )
+    key=lambda driver:
+        driver.get(
+            "display_rank",
+            999999999
+        )
 )
 
 
@@ -243,7 +307,53 @@ print(
 
 
 # ============================================================
-# 5. TOP 20
+# 5. WORLD RECORD + 103% / 105%
+# ============================================================
+
+winner = ranking[0]
+
+world_record_score = winner.get(
+    "score",
+    0
+)
+
+time_103 = round(
+    world_record_score * 1.03
+)
+
+time_105 = round(
+    world_record_score * 1.05
+)
+
+
+print()
+print("WORLD RECORD BENCHMARKS")
+print("=" * 80)
+
+print(
+    "World Record:",
+    score_to_laptime(
+        world_record_score
+    )
+)
+
+print(
+    "103% of WR:",
+    score_to_laptime(
+        time_103
+    )
+)
+
+print(
+    "105% of WR:",
+    score_to_laptime(
+        time_105
+    )
+)
+
+
+# ============================================================
+# 6. TOP 20
 # ============================================================
 
 print()
@@ -270,6 +380,11 @@ for driver in ranking[:20]:
         "Unknown"
     )
 
+    psn = user.get(
+        "np_online_id",
+        ""
+    )
+
     country = user.get(
         "country_code",
         "--"
@@ -280,13 +395,19 @@ for driver in ranking[:20]:
         "-"
     )
 
-    car_code = get_car_code(driver)
-    car_name = get_car_name(car_code)
+    car_code = get_car_code(
+        driver
+    )
+
+    car_name = get_car_name(
+        car_code
+    )
 
     print(
         f"{position:>4} | "
         f"{score_to_laptime(score):>9} | "
-        f"{name[:22]:22} | "
+        f"{name[:20]:20} | "
+        f"{psn[:18]:18} | "
         f"{country:2} | "
         f"DR {str(dr):2} | "
         f"{car_name}"
@@ -294,7 +415,7 @@ for driver in ranking[:20]:
 
 
 # ============================================================
-# 6. RANKING THRESHOLDS
+# 7. RANKING THRESHOLDS
 # ============================================================
 
 print()
@@ -319,7 +440,9 @@ for target in thresholds:
 
     if len(ranking) >= target:
 
-        driver = ranking[target - 1]
+        driver = ranking[
+            target - 1
+        ]
 
         print(
             f"TOP {target:<5} | "
@@ -327,8 +450,136 @@ for target in thresholds:
         )
 
 
+print()
+print(
+    "103% WR   |",
+    score_to_laptime(
+        time_103
+    )
+)
+
+print(
+    "105% WR   |",
+    score_to_laptime(
+        time_105
+    )
+)
+
+
 # ============================================================
-# 7. CAR DISTRIBUTION - ALL DRIVERS
+# 8. FIND MY PSN ID
+# ============================================================
+
+my_driver = find_my_driver(
+    ranking,
+    MY_PSN_ID
+)
+
+
+print()
+print("MY RESULT")
+print("=" * 80)
+
+
+if my_driver:
+
+    my_user = get_user(
+        my_driver
+    )
+
+    my_rank = my_driver.get(
+        "display_rank",
+        "-"
+    )
+
+    my_score = my_driver.get(
+        "score",
+        0
+    )
+
+    my_car_code = get_car_code(
+        my_driver
+    )
+
+    my_car_name = get_car_name(
+        my_car_code
+    )
+
+    my_percentage = percentage_of_world_record(
+        my_score,
+        world_record_score
+    )
+
+    gap_ms = (
+        my_score
+        - world_record_score
+    )
+
+    print(
+        "PSN ID:",
+        MY_PSN_ID
+    )
+
+    print(
+        "Position:",
+        my_rank
+    )
+
+    print(
+        "Time:",
+        score_to_laptime(
+            my_score
+        )
+    )
+
+    print(
+        "Car:",
+        my_car_name
+    )
+
+    print(
+        "Gap to WR:",
+        f"+{gap_ms / 1000:.3f}s"
+    )
+
+    print(
+        "WR percentage:",
+        f"{my_percentage:.3f}%"
+    )
+
+    if my_score <= time_103:
+
+        performance_zone = (
+            "Within 103% of World Record"
+        )
+
+    elif my_score <= time_105:
+
+        performance_zone = (
+            "Between 103% and 105% of World Record"
+        )
+
+    else:
+
+        performance_zone = (
+            "Above 105% of World Record"
+        )
+
+    print(
+        "Performance:",
+        performance_zone
+    )
+
+else:
+
+    print(
+        f"PSN ID '{MY_PSN_ID}' "
+        "not found in the current leaderboard."
+    )
+
+
+# ============================================================
+# 9. CAR DISTRIBUTION - ALL DRIVERS
 # ============================================================
 
 car_counter = Counter()
@@ -336,11 +587,15 @@ car_counter = Counter()
 
 for driver in ranking:
 
-    car_code = get_car_code(driver)
+    car_code = get_car_code(
+        driver
+    )
 
     if car_code is not None:
 
-        car_counter[car_code] += 1
+        car_counter[
+            car_code
+        ] += 1
 
 
 total_with_car = sum(
@@ -353,10 +608,14 @@ print("CAR DISTRIBUTION - ALL DRIVERS")
 print("=" * 100)
 
 
-for car_code, count in car_counter.most_common(20):
+for car_code, count in car_counter.most_common(
+    20
+):
 
     percentage = (
-        count / total_with_car * 100
+        count
+        / total_with_car
+        * 100
         if total_with_car
         else 0
     )
@@ -369,7 +628,7 @@ for car_code, count in car_counter.most_common(20):
 
 
 # ============================================================
-# 8. CAR DISTRIBUTION - TOP 1000
+# 10. CAR DISTRIBUTION - TOP 1000
 # ============================================================
 
 top1000 = ranking[:1000]
@@ -379,10 +638,15 @@ top1000_counter = Counter()
 
 for driver in top1000:
 
-    car_code = get_car_code(driver)
+    car_code = get_car_code(
+        driver
+    )
 
     if car_code is not None:
-        top1000_counter[car_code] += 1
+
+        top1000_counter[
+            car_code
+        ] += 1
 
 
 print()
@@ -390,10 +654,14 @@ print("CAR DISTRIBUTION - TOP 1000")
 print("=" * 100)
 
 
-for car_code, count in top1000_counter.most_common(15):
+for car_code, count in top1000_counter.most_common(
+    15
+):
 
     percentage = (
-        count / len(top1000) * 100
+        count
+        / len(top1000)
+        * 100
     )
 
     print(
@@ -404,7 +672,7 @@ for car_code, count in top1000_counter.most_common(15):
 
 
 # ============================================================
-# 9. CAR DISTRIBUTION - TOP 100
+# 11. CAR DISTRIBUTION - TOP 100
 # ============================================================
 
 top100 = ranking[:100]
@@ -414,10 +682,15 @@ top100_counter = Counter()
 
 for driver in top100:
 
-    car_code = get_car_code(driver)
+    car_code = get_car_code(
+        driver
+    )
 
     if car_code is not None:
-        top100_counter[car_code] += 1
+
+        top100_counter[
+            car_code
+        ] += 1
 
 
 print()
@@ -428,7 +701,9 @@ print("=" * 100)
 for car_code, count in top100_counter.most_common():
 
     percentage = (
-        count / len(top100) * 100
+        count
+        / len(top100)
+        * 100
     )
 
     print(
@@ -439,7 +714,7 @@ for car_code, count in top100_counter.most_common():
 
 
 # ============================================================
-# 10. BEST TIME BY CAR
+# 12. BEST TIME BY CAR
 # ============================================================
 
 best_by_car = {}
@@ -447,7 +722,9 @@ best_by_car = {}
 
 for driver in ranking:
 
-    car_code = get_car_code(driver)
+    car_code = get_car_code(
+        driver
+    )
 
     if car_code is None:
         continue
@@ -459,10 +736,15 @@ for driver in ranking:
 
     if (
         car_code not in best_by_car
-        or score < best_by_car[car_code]["score"]
+        or score
+        < best_by_car[
+            car_code
+        ]["score"]
     ):
 
-        best_by_car[car_code] = driver
+        best_by_car[
+            car_code
+        ] = driver
 
 
 best_car_list = sorted(
@@ -482,7 +764,9 @@ print("=" * 110)
 
 for car_code, driver in best_car_list[:20]:
 
-    user = get_user(driver)
+    user = get_user(
+        driver
+    )
 
     score = driver.get(
         "score",
@@ -503,15 +787,19 @@ for car_code, driver in best_car_list[:20]:
 
 
 # ============================================================
-# 11. CAR COMPETITIVENESS - TOP 1000
+# 13. CAR COMPETITIVENESS - TOP 1000
 # ============================================================
 
-positions_by_car = defaultdict(list)
+positions_by_car = defaultdict(
+    list
+)
 
 
 for driver in top1000:
 
-    car_code = get_car_code(driver)
+    car_code = get_car_code(
+        driver
+    )
 
     if car_code is None:
         continue
@@ -520,11 +808,16 @@ for driver in top1000:
         "display_rank"
     )
 
-    if isinstance(position, int):
+    if isinstance(
+        position,
+        int
+    ):
 
         positions_by_car[
             car_code
-        ].append(position)
+        ].append(
+            position
+        )
 
 
 competitiveness = []
@@ -532,12 +825,19 @@ competitiveness = []
 
 for car_code, positions in positions_by_car.items():
 
-    if len(positions) < 10:
+    if len(
+        positions
+    ) < 10:
+
         continue
 
     avg_position = (
-        sum(positions)
-        / len(positions)
+        sum(
+            positions
+        )
+        / len(
+            positions
+        )
     )
 
     best_driver = best_by_car[
@@ -550,7 +850,9 @@ for car_code, positions in positions_by_car.items():
             car_code,
 
         "drivers":
-            len(positions),
+            len(
+                positions
+            ),
 
         "average_position":
             avg_position,
@@ -572,8 +874,12 @@ for car_code, positions in positions_by_car.items():
 
 competitiveness.sort(
     key=lambda item: (
-        -item["drivers"],
-        item["average_position"]
+        -item[
+            "drivers"
+        ],
+        item[
+            "average_position"
+        ]
     )
 )
 
@@ -606,7 +912,7 @@ for index, item in enumerate(
 
 
 # ============================================================
-# 12. META SCORE
+# 14. META SCORE
 # ============================================================
 
 meta_scores = []
@@ -632,7 +938,10 @@ for car_code in car_counter.keys():
     meta_score = (
         top100_count * 10
         + top1000_count
-        + (all_count / 100)
+        + (
+            all_count
+            / 100
+        )
     )
 
     meta_scores.append({
@@ -683,10 +992,8 @@ for index, item in enumerate(
 
 
 # ============================================================
-# 13. FINAL SUMMARY
+# 15. FINAL SUMMARY
 # ============================================================
-
-winner = ranking[0]
 
 winner_user = get_user(
     winner
@@ -704,17 +1011,24 @@ print("=" * 100)
 
 print()
 print("RACE")
-print(race_c_text)
+print(
+    race_c_text
+)
 
 print()
 print("TOTAL DRIVERS")
-print(len(ranking))
+print(
+    len(
+        ranking
+    )
+)
 
 print()
 print("WORLD RECORD")
+
 print(
     score_to_laptime(
-        winner.get("score", 0)
+        world_record_score
     )
 )
 
@@ -732,13 +1046,34 @@ print(
 )
 
 
-if len(ranking) >= 100:
+print()
+print("PERFORMANCE BENCHMARKS")
 
-    print()
+print(
+    "103% WR:",
+    score_to_laptime(
+        time_103
+    )
+)
+
+print(
+    "105% WR:",
+    score_to_laptime(
+        time_105
+    )
+)
+
+
+if len(
+    ranking
+) >= 100:
+
     print(
-        "TOP 100 CUT:",
+        "TOP 100:",
         score_to_laptime(
-            ranking[99].get(
+            ranking[
+                99
+            ].get(
                 "score",
                 0
             )
@@ -746,12 +1081,16 @@ if len(ranking) >= 100:
     )
 
 
-if len(ranking) >= 500:
+if len(
+    ranking
+) >= 500:
 
     print(
-        "TOP 500 CUT:",
+        "TOP 500:",
         score_to_laptime(
-            ranking[499].get(
+            ranking[
+                499
+            ].get(
                 "score",
                 0
             )
@@ -759,56 +1098,145 @@ if len(ranking) >= 500:
     )
 
 
-if len(ranking) >= 1000:
+if len(
+    ranking
+) >= 1000:
 
     print(
-        "TOP 1000 CUT:",
+        "TOP 1000:",
         score_to_laptime(
-            ranking[999].get(
+            ranking[
+                999
+            ].get(
                 "score",
                 0
             )
         )
     )
 
+
+# ============================================================
+# MY RESULT - FINAL SUMMARY
+# ============================================================
+
+print()
+print("MY RESULT")
+
+
+if my_driver:
+
+    my_score = my_driver.get(
+        "score",
+        0
+    )
+
+    my_percentage = percentage_of_world_record(
+        my_score,
+        world_record_score
+    )
+
+    print(
+        "PSN:",
+        MY_PSN_ID
+    )
+
+    print(
+        "Position:",
+        my_driver.get(
+            "display_rank"
+        )
+    )
+
+    print(
+        "Time:",
+        score_to_laptime(
+            my_score
+        )
+    )
+
+    print(
+        "WR:",
+        f"{my_percentage:.3f}%"
+    )
+
+    print(
+        "Gap:",
+        f"+{(my_score - world_record_score) / 1000:.3f}s"
+    )
+
+    print(
+        "Car:",
+        get_car_name(
+            get_car_code(
+                my_driver
+            )
+        )
+    )
+
+else:
+
+    print(
+        f"{MY_PSN_ID} not found."
+    )
+
+
+# ============================================================
+# META CAR
+# ============================================================
 
 if meta_scores:
 
-    best_meta = meta_scores[0]
+    best_meta = meta_scores[
+        0
+    ]
 
     print()
     print("CURRENT META CAR")
 
     print(
         get_car_name(
-            best_meta["car_code"]
+            best_meta[
+                "car_code"
+            ]
         )
     )
 
     print(
         "TOP 100:",
-        best_meta["top100"]
+        best_meta[
+            "top100"
+        ]
     )
 
     print(
         "TOP 1000:",
-        best_meta["top1000"]
+        best_meta[
+            "top1000"
+        ]
     )
 
     print(
         "Total users:",
-        best_meta["all"]
+        best_meta[
+            "all"
+        ]
     )
 
 
 # ============================================================
-# 14. UNKNOWN CAR CODES
+# UNKNOWN CAR CODES
 # ============================================================
 
 unknown_codes = [
+
     car_code
-    for car_code in car_counter.keys()
-    if car_code not in CAR_NAMES
+
+    for car_code
+    in car_counter.keys()
+
+    if car_code
+    not in CAR_NAMES
+
 ]
 
 
