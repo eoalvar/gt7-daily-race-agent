@@ -3,12 +3,19 @@ import requests
 import json
 import re
 import math
+
 from pathlib import Path
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from collections import Counter
+
+from car_database import (
+    load_car_database,
+    update_car_database_from_html,
+    get_car_name as database_get_car_name
+)
 
 
 # ============================================================
@@ -35,198 +42,216 @@ SAO_PAULO = ZoneInfo("America/Sao_Paulo")
 
 
 # ============================================================
-# CAR DATABASE
+# CENTRAL CAR DATABASE
+#
+# Names come from data/car_names.json.
+# This currently contains the catalog extracted from GTSH-Rank.
 # ============================================================
 
-CAR_INFO = {
+CAR_DATABASE = load_car_database()
+
+
+# ============================================================
+# BRAKE BALANCE DATABASE
+#
+# IMPORTANT:
+# This is NOT the car-name database anymore.
+#
+# It only contains cars for which we already have a brake
+# balance baseline.
+#
+# Car names always come from CAR_DATABASE.
+# ============================================================
+
+BRAKE_INFO = {
+
     1563: {
-        "name": "Renault Mégane Trophy '11",
         "layout": "MR",
         "qual_bb": 0,
         "race_bb": -1
     },
+
     2157: {
-        "name": "Aston Martin V8 Vantage Gr.4",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     2161: {
-        "name": "Nissan GT-R Gr.4",
         "layout": "4WD",
         "qual_bb": 2,
         "race_bb": 3
     },
+
     2163: {
-        "name": "Genesis Gr.4",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     2164: {
-        "name": "Ford Mustang Gr.4",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     2166: {
-        "name": "Alfa Romeo 4C Gr.4",
         "layout": "MR",
         "qual_bb": 0,
         "race_bb": -1
     },
+
     3192: {
-        "name": "Mercedes-Benz SLS AMG Gr.4",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     3231: {
-        "name": "Volkswagen Scirocco Gr.4",
         "layout": "FF",
         "qual_bb": 3,
         "race_bb": 4
     },
+
     3245: {
-        "name": "BMW M4 Gr.4",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     3246: {
-        "name": "Bugatti Veyron Gr.4",
         "layout": "4WD",
         "qual_bb": 2,
         "race_bb": 3
     },
+
     3247: {
-        "name": "Chevrolet Corvette C7 Gr.4",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     3248: {
-        "name": "GT by Citroën Gr.4",
         "layout": "MR",
         "qual_bb": 0,
         "race_bb": -1
     },
+
     3249: {
-        "name": "Dodge Viper Gr.4",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     3251: {
-        "name": "Honda NSX Gr.4",
         "layout": "MR",
         "qual_bb": -1,
         "race_bb": -2
     },
+
     3252: {
-        "name": "Jaguar F-type Gr.4",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     3253: {
-        "name": "Lamborghini Huracán Gr.4",
         "layout": "4WD",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     3254: {
-        "name": "Lexus RC F Gr.4",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     3256: {
-        "name": "Mazda Atenza Gr.4",
         "layout": "4WD",
         "qual_bb": 2,
         "race_bb": 3
     },
+
     3257: {
-        "name": "McLaren 650S Gr.4",
         "layout": "MR",
         "qual_bb": -1,
         "race_bb": -2
     },
+
     3258: {
-        "name": "Mitsubishi Lancer Evolution Final Gr.4",
         "layout": "4WD",
         "qual_bb": 2,
         "race_bb": 3
     },
+
     3259: {
-        "name": "Peugeot RCZ Gr.4",
         "layout": "FF",
         "qual_bb": 3,
         "race_bb": 4
     },
+
     3260: {
-        "name": "Renault Mégane Gr.4",
         "layout": "FF",
         "qual_bb": 3,
         "race_bb": 4
     },
+
     3261: {
-        "name": "Subaru WRX Gr.4",
         "layout": "4WD",
         "qual_bb": 2,
         "race_bb": 3
     },
+
     3262: {
-        "name": "Toyota 86 Gr.4",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     3263: {
-        "name": "Ferrari 458 Italia Gr.4",
         "layout": "MR",
         "qual_bb": -1,
         "race_bb": -2
     },
+
     3298: {
-        "name": "Audi TT Cup '16",
         "layout": "FF",
         "qual_bb": 3,
         "race_bb": 4
     },
+
     3310: {
-        "name": "Porsche Cayman GT4 Clubsport '16",
         "layout": "MR",
         "qual_bb": -1,
         "race_bb": -2
     },
+
     3399: {
-        "name": "Toyota GR Supra Race Car '19",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     3477: {
-        "name": "Nissan Silvia spec-R Aero (S15) Touring Car",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     3480: {
-        "name": "Suzuki Swift Sport Gr.4",
         "layout": "FF",
         "qual_bb": 3,
         "race_bb": 4
     },
+
     3501: {
-        "name": "Genesis G70 GR4",
         "layout": "FR",
         "qual_bb": 1,
         "race_bb": 2
     },
+
     3537: {
-        "name": "Mazda3 Gr.4",
         "layout": "FF",
         "qual_bb": 3,
         "race_bb": 4
@@ -239,24 +264,47 @@ CAR_INFO = {
 # ============================================================
 
 def score_to_laptime(score):
+
     if score is None:
         return "N/A"
 
-    score = int(round(score))
-    minutes = score // 60000
-    seconds = (score % 60000) // 1000
-    milliseconds = score % 1000
+    score = int(
+        round(score)
+    )
 
-    return f"{minutes}:{seconds:02d}.{milliseconds:03d}"
+    minutes = (
+        score // 60000
+    )
+
+    seconds = (
+        score % 60000
+    ) // 1000
+
+    milliseconds = (
+        score % 1000
+    )
+
+    return (
+        f"{minutes}:"
+        f"{seconds:02d}."
+        f"{milliseconds:03d}"
+    )
 
 
 def laptime_to_score(text):
+
     if not text or text == "N/A":
         return None
 
     try:
-        minutes, rest = text.split(":")
-        seconds, milliseconds = rest.split(".")
+
+        minutes, rest = text.split(
+            ":"
+        )
+
+        seconds, milliseconds = rest.split(
+            "."
+        )
 
         return (
             int(minutes) * 60000
@@ -265,45 +313,72 @@ def laptime_to_score(text):
         )
 
     except Exception:
+
         return None
 
 
 def get_car_code(driver):
+
     return (
         driver
-        .get("ranking_stats", {})
-        .get("car_code")
+        .get(
+            "ranking_stats",
+            {}
+        )
+        .get(
+            "car_code"
+        )
     )
 
 
 def get_car_name(car_code):
-    return (
-        CAR_INFO
-        .get(car_code, {})
-        .get(
-            "name",
-            f"Unknown car ({car_code})"
-        )
+
+    return database_get_car_name(
+        car_code,
+        CAR_DATABASE
     )
 
 
 def get_user(driver):
-    return driver.get("user", {})
+
+    return driver.get(
+        "user",
+        {}
+    )
 
 
-def find_my_driver(ranking, psn_id):
-    target = psn_id.strip().lower()
+def find_my_driver(
+    ranking,
+    psn_id
+):
+
+    target = (
+        psn_id
+        .strip()
+        .lower()
+    )
 
     for driver in ranking:
+
         online_id = (
             get_user(driver)
-            .get("np_online_id", "")
+            .get(
+                "np_online_id",
+                ""
+            )
         )
 
         if (
-            isinstance(online_id, str)
-            and online_id.strip().lower() == target
+            isinstance(
+                online_id,
+                str
+            )
+            and online_id
+            .strip()
+            .lower()
+            == target
         ):
+
             return driver
 
     return None
@@ -314,7 +389,13 @@ def find_my_driver(ranking, psn_id):
 # ============================================================
 
 def monday_of_week(dt):
-    monday = dt - timedelta(days=dt.weekday())
+
+    monday = (
+        dt
+        - timedelta(
+            days=dt.weekday()
+        )
+    )
 
     return monday.replace(
         hour=0,
@@ -325,15 +406,18 @@ def monday_of_week(dt):
 
 
 def parse_race_date_from_text(text):
+
     match = re.search(
         r"(\d{1,2}\s+[A-Za-z]{3}\s+\d{4})",
         text
     )
 
     if not match:
+
         return None
 
     try:
+
         parsed = datetime.strptime(
             match.group(1),
             "%d %b %Y"
@@ -344,14 +428,21 @@ def parse_race_date_from_text(text):
         )
 
     except ValueError:
+
         return None
 
 
-def find_current_race_c(soup, now):
+def find_current_race_c(
+    soup,
+    now
+):
+
     candidates = []
 
+
     for link in soup.select(
-        'a[href*="/daily/leaderboard?event="]'
+        'a[href*="/daily/leaderboard?event="], '
+        'a[href*="/daily/leaderboard/?event="]'
     ):
 
         parent = link.parent
@@ -359,93 +450,196 @@ def find_current_race_c(soup, now):
         if parent is None:
             continue
 
+
         parent_text = parent.get_text(
             " ",
             strip=True
         )
 
-        if "Daily Race C" not in parent_text:
+
+        if (
+            "Daily Race C"
+            not in parent_text
+        ):
+
             continue
 
-        href = link.get("href")
+
+        href = link.get(
+            "href"
+        )
+
 
         if not href:
             continue
 
-        candidates.append({
-            "url": urljoin(GTSH_URL, href),
-            "text": parent_text,
-            "date": parse_race_date_from_text(parent_text),
-            "running": "Running" in parent_text,
-            "next_week": "Next Week" in parent_text
-        })
+
+        candidates.append(
+            {
+                "url":
+                    urljoin(
+                        GTSH_URL,
+                        href
+                    ),
+
+                "text":
+                    parent_text,
+
+                "date":
+                    parse_race_date_from_text(
+                        parent_text
+                    ),
+
+                "running":
+                    "Running"
+                    in parent_text,
+
+                "next_week":
+                    "Next Week"
+                    in parent_text
+            }
+        )
 
 
     if not candidates:
+
         raise RuntimeError(
             "No Daily Race C candidates were found."
         )
 
 
+    # --------------------------------------------------------
+    # Preferred:
+    # explicitly marked RUNNING
+    # --------------------------------------------------------
+
     running_candidates = [
-        c
-        for c in candidates
-        if c["running"]
+        candidate
+        for candidate
+        in candidates
+        if candidate[
+            "running"
+        ]
     ]
 
+
     if running_candidates:
+
         running_candidates.sort(
-            key=lambda c:
-                c["date"]
-                or datetime.min.replace(
-                    tzinfo=SAO_PAULO
+            key=lambda candidate:
+                (
+                    candidate[
+                        "date"
+                    ]
+                    or datetime.min.replace(
+                        tzinfo=SAO_PAULO
+                    )
                 ),
             reverse=True
         )
 
-        selected = running_candidates[0]
-        selected["detection_mode"] = "explicit_running"
+
+        selected = (
+            running_candidates[
+                0
+            ]
+        )
+
+        selected[
+            "detection_mode"
+        ] = (
+            "explicit_running"
+        )
 
         return selected
 
 
-    current_monday = monday_of_week(now)
+    # --------------------------------------------------------
+    # Current Monday
+    # --------------------------------------------------------
+
+    current_monday = monday_of_week(
+        now
+    )
+
 
     current_week_candidates = [
-        c
-        for c in candidates
+        candidate
+        for candidate
+        in candidates
         if (
-            c["date"]
-            and c["date"].date()
+            candidate[
+                "date"
+            ]
+            and candidate[
+                "date"
+            ].date()
             == current_monday.date()
         )
     ]
 
+
     if current_week_candidates:
-        selected = current_week_candidates[0]
-        selected["detection_mode"] = "current_week_date"
+
+        selected = (
+            current_week_candidates[
+                0
+            ]
+        )
+
+        selected[
+            "detection_mode"
+        ] = (
+            "current_week_date"
+        )
 
         return selected
 
 
+    # --------------------------------------------------------
+    # Last non-future race
+    # --------------------------------------------------------
+
     valid_past = [
-        c
-        for c in candidates
+        candidate
+        for candidate
+        in candidates
         if (
-            c["date"]
-            and c["date"] <= now
-            and not c["next_week"]
+            candidate[
+                "date"
+            ]
+            and candidate[
+                "date"
+            ] <= now
+            and not candidate[
+                "next_week"
+            ]
         )
     ]
 
+
     if valid_past:
+
         valid_past.sort(
-            key=lambda c: c["date"],
+            key=lambda candidate:
+                candidate[
+                    "date"
+                ],
             reverse=True
         )
 
-        selected = valid_past[0]
-        selected["detection_mode"] = "latest_non_future"
+
+        selected = (
+            valid_past[
+                0
+            ]
+        )
+
+        selected[
+            "detection_mode"
+        ] = (
+            "latest_non_future"
+        )
 
         return selected
 
@@ -459,13 +653,19 @@ def find_current_race_c(soup, now):
 # PERSONAL RATINGS
 # ============================================================
 
-def position_score(rank, total):
+def position_score(
+    rank,
+    total
+):
+
     if (
         rank is None
         or total is None
         or total <= 1
     ):
+
         return None
+
 
     result = 10 * (
         1
@@ -475,23 +675,35 @@ def position_score(rank, total):
         )
     )
 
+
     return max(
         0.0,
-        min(10.0, result)
+        min(
+            10.0,
+            result
+        )
     )
 
 
-def elite_score(rank, total):
+def elite_score(
+    rank,
+    total
+):
+
     if (
         rank is None
         or total is None
         or total <= 1
         or rank < 1
     ):
+
         return None
 
+
     if rank == 1:
+
         return 10.0
+
 
     result = 10 * (
         1
@@ -499,15 +711,28 @@ def elite_score(rank, total):
         / math.log(total)
     )
 
+
     return max(
         0.0,
-        min(10.0, result)
+        min(
+            10.0,
+            result
+        )
     )
 
 
-def composite_rating(general, elite):
-    if general is None or elite is None:
+def composite_rating(
+    general,
+    elite
+):
+
+    if (
+        general is None
+        or elite is None
+    ):
+
         return None
+
 
     return (
         0.60 * general
@@ -515,13 +740,19 @@ def composite_rating(general, elite):
     )
 
 
-def percentile_ahead(rank, total):
+def percentile_ahead(
+    rank,
+    total
+):
+
     if (
         rank is None
         or total is None
         or total <= 1
     ):
+
         return None
+
 
     return (
         (total - rank)
@@ -530,7 +761,10 @@ def percentile_ahead(rank, total):
     )
 
 
-def pace_band(wr_percentage):
+def pace_band(
+    wr_percentage
+):
+
     if wr_percentage <= 101:
         return "ALIEN"
 
@@ -554,26 +788,41 @@ def pace_band(wr_percentage):
 # ============================================================
 
 def load_weekly_history():
+
     if not WEEKLY_HISTORY_FILE.exists():
+
         return []
 
+
     try:
+
         data = json.loads(
             WEEKLY_HISTORY_FILE.read_text(
                 encoding="utf-8"
             )
         )
 
-        if isinstance(data, list):
+
+        if isinstance(
+            data,
+            list
+        ):
+
             return data
 
+
     except Exception:
+
         pass
+
 
     return []
 
 
-def save_weekly_history(history):
+def save_weekly_history(
+    history
+):
+
     history.sort(
         key=lambda item:
             item.get(
@@ -581,6 +830,7 @@ def save_weekly_history(history):
                 ""
             )
     )
+
 
     WEEKLY_HISTORY_FILE.write_text(
         json.dumps(
@@ -596,8 +846,11 @@ def weekly_record_exists(
     history,
     leaderboard_url
 ):
+
     return any(
-        record.get("leaderboard_url")
+        record.get(
+            "leaderboard_url"
+        )
         == leaderboard_url
         for record in history
     )
@@ -607,33 +860,47 @@ def build_weekly_record(
     snapshot,
     finalization_mode
 ):
-    my = snapshot.get("my_result")
+
+    my = snapshot.get(
+        "my_result"
+    )
+
 
     if not my:
+
         return None
+
 
     race = snapshot.get(
         "race",
         {}
     )
 
+
     start_date_text = race.get(
         "start_date"
     )
 
+
     if start_date_text:
+
         try:
+
             week_start = (
                 datetime
-                .fromisoformat(start_date_text)
+                .fromisoformat(
+                    start_date_text
+                )
                 .date()
                 .isoformat()
             )
 
         except Exception:
+
             week_start = None
 
     else:
+
         week_start = None
 
 
@@ -647,6 +914,10 @@ def build_weekly_record(
 
 
     return {
+
+        "participated":
+            True,
+
         "week_start":
             week_start,
 
@@ -741,36 +1012,51 @@ def upsert_weekly_record(
     history,
     record
 ):
+
     if not record:
+
         return history
+
 
     url = record.get(
         "leaderboard_url"
     )
 
+
     replaced = False
+
 
     for index, existing in enumerate(
         history
     ):
+
         if (
             existing.get(
                 "leaderboard_url"
             )
             == url
         ):
-            history[index] = record
+
+            history[
+                index
+            ] = record
+
             replaced = True
+
             break
 
+
     if not replaced:
+
         history.append(
             record
         )
 
+
     save_weekly_history(
         history
     )
+
 
     return history
 
@@ -780,17 +1066,28 @@ def average_metric(
     key,
     count
 ):
+
     values = [
-        record.get(key)
-        for record in history[-count:]
+        record.get(
+            key
+        )
+        for record
+        in history[
+            -count:
+        ]
         if isinstance(
-            record.get(key),
+            record.get(
+                key
+            ),
             (int, float)
         )
     ]
 
+
     if not values:
+
         return None
+
 
     return (
         sum(values)
@@ -804,26 +1101,42 @@ def metric_trend(
     count=8,
     higher_is_better=True
 ):
+
     records = [
         record
-        for record in history[-count:]
+        for record
+        in history[
+            -count:
+        ]
         if isinstance(
-            record.get(key),
+            record.get(
+                key
+            ),
             (int, float)
         )
     ]
 
+
     if len(records) < 3:
+
         return "Insufficient history"
 
+
     values = [
-        record[key]
-        for record in records
+        record[
+            key
+        ]
+        for record
+        in records
     ]
 
+
     xs = list(
-        range(len(values))
+        range(
+            len(values)
+        )
     )
+
 
     x_mean = (
         sum(xs)
@@ -835,34 +1148,46 @@ def metric_trend(
         / len(values)
     )
 
+
     denominator = sum(
         (x - x_mean) ** 2
         for x in xs
     )
 
+
     if denominator == 0:
-        return "Stable"
+
+        return "STABLE"
+
 
     slope = (
         sum(
             (x - x_mean)
             * (y - y_mean)
             for x, y
-            in zip(xs, values)
+            in zip(
+                xs,
+                values
+            )
         )
         / denominator
     )
 
 
     if not higher_is_better:
+
         slope = -slope
 
 
     if slope > 0.05:
+
         return "IMPROVING"
 
+
     if slope < -0.05:
+
         return "DECLINING"
+
 
     return "STABLE"
 
@@ -871,11 +1196,21 @@ def metric_trend(
 # COMPARISON HELPERS
 # ============================================================
 
-def signed_seconds(delta_ms):
+def signed_seconds(
+    delta_ms
+):
+
     if delta_ms is None:
+
         return "N/A"
 
-    sign = "+" if delta_ms > 0 else ""
+
+    sign = (
+        "+"
+        if delta_ms > 0
+        else ""
+    )
+
 
     return (
         f"{sign}"
@@ -887,26 +1222,34 @@ def position_change(
     old_rank,
     new_rank
 ):
+
     if (
         old_rank is None
         or new_rank is None
     ):
+
         return "N/A"
+
 
     difference = (
         old_rank
         - new_rank
     )
 
+
     if difference > 0:
+
         return (
             f"+{difference} positions"
         )
 
+
     if difference < 0:
+
         return (
             f"{difference} positions"
         )
+
 
     return "unchanged"
 
@@ -919,16 +1262,20 @@ def extract_multiplier(
     race_text,
     label
 ):
+
     match = re.search(
         rf"{label}\s*x(\d+)",
         race_text,
         re.IGNORECASE
     )
 
+
     if match:
+
         return int(
             match.group(1)
         )
+
 
     return 1
 
@@ -936,6 +1283,7 @@ def extract_multiplier(
 def extract_compounds(
     race_text
 ):
+
     known = [
         "RH",
         "RM",
@@ -950,11 +1298,14 @@ def extract_compounds(
         "CS"
     ]
 
+
     tokens = race_text.split()
+
 
     return [
         compound
-        for compound in known
+        for compound
+        in known
         if compound in tokens
     ]
 
@@ -962,6 +1313,7 @@ def extract_compounds(
 def extract_start_date(
     race_text
 ):
+
     return parse_race_date_from_text(
         race_text
     )
@@ -972,28 +1324,49 @@ def extract_start_date(
 # ============================================================
 
 def format_bb(value):
+
     if value > 0:
+
         return f"+{value}"
 
-    return str(value)
+
+    return str(
+        value
+    )
 
 
 def brake_balance_recommendation(
     car_code,
     tyre_multiplier
 ):
-    info = CAR_INFO.get(
+
+    info = BRAKE_INFO.get(
         car_code
     )
 
+
     if not info:
+
         return {
-            "qualifying": 0,
-            "race": 0,
-            "layout": "Unknown",
-            "confidence": "Low",
+
+            "qualifying":
+                0,
+
+            "race":
+                0,
+
+            "layout":
+                "Unknown",
+
+            "confidence":
+                "Low",
+
             "reason":
-                "Car not present in local database."
+                (
+                    "Car identified by the central "
+                    "database, but no brake-balance "
+                    "baseline has been defined yet."
+                )
         }
 
 
@@ -1011,37 +1384,57 @@ def brake_balance_recommendation(
 
 
     if tyre_multiplier <= 1:
+
         race = qualifying
+
 
     elif tyre_multiplier <= 2:
 
         if race > qualifying:
-            race = qualifying + 1
+
+            race = (
+                qualifying
+                + 1
+            )
 
         elif race < qualifying:
-            race = qualifying - 1
+
+            race = (
+                qualifying
+                - 1
+            )
 
 
     reasons = {
+
         "FF":
-            "Rearward bias helps rotation "
-            "and reduces front-axle braking load.",
+            (
+                "Rearward bias helps rotation "
+                "and reduces front-axle braking load."
+            ),
 
         "FR":
-            "Mild rearward bias improves rotation "
-            "while retaining braking stability.",
+            (
+                "Mild rearward bias improves rotation "
+                "while retaining braking stability."
+            ),
 
         "MR":
-            "Neutral/slightly forward bias "
-            "prioritizes rear stability.",
+            (
+                "Neutral/slightly forward bias "
+                "prioritizes rear stability."
+            ),
 
         "4WD":
-            "Moderate rearward bias helps rotation "
-            "without making braking too unstable."
+            (
+                "Moderate rearward bias helps rotation "
+                "without making braking too unstable."
+            )
     }
 
 
     return {
+
         "qualifying":
             qualifying,
 
@@ -1067,10 +1460,14 @@ def brake_balance_recommendation(
 # ============================================================
 
 def load_previous_snapshot():
+
     if not LATEST_SNAPSHOT_FILE.exists():
+
         return None
 
+
     try:
+
         return json.loads(
             LATEST_SNAPSHOT_FILE.read_text(
                 encoding="utf-8"
@@ -1078,15 +1475,19 @@ def load_previous_snapshot():
         )
 
     except Exception:
+
         return None
 
 
 def load_history_for_race(
     leaderboard_url
 ):
+
     snapshots = []
 
+
     if not HISTORY_DIR.exists():
+
         return snapshots
 
 
@@ -1097,11 +1498,13 @@ def load_history_for_race(
     ):
 
         try:
+
             data = json.loads(
                 path.read_text(
                     encoding="utf-8"
                 )
             )
+
 
             if (
                 data
@@ -1114,11 +1517,14 @@ def load_history_for_race(
                 )
                 == leaderboard_url
             ):
+
                 snapshots.append(
                     data
                 )
 
+
         except Exception:
+
             pass
 
 
@@ -1129,7 +1535,9 @@ def snapshot_metric_score(
     snapshot,
     metric
 ):
+
     if metric == "world_record":
+
         return (
             snapshot
             .get(
@@ -1142,12 +1550,15 @@ def snapshot_metric_score(
         )
 
 
-    if metric.startswith("top"):
+    if metric.startswith(
+        "top"
+    ):
 
         key = metric.replace(
             "top",
             ""
         )
+
 
         value = (
             snapshot
@@ -1161,17 +1572,29 @@ def snapshot_metric_score(
         )
 
 
-        if isinstance(value, dict):
+        if isinstance(
+            value,
+            dict
+        ):
+
             return value.get(
                 "score"
             )
 
 
-        if isinstance(value, int):
+        if isinstance(
+            value,
+            int
+        ):
+
             return value
 
 
-        if isinstance(value, str):
+        if isinstance(
+            value,
+            str
+        ):
+
             return laptime_to_score(
                 value
             )
@@ -1190,12 +1613,17 @@ def linear_forecast(
     metric,
     target_time
 ):
+
     points = []
+
 
     combined = (
         list(history)
-        + [current_snapshot]
+        + [
+            current_snapshot
+        ]
     )
+
 
     seen = set()
 
@@ -1205,6 +1633,7 @@ def linear_forecast(
         timestamp = snapshot.get(
             "timestamp"
         )
+
 
         score = snapshot_metric_score(
             snapshot,
@@ -1225,15 +1654,23 @@ def linear_forecast(
                 score
             )
 
+
             if key in seen:
+
                 continue
 
-            seen.add(key)
+
+            seen.add(
+                key
+            )
+
 
             try:
+
                 dt = datetime.fromisoformat(
                     timestamp
                 )
+
 
                 points.append(
                     (
@@ -1242,34 +1679,53 @@ def linear_forecast(
                     )
                 )
 
+
             except Exception:
+
                 pass
 
 
     points.sort(
         key=lambda point:
-            point[0]
+            point[
+                0
+            ]
     )
 
 
     if len(points) < 3:
+
         return None
 
 
-    first_time = points[0][0]
+    first_time = (
+        points[
+            0
+        ][
+            0
+        ]
+    )
+
 
     xs = [
         (
-            point[0]
+            point[
+                0
+            ]
             - first_time
         ).total_seconds()
         / 3600
-        for point in points
+        for point
+        in points
     ]
 
+
     ys = [
-        point[1]
-        for point in points
+        point[
+            1
+        ]
+        for point
+        in points
     ]
 
 
@@ -1280,6 +1736,7 @@ def linear_forecast(
 
 
     if span_hours < 4:
+
         return None
 
 
@@ -1287,6 +1744,7 @@ def linear_forecast(
         sum(xs)
         / len(xs)
     )
+
 
     y_mean = (
         sum(ys)
@@ -1301,6 +1759,7 @@ def linear_forecast(
 
 
     if denominator == 0:
+
         return None
 
 
@@ -1309,7 +1768,10 @@ def linear_forecast(
             (x - x_mean)
             * (y - y_mean)
             for x, y
-            in zip(xs, ys)
+            in zip(
+                xs,
+                ys
+            )
         )
         / denominator
     )
@@ -1340,7 +1802,12 @@ def linear_forecast(
     )
 
 
-    current_score = ys[-1]
+    current_score = (
+        ys[
+            -1
+        ]
+    )
+
 
     predicted = min(
         predicted,
@@ -1359,7 +1826,10 @@ def linear_forecast(
             )
         )
         for x, y
-        in zip(xs, ys)
+        in zip(
+            xs,
+            ys
+        )
     ]
 
 
@@ -1369,7 +1839,9 @@ def linear_forecast(
             for residual
             in residuals
         )
-        / len(residuals)
+        / len(
+            residuals
+        )
     )
 
 
@@ -1377,34 +1849,46 @@ def linear_forecast(
         len(points) >= 6
         and span_hours >= 48
     ):
+
         confidence = "High"
+
 
     elif (
         len(points) >= 4
         and span_hours >= 24
     ):
+
         confidence = "Medium"
 
+
     else:
+
         confidence = "Low"
 
 
     return {
+
         "predicted_score":
             int(
-                round(predicted)
+                round(
+                    predicted
+                )
             ),
 
         "rmse_ms":
             int(
-                round(rmse)
+                round(
+                    rmse
+                )
             ),
 
         "confidence":
             confidence,
 
         "samples":
-            len(points),
+            len(
+                points
+            ),
 
         "span_hours":
             span_hours
@@ -1419,6 +1903,7 @@ def target_rank_for_percent(
     total,
     top_percent
 ):
+
     return max(
         1,
         min(
@@ -1437,17 +1922,22 @@ def build_targets(
     my_rank,
     my_score
 ):
+
     if (
         my_rank is None
         or my_score is None
     ):
+
         return []
 
 
-    total = len(ranking)
+    total = len(
+        ranking
+    )
 
 
     definitions = [
+
         (
             "Top 50%",
             target_rank_for_percent(
@@ -1455,6 +1945,7 @@ def build_targets(
                 50
             )
         ),
+
         (
             "Top 25%",
             target_rank_for_percent(
@@ -1462,6 +1953,7 @@ def build_targets(
                 25
             )
         ),
+
         (
             "Top 10%",
             target_rank_for_percent(
@@ -1469,6 +1961,7 @@ def build_targets(
                 10
             )
         ),
+
         (
             "Top 5%",
             target_rank_for_percent(
@@ -1476,6 +1969,7 @@ def build_targets(
                 5
             )
         ),
+
         (
             "Top 2%",
             target_rank_for_percent(
@@ -1483,6 +1977,7 @@ def build_targets(
                 2
             )
         ),
+
         (
             "Top 1%",
             target_rank_for_percent(
@@ -1490,6 +1985,7 @@ def build_targets(
                 1
             )
         ),
+
         (
             "Top 0.5%",
             target_rank_for_percent(
@@ -1497,6 +1993,7 @@ def build_targets(
                 0.5
             )
         ),
+
         (
             "Top 1000",
             min(
@@ -1504,6 +2001,7 @@ def build_targets(
                 total
             )
         ),
+
         (
             "Top 500",
             min(
@@ -1511,6 +2009,7 @@ def build_targets(
                 total
             )
         ),
+
         (
             "Top 100",
             min(
@@ -1518,6 +2017,7 @@ def build_targets(
                 total
             )
         ),
+
         (
             "Top 50",
             min(
@@ -1525,6 +2025,7 @@ def build_targets(
                 total
             )
         ),
+
         (
             "Top 10",
             min(
@@ -1539,7 +2040,9 @@ def build_targets(
 
 
     for label, rank in definitions:
+
         if rank < my_rank:
+
             unique_targets[
                 rank
             ] = label
@@ -1553,41 +2056,52 @@ def build_targets(
         reverse=True
     ):
 
-        target_score = ranking[
-            rank - 1
-        ].get(
-            "score"
+        target_score = (
+            ranking[
+                rank - 1
+            ].get(
+                "score"
+            )
         )
 
+
         if target_score is None:
+
             continue
 
 
-        results.append({
-            "label":
-                unique_targets[rank],
+        results.append(
+            {
 
-            "rank":
-                rank,
+                "label":
+                    unique_targets[
+                        rank
+                    ],
 
-            "score":
-                target_score,
+                "rank":
+                    rank,
 
-            "laptime":
-                score_to_laptime(
-                    target_score
-                ),
+                "score":
+                    target_score,
 
-            "gain_needed_ms":
-                max(
-                    0,
-                    my_score
-                    - target_score
-                )
-        })
+                "laptime":
+                    score_to_laptime(
+                        target_score
+                    ),
+
+                "gain_needed_ms":
+                    max(
+                        0,
+                        my_score
+                        - target_score
+                    )
+            }
+        )
 
 
-    return results[:4]
+    return results[
+        :4
+    ]
 
 
 # ============================================================
@@ -1599,16 +2113,21 @@ def group_rank(
     predicate,
     my_driver
 ):
+
     group = [
         driver
         for driver
         in ranking
-        if predicate(driver)
+        if predicate(
+            driver
+        )
     ]
 
 
     my_id = (
-        get_user(my_driver)
+        get_user(
+            my_driver
+        )
         .get(
             "np_online_id",
             ""
@@ -1623,7 +2142,9 @@ def group_rank(
     ):
 
         driver_id = (
-            get_user(driver)
+            get_user(
+                driver
+            )
             .get(
                 "np_online_id",
                 ""
@@ -1633,15 +2154,20 @@ def group_rank(
 
 
         if driver_id == my_id:
+
             return (
                 index,
-                len(group)
+                len(
+                    group
+                )
             )
 
 
     return (
         None,
-        len(group)
+        len(
+            group
+        )
     )
 
 
@@ -1655,12 +2181,17 @@ def car_performance_indices(
     top100_counter,
     top1000_counter
 ):
-    total = len(ranking)
+
+    total = len(
+        ranking
+    )
+
 
     top100_total = min(
         100,
         total
     )
+
 
     top1000_total = min(
         1000,
@@ -1671,7 +2202,10 @@ def car_performance_indices(
     rows = []
 
 
-    for car_code, all_count in all_counter.items():
+    for (
+        car_code,
+        all_count
+    ) in all_counter.items():
 
         overall_share = (
             all_count
@@ -1680,6 +2214,7 @@ def car_performance_indices(
 
 
         if overall_share <= 0:
+
             continue
 
 
@@ -1687,6 +2222,7 @@ def car_performance_indices(
             car_code,
             0
         )
+
 
         top1000_count = top1000_counter.get(
             car_code,
@@ -1723,8 +2259,10 @@ def car_performance_indices(
 
 
         index = (
-            oi100 * 0.70
-            + oi1000 * 0.30
+            oi100
+            * 0.70
+            + oi1000
+            * 0.30
         )
 
 
@@ -1732,48 +2270,56 @@ def car_performance_indices(
             all_count >= 500
             and top1000_count >= 25
         ):
+
             confidence = "High"
+
 
         elif (
             all_count >= 100
             and top1000_count >= 10
         ):
+
             confidence = "Medium"
 
+
         else:
+
             confidence = "Low"
 
 
-        rows.append({
-            "car_code":
-                car_code,
+        rows.append(
+            {
 
-            "car":
-                get_car_name(
-                    car_code
-                ),
+                "car_code":
+                    car_code,
 
-            "all_count":
-                all_count,
+                "car":
+                    get_car_name(
+                        car_code
+                    ),
 
-            "top100":
-                top100_count,
+                "all_count":
+                    all_count,
 
-            "top1000":
-                top1000_count,
+                "top100":
+                    top100_count,
 
-            "oi100":
-                oi100,
+                "top1000":
+                    top1000_count,
 
-            "oi1000":
-                oi1000,
+                "oi100":
+                    oi100,
 
-            "overperformance_index":
-                index,
+                "oi1000":
+                    oi1000,
 
-            "confidence":
-                confidence
-        })
+                "overperformance_index":
+                    index,
+
+                "confidence":
+                    confidence
+            }
+        )
 
 
     rows.sort(
@@ -1792,8 +2338,12 @@ def car_performance_indices(
 # BEST DRIVER BY CAR
 # ============================================================
 
-def best_driver_by_car(ranking):
+def best_driver_by_car(
+    ranking
+):
+
     result = {}
+
 
     for driver in ranking:
 
@@ -1804,8 +2354,10 @@ def best_driver_by_car(ranking):
 
         if (
             car_code is not None
-            and car_code not in result
+            and car_code
+            not in result
         ):
+
             result[
                 car_code
             ] = driver
@@ -1823,13 +2375,17 @@ def anomaly_warnings(
     current,
     unknown_share
 ):
+
     warnings = []
 
 
     if unknown_share > 5:
+
         warnings.append(
-            f"Unknown car mapping represents "
-            f"{unknown_share:.1f}% of leaderboard."
+            (
+                "Unknown car mapping represents "
+                f"{unknown_share:.1f}% of leaderboard."
+            )
         )
 
 
@@ -1860,6 +2416,7 @@ def anomaly_warnings(
             "total_drivers"
         )
 
+
         new_total = current.get(
             "total_drivers"
         )
@@ -1869,8 +2426,10 @@ def anomaly_warnings(
             old_total
             and new_total
             and new_total
-            < old_total * 0.70
+            < old_total
+            * 0.70
         ):
+
             warnings.append(
                 "Driver count dropped by more than 30%."
             )
@@ -1880,6 +2439,7 @@ def anomaly_warnings(
             previous,
             "world_record"
         )
+
 
         new_wr = snapshot_metric_score(
             current,
@@ -1892,17 +2452,31 @@ def anomaly_warnings(
             and new_wr
         ):
 
-            if new_wr > old_wr + 500:
+            if (
+                new_wr
+                > old_wr
+                + 500
+            ):
+
                 warnings.append(
-                    "World record became more than "
-                    "0.500s slower."
+                    (
+                        "World record became more than "
+                        "0.500s slower."
+                    )
                 )
 
 
-            if old_wr - new_wr > 2000:
+            if (
+                old_wr
+                - new_wr
+                > 2000
+            ):
+
                 warnings.append(
-                    "World record improved by more than "
-                    "2.000s since previous snapshot."
+                    (
+                        "World record improved by more than "
+                        "2.000s since previous snapshot."
+                    )
                 )
 
 
@@ -1915,15 +2489,20 @@ def anomaly_warnings(
 
 def main():
 
+    global CAR_DATABASE
+
+
     REPORT_DIR.mkdir(
         parents=True,
         exist_ok=True
     )
 
+
     DATA_DIR.mkdir(
         parents=True,
         exist_ok=True
     )
+
 
     HISTORY_DIR.mkdir(
         parents=True,
@@ -1932,6 +2511,7 @@ def main():
 
 
     session = requests.Session()
+
 
     session.headers.update(
         HEADERS
@@ -1946,18 +2526,30 @@ def main():
         SAO_PAULO
     )
 
-    timestamp_iso = now.isoformat()
 
-    timestamp_display = now.strftime(
-        "%d/%m/%Y %H:%M:%S"
+    timestamp_iso = (
+        now.isoformat()
     )
 
-    history_filename = now.strftime(
-        "%Y-%m-%d_%H-%M-%S.json"
+
+    timestamp_display = (
+        now.strftime(
+            "%d/%m/%Y %H:%M:%S"
+        )
     )
 
-    report_filename = now.strftime(
-        "%Y-%m-%d_%H-%M-%S.txt"
+
+    history_filename = (
+        now.strftime(
+            "%Y-%m-%d_%H-%M-%S.json"
+        )
+    )
+
+
+    report_filename = (
+        now.strftime(
+            "%Y-%m-%d_%H-%M-%S.txt"
+        )
     )
 
 
@@ -1969,6 +2561,7 @@ def main():
         GTSH_URL,
         timeout=30
     )
+
 
     response.raise_for_status()
 
@@ -1988,12 +2581,26 @@ def main():
         now
     )
 
-    race_c_link = race_c["url"]
-    race_c_text = race_c["text"]
 
-    race_detection_mode = race_c[
-        "detection_mode"
-    ]
+    race_c_link = (
+        race_c[
+            "url"
+        ]
+    )
+
+
+    race_c_text = (
+        race_c[
+            "text"
+        ]
+    )
+
+
+    race_detection_mode = (
+        race_c[
+            "detection_mode"
+        ]
+    )
 
 
     # ========================================================
@@ -2005,14 +2612,82 @@ def main():
         timeout=60
     )
 
+
     leaderboard_response.raise_for_status()
 
-    html = leaderboard_response.text
 
+    html = (
+        leaderboard_response.text
+    )
+
+
+    # ========================================================
+    # UPDATE CENTRAL CAR DATABASE
+    #
+    # If the current leaderboard contains GTSH's carNames
+    # catalog, merge it automatically into data/car_names.json.
+    #
+    # If it does not contain it, the existing 582-car database
+    # remains available.
+    # ========================================================
+
+    try:
+
+        car_update = (
+            update_car_database_from_html(
+                html
+            )
+        )
+
+
+        CAR_DATABASE = (
+            car_update[
+                "database"
+            ]
+        )
+
+
+        cars_discovered_this_run = (
+            car_update[
+                "discovered"
+            ]
+        )
+
+
+        cars_added_this_run = (
+            car_update[
+                "added"
+            ]
+        )
+
+
+        cars_updated_this_run = (
+            car_update[
+                "updated"
+            ]
+        )
+
+
+    except Exception:
+
+        CAR_DATABASE = (
+            load_car_database()
+        )
+
+
+        cars_discovered_this_run = 0
+        cars_added_this_run = 0
+        cars_updated_this_run = 0
+
+
+    # ========================================================
+    # EXTRACT RANKING
+    # ========================================================
 
     marker = (
         "const initialRanking = "
     )
+
 
     start = html.find(
         marker
@@ -2020,44 +2695,107 @@ def main():
 
 
     ranking = None
-    source_mode = "initialRanking"
+
+
+    source_mode = (
+        "initialRanking"
+    )
 
 
     if start != -1:
 
-        start += len(marker)
-
-        decoder = json.JSONDecoder()
-
-        ranking, _ = decoder.raw_decode(
-            html[start:].lstrip()
+        start += len(
+            marker
         )
 
 
+        decoder = (
+            json.JSONDecoder()
+        )
+
+
+        ranking, _ = (
+            decoder.raw_decode(
+                html[
+                    start:
+                ].lstrip()
+            )
+        )
+
+
+    # ========================================================
+    # UPDATE ENDPOINT FALLBACK
+    # ========================================================
+
     if not ranking:
 
-        source_mode = "update_endpoint"
+        source_mode = (
+            "update_endpoint"
+        )
+
 
         update_url = (
             race_c_link
             + (
                 "&update=1"
-                if "?" in race_c_link
+                if "?"
+                in race_c_link
                 else "?update=1"
             )
         )
+
 
         update_response = session.get(
             update_url,
             timeout=60
         )
 
+
         update_response.raise_for_status()
 
-        ranking = update_response.json()
+
+        update_data = (
+            update_response.json()
+        )
+
+
+        # Current boards have historically returned a list.
+        # Keep a defensive parser in case GTSH switches to a
+        # dictionary structure.
+
+        if isinstance(
+            update_data,
+            list
+        ):
+
+            ranking = update_data
+
+
+        elif isinstance(
+            update_data,
+            dict
+        ):
+
+            candidate = (
+                update_data.get(
+                    "board"
+                )
+                or update_data.get(
+                    "ranking"
+                )
+            )
+
+
+            if isinstance(
+                candidate,
+                list
+            ):
+
+                ranking = candidate
 
 
     if not ranking:
+
         raise RuntimeError(
             "Leaderboard contains no drivers."
         )
@@ -2076,15 +2814,22 @@ def main():
     # WORLD RECORD
     # ========================================================
 
-    winner = ranking[0]
+    winner = (
+        ranking[
+            0
+        ]
+    )
+
 
     wr_score = winner.get(
         "score"
     )
 
+
     wr_user = get_user(
         winner
     )
+
 
     wr_car_code = get_car_code(
         winner
@@ -2092,11 +2837,14 @@ def main():
 
 
     time_103 = round(
-        wr_score * 1.03
+        wr_score
+        * 1.03
     )
 
+
     time_105 = round(
-        wr_score * 1.05
+        wr_score
+        * 1.05
     )
 
 
@@ -2109,14 +2857,17 @@ def main():
         "Fuel"
     )
 
+
     tyre_multiplier = extract_multiplier(
         race_c_text,
         "Tyres"
     )
 
+
     compounds = extract_compounds(
         race_c_text
     )
+
 
     start_date = extract_start_date(
         race_c_text
@@ -2146,18 +2897,25 @@ def main():
 
     for position in threshold_positions:
 
-        if len(ranking) >= position:
+        if len(
+            ranking
+        ) >= position:
 
-            score = ranking[
-                position - 1
-            ].get(
-                "score"
+            score = (
+                ranking[
+                    position - 1
+                ].get(
+                    "score"
+                )
             )
 
 
             thresholds[
-                str(position)
+                str(
+                    position
+                )
             ] = {
+
                 "score":
                     score,
 
@@ -2179,9 +2937,13 @@ def main():
 
 
     my_result = None
+
     next_targets = []
+
     same_car_stats = None
+
     country_stats = None
+
     dr_stats = None
 
 
@@ -2191,21 +2953,26 @@ def main():
             "score"
         )
 
+
         my_rank = my_driver.get(
             "display_rank"
         )
+
 
         my_car_code = get_car_code(
             my_driver
         )
 
+
         my_user = get_user(
             my_driver
         )
 
+
         my_country = my_user.get(
             "country_code"
         )
+
 
         my_dr = my_user.get(
             "driver_rating"
@@ -2221,13 +2988,17 @@ def main():
 
         my_general_score = position_score(
             my_rank,
-            len(ranking)
+            len(
+                ranking
+            )
         )
 
 
         my_elite_score = elite_score(
             my_rank,
-            len(ranking)
+            len(
+                ranking
+            )
         )
 
 
@@ -2239,42 +3010,69 @@ def main():
 
         my_ahead = percentile_ahead(
             my_rank,
-            len(ranking)
+            len(
+                ranking
+            )
         )
 
 
-        same_car_rank, same_car_total = group_rank(
+        (
+            same_car_rank,
+            same_car_total
+        ) = group_rank(
+
             ranking,
+
             lambda driver:
-                get_car_code(driver)
+                get_car_code(
+                    driver
+                )
                 == my_car_code,
+
             my_driver
         )
 
 
-        country_rank, country_total = group_rank(
+        (
+            country_rank,
+            country_total
+        ) = group_rank(
+
             ranking,
+
             lambda driver:
-                get_user(driver).get(
+                get_user(
+                    driver
+                ).get(
                     "country_code"
                 )
                 == my_country,
+
             my_driver
         )
 
 
-        dr_rank, dr_total = group_rank(
+        (
+            dr_rank,
+            dr_total
+        ) = group_rank(
+
             ranking,
+
             lambda driver:
-                get_user(driver).get(
+                get_user(
+                    driver
+                ).get(
                     "driver_rating"
                 )
                 == my_dr,
+
             my_driver
         )
 
 
         my_result = {
+
             "psn_id":
                 MY_PSN_ID,
 
@@ -2324,7 +3122,9 @@ def main():
 
             "top_percent":
                 my_rank
-                / len(ranking)
+                / len(
+                    ranking
+                )
                 * 100,
 
             "pace_band":
@@ -2335,6 +3135,7 @@ def main():
 
 
         same_car_stats = {
+
             "rank":
                 same_car_rank,
 
@@ -2344,6 +3145,7 @@ def main():
 
 
         country_stats = {
+
             "rank":
                 country_rank,
 
@@ -2356,6 +3158,7 @@ def main():
 
 
         dr_stats = {
+
             "rank":
                 dr_rank,
 
@@ -2379,42 +3182,74 @@ def main():
     # ========================================================
 
     all_counter = Counter(
-        get_car_code(driver)
+        get_car_code(
+            driver
+        )
         for driver
         in ranking
-        if get_car_code(driver)
+        if get_car_code(
+            driver
+        )
         is not None
     )
 
 
-    top100 = ranking[:100]
-    top500 = ranking[:500]
-    top1000 = ranking[:1000]
+    top100 = (
+        ranking[
+            :100
+        ]
+    )
+
+
+    top500 = (
+        ranking[
+            :500
+        ]
+    )
+
+
+    top1000 = (
+        ranking[
+            :1000
+        ]
+    )
 
 
     top100_counter = Counter(
-        get_car_code(driver)
+        get_car_code(
+            driver
+        )
         for driver
         in top100
-        if get_car_code(driver)
+        if get_car_code(
+            driver
+        )
         is not None
     )
 
 
     top500_counter = Counter(
-        get_car_code(driver)
+        get_car_code(
+            driver
+        )
         for driver
         in top500
-        if get_car_code(driver)
+        if get_car_code(
+            driver
+        )
         is not None
     )
 
 
     top1000_counter = Counter(
-        get_car_code(driver)
+        get_car_code(
+            driver
+        )
         for driver
         in top1000
-        if get_car_code(driver)
+        if get_car_code(
+            driver
+        )
         is not None
     )
 
@@ -2426,9 +3261,14 @@ def main():
     top5_used_cars = []
 
 
-    for car_code, count in (
+    for (
+        car_code,
+        count
+    ) in (
         top1000_counter
-        .most_common(5)
+        .most_common(
+            5
+        )
     ):
 
         bb = brake_balance_recommendation(
@@ -2437,51 +3277,72 @@ def main():
         )
 
 
-        top5_used_cars.append({
-            "car_code":
-                car_code,
+        top5_used_cars.append(
+            {
 
-            "car":
-                get_car_name(
-                    car_code
-                ),
+                "car_code":
+                    car_code,
 
-            "count":
-                count,
+                "car":
+                    get_car_name(
+                        car_code
+                    ),
 
-            "percentage":
-                (
-                    count
-                    / len(top1000)
-                    * 100
-                ),
+                "count":
+                    count,
 
-            "layout":
-                bb["layout"],
+                "percentage":
+                    (
+                        count
+                        / len(
+                            top1000
+                        )
+                        * 100
+                    ),
 
-            "qualifying_bb":
-                bb["qualifying"],
+                "layout":
+                    bb[
+                        "layout"
+                    ],
 
-            "race_bb":
-                bb["race"],
+                "qualifying_bb":
+                    bb[
+                        "qualifying"
+                    ],
 
-            "confidence":
-                bb["confidence"],
+                "race_bb":
+                    bb[
+                        "race"
+                    ],
 
-            "reason":
-                bb["reason"]
-        })
+                "confidence":
+                    bb[
+                        "confidence"
+                    ],
+
+                "reason":
+                    bb[
+                        "reason"
+                    ]
+            }
+        )
 
 
     # ========================================================
     # CAR OVERPERFORMANCE
     # ========================================================
 
-    overperformance = car_performance_indices(
-        ranking,
-        all_counter,
-        top100_counter,
-        top1000_counter
+    overperformance = (
+        car_performance_indices(
+
+            ranking,
+
+            all_counter,
+
+            top100_counter,
+
+            top1000_counter
+        )
     )
 
 
@@ -2496,6 +3357,7 @@ def main():
 
 
     if not credible_overperformance:
+
         credible_overperformance = (
             overperformance
         )
@@ -2519,14 +3381,22 @@ def main():
 
     if my_result:
 
-        my_code = my_result[
-            "car_code"
-        ]
+        my_code = (
+            my_result[
+                "car_code"
+            ]
+        )
 
 
         meta_code = (
             top1000_counter
-            .most_common(1)[0][0]
+            .most_common(
+                1
+            )[
+                0
+            ][
+                0
+            ]
             if top1000_counter
             else None
         )
@@ -2549,6 +3419,7 @@ def main():
 
 
         car_comparison = {
+
             "my_car":
                 get_car_name(
                     my_code
@@ -2576,7 +3447,9 @@ def main():
 
             "gap_to_best_same_car_ms":
                 (
-                    my_result["score"]
+                    my_result[
+                        "score"
+                    ]
                     - my_car_best.get(
                         "score"
                     )
@@ -2638,20 +3511,26 @@ def main():
 
 
     # ========================================================
-    # HEALTH
+    # HEALTH / CAR DATABASE COVERAGE
     # ========================================================
 
     unknown_count = sum(
         count
-        for car_code, count
+        for (
+            car_code,
+            count
+        )
         in all_counter.items()
-        if car_code not in CAR_INFO
+        if car_code
+        not in CAR_DATABASE
     )
 
 
     unknown_share = (
         unknown_count
-        / len(ranking)
+        / len(
+            ranking
+        )
         * 100
     )
 
@@ -2661,10 +3540,12 @@ def main():
     # ========================================================
 
     snapshot = {
+
         "timestamp":
             timestamp_iso,
 
         "race": {
+
             "description":
                 race_c_text,
 
@@ -2695,9 +3576,12 @@ def main():
         },
 
         "total_drivers":
-            len(ranking),
+            len(
+                ranking
+            ),
 
         "world_record": {
+
             "score":
                 wr_score,
 
@@ -2727,7 +3611,9 @@ def main():
         },
 
         "benchmarks": {
+
             "103_percent": {
+
                 "score":
                     time_103,
 
@@ -2738,6 +3624,7 @@ def main():
             },
 
             "105_percent": {
+
                 "score":
                     time_105,
 
@@ -2770,12 +3657,32 @@ def main():
             top5_used_cars,
 
         "overperformance":
-            credible_overperformance[:10],
+            credible_overperformance[
+                :10
+            ],
 
         "car_comparison":
             car_comparison,
 
+        "car_database": {
+
+            "total_known_cars":
+                len(
+                    CAR_DATABASE
+                ),
+
+            "discovered_this_run":
+                cars_discovered_this_run,
+
+            "added_this_run":
+                cars_added_this_run,
+
+            "updated_this_run":
+                cars_updated_this_run
+        },
+
         "health": {
+
             "unknown_car_share":
                 unknown_share,
 
@@ -2786,7 +3693,9 @@ def main():
                 race_detection_mode,
 
             "leaderboard_entries":
-                len(ranking),
+                len(
+                    ranking
+                ),
 
             "my_driver_found":
                 my_driver
@@ -2817,14 +3726,14 @@ def main():
     # WEEKLY FINALIZATION
     # ========================================================
 
-    weekly_history = load_weekly_history()
+    weekly_history = (
+        load_weekly_history()
+    )
 
 
     # --------------------------------------------------------
-    # Safety fallback:
-    # If a new Race C has started and the previous race
-    # was never formally finalized, preserve the last
-    # available snapshot from that race.
+    # If a new Race C has started and the previous one was
+    # never formally finalized, preserve the last snapshot.
     # --------------------------------------------------------
 
     if previous:
@@ -2851,14 +3760,19 @@ def main():
             )
         ):
 
-            fallback_record = build_weekly_record(
-                previous,
-                "backfill_last_available_snapshot"
+            fallback_record = (
+                build_weekly_record(
+                    previous,
+                    "backfill_last_available_snapshot"
+                )
             )
 
-            weekly_history = upsert_weekly_record(
-                weekly_history,
-                fallback_record
+
+            weekly_history = (
+                upsert_weekly_record(
+                    weekly_history,
+                    fallback_record
+                )
             )
 
 
@@ -2872,8 +3786,10 @@ def main():
 
 
     sunday_late = (
-        now.weekday() == 6
-        and now.hour >= 23
+        now.weekday()
+        == 6
+        and now.hour
+        >= 23
     )
 
 
@@ -2885,14 +3801,19 @@ def main():
 
     if weekly_finalized_now:
 
-        final_record = build_weekly_record(
-            snapshot,
-            "sunday_final"
+        final_record = (
+            build_weekly_record(
+                snapshot,
+                "sunday_final"
+            )
         )
 
-        weekly_history = upsert_weekly_record(
-            weekly_history,
-            final_record
+
+        weekly_history = (
+            upsert_weekly_record(
+                weekly_history,
+                final_record
+            )
         )
 
 
@@ -2912,7 +3833,9 @@ def main():
 
         sunday_end = (
             start_date
-            + timedelta(days=6)
+            + timedelta(
+                days=6
+            )
         ).replace(
             hour=23,
             minute=59,
@@ -2923,20 +3846,26 @@ def main():
         if sunday_end > now:
 
             for metric in [
+
                 "world_record",
                 "top500",
                 "top1000"
             ]:
 
                 forecast = linear_forecast(
+
                     history,
+
                     snapshot,
+
                     metric,
+
                     sunday_end
                 )
 
 
                 if forecast:
+
                     forecasts[
                         metric
                     ] = forecast
@@ -2981,23 +3910,28 @@ def main():
         "GT7 DAILY RACE C"
     )
 
+
     lines.append(
         "=" * 78
     )
+
 
     lines.append(
         f"Snapshot: "
         f"{timestamp_display} - Sao Paulo"
     )
 
+
     lines.append(
         race_c_text
     )
+
 
     lines.append(
         f"Race detection: "
         f"{race_detection_mode}"
     )
+
 
     lines.append(
         f"Total drivers: "
@@ -3010,6 +3944,8 @@ def main():
     # ========================================================
 
     lines.append("")
+
+
     lines.append(
         "WHERE YOU ARE"
     )
@@ -3022,56 +3958,67 @@ def main():
             f"{MY_PSN_ID}"
         )
 
+
         lines.append(
             f"Position        : "
             f"#{my_result['rank']:,} "
             f"of {len(ranking):,}"
         )
 
+
         lines.append(
             f"Time            : "
             f"{my_result['laptime']}"
         )
+
 
         lines.append(
             f"Car             : "
             f"{my_result['car']}"
         )
 
+
         lines.append(
             f"Gap to WR       : "
             f"+{my_result['gap_to_wr_ms']/1000:.3f}s"
         )
+
 
         lines.append(
             f"WR percentage   : "
             f"{my_result['wr_percentage']:.3f}%"
         )
 
+
         lines.append(
             f"Pace class      : "
             f"{my_result['pace_band']}"
         )
+
 
         lines.append(
             f"General rating  : "
             f"{my_result['position_score']:.2f} / 10"
         )
 
+
         lines.append(
             f"Elite rating    : "
             f"{my_result['elite_score']:.2f} / 10"
         )
+
 
         lines.append(
             f"Composite       : "
             f"{my_result['composite_rating']:.2f} / 10"
         )
 
+
         lines.append(
             f"Top percentile  : "
             f"Top {my_result['top_percent']:.2f}%"
         )
+
 
         lines.append(
             f"Ahead of        : "
@@ -3082,7 +4029,9 @@ def main():
 
         if (
             country_stats
-            and country_stats["rank"]
+            and country_stats[
+                "rank"
+            ]
         ):
 
             lines.append(
@@ -3095,7 +4044,9 @@ def main():
 
         if (
             dr_stats
-            and dr_stats["rank"]
+            and dr_stats[
+                "rank"
+            ]
         ):
 
             lines.append(
@@ -3108,7 +4059,9 @@ def main():
 
         if (
             same_car_stats
-            and same_car_stats["rank"]
+            and same_car_stats[
+                "rank"
+            ]
         ):
 
             lines.append(
@@ -3131,6 +4084,8 @@ def main():
     # ========================================================
 
     lines.append("")
+
+
     lines.append(
         "WORLD RECORD & BENCHMARKS"
     )
@@ -3143,10 +4098,12 @@ def main():
         f"{get_car_name(wr_car_code)}"
     )
 
+
     lines.append(
         f"103% WR         : "
         f"{score_to_laptime(time_103)}"
     )
+
 
     lines.append(
         f"105% WR         : "
@@ -3155,6 +4112,7 @@ def main():
 
 
     for key in [
+
         "10",
         "100",
         "500",
@@ -3176,6 +4134,8 @@ def main():
     # ========================================================
 
     lines.append("")
+
+
     lines.append(
         "WHERE YOU SHOULD AIM"
     )
@@ -3183,7 +4143,10 @@ def main():
 
     if next_targets:
 
-        for index, target in enumerate(
+        for (
+            index,
+            target
+        ) in enumerate(
             next_targets,
             start=1
         ):
@@ -3197,6 +4160,7 @@ def main():
                 f"{target['gain_needed_ms']/1000:.3f}s"
             )
 
+
     else:
 
         lines.append(
@@ -3209,6 +4173,8 @@ def main():
     # ========================================================
 
     lines.append("")
+
+
     lines.append(
         "YOUR CAR VS META"
     )
@@ -3255,6 +4221,7 @@ def main():
                 f"{signed_seconds(car_comparison['theoretical_car_gap_ms'])}"
             )
 
+
     else:
 
         lines.append(
@@ -3267,12 +4234,17 @@ def main():
     # ========================================================
 
     lines.append("")
+
+
     lines.append(
         "WHAT THE META IS - TOP 5 USED IN TOP 1000"
     )
 
 
-    for index, car in enumerate(
+    for (
+        index,
+        car
+    ) in enumerate(
         top5_used_cars,
         start=1
     ):
@@ -3286,18 +4258,28 @@ def main():
 
 
     lines.append("")
+
+
     lines.append(
         "CAR OVERPERFORMANCE INDEX"
     )
 
+
     lines.append(
-        "Index > 1.00 = overrepresented "
-        "among the fastest drivers."
+        (
+            "Index > 1.00 = overrepresented "
+            "among the fastest drivers."
+        )
     )
 
 
-    for index, car in enumerate(
-        credible_overperformance[:5],
+    for (
+        index,
+        car
+    ) in enumerate(
+        credible_overperformance[
+            :5
+        ],
         start=1
     ):
 
@@ -3316,22 +4298,33 @@ def main():
     # ========================================================
 
     lines.append("")
+
+
     lines.append(
         "BRAKE BALANCE - TOP 5 USED CARS"
     )
 
-    lines.append(
-        "Convention: negative = more front, "
-        "positive = more rear."
-    )
 
     lines.append(
-        "Baseline recommendations, "
-        "not telemetry-proven optimums."
+        (
+            "Convention: negative = more front, "
+            "positive = more rear."
+        )
     )
 
 
-    for index, car in enumerate(
+    lines.append(
+        (
+            "Baseline recommendations, "
+            "not telemetry-proven optimums."
+        )
+    )
+
+
+    for (
+        index,
+        car
+    ) in enumerate(
         top5_used_cars,
         start=1
     ):
@@ -3353,19 +4346,24 @@ def main():
     # ========================================================
 
     lines.append("")
+
+
     lines.append(
         "RACE STRATEGY FLAGS"
     )
+
 
     lines.append(
         f"Fuel multiplier: "
         f"x{fuel_multiplier}"
     )
 
+
     lines.append(
         f"Tyre multiplier: "
         f"x{tyre_multiplier}"
     )
+
 
     lines.append(
         f"Compounds detected: "
@@ -3376,37 +4374,49 @@ def main():
     if tyre_multiplier >= 4:
 
         lines.append(
-            "Tyre wear is high: prioritize "
-            "consistency and axle protection."
+            (
+                "Tyre wear is high: prioritize "
+                "consistency and axle protection."
+            )
         )
+
 
     elif tyre_multiplier >= 2:
 
         lines.append(
-            "Tyre wear is meaningful: "
-            "race balance may need tyre management."
+            (
+                "Tyre wear is meaningful: "
+                "race balance may need tyre management."
+            )
         )
+
 
     else:
 
         lines.append(
-            "Tyre wear is low: quali and race "
-            "BB can remain relatively close."
+            (
+                "Tyre wear is low: quali and race "
+                "BB can remain relatively close."
+            )
         )
 
 
     if fuel_multiplier >= 4:
 
         lines.append(
-            "Fuel consumption is high: "
-            "short-shifting/fuel saving may matter."
+            (
+                "Fuel consumption is high: "
+                "short-shifting/fuel saving may matter."
+            )
         )
+
 
     elif fuel_multiplier >= 2:
 
         lines.append(
             "Fuel consumption may influence race pace."
         )
+
 
     else:
 
@@ -3420,6 +4430,8 @@ def main():
     # ========================================================
 
     lines.append("")
+
+
     lines.append(
         "FORECAST TO SUNDAY"
     )
@@ -3428,16 +4440,20 @@ def main():
     if forecasts:
 
         forecast_labels = {
+
             "world_record":
                 "World Record",
+
             "top500":
                 "Top 500",
+
             "top1000":
                 "Top 1000"
         }
 
 
         for metric in [
+
             "world_record",
             "top500",
             "top1000"
@@ -3458,6 +4474,7 @@ def main():
                     f"{forecast['samples']} samples"
                 )
 
+
     else:
 
         lines.append(
@@ -3470,13 +4487,18 @@ def main():
     # ========================================================
 
     lines.append("")
+
+
     lines.append(
         "LONG-TERM RATING TREND"
     )
 
+
     lines.append(
-        "Only FINAL Sunday ratings are used "
-        "for week-to-week comparisons."
+        (
+            "Only FINAL Sunday ratings are used "
+            "for week-to-week comparisons."
+        )
     )
 
 
@@ -3485,6 +4507,7 @@ def main():
         lines.append(
             "Current race status: FINAL"
         )
+
 
     else:
 
@@ -3500,10 +4523,12 @@ def main():
             f"{my_result['position_score']:.2f}"
         )
 
+
         lines.append(
             f"Current provisional Elite   : "
             f"{my_result['elite_score']:.2f}"
         )
+
 
         lines.append(
             f"Current provisional Composite: "
@@ -3513,38 +4538,50 @@ def main():
 
     if weekly_history:
 
-        latest_final = weekly_history[-1]
+        latest_final = (
+            weekly_history[
+                -1
+            ]
+        )
+
 
         lines.append("")
+
 
         lines.append(
             "LATEST FINALIZED WEEK"
         )
+
 
         lines.append(
             f"Week       : "
             f"{latest_final.get('week_start','N/A')}"
         )
 
+
         lines.append(
             f"General    : "
             f"{latest_final.get('general_score',0):.2f}"
         )
+
 
         lines.append(
             f"Elite      : "
             f"{latest_final.get('elite_score',0):.2f}"
         )
 
+
         lines.append(
             f"Composite  : "
             f"{latest_final.get('composite_rating',0):.2f}"
         )
 
+
         lines.append(
             f"Top %      : "
             f"{latest_final.get('top_percent',0):.2f}%"
         )
+
 
         lines.append(
             f"WR %       : "
@@ -3552,10 +4589,14 @@ def main():
         )
 
 
-        if len(weekly_history) >= 2:
+        if len(
+            weekly_history
+        ) >= 2:
 
             previous_final = (
-                weekly_history[-2]
+                weekly_history[
+                    -2
+                ]
             )
 
 
@@ -3591,19 +4632,23 @@ def main():
 
             lines.append("")
 
+
             lines.append(
                 "CHANGE VS PREVIOUS FINAL WEEK"
             )
+
 
             lines.append(
                 f"General    : "
                 f"{general_change:+.2f}"
             )
 
+
             lines.append(
                 f"Elite      : "
                 f"{elite_change:+.2f}"
             )
+
 
             lines.append(
                 f"Composite  : "
@@ -3617,11 +4662,13 @@ def main():
             4
         )
 
+
         avg4_elite = average_metric(
             weekly_history,
             "elite_score",
             4
         )
+
 
         avg4_composite = average_metric(
             weekly_history,
@@ -3634,19 +4681,23 @@ def main():
 
             lines.append("")
 
+
             lines.append(
                 "4-WEEK MOVING AVERAGE"
             )
+
 
             lines.append(
                 f"General    : "
                 f"{avg4_general:.2f}"
             )
 
+
             lines.append(
                 f"Elite      : "
                 f"{avg4_elite:.2f}"
             )
+
 
             lines.append(
                 f"Composite  : "
@@ -3656,24 +4707,29 @@ def main():
 
         lines.append("")
 
+
         lines.append(
             "8-WEEK TREND"
         )
+
 
         lines.append(
             f"General    : "
             f"{metric_trend(weekly_history, 'general_score')}"
         )
 
+
         lines.append(
             f"Elite      : "
             f"{metric_trend(weekly_history, 'elite_score')}"
         )
 
+
         lines.append(
             f"Composite  : "
             f"{metric_trend(weekly_history, 'composite_rating')}"
         )
+
 
         lines.append(
             f"WR %       : "
@@ -3683,12 +4739,17 @@ def main():
 
         lines.append("")
 
+
         lines.append(
             "LAST FINALIZED RACES"
         )
 
 
-        for record in weekly_history[-8:]:
+        for record in (
+            weekly_history[
+                -8:
+            ]
+        ):
 
             lines.append(
                 f"{record.get('week_start','N/A')} | "
@@ -3708,10 +4769,12 @@ def main():
 
 
     # ========================================================
-    # WHAT CHANGED TODAY
+    # WHAT CHANGED
     # ========================================================
 
     lines.append("")
+
+
     lines.append(
         "WHAT CHANGED SINCE PREVIOUS SNAPSHOT"
     )
@@ -3798,6 +4861,7 @@ def main():
                     - old_general
                 )
 
+
                 lines.append(
                     f"General rating : "
                     f"{old_general:.2f} -> "
@@ -3820,6 +4884,7 @@ def main():
                     - old_elite
                 )
 
+
                 lines.append(
                     f"Elite rating   : "
                     f"{old_elite:.2f} -> "
@@ -3840,39 +4905,63 @@ def main():
     # ========================================================
 
     lines.append("")
+
+
     lines.append(
         "DATA QUALITY / HEALTH"
     )
+
 
     lines.append(
         f"Race detector  : "
         f"{race_detection_mode}"
     )
 
+
     lines.append(
         f"Primary source : "
         f"GTSH-Rank ({source_mode})"
     )
+
 
     lines.append(
         f"Entries        : "
         f"{len(ranking):,}"
     )
 
+
+    lines.append(
+        f"Car database   : "
+        f"{len(CAR_DATABASE):,} known cars"
+    )
+
+
     lines.append(
         f"Car mapping    : "
         f"{100 - unknown_share:.2f}% recognized"
     )
+
 
     lines.append(
         f"My PSN found   : "
         f"{'Yes' if my_driver else 'No'}"
     )
 
+
     lines.append(
         f"Weekly final   : "
         f"{'YES' if weekly_finalized_now else 'No'}"
     )
+
+
+    if cars_discovered_this_run:
+
+        lines.append(
+            f"GTSH car scan  : "
+            f"{cars_discovered_this_run} discovered | "
+            f"{cars_added_this_run} new | "
+            f"{cars_updated_this_run} updated"
+        )
 
 
     if warnings:
@@ -3884,6 +4973,7 @@ def main():
                 f"{warning}"
             )
 
+
     else:
 
         lines.append(
@@ -3892,6 +4982,8 @@ def main():
 
 
     lines.append("")
+
+
     lines.append(
         "=" * 78
     )
@@ -3929,11 +5021,14 @@ def main():
     # ========================================================
 
     if weekly_finalized_now:
+
         subject = (
             "GT7 Race C FINAL"
         )
 
+
     else:
+
         subject = (
             "GT7 Race C"
         )
@@ -3990,4 +5085,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
