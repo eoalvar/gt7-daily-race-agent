@@ -1,25 +1,17 @@
 import requests
 import json
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse, parse_qs, urlencode, urlunparse
 
-
-# ============================================================
-# CONFIG
-# ============================================================
 
 GTSH_URL = "https://gtsh-rank.com/daily/"
 TARGET_WEEK = "03 Aug 2026"
-TARGET_PSN = "crazy_rooster74"
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (GT7 Archive Debug Agent)"
+    "User-Agent": "Mozilla/5.0 (GT7 Archive Pagination Debug)",
+    "Accept": "*/*"
 }
 
-
-# ============================================================
-# JSON VARIABLE EXTRACTOR
-# ============================================================
 
 def extract_json_variable(html, variable_name):
 
@@ -39,7 +31,6 @@ def extract_json_variable(html, variable_name):
         start += len(marker)
 
         try:
-
             decoder = json.JSONDecoder()
 
             data, _ = decoder.raw_decode(
@@ -49,14 +40,241 @@ def extract_json_variable(html, variable_name):
             return data
 
         except Exception:
-            continue
+            pass
 
     return None
 
 
-# ============================================================
-# MAIN
-# ============================================================
+def build_url(
+    event_url,
+    offset,
+    limit=100
+):
+
+    parsed = urlparse(event_url)
+
+    path = parsed.path
+
+    if not path.endswith("/"):
+        path += "/"
+
+    query = parse_qs(
+        parsed.query,
+        keep_blank_values=True
+    )
+
+    query["offset"] = [str(offset)]
+    query["limit"] = [str(limit)]
+
+    return urlunparse(
+        (
+            parsed.scheme,
+            parsed.netloc,
+            path,
+            parsed.params,
+            urlencode(query, doseq=True),
+            parsed.fragment
+        )
+    )
+
+
+def inspect_response(
+    label,
+    response
+):
+
+    print()
+    print(label)
+    print("-" * 80)
+
+    print(
+        "Requested URL:",
+        response.request.url
+    )
+
+    print(
+        "Final URL:",
+        response.url
+    )
+
+    print(
+        "HTTP:",
+        response.status_code
+    )
+
+    print(
+        "Content-Type:",
+        response.headers.get(
+            "content-type"
+        )
+    )
+
+    print(
+        "Length:",
+        len(response.content)
+    )
+
+
+    try:
+
+        data = response.json()
+
+        print(
+            "JSON type:",
+            type(data).__name__
+        )
+
+        if isinstance(
+            data,
+            dict
+        ):
+
+            print(
+                "Keys:",
+                list(data.keys())
+            )
+
+            print(
+                "Offset:",
+                data.get("offset")
+            )
+
+            print(
+                "Limit:",
+                data.get("limit")
+            )
+
+            print(
+                "Total:",
+                data.get("total")
+            )
+
+            board = data.get(
+                "board"
+            )
+
+            if isinstance(
+                board,
+                list
+            ):
+
+                print(
+                    "Board length:",
+                    len(board)
+                )
+
+                if board:
+
+                    print(
+                        "First rank:",
+                        board[0].get(
+                            "display_rank"
+                        )
+                    )
+
+                    print(
+                        "Last rank:",
+                        board[-1].get(
+                            "display_rank"
+                        )
+                    )
+
+        print(
+            "JSON sample:"
+        )
+
+        print(
+            json.dumps(
+                data,
+                ensure_ascii=False,
+                indent=2
+            )[:3000]
+        )
+
+        return
+
+
+    except Exception:
+
+        print(
+            "Response is NOT direct JSON."
+        )
+
+
+    html = response.text
+
+    server_page = extract_json_variable(
+        html,
+        "initialServerPage"
+    )
+
+
+    if isinstance(
+        server_page,
+        dict
+    ):
+
+        print(
+            "HTML contains initialServerPage."
+        )
+
+        print(
+            "Offset:",
+            server_page.get(
+                "offset"
+            )
+        )
+
+        print(
+            "Limit:",
+            server_page.get(
+                "limit"
+            )
+        )
+
+        print(
+            "Total:",
+            server_page.get(
+                "total"
+            )
+        )
+
+        board = server_page.get(
+            "board"
+        )
+
+        if isinstance(
+            board,
+            list
+        ):
+
+            print(
+                "Board length:",
+                len(board)
+            )
+
+            if board:
+
+                print(
+                    "First rank:",
+                    board[0].get(
+                        "display_rank"
+                    )
+                )
+
+                print(
+                    "Last rank:",
+                    board[-1].get(
+                        "display_rank"
+                    )
+                )
+
+    else:
+
+        print(
+            "No initialServerPage found."
+        )
+
 
 def main():
 
@@ -67,31 +285,32 @@ def main():
     )
 
 
-    print("=" * 80)
-    print("GT7 ARCHIVED RACE - ADD RACER DEBUG")
-    print("=" * 80)
+    print(
+        "=" * 80
+    )
 
+    print(
+        "GT7 ARCHIVED PAGINATION URL TEST"
+    )
 
-    # ========================================================
-    # FIND TOKYO RACE C
-    # ========================================================
+    print(
+        "=" * 80
+    )
+
 
     target_url = None
     target_text = None
 
 
-    for page in range(1, 10):
+    for page in range(
+        1,
+        10
+    ):
 
-        if page == 1:
-            page_url = GTSH_URL
-        else:
-            page_url = (
-                f"{GTSH_URL}?page={page}&q="
-            )
-
-
-        print(
-            f"Searching archive page {page}..."
+        page_url = (
+            GTSH_URL
+            if page == 1
+            else f"{GTSH_URL}?page={page}&q="
         )
 
 
@@ -148,142 +367,63 @@ def main():
     if not target_url:
 
         raise RuntimeError(
-            "Could not find archived Daily Race C "
-            "for 03 Aug 2026."
+            "Tokyo Daily Race C not found."
         )
 
 
     print()
-    print("RACE FOUND")
-    print("-" * 80)
+    print(
+        "RACE:"
+    )
 
-    print(target_text)
+    print(
+        target_text
+    )
 
     print()
-    print(target_url)
+
+    print(
+        "Original URL:",
+        target_url
+    )
 
 
     # ========================================================
-    # OPEN EVENT FIRST
-    #
-    # Important: this establishes any session/cookies that
-    # GTSH-Rank may use for the selected archived event.
+    # PAGE 1
     # ========================================================
 
-    event_response = session.get(
+    first = session.get(
         target_url,
         timeout=60
     )
 
-    event_response.raise_for_status()
+    first.raise_for_status()
 
-    html = event_response.text
-
-
-    print()
-    print("EVENT PAGE")
-    print("-" * 80)
-
-    print(
-        "HTTP:",
-        event_response.status_code
-    )
-
-    print(
-        "Final URL:",
-        event_response.url
+    inspect_response(
+        "PAGE 1 - NORMAL EVENT URL",
+        first
     )
 
 
     # ========================================================
-    # INITIAL SERVER PAGE
+    # TEST A
+    # event + offset + limit
     # ========================================================
 
-    server_page = extract_json_variable(
-        html,
-        "initialServerPage"
+    url_a = build_url(
+        first.url,
+        100,
+        100
     )
 
 
-    print()
-    print("INITIAL SERVER PAGE")
-    print("-" * 80)
-
-
-    if isinstance(
-        server_page,
-        dict
-    ):
-
-        print(
-            "Keys:",
-            list(server_page.keys())
-        )
-
-        print(
-            "Offset:",
-            server_page.get("offset")
-        )
-
-        print(
-            "Limit:",
-            server_page.get("limit")
-        )
-
-        print(
-            "Total:",
-            (
-                server_page.get("total")
-                or server_page.get("total_records")
-                or server_page.get("totalRecords")
-                or server_page.get("count")
-            )
-        )
-
-        board = server_page.get(
-            "board",
-            []
-        )
-
-        print(
-            "Board length:",
-            len(board)
-            if isinstance(board, list)
-            else "N/A"
-        )
-
-    else:
-
-        print(
-            "initialServerPage not found."
-        )
-
-
-    # ========================================================
-    # CALL ADD RACER ENDPOINT
-    # ========================================================
-
-    add_racer_url = (
-        "https://gtsh-rank.com/"
-        "daily/leaderboard/"
-        f"?add_racer=1&id={TARGET_PSN}"
-    )
-
-
-    print()
-    print("ADD RACER REQUEST")
-    print("-" * 80)
-
-    print(
-        add_racer_url
-    )
-
-
-    racer_response = session.get(
-        add_racer_url,
+    response_a = session.get(
+        url_a,
         headers={
             "User-Agent":
-                HEADERS["User-Agent"],
+                HEADERS[
+                    "User-Agent"
+                ],
 
             "Accept":
                 "application/json"
@@ -292,171 +432,119 @@ def main():
     )
 
 
-    print(
-        "HTTP:",
-        racer_response.status_code
-    )
-
-    print(
-        "Final URL:",
-        racer_response.url
-    )
-
-    print(
-        "Content-Type:",
-        racer_response.headers.get(
-            "content-type"
-        )
+    inspect_response(
+        "TEST A - EVENT + OFFSET + LIMIT",
+        response_a
     )
 
 
     # ========================================================
-    # PARSE RESPONSE
+    # TEST B
+    # pathname only + offset + limit
+    # This mirrors the JS:
+    # fetch(`${url.pathname}?${url.searchParams.toString()}`)
     # ========================================================
 
-    print()
-    print("ADD RACER RESPONSE")
-    print("-" * 80)
+    parsed = urlparse(
+        first.url
+    )
 
 
-    try:
+    query = parse_qs(
+        parsed.query,
+        keep_blank_values=True
+    )
 
-        data = racer_response.json()
+    query[
+        "offset"
+    ] = ["100"]
 
-        print(
-            "Python type:",
-            type(data).__name__
+    query[
+        "limit"
+    ] = ["100"]
+
+
+    relative_path = (
+        parsed.path
+        + "?"
+        + urlencode(
+            query,
+            doseq=True
         )
+    )
 
 
-        if isinstance(
-            data,
-            dict
-        ):
-
-            print(
-                "Keys:",
-                list(data.keys())
-            )
+    url_b = urljoin(
+        first.url,
+        relative_path
+    )
 
 
-        print(
-            json.dumps(
-                data,
-                ensure_ascii=False,
-                indent=2
-            )[:12000]
-        )
+    response_b = session.get(
+        url_b,
+        headers={
+            "User-Agent":
+                HEADERS[
+                    "User-Agent"
+                ],
+
+            "Accept":
+                "application/json"
+        },
+        timeout=60
+    )
 
 
-        # ====================================================
-        # RECURSIVE SEARCH FOR OUR PSN
-        # ====================================================
-
-        matches = []
-
-
-        def search_object(
-            obj,
-            path="root"
-        ):
-
-            if isinstance(
-                obj,
-                dict
-            ):
-
-                online_id = obj.get(
-                    "np_online_id"
-                )
+    inspect_response(
+        "TEST B - JS-STYLE PATHNAME REQUEST",
+        response_b
+    )
 
 
-                if (
-                    isinstance(
-                        online_id,
-                        str
-                    )
-                    and TARGET_PSN.lower()
-                    == online_id.lower()
-                ):
+    # ========================================================
+    # TEST C
+    # Same query, but AJAX-ish header
+    # ========================================================
 
-                    matches.append(
-                        {
-                            "path": path,
-                            "object": obj
-                        }
-                    )
+    response_c = session.get(
+        url_b,
+        headers={
+            "User-Agent":
+                HEADERS[
+                    "User-Agent"
+                ],
 
+            "Accept":
+                "application/json",
 
-                for key, value in obj.items():
+            "X-Requested-With":
+                "XMLHttpRequest",
 
-                    search_object(
-                        value,
-                        f"{path}.{key}"
-                    )
-
-
-            elif isinstance(
-                obj,
-                list
-            ):
-
-                for index, value in enumerate(
-                    obj
-                ):
-
-                    search_object(
-                        value,
-                        f"{path}[{index}]"
-                    )
+            "Referer":
+                first.url
+        },
+        timeout=60
+    )
 
 
-        search_object(
-            data
-        )
-
-
-        print()
-        print("PSN SEARCH")
-        print("-" * 80)
-
-        print(
-            "Matches found:",
-            len(matches)
-        )
-
-
-        for match in matches:
-
-            print(
-                "PATH:",
-                match["path"]
-            )
-
-            print(
-                json.dumps(
-                    match["object"],
-                    ensure_ascii=False,
-                    indent=2
-                )
-            )
-
-
-    except Exception:
-
-        print(
-            "Response is not valid JSON."
-        )
-
-        print(
-            racer_response.text[:12000]
-        )
+    inspect_response(
+        "TEST C - AJAX HEADER",
+        response_c
+    )
 
 
     print()
-    print("=" * 80)
-    print("END")
-    print("=" * 80)
+    print(
+        "=" * 80
+    )
+
+    print(
+        "END"
+    )
+
+    print(
+        "=" * 80
+    )
 
 
 if __name__ == "__main__":
