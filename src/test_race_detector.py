@@ -49,42 +49,52 @@ CAR_DATABASE = load_car_database()
 
 
 # ============================================================
-# BRAKE BALANCE DATABASE
+# VALIDATED DRIVETRAIN DATABASE
+#
+# This database contains objective drivetrain metadata only.
+#
+# Brake Bias values are NOT stored here because they are not
+# official GT7 specifications.
+#
+# Genesis G70 GR4 corrected to 4WD.
 # ============================================================
 
-BRAKE_INFO = {
-    1563: {"layout": "MR", "qual_bb": 0, "race_bb": -1},
-    2157: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    2161: {"layout": "4WD", "qual_bb": 2, "race_bb": 3},
-    2163: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    2164: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    2166: {"layout": "MR", "qual_bb": 0, "race_bb": -1},
-    3192: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    3231: {"layout": "FF", "qual_bb": 3, "race_bb": 4},
-    3245: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    3246: {"layout": "4WD", "qual_bb": 2, "race_bb": 3},
-    3247: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    3248: {"layout": "MR", "qual_bb": 0, "race_bb": -1},
-    3249: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    3251: {"layout": "MR", "qual_bb": -1, "race_bb": -2},
-    3252: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    3253: {"layout": "4WD", "qual_bb": 1, "race_bb": 2},
-    3254: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    3256: {"layout": "4WD", "qual_bb": 2, "race_bb": 3},
-    3257: {"layout": "MR", "qual_bb": -1, "race_bb": -2},
-    3258: {"layout": "4WD", "qual_bb": 2, "race_bb": 3},
-    3259: {"layout": "FF", "qual_bb": 3, "race_bb": 4},
-    3260: {"layout": "FF", "qual_bb": 3, "race_bb": 4},
-    3261: {"layout": "4WD", "qual_bb": 2, "race_bb": 3},
-    3262: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    3263: {"layout": "MR", "qual_bb": -1, "race_bb": -2},
-    3298: {"layout": "FF", "qual_bb": 3, "race_bb": 4},
-    3310: {"layout": "MR", "qual_bb": -1, "race_bb": -2},
-    3399: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    3477: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    3480: {"layout": "FF", "qual_bb": 3, "race_bb": 4},
-    3501: {"layout": "FR", "qual_bb": 1, "race_bb": 2},
-    3537: {"layout": "FF", "qual_bb": 3, "race_bb": 4}
+CAR_TECHNICAL_INFO = {
+    1563: {"layout": "MR"},
+    2157: {"layout": "FR"},
+    2161: {"layout": "4WD"},
+    2163: {"layout": "FR"},
+    2164: {"layout": "FR"},
+    2166: {"layout": "MR"},
+    3192: {"layout": "FR"},
+    3231: {"layout": "FF"},
+    3245: {"layout": "FR"},
+    3246: {"layout": "4WD"},
+    3247: {"layout": "FR"},
+    3248: {"layout": "MR"},
+    3249: {"layout": "FR"},
+    3251: {"layout": "MR"},
+    3252: {"layout": "FR"},
+    3253: {"layout": "4WD"},
+    3254: {"layout": "FR"},
+    3256: {"layout": "4WD"},
+    3257: {"layout": "MR"},
+    3258: {"layout": "4WD"},
+    3259: {"layout": "FF"},
+    3260: {"layout": "FF"},
+    3261: {"layout": "4WD"},
+    3262: {"layout": "FR"},
+    3263: {"layout": "MR"},
+    3298: {"layout": "FF"},
+    3310: {"layout": "MR"},
+    3399: {"layout": "FR"},
+    3477: {"layout": "FR"},
+    3480: {"layout": "FF"},
+
+    # IMPORTANT CORRECTION:
+    3501: {"layout": "4WD"},
+
+    3537: {"layout": "FF"}
 }
 
 
@@ -93,6 +103,7 @@ BRAKE_INFO = {
 # ============================================================
 
 def score_to_laptime(score):
+
     if score is None:
         return "N/A"
 
@@ -106,10 +117,12 @@ def score_to_laptime(score):
 
 
 def laptime_to_score(text):
+
     if not text or text == "N/A":
         return None
 
     try:
+
         minutes, rest = text.split(":")
         seconds, milliseconds = rest.split(".")
 
@@ -120,10 +133,12 @@ def laptime_to_score(text):
         )
 
     except Exception:
+
         return None
 
 
 def get_car_code(driver):
+
     return (
         driver
         .get("ranking_stats", {})
@@ -132,6 +147,7 @@ def get_car_code(driver):
 
 
 def get_car_name(car_code):
+
     return database_get_car_name(
         car_code,
         CAR_DATABASE
@@ -139,22 +155,39 @@ def get_car_name(car_code):
 
 
 def get_user(driver):
-    return driver.get("user", {})
+
+    return driver.get(
+        "user",
+        {}
+    )
 
 
-def find_my_driver(ranking, psn_id):
+def find_my_driver(
+    ranking,
+    psn_id
+):
+
     target = psn_id.strip().lower()
 
     for driver in ranking:
+
         online_id = (
             get_user(driver)
-            .get("np_online_id", "")
+            .get(
+                "np_online_id",
+                ""
+            )
         )
 
         if (
-            isinstance(online_id, str)
-            and online_id.strip().lower() == target
+            isinstance(
+                online_id,
+                str
+            )
+            and online_id.strip().lower()
+            == target
         ):
+
             return driver
 
     return None
@@ -165,7 +198,13 @@ def find_my_driver(ranking, psn_id):
 # ============================================================
 
 def monday_of_week(dt):
-    monday = dt - timedelta(days=dt.weekday())
+
+    monday = (
+        dt
+        - timedelta(
+            days=dt.weekday()
+        )
+    )
 
     return monday.replace(
         hour=0,
@@ -176,6 +215,7 @@ def monday_of_week(dt):
 
 
 def parse_race_date_from_text(text):
+
     match = re.search(
         r"(\d{1,2}\s+[A-Za-z]{3}\s+\d{4})",
         text
@@ -185,6 +225,7 @@ def parse_race_date_from_text(text):
         return None
 
     try:
+
         parsed = datetime.strptime(
             match.group(1),
             "%d %b %Y"
@@ -195,10 +236,15 @@ def parse_race_date_from_text(text):
         )
 
     except ValueError:
+
         return None
 
 
-def find_current_race_c(soup, now):
+def find_current_race_c(
+    soup,
+    now
+):
+
     candidates = []
 
     for link in soup.select(
@@ -219,7 +265,9 @@ def find_current_race_c(soup, now):
         if "Daily Race C" not in parent_text:
             continue
 
-        href = link.get("href")
+        href = link.get(
+            "href"
+        )
 
         if not href:
             continue
@@ -247,6 +295,7 @@ def find_current_race_c(soup, now):
         })
 
     if not candidates:
+
         raise RuntimeError(
             "No Daily Race C candidates were found."
         )
@@ -268,8 +317,13 @@ def find_current_race_c(soup, now):
             reverse=True
         )
 
-        selected = running_candidates[0]
-        selected["detection_mode"] = "explicit_running"
+        selected = (
+            running_candidates[0]
+        )
+
+        selected[
+            "detection_mode"
+        ] = "explicit_running"
 
         return selected
 
@@ -289,8 +343,13 @@ def find_current_race_c(soup, now):
 
     if current_week_candidates:
 
-        selected = current_week_candidates[0]
-        selected["detection_mode"] = "current_week_date"
+        selected = (
+            current_week_candidates[0]
+        )
+
+        selected[
+            "detection_mode"
+        ] = "current_week_date"
 
         return selected
 
@@ -313,7 +372,10 @@ def find_current_race_c(soup, now):
         )
 
         selected = valid_past[0]
-        selected["detection_mode"] = "latest_non_future"
+
+        selected[
+            "detection_mode"
+        ] = "latest_non_future"
 
         return selected
 
@@ -326,12 +388,17 @@ def find_current_race_c(soup, now):
 # PERSONAL RATINGS
 # ============================================================
 
-def position_score(rank, total):
+def position_score(
+    rank,
+    total
+):
+
     if (
         rank is None
         or total is None
         or total <= 1
     ):
+
         return None
 
     result = 10 * (
@@ -351,16 +418,22 @@ def position_score(rank, total):
     )
 
 
-def elite_score(rank, total):
+def elite_score(
+    rank,
+    total
+):
+
     if (
         rank is None
         or total is None
         or total <= 1
         or rank < 1
     ):
+
         return None
 
     if rank == 1:
+
         return 10.0
 
     result = 10 * (
@@ -378,11 +451,16 @@ def elite_score(rank, total):
     )
 
 
-def composite_rating(general, elite):
+def composite_rating(
+    general,
+    elite
+):
+
     if (
         general is None
         or elite is None
     ):
+
         return None
 
     return (
@@ -391,12 +469,17 @@ def composite_rating(general, elite):
     )
 
 
-def percentile_ahead(rank, total):
+def percentile_ahead(
+    rank,
+    total
+):
+
     if (
         rank is None
         or total is None
         or total <= 1
     ):
+
         return None
 
     return (
@@ -406,7 +489,10 @@ def percentile_ahead(rank, total):
     )
 
 
-def pace_band(wr_percentage):
+def pace_band(
+    wr_percentage
+):
+
     if wr_percentage <= 101:
         return "ALIEN"
 
@@ -430,26 +516,37 @@ def pace_band(wr_percentage):
 # ============================================================
 
 def load_weekly_history():
+
     if not WEEKLY_HISTORY_FILE.exists():
+
         return []
 
     try:
+
         data = json.loads(
             WEEKLY_HISTORY_FILE.read_text(
                 encoding="utf-8"
             )
         )
 
-        if isinstance(data, list):
+        if isinstance(
+            data,
+            list
+        ):
+
             return data
 
     except Exception:
+
         pass
 
     return []
 
 
-def save_weekly_history(history):
+def save_weekly_history(
+    history
+):
+
     history.sort(
         key=lambda item:
             item.get(
@@ -472,6 +569,7 @@ def weekly_record_exists(
     history,
     leaderboard_url
 ):
+
     return any(
         record.get(
             "leaderboard_url"
@@ -485,6 +583,7 @@ def build_weekly_record(
     snapshot,
     finalization_mode
 ):
+
     my = snapshot.get(
         "my_result"
     )
@@ -502,7 +601,9 @@ def build_weekly_record(
     )
 
     if start_date_text:
+
         try:
+
             week_start = (
                 datetime
                 .fromisoformat(
@@ -513,9 +614,11 @@ def build_weekly_record(
             )
 
         except Exception:
+
             week_start = None
 
     else:
+
         week_start = None
 
     general = my.get(
@@ -624,7 +727,9 @@ def upsert_weekly_record(
     history,
     record
 ):
+
     if not record:
+
         return history
 
     url = record.get(
@@ -636,17 +741,24 @@ def upsert_weekly_record(
     for index, existing in enumerate(
         history
     ):
+
         if (
             existing.get(
                 "leaderboard_url"
             )
             == url
         ):
-            history[index] = record
+
+            history[
+                index
+            ] = record
+
             replaced = True
+
             break
 
     if not replaced:
+
         history.append(
             record
         )
@@ -663,16 +775,24 @@ def average_metric(
     key,
     count
 ):
+
     values = [
-        record.get(key)
-        for record in history[-count:]
+        record.get(
+            key
+        )
+        for record in history[
+            -count:
+        ]
         if isinstance(
-            record.get(key),
+            record.get(
+                key
+            ),
             (int, float)
         )
     ]
 
     if not values:
+
         return None
 
     return (
@@ -687,20 +807,28 @@ def metric_trend(
     count=8,
     higher_is_better=True
 ):
+
     records = [
         record
-        for record in history[-count:]
+        for record in history[
+            -count:
+        ]
         if isinstance(
-            record.get(key),
+            record.get(
+                key
+            ),
             (int, float)
         )
     ]
 
     if len(records) < 3:
+
         return "Insufficient history"
 
     values = [
-        record[key]
+        record[
+            key
+        ]
         for record in records
     ]
 
@@ -726,6 +854,7 @@ def metric_trend(
     )
 
     if denominator == 0:
+
         return "STABLE"
 
     slope = (
@@ -742,12 +871,15 @@ def metric_trend(
     )
 
     if not higher_is_better:
+
         slope = -slope
 
     if slope > 0.05:
+
         return "IMPROVING"
 
     if slope < -0.05:
+
         return "DECLINING"
 
     return "STABLE"
@@ -757,8 +889,12 @@ def metric_trend(
 # COMPARISON HELPERS
 # ============================================================
 
-def signed_seconds(delta_ms):
+def signed_seconds(
+    delta_ms
+):
+
     if delta_ms is None:
+
         return "N/A"
 
     sign = (
@@ -777,10 +913,12 @@ def position_change(
     old_rank,
     new_rank
 ):
+
     if (
         old_rank is None
         or new_rank is None
     ):
+
         return "N/A"
 
     difference = (
@@ -789,11 +927,13 @@ def position_change(
     )
 
     if difference > 0:
+
         return (
             f"+{difference} positions"
         )
 
     if difference < 0:
+
         return (
             f"{difference} positions"
         )
@@ -809,6 +949,7 @@ def extract_multiplier(
     race_text,
     label
 ):
+
     match = re.search(
         rf"{label}\s*x(\d+)",
         race_text,
@@ -816,6 +957,7 @@ def extract_multiplier(
     )
 
     if match:
+
         return int(
             match.group(1)
         )
@@ -826,6 +968,7 @@ def extract_multiplier(
 def extract_compounds(
     race_text
 ):
+
     known = [
         "RH",
         "RM",
@@ -852,119 +995,372 @@ def extract_compounds(
 def extract_start_date(
     race_text
 ):
+
     return parse_race_date_from_text(
         race_text
     )
 
 
 # ============================================================
-# BRAKE BALANCE
+# BRAKE BIAS RECOMMENDATION ENGINE
+#
+# IMPORTANT:
+#
+# GT7 does not publish an optimum Brake Balance value by car.
+#
+# The recommendations below are deliberately expressed as
+# starting RANGES rather than supposedly exact settings.
+#
+# Convention used in this report:
+#
+# Negative = more front
+# Positive = more rear
+#
+# The drivetrain provides the baseline.
+# Tyre wear adjusts the race range.
+#
+# Confidence remains HEURISTIC unless future telemetry or
+# car-specific evidence is incorporated.
 # ============================================================
 
-def format_bb(value):
+BRAKE_BIAS_BASELINES = {
+
+    "FF": {
+        "qualifying":
+            (2, 4),
+
+        "race":
+            (3, 5),
+
+        "reason":
+            (
+                "FF cars place substantial braking and cornering "
+                "load on the front axle. A rearward starting bias "
+                "can help rotation and reduce front tyre stress."
+            )
+    },
+
+    "FR": {
+        "qualifying":
+            (0, 2),
+
+        "race":
+            (1, 3),
+
+        "reason":
+            (
+                "FR cars generally tolerate a mildly rearward "
+                "bias to improve rotation while retaining "
+                "predictable braking stability."
+            )
+    },
+
+    "MR": {
+        "qualifying":
+            (-1, 1),
+
+        "race":
+            (-2, 0),
+
+        "reason":
+            (
+                "MR cars can become sensitive to rear instability "
+                "under braking. A neutral to slightly forward bias "
+                "is used as the starting range."
+            )
+    },
+
+    "4WD": {
+        "qualifying":
+            (1, 3),
+
+        "race":
+            (2, 4),
+
+        "reason":
+            (
+                "4WD cars often tolerate a moderate rearward "
+                "brake bias, helping rotation while retaining "
+                "strong braking stability."
+            )
+    },
+
+    "RR": {
+        "qualifying":
+            (-2, 0),
+
+        "race":
+            (-3, -1),
+
+        "reason":
+            (
+                "RR cars carry substantial rear mass and may "
+                "benefit from a more forward brake bias to reduce "
+                "rear instability under heavy braking."
+            )
+    }
+}
+
+
+def clamp_bb(
+    value
+):
+
+    return max(
+        -5,
+        min(
+            5,
+            value
+        )
+    )
+
+
+def format_bb_value(
+    value
+):
+
     if value > 0:
-        return f"+{value}"
 
-    return str(value)
+        return (
+            f"+{value}"
+        )
+
+    return str(
+        value
+    )
 
 
-def brake_balance_recommendation(
+def format_bb_range(
+    range_value
+):
+
+    if not range_value:
+
+        return "N/A"
+
+    low, high = range_value
+
+    if low == high:
+
+        return format_bb_value(
+            low
+        )
+
+    return (
+        f"{format_bb_value(low)} "
+        f"to "
+        f"{format_bb_value(high)}"
+    )
+
+
+def brake_bias_recommendation(
     car_code,
     tyre_multiplier
 ):
-    info = BRAKE_INFO.get(
-        car_code
+
+    technical = (
+        CAR_TECHNICAL_INFO.get(
+            car_code
+        )
     )
 
-    if not info:
+    if not technical:
+
         return {
-            "qualifying":
-                0,
-
-            "race":
-                0,
-
             "layout":
                 "Unknown",
 
+            "qualifying_range":
+                None,
+
+            "race_range":
+                None,
+
             "confidence":
-                "Low",
+                "UNVALIDATED",
 
             "reason":
                 (
-                    "Car identified by the central database, "
-                    "but no brake-balance baseline has been "
-                    "defined yet."
-                )
+                    "Car is identified, but drivetrain metadata "
+                    "has not yet been validated."
+                ),
+
+            "wear_adjustment":
+                "No recommendation generated."
         }
 
-    qualifying = info[
-        "qual_bb"
-    ]
-
-    race = info[
-        "race_bb"
-    ]
-
-    layout = info[
+    layout = technical[
         "layout"
     ]
 
+    baseline = (
+        BRAKE_BIAS_BASELINES.get(
+            layout
+        )
+    )
+
+    if not baseline:
+
+        return {
+            "layout":
+                layout,
+
+            "qualifying_range":
+                None,
+
+            "race_range":
+                None,
+
+            "confidence":
+                "UNVALIDATED",
+
+            "reason":
+                (
+                    "Validated drivetrain exists, but no heuristic "
+                    "Brake Bias model is defined for this layout."
+                ),
+
+            "wear_adjustment":
+                "No recommendation generated."
+        }
+
+    qual_low, qual_high = baseline[
+        "qualifying"
+    ]
+
+    race_low, race_high = baseline[
+        "race"
+    ]
+
+    wear_adjustment = (
+        "Standard race adjustment."
+    )
+
+    # ========================================================
+    # TYRE-WEAR ADJUSTMENT
+    #
+    # We do not try to pretend that tyre multiplier alone
+    # determines optimum BB.
+    #
+    # Instead, it slightly widens/shifts the race starting
+    # window in the direction generally useful for the layout.
+    # ========================================================
+
     if tyre_multiplier <= 1:
-        race = qualifying
+
+        race_low = qual_low
+        race_high = qual_high
+
+        wear_adjustment = (
+            "Low tyre wear: race range kept close to qualifying."
+        )
 
     elif tyre_multiplier <= 2:
 
-        if race > qualifying:
-            race = qualifying + 1
+        wear_adjustment = (
+            "Moderate tyre wear: small race-specific adjustment."
+        )
 
-        elif race < qualifying:
-            race = qualifying - 1
+    elif tyre_multiplier <= 4:
 
-    reasons = {
-        "FF":
-            (
-                "Rearward bias helps rotation "
-                "and reduces front-axle braking load."
-            ),
+        if layout in (
+            "FF",
+            "FR",
+            "4WD"
+        ):
 
-        "FR":
-            (
-                "Mild rearward bias improves rotation "
-                "while retaining braking stability."
-            ),
+            race_low += 1
+            race_high += 1
 
-        "MR":
-            (
-                "Neutral/slightly forward bias "
-                "prioritizes rear stability."
-            ),
-
-        "4WD":
-            (
-                "Moderate rearward bias helps rotation "
-                "without making braking too unstable."
+            wear_adjustment = (
+                "Meaningful tyre wear: race range shifted "
+                "one step rearward to reduce front-axle load."
             )
-    }
+
+        elif layout in (
+            "MR",
+            "RR"
+        ):
+
+            race_low -= 1
+            race_high -= 1
+
+            wear_adjustment = (
+                "Meaningful tyre wear: race range shifted "
+                "one step forward to prioritize rear stability."
+            )
+
+    else:
+
+        if layout in (
+            "FF",
+            "FR",
+            "4WD"
+        ):
+
+            race_low += 1
+            race_high += 2
+
+            wear_adjustment = (
+                "High tyre wear: race window moved further "
+                "rearward, but driver stability must be monitored."
+            )
+
+        elif layout in (
+            "MR",
+            "RR"
+        ):
+
+            race_low -= 2
+            race_high -= 1
+
+            wear_adjustment = (
+                "High tyre wear: race window moved further "
+                "forward to protect rear stability."
+            )
+
+    qual_low = clamp_bb(
+        qual_low
+    )
+
+    qual_high = clamp_bb(
+        qual_high
+    )
+
+    race_low = clamp_bb(
+        race_low
+    )
+
+    race_high = clamp_bb(
+        race_high
+    )
 
     return {
-        "qualifying":
-            qualifying,
-
-        "race":
-            race,
-
         "layout":
             layout,
 
+        "qualifying_range":
+            (
+                qual_low,
+                qual_high
+            ),
+
+        "race_range":
+            (
+                race_low,
+                race_high
+            ),
+
         "confidence":
-            "Medium",
+            "HEURISTIC",
 
         "reason":
-            reasons.get(
-                layout,
-                "Neutral baseline."
-            )
+            baseline[
+                "reason"
+            ],
+
+        "wear_adjustment":
+            wear_adjustment
     }
 
 
@@ -973,10 +1369,13 @@ def brake_balance_recommendation(
 # ============================================================
 
 def load_previous_snapshot():
+
     if not LATEST_SNAPSHOT_FILE.exists():
+
         return None
 
     try:
+
         return json.loads(
             LATEST_SNAPSHOT_FILE.read_text(
                 encoding="utf-8"
@@ -984,15 +1383,18 @@ def load_previous_snapshot():
         )
 
     except Exception:
+
         return None
 
 
 def load_history_for_race(
     leaderboard_url
 ):
+
     snapshots = []
 
     if not HISTORY_DIR.exists():
+
         return snapshots
 
     for path in sorted(
@@ -1000,7 +1402,9 @@ def load_history_for_race(
             "*.json"
         )
     ):
+
         try:
+
             data = json.loads(
                 path.read_text(
                     encoding="utf-8"
@@ -1018,11 +1422,13 @@ def load_history_for_race(
                 )
                 == leaderboard_url
             ):
+
                 snapshots.append(
                     data
                 )
 
         except Exception:
+
             pass
 
     return snapshots
@@ -1032,7 +1438,9 @@ def snapshot_metric_score(
     snapshot,
     metric
 ):
+
     if metric == "world_record":
+
         return (
             snapshot
             .get(
@@ -1044,7 +1452,9 @@ def snapshot_metric_score(
             )
         )
 
-    if metric.startswith("top"):
+    if metric.startswith(
+        "top"
+    ):
 
         key = metric.replace(
             "top",
@@ -1066,6 +1476,7 @@ def snapshot_metric_score(
             value,
             dict
         ):
+
             return value.get(
                 "score"
             )
@@ -1074,12 +1485,14 @@ def snapshot_metric_score(
             value,
             int
         ):
+
             return value
 
         if isinstance(
             value,
             str
         ):
+
             return laptime_to_score(
                 value
             )
@@ -1097,6 +1510,7 @@ def linear_forecast(
     metric,
     target_time
 ):
+
     points = []
 
     combined = (
@@ -1124,12 +1538,14 @@ def linear_forecast(
                 (int, float)
             )
         ):
+
             key = (
                 timestamp,
                 score
             )
 
             if key in seen:
+
                 continue
 
             seen.add(
@@ -1137,6 +1553,7 @@ def linear_forecast(
             )
 
             try:
+
                 dt = datetime.fromisoformat(
                     timestamp
                 )
@@ -1149,6 +1566,7 @@ def linear_forecast(
                 )
 
             except Exception:
+
                 pass
 
     points.sort(
@@ -1157,9 +1575,14 @@ def linear_forecast(
     )
 
     if len(points) < 3:
+
         return None
 
-    first_time = points[0][0]
+    first_time = points[
+        0
+    ][
+        0
+    ]
 
     xs = [
         (
@@ -1181,6 +1604,7 @@ def linear_forecast(
     )
 
     if span_hours < 4:
+
         return None
 
     x_mean = (
@@ -1199,6 +1623,7 @@ def linear_forecast(
     )
 
     if denominator == 0:
+
         return None
 
     slope = (
@@ -1236,7 +1661,9 @@ def linear_forecast(
         )
     )
 
-    current_score = ys[-1]
+    current_score = ys[
+        -1
+    ]
 
     predicted = min(
         predicted,
@@ -1273,15 +1700,18 @@ def linear_forecast(
         len(points) >= 6
         and span_hours >= 48
     ):
+
         confidence = "High"
 
     elif (
         len(points) >= 4
         and span_hours >= 24
     ):
+
         confidence = "Medium"
 
     else:
+
         confidence = "Low"
 
     return {
@@ -1318,6 +1748,7 @@ def target_rank_for_percent(
     total,
     top_percent
 ):
+
     return max(
         1,
         min(
@@ -1336,10 +1767,12 @@ def build_targets(
     my_rank,
     my_score
 ):
+
     if (
         my_rank is None
         or my_score is None
     ):
+
         return []
 
     total = len(
@@ -1436,7 +1869,9 @@ def build_targets(
     unique_targets = {}
 
     for label, rank in definitions:
+
         if rank < my_rank:
+
             unique_targets[
                 rank
             ] = label
@@ -1455,6 +1890,7 @@ def build_targets(
         )
 
         if target_score is None:
+
             continue
 
         results.append({
@@ -1482,7 +1918,9 @@ def build_targets(
                 )
         })
 
-    return results[:4]
+    return results[
+        :4
+    ]
 
 
 # ============================================================
@@ -1494,6 +1932,7 @@ def group_rank(
     predicate,
     my_driver
 ):
+
     group = [
         driver
         for driver in ranking
@@ -1530,6 +1969,7 @@ def group_rank(
         )
 
         if driver_id == my_id:
+
             return (
                 index,
                 len(group)
@@ -1551,6 +1991,7 @@ def car_performance_indices(
     top100_counter,
     top1000_counter
 ):
+
     total = len(
         ranking
     )
@@ -1578,16 +2019,21 @@ def car_performance_indices(
         )
 
         if overall_share <= 0:
+
             continue
 
-        top100_count = top100_counter.get(
-            car_code,
-            0
+        top100_count = (
+            top100_counter.get(
+                car_code,
+                0
+            )
         )
 
-        top1000_count = top1000_counter.get(
-            car_code,
-            0
+        top1000_count = (
+            top1000_counter.get(
+                car_code,
+                0
+            )
         )
 
         top100_share = (
@@ -1615,23 +2061,28 @@ def car_performance_indices(
         )
 
         index = (
-            oi100 * 0.70
-            + oi1000 * 0.30
+            oi100
+            * 0.70
+            + oi1000
+            * 0.30
         )
 
         if (
             all_count >= 500
             and top1000_count >= 25
         ):
+
             confidence = "High"
 
         elif (
             all_count >= 100
             and top1000_count >= 10
         ):
+
             confidence = "Medium"
 
         else:
+
             confidence = "Low"
 
         rows.append({
@@ -1683,6 +2134,7 @@ def car_performance_indices(
 def best_driver_by_car(
     ranking
 ):
+
     result = {}
 
     for driver in ranking:
@@ -1695,6 +2147,7 @@ def best_driver_by_car(
             car_code is not None
             and car_code not in result
         ):
+
             result[
                 car_code
             ] = driver
@@ -1711,9 +2164,11 @@ def anomaly_warnings(
     current,
     unknown_share
 ):
+
     warnings = []
 
     if unknown_share > 5:
+
         warnings.append(
             f"Unknown car mapping represents "
             f"{unknown_share:.1f}% of valid leaderboard entries."
@@ -1755,6 +2210,7 @@ def anomaly_warnings(
             and new_total
             < old_total * 0.70
         ):
+
             warnings.append(
                 "Driver count dropped by more than 30%."
             )
@@ -1773,13 +2229,16 @@ def anomaly_warnings(
             old_wr
             and new_wr
         ):
+
             if new_wr > old_wr + 500:
+
                 warnings.append(
                     "World record became more than "
                     "0.500s slower."
                 )
 
             if old_wr - new_wr > 2000:
+
                 warnings.append(
                     "World record improved by more than "
                     "2.000s since previous snapshot."
@@ -1825,18 +2284,26 @@ def main():
         SAO_PAULO
     )
 
-    timestamp_iso = now.isoformat()
-
-    timestamp_display = now.strftime(
-        "%d/%m/%Y %H:%M:%S"
+    timestamp_iso = (
+        now.isoformat()
     )
 
-    history_filename = now.strftime(
-        "%Y-%m-%d_%H-%M-%S.json"
+    timestamp_display = (
+        now.strftime(
+            "%d/%m/%Y %H:%M:%S"
+        )
     )
 
-    report_filename = now.strftime(
-        "%Y-%m-%d_%H-%M-%S.txt"
+    history_filename = (
+        now.strftime(
+            "%Y-%m-%d_%H-%M-%S.json"
+        )
+    )
+
+    report_filename = (
+        now.strftime(
+            "%Y-%m-%d_%H-%M-%S.txt"
+        )
     )
 
     # ========================================================
@@ -1872,9 +2339,11 @@ def main():
         "text"
     ]
 
-    race_detection_mode = race_c[
-        "detection_mode"
-    ]
+    race_detection_mode = (
+        race_c[
+            "detection_mode"
+        ]
+    )
 
     # ========================================================
     # LEADERBOARD
@@ -1887,7 +2356,9 @@ def main():
 
     leaderboard_response.raise_for_status()
 
-    html = leaderboard_response.text
+    html = (
+        leaderboard_response.text
+    )
 
     # ========================================================
     # UPDATE CENTRAL CAR DATABASE
@@ -1901,25 +2372,35 @@ def main():
             )
         )
 
-        CAR_DATABASE = car_update[
-            "database"
-        ]
+        CAR_DATABASE = (
+            car_update[
+                "database"
+            ]
+        )
 
-        cars_discovered_this_run = car_update[
-            "discovered"
-        ]
+        cars_discovered_this_run = (
+            car_update[
+                "discovered"
+            ]
+        )
 
-        cars_added_this_run = car_update[
-            "added"
-        ]
+        cars_added_this_run = (
+            car_update[
+                "added"
+            ]
+        )
 
-        cars_updated_this_run = car_update[
-            "updated"
-        ]
+        cars_updated_this_run = (
+            car_update[
+                "updated"
+            ]
+        )
 
     except Exception:
 
-        CAR_DATABASE = load_car_database()
+        CAR_DATABASE = (
+            load_car_database()
+        )
 
         cars_discovered_this_run = 0
         cars_added_this_run = 0
@@ -1938,7 +2419,10 @@ def main():
     )
 
     ranking = None
-    source_mode = "initialRanking"
+
+    source_mode = (
+        "initialRanking"
+    )
 
     if start != -1:
 
@@ -1946,21 +2430,23 @@ def main():
             marker
         )
 
-        decoder = json.JSONDecoder()
-
-        ranking, _ = decoder.raw_decode(
-            html[
-                start:
-            ].lstrip()
+        decoder = (
+            json.JSONDecoder()
         )
 
-    # ========================================================
-    # UPDATE ENDPOINT FALLBACK
-    # ========================================================
+        ranking, _ = (
+            decoder.raw_decode(
+                html[
+                    start:
+                ].lstrip()
+            )
+        )
 
     if not ranking:
 
-        source_mode = "update_endpoint"
+        source_mode = (
+            "update_endpoint"
+        )
 
         update_url = (
             race_c_link
@@ -1971,9 +2457,11 @@ def main():
             )
         )
 
-        update_response = session.get(
-            update_url,
-            timeout=60
+        update_response = (
+            session.get(
+                update_url,
+                timeout=60
+            )
         )
 
         update_response.raise_for_status()
@@ -1986,12 +2474,14 @@ def main():
             update_data,
             list
         ):
+
             ranking = update_data
 
         elif isinstance(
             update_data,
             dict
         ):
+
             candidate = (
                 update_data.get(
                     "board"
@@ -2005,9 +2495,11 @@ def main():
                 candidate,
                 list
             ):
+
                 ranking = candidate
 
     if not ranking:
+
         raise RuntimeError(
             "Leaderboard contains no drivers."
         )
@@ -2024,7 +2516,9 @@ def main():
     # WORLD RECORD
     # ========================================================
 
-    winner = ranking[0]
+    winner = ranking[
+        0
+    ]
 
     wr_score = winner.get(
         "score"
@@ -2039,11 +2533,13 @@ def main():
     )
 
     time_103 = round(
-        wr_score * 1.03
+        wr_score
+        * 1.03
     )
 
     time_105 = round(
-        wr_score * 1.05
+        wr_score
+        * 1.05
     )
 
     # ========================================================
@@ -2123,6 +2619,7 @@ def main():
     same_car_stats = None
     country_stats = None
     dr_stats = None
+    my_brake_bias = None
 
     if my_driver:
 
@@ -2217,6 +2714,13 @@ def main():
                 )
                 == my_dr,
             my_driver
+        )
+
+        my_brake_bias = (
+            brake_bias_recommendation(
+                my_car_code,
+                tyre_multiplier
+            )
         )
 
         my_result = {
@@ -2328,9 +2832,17 @@ def main():
         ) is not None
     )
 
-    top100 = ranking[:100]
-    top500 = ranking[:500]
-    top1000 = ranking[:1000]
+    top100 = ranking[
+        :100
+    ]
+
+    top500 = ranking[
+        :500
+    ]
+
+    top1000 = ranking[
+        :1000
+    ]
 
     top100_counter = Counter(
         get_car_code(
@@ -2363,7 +2875,7 @@ def main():
     )
 
     # ========================================================
-    # TOP 5 CARS + BRAKE BALANCE
+    # TOP 5 CARS + BRAKE BIAS
     # ========================================================
 
     top5_used_cars = []
@@ -2373,12 +2885,16 @@ def main():
         count
     ) in (
         top1000_counter
-        .most_common(5)
+        .most_common(
+            5
+        )
     ):
 
-        bb = brake_balance_recommendation(
-            car_code,
-            tyre_multiplier
+        bb = (
+            brake_bias_recommendation(
+                car_code,
+                tyre_multiplier
+            )
         )
 
         top5_used_cars.append({
@@ -2401,30 +2917,47 @@ def main():
                 ),
 
             "layout":
-                bb["layout"],
+                bb[
+                    "layout"
+                ],
 
-            "qualifying_bb":
-                bb["qualifying"],
+            "qualifying_range":
+                bb[
+                    "qualifying_range"
+                ],
 
-            "race_bb":
-                bb["race"],
+            "race_range":
+                bb[
+                    "race_range"
+                ],
 
             "confidence":
-                bb["confidence"],
+                bb[
+                    "confidence"
+                ],
 
             "reason":
-                bb["reason"]
+                bb[
+                    "reason"
+                ],
+
+            "wear_adjustment":
+                bb[
+                    "wear_adjustment"
+                ]
         })
 
     # ========================================================
     # CAR OVERPERFORMANCE
     # ========================================================
 
-    overperformance = car_performance_indices(
-        ranking,
-        all_counter,
-        top100_counter,
-        top1000_counter
+    overperformance = (
+        car_performance_indices(
+            ranking,
+            all_counter,
+            top100_counter,
+            top1000_counter
+        )
     )
 
     credible_overperformance = [
@@ -2436,6 +2969,7 @@ def main():
     ]
 
     if not credible_overperformance:
+
         credible_overperformance = (
             overperformance
         )
@@ -2573,7 +3107,7 @@ def main():
     previous = load_previous_snapshot()
 
     # ========================================================
-    # HEALTH / CAR DATABASE COVERAGE
+    # HEALTH
     # ========================================================
 
     unknown_count = sum(
@@ -2581,8 +3115,7 @@ def main():
         for (
             car_code,
             count
-        )
-        in all_counter.items()
+        ) in all_counter.items()
         if (
             isinstance(
                 car_code,
@@ -2598,8 +3131,7 @@ def main():
         for (
             car_code,
             count
-        )
-        in all_counter.items()
+        ) in all_counter.items()
         if (
             car_code is None
             or not isinstance(
@@ -2721,6 +3253,9 @@ def main():
         "my_result":
             my_result,
 
+        "my_brake_bias":
+            my_brake_bias,
+
         "same_car_stats":
             same_car_stats,
 
@@ -2822,7 +3357,8 @@ def main():
 
         if (
             previous_url
-            and previous_url != race_c_link
+            and previous_url
+            != race_c_link
             and not weekly_record_exists(
                 weekly_history,
                 previous_url
@@ -2908,14 +3444,17 @@ def main():
                 "top1000"
             ]:
 
-                forecast = linear_forecast(
-                    history,
-                    snapshot,
-                    metric,
-                    sunday_end
+                forecast = (
+                    linear_forecast(
+                        history,
+                        snapshot,
+                        metric,
+                        sunday_end
+                    )
                 )
 
                 if forecast:
+
                     forecasts[
                         metric
                     ] = forecast
@@ -3282,12 +3821,12 @@ def main():
         )
 
     # ========================================================
-    # BRAKE BALANCE
+    # YOUR BRAKE BIAS
     # ========================================================
 
     lines.append("")
     lines.append(
-        "BRAKE BALANCE - TOP 5 USED CARS"
+        "YOUR BRAKE BIAS STARTING POINT"
     )
 
     lines.append(
@@ -3295,9 +3834,64 @@ def main():
         "positive = more rear."
     )
 
+    if (
+        my_result
+        and my_brake_bias
+    ):
+
+        lines.append(
+            f"Car             : "
+            f"{my_result['car']}"
+        )
+
+        lines.append(
+            f"Drivetrain      : "
+            f"{my_brake_bias['layout']}"
+        )
+
+        lines.append(
+            f"Qualifying range: "
+            f"{format_bb_range(my_brake_bias['qualifying_range'])}"
+        )
+
+        lines.append(
+            f"Race range      : "
+            f"{format_bb_range(my_brake_bias['race_range'])}"
+        )
+
+        lines.append(
+            f"Confidence      : "
+            f"{my_brake_bias['confidence']}"
+        )
+
+        lines.append(
+            f"Wear adjustment : "
+            f"{my_brake_bias['wear_adjustment']}"
+        )
+
+        lines.append(
+            f"Rationale       : "
+            f"{my_brake_bias['reason']}"
+        )
+
+    else:
+
+        lines.append(
+            "No personal Brake Bias recommendation available."
+        )
+
+    # ========================================================
+    # BRAKE BIAS - TOP 5 META CARS
+    # ========================================================
+
+    lines.append("")
     lines.append(
-        "Baseline recommendations, "
-        "not telemetry-proven optimums."
+        "BRAKE BIAS - TOP 5 USED CARS"
+    )
+
+    lines.append(
+        "These are heuristic starting ranges, "
+        "not telemetry-proven optimum settings."
     )
 
     for (
@@ -3311,11 +3905,11 @@ def main():
         lines.append(
             f"{index}. "
             f"{car['car']} | "
-            f"Quali BB "
-            f"{format_bb(car['qualifying_bb'])} | "
-            f"Race BB "
-            f"{format_bb(car['race_bb'])} | "
             f"{car['layout']} | "
+            f"Quali "
+            f"{format_bb_range(car['qualifying_range'])} | "
+            f"Race "
+            f"{format_bb_range(car['race_range'])} | "
             f"{car['confidence']}"
         )
 
@@ -3360,8 +3954,7 @@ def main():
     else:
 
         lines.append(
-            "Tyre wear is low: quali and race "
-            "BB can remain relatively close."
+            "Tyre wear is low."
         )
 
     if fuel_multiplier >= 4:
@@ -3465,10 +4058,6 @@ def main():
             "Current race status: PROVISIONAL"
         )
 
-    # ========================================================
-    # CURRENT WEEK
-    # ========================================================
-
     if my_result:
 
         lines.append("")
@@ -3501,19 +4090,17 @@ def main():
             f"{my_result['wr_percentage']:.3f}%"
         )
 
-    # ========================================================
-    # FINALIZED HISTORY
-    # ========================================================
-
     current_assessment = None
     composite_trend = None
     wr_trend = None
 
     if weekly_history:
 
-        latest_final = weekly_history[
-            -1
-        ]
+        latest_final = (
+            weekly_history[
+                -1
+            ]
+        )
 
         lines.append("")
         lines.append(
@@ -3550,50 +4137,66 @@ def main():
             f"{latest_final.get('wr_percentage',0):.3f}%"
         )
 
-        # ====================================================
-        # CURRENT WEEK VS LAST FINALIZED WEEK
-        # ====================================================
-
         if my_result:
 
-            current_general = my_result.get(
-                "position_score"
+            current_general = (
+                my_result.get(
+                    "position_score"
+                )
             )
 
-            current_elite = my_result.get(
-                "elite_score"
+            current_elite = (
+                my_result.get(
+                    "elite_score"
+                )
             )
 
-            current_composite = my_result.get(
-                "composite_rating"
+            current_composite = (
+                my_result.get(
+                    "composite_rating"
+                )
             )
 
-            current_top = my_result.get(
-                "top_percent"
+            current_top = (
+                my_result.get(
+                    "top_percent"
+                )
             )
 
-            current_wr = my_result.get(
-                "wr_percentage"
+            current_wr = (
+                my_result.get(
+                    "wr_percentage"
+                )
             )
 
-            last_general = latest_final.get(
-                "general_score"
+            last_general = (
+                latest_final.get(
+                    "general_score"
+                )
             )
 
-            last_elite = latest_final.get(
-                "elite_score"
+            last_elite = (
+                latest_final.get(
+                    "elite_score"
+                )
             )
 
-            last_composite = latest_final.get(
-                "composite_rating"
+            last_composite = (
+                latest_final.get(
+                    "composite_rating"
+                )
             )
 
-            last_top = latest_final.get(
-                "top_percent"
+            last_top = (
+                latest_final.get(
+                    "top_percent"
+                )
             )
 
-            last_wr = latest_final.get(
-                "wr_percentage"
+            last_wr = (
+                latest_final.get(
+                    "wr_percentage"
+                )
             )
 
             lines.append("")
@@ -3601,199 +4204,96 @@ def main():
                 "CURRENT WEEK VS LAST FINALIZED WEEK"
             )
 
-            if (
-                current_general is not None
-                and last_general is not None
-            ):
+            delta_general = (
+                current_general
+                - last_general
+            )
 
-                delta_general = (
-                    current_general
-                    - last_general
-                )
+            delta_elite = (
+                current_elite
+                - last_elite
+            )
 
-                general_direction = (
-                    "BETTER"
-                    if delta_general > 0.01
-                    else
-                    "WORSE"
-                    if delta_general < -0.01
-                    else
-                    "STABLE"
-                )
+            delta_composite = (
+                current_composite
+                - last_composite
+            )
 
-                lines.append(
-                    f"General    : "
-                    f"{last_general:.2f} -> "
-                    f"{current_general:.2f} "
-                    f"({delta_general:+.2f}) | "
-                    f"{general_direction}"
-                )
+            delta_top = (
+                current_top
+                - last_top
+            )
 
-            if (
-                current_elite is not None
-                and last_elite is not None
-            ):
+            delta_wr = (
+                current_wr
+                - last_wr
+            )
 
-                delta_elite = (
-                    current_elite
-                    - last_elite
-                )
+            lines.append(
+                f"General    : "
+                f"{last_general:.2f} -> "
+                f"{current_general:.2f} "
+                f"({delta_general:+.2f}) | "
+                f"{'BETTER' if delta_general > 0.01 else 'WORSE' if delta_general < -0.01 else 'STABLE'}"
+            )
 
-                elite_direction = (
-                    "BETTER"
-                    if delta_elite > 0.01
-                    else
-                    "WORSE"
-                    if delta_elite < -0.01
-                    else
-                    "STABLE"
-                )
+            lines.append(
+                f"Elite      : "
+                f"{last_elite:.2f} -> "
+                f"{current_elite:.2f} "
+                f"({delta_elite:+.2f}) | "
+                f"{'BETTER' if delta_elite > 0.01 else 'WORSE' if delta_elite < -0.01 else 'STABLE'}"
+            )
 
-                lines.append(
-                    f"Elite      : "
-                    f"{last_elite:.2f} -> "
-                    f"{current_elite:.2f} "
-                    f"({delta_elite:+.2f}) | "
-                    f"{elite_direction}"
-                )
+            lines.append(
+                f"Composite  : "
+                f"{last_composite:.2f} -> "
+                f"{current_composite:.2f} "
+                f"({delta_composite:+.2f}) | "
+                f"{'BETTER' if delta_composite > 0.01 else 'WORSE' if delta_composite < -0.01 else 'STABLE'}"
+            )
 
-            if (
-                current_composite is not None
-                and last_composite is not None
-            ):
+            lines.append(
+                f"Top %      : "
+                f"{last_top:.2f}% -> "
+                f"{current_top:.2f}% "
+                f"({delta_top:+.2f} pp) | "
+                f"{'BETTER' if delta_top < -0.05 else 'WORSE' if delta_top > 0.05 else 'STABLE'}"
+            )
 
-                delta_composite = (
-                    current_composite
-                    - last_composite
-                )
-
-                composite_direction = (
-                    "BETTER"
-                    if delta_composite > 0.01
-                    else
-                    "WORSE"
-                    if delta_composite < -0.01
-                    else
-                    "STABLE"
-                )
-
-                lines.append(
-                    f"Composite  : "
-                    f"{last_composite:.2f} -> "
-                    f"{current_composite:.2f} "
-                    f"({delta_composite:+.2f}) | "
-                    f"{composite_direction}"
-                )
-
-            if (
-                current_top is not None
-                and last_top is not None
-            ):
-
-                delta_top = (
-                    current_top
-                    - last_top
-                )
-
-                top_direction = (
-                    "BETTER"
-                    if delta_top < -0.05
-                    else
-                    "WORSE"
-                    if delta_top > 0.05
-                    else
-                    "STABLE"
-                )
-
-                lines.append(
-                    f"Top %      : "
-                    f"{last_top:.2f}% -> "
-                    f"{current_top:.2f}% "
-                    f"({delta_top:+.2f} pp) | "
-                    f"{top_direction}"
-                )
-
-            if (
-                current_wr is not None
-                and last_wr is not None
-            ):
-
-                delta_wr = (
-                    current_wr
-                    - last_wr
-                )
-
-                wr_direction = (
-                    "BETTER"
-                    if delta_wr < -0.01
-                    else
-                    "WORSE"
-                    if delta_wr > 0.01
-                    else
-                    "STABLE"
-                )
-
-                lines.append(
-                    f"WR %       : "
-                    f"{last_wr:.3f}% -> "
-                    f"{current_wr:.3f}% "
-                    f"({delta_wr:+.3f} pp) | "
-                    f"{wr_direction}"
-                )
-
-            # ====================================================
-            # OVERALL CURRENT WEEK ASSESSMENT
-            # ====================================================
+            lines.append(
+                f"WR %       : "
+                f"{last_wr:.3f}% -> "
+                f"{current_wr:.3f}% "
+                f"({delta_wr:+.3f} pp) | "
+                f"{'BETTER' if delta_wr < -0.01 else 'WORSE' if delta_wr > 0.01 else 'STABLE'}"
+            )
 
             assessment_score = 0
 
-            if (
-                current_composite is not None
-                and last_composite is not None
-            ):
+            if delta_composite > 0.05:
 
-                delta = (
-                    current_composite
-                    - last_composite
-                )
+                assessment_score += 2
 
-                if delta > 0.05:
-                    assessment_score += 2
+            elif delta_composite < -0.05:
 
-                elif delta < -0.05:
-                    assessment_score -= 2
+                assessment_score -= 2
 
-            if (
-                current_top is not None
-                and last_top is not None
-            ):
+            if delta_top < -0.50:
 
-                delta = (
-                    current_top
-                    - last_top
-                )
+                assessment_score += 1
 
-                if delta < -0.50:
-                    assessment_score += 1
+            elif delta_top > 0.50:
 
-                elif delta > 0.50:
-                    assessment_score -= 1
+                assessment_score -= 1
 
-            if (
-                current_wr is not None
-                and last_wr is not None
-            ):
+            if delta_wr < -0.05:
 
-                delta = (
-                    current_wr
-                    - last_wr
-                )
+                assessment_score += 1
 
-                if delta < -0.05:
-                    assessment_score += 1
+            elif delta_wr > 0.05:
 
-                elif delta > 0.05:
-                    assessment_score -= 1
+                assessment_score -= 1
 
             if assessment_score >= 2:
 
@@ -3820,10 +4320,6 @@ def main():
                 f"{current_assessment}"
             )
 
-        # ====================================================
-        # LATEST FINALIZED VS PRIOR FINALIZED
-        # ====================================================
-
         if len(
             weekly_history
         ) >= 2:
@@ -3831,51 +4327,6 @@ def main():
             previous_final = (
                 weekly_history[
                     -2
-                ]
-            )
-
-            general_change = (
-                latest_final[
-                    "general_score"
-                ]
-                - previous_final[
-                    "general_score"
-                ]
-            )
-
-            elite_change = (
-                latest_final[
-                    "elite_score"
-                ]
-                - previous_final[
-                    "elite_score"
-                ]
-            )
-
-            composite_change = (
-                latest_final[
-                    "composite_rating"
-                ]
-                - previous_final[
-                    "composite_rating"
-                ]
-            )
-
-            top_change = (
-                latest_final[
-                    "top_percent"
-                ]
-                - previous_final[
-                    "top_percent"
-                ]
-            )
-
-            wr_change = (
-                latest_final[
-                    "wr_percentage"
-                ]
-                - previous_final[
-                    "wr_percentage"
                 ]
             )
 
@@ -3888,40 +4339,22 @@ def main():
                 f"General    : "
                 f"{previous_final['general_score']:.2f} -> "
                 f"{latest_final['general_score']:.2f} "
-                f"({general_change:+.2f})"
+                f"({latest_final['general_score'] - previous_final['general_score']:+.2f})"
             )
 
             lines.append(
                 f"Elite      : "
                 f"{previous_final['elite_score']:.2f} -> "
                 f"{latest_final['elite_score']:.2f} "
-                f"({elite_change:+.2f})"
+                f"({latest_final['elite_score'] - previous_final['elite_score']:+.2f})"
             )
 
             lines.append(
                 f"Composite  : "
                 f"{previous_final['composite_rating']:.2f} -> "
                 f"{latest_final['composite_rating']:.2f} "
-                f"({composite_change:+.2f})"
+                f"({latest_final['composite_rating'] - previous_final['composite_rating']:+.2f})"
             )
-
-            lines.append(
-                f"Top %      : "
-                f"{previous_final['top_percent']:.2f}% -> "
-                f"{latest_final['top_percent']:.2f}% "
-                f"({top_change:+.2f} pp)"
-            )
-
-            lines.append(
-                f"WR %       : "
-                f"{previous_final['wr_percentage']:.3f}% -> "
-                f"{latest_final['wr_percentage']:.3f}% "
-                f"({wr_change:+.3f} pp)"
-            )
-
-        # ====================================================
-        # 4-WEEK MOVING AVERAGE
-        # ====================================================
 
         avg4_general = average_metric(
             weekly_history,
@@ -3953,45 +4386,35 @@ def main():
             4
         )
 
-        if avg4_general is not None:
+        lines.append("")
+        lines.append(
+            "4-WEEK FINALIZED MOVING AVERAGE"
+        )
 
-            lines.append("")
-            lines.append(
-                "4-WEEK FINALIZED MOVING AVERAGE"
-            )
+        lines.append(
+            f"General    : "
+            f"{avg4_general:.2f}"
+        )
 
-            lines.append(
-                f"General    : "
-                f"{avg4_general:.2f}"
-            )
+        lines.append(
+            f"Elite      : "
+            f"{avg4_elite:.2f}"
+        )
 
-            lines.append(
-                f"Elite      : "
-                f"{avg4_elite:.2f}"
-            )
+        lines.append(
+            f"Composite  : "
+            f"{avg4_composite:.2f}"
+        )
 
-            lines.append(
-                f"Composite  : "
-                f"{avg4_composite:.2f}"
-            )
+        lines.append(
+            f"Top %      : "
+            f"{avg4_top:.2f}%"
+        )
 
-            if avg4_top is not None:
-
-                lines.append(
-                    f"Top %      : "
-                    f"{avg4_top:.2f}%"
-                )
-
-            if avg4_wr is not None:
-
-                lines.append(
-                    f"WR %       : "
-                    f"{avg4_wr:.3f}%"
-                )
-
-        # ====================================================
-        # 8-WEEK FINALIZED TREND
-        # ====================================================
+        lines.append(
+            f"WR %       : "
+            f"{avg4_wr:.3f}%"
+        )
 
         general_trend = metric_trend(
             weekly_history,
@@ -4050,14 +4473,7 @@ def main():
             f"{wr_trend}"
         )
 
-        # ====================================================
-        # PERFORMANCE SUMMARY
-        # ====================================================
-
-        if (
-            my_result
-            and current_assessment
-        ):
+        if current_assessment:
 
             lines.append("")
             lines.append(
@@ -4139,10 +4555,6 @@ def main():
                 f"{interpretation}"
             )
 
-        # ====================================================
-        # LAST FINALIZED RACES
-        # ====================================================
-
         lines.append("")
         lines.append(
             "LAST FINALIZED RACES"
@@ -4169,7 +4581,7 @@ def main():
         )
 
     # ========================================================
-    # WHAT CHANGED SINCE PREVIOUS SNAPSHOT
+    # WHAT CHANGED
     # ========================================================
 
     lines.append("")
@@ -4189,9 +4601,11 @@ def main():
             f"{signed_seconds(wr_score - old_wr) if old_wr else 'N/A'}"
         )
 
-        old_top500 = snapshot_metric_score(
-            previous,
-            "top500"
+        old_top500 = (
+            snapshot_metric_score(
+                previous,
+                "top500"
+            )
         )
 
         new_top500 = (
@@ -4393,11 +4807,13 @@ def main():
     # ========================================================
 
     if weekly_finalized_now:
+
         subject = (
             "GT7 Race C FINAL"
         )
 
     else:
+
         subject = (
             "GT7 Race C"
         )
@@ -4447,4 +4863,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
