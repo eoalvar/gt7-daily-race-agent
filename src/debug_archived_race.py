@@ -1,6 +1,7 @@
 import requests
+import json
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse, parse_qs, urlencode, urlunparse
 
 
 GTSH_URL = "https://gtsh-rank.com/daily/"
@@ -11,16 +12,47 @@ HEADERS = {
 }
 
 
+def build_page_url(event_url, offset, limit=100):
+
+    parsed = urlparse(event_url)
+
+    path = parsed.path
+
+    if not path.endswith("/"):
+        path += "/"
+
+    query = parse_qs(
+        parsed.query,
+        keep_blank_values=True
+    )
+
+    query["page_data"] = ["1"]
+    query["offset"] = [str(offset)]
+    query["limit"] = [str(limit)]
+
+    return urlunparse(
+        (
+            parsed.scheme,
+            parsed.netloc,
+            path,
+            parsed.params,
+            urlencode(query, doseq=True),
+            parsed.fragment
+        )
+    )
+
+
 def main():
 
     session = requests.Session()
     session.headers.update(HEADERS)
 
     target_url = None
+    target_text = None
 
-    # ========================================================
-    # FIND TARGET RACE
-    # ========================================================
+    # --------------------------------------------------------
+    # FIND TOKYO DAILY RACE C
+    # --------------------------------------------------------
 
     for page in range(1, 10):
 
@@ -67,11 +99,7 @@ def main():
                     link.get("href")
                 )
 
-                print("RACE FOUND")
-                print("=" * 80)
-                print(text)
-                print(target_url)
-
+                target_text = text
                 break
 
         if target_url:
@@ -79,15 +107,22 @@ def main():
 
 
     if not target_url:
-
         raise RuntimeError(
-            "Target race not found."
+            "Tokyo Daily Race C not found."
         )
 
 
-    # ========================================================
-    # OPEN LEADERBOARD
-    # ========================================================
+    print("=" * 80)
+    print("RACE")
+    print("=" * 80)
+
+    print(target_text)
+    print(target_url)
+
+
+    # --------------------------------------------------------
+    # FIRST OPEN EVENT
+    # --------------------------------------------------------
 
     response = session.get(
         target_url,
@@ -96,132 +131,205 @@ def main():
 
     response.raise_for_status()
 
-    html = response.text
-
-    lines = html.splitlines()
-
-
-    # ========================================================
-    # PRINT JAVASCRIPT AROUND PAGINATION CODE
-    # ========================================================
-
-    targets = [
-        "url.searchParams.set('offset'",
-        'url.searchParams.set("offset"',
-        "serverPagedBoard",
-        "loadServerPage",
-        "pageData = await response.json",
-        "fetch(`${url.pathname}"
-    ]
+    canonical_url = response.url
 
 
     print()
-    print("PAGINATION JAVASCRIPT")
+    print("CANONICAL EVENT URL")
     print("=" * 80)
 
-
-    printed_ranges = []
-
-
-    for index, line in enumerate(lines):
-
-        if not any(
-            target in line
-            for target in targets
-        ):
-            continue
+    print(canonical_url)
 
 
-        start = max(
-            0,
-            index - 20
-        )
+    # --------------------------------------------------------
+    # TEST OFFSETS
+    # --------------------------------------------------------
 
-        end = min(
-            len(lines),
-            index + 35
-        )
+    for offset in [
+        0,
+        100,
+        200,
+        1000,
+        4000
+    ]:
 
-
-        # Avoid printing the same block repeatedly.
-
-        overlapping = any(
-            start <= previous_end
-            and end >= previous_start
-            for previous_start, previous_end
-            in printed_ranges
-        )
-
-        if overlapping:
-            continue
-
-
-        printed_ranges.append(
-            (start, end)
+        test_url = build_page_url(
+            canonical_url,
+            offset,
+            100
         )
 
 
         print()
+        print("=" * 80)
+        print(f"OFFSET {offset}")
+        print("=" * 80)
+
         print(
-            f"--- HTML lines {start + 1} to {end} ---"
+            "URL:",
+            test_url
         )
 
-        print()
+
+        r = session.get(
+            test_url,
+            headers={
+                "User-Agent":
+                    HEADERS["User-Agent"],
+
+                "Accept":
+                    "application/json",
+
+                "Referer":
+                    canonical_url
+            },
+            timeout=60
+        )
 
 
-        for line_number in range(
-            start,
-            end
+        print(
+            "HTTP:",
+            r.status_code
+        )
+
+        print(
+            "Content-Type:",
+            r.headers.get(
+                "content-type"
+            )
+        )
+
+        print(
+            "Final URL:",
+            r.url
+        )
+
+
+        try:
+
+            data = r.json()
+
+        except Exception:
+
+            print(
+                "ERROR: response is not JSON"
+            )
+
+            print(
+                r.text[:1000]
+            )
+
+            continue
+
+
+        print(
+            "Keys:",
+            list(data.keys())
+        )
+
+
+        print(
+            "Returned offset:",
+            data.get("offset")
+        )
+
+        print(
+            "Limit:",
+            data.get("limit")
+        )
+
+        print(
+            "Total:",
+            data.get("total")
+        )
+
+        print(
+            "Has more:",
+            data.get("has_more")
+        )
+
+
+        board = data.get(
+            "board"
+        )
+
+
+        if not isinstance(
+            board,
+            list
         ):
 
             print(
-                f"{line_number + 1:05d}: "
-                f"{lines[line_number]}"
+                "ERROR: board is not a list"
+            )
+
+            print(
+                json.dumps(
+                    data,
+                    ensure_ascii=False,
+                    indent=2
+                )[:3000]
+            )
+
+            continue
+
+
+        print(
+            "Board length:",
+            len(board)
+        )
+
+
+        if board:
+
+            print(
+                "First rank:",
+                board[0].get(
+                    "display_rank"
+                )
+            )
+
+            print(
+                "Last rank:",
+                board[-1].get(
+                    "display_rank"
+                )
             )
 
 
-    # ========================================================
-    # SEARCH FOR LIKELY PAGINATION PARAMETERS
-    # ========================================================
-
-    print()
-    print("SEARCH PARAMETER REFERENCES")
-    print("=" * 80)
-
-
-    keywords = [
-        "searchParams.set",
-        "searchParams.delete",
-        "searchParams.get",
-        "offset",
-        "limit",
-        "pageSize",
-        "serverPage",
-        "board_page",
-        "paged",
-        "page_data",
-        "pagination"
-    ]
-
-
-    for index, line in enumerate(
-        lines,
-        start=1
-    ):
-
-        if any(
-            keyword.lower() in line.lower()
-            for keyword in keywords
-        ):
-
-            cleaned = line.strip()
-
-            if cleaned:
-
-                print(
-                    f"{index:05d}: "
-                    f"{cleaned[:3000]}"
+            first_user = (
+                board[0]
+                .get(
+                    "user",
+                    {}
                 )
+                .get(
+                    "np_online_id"
+                )
+            )
+
+
+            last_user = (
+                board[-1]
+                .get(
+                    "user",
+                    {}
+                )
+                .get(
+                    "np_online_id"
+                )
+            )
+
+
+            print(
+                "First PSN:",
+                first_user
+            )
+
+            print(
+                "Last PSN:",
+                last_user
+            )
 
 
     print()
