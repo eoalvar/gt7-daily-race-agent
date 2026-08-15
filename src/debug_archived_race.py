@@ -18,33 +18,40 @@ HEADERS = {
 
 
 # ============================================================
-# INITIAL RANKING EXTRACTOR
+# JSON VARIABLE EXTRACTOR
 # ============================================================
 
-def extract_initial_ranking(html):
+def extract_json_variable(html, variable_name):
 
-    marker = "const initialRanking = "
+    markers = [
+        f"const {variable_name} = ",
+        f"let {variable_name} = ",
+        f"var {variable_name} = "
+    ]
 
-    start = html.find(marker)
+    for marker in markers:
 
-    if start == -1:
-        return None
+        start = html.find(marker)
 
-    start += len(marker)
+        if start == -1:
+            continue
 
-    try:
+        start += len(marker)
 
-        decoder = json.JSONDecoder()
+        try:
 
-        data, _ = decoder.raw_decode(
-            html[start:].lstrip()
-        )
+            decoder = json.JSONDecoder()
 
-        return data
+            data, _ = decoder.raw_decode(
+                html[start:].lstrip()
+            )
 
-    except Exception:
+            return data
 
-        return None
+        except Exception:
+            continue
+
+    return None
 
 
 # ============================================================
@@ -61,12 +68,12 @@ def main():
 
 
     print("=" * 80)
-    print("GT7 ARCHIVED DAILY RACE C - PAGINATION DEBUG")
+    print("GT7 ARCHIVED RACE - ADD RACER DEBUG")
     print("=" * 80)
 
 
     # ========================================================
-    # FIND TARGET RACE
+    # FIND TOKYO RACE C
     # ========================================================
 
     target_url = None
@@ -75,11 +82,12 @@ def main():
 
     for page in range(1, 10):
 
-        page_url = (
-            GTSH_URL
-            if page == 1
-            else f"{GTSH_URL}?page={page}&q="
-        )
+        if page == 1:
+            page_url = GTSH_URL
+        else:
+            page_url = (
+                f"{GTSH_URL}?page={page}&q="
+            )
 
 
         print(
@@ -102,7 +110,8 @@ def main():
 
 
         for link in soup.select(
-            'a[href*="/daily/leaderboard?event="]'
+            'a[href*="/daily/leaderboard?event="], '
+            'a[href*="/daily/leaderboard/?event="]'
         ):
 
             parent = link.parent
@@ -147,206 +156,202 @@ def main():
     print()
     print("RACE FOUND")
     print("-" * 80)
+
     print(target_text)
+
     print()
     print(target_url)
 
 
     # ========================================================
-    # OPEN LEADERBOARD
+    # OPEN EVENT FIRST
+    #
+    # Important: this establishes any session/cookies that
+    # GTSH-Rank may use for the selected archived event.
     # ========================================================
 
-    response = session.get(
+    event_response = session.get(
         target_url,
         timeout=60
     )
 
-    response.raise_for_status()
+    event_response.raise_for_status()
 
-    html = response.text
-
-
-    print()
-    print("INITIAL RANKING")
-    print("-" * 80)
-
-
-    initial_ranking = extract_initial_ranking(
-        html
-    )
-
-
-    if isinstance(
-        initial_ranking,
-        list
-    ):
-
-        print(
-            "Drivers in initialRanking:",
-            len(initial_ranking)
-        )
-
-    else:
-
-        print(
-            "initialRanking not available as list."
-        )
-
-
-    # ========================================================
-    # TEST EVENT-SPECIFIC UPDATE ENDPOINT
-    # ========================================================
-
-    separator = (
-        "&"
-        if "?" in target_url
-        else "?"
-    )
-
-
-    update_url = (
-        target_url
-        + separator
-        + "update=1"
-    )
+    html = event_response.text
 
 
     print()
-    print("UPDATE ENDPOINT")
+    print("EVENT PAGE")
     print("-" * 80)
-    print(update_url)
-
-
-    update_response = session.get(
-        update_url,
-        timeout=60
-    )
-
-    update_response.raise_for_status()
-
 
     print(
         "HTTP:",
-        update_response.status_code
+        event_response.status_code
     )
 
     print(
-        "Content-Type:",
-        update_response.headers.get(
-            "content-type"
-        )
+        "Final URL:",
+        event_response.url
     )
 
 
-    data = update_response.json()
+    # ========================================================
+    # INITIAL SERVER PAGE
+    # ========================================================
+
+    server_page = extract_json_variable(
+        html,
+        "initialServerPage"
+    )
 
 
     print()
-    print("TOP LEVEL RESPONSE")
+    print("INITIAL SERVER PAGE")
     print("-" * 80)
 
-    print(
-        "Python type:",
-        type(data).__name__
-    )
-
-
-    # ========================================================
-    # DICT ANALYSIS
-    # ========================================================
 
     if isinstance(
-        data,
+        server_page,
         dict
     ):
 
         print(
             "Keys:",
-            list(data.keys())
+            list(server_page.keys())
+        )
+
+        print(
+            "Offset:",
+            server_page.get("offset")
+        )
+
+        print(
+            "Limit:",
+            server_page.get("limit")
+        )
+
+        print(
+            "Total:",
+            (
+                server_page.get("total")
+                or server_page.get("total_records")
+                or server_page.get("totalRecords")
+                or server_page.get("count")
+            )
+        )
+
+        board = server_page.get(
+            "board",
+            []
+        )
+
+        print(
+            "Board length:",
+            len(board)
+            if isinstance(board, list)
+            else "N/A"
+        )
+
+    else:
+
+        print(
+            "initialServerPage not found."
         )
 
 
-        print()
-        print("KEY DETAILS")
-        print("-" * 80)
+    # ========================================================
+    # CALL ADD RACER ENDPOINT
+    # ========================================================
+
+    add_racer_url = (
+        "https://gtsh-rank.com/"
+        "daily/leaderboard/"
+        f"?add_racer=1&id={TARGET_PSN}"
+    )
 
 
-        for key, value in data.items():
+    print()
+    print("ADD RACER REQUEST")
+    print("-" * 80)
 
-            print()
+    print(
+        add_racer_url
+    )
+
+
+    racer_response = session.get(
+        add_racer_url,
+        headers={
+            "User-Agent":
+                HEADERS["User-Agent"],
+
+            "Accept":
+                "application/json"
+        },
+        timeout=60
+    )
+
+
+    print(
+        "HTTP:",
+        racer_response.status_code
+    )
+
+    print(
+        "Final URL:",
+        racer_response.url
+    )
+
+    print(
+        "Content-Type:",
+        racer_response.headers.get(
+            "content-type"
+        )
+    )
+
+
+    # ========================================================
+    # PARSE RESPONSE
+    # ========================================================
+
+    print()
+    print("ADD RACER RESPONSE")
+    print("-" * 80)
+
+
+    try:
+
+        data = racer_response.json()
+
+        print(
+            "Python type:",
+            type(data).__name__
+        )
+
+
+        if isinstance(
+            data,
+            dict
+        ):
+
             print(
-                f"KEY: {key}"
+                "Keys:",
+                list(data.keys())
             )
 
-            print(
-                f"TYPE: {type(value).__name__}"
-            )
 
-
-            if isinstance(
-                value,
-                list
-            ):
-
-                print(
-                    f"LIST LENGTH: {len(value)}"
-                )
-
-
-                if value:
-
-                    print(
-                        "FIRST ITEM:"
-                    )
-
-                    print(
-                        json.dumps(
-                            value[0],
-                            ensure_ascii=False,
-                            indent=2
-                        )[:4000]
-                    )
-
-
-            elif isinstance(
-                value,
-                dict
-            ):
-
-                print(
-                    "DICT KEYS:",
-                    list(value.keys())
-                )
-
-                print(
-                    "DICT SAMPLE:"
-                )
-
-                print(
-                    json.dumps(
-                        value,
-                        ensure_ascii=False,
-                        indent=2
-                    )[:4000]
-                )
-
-
-            else:
-
-                print(
-                    "VALUE:",
-                    str(value)[:2000]
-                )
+        print(
+            json.dumps(
+                data,
+                ensure_ascii=False,
+                indent=2
+            )[:12000]
+        )
 
 
         # ====================================================
-        # RECURSIVE SEARCH FOR PSN
+        # RECURSIVE SEARCH FOR OUR PSN
         # ====================================================
-
-        print()
-        print("RECURSIVE PSN SEARCH")
-        print("-" * 80)
-
 
         matches = []
 
@@ -372,15 +377,13 @@ def main():
                         str
                     )
                     and TARGET_PSN.lower()
-                    in online_id.lower()
+                    == online_id.lower()
                 ):
 
                     matches.append(
                         {
-                            "path":
-                                path,
-                            "data":
-                                obj
+                            "path": path,
+                            "object": obj
                         }
                     )
 
@@ -413,6 +416,10 @@ def main():
         )
 
 
+        print()
+        print("PSN SEARCH")
+        print("-" * 80)
+
         print(
             "Matches found:",
             len(matches)
@@ -421,7 +428,6 @@ def main():
 
         for match in matches:
 
-            print()
             print(
                 "PATH:",
                 match["path"]
@@ -429,70 +435,22 @@ def main():
 
             print(
                 json.dumps(
-                    match["data"],
+                    match["object"],
                     ensure_ascii=False,
                     indent=2
                 )
             )
 
 
-    else:
+    except Exception:
 
         print(
-            json.dumps(
-                data,
-                ensure_ascii=False,
-                indent=2
-            )[:10000]
+            "Response is not valid JSON."
         )
 
-
-    # ========================================================
-    # SEARCH HTML FOR PAGINATION PARAMETERS
-    # ========================================================
-
-    print()
-    print("PAGINATION CODE")
-    print("-" * 80)
-
-
-    interesting_terms = [
-        "serverPagedBoard",
-        "pageData",
-        "page=",
-        "offset",
-        "limit",
-        "next",
-        "previous",
-        "Back 100",
-        "Next 100"
-    ]
-
-
-    found_lines = set()
-
-
-    for line in html.splitlines():
-
-        if any(
-            term.lower() in line.lower()
-            for term in interesting_terms
-        ):
-
-            cleaned = line.strip()
-
-            if (
-                cleaned
-                and cleaned not in found_lines
-            ):
-
-                found_lines.add(
-                    cleaned
-                )
-
-                print(
-                    cleaned[:3000]
-                )
+        print(
+            racer_response.text[:12000]
+        )
 
 
     print()
