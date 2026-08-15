@@ -1,0 +1,166 @@
+{
+  "timestamp": "2026-08-14T23:09:18.047947-03:00",
+  "race": {
+    "description": "C Gr.4 Running 10 Aug 2026 Daily Race C i 16:48 Grand Valley - Highway 1 M. Estevez - GT by Citroën Gr.4 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN"
+  },
+  "total_drivers": 25511,
+  "world_record": {
+    "score": 114623,
+    "laptime": "1:54.623",
+    "driver": "M. Estevez",
+    "psn_id": "MateoEstevez",
+    "car_code": 3248,
+    "car": "GT by Citroën Gr.4"
+  },
+  "benchmarks": {
+    "103_percent": {
+      "score": 118062,
+      "laptime": "1:58.062"
+    },
+    "105_percent": {
+      "score": 120354,
+      "laptime": "2:00.354"
+    }
+  },
+  "thresholds": {
+    "1": {
+      "score": 114623,
+      "laptime": "1:54.623"
+    },
+    "10": {
+      "score": 114768,
+      "laptime": "1:54.768"
+    },
+    "50": {
+      "score": 115161,
+      "laptime": "1:55.161"
+    },
+    "100": {
+      "score": 115351,
+      "laptime": "1:55.351"
+    },
+    "250": {
+      "score": 115632,
+      "laptime": "1:55.632"
+    },
+    "500": {
+      "score": 115850,
+      "laptime": "1:55.850"
+    },
+    "1000": {
+      "score": 116133,
+      "laptime": "1:56.133"
+    },
+    "2500": {
+      "score": 116748,
+      "laptime": "1:56.748"
+    },
+    "5000": {
+      "score": 117477,
+      "laptime": "1:57.477"
+    }
+  },
+  "my_result": {
+    "psn_id": "crazy_rooster74",
+    "rank": 4132,
+    "score": 117248,
+    "laptime": "1:57.248",
+    "car_code": 3501,
+    "car": "Genesis G70 GR4",
+    "gap_to_wr_ms": 2625,
+    "wr_percentage": 102.29011629428648
+  },
+  "meta_cars": [
+    {
+      "car_code": 3248,
+      "car": "GT by Citroën Gr.4",
+      "top100": 68,
+      "top500": 290,
+      "top1000": 564,
+      "total": 8965,
+      "meta_score": 1913.65
+    },
+    {
+      "car_code": 2161,
+      "car": "Nissan GT-R Gr.4",
+      "top100": 14,
+      "top500": 48,
+      "top1000": 79,
+      "total": 1917,
+      "meta_score": 334.17
+    },
+    {
+      "car_code": 3501,
+      "car": "Genesis G70 GR4",
+      "top100": 2,
+      "top500": 61,
+      "top1000": 153,
+      "total": 2206,
+      "meta_score": 317.06
+    },
+    {
+      "car_code": 3480,
+      "car": "Suzuki Swift Sport Gr.4",
+      "top100": 4,
+      "top500": 19,
+      "top1000": 44,
+      "total": 533,
+      "meta_score": 127.33
+    },
+    {
+      "car_code": 3251,
+      "car": "Honda NSX Gr.4",
+      "top100": 3,
+      "top500": 15,
+      "top1000": 26,
+      "total": 765,
+      "meta_score": 93.65
+    },
+    {
+      "car_code": 3310,
+      "car": "Porsche Cayman GT4 Clubsport '16",
+      "top100": 4,
+      "top500": 9,
+      "top1000": 19,
+      "total": 1314,
+      "meta_score": 90.14
+    },
+    {
+      "car_code": 3263,
+      "car": "Ferrari 458 Italia Gr.4",
+      "top100": 1,
+      "top500": 12,
+      "top1000": 25,
+      "total": 1820,
+      "meta_score": 77.2
+    },
+    {
+      "car_code": 3257,
+      "car": "McLaren 650S Gr.4",
+      "top100": 1,
+      "top500": 6,
+      "top1000": 11,
+      "total": 413,
+      "meta_score": 37.13
+    },
+    {
+      "car_code": 3256,
+      "car": "Mazda Atenza Gr.4",
+      "top100": 1,
+      "top500": 6,
+      "top1000": 8,
+      "total": 342,
+      "meta_score": 33.42
+    },
+    {
+      "car_code": 3231,
+      "car": "Volkswagen Scirocco Gr.4",
+      "top100": 0,
+      "top500": 5,
+      "top1000": 18,
+      "total": 450,
+      "meta_score": 32.5
+    }
+  ]
+}
