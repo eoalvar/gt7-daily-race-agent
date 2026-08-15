@@ -1,8 +1,63 @@
-GT7 CAR DATABASE UPDATE
+GT7 COMPLETE CAR DATABASE UPDATE
 ======================================================================
-Discovered in GTSH page : 0
-New car codes added     : 0
-Existing codes updated  : 0
-Total cars in database  : 33
-Database file           : data/car_names.json
+Leaderboards scanned       : 30
+Pages with carNames marker : 27
+Pages yielding car catalog : 27
+Unique GTSH cars discovered: 582
+Database before update     : 33
+New car codes added        : 549
+Existing names updated     : 8
+Total cars in database     : 582
+
+HISTORICAL UNKNOWN-CODE CHECK
+----------------------------------------------------------------------
+3311: Porsche 911 RSR (991) '17
+3588: Ferrari 296 GT3 '23
+3600: Porsche 911 GT3 R (992) '22
+3238: Peugeot RCZ Gr.3
+2179: Bugatti Vision Gran Turismo (Gr.1)
+3397: Mercedes-Benz CLK-LM '98
+3607: Porsche 963 '24
+3436: Ford GT Race Car '18
+3499: TOYOTA GR010 HYBRID '21
+365: Alfa Romeo 155 2.5 V6 TI '93
+3348: Honda NSX CONCEPT-GT '16
+3405: Audi R8 LMS Evo '19
+
+Historical codes resolved  : 12/12
+
+PAGE SCAN DIAGNOSTICS
+----------------------------------------------------------------------
+01. marker=NO | cars=0 | OK
+02. marker=NO | cars=0 | OK
+03. marker=NO | cars=0 | OK
+04. marker=YES | cars=582 | OK
+05. marker=YES | cars=582 | OK
+06. marker=YES | cars=582 | OK
+07. marker=YES | cars=582 | OK
+08. marker=YES | cars=582 | OK
+09. marker=YES | cars=582 | OK
+10. marker=YES | cars=582 | OK
+11. marker=YES | cars=582 | OK
+12. marker=YES | cars=582 | OK
+13. marker=YES | cars=582 | OK
+14. marker=YES | cars=582 | OK
+15. marker=YES | cars=582 | OK
+16. marker=YES | cars=582 | OK
+17. marker=YES | cars=582 | OK
+18. marker=YES | cars=582 | OK
+19. marker=YES | cars=582 | OK
+20. marker=YES | cars=582 | OK
+21. marker=YES | cars=582 | OK
+22. marker=YES | cars=582 | OK
+23. marker=YES | cars=582 | OK
+24. marker=YES | cars=582 | OK
+25. marker=YES | cars=582 | OK
+26. marker=YES | cars=582 | OK
+27. marker=YES | cars=582 | OK
+28. marker=YES | cars=582 | OK
+29. marker=YES | cars=582 | OK
+30. marker=YES | cars=582 | OK
+
+Database file: data/car_names.json
 ======================================================================
