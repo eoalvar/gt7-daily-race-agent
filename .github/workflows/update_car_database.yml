@@ -1,0 +1,45 @@
+name: GT7 Update Car Database
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-car-database:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+
+      - name: Update GT7 car database
+        run: python src/update_car_database.py
+
+      - name: Commit car database
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/car_names.json
+          git add data/car_database_update.txt
+
+          if git diff --cached --quiet; then
+            echo "No car database changes to commit."
+          else
+            git commit -m "Update GT7 car database"
+            git push
+          fi
