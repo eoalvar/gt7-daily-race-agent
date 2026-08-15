@@ -1,0 +1,40 @@
+name: GT7 Repair History Car Names
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair-history-cars:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Repair historical car names
+        run: python src/repair_history_car_names.py
+
+      - name: Commit repaired history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/weekly_rating_history.json
+          git add data/history_car_name_repair.txt
+
+          if git diff --cached --quiet; then
+            echo "No historical car names needed repair."
+          else
+            git commit -m "Repair GT7 historical car names"
+            git push
+          fi
