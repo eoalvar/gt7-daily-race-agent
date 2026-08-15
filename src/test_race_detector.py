@@ -389,6 +389,65 @@ def format_bb(value):
     return str(value)
 
 
+def position_score(rank, total_drivers):
+    """
+    Linear score from 0 to 10.
+
+    Rank 1 = 10.00
+    Last place = 0.00
+    """
+
+    if (
+        rank is None
+        or total_drivers is None
+        or total_drivers <= 1
+    ):
+        return None
+
+    score = 10 * (
+        1
+        - (
+            (rank - 1)
+            / (total_drivers - 1)
+        )
+    )
+
+    return max(
+        0.0,
+        min(
+            10.0,
+            score
+        )
+    )
+
+
+def percentile_ahead(rank, total_drivers):
+    """
+    Percentage of leaderboard participants
+    the driver is ahead of.
+
+    Rank 1 -> 100%
+    Last -> 0%
+    """
+
+    if (
+        rank is None
+        or total_drivers is None
+        or total_drivers <= 1
+    ):
+        return None
+
+    return (
+        (
+            total_drivers - rank
+        )
+        / (
+            total_drivers - 1
+        )
+        * 100
+    )
+
+
 def brake_balance_recommendation(
     car_code,
     tyre_multiplier
@@ -421,9 +480,9 @@ def brake_balance_recommendation(
         "layout"
     ]
 
-    # When tire wear is low, keep race
-    # recommendation closer to qualifying.
+
     if tyre_multiplier <= 1:
+
         race = qualifying
 
     elif tyre_multiplier <= 2:
@@ -470,8 +529,6 @@ def brake_balance_recommendation(
         )
 
 
-    confidence = "Medium"
-
     return {
         "qualifying":
             qualifying,
@@ -483,7 +540,7 @@ def brake_balance_recommendation(
             layout,
 
         "confidence":
-            confidence,
+            "Medium",
 
         "reason":
             reason
@@ -745,6 +802,16 @@ if my_driver:
         my_driver
     )
 
+    my_position_score = position_score(
+        my_rank,
+        len(ranking)
+    )
+
+    my_percentile_ahead = percentile_ahead(
+        my_rank,
+        len(ranking)
+    )
+
 
     my_result = {
 
@@ -777,7 +844,13 @@ if my_driver:
         "wr_percentage":
             my_score
             / world_record_score
-            * 100
+            * 100,
+
+        "position_score":
+            my_position_score,
+
+        "percentile_ahead":
+            my_percentile_ahead
     }
 
 
@@ -1205,7 +1278,8 @@ if my_result:
 
     lines.append(
         f"Position : "
-        f"#{my_result['rank']:,}"
+        f"#{my_result['rank']:,} "
+        f"of {len(ranking):,}"
     )
 
     lines.append(
@@ -1226,6 +1300,17 @@ if my_result:
     lines.append(
         f"Car      : "
         f"{my_result['car']}"
+    )
+
+    lines.append(
+        f"Score    : "
+        f"{my_result['position_score']:.2f} / 10"
+    )
+
+    lines.append(
+        f"Ahead of : "
+        f"{my_result['percentile_ahead']:.2f}% "
+        f"of participants"
     )
 
 else:
@@ -1343,7 +1428,7 @@ for index, car in enumerate(
     )
 
 
-# CHANGE SINCE PREVIOUS
+# CHANGE SINCE PREVIOUS SNAPSHOT
 
 lines.append("")
 
@@ -1389,6 +1474,32 @@ if same_race:
             f"My time      : "
             f"{signed_seconds(my_result['score'] - old_my['score'])}"
         )
+
+        old_position_score = old_my.get(
+            "position_score"
+        )
+
+        if old_position_score is not None:
+
+            score_change = (
+                my_result[
+                    "position_score"
+                ]
+                - old_position_score
+            )
+
+            sign = (
+                "+"
+                if score_change > 0
+                else ""
+            )
+
+            lines.append(
+                f"My score     : "
+                f"{old_position_score:.2f} -> "
+                f"{my_result['position_score']:.2f} "
+                f"({sign}{score_change:.2f})"
+            )
 
 
     elif my_result and not old_my:
