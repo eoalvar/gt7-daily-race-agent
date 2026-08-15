@@ -48,43 +48,42 @@ None.
 
 UNRESOLVED / REQUEST FAILURES
 --------------------------------------------------------------------------------------
-Code 1563 | Renault Sport Mégane Trophy '11 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 2157 | Aston Martin Vantage Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 2161 | Nissan GT-R Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 2163 | Hyundai Genesis Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 2164 | Ford Mustang Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 2166 | Alfa Romeo 4C Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3192 | Mercedes-Benz SLS AMG Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3231 | Volkswagen Scirocco Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3245 | BMW M4 Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3246 | Bugatti Veyron Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3247 | Chevrolet Corvette C7 Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3248 | GT by Citroën Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3249 | Dodge Viper Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3251 | Honda NSX Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3252 | Jaguar F-type Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3253 | Lamborghini Huracán Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3254 | Lexus RC F Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3256 | Mazda Atenza Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3257 | McLaren 650S Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3258 | Mitsubishi Lancer Evolution Final Edition Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3259 | Peugeot RCZ Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3260 | Renault Sport Mégane Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3261 | Subaru WRX Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3262 | TOYOTA 86 Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3263 | Ferrari 458 Italia Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3298 | Audi TT Cup '16 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3310 | Porsche Cayman GT4 Clubsport '16 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3399 | Toyota GR Supra Race Car '19 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3477 | Nissan Silvia spec-R Aero (S15) Touring Car | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3480 | Suzuki Swift Sport KATANA Edition Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3501 | Genesis G70 GR4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
-Code 3537 | MAZDA3 Gr.4 | DRIVETRAIN_NOT_FOUND | No drivetrain parsed
+Code 1563 | Renault Sport Mégane Trophy '11 | DRIVETRAIN_NOT_FOUND
+Code 2157 | Aston Martin Vantage Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 2161 | Nissan GT-R Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 2163 | Hyundai Genesis Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 2164 | Ford Mustang Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 2166 | Alfa Romeo 4C Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3192 | Mercedes-Benz SLS AMG Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3231 | Volkswagen Scirocco Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3245 | BMW M4 Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3246 | Bugatti Veyron Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3247 | Chevrolet Corvette C7 Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3248 | GT by Citroën Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3249 | Dodge Viper Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3251 | Honda NSX Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3252 | Jaguar F-type Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3253 | Lamborghini Huracán Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3254 | Lexus RC F Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3256 | Mazda Atenza Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3257 | McLaren 650S Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3258 | Mitsubishi Lancer Evolution Final Edition Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3259 | Peugeot RCZ Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3260 | Renault Sport Mégane Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3261 | Subaru WRX Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3262 | TOYOTA 86 Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3263 | Ferrari 458 Italia Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3298 | Audi TT Cup '16 | DRIVETRAIN_NOT_FOUND
+Code 3310 | Porsche Cayman GT4 Clubsport '16 | DRIVETRAIN_NOT_FOUND
+Code 3399 | Toyota GR Supra Race Car '19 | DRIVETRAIN_NOT_FOUND
+Code 3477 | Nissan Silvia spec-R Aero (S15) Touring Car | DRIVETRAIN_NOT_FOUND
+Code 3480 | Suzuki Swift Sport KATANA Edition Gr.4 | DRIVETRAIN_NOT_FOUND
+Code 3501 | Genesis G70 GR4 | DRIVETRAIN_NOT_FOUND
+Code 3537 | MAZDA3 Gr.4 | DRIVETRAIN_NOT_FOUND
 
-INTERPRETATION
+FIRST UNRESOLVED HTML DEBUG
 --------------------------------------------------------------------------------------
-MATCH means the drivetrain currently used by our Brake Bias model agrees with the official GT7 page.
-MISMATCH means our drivetrain metadata should be corrected before recalculating Brake Bias.
-This audit validates drivetrain only. It does NOT validate the actual Qualifying or Race Brake Bias values.
+Code: 1563
+Word 'Drivetrain' not present in raw HTML.
 
 ======================================================================================
