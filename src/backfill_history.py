@@ -7,7 +7,13 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin, urlparse, parse_qs, urlencode, urlunparse
+from urllib.parse import (
+    urljoin,
+    urlparse,
+    parse_qs,
+    urlencode,
+    urlunparse
+)
 
 
 # ============================================================
@@ -23,11 +29,10 @@ MAX_ARCHIVE_PAGES = 30
 PAGE_SIZE = 100
 MAX_LEADERBOARD_PAGES = 1000
 
-REQUEST_DELAY_SECONDS = 0.20
+REQUEST_DELAY_SECONDS = 0.15
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (GT7 Daily Race History Backfill)",
-    "Accept": "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8"
+    "User-Agent": "Mozilla/5.0 (GT7 Daily Race History Backfill)"
 }
 
 DATA_DIR = Path("data")
@@ -79,14 +84,12 @@ CAR_NAMES = {
     3263: "Ferrari 458 Italia Gr.4",
     3298: "Audi TT Cup '16",
     3310: "Porsche Cayman GT4 Clubsport '16",
+    3352: "Toyota GR Supra Racing Concept '18",
     3399: "Toyota GR Supra Race Car '19",
     3477: "Nissan Silvia spec-R Aero (S15) Touring Car",
     3480: "Suzuki Swift Sport Gr.4",
     3501: "Genesis G70 GR4",
-    3537: "Mazda3 Gr.4",
-
-    # Known from archived Gr.3 test
-    3352: "Toyota GR Supra Racing Concept '18"
+    3537: "Mazda3 Gr.4"
 }
 
 
@@ -99,24 +102,11 @@ def score_to_laptime(score):
     if score is None:
         return "N/A"
 
-    score = int(
-        round(score)
-    )
+    score = int(round(score))
 
-    minutes = (
-        score
-        // 60000
-    )
-
-    seconds = (
-        score
-        % 60000
-    ) // 1000
-
-    milliseconds = (
-        score
-        % 1000
-    )
+    minutes = score // 60000
+    seconds = (score % 60000) // 1000
+    milliseconds = score % 1000
 
     return (
         f"{minutes}:"
@@ -155,7 +145,7 @@ def get_car_name(car_code):
     )
 
 
-def online_id(driver):
+def get_online_id(driver):
 
     value = (
         get_user(driver)
@@ -171,11 +161,7 @@ def online_id(driver):
     ):
         return ""
 
-    return (
-        value
-        .strip()
-        .lower()
-    )
+    return value.strip().lower()
 
 
 def find_my_driver(
@@ -183,26 +169,21 @@ def find_my_driver(
     psn_id
 ):
 
-    target = (
-        psn_id
-        .strip()
-        .lower()
-    )
+    target = psn_id.strip().lower()
 
     for driver in ranking:
 
         if (
-            online_id(driver)
+            get_online_id(driver)
             == target
         ):
-
             return driver
 
     return None
 
 
 # ============================================================
-# RATING FORMULAS
+# RATINGS
 # ============================================================
 
 def general_rating(
@@ -215,7 +196,6 @@ def general_rating(
         or total is None
         or total <= 1
     ):
-
         return None
 
     result = 10 * (
@@ -246,7 +226,6 @@ def elite_rating(
         or total <= 1
         or rank < 1
     ):
-
         return None
 
     if rank == 1:
@@ -276,7 +255,6 @@ def composite_rating(
         general is None
         or elite is None
     ):
-
         return None
 
     return (
@@ -295,18 +273,11 @@ def percentile_ahead(
         or total is None
         or total <= 1
     ):
-
         return None
 
     return (
-        (
-            total
-            - rank
-        )
-        / (
-            total
-            - 1
-        )
+        (total - rank)
+        / (total - 1)
         * 100
     )
 
@@ -315,9 +286,7 @@ def percentile_ahead(
 # DATE HELPERS
 # ============================================================
 
-def parse_date_from_text(
-    text
-):
+def parse_date_from_text(text):
 
     match = re.search(
         r"(\d{1,2}\s+[A-Za-z]{3}\s+\d{4})",
@@ -343,9 +312,7 @@ def parse_date_from_text(
         return None
 
 
-def monday_of_week(
-    value
-):
+def monday_of_week(value):
 
     monday = (
         value
@@ -363,7 +330,7 @@ def monday_of_week(
 
 
 # ============================================================
-# EXISTING HISTORY
+# HISTORY FILE
 # ============================================================
 
 def load_existing_history():
@@ -383,7 +350,6 @@ def load_existing_history():
             data,
             list
         ):
-
             return data
 
     except Exception:
@@ -392,9 +358,7 @@ def load_existing_history():
     return []
 
 
-def save_history(
-    history
-):
+def save_history(history):
 
     history.sort(
         key=lambda item:
@@ -434,10 +398,7 @@ def upsert_record(
             == url
         ):
 
-            history[
-                index
-            ] = record
-
+            history[index] = record
             return
 
     history.append(
@@ -472,14 +433,14 @@ def discover_race_c_events(
         MAX_ARCHIVE_PAGES + 1
     ):
 
-        page_url = (
-            GTSH_URL
-            if page == 1
-            else (
+        if page == 1:
+            page_url = GTSH_URL
+
+        else:
+            page_url = (
                 f"{GTSH_URL}"
                 f"?page={page}&q="
             )
-        )
 
         print(
             f"Reading archive page {page}..."
@@ -497,22 +458,21 @@ def discover_race_c_events(
             "html.parser"
         )
 
-        page_dates = []
-
-        leaderboard_links = soup.select(
-            'a[href*="/daily/leaderboard?event="]'
+        links = soup.select(
+            'a[href*="/daily/leaderboard?event="], '
+            'a[href*="/daily/leaderboard/?event="]'
         )
 
-        if not leaderboard_links:
+        if not links:
 
             print(
-                "No leaderboard links found. "
-                "Stopping archive search."
+                "No leaderboard links found."
             )
-
             break
 
-        for link in leaderboard_links:
+        page_dates = []
+
+        for link in links:
 
             parent = link.parent
 
@@ -574,26 +534,20 @@ def discover_race_c_events(
 
         if page_dates:
 
-            oldest_on_page = min(
+            oldest = min(
                 page_dates
             )
 
             if (
-                oldest_on_page
+                oldest
                 < cutoff_date
                 - timedelta(
                     days=14
                 )
             ):
-
                 reached_cutoff = True
 
         if reached_cutoff:
-
-            print(
-                "Six-month cutoff reached."
-            )
-
             break
 
         time.sleep(
@@ -605,8 +559,8 @@ def discover_race_c_events(
     )
 
     result.sort(
-        key=lambda event:
-            event[
+        key=lambda item:
+            item[
                 "date"
             ]
     )
@@ -615,60 +569,21 @@ def discover_race_c_events(
 
 
 # ============================================================
-# SERVER PAGINATION HELPERS
+# JSON / HTML EXTRACTION
 # ============================================================
-
-def add_query_params(
-    url,
-    **params
-):
-
-    parsed = urlparse(
-        url
-    )
-
-    current = parse_qs(
-        parsed.query,
-        keep_blank_values=True
-    )
-
-    for key, value in params.items():
-
-        current[
-            key
-        ] = [
-            str(value)
-        ]
-
-    new_query = urlencode(
-        current,
-        doseq=True
-    )
-
-    return urlunparse(
-        (
-            parsed.scheme,
-            parsed.netloc,
-            parsed.path,
-            parsed.params,
-            new_query,
-            parsed.fragment
-        )
-    )
-
 
 def extract_json_variable(
     html,
     variable_name
 ):
 
-    patterns = [
+    markers = [
         f"const {variable_name} = ",
         f"let {variable_name} = ",
         f"var {variable_name} = "
     ]
 
-    for marker in patterns:
+    for marker in markers:
 
         start = html.find(
             marker
@@ -683,75 +598,113 @@ def extract_json_variable(
 
         try:
 
-            decoder = (
-                json.JSONDecoder()
+            decoder = json.JSONDecoder()
+
+            value, _ = decoder.raw_decode(
+                html[start:].lstrip()
             )
 
-            data, _ = (
-                decoder.raw_decode(
-                    html[
-                        start:
-                    ]
-                    .lstrip()
-                )
-            )
-
-            return data
+            return value
 
         except Exception:
-
             continue
 
     return None
 
 
-def extract_initial_server_page(
-    html
+# ============================================================
+# IMPORTANT FIX:
+# CANONICAL LEADERBOARD URL
+# ============================================================
+
+def canonical_leaderboard_url(
+    event_url
 ):
 
-    data = extract_json_variable(
-        html,
-        "initialServerPage"
+    parsed = urlparse(
+        event_url
     )
 
-    if isinstance(
-        data,
-        dict
-    ):
-
-        return data
-
-    return None
-
-
-def extract_initial_ranking(
-    html
-):
-
-    data = extract_json_variable(
-        html,
-        "initialRanking"
+    path = parsed.path.rstrip(
+        "/"
     )
 
-    if isinstance(
-        data,
-        list
+    if path.endswith(
+        "/daily/leaderboard"
     ):
 
-        return data
+        path += "/"
 
-    return None
+    return urlunparse(
+        (
+            parsed.scheme,
+            parsed.netloc,
+            path,
+            parsed.params,
+            parsed.query,
+            parsed.fragment
+        )
+    )
 
 
-def normalize_page_response(
-    data
+def build_page_url(
+    event_url,
+    offset,
+    limit
 ):
+
+    event_url = canonical_leaderboard_url(
+        event_url
+    )
+
+    parsed = urlparse(
+        event_url
+    )
+
+    query = parse_qs(
+        parsed.query,
+        keep_blank_values=True
+    )
+
+    query[
+        "offset"
+    ] = [
+        str(offset)
+    ]
+
+    query[
+        "limit"
+    ] = [
+        str(limit)
+    ]
+
+    query_string = urlencode(
+        query,
+        doseq=True
+    )
+
+    return urlunparse(
+        (
+            parsed.scheme,
+            parsed.netloc,
+            parsed.path,
+            parsed.params,
+            query_string,
+            parsed.fragment
+        )
+    )
+
+
+# ============================================================
+# NORMALIZE SERVER PAGE
+# ============================================================
+
+def normalize_page(data):
 
     if not isinstance(
         data,
         dict
     ):
-
         return None
 
     board = data.get(
@@ -762,56 +715,69 @@ def normalize_page_response(
         board,
         list
     ):
-
         return None
 
-    offset = data.get(
-        "offset",
-        0
-    )
 
-    limit = data.get(
-        "limit",
-        PAGE_SIZE
-    )
+    def int_or_none(value):
 
-    total = (
+        try:
+
+            if value is None:
+                return None
+
+            return int(
+                value
+            )
+
+        except Exception:
+            return None
+
+
+    offset = int_or_none(
         data.get(
-            "total"
-        )
-        or data.get(
-            "total_records"
-        )
-        or data.get(
-            "totalRecords"
-        )
-        or data.get(
-            "count"
+            "offset"
         )
     )
 
-    try:
-        offset = int(
-            offset
-        )
-    except Exception:
+    if offset is None:
         offset = 0
 
-    try:
-        limit = int(
-            limit
+
+    limit = int_or_none(
+        data.get(
+            "limit"
         )
-    except Exception:
+    )
+
+    if not limit:
         limit = PAGE_SIZE
 
-    try:
-        total = (
-            int(total)
-            if total is not None
-            else None
+
+    total_candidates = [
+        "total",
+        "total_records",
+        "totalRecords",
+        "total_count",
+        "totalCount",
+        "count"
+    ]
+
+
+    total = None
+
+
+    for key in total_candidates:
+
+        candidate = int_or_none(
+            data.get(
+                key
+            )
         )
-    except Exception:
-        total = None
+
+        if candidate is not None:
+            total = candidate
+            break
+
 
     return {
         "board":
@@ -824,38 +790,45 @@ def normalize_page_response(
             limit,
 
         "total":
-            total,
-
-        "raw":
-            data
+            total
     }
 
 
-def fetch_server_page(
+# ============================================================
+# FETCH ONE HISTORICAL PAGE
+# ============================================================
+
+def fetch_page(
     session,
     event_url,
-    offset,
-    limit=PAGE_SIZE
+    offset
 ):
 
-    page_url = add_query_params(
+    page_url = build_page_url(
         event_url,
-        offset=offset,
-        limit=limit
+        offset,
+        PAGE_SIZE
     )
 
-    headers = {
-        **HEADERS,
-        "Accept": "application/json"
-    }
 
     response = session.get(
         page_url,
-        headers=headers,
-        timeout=60
+        headers={
+            "User-Agent":
+                HEADERS[
+                    "User-Agent"
+                ],
+
+            "Accept":
+                "application/json"
+        },
+        timeout=60,
+        allow_redirects=True
     )
 
+
     response.raise_for_status()
+
 
     content_type = (
         response.headers.get(
@@ -865,34 +838,44 @@ def fetch_server_page(
         .lower()
     )
 
-    # Primary mode:
-    # the server returns JSON for offset/limit requests.
+
+    # ========================================================
+    # EXPECTED CASE: JSON
+    # ========================================================
 
     if (
-        "application/json"
+        "json"
         in content_type
     ):
 
-        return normalize_page_response(
-            response.json()
+        data = response.json()
+
+        normalized = normalize_page(
+            data
         )
 
-    # Fallback:
-    # if it returned HTML, try initialServerPage.
+        if normalized:
+            return normalized
+
+
+    # ========================================================
+    # HTML FALLBACK
+    # ========================================================
 
     html = response.text
 
-    server_page = extract_initial_server_page(
-        html
+    server_page = extract_json_variable(
+        html,
+        "initialServerPage"
     )
 
-    normalized = normalize_page_response(
+    normalized = normalize_page(
         server_page
     )
 
     if normalized:
-
         return normalized
+
 
     return None
 
@@ -906,8 +889,16 @@ def get_full_event_ranking(
     event_url
 ):
 
+    canonical_url = (
+        canonical_leaderboard_url(
+            event_url
+        )
+    )
+
+
+    # First open event normally.
     response = session.get(
-        event_url,
+        canonical_url,
         timeout=60
     )
 
@@ -915,38 +906,51 @@ def get_full_event_ranking(
 
     html = response.text
 
-    server_page = extract_initial_server_page(
-        html
+
+    # ========================================================
+    # IS THIS SERVER-PAGED?
+    # ========================================================
+
+    initial_server_page = (
+        extract_json_variable(
+            html,
+            "initialServerPage"
+        )
     )
 
-    normalized = normalize_page_response(
-        server_page
+
+    first_page = normalize_page(
+        initial_server_page
     )
 
 
-    # --------------------------------------------------------
-    # Modern archived board:
-    # server-paged mode
-    # --------------------------------------------------------
+    # ========================================================
+    # HISTORICAL PAGED MODE
+    # ========================================================
 
-    if normalized:
+    if first_page:
 
         all_drivers = []
 
-        seen_ids = set()
+        seen = set()
 
-        offset = normalized[
-            "offset"
-        ]
-
-        total_records = normalized[
-            "total"
-        ]
-
-        current_page = normalized
+        total_records = (
+            first_page[
+                "total"
+            ]
+        )
 
 
-        for _ in range(
+        current_page = first_page
+
+        expected_offset = (
+            first_page[
+                "offset"
+            ]
+        )
+
+
+        for page_number in range(
             MAX_LEADERBOARD_PAGES
         ):
 
@@ -954,53 +958,95 @@ def get_full_event_ranking(
                 "board"
             ]
 
+
+            actual_offset = (
+                current_page[
+                    "offset"
+                ]
+            )
+
+
+            # Guard against silently receiving page 1
+            # repeatedly.
+
+            if (
+                page_number > 0
+                and actual_offset
+                != expected_offset
+            ):
+
+                raise RuntimeError(
+                    "Historical pagination did not "
+                    f"advance correctly. "
+                    f"Expected offset {expected_offset}, "
+                    f"received {actual_offset}."
+                )
+
+
             if not board:
                 break
 
 
-            new_items = 0
+            new_count = 0
 
 
             for driver in board:
 
-                unique_key = (
+                key = (
                     driver.get(
                         "line_replay_id"
                     )
                     or (
-                        online_id(driver),
-                        driver.get(
-                            "score"
-                        ),
                         driver.get(
                             "display_rank"
+                        ),
+                        get_online_id(
+                            driver
+                        ),
+                        driver.get(
+                            "score"
                         )
                     )
                 )
 
 
-                if unique_key in seen_ids:
+                if key in seen:
                     continue
 
 
-                seen_ids.add(
-                    unique_key
+                seen.add(
+                    key
                 )
 
                 all_drivers.append(
                     driver
                 )
 
-                new_items += 1
+                new_count += 1
 
 
-            if new_items == 0:
-                break
+            if new_count == 0:
+
+                raise RuntimeError(
+                    "Historical pagination returned "
+                    "duplicate data."
+                )
 
 
-            page_offset = current_page[
-                "offset"
-            ]
+            # Print progress every 25 pages.
+
+            if (
+                page_number == 0
+                or (
+                    page_number + 1
+                ) % 25 == 0
+            ):
+
+                print(
+                    f"        loaded "
+                    f"{len(all_drivers):,} drivers..."
+                )
+
 
             page_limit = (
                 current_page[
@@ -1011,13 +1057,10 @@ def get_full_event_ranking(
 
 
             next_offset = (
-                page_offset
+                actual_offset
                 + page_limit
             )
 
-
-            # If the server told us total count,
-            # stop exactly at the end.
 
             if (
                 total_records is not None
@@ -1027,13 +1070,16 @@ def get_full_event_ranking(
                 break
 
 
-            # A short page is normally the last page.
-
-            if len(
-                board
-            ) < page_limit:
-
+            if (
+                len(board)
+                < page_limit
+            ):
                 break
+
+
+            expected_offset = (
+                next_offset
+            )
 
 
             time.sleep(
@@ -1041,30 +1087,38 @@ def get_full_event_ranking(
             )
 
 
-            current_page = fetch_server_page(
+            next_page = fetch_page(
                 session,
-                event_url,
-                next_offset,
-                PAGE_SIZE
+                canonical_url,
+                next_offset
             )
 
 
-            if not current_page:
-                break
+            if not next_page:
+                raise RuntimeError(
+                    f"Could not retrieve "
+                    f"leaderboard page at "
+                    f"offset {next_offset}."
+                )
 
 
             if (
                 total_records is None
-                and current_page[
+                and next_page[
                     "total"
                 ] is not None
             ):
 
                 total_records = (
-                    current_page[
+                    next_page[
                         "total"
                     ]
                 )
+
+
+            current_page = (
+                next_page
+            )
 
 
         all_drivers.sort(
@@ -1076,35 +1130,41 @@ def get_full_event_ranking(
         )
 
 
+        if total_records is None:
+            total_records = len(
+                all_drivers
+            )
+
+
         return {
             "ranking":
                 all_drivers,
 
             "total_records":
-                (
-                    total_records
-                    if total_records is not None
-                    else len(
-                        all_drivers
-                    )
-                ),
+                total_records,
 
             "mode":
                 "server_paged"
         }
 
 
-    # --------------------------------------------------------
-    # Legacy / current board:
-    # entire initialRanking is embedded
-    # --------------------------------------------------------
+    # ========================================================
+    # CURRENT / FULL EMBEDDED MODE
+    # ========================================================
 
-    ranking = extract_initial_ranking(
-        html
+    ranking = extract_json_variable(
+        html,
+        "initialRanking"
     )
 
 
-    if ranking:
+    if (
+        isinstance(
+            ranking,
+            list
+        )
+        and ranking
+    ):
 
         ranking.sort(
             key=lambda driver:
@@ -1130,12 +1190,12 @@ def get_full_event_ranking(
 
 
     raise RuntimeError(
-        "Could not extract leaderboard data."
+        "Could not extract leaderboard."
     )
 
 
 # ============================================================
-# HISTORICAL RECORD
+# BUILD RECORD
 # ============================================================
 
 def build_record(
@@ -1148,8 +1208,6 @@ def build_record(
     if not ranking:
         return None
 
-
-    # WR is always rank 1.
 
     winner = min(
         ranking,
@@ -1257,17 +1315,20 @@ def build_record(
     )
 
 
-    # --------------------------------------------------------
-    # SAME CAR RANK
-    # --------------------------------------------------------
+    # ========================================================
+    # SAME CAR
+    # ========================================================
 
-    same_car_drivers = [
+    same_car = [
         driver
-        for driver in ranking
-        if get_car_code(
-            driver
+        for driver
+        in ranking
+        if (
+            get_car_code(
+                driver
+            )
+            == my_car_code
         )
-        == my_car_code
     ]
 
 
@@ -1275,12 +1336,14 @@ def build_record(
 
 
     for index, driver in enumerate(
-        same_car_drivers,
+        same_car,
         start=1
     ):
 
         if (
-            online_id(driver)
+            get_online_id(
+                driver
+            )
             == MY_PSN_ID.lower()
         ):
 
@@ -1288,9 +1351,9 @@ def build_record(
             break
 
 
-    # --------------------------------------------------------
-    # COUNTRY RANK
-    # --------------------------------------------------------
+    # ========================================================
+    # COUNTRY
+    # ========================================================
 
     my_country = (
         my_user.get(
@@ -1299,11 +1362,14 @@ def build_record(
     )
 
 
-    country_drivers = [
+    country_group = [
         driver
-        for driver in ranking
+        for driver
+        in ranking
         if (
-            get_user(driver)
+            get_user(
+                driver
+            )
             .get(
                 "country_code"
             )
@@ -1316,12 +1382,14 @@ def build_record(
 
 
     for index, driver in enumerate(
-        country_drivers,
+        country_group,
         start=1
     ):
 
         if (
-            online_id(driver)
+            get_online_id(
+                driver
+            )
             == MY_PSN_ID.lower()
         ):
 
@@ -1424,7 +1492,7 @@ def build_record(
 
         "country_total":
             len(
-                country_drivers
+                country_group
             ),
 
         "same_car_rank":
@@ -1432,16 +1500,16 @@ def build_record(
 
         "same_car_total":
             len(
-                same_car_drivers
+                same_car
             )
     }
 
 
 # ============================================================
-# TREND HELPERS
+# TREND
 # ============================================================
 
-def linear_metric_trend(
+def metric_change(
     records,
     key,
     higher_is_better=True
@@ -1452,16 +1520,11 @@ def linear_metric_trend(
             key
         )
         for record in records
-        if (
+        if isinstance(
             record.get(
-                "participated"
-            )
-            and isinstance(
-                record.get(
-                    key
-                ),
-                (int, float)
-            )
+                key
+            ),
+            (int, float)
         )
     ]
 
@@ -1470,18 +1533,14 @@ def linear_metric_trend(
         return None
 
 
-    first = values[
-        0
-    ]
-
-    last = values[
-        -1
-    ]
+    first = values[0]
+    last = values[-1]
 
     change = (
         last
         - first
     )
+
 
     improvement = (
         change
@@ -1540,6 +1599,7 @@ def main():
         "GT7 DAILY RACE C - "
         "6 MONTH HISTORY BACKFILL"
     )
+
     print(
         "=" * 78
     )
@@ -1567,7 +1627,7 @@ def main():
 
 
     # ========================================================
-    # DISCOVER EVENTS
+    # EVENTS
     # ========================================================
 
     events = discover_race_c_events(
@@ -1590,42 +1650,35 @@ def main():
     if not events:
 
         raise RuntimeError(
-            "No historical Daily Race C events "
-            "were found."
+            "No historical events found."
         )
 
 
-    # ========================================================
-    # LOAD HISTORY
-    # ========================================================
-
     history = load_existing_history()
 
+    participated = []
 
-    participated_records = []
+    missing = []
 
-    missing_weeks = []
-
-    failed_events = []
+    failures = []
 
 
     # ========================================================
-    # PROCESS EVENTS
+    # PROCESS
     # ========================================================
 
-    for index, event in enumerate(
+    for number, event in enumerate(
         events,
         start=1
     ):
 
         print(
-            f"[{index}/{len(events)}] "
-            f"{event['date'].date()} "
-            f"Daily Race C"
+            f"[{number}/{len(events)}] "
+            f"{event['date'].date()}"
         )
 
         print(
-            f"    {event['text'][:140]}"
+            f"    {event['text'][:150]}"
         )
 
 
@@ -1643,18 +1696,14 @@ def main():
                 "ranking"
             ]
 
-            total_records = result[
+            total = result[
                 "total_records"
-            ]
-
-            extraction_mode = result[
-                "mode"
             ]
 
 
             print(
-                f"    Extraction mode: "
-                f"{extraction_mode}"
+                f"    Mode: "
+                f"{result['mode']}"
             )
 
             print(
@@ -1663,27 +1712,29 @@ def main():
             )
 
             print(
-                f"    Total drivers: "
-                f"{total_records:,}"
+                f"    Total: "
+                f"{total:,}"
             )
 
 
             record = build_record(
                 event,
                 ranking,
-                total_records,
-                extraction_mode
+                total,
+                result[
+                    "mode"
+                ]
             )
 
 
             if not record:
 
-                print(
-                    "    ERROR: invalid leaderboard."
+                failures.append(
+                    event
                 )
 
-                failed_events.append(
-                    event
+                print(
+                    "    ERROR: invalid record"
                 )
 
                 continue
@@ -1693,25 +1744,37 @@ def main():
                 "participated"
             ):
 
-                print(
-                    f"    {MY_PSN_ID}: NOT FOUND"
+                missing.append(
+                    record
                 )
 
-                missing_weeks.append(
-                    record
+                print(
+                    f"    {MY_PSN_ID}: NOT FOUND"
                 )
 
                 continue
 
 
+            participated.append(
+                record
+            )
+
+
+            upsert_record(
+                history,
+                record
+            )
+
+
             print(
-                f"    FOUND: {MY_PSN_ID}"
+                f"    FOUND: "
+                f"{MY_PSN_ID}"
             )
 
             print(
                 f"    Position: "
-                f"#{record['position']:,} "
-                f"of {record['total_drivers']:,}"
+                f"#{record['position']:,}/"
+                f"{record['total_drivers']:,}"
             )
 
             print(
@@ -1750,25 +1813,27 @@ def main():
             )
 
 
-            upsert_record(
-                history,
-                record
-            )
-
-
-            participated_records.append(
-                record
-            )
-
-
         except Exception as error:
+
+            failures.append(
+                {
+                    "date":
+                        event[
+                            "date"
+                        ],
+
+                    "url":
+                        event[
+                            "url"
+                        ],
+
+                    "error":
+                        str(error)
+                }
+            )
 
             print(
                 f"    ERROR: {error}"
-            )
-
-            failed_events.append(
-                event
             )
 
 
@@ -1778,7 +1843,7 @@ def main():
 
 
     # ========================================================
-    # SAVE HISTORY
+    # SAVE
     # ========================================================
 
     save_history(
@@ -1786,7 +1851,7 @@ def main():
     )
 
 
-    participated_records.sort(
+    participated.sort(
         key=lambda item:
             item[
                 "week_start"
@@ -1795,59 +1860,59 @@ def main():
 
 
     # ========================================================
-    # SUMMARY
+    # REPORT
     # ========================================================
 
-    summary = []
+    lines = []
 
 
-    summary.append(
+    lines.append(
         "GT7 DAILY RACE C - HISTORICAL BACKFILL"
     )
 
-    summary.append(
+    lines.append(
         "=" * 78
     )
 
-    summary.append(
+    lines.append(
         f"Period searched: "
         f"{cutoff_date.date()} "
         f"to {current_monday.date()}"
     )
 
-    summary.append(
+    lines.append(
         f"Race C events found: "
         f"{len(events)}"
     )
 
-    summary.append(
+    lines.append(
         f"Participated: "
-        f"{len(participated_records)}"
+        f"{len(participated)}"
     )
 
-    summary.append(
+    lines.append(
         f"PSN not found: "
-        f"{len(missing_weeks)}"
+        f"{len(missing)}"
     )
 
-    summary.append(
+    lines.append(
         f"Extraction failures: "
-        f"{len(failed_events)}"
+        f"{len(failures)}"
     )
 
 
-    if participated_records:
+    if participated:
 
-        summary.append("")
+        lines.append("")
 
-        summary.append(
+        lines.append(
             "HISTORICAL RATINGS"
         )
 
 
-        for record in participated_records:
+        for record in participated:
 
-            summary.append(
+            lines.append(
                 f"{record['week_start']} | "
                 f"G {record['general_score']:.2f} | "
                 f"E {record['elite_score']:.2f} | "
@@ -1860,164 +1925,201 @@ def main():
             )
 
 
-        general_trend = (
-            linear_metric_trend(
-                participated_records,
-                "general_score",
-                True
+        general = metric_change(
+            participated,
+            "general_score"
+        )
+
+        elite = metric_change(
+            participated,
+            "elite_score"
+        )
+
+        composite = metric_change(
+            participated,
+            "composite_rating"
+        )
+
+        wr = metric_change(
+            participated,
+            "wr_percentage",
+            False
+        )
+
+
+        if (
+            general
+            or elite
+            or composite
+            or wr
+        ):
+
+            lines.append("")
+
+            lines.append(
+                "CHANGE ACROSS AVAILABLE HISTORY"
             )
-        )
 
 
-        elite_trend = (
-            linear_metric_trend(
-                participated_records,
-                "elite_score",
-                True
-            )
-        )
+        if general:
 
-
-        composite_trend = (
-            linear_metric_trend(
-                participated_records,
-                "composite_rating",
-                True
-            )
-        )
-
-
-        wr_trend = (
-            linear_metric_trend(
-                participated_records,
-                "wr_percentage",
-                False
-            )
-        )
-
-
-        summary.append("")
-
-        summary.append(
-            "CHANGE ACROSS AVAILABLE HISTORY"
-        )
-
-
-        if general_trend:
-
-            summary.append(
+            lines.append(
                 f"General: "
-                f"{general_trend['first']:.2f} "
+                f"{general['first']:.2f} "
                 f"-> "
-                f"{general_trend['last']:.2f} "
-                f"({general_trend['change']:+.2f})"
+                f"{general['last']:.2f} "
+                f"({general['change']:+.2f})"
             )
 
 
-        if elite_trend:
+        if elite:
 
-            summary.append(
+            lines.append(
                 f"Elite: "
-                f"{elite_trend['first']:.2f} "
+                f"{elite['first']:.2f} "
                 f"-> "
-                f"{elite_trend['last']:.2f} "
-                f"({elite_trend['change']:+.2f})"
+                f"{elite['last']:.2f} "
+                f"({elite['change']:+.2f})"
             )
 
 
-        if composite_trend:
+        if composite:
 
-            summary.append(
+            lines.append(
                 f"Composite: "
-                f"{composite_trend['first']:.2f} "
+                f"{composite['first']:.2f} "
                 f"-> "
-                f"{composite_trend['last']:.2f} "
-                f"({composite_trend['change']:+.2f})"
+                f"{composite['last']:.2f} "
+                f"({composite['change']:+.2f})"
             )
 
 
-        if wr_trend:
+        if wr:
 
-            direction = (
-                "improvement"
-                if wr_trend[
+            if (
+                wr[
                     "improvement"
-                ] > 0
-                else "deterioration"
-            )
+                ]
+                > 0
+            ):
+
+                direction = (
+                    "improvement"
+                )
+
+            elif (
+                wr[
+                    "improvement"
+                ]
+                < 0
+            ):
+
+                direction = (
+                    "deterioration"
+                )
+
+            else:
+
+                direction = (
+                    "unchanged"
+                )
 
 
-            summary.append(
+            lines.append(
                 f"WR %: "
-                f"{wr_trend['first']:.3f}% "
+                f"{wr['first']:.3f}% "
                 f"-> "
-                f"{wr_trend['last']:.3f}% "
-                f"({abs(wr_trend['change']):.3f} pp "
+                f"{wr['last']:.3f}% "
+                f"({abs(wr['change']):.3f} pp "
                 f"{direction})"
             )
 
 
-    if missing_weeks:
+    if missing:
 
-        summary.append("")
+        lines.append("")
 
-        summary.append(
+        lines.append(
             "WEEKS WITHOUT A RECORDED LAP"
         )
 
+        for record in missing:
 
-        for record in missing_weeks:
-
-            summary.append(
+            lines.append(
                 record[
                     "week_start"
                 ]
             )
 
 
-    if failed_events:
+    if failures:
 
-        summary.append("")
+        lines.append("")
 
-        summary.append(
+        lines.append(
             "FAILED EVENTS"
         )
 
 
-        for event in failed_events:
+        for failure in failures:
 
-            summary.append(
-                f"{event['date'].date()} | "
-                f"{event['url']}"
-            )
+            if isinstance(
+                failure,
+                dict
+            ):
+
+                date_value = failure.get(
+                    "date"
+                )
+
+                if hasattr(
+                    date_value,
+                    "date"
+                ):
+
+                    date_text = str(
+                        date_value.date()
+                    )
+
+                else:
+
+                    date_text = str(
+                        date_value
+                    )
 
 
-    summary.append("")
+                lines.append(
+                    f"{date_text} | "
+                    f"{failure.get('error','Unknown error')}"
+                )
 
-    summary.append(
+
+    lines.append("")
+
+    lines.append(
         f"Saved to: "
         f"{WEEKLY_HISTORY_FILE}"
     )
 
-    summary.append(
+    lines.append(
         "=" * 78
     )
 
 
-    summary_text = "\n".join(
-        summary
+    report = "\n".join(
+        lines
     )
 
 
     BACKFILL_LOG_FILE.write_text(
-        summary_text,
+        report,
         encoding="utf-8"
     )
 
 
     print()
     print(
-        summary_text
+        report
     )
 
 
