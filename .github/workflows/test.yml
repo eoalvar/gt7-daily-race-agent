@@ -7,6 +7,9 @@ on:
     - cron: "7 5 * * 1"
       timezone: "America/Sao_Paulo"
 
+permissions:
+  contents: write
+
 jobs:
   run-gt7-agent:
     runs-on: ubuntu-latest
@@ -14,6 +17,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -27,3 +32,17 @@ jobs:
 
       - name: Run GT7 Daily Race C Agent
         run: python src/test_race_detector.py
+
+      - name: Save report and snapshot
+        run: |
+          git config user.name "GT7 Daily Race Agent"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add reports/ data/
+
+          if git diff --cached --quiet; then
+            echo "No changes to save."
+          else
+            git commit -m "Update GT7 Daily Race C snapshot"
+            git push
+          fi
