@@ -1,11 +1,13 @@
 import requests
 import json
+import re
 from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from collections import Counter
+
 
 # ============================================================
 # CONFIG
@@ -29,50 +31,233 @@ SAO_PAULO = ZoneInfo("America/Sao_Paulo")
 
 
 # ============================================================
-# CAR CODE -> CAR NAME
+# CAR DATABASE
 # ============================================================
 
-CAR_NAMES = {
-    2157: "Aston Martin V8 Vantage Gr.4",
-    2161: "Nissan GT-R Gr.4",
-    2163: "Genesis Gr.4",
-    2164: "Ford Mustang Gr.4",
-    2166: "Alfa Romeo 4C Gr.4",
+CAR_INFO = {
+    2157: {
+        "name": "Aston Martin V8 Vantage Gr.4",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
 
-    3192: "Mercedes-Benz SLS AMG Gr.4",
-    3231: "Volkswagen Scirocco Gr.4",
+    2161: {
+        "name": "Nissan GT-R Gr.4",
+        "layout": "4WD",
+        "qual_bb": 2,
+        "race_bb": 3,
+    },
 
-    3245: "BMW M4 Gr.4",
-    3246: "Bugatti Veyron Gr.4",
-    3247: "Chevrolet Corvette C7 Gr.4",
-    3248: "GT by Citroën Gr.4",
-    3249: "Dodge Viper Gr.4",
+    2163: {
+        "name": "Genesis Gr.4",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
 
-    3251: "Honda NSX Gr.4",
-    3252: "Jaguar F-type Gr.4",
-    3253: "Lamborghini Huracán Gr.4",
-    3254: "Lexus RC F Gr.4",
-    3256: "Mazda Atenza Gr.4",
-    3257: "McLaren 650S Gr.4",
-    3258: "Mitsubishi Lancer Evolution Final Gr.4",
-    3259: "Peugeot RCZ Gr.4",
-    3260: "Renault Mégane Gr.4",
-    3261: "Subaru WRX Gr.4",
-    3262: "Toyota 86 Gr.4",
-    3263: "Ferrari 458 Italia Gr.4",
+    2164: {
+        "name": "Ford Mustang Gr.4",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
 
-    3298: "Audi TT Cup '16",
-    3310: "Porsche Cayman GT4 Clubsport '16",
+    2166: {
+        "name": "Alfa Romeo 4C Gr.4",
+        "layout": "MR",
+        "qual_bb": 0,
+        "race_bb": -1,
+    },
 
-    3399: "Toyota GR Supra Race Car '19",
+    3192: {
+        "name": "Mercedes-Benz SLS AMG Gr.4",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
 
-    3477: "Nissan Silvia spec-R Aero (S15) Touring Car",
-    3480: "Suzuki Swift Sport Gr.4",
+    3231: {
+        "name": "Volkswagen Scirocco Gr.4",
+        "layout": "FF",
+        "qual_bb": 3,
+        "race_bb": 4,
+    },
 
-    3501: "Genesis G70 GR4",
-    3537: "Mazda3 Gr.4",
+    3245: {
+        "name": "BMW M4 Gr.4",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
 
-    1563: "Renault Mégane Trophy '11"
+    3246: {
+        "name": "Bugatti Veyron Gr.4",
+        "layout": "4WD",
+        "qual_bb": 2,
+        "race_bb": 3,
+    },
+
+    3247: {
+        "name": "Chevrolet Corvette C7 Gr.4",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
+
+    3248: {
+        "name": "GT by Citroën Gr.4",
+        "layout": "MR",
+        "qual_bb": 0,
+        "race_bb": -1,
+    },
+
+    3249: {
+        "name": "Dodge Viper Gr.4",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
+
+    3251: {
+        "name": "Honda NSX Gr.4",
+        "layout": "MR",
+        "qual_bb": -1,
+        "race_bb": -2,
+    },
+
+    3252: {
+        "name": "Jaguar F-type Gr.4",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
+
+    3253: {
+        "name": "Lamborghini Huracán Gr.4",
+        "layout": "4WD",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
+
+    3254: {
+        "name": "Lexus RC F Gr.4",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
+
+    3256: {
+        "name": "Mazda Atenza Gr.4",
+        "layout": "4WD",
+        "qual_bb": 2,
+        "race_bb": 3,
+    },
+
+    3257: {
+        "name": "McLaren 650S Gr.4",
+        "layout": "MR",
+        "qual_bb": -1,
+        "race_bb": -2,
+    },
+
+    3258: {
+        "name": "Mitsubishi Lancer Evolution Final Gr.4",
+        "layout": "4WD",
+        "qual_bb": 2,
+        "race_bb": 3,
+    },
+
+    3259: {
+        "name": "Peugeot RCZ Gr.4",
+        "layout": "FF",
+        "qual_bb": 3,
+        "race_bb": 4,
+    },
+
+    3260: {
+        "name": "Renault Mégane Gr.4",
+        "layout": "FF",
+        "qual_bb": 3,
+        "race_bb": 4,
+    },
+
+    3261: {
+        "name": "Subaru WRX Gr.4",
+        "layout": "4WD",
+        "qual_bb": 2,
+        "race_bb": 3,
+    },
+
+    3262: {
+        "name": "Toyota 86 Gr.4",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
+
+    3263: {
+        "name": "Ferrari 458 Italia Gr.4",
+        "layout": "MR",
+        "qual_bb": -1,
+        "race_bb": -2,
+    },
+
+    3298: {
+        "name": "Audi TT Cup '16",
+        "layout": "FF",
+        "qual_bb": 3,
+        "race_bb": 4,
+    },
+
+    3310: {
+        "name": "Porsche Cayman GT4 Clubsport '16",
+        "layout": "MR",
+        "qual_bb": -1,
+        "race_bb": -2,
+    },
+
+    3399: {
+        "name": "Toyota GR Supra Race Car '19",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
+
+    3477: {
+        "name": "Nissan Silvia spec-R Aero (S15) Touring Car",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
+
+    3480: {
+        "name": "Suzuki Swift Sport Gr.4",
+        "layout": "FF",
+        "qual_bb": 3,
+        "race_bb": 4,
+    },
+
+    3501: {
+        "name": "Genesis G70 GR4",
+        "layout": "FR",
+        "qual_bb": 1,
+        "race_bb": 2,
+    },
+
+    3537: {
+        "name": "Mazda3 Gr.4",
+        "layout": "FF",
+        "qual_bb": 3,
+        "race_bb": 4,
+    },
+
+    1563: {
+        "name": "Renault Mégane Trophy '11",
+        "layout": "MR",
+        "qual_bb": 0,
+        "race_bb": -1,
+    },
 }
 
 
@@ -81,6 +266,7 @@ CAR_NAMES = {
 # ============================================================
 
 def score_to_laptime(score):
+
     if score is None:
         return "N/A"
 
@@ -94,24 +280,35 @@ def score_to_laptime(score):
 
 
 def get_car_code(driver):
-    return driver.get("ranking_stats", {}).get("car_code")
 
-
-def get_car_name(car_code):
-    return CAR_NAMES.get(
-        car_code,
-        f"Unknown car ({car_code})"
+    return (
+        driver
+        .get("ranking_stats", {})
+        .get("car_code")
     )
 
 
+def get_car_name(car_code):
+
+    car = CAR_INFO.get(car_code)
+
+    if car:
+        return car["name"]
+
+    return f"Unknown car ({car_code})"
+
+
 def get_user(driver):
+
     return driver.get("user", {})
 
 
 def find_my_driver(ranking, psn_id):
+
     target = psn_id.strip().lower()
 
     for driver in ranking:
+
         online_id = get_user(driver).get(
             "np_online_id",
             ""
@@ -127,25 +324,35 @@ def find_my_driver(ranking, psn_id):
 
 
 def load_previous_snapshot():
+
     if not LATEST_SNAPSHOT_FILE.exists():
         return None
 
     try:
+
         return json.loads(
             LATEST_SNAPSHOT_FILE.read_text(
                 encoding="utf-8"
             )
         )
+
     except Exception:
+
         return None
 
 
 def signed_seconds(delta_ms):
+
     sign = "+" if delta_ms > 0 else ""
-    return f"{sign}{delta_ms / 1000:.3f}s"
+
+    return (
+        f"{sign}"
+        f"{delta_ms / 1000:.3f}s"
+    )
 
 
 def position_change(old_rank, new_rank):
+
     if old_rank is None or new_rank is None:
         return "N/A"
 
@@ -158,6 +365,129 @@ def position_change(old_rank, new_rank):
         return f"{difference} positions"
 
     return "unchanged"
+
+
+def extract_tyre_multiplier(race_text):
+
+    match = re.search(
+        r"Tyres\s*x(\d+)",
+        race_text,
+        re.IGNORECASE
+    )
+
+    if match:
+        return int(match.group(1))
+
+    return 1
+
+
+def format_bb(value):
+
+    if value > 0:
+        return f"+{value}"
+
+    return str(value)
+
+
+def brake_balance_recommendation(
+    car_code,
+    tyre_multiplier
+):
+
+    info = CAR_INFO.get(
+        car_code
+    )
+
+    if not info:
+
+        return {
+            "qualifying": 0,
+            "race": 0,
+            "layout": "Unknown",
+            "confidence": "Low",
+            "reason":
+                "Car not present in local brake-balance database."
+        }
+
+    qualifying = info[
+        "qual_bb"
+    ]
+
+    race = info[
+        "race_bb"
+    ]
+
+    layout = info[
+        "layout"
+    ]
+
+    # When tire wear is low, keep race
+    # recommendation closer to qualifying.
+    if tyre_multiplier <= 1:
+        race = qualifying
+
+    elif tyre_multiplier <= 2:
+
+        if race > qualifying:
+            race = qualifying + 1
+
+        elif race < qualifying:
+            race = qualifying - 1
+
+
+    if layout == "FF":
+
+        reason = (
+            "Rearward bias helps rotation under trail braking "
+            "and reduces front-brake/front-tire workload."
+        )
+
+    elif layout == "FR":
+
+        reason = (
+            "Mild rearward bias improves rotation while retaining "
+            "good braking stability."
+        )
+
+    elif layout == "MR":
+
+        reason = (
+            "Neutral/slightly forward bias prioritizes rear stability; "
+            "the race setting also helps manage the rear axle."
+        )
+
+    elif layout == "4WD":
+
+        reason = (
+            "Moderate rearward bias is used as a starting point "
+            "to improve rotation without making braking too unstable."
+        )
+
+    else:
+
+        reason = (
+            "Neutral baseline recommendation."
+        )
+
+
+    confidence = "Medium"
+
+    return {
+        "qualifying":
+            qualifying,
+
+        "race":
+            race,
+
+        "layout":
+            layout,
+
+        "confidence":
+            confidence,
+
+        "reason":
+            reason
+    }
 
 
 # ============================================================
@@ -205,6 +535,7 @@ soup = BeautifulSoup(
 race_c_link = None
 race_c_text = None
 
+
 for link in soup.select(
     'a[href*="/daily/leaderboard?event="]'
 ):
@@ -223,16 +554,19 @@ for link in soup.select(
         "Running" in parent_text
         and "Daily Race C" in parent_text
     ):
+
         race_c_link = urljoin(
             GTSH_URL,
             link.get("href")
         )
 
         race_c_text = parent_text
+
         break
 
 
 if not race_c_link:
+
     raise RuntimeError(
         "Could not find the RUNNING Daily Race C."
     )
@@ -259,14 +593,21 @@ html = leaderboard_response.text
 
 marker = "const initialRanking = "
 
-start = html.find(marker)
+start = html.find(
+    marker
+)
 
 if start == -1:
+
     raise RuntimeError(
         "Could not find initialRanking."
     )
 
-start += len(marker)
+
+start += len(
+    marker
+)
+
 
 decoder = json.JSONDecoder()
 
@@ -274,7 +615,9 @@ ranking, _ = decoder.raw_decode(
     html[start:].lstrip()
 )
 
+
 if not ranking:
+
     raise RuntimeError(
         "Leaderboard contains no drivers."
     )
@@ -307,7 +650,10 @@ history_filename = now.strftime(
     "%Y-%m-%d_%H-%M-%S.json"
 )
 
-winner = ranking[0]
+
+winner = ranking[
+    0
+]
 
 world_record_score = winner.get(
     "score"
@@ -321,12 +667,20 @@ world_record_car_code = get_car_code(
     winner
 )
 
+
 time_103 = round(
-    world_record_score * 1.03
+    world_record_score
+    * 1.03
 )
 
 time_105 = round(
-    world_record_score * 1.05
+    world_record_score
+    * 1.05
+)
+
+
+tyre_multiplier = extract_tyre_multiplier(
+    race_c_text
 )
 
 
@@ -346,14 +700,23 @@ threshold_positions = [
     5000
 ]
 
+
 thresholds = {}
+
 
 for position in threshold_positions:
 
-    if len(ranking) >= position:
-        thresholds[str(position)] = ranking[
+    if len(
+        ranking
+    ) >= position:
+
+        thresholds[
+            str(position)
+        ] = ranking[
             position - 1
-        ].get("score")
+        ].get(
+            "score"
+        )
 
 
 # ============================================================
@@ -367,22 +730,54 @@ my_driver = find_my_driver(
 
 my_result = None
 
+
 if my_driver:
-    my_score = my_driver.get("score")
-    my_rank = my_driver.get("display_rank")
-    my_car_code = get_car_code(my_driver)
+
+    my_score = my_driver.get(
+        "score"
+    )
+
+    my_rank = my_driver.get(
+        "display_rank"
+    )
+
+    my_car_code = get_car_code(
+        my_driver
+    )
+
 
     my_result = {
-        "psn_id": MY_PSN_ID,
-        "rank": my_rank,
-        "score": my_score,
-        "laptime": score_to_laptime(my_score),
-        "car_code": my_car_code,
-        "car": get_car_name(my_car_code),
+
+        "psn_id":
+            MY_PSN_ID,
+
+        "rank":
+            my_rank,
+
+        "score":
+            my_score,
+
+        "laptime":
+            score_to_laptime(
+                my_score
+            ),
+
+        "car_code":
+            my_car_code,
+
+        "car":
+            get_car_name(
+                my_car_code
+            ),
+
         "gap_to_wr_ms":
-            my_score - world_record_score,
+            my_score
+            - world_record_score,
+
         "wr_percentage":
-            my_score / world_record_score * 100
+            my_score
+            / world_record_score
+            * 100
     }
 
 
@@ -392,33 +787,63 @@ if my_driver:
 
 all_counter = Counter()
 
+
 for driver in ranking:
-    car_code = get_car_code(driver)
+
+    car_code = get_car_code(
+        driver
+    )
 
     if car_code is not None:
-        all_counter[car_code] += 1
+
+        all_counter[
+            car_code
+        ] += 1
 
 
-top100 = ranking[:100]
-top500 = ranking[:500]
-top1000 = ranking[:1000]
+top100 = ranking[
+    :100
+]
+
+top500 = ranking[
+    :500
+]
+
+top1000 = ranking[
+    :1000
+]
+
 
 top100_counter = Counter(
-    get_car_code(d)
-    for d in top100
-    if get_car_code(d) is not None
+    get_car_code(
+        driver
+    )
+    for driver in top100
+    if get_car_code(
+        driver
+    ) is not None
 )
+
 
 top500_counter = Counter(
-    get_car_code(d)
-    for d in top500
-    if get_car_code(d) is not None
+    get_car_code(
+        driver
+    )
+    for driver in top500
+    if get_car_code(
+        driver
+    ) is not None
 )
 
+
 top1000_counter = Counter(
-    get_car_code(d)
-    for d in top1000
-    if get_car_code(d) is not None
+    get_car_code(
+        driver
+    )
+    for driver in top1000
+    if get_car_code(
+        driver
+    ) is not None
 )
 
 
@@ -427,6 +852,7 @@ top1000_counter = Counter(
 # ============================================================
 
 meta_scores = []
+
 
 for car_code in all_counter:
 
@@ -450,6 +876,7 @@ for car_code in all_counter:
         0
     )
 
+
     meta_score = (
         t100 * 10
         + t500 * 2
@@ -457,55 +884,149 @@ for car_code in all_counter:
         + total / 100
     )
 
+
     meta_scores.append({
-        "car_code": car_code,
-        "car": get_car_name(car_code),
-        "top100": t100,
-        "top500": t500,
-        "top1000": t1000,
-        "total": total,
-        "meta_score": meta_score
+
+        "car_code":
+            car_code,
+
+        "car":
+            get_car_name(
+                car_code
+            ),
+
+        "top100":
+            t100,
+
+        "top500":
+            t500,
+
+        "top1000":
+            t1000,
+
+        "total":
+            total,
+
+        "meta_score":
+            meta_score
     })
 
 
 meta_scores.sort(
-    key=lambda x:
-        x["meta_score"],
+    key=lambda item:
+        item[
+            "meta_score"
+        ],
     reverse=True
 )
 
 
 # ============================================================
-# 10. BUILD SNAPSHOT
+# 10. TOP 5 USED CARS + BRAKE BALANCE
+# ============================================================
+
+top5_used_cars = []
+
+
+for car_code, count in top1000_counter.most_common(
+    5
+):
+
+    bb = brake_balance_recommendation(
+        car_code,
+        tyre_multiplier
+    )
+
+
+    top5_used_cars.append({
+
+        "car_code":
+            car_code,
+
+        "car":
+            get_car_name(
+                car_code
+            ),
+
+        "count":
+            count,
+
+        "percentage":
+            count
+            / len(
+                top1000
+            )
+            * 100,
+
+        "layout":
+            bb[
+                "layout"
+            ],
+
+        "qualifying_bb":
+            bb[
+                "qualifying"
+            ],
+
+        "race_bb":
+            bb[
+                "race"
+            ],
+
+        "confidence":
+            bb[
+                "confidence"
+            ],
+
+        "reason":
+            bb[
+                "reason"
+            ]
+    })
+
+
+# ============================================================
+# 11. BUILD SNAPSHOT
 # ============================================================
 
 snapshot = {
-    "timestamp": timestamp_iso,
+
+    "timestamp":
+        timestamp_iso,
 
     "race": {
-        "description": race_c_text,
-        "leaderboard_url": race_c_link
+
+        "description":
+            race_c_text,
+
+        "leaderboard_url":
+            race_c_link,
+
+        "tyre_multiplier":
+            tyre_multiplier
     },
 
-    "total_drivers": len(ranking),
+    "total_drivers":
+        len(
+            ranking
+        ),
 
     "world_record": {
-        "score": world_record_score,
+
+        "score":
+            world_record_score,
+
         "laptime":
             score_to_laptime(
                 world_record_score
             ),
+
         "driver":
             world_record_user.get(
                 "nick_name",
                 "Unknown"
             ),
-        "psn_id":
-            world_record_user.get(
-                "np_online_id"
-            ),
-        "car_code":
-            world_record_car_code,
+
         "car":
             get_car_name(
                 world_record_car_code
@@ -513,63 +1034,69 @@ snapshot = {
     },
 
     "benchmarks": {
-        "103_percent": {
-            "score": time_103,
-            "laptime":
-                score_to_laptime(
-                    time_103
-                )
-        },
 
-        "105_percent": {
-            "score": time_105,
-            "laptime":
-                score_to_laptime(
-                    time_105
-                )
-        }
+        "103_percent":
+            score_to_laptime(
+                time_103
+            ),
+
+        "105_percent":
+            score_to_laptime(
+                time_105
+            )
     },
 
     "thresholds": {
-        position: {
-            "score": score,
-            "laptime":
-                score_to_laptime(
-                    score
-                )
-        }
+
+        position:
+            score_to_laptime(
+                score
+            )
+
         for position, score
         in thresholds.items()
     },
 
-    "my_result": my_result,
+    "my_result":
+        my_result,
 
-    "meta_cars": meta_scores[:10]
+    "meta_cars":
+        meta_scores[
+            :10
+        ],
+
+    "brake_balance":
+        top5_used_cars
 }
 
 
 # ============================================================
-# 11. LOAD PREVIOUS SNAPSHOT
+# 12. LOAD PREVIOUS SNAPSHOT
 # ============================================================
 
 previous = load_previous_snapshot()
 
+
 same_race = (
+
     previous is not None
+
     and previous.get(
         "race",
         {}
     ).get(
         "leaderboard_url"
     ) == race_c_link
+
 )
 
 
 # ============================================================
-# 12. BUILD REPORT
+# 13. BUILD REPORT
 # ============================================================
 
 lines = []
+
 
 lines.append(
     "GT7 DAILY RACE C"
@@ -580,7 +1107,8 @@ lines.append(
 )
 
 lines.append(
-    f"Snapshot: {timestamp_display} - Sao Paulo"
+    f"Snapshot: "
+    f"{timestamp_display} - Sao Paulo"
 )
 
 lines.append("")
@@ -592,8 +1120,12 @@ lines.append(
 lines.append("")
 
 lines.append(
-    f"Total drivers: {len(ranking):,}"
+    f"Total drivers: "
+    f"{len(ranking):,}"
 )
+
+
+# WORLD RECORD
 
 lines.append("")
 
@@ -607,6 +1139,9 @@ lines.append(
     f"{get_car_name(world_record_car_code)}"
 )
 
+
+# BENCHMARKS
+
 lines.append("")
 
 lines.append(
@@ -614,18 +1149,24 @@ lines.append(
 )
 
 lines.append(
-    f"103% WR : {score_to_laptime(time_103)}"
+    f"103% WR : "
+    f"{score_to_laptime(time_103)}"
 )
 
 lines.append(
-    f"105% WR : {score_to_laptime(time_105)}"
+    f"105% WR : "
+    f"{score_to_laptime(time_105)}"
 )
+
+
+# RANKING CUTS
 
 lines.append("")
 
 lines.append(
     "RANKING CUTS"
 )
+
 
 for position in [
     "10",
@@ -637,12 +1178,16 @@ for position in [
     "2500",
     "5000"
 ]:
+
     if position in thresholds:
+
         lines.append(
             f"Top {position:<4}: "
             f"{score_to_laptime(thresholds[position])}"
         )
 
+
+# MY RESULT
 
 lines.append("")
 
@@ -650,38 +1195,48 @@ lines.append(
     "MY RESULT"
 )
 
+
 if my_result:
 
     lines.append(
-        f"PSN      : {MY_PSN_ID}"
+        f"PSN      : "
+        f"{MY_PSN_ID}"
     )
 
     lines.append(
-        f"Position : #{my_result['rank']:,}"
+        f"Position : "
+        f"#{my_result['rank']:,}"
     )
 
     lines.append(
-        f"Time     : {my_result['laptime']}"
+        f"Time     : "
+        f"{my_result['laptime']}"
     )
 
     lines.append(
-        f"WR       : {my_result['wr_percentage']:.3f}%"
+        f"WR       : "
+        f"{my_result['wr_percentage']:.3f}%"
     )
 
     lines.append(
-        f"Gap      : +{my_result['gap_to_wr_ms'] / 1000:.3f}s"
+        f"Gap      : "
+        f"+{my_result['gap_to_wr_ms'] / 1000:.3f}s"
     )
 
     lines.append(
-        f"Car      : {my_result['car']}"
+        f"Car      : "
+        f"{my_result['car']}"
     )
 
 else:
 
     lines.append(
-        f"{MY_PSN_ID} not found in leaderboard."
+        f"{MY_PSN_ID} "
+        f"not found in leaderboard."
     )
 
+
+# MOST USED CARS
 
 lines.append("")
 
@@ -689,55 +1244,121 @@ lines.append(
     "MOST USED CARS - TOP 1000"
 )
 
-for index, (
-    car_code,
-    count
-) in enumerate(
-    top1000_counter.most_common(5),
+
+for index, car in enumerate(
+    top5_used_cars,
     start=1
 ):
 
     lines.append(
         f"{index}. "
-        f"{get_car_name(car_code)} | "
-        f"{count} | "
-        f"{count / len(top1000) * 100:.1f}%"
+        f"{car['car']} | "
+        f"{car['count']} | "
+        f"{car['percentage']:.1f}%"
     )
 
 
+# BRAKE BALANCE
+
 lines.append("")
+
+lines.append(
+    "BRAKE BALANCE RECOMMENDATIONS"
+)
+
+lines.append(
+    "Convention: negative = more front, "
+    "positive = more rear."
+)
+
+lines.append(
+    f"Tyre wear multiplier detected: x{tyre_multiplier}"
+)
+
+lines.append(
+    "These are recommended starting points, "
+    "not verified telemetry-derived optimums."
+)
+
+lines.append("")
+
+
+for index, car in enumerate(
+    top5_used_cars,
+    start=1
+):
+
+    lines.append(
+        f"{index}. {car['car']}"
+    )
+
+    lines.append(
+        f"   Layout     : "
+        f"{car['layout']}"
+    )
+
+    lines.append(
+        f"   Qualifying : "
+        f"BB {format_bb(car['qualifying_bb'])}"
+    )
+
+    lines.append(
+        f"   Race       : "
+        f"BB {format_bb(car['race_bb'])}"
+    )
+
+    lines.append(
+        f"   Confidence : "
+        f"{car['confidence']}"
+    )
+
+    lines.append(
+        f"   Reason     : "
+        f"{car['reason']}"
+    )
+
+    lines.append("")
+
+
+# META CARS
 
 lines.append(
     "META CARS"
 )
 
+
 for index, car in enumerate(
-    meta_scores[:5],
+    meta_scores[
+        :5
+    ],
     start=1
 ):
 
     lines.append(
-        f"{index}. {car['car']} | "
+        f"{index}. "
+        f"{car['car']} | "
         f"Top100 {car['top100']} | "
         f"Top500 {car['top500']} | "
         f"Top1000 {car['top1000']}"
     )
 
 
-# ============================================================
-# 13. COMPARISON WITH PREVIOUS SNAPSHOT
-# ============================================================
+# CHANGE SINCE PREVIOUS
 
 lines.append("")
+
 lines.append(
     "CHANGE SINCE PREVIOUS SNAPSHOT"
 )
+
 
 if same_race:
 
     old_wr = previous[
         "world_record"
-    ]["score"]
+    ][
+        "score"
+    ]
 
     wr_change = (
         world_record_score
@@ -745,61 +1366,43 @@ if same_race:
     )
 
     lines.append(
-        f"World Record : {signed_seconds(wr_change)}"
+        f"World Record : "
+        f"{signed_seconds(wr_change)}"
     )
-
-
-    old_top500 = (
-        previous
-        .get("thresholds", {})
-        .get("500", {})
-        .get("score")
-    )
-
-    new_top500 = thresholds.get(
-        "500"
-    )
-
-    if (
-        old_top500 is not None
-        and new_top500 is not None
-    ):
-
-        lines.append(
-            f"Top 500      : "
-            f"{signed_seconds(new_top500 - old_top500)}"
-        )
 
 
     old_my = previous.get(
         "my_result"
     )
 
+
     if old_my and my_result:
 
         lines.append(
-            f"My position   : "
+            f"My position  : "
             f"#{old_my['rank']:,} -> "
             f"#{my_result['rank']:,} "
             f"({position_change(old_my['rank'], my_result['rank'])})"
         )
 
         lines.append(
-            f"My time       : "
+            f"My time      : "
             f"{signed_seconds(my_result['score'] - old_my['score'])}"
         )
+
 
     elif my_result and not old_my:
 
         lines.append(
-            "My result     : first recorded lap this week"
+            "My result    : first recorded lap this week"
         )
 
     else:
 
         lines.append(
-            "My result     : no comparable result"
+            "My result    : no comparable result"
         )
+
 
 else:
 
@@ -809,6 +1412,7 @@ else:
 
 
 lines.append("")
+
 lines.append(
     "=" * 70
 )
@@ -847,6 +1451,7 @@ history_file = (
     / history_filename
 )
 
+
 history_file.write_text(
     snapshot_json,
     encoding="utf-8"
@@ -854,18 +1459,9 @@ history_file.write_text(
 
 
 # ============================================================
-# 15. PRINT SHORT REPORT TO ACTIONS LOG
+# 15. PRINT REPORT
 # ============================================================
 
-print()
-print(report_text)
-print()
 print(
-    f"Report saved to: {LATEST_REPORT_FILE}"
-)
-print(
-    f"Snapshot saved to: {LATEST_SNAPSHOT_FILE}"
-)
-print(
-    f"History saved to: {history_file}"
+    report_text
 )
