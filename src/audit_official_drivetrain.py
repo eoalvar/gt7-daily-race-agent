@@ -30,148 +30,48 @@ BASE_URL = (
 
 HEADERS = {
     "User-Agent":
-        "Mozilla/5.0 "
-        "(GT7 Daily Race Agent - drivetrain audit)"
+        "Mozilla/5.0 (GT7 Daily Race Agent)"
 }
 
 
 # ============================================================
 # CURRENT BRAKE DATABASE
-#
-# These are the layouts currently used by our main script.
-# The purpose of this program is to verify them against the
-# official Gran Turismo car pages.
 # ============================================================
 
 BRAKE_INFO = {
 
-    1563: {
-        "layout": "MR"
-    },
-
-    2157: {
-        "layout": "FR"
-    },
-
-    2161: {
-        "layout": "4WD"
-    },
-
-    2163: {
-        "layout": "FR"
-    },
-
-    2164: {
-        "layout": "FR"
-    },
-
-    2166: {
-        "layout": "MR"
-    },
-
-    3192: {
-        "layout": "FR"
-    },
-
-    3231: {
-        "layout": "FF"
-    },
-
-    3245: {
-        "layout": "FR"
-    },
-
-    3246: {
-        "layout": "4WD"
-    },
-
-    3247: {
-        "layout": "FR"
-    },
-
-    3248: {
-        "layout": "MR"
-    },
-
-    3249: {
-        "layout": "FR"
-    },
-
-    3251: {
-        "layout": "MR"
-    },
-
-    3252: {
-        "layout": "FR"
-    },
-
-    3253: {
-        "layout": "4WD"
-    },
-
-    3254: {
-        "layout": "FR"
-    },
-
-    3256: {
-        "layout": "4WD"
-    },
-
-    3257: {
-        "layout": "MR"
-    },
-
-    3258: {
-        "layout": "4WD"
-    },
-
-    3259: {
-        "layout": "FF"
-    },
-
-    3260: {
-        "layout": "FF"
-    },
-
-    3261: {
-        "layout": "4WD"
-    },
-
-    3262: {
-        "layout": "FR"
-    },
-
-    3263: {
-        "layout": "MR"
-    },
-
-    3298: {
-        "layout": "FF"
-    },
-
-    3310: {
-        "layout": "MR"
-    },
-
-    3399: {
-        "layout": "FR"
-    },
-
-    3477: {
-        "layout": "FR"
-    },
-
-    3480: {
-        "layout": "FF"
-    },
-
-    3501: {
-        "layout": "FR"
-    },
-
-    3537: {
-        "layout": "FF"
-    }
+    1563: {"layout": "MR"},
+    2157: {"layout": "FR"},
+    2161: {"layout": "4WD"},
+    2163: {"layout": "FR"},
+    2164: {"layout": "FR"},
+    2166: {"layout": "MR"},
+    3192: {"layout": "FR"},
+    3231: {"layout": "FF"},
+    3245: {"layout": "FR"},
+    3246: {"layout": "4WD"},
+    3247: {"layout": "FR"},
+    3248: {"layout": "MR"},
+    3249: {"layout": "FR"},
+    3251: {"layout": "MR"},
+    3252: {"layout": "FR"},
+    3253: {"layout": "4WD"},
+    3254: {"layout": "FR"},
+    3256: {"layout": "4WD"},
+    3257: {"layout": "MR"},
+    3258: {"layout": "4WD"},
+    3259: {"layout": "FF"},
+    3260: {"layout": "FF"},
+    3261: {"layout": "4WD"},
+    3262: {"layout": "FR"},
+    3263: {"layout": "MR"},
+    3298: {"layout": "FF"},
+    3310: {"layout": "MR"},
+    3399: {"layout": "FR"},
+    3477: {"layout": "FR"},
+    3480: {"layout": "FF"},
+    3501: {"layout": "FR"},
+    3537: {"layout": "FF"}
 }
 
 
@@ -187,9 +87,7 @@ def load_car_names():
     )
 
     if not path.exists():
-
         return {}
-
 
     try:
 
@@ -199,41 +97,31 @@ def load_car_names():
             )
         )
 
-
         if not isinstance(
             data,
             dict
         ):
-
             return {}
 
-
         result = {}
-
 
         for key, value in data.items():
 
             try:
-
                 code = int(
                     key
                 )
 
             except Exception:
-
                 continue
-
 
             result[
                 code
             ] = value
 
-
         return result
 
-
     except Exception:
-
         return {}
 
 
@@ -247,16 +135,13 @@ def normalize_drivetrain(value):
         value,
         str
     ):
-
         return None
-
 
     value = (
         value
         .strip()
         .upper()
     )
-
 
     aliases = {
 
@@ -276,29 +161,47 @@ def normalize_drivetrain(value):
             "FF",
 
         "FRONT WHEEL DRIVE":
-            "FF",
-
-        "REAR-WHEEL DRIVE":
-            "FR",
-
-        "REAR WHEEL DRIVE":
-            "FR"
+            "FF"
     }
 
-
-    return aliases.get(
+    value = aliases.get(
         value,
         value
     )
 
+    if value in {
+        "FF",
+        "FR",
+        "MR",
+        "RR",
+        "4WD"
+    }:
+        return value
+
+    return None
+
 
 # ============================================================
-# EXTRACT PAGE TITLE / CAR NAME
+# CAR NAME
 # ============================================================
 
 def extract_car_name(
     soup
 ):
+
+    h1 = soup.find(
+        "h1"
+    )
+
+    if h1:
+
+        value = h1.get_text(
+            " ",
+            strip=True
+        )
+
+        if value:
+            return value
 
     if soup.title:
 
@@ -307,7 +210,6 @@ def extract_car_name(
             strip=True
         )
 
-
         title = re.sub(
             r"\s*-\s*Gran Turismo 7 Car List.*$",
             "",
@@ -315,35 +217,14 @@ def extract_car_name(
             flags=re.IGNORECASE
         )
 
-
         if title:
-
             return title
-
-
-    heading = soup.find(
-        ["h1", "h2"]
-    )
-
-
-    if heading:
-
-        text = heading.get_text(
-            " ",
-            strip=True
-        )
-
-
-        if text:
-
-            return text
-
 
     return None
 
 
 # ============================================================
-# EXTRACT OFFICIAL DRIVETRAIN
+# DRIVETRAIN EXTRACTION
 # ============================================================
 
 def extract_drivetrain(
@@ -355,102 +236,222 @@ def extract_drivetrain(
         "html.parser"
     )
 
+    # ========================================================
+    # METHOD 1
+    # Find any element whose visible text is "Drivetrain".
+    # Then inspect neighbouring elements.
+    # ========================================================
 
-    # --------------------------------------------------------
-    # Method 1:
-    # Search structured text around the word Drivetrain.
-    # --------------------------------------------------------
+    drivetrain_labels = soup.find_all(
+        string=re.compile(
+            r"^\s*Drivetrain\s*$",
+            re.IGNORECASE
+        )
+    )
 
-    text = soup.get_text(
-        "\n",
+    for label_text in drivetrain_labels:
+
+        label = label_text.parent
+
+        if label is None:
+            continue
+
+        # Next sibling
+        sibling = label.find_next_sibling()
+
+        if sibling:
+
+            value = normalize_drivetrain(
+                sibling.get_text(
+                    " ",
+                    strip=True
+                )
+            )
+
+            if value:
+                return value
+
+        # Parent container
+        parent = label.parent
+
+        if parent:
+
+            parent_text = parent.get_text(
+                " ",
+                strip=True
+            )
+
+            match = re.search(
+                r"Drivetrain\s+"
+                r"(FF|FR|MR|RR|4WD|AWD)",
+                parent_text,
+                re.IGNORECASE
+            )
+
+            if match:
+
+                value = normalize_drivetrain(
+                    match.group(1)
+                )
+
+                if value:
+                    return value
+
+        # Look at nearby elements
+        current = label
+
+        for _ in range(8):
+
+            current = current.find_next()
+
+            if current is None:
+                break
+
+            text = current.get_text(
+                " ",
+                strip=True
+            )
+
+            value = normalize_drivetrain(
+                text
+            )
+
+            if value:
+                return value
+
+    # ========================================================
+    # METHOD 2
+    # Flatten visible page text and search around Drivetrain.
+    # ========================================================
+
+    visible_text = soup.get_text(
+        " ",
         strip=True
     )
 
-
-    lines = [
-        line.strip()
-        for line
-        in text.splitlines()
-        if line.strip()
-    ]
-
-
-    for index, line in enumerate(
-        lines
-    ):
-
-        if (
-            line.lower()
-            == "drivetrain"
-        ):
-
-            for candidate in lines[
-                index + 1:
-                index + 5
-            ]:
-
-                normalized = normalize_drivetrain(
-                    candidate
-                )
-
-
-                if normalized in {
-                    "FF",
-                    "FR",
-                    "MR",
-                    "RR",
-                    "4WD"
-                }:
-
-                    return normalized
-
-
-    # --------------------------------------------------------
-    # Method 2:
-    # Regex over visible text.
-    # --------------------------------------------------------
-
     match = re.search(
-        r"Drivetrain\s*[:\n\r\t ]+"
-        r"(FF|FR|MR|RR|4WD|AWD)",
-        text,
+        r"\bDrivetrain\b"
+        r".{0,100}?"
+        r"\b(FF|FR|MR|RR|4WD|AWD)\b",
+        visible_text,
         re.IGNORECASE
+        | re.DOTALL
     )
-
 
     if match:
 
-        return normalize_drivetrain(
+        value = normalize_drivetrain(
             match.group(1)
         )
 
+        if value:
+            return value
 
-    # --------------------------------------------------------
-    # Method 3:
-    # Regex over raw HTML.
-    # --------------------------------------------------------
+    # ========================================================
+    # METHOD 3
+    # Search raw HTML, stripping tags between label and value.
+    # ========================================================
 
     match = re.search(
-        r"Drivetrain.{0,300}?"
-        r"(FF|FR|MR|RR|4WD|AWD)",
+        r"Drivetrain"
+        r".{0,500}?"
+        r">\s*(FF|FR|MR|RR|4WD|AWD)\s*<",
         html,
         re.IGNORECASE
         | re.DOTALL
     )
 
-
     if match:
 
-        return normalize_drivetrain(
+        value = normalize_drivetrain(
             match.group(1)
         )
 
+        if value:
+            return value
+
+    # ========================================================
+    # METHOD 4
+    # Very broad raw HTML fallback.
+    # ========================================================
+
+    position = html.lower().find(
+        "drivetrain"
+    )
+
+    if position != -1:
+
+        fragment = html[
+            position:
+            position + 1500
+        ]
+
+        fragment_text = BeautifulSoup(
+            fragment,
+            "html.parser"
+        ).get_text(
+            " ",
+            strip=True
+        )
+
+        match = re.search(
+            r"\b(FF|FR|MR|RR|4WD|AWD)\b",
+            fragment_text,
+            re.IGNORECASE
+        )
+
+        if match:
+
+            value = normalize_drivetrain(
+                match.group(1)
+            )
+
+            if value:
+                return value
 
     return None
 
 
 # ============================================================
-# REQUEST OFFICIAL CAR PAGE
+# DEBUG FRAGMENT
+# ============================================================
+
+def drivetrain_debug_fragment(
+    html
+):
+
+    position = html.lower().find(
+        "drivetrain"
+    )
+
+    if position == -1:
+        return "Word 'Drivetrain' not present in raw HTML."
+
+    start = max(
+        0,
+        position - 300
+    )
+
+    end = min(
+        len(html),
+        position + 1200
+    )
+
+    fragment = html[
+        start:end
+    ]
+
+    fragment = re.sub(
+        r"\s+",
+        " ",
+        fragment
+    )
+
+    return fragment[:1500]
+
+
+# ============================================================
+# REQUEST OFFICIAL PAGE
 # ============================================================
 
 def fetch_official_car(
@@ -462,7 +463,6 @@ def fetch_official_car(
         car_code
     )
 
-
     try:
 
         response = session.get(
@@ -470,33 +470,18 @@ def fetch_official_car(
             timeout=30
         )
 
-
-        status_code = (
-            response.status_code
-        )
-
-
         response.raise_for_status()
 
-
         html = response.text
-
 
         soup = BeautifulSoup(
             html,
             "html.parser"
         )
 
-
-        name = extract_car_name(
-            soup
-        )
-
-
         drivetrain = extract_drivetrain(
             html
         )
-
 
         return {
 
@@ -507,18 +492,28 @@ def fetch_official_car(
                 response.url,
 
             "http":
-                status_code,
+                response.status_code,
 
             "name":
-                name,
+                extract_car_name(
+                    soup
+                ),
 
             "drivetrain":
                 drivetrain,
 
+            "debug_fragment":
+                (
+                    None
+                    if drivetrain
+                    else drivetrain_debug_fragment(
+                        html
+                    )
+                ),
+
             "error":
                 None
         }
-
 
     except Exception as exc:
 
@@ -539,6 +534,9 @@ def fetch_official_car(
             "drivetrain":
                 None,
 
+            "debug_fragment":
+                None,
+
             "error":
                 str(
                     exc
@@ -557,38 +555,20 @@ def main():
         exist_ok=True
     )
 
-
     car_names = load_car_names()
 
-
     session = requests.Session()
-
 
     session.headers.update(
         HEADERS
     )
 
-
     results = []
-
 
     matches = 0
     mismatches = 0
     unresolved = 0
     failures = 0
-
-
-    print(
-        "=" * 86
-    )
-
-    print(
-        "GT7 OFFICIAL DRIVETRAIN AUDIT"
-    )
-
-    print(
-        "=" * 86
-    )
 
 
     for index, (
@@ -599,18 +579,18 @@ def main():
         start=1
     ):
 
-        current_layout = normalize_drivetrain(
-            current[
-                "layout"
-            ]
-        )
-
-
         local_name = car_names.get(
             car_code,
             f"Unknown car ({car_code})"
         )
 
+        current_layout = (
+            normalize_drivetrain(
+                current[
+                    "layout"
+                ]
+            )
+        )
 
         print(
             f"[{index:02d}/{len(BRAKE_INFO)}] "
@@ -618,19 +598,16 @@ def main():
             f"{local_name}"
         )
 
-
         official = fetch_official_car(
             session,
             car_code
         )
-
 
         official_layout = (
             official[
                 "drivetrain"
             ]
         )
-
 
         if not official[
             "success"
@@ -642,7 +619,6 @@ def main():
 
             failures += 1
 
-
         elif official_layout is None:
 
             status = (
@@ -650,7 +626,6 @@ def main():
             )
 
             unresolved += 1
-
 
         elif (
             official_layout
@@ -663,7 +638,6 @@ def main():
 
             matches += 1
 
-
         else:
 
             status = (
@@ -673,55 +647,57 @@ def main():
             mismatches += 1
 
 
-        results.append(
-            {
+        results.append({
 
-                "car_code":
-                    car_code,
+            "car_code":
+                car_code,
 
-                "local_name":
-                    local_name,
+            "local_name":
+                local_name,
 
-                "official_name":
-                    official[
-                        "name"
-                    ],
+            "official_name":
+                official[
+                    "name"
+                ],
 
-                "current_layout":
-                    current_layout,
+            "current_layout":
+                current_layout,
 
-                "official_layout":
-                    official_layout,
+            "official_layout":
+                official_layout,
 
-                "status":
-                    status,
+            "status":
+                status,
 
-                "official_url":
-                    official[
-                        "url"
-                    ],
+            "official_url":
+                official[
+                    "url"
+                ],
 
-                "http":
-                    official[
-                        "http"
-                    ],
+            "http":
+                official[
+                    "http"
+                ],
 
-                "error":
-                    official[
-                        "error"
-                    ]
-            }
-        )
+            "debug_fragment":
+                official[
+                    "debug_fragment"
+                ],
+
+            "error":
+                official[
+                    "error"
+                ]
+        })
 
 
-        # Be polite to the official site.
         time.sleep(
             0.20
         )
 
 
     # ========================================================
-    # JSON REPORT
+    # JSON
     # ========================================================
 
     structured = {
@@ -759,7 +735,7 @@ def main():
 
 
     # ========================================================
-    # TEXT REPORT
+    # REPORT
     # ========================================================
 
     lines = []
@@ -769,41 +745,33 @@ def main():
         "GT7 OFFICIAL DRIVETRAIN AUDIT"
     )
 
-
     lines.append(
         "=" * 86
     )
 
-
     lines.append(
-        "Source              : "
-        "Official Gran Turismo 7 Car List"
+        "Source              : Official Gran Turismo 7 Car List"
     )
-
 
     lines.append(
         f"Cars audited        : "
         f"{len(BRAKE_INFO)}"
     )
 
-
     lines.append(
         f"Layout matches      : "
         f"{matches}"
     )
-
 
     lines.append(
         f"Layout mismatches   : "
         f"{mismatches}"
     )
 
-
     lines.append(
         f"Unresolved pages    : "
         f"{unresolved}"
     )
-
 
     lines.append(
         f"Request failures    : "
@@ -811,17 +779,10 @@ def main():
     )
 
 
-    # ========================================================
-    # ALL RESULTS
-    # ========================================================
-
     lines.append("")
-
-
     lines.append(
         "ALL CARS"
     )
-
 
     lines.append(
         "-" * 86
@@ -839,17 +800,10 @@ def main():
         )
 
 
-    # ========================================================
-    # MISMATCHES
-    # ========================================================
-
     lines.append("")
-
-
     lines.append(
         "LAYOUT MISMATCHES REQUIRING CORRECTION"
     )
-
 
     lines.append(
         "-" * 86
@@ -858,8 +812,7 @@ def main():
 
     mismatch_items = [
         item
-        for item
-        in results
+        for item in results
         if item[
             "status"
         ] == "MISMATCH"
@@ -877,7 +830,6 @@ def main():
                 f"-> OFFICIAL {item['official_layout']}"
             )
 
-
     else:
 
         lines.append(
@@ -885,17 +837,10 @@ def main():
         )
 
 
-    # ========================================================
-    # UNRESOLVED
-    # ========================================================
-
     lines.append("")
-
-
     lines.append(
         "UNRESOLVED / REQUEST FAILURES"
     )
-
 
     lines.append(
         "-" * 86
@@ -904,8 +849,7 @@ def main():
 
     problematic = [
         item
-        for item
-        in results
+        for item in results
         if item[
             "status"
         ] in (
@@ -922,10 +866,8 @@ def main():
             lines.append(
                 f"Code {item['car_code']} | "
                 f"{item['local_name']} | "
-                f"{item['status']} | "
-                f"{item['error'] or 'No drivetrain parsed'}"
+                f"{item['status']}"
             )
-
 
     else:
 
@@ -934,44 +876,50 @@ def main():
         )
 
 
-    # ========================================================
-    # IMPORTANT
-    # ========================================================
+    unresolved_with_debug = [
+        item
+        for item in results
+        if (
+            item[
+                "status"
+            ] == "DRIVETRAIN_NOT_FOUND"
+            and item.get(
+                "debug_fragment"
+            )
+        )
+    ]
+
+
+    if unresolved_with_debug:
+
+        lines.append("")
+        lines.append(
+            "FIRST UNRESOLVED HTML DEBUG"
+        )
+
+        lines.append(
+            "-" * 86
+        )
+
+        first = (
+            unresolved_with_debug[
+                0
+            ]
+        )
+
+        lines.append(
+            f"Code: "
+            f"{first['car_code']}"
+        )
+
+        lines.append(
+            first[
+                "debug_fragment"
+            ]
+        )
+
 
     lines.append("")
-
-
-    lines.append(
-        "INTERPRETATION"
-    )
-
-
-    lines.append(
-        "-" * 86
-    )
-
-
-    lines.append(
-        "MATCH means the drivetrain currently used by our "
-        "Brake Bias model agrees with the official GT7 page."
-    )
-
-
-    lines.append(
-        "MISMATCH means our drivetrain metadata should be "
-        "corrected before recalculating Brake Bias."
-    )
-
-
-    lines.append(
-        "This audit validates drivetrain only. It does NOT "
-        "validate the actual Qualifying or Race Brake Bias values."
-    )
-
-
-    lines.append("")
-
-
     lines.append(
         "=" * 86
     )
@@ -989,7 +937,6 @@ def main():
 
 
     print("")
-
     print(
         report
     )
