@@ -1,10 +1,10 @@
 GT7 DAILY RACE C
 ======================================================================
-Snapshot: 15/08/2026 00:01:24 - Sao Paulo
+Snapshot: 15/08/2026 00:09:58 - Sao Paulo
 
 C Gr.4 Running 10 Aug 2026 Daily Race C i 16:48 Grand Valley - Highway 1 M. Estevez - GT by Citroën Gr.4 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom
 
-Total drivers: 25,575
+Total drivers: 25,615
 
 WORLD RECORD
 1:54.623 | M. Estevez | GT by Citroën Gr.4
@@ -16,16 +16,16 @@ PERFORMANCE BENCHMARKS
 RANKING CUTS
 Top 10  : 1:54.768
 Top 50  : 1:55.161
-Top 100 : 1:55.351
-Top 250 : 1:55.632
+Top 100 : 1:55.348
+Top 250 : 1:55.630
 Top 500 : 1:55.849
-Top 1000: 1:56.132
+Top 1000: 1:56.131
 Top 2500: 1:56.746
-Top 5000: 1:57.474
+Top 5000: 1:57.473
 
 MY RESULT
 PSN      : crazy_rooster74
-Position : #4,139
+Position : #4,146
 Time     : 1:57.248
 WR       : 102.290%
 Gap      : +2.625s
@@ -38,17 +38,56 @@ MOST USED CARS - TOP 1000
 4. Suzuki Swift Sport Gr.4 | 44 | 4.4%
 5. Honda NSX Gr.4 | 26 | 2.6%
 
+BRAKE BALANCE RECOMMENDATIONS
+Convention: negative = more front, positive = more rear.
+Tyre wear multiplier detected: x4
+These are recommended starting points, not verified telemetry-derived optimums.
+
+1. GT by Citroën Gr.4
+   Layout     : MR
+   Qualifying : BB 0
+   Race       : BB -1
+   Confidence : Medium
+   Reason     : Neutral/slightly forward bias prioritizes rear stability; the race setting also helps manage the rear axle.
+
+2. Genesis G70 GR4
+   Layout     : FR
+   Qualifying : BB +1
+   Race       : BB +2
+   Confidence : Medium
+   Reason     : Mild rearward bias improves rotation while retaining good braking stability.
+
+3. Nissan GT-R Gr.4
+   Layout     : 4WD
+   Qualifying : BB +2
+   Race       : BB +3
+   Confidence : Medium
+   Reason     : Moderate rearward bias is used as a starting point to improve rotation without making braking too unstable.
+
+4. Suzuki Swift Sport Gr.4
+   Layout     : FF
+   Qualifying : BB +3
+   Race       : BB +4
+   Confidence : Medium
+   Reason     : Rearward bias helps rotation under trail braking and reduces front-brake/front-tire workload.
+
+5. Honda NSX Gr.4
+   Layout     : MR
+   Qualifying : BB -1
+   Race       : BB -2
+   Confidence : Medium
+   Reason     : Neutral/slightly forward bias prioritizes rear stability; the race setting also helps manage the rear axle.
+
 META CARS
-1. GT by Citroën Gr.4 | Top100 68 | Top500 290 | Top1000 564
-2. Nissan GT-R Gr.4 | Top100 14 | Top500 48 | Top1000 79
-3. Genesis G70 GR4 | Top100 2 | Top500 61 | Top1000 154
+1. GT by Citroën Gr.4 | Top100 69 | Top500 291 | Top1000 564
+2. Nissan GT-R Gr.4 | Top100 13 | Top500 48 | Top1000 79
+3. Genesis G70 GR4 | Top100 2 | Top500 60 | Top1000 154
 4. Suzuki Swift Sport Gr.4 | Top100 4 | Top500 19 | Top1000 44
 5. Honda NSX Gr.4 | Top100 3 | Top500 15 | Top1000 26
 
 CHANGE SINCE PREVIOUS SNAPSHOT
 World Record : 0.000s
-Top 500      : -0.001s
-My position   : #4,132 -> #4,139 (-7 positions)
-My time       : 0.000s
+My position  : #4,139 -> #4,146 (-7 positions)
+My time      : 0.000s
 
 ======================================================================
