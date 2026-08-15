@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: "7 5 * * 1"
+    - cron: "15 5 * * *"
       timezone: "America/Sao_Paulo"
 
 permissions:
@@ -46,3 +46,10 @@ jobs:
             git commit -m "Update GT7 Daily Race C snapshot"
             git push
           fi
+
+      - name: Send report by email
+        env:
+          EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+          EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python src/send_email.py
