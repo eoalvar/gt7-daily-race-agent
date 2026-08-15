@@ -225,11 +225,25 @@ def find_current_race_c(soup, now):
             continue
 
         candidates.append({
-            "url": urljoin(GTSH_URL, href),
-            "text": parent_text,
-            "date": parse_race_date_from_text(parent_text),
-            "running": "Running" in parent_text,
-            "next_week": "Next Week" in parent_text
+            "url":
+                urljoin(
+                    GTSH_URL,
+                    href
+                ),
+
+            "text":
+                parent_text,
+
+            "date":
+                parse_race_date_from_text(
+                    parent_text
+                ),
+
+            "running":
+                "Running" in parent_text,
+
+            "next_week":
+                "Next Week" in parent_text
         })
 
     if not candidates:
@@ -238,15 +252,16 @@ def find_current_race_c(soup, now):
         )
 
     running_candidates = [
-        c
-        for c in candidates
-        if c["running"]
+        candidate
+        for candidate in candidates
+        if candidate["running"]
     ]
 
     if running_candidates:
+
         running_candidates.sort(
-            key=lambda c:
-                c["date"]
+            key=lambda candidate:
+                candidate["date"]
                 or datetime.min.replace(
                     tzinfo=SAO_PAULO
                 ),
@@ -258,37 +273,42 @@ def find_current_race_c(soup, now):
 
         return selected
 
-    current_monday = monday_of_week(now)
+    current_monday = monday_of_week(
+        now
+    )
 
     current_week_candidates = [
-        c
-        for c in candidates
+        candidate
+        for candidate in candidates
         if (
-            c["date"]
-            and c["date"].date()
+            candidate["date"]
+            and candidate["date"].date()
             == current_monday.date()
         )
     ]
 
     if current_week_candidates:
+
         selected = current_week_candidates[0]
         selected["detection_mode"] = "current_week_date"
 
         return selected
 
     valid_past = [
-        c
-        for c in candidates
+        candidate
+        for candidate in candidates
         if (
-            c["date"]
-            and c["date"] <= now
-            and not c["next_week"]
+            candidate["date"]
+            and candidate["date"] <= now
+            and not candidate["next_week"]
         )
     ]
 
     if valid_past:
+
         valid_past.sort(
-            key=lambda c: c["date"],
+            key=lambda candidate:
+                candidate["date"],
             reverse=True
         )
 
@@ -324,7 +344,10 @@ def position_score(rank, total):
 
     return max(
         0.0,
-        min(10.0, result)
+        min(
+            10.0,
+            result
+        )
     )
 
 
@@ -348,12 +371,18 @@ def elite_score(rank, total):
 
     return max(
         0.0,
-        min(10.0, result)
+        min(
+            10.0,
+            result
+        )
     )
 
 
 def composite_rating(general, elite):
-    if general is None or elite is None:
+    if (
+        general is None
+        or elite is None
+    ):
         return None
 
     return (
@@ -439,9 +468,15 @@ def save_weekly_history(history):
     )
 
 
-def weekly_record_exists(history, leaderboard_url):
+def weekly_record_exists(
+    history,
+    leaderboard_url
+):
     return any(
-        record.get("leaderboard_url") == leaderboard_url
+        record.get(
+            "leaderboard_url"
+        )
+        == leaderboard_url
         for record in history
     )
 
@@ -450,7 +485,9 @@ def build_weekly_record(
     snapshot,
     finalization_mode
 ):
-    my = snapshot.get("my_result")
+    my = snapshot.get(
+        "my_result"
+    )
 
     if not my:
         return None
@@ -468,7 +505,9 @@ def build_weekly_record(
         try:
             week_start = (
                 datetime
-                .fromisoformat(start_date_text)
+                .fromisoformat(
+                    start_date_text
+                )
                 .date()
                 .isoformat()
             )
@@ -488,7 +527,8 @@ def build_weekly_record(
     )
 
     return {
-        "participated": True,
+        "participated":
+            True,
 
         "week_start":
             week_start,
@@ -607,7 +647,9 @@ def upsert_weekly_record(
             break
 
     if not replaced:
-        history.append(record)
+        history.append(
+            record
+        )
 
     save_weekly_history(
         history
@@ -663,7 +705,9 @@ def metric_trend(
     ]
 
     xs = list(
-        range(len(values))
+        range(
+            len(values)
+        )
     )
 
     x_mean = (
@@ -689,7 +733,10 @@ def metric_trend(
             (x - x_mean)
             * (y - y_mean)
             for x, y
-            in zip(xs, values)
+            in zip(
+                xs,
+                values
+            )
         )
         / denominator
     )
@@ -714,7 +761,11 @@ def signed_seconds(delta_ms):
     if delta_ms is None:
         return "N/A"
 
-    sign = "+" if delta_ms > 0 else ""
+    sign = (
+        "+"
+        if delta_ms > 0
+        else ""
+    )
 
     return (
         f"{sign}"
@@ -827,10 +878,18 @@ def brake_balance_recommendation(
 
     if not info:
         return {
-            "qualifying": 0,
-            "race": 0,
-            "layout": "Unknown",
-            "confidence": "Low",
+            "qualifying":
+                0,
+
+            "race":
+                0,
+
+            "layout":
+                "Unknown",
+
+            "confidence":
+                "Low",
+
             "reason":
                 (
                     "Car identified by the central database, "
@@ -1003,15 +1062,24 @@ def snapshot_metric_score(
             )
         )
 
-        if isinstance(value, dict):
+        if isinstance(
+            value,
+            dict
+        ):
             return value.get(
                 "score"
             )
 
-        if isinstance(value, int):
+        if isinstance(
+            value,
+            int
+        ):
             return value
 
-        if isinstance(value, str):
+        if isinstance(
+            value,
+            str
+        ):
             return laptime_to_score(
                 value
             )
@@ -1064,7 +1132,9 @@ def linear_forecast(
             if key in seen:
                 continue
 
-            seen.add(key)
+            seen.add(
+                key
+            )
 
             try:
                 dt = datetime.fromisoformat(
@@ -1217,12 +1287,16 @@ def linear_forecast(
     return {
         "predicted_score":
             int(
-                round(predicted)
+                round(
+                    predicted
+                )
             ),
 
         "rmse_ms":
             int(
-                round(rmse)
+                round(
+                    rmse
+                )
             ),
 
         "confidence":
@@ -1268,7 +1342,9 @@ def build_targets(
     ):
         return []
 
-    total = len(ranking)
+    total = len(
+        ranking
+    )
 
     definitions = [
         (
@@ -1361,7 +1437,9 @@ def build_targets(
 
     for label, rank in definitions:
         if rank < my_rank:
-            unique_targets[rank] = label
+            unique_targets[
+                rank
+            ] = label
 
     results = []
 
@@ -1369,6 +1447,7 @@ def build_targets(
         unique_targets.keys(),
         reverse=True
     ):
+
         target_score = ranking[
             rank - 1
         ].get(
@@ -1380,7 +1459,9 @@ def build_targets(
 
         results.append({
             "label":
-                unique_targets[rank],
+                unique_targets[
+                    rank
+                ],
 
             "rank":
                 rank,
@@ -1415,9 +1496,10 @@ def group_rank(
 ):
     group = [
         driver
-        for driver
-        in ranking
-        if predicate(driver)
+        for driver in ranking
+        if predicate(
+            driver
+        )
     ]
 
     my_id = (
@@ -1435,6 +1517,7 @@ def group_rank(
         group,
         start=1
     ):
+
         driver_id = (
             get_user(
                 driver
@@ -1468,7 +1551,9 @@ def car_performance_indices(
     top100_counter,
     top1000_counter
 ):
-    total = len(ranking)
+    total = len(
+        ranking
+    )
 
     top100_total = min(
         100,
@@ -1482,7 +1567,10 @@ def car_performance_indices(
 
     rows = []
 
-    for car_code, all_count in all_counter.items():
+    for (
+        car_code,
+        all_count
+    ) in all_counter.items():
 
         overall_share = (
             all_count
@@ -1592,10 +1680,13 @@ def car_performance_indices(
 # BEST DRIVER BY CAR
 # ============================================================
 
-def best_driver_by_car(ranking):
+def best_driver_by_car(
+    ranking
+):
     result = {}
 
     for driver in ranking:
+
         car_code = get_car_code(
             driver
         )
@@ -1604,7 +1695,9 @@ def best_driver_by_car(ranking):
             car_code is not None
             and car_code not in result
         ):
-            result[car_code] = driver
+            result[
+                car_code
+            ] = driver
 
     return result
 
@@ -1623,7 +1716,7 @@ def anomaly_warnings(
     if unknown_share > 5:
         warnings.append(
             f"Unknown car mapping represents "
-            f"{unknown_share:.1f}% of leaderboard."
+            f"{unknown_share:.1f}% of valid leaderboard entries."
         )
 
     same_race = (
@@ -1724,6 +1817,10 @@ def main():
         HEADERS
     )
 
+    # ========================================================
+    # TIME
+    # ========================================================
+
     now = datetime.now(
         SAO_PAULO
     )
@@ -1767,8 +1864,14 @@ def main():
         now
     )
 
-    race_c_link = race_c["url"]
-    race_c_text = race_c["text"]
+    race_c_link = race_c[
+        "url"
+    ]
+
+    race_c_text = race_c[
+        "text"
+    ]
+
     race_detection_mode = race_c[
         "detection_mode"
     ]
@@ -1791,6 +1894,7 @@ def main():
     # ========================================================
 
     try:
+
         car_update = (
             update_car_database_from_html(
                 html
@@ -1815,9 +1919,7 @@ def main():
 
     except Exception:
 
-        CAR_DATABASE = (
-            load_car_database()
-        )
+        CAR_DATABASE = load_car_database()
 
         cars_discovered_this_run = 0
         cars_added_this_run = 0
@@ -1851,6 +1953,10 @@ def main():
                 start:
             ].lstrip()
         )
+
+    # ========================================================
+    # UPDATE ENDPOINT FALLBACK
+    # ========================================================
 
     if not ranking:
 
@@ -2070,28 +2176,43 @@ def main():
             len(ranking)
         )
 
-        same_car_rank, same_car_total = group_rank(
+        (
+            same_car_rank,
+            same_car_total
+        ) = group_rank(
             ranking,
             lambda driver:
-                get_car_code(driver)
+                get_car_code(
+                    driver
+                )
                 == my_car_code,
             my_driver
         )
 
-        country_rank, country_total = group_rank(
+        (
+            country_rank,
+            country_total
+        ) = group_rank(
             ranking,
             lambda driver:
-                get_user(driver).get(
+                get_user(
+                    driver
+                ).get(
                     "country_code"
                 )
                 == my_country,
             my_driver
         )
 
-        dr_rank, dr_total = group_rank(
+        (
+            dr_rank,
+            dr_total
+        ) = group_rank(
             ranking,
             lambda driver:
-                get_user(driver).get(
+                get_user(
+                    driver
+                ).get(
                     "driver_rating"
                 )
                 == my_dr,
@@ -2198,10 +2319,13 @@ def main():
     # ========================================================
 
     all_counter = Counter(
-        get_car_code(driver)
+        get_car_code(
+            driver
+        )
         for driver in ranking
-        if get_car_code(driver)
-        is not None
+        if get_car_code(
+            driver
+        ) is not None
     )
 
     top100 = ranking[:100]
@@ -2209,24 +2333,33 @@ def main():
     top1000 = ranking[:1000]
 
     top100_counter = Counter(
-        get_car_code(driver)
+        get_car_code(
+            driver
+        )
         for driver in top100
-        if get_car_code(driver)
-        is not None
+        if get_car_code(
+            driver
+        ) is not None
     )
 
     top500_counter = Counter(
-        get_car_code(driver)
+        get_car_code(
+            driver
+        )
         for driver in top500
-        if get_car_code(driver)
-        is not None
+        if get_car_code(
+            driver
+        ) is not None
     )
 
     top1000_counter = Counter(
-        get_car_code(driver)
+        get_car_code(
+            driver
+        )
         for driver in top1000
-        if get_car_code(driver)
-        is not None
+        if get_car_code(
+            driver
+        ) is not None
     )
 
     # ========================================================
@@ -2235,7 +2368,10 @@ def main():
 
     top5_used_cars = []
 
-    for car_code, count in (
+    for (
+        car_code,
+        count
+    ) in (
         top1000_counter
         .most_common(5)
     ):
@@ -2326,7 +2462,9 @@ def main():
 
         meta_code = (
             top1000_counter
-            .most_common(1)[0][0]
+            .most_common(
+                1
+            )[0][0]
             if top1000_counter
             else None
         )
@@ -2373,7 +2511,9 @@ def main():
 
             "gap_to_best_same_car_ms":
                 (
-                    my_result["score"]
+                    my_result[
+                        "score"
+                    ]
                     - my_car_best.get(
                         "score"
                     )
@@ -2438,7 +2578,10 @@ def main():
 
     unknown_count = sum(
         count
-        for car_code, count
+        for (
+            car_code,
+            count
+        )
         in all_counter.items()
         if (
             isinstance(
@@ -2446,14 +2589,16 @@ def main():
                 int
             )
             and car_code > 0
-            and car_code
-            not in CAR_DATABASE
+            and car_code not in CAR_DATABASE
         )
     )
 
     invalid_car_code_count = sum(
         count
-        for car_code, count
+        for (
+            car_code,
+            count
+        )
         in all_counter.items()
         if (
             car_code is None
@@ -2592,7 +2737,9 @@ def main():
             top5_used_cars,
 
         "overperformance":
-            credible_overperformance[:10],
+            credible_overperformance[
+                :10
+            ],
 
         "car_comparison":
             car_comparison,
@@ -2675,21 +2822,25 @@ def main():
 
         if (
             previous_url
-            and previous_url
-            != race_c_link
+            and previous_url != race_c_link
             and not weekly_record_exists(
                 weekly_history,
                 previous_url
             )
         ):
-            fallback_record = build_weekly_record(
-                previous,
-                "backfill_last_available_snapshot"
+
+            fallback_record = (
+                build_weekly_record(
+                    previous,
+                    "backfill_last_available_snapshot"
+                )
             )
 
-            weekly_history = upsert_weekly_record(
-                weekly_history,
-                fallback_record
+            weekly_history = (
+                upsert_weekly_record(
+                    weekly_history,
+                    fallback_record
+                )
             )
 
     force_final = (
@@ -2712,14 +2863,18 @@ def main():
 
     if weekly_finalized_now:
 
-        final_record = build_weekly_record(
-            snapshot,
-            "sunday_final"
+        final_record = (
+            build_weekly_record(
+                snapshot,
+                "sunday_final"
+            )
         )
 
-        weekly_history = upsert_weekly_record(
-            weekly_history,
-            final_record
+        weekly_history = (
+            upsert_weekly_record(
+                weekly_history,
+                final_record
+            )
         )
 
     # ========================================================
@@ -2736,7 +2891,9 @@ def main():
 
         sunday_end = (
             start_date
-            + timedelta(days=6)
+            + timedelta(
+                days=6
+            )
         ).replace(
             hour=23,
             minute=59,
@@ -2896,8 +3053,11 @@ def main():
 
         if (
             country_stats
-            and country_stats["rank"]
+            and country_stats[
+                "rank"
+            ]
         ):
+
             lines.append(
                 f"Country rank    : "
                 f"#{country_stats['rank']:,} "
@@ -2907,8 +3067,11 @@ def main():
 
         if (
             dr_stats
-            and dr_stats["rank"]
+            and dr_stats[
+                "rank"
+            ]
         ):
+
             lines.append(
                 f"DR rank         : "
                 f"#{dr_stats['rank']:,} "
@@ -2918,8 +3081,11 @@ def main():
 
         if (
             same_car_stats
-            and same_car_stats["rank"]
+            and same_car_stats[
+                "rank"
+            ]
         ):
+
             lines.append(
                 f"Same-car rank   : "
                 f"#{same_car_stats['rank']:,} "
@@ -2986,7 +3152,10 @@ def main():
 
     if next_targets:
 
-        for index, target in enumerate(
+        for (
+            index,
+            target
+        ) in enumerate(
             next_targets,
             start=1
         ):
@@ -3029,6 +3198,7 @@ def main():
             ]
             is not None
         ):
+
             lines.append(
                 f"Gap to car best : "
                 f"+{car_comparison['gap_to_best_same_car_ms']/1000:.3f}s"
@@ -3046,6 +3216,7 @@ def main():
             ]
             is not None
         ):
+
             lines.append(
                 f"Best-lap delta  : "
                 f"{signed_seconds(car_comparison['theoretical_car_gap_ms'])}"
@@ -3066,7 +3237,10 @@ def main():
         "WHAT THE META IS - TOP 5 USED IN TOP 1000"
     )
 
-    for index, car in enumerate(
+    for (
+        index,
+        car
+    ) in enumerate(
         top5_used_cars,
         start=1
     ):
@@ -3088,8 +3262,13 @@ def main():
         "among the fastest drivers."
     )
 
-    for index, car in enumerate(
-        credible_overperformance[:5],
+    for (
+        index,
+        car
+    ) in enumerate(
+        credible_overperformance[
+            :5
+        ],
         start=1
     ):
 
@@ -3121,7 +3300,10 @@ def main():
         "not telemetry-proven optimums."
     )
 
-    for index, car in enumerate(
+    for (
+        index,
+        car
+    ) in enumerate(
         top5_used_cars,
         start=1
     ):
@@ -3215,8 +3397,10 @@ def main():
         forecast_labels = {
             "world_record":
                 "World Record",
+
             "top500":
                 "Top 500",
+
             "top1000":
                 "Top 1000"
         }
@@ -3257,8 +3441,16 @@ def main():
     )
 
     lines.append(
+        "Higher General, Elite and Composite ratings are better."
+    )
+
+    lines.append(
+        "Lower Top % and WR % are better."
+    )
+
+    lines.append(
         "Only FINAL Sunday ratings are used "
-        "for week-to-week comparisons."
+        "for historical trend calculations."
     )
 
     if weekly_finalized_now:
@@ -3273,26 +3465,55 @@ def main():
             "Current race status: PROVISIONAL"
         )
 
+    # ========================================================
+    # CURRENT WEEK
+    # ========================================================
+
     if my_result:
 
+        lines.append("")
         lines.append(
-            f"Current provisional General : "
+            "CURRENT WEEK"
+        )
+
+        lines.append(
+            f"General    : "
             f"{my_result['position_score']:.2f}"
         )
 
         lines.append(
-            f"Current provisional Elite   : "
+            f"Elite      : "
             f"{my_result['elite_score']:.2f}"
         )
 
         lines.append(
-            f"Current provisional Composite: "
+            f"Composite  : "
             f"{my_result['composite_rating']:.2f}"
         )
 
+        lines.append(
+            f"Top %      : "
+            f"{my_result['top_percent']:.2f}%"
+        )
+
+        lines.append(
+            f"WR %       : "
+            f"{my_result['wr_percentage']:.3f}%"
+        )
+
+    # ========================================================
+    # FINALIZED HISTORY
+    # ========================================================
+
+    current_assessment = None
+    composite_trend = None
+    wr_trend = None
+
     if weekly_history:
 
-        latest_final = weekly_history[-1]
+        latest_final = weekly_history[
+            -1
+        ]
 
         lines.append("")
         lines.append(
@@ -3329,10 +3550,288 @@ def main():
             f"{latest_final.get('wr_percentage',0):.3f}%"
         )
 
-        if len(weekly_history) >= 2:
+        # ====================================================
+        # CURRENT WEEK VS LAST FINALIZED WEEK
+        # ====================================================
+
+        if my_result:
+
+            current_general = my_result.get(
+                "position_score"
+            )
+
+            current_elite = my_result.get(
+                "elite_score"
+            )
+
+            current_composite = my_result.get(
+                "composite_rating"
+            )
+
+            current_top = my_result.get(
+                "top_percent"
+            )
+
+            current_wr = my_result.get(
+                "wr_percentage"
+            )
+
+            last_general = latest_final.get(
+                "general_score"
+            )
+
+            last_elite = latest_final.get(
+                "elite_score"
+            )
+
+            last_composite = latest_final.get(
+                "composite_rating"
+            )
+
+            last_top = latest_final.get(
+                "top_percent"
+            )
+
+            last_wr = latest_final.get(
+                "wr_percentage"
+            )
+
+            lines.append("")
+            lines.append(
+                "CURRENT WEEK VS LAST FINALIZED WEEK"
+            )
+
+            if (
+                current_general is not None
+                and last_general is not None
+            ):
+
+                delta_general = (
+                    current_general
+                    - last_general
+                )
+
+                general_direction = (
+                    "BETTER"
+                    if delta_general > 0.01
+                    else
+                    "WORSE"
+                    if delta_general < -0.01
+                    else
+                    "STABLE"
+                )
+
+                lines.append(
+                    f"General    : "
+                    f"{last_general:.2f} -> "
+                    f"{current_general:.2f} "
+                    f"({delta_general:+.2f}) | "
+                    f"{general_direction}"
+                )
+
+            if (
+                current_elite is not None
+                and last_elite is not None
+            ):
+
+                delta_elite = (
+                    current_elite
+                    - last_elite
+                )
+
+                elite_direction = (
+                    "BETTER"
+                    if delta_elite > 0.01
+                    else
+                    "WORSE"
+                    if delta_elite < -0.01
+                    else
+                    "STABLE"
+                )
+
+                lines.append(
+                    f"Elite      : "
+                    f"{last_elite:.2f} -> "
+                    f"{current_elite:.2f} "
+                    f"({delta_elite:+.2f}) | "
+                    f"{elite_direction}"
+                )
+
+            if (
+                current_composite is not None
+                and last_composite is not None
+            ):
+
+                delta_composite = (
+                    current_composite
+                    - last_composite
+                )
+
+                composite_direction = (
+                    "BETTER"
+                    if delta_composite > 0.01
+                    else
+                    "WORSE"
+                    if delta_composite < -0.01
+                    else
+                    "STABLE"
+                )
+
+                lines.append(
+                    f"Composite  : "
+                    f"{last_composite:.2f} -> "
+                    f"{current_composite:.2f} "
+                    f"({delta_composite:+.2f}) | "
+                    f"{composite_direction}"
+                )
+
+            if (
+                current_top is not None
+                and last_top is not None
+            ):
+
+                delta_top = (
+                    current_top
+                    - last_top
+                )
+
+                top_direction = (
+                    "BETTER"
+                    if delta_top < -0.05
+                    else
+                    "WORSE"
+                    if delta_top > 0.05
+                    else
+                    "STABLE"
+                )
+
+                lines.append(
+                    f"Top %      : "
+                    f"{last_top:.2f}% -> "
+                    f"{current_top:.2f}% "
+                    f"({delta_top:+.2f} pp) | "
+                    f"{top_direction}"
+                )
+
+            if (
+                current_wr is not None
+                and last_wr is not None
+            ):
+
+                delta_wr = (
+                    current_wr
+                    - last_wr
+                )
+
+                wr_direction = (
+                    "BETTER"
+                    if delta_wr < -0.01
+                    else
+                    "WORSE"
+                    if delta_wr > 0.01
+                    else
+                    "STABLE"
+                )
+
+                lines.append(
+                    f"WR %       : "
+                    f"{last_wr:.3f}% -> "
+                    f"{current_wr:.3f}% "
+                    f"({delta_wr:+.3f} pp) | "
+                    f"{wr_direction}"
+                )
+
+            # ====================================================
+            # OVERALL CURRENT WEEK ASSESSMENT
+            # ====================================================
+
+            assessment_score = 0
+
+            if (
+                current_composite is not None
+                and last_composite is not None
+            ):
+
+                delta = (
+                    current_composite
+                    - last_composite
+                )
+
+                if delta > 0.05:
+                    assessment_score += 2
+
+                elif delta < -0.05:
+                    assessment_score -= 2
+
+            if (
+                current_top is not None
+                and last_top is not None
+            ):
+
+                delta = (
+                    current_top
+                    - last_top
+                )
+
+                if delta < -0.50:
+                    assessment_score += 1
+
+                elif delta > 0.50:
+                    assessment_score -= 1
+
+            if (
+                current_wr is not None
+                and last_wr is not None
+            ):
+
+                delta = (
+                    current_wr
+                    - last_wr
+                )
+
+                if delta < -0.05:
+                    assessment_score += 1
+
+                elif delta > 0.05:
+                    assessment_score -= 1
+
+            if assessment_score >= 2:
+
+                current_assessment = (
+                    "ABOVE LAST WEEK"
+                )
+
+            elif assessment_score <= -2:
+
+                current_assessment = (
+                    "BELOW LAST WEEK"
+                )
+
+            else:
+
+                current_assessment = (
+                    "SIMILAR TO LAST WEEK"
+                )
+
+            lines.append("")
+
+            lines.append(
+                f"Current week assessment : "
+                f"{current_assessment}"
+            )
+
+        # ====================================================
+        # LATEST FINALIZED VS PRIOR FINALIZED
+        # ====================================================
+
+        if len(
+            weekly_history
+        ) >= 2:
 
             previous_final = (
-                weekly_history[-2]
+                weekly_history[
+                    -2
+                ]
             )
 
             general_change = (
@@ -3362,25 +3861,67 @@ def main():
                 ]
             )
 
+            top_change = (
+                latest_final[
+                    "top_percent"
+                ]
+                - previous_final[
+                    "top_percent"
+                ]
+            )
+
+            wr_change = (
+                latest_final[
+                    "wr_percentage"
+                ]
+                - previous_final[
+                    "wr_percentage"
+                ]
+            )
+
             lines.append("")
             lines.append(
-                "CHANGE VS PREVIOUS FINAL WEEK"
+                "LATEST FINALIZED WEEK VS PRIOR FINALIZED WEEK"
             )
 
             lines.append(
                 f"General    : "
-                f"{general_change:+.2f}"
+                f"{previous_final['general_score']:.2f} -> "
+                f"{latest_final['general_score']:.2f} "
+                f"({general_change:+.2f})"
             )
 
             lines.append(
                 f"Elite      : "
-                f"{elite_change:+.2f}"
+                f"{previous_final['elite_score']:.2f} -> "
+                f"{latest_final['elite_score']:.2f} "
+                f"({elite_change:+.2f})"
             )
 
             lines.append(
                 f"Composite  : "
-                f"{composite_change:+.2f}"
+                f"{previous_final['composite_rating']:.2f} -> "
+                f"{latest_final['composite_rating']:.2f} "
+                f"({composite_change:+.2f})"
             )
+
+            lines.append(
+                f"Top %      : "
+                f"{previous_final['top_percent']:.2f}% -> "
+                f"{latest_final['top_percent']:.2f}% "
+                f"({top_change:+.2f} pp)"
+            )
+
+            lines.append(
+                f"WR %       : "
+                f"{previous_final['wr_percentage']:.3f}% -> "
+                f"{latest_final['wr_percentage']:.3f}% "
+                f"({wr_change:+.3f} pp)"
+            )
+
+        # ====================================================
+        # 4-WEEK MOVING AVERAGE
+        # ====================================================
 
         avg4_general = average_metric(
             weekly_history,
@@ -3400,11 +3941,23 @@ def main():
             4
         )
 
+        avg4_top = average_metric(
+            weekly_history,
+            "top_percent",
+            4
+        )
+
+        avg4_wr = average_metric(
+            weekly_history,
+            "wr_percentage",
+            4
+        )
+
         if avg4_general is not None:
 
             lines.append("")
             lines.append(
-                "4-WEEK MOVING AVERAGE"
+                "4-WEEK FINALIZED MOVING AVERAGE"
             )
 
             lines.append(
@@ -3422,37 +3975,182 @@ def main():
                 f"{avg4_composite:.2f}"
             )
 
+            if avg4_top is not None:
+
+                lines.append(
+                    f"Top %      : "
+                    f"{avg4_top:.2f}%"
+                )
+
+            if avg4_wr is not None:
+
+                lines.append(
+                    f"WR %       : "
+                    f"{avg4_wr:.3f}%"
+                )
+
+        # ====================================================
+        # 8-WEEK FINALIZED TREND
+        # ====================================================
+
+        general_trend = metric_trend(
+            weekly_history,
+            "general_score"
+        )
+
+        elite_trend = metric_trend(
+            weekly_history,
+            "elite_score"
+        )
+
+        composite_trend = metric_trend(
+            weekly_history,
+            "composite_rating"
+        )
+
+        top_trend = metric_trend(
+            weekly_history,
+            "top_percent",
+            higher_is_better=False
+        )
+
+        wr_trend = metric_trend(
+            weekly_history,
+            "wr_percentage",
+            higher_is_better=False
+        )
+
         lines.append("")
         lines.append(
-            "8-WEEK TREND"
+            "8-WEEK FINALIZED TREND"
         )
 
         lines.append(
             f"General    : "
-            f"{metric_trend(weekly_history, 'general_score')}"
+            f"{general_trend}"
         )
 
         lines.append(
             f"Elite      : "
-            f"{metric_trend(weekly_history, 'elite_score')}"
+            f"{elite_trend}"
         )
 
         lines.append(
             f"Composite  : "
-            f"{metric_trend(weekly_history, 'composite_rating')}"
+            f"{composite_trend}"
+        )
+
+        lines.append(
+            f"Top %      : "
+            f"{top_trend}"
         )
 
         lines.append(
             f"WR %       : "
-            f"{metric_trend(weekly_history, 'wr_percentage', higher_is_better=False)}"
+            f"{wr_trend}"
         )
+
+        # ====================================================
+        # PERFORMANCE SUMMARY
+        # ====================================================
+
+        if (
+            my_result
+            and current_assessment
+        ):
+
+            lines.append("")
+            lines.append(
+                "PERFORMANCE SUMMARY"
+            )
+
+            lines.append(
+                f"Current week vs last final : "
+                f"{current_assessment}"
+            )
+
+            lines.append(
+                f"Long-term Composite trend  : "
+                f"{composite_trend}"
+            )
+
+            lines.append(
+                f"Long-term WR % trend       : "
+                f"{wr_trend}"
+            )
+
+            if (
+                current_assessment
+                == "BELOW LAST WEEK"
+                and composite_trend
+                == "IMPROVING"
+            ):
+
+                interpretation = (
+                    "Short-term pullback inside an "
+                    "improving long-term trend."
+                )
+
+            elif (
+                current_assessment
+                == "ABOVE LAST WEEK"
+                and composite_trend
+                == "IMPROVING"
+            ):
+
+                interpretation = (
+                    "Current performance confirms the "
+                    "improving long-term trend."
+                )
+
+            elif (
+                current_assessment
+                == "BELOW LAST WEEK"
+                and composite_trend
+                == "DECLINING"
+            ):
+
+                interpretation = (
+                    "Current performance reinforces the "
+                    "declining long-term trend."
+                )
+
+            elif (
+                current_assessment
+                == "ABOVE LAST WEEK"
+                and composite_trend
+                == "DECLINING"
+            ):
+
+                interpretation = (
+                    "Short-term recovery inside a "
+                    "declining long-term trend."
+                )
+
+            else:
+
+                interpretation = (
+                    "Current performance is broadly "
+                    "consistent with recent history."
+                )
+
+            lines.append(
+                f"Interpretation               : "
+                f"{interpretation}"
+            )
+
+        # ====================================================
+        # LAST FINALIZED RACES
+        # ====================================================
 
         lines.append("")
         lines.append(
             "LAST FINALIZED RACES"
         )
 
-        for record in weekly_history[-8:]:
+        for record in weekly_history[
+            -8:
+        ]:
 
             lines.append(
                 f"{record.get('week_start','N/A')} | "
@@ -3465,12 +4163,13 @@ def main():
 
     else:
 
+        lines.append("")
         lines.append(
             "No finalized weekly races recorded yet."
         )
 
     # ========================================================
-    # WHAT CHANGED
+    # WHAT CHANGED SINCE PREVIOUS SNAPSHOT
     # ========================================================
 
     lines.append("")
@@ -3510,6 +4209,7 @@ def main():
             old_top500
             and new_top500
         ):
+
             lines.append(
                 f"Top 500        : "
                 f"{signed_seconds(new_top500 - old_top500)}"
