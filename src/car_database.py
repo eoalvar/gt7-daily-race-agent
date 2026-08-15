@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 
@@ -15,10 +16,7 @@ CAR_DATABASE_FILE = (
 
 
 # ============================================================
-# BUILT-IN FALLBACK
-#
-# Apenas uma proteção mínima.
-# A base principal será extraída automaticamente do GTSH-Rank.
+# FALLBACK DATABASE
 # ============================================================
 
 FALLBACK_CARS = {
@@ -59,7 +57,7 @@ FALLBACK_CARS = {
 
 
 # ============================================================
-# LOAD SAVED DATABASE
+# LOAD DATABASE
 # ============================================================
 
 def load_car_database():
@@ -71,6 +69,7 @@ def load_car_database():
     if not CAR_DATABASE_FILE.exists():
         return database
 
+
     try:
 
         saved = json.loads(
@@ -78,6 +77,7 @@ def load_car_database():
                 encoding="utf-8"
             )
         )
+
 
         if isinstance(
             saved,
@@ -92,6 +92,7 @@ def load_car_database():
                 except Exception:
                     continue
 
+
                 if (
                     isinstance(value, str)
                     and value.strip()
@@ -101,8 +102,10 @@ def load_car_database():
                         car_code
                     ] = value.strip()
 
+
     except Exception:
         pass
+
 
     return database
 
@@ -120,7 +123,9 @@ def save_car_database(
         exist_ok=True
     )
 
+
     clean = {}
+
 
     for car_code, name in database.items():
 
@@ -132,11 +137,13 @@ def save_car_database(
         except Exception:
             continue
 
+
         if (
             not isinstance(name, str)
             or not name.strip()
         ):
             continue
+
 
         clean[
             str(car_code)
@@ -163,62 +170,81 @@ def save_car_database(
 
 
 # ============================================================
-# EXTRACT carNames FROM GTSH HTML
+# FIND JAVASCRIPT OBJECT
+# ============================================================
+
+def extract_javascript_object(
+    html,
+    variable_name
+):
+
+    if not html:
+        return None
+
+
+    pattern = re.compile(
+        rf"\b(?:const|let|var)\s+"
+        rf"{re.escape(variable_name)}\s*=\s*",
+        re.MULTILINE
+    )
+
+
+    match = pattern.search(
+        html
+    )
+
+
+    if not match:
+        return None
+
+
+    start = match.end()
+
+
+    # Skip whitespace
+    while (
+        start < len(html)
+        and html[start].isspace()
+    ):
+        start += 1
+
+
+    if (
+        start >= len(html)
+        or html[start] != "{"
+    ):
+        return None
+
+
+    try:
+
+        decoder = json.JSONDecoder()
+
+        value, _ = decoder.raw_decode(
+            html[start:]
+        )
+
+        return value
+
+    except Exception:
+
+        return None
+
+
+# ============================================================
+# EXTRACT GTSH CAR DATABASE
 # ============================================================
 
 def extract_car_database_from_html(
     html
 ):
 
-    if not html:
-        return {}
-
-
-    markers = [
-        "const carNames = ",
-        "let carNames = ",
-        "var carNames = "
-    ]
-
-
-    raw_database = None
-
-
-    for marker in markers:
-
-        start = html.find(
-            marker
+    raw_database = (
+        extract_javascript_object(
+            html,
+            "carNames"
         )
-
-        if start == -1:
-            continue
-
-
-        start += len(
-            marker
-        )
-
-
-        try:
-
-            decoder = (
-                json.JSONDecoder()
-            )
-
-
-            raw_database, _ = (
-                decoder.raw_decode(
-                    html[
-                        start:
-                    ].lstrip()
-                )
-            )
-
-
-            break
-
-        except Exception:
-            raw_database = None
+    )
 
 
     if not isinstance(
@@ -232,9 +258,7 @@ def extract_car_database_from_html(
     result = {}
 
 
-    for raw_code, name in (
-        raw_database.items()
-    ):
+    for raw_code, name in raw_database.items():
 
         if not isinstance(
             raw_code,
@@ -250,37 +274,37 @@ def extract_car_database_from_html(
             continue
 
 
-        # GTSH normally uses:
-        #
-        # "#CAR3248"
-        #
-        # Convert it to:
-        #
+        # Examples accepted:
+        # #CAR3248
+        # CAR3248
         # 3248
 
-        cleaned_code = (
-            raw_code
-            .upper()
-            .replace(
-                "#CAR",
-                ""
-            )
-            .strip()
+        code_match = re.search(
+            r"(\d+)$",
+            raw_code.strip()
         )
 
 
-        if not cleaned_code.isdigit():
+        if not code_match:
             continue
 
 
         car_code = int(
-            cleaned_code
+            code_match.group(1)
         )
 
 
-        result[
-            car_code
-        ] = name.strip()
+        clean_name = (
+            name
+            .strip()
+        )
+
+
+        if clean_name:
+
+            result[
+                car_code
+            ] = clean_name
 
 
     return result
@@ -308,9 +332,7 @@ def update_car_database_from_html(
     updated = 0
 
 
-    for car_code, name in (
-        discovered.items()
-    ):
+    for car_code, name in discovered.items():
 
         previous = current.get(
             car_code
@@ -332,11 +354,12 @@ def update_car_database_from_html(
         ] = name
 
 
-    if discovered:
+    # Always create/update the JSON file,
+    # even if GTSH extraction found zero cars.
 
-        save_car_database(
-            current
-        )
+    save_car_database(
+        current
+    )
 
 
     return {
@@ -373,6 +396,7 @@ def get_car_name(
         )
 
     except Exception:
+
         return (
             f"Unknown car ({car_code})"
         )
@@ -392,7 +416,7 @@ def get_car_name(
 
 
 # ============================================================
-# DATABASE HEALTH
+# DATABASE STATS
 # ============================================================
 
 def database_stats():
@@ -412,12 +436,20 @@ def database_stats():
 
 
 # ============================================================
-# STANDALONE TEST
+# TEST
 # ============================================================
 
 def main():
 
     database = load_car_database()
+
+
+    # Ensure file exists when module
+    # is executed standalone.
+
+    save_car_database(
+        database
+    )
 
 
     print(
@@ -437,19 +469,6 @@ def main():
         f"Database file: "
         f"{CAR_DATABASE_FILE}"
     )
-
-    print()
-
-
-    for car_code, name in list(
-        sorted(
-            database.items()
-        )
-    )[:20]:
-
-        print(
-            f"{car_code}: {name}"
-        )
 
 
 if __name__ == "__main__":
