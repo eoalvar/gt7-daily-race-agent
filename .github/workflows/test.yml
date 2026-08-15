@@ -4,7 +4,12 @@ on:
   workflow_dispatch:
 
   schedule:
+    # Daily report every day at 05:15 Sao Paulo
     - cron: "15 5 * * *"
+      timezone: "America/Sao_Paulo"
+
+    # Final weekly snapshot Sunday at 23:45 Sao Paulo
+    - cron: "45 23 * * 0"
       timezone: "America/Sao_Paulo"
 
 permissions:
@@ -31,7 +36,17 @@ jobs:
           pip install requests beautifulsoup4
 
       - name: Run GT7 Daily Race C Agent
-        run: python src/test_race_detector.py
+        env:
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          if [ "$EVENT_SCHEDULE" = "45 23 * * 0" ]; then
+            echo "Final Sunday snapshot detected."
+            export FINAL_WEEKLY_SNAPSHOT=1
+          else
+            export FINAL_WEEKLY_SNAPSHOT=0
+          fi
+
+          python src/test_race_detector.py
 
       - name: Save report and snapshot
         run: |
@@ -43,7 +58,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to save."
           else
-            git commit -m "Update GT7 Daily Race C snapshot"
+            git commit -m "Update GT7 Daily Race C data"
             git push
           fi
 
