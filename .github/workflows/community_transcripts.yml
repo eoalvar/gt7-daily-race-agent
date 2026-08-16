@@ -1,0 +1,86 @@
+name: GT7 Community Transcripts
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  community-transcripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run community transcript collector
+        env:
+          SUPADATA_API_KEY: ${{ secrets.SUPADATA_API_KEY }}
+        run: |
+          python community_transcripts.py
+
+      - name: Show transcript database
+        if: always()
+        run: |
+          echo "=========================================="
+          echo "Community transcript files"
+          echo "=========================================="
+
+          if [ -f data/community_transcripts.json ]; then
+            echo ""
+            echo "Database:"
+            echo "data/community_transcripts.json"
+          else
+            echo "Transcript database not created."
+          fi
+
+          echo ""
+
+          if [ -d data/community_transcripts ]; then
+            echo "Transcript files:"
+            find data/community_transcripts -type f -maxdepth 4 -print
+          else
+            echo "No transcript directory created."
+          fi
+
+      - name: Commit transcript updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ -f data/community_transcripts.json ]; then
+            git add data/community_transcripts.json
+          fi
+
+          if [ -d data/community_transcripts ]; then
+            git add data/community_transcripts/
+          fi
+
+          if git diff --cached --quiet; then
+            echo "No transcript changes to commit."
+          else
+            git commit -m "Update GT7 community transcripts"
+            git push
+          fi
+
+      - name: Upload transcript artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gt7-community-transcripts
+          path: |
+            data/community_transcripts.json
+            data/community_transcripts/
+          if-no-files-found: warn
+          retention-days: 7
