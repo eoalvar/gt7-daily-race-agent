@@ -1,0 +1,135 @@
+name: GT7 Community Analyzer
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  community-analyzer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Recover transcript artifact if needed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+
+          mkdir -p data/community_supadata_test/transcripts
+
+          EXISTING_COUNT=$(find data/community_transcripts data/community_supadata_test/transcripts \
+            -type f -name "*.json" 2>/dev/null | wc -l || true)
+
+          echo "Existing transcript files: $EXISTING_COUNT"
+
+          if [ "$EXISTING_COUNT" -gt 0 ]; then
+            echo "Transcript files already available. Artifact recovery not required."
+            exit 0
+          fi
+
+          echo "Looking for the latest successful GT7 Community Supadata Test run..."
+
+          RUN_ID=$(gh run list \
+            --workflow "GT7 Community Supadata Test" \
+            --status success \
+            --limit 1 \
+            --json databaseId \
+            --jq '.[0].databaseId')
+
+          if [ -z "$RUN_ID" ] || [ "$RUN_ID" = "null" ]; then
+            echo "No successful Supadata test workflow run found."
+            exit 1
+          fi
+
+          echo "Found run ID: $RUN_ID"
+
+          mkdir -p /tmp/gt7-supadata-artifact
+
+          gh run download "$RUN_ID" \
+            --name gt7-community-supadata-test \
+            --dir /tmp/gt7-supadata-artifact
+
+          echo "Downloaded artifact contents:"
+          find /tmp/gt7-supadata-artifact -type f -print
+
+          TRANSCRIPT_SOURCE=$(find /tmp/gt7-supadata-artifact \
+            -type d \
+            -path "*/transcripts" \
+            | head -n 1)
+
+          if [ -z "$TRANSCRIPT_SOURCE" ]; then
+            echo "No transcript directory found inside artifact."
+            exit 1
+          fi
+
+          cp -R "$TRANSCRIPT_SOURCE"/. \
+            data/community_supadata_test/transcripts/
+
+          echo ""
+          echo "Recovered transcript files:"
+          find data/community_supadata_test/transcripts \
+            -type f \
+            -name "*.json" \
+            -print
+
+      - name: Run community analyzer
+        run: |
+          python community_analyzer.py
+
+      - name: Show generated reports
+        if: always()
+        run: |
+          echo "=========================================="
+          echo "GT7 Community Intelligence Files"
+          echo "=========================================="
+
+          if [ -d data/community_intelligence ]; then
+            find data/community_intelligence \
+              -type f \
+              -maxdepth 3 \
+              -print
+          else
+            echo "No community intelligence directory created."
+          fi
+
+      - name: Commit recovered transcripts and intelligence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ -d data/community_supadata_test/transcripts ]; then
+            git add data/community_supadata_test/transcripts/
+          fi
+
+          if [ -d data/community_intelligence ]; then
+            git add data/community_intelligence/
+          fi
+
+          if git diff --cached --quiet; then
+            echo "No community intelligence changes to commit."
+          else
+            git commit -m "Update GT7 community intelligence"
+            git push
+          fi
+
+      - name: Upload community intelligence artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gt7-community-intelligence
+          path: |
+            data/community_intelligence/
+            data/community_supadata_test/transcripts/
+          if-no-files-found: warn
+          retention-days: 7
