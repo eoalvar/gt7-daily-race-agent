@@ -1,2177 +1,1524 @@
+from __future__ import annotations
+
 import json
 import re
-
 from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 
-# ============================================================
-# CONFIG
-# ============================================================
+# =============================================================================
+# CONFIGURATION
+# =============================================================================
+
+VERSION = "V5"
 
 DATA_DIR = Path("data")
 
-LATEST_SNAPSHOT_FILE = DATA_DIR / "latest_snapshot.json"
-COMMUNITY_SOURCES_FILE = DATA_DIR / "community_sources.json"
+LATEST_SNAPSHOT = DATA_DIR / "latest_snapshot.json"
 
-TRANSCRIPT_DIRS = [
-    DATA_DIR / "community_transcripts",
-    DATA_DIR / "community_supadata_test" / "transcripts",
-]
+TRANSCRIPT_DIR = DATA_DIR / "community_transcripts"
+
+# Primary sources fixed by project policy
+DIGIT_VIDEO_ID = "O-AfZNXuGBg"
+GNC_VIDEO_ID = "qHfm2RjbRjI"
+
+DIGIT_TRANSCRIPT = TRANSCRIPT_DIR / f"{DIGIT_VIDEO_ID}_digit_racing.json"
+GNC_TRANSCRIPT = TRANSCRIPT_DIR / f"{GNC_VIDEO_ID}_gnc_racing.json"
 
 OUTPUT_DIR = DATA_DIR / "community_intelligence"
 OUTPUT_JSON = OUTPUT_DIR / "community_intelligence.json"
-OUTPUT_REPORT = OUTPUT_DIR / "community_intelligence.txt"
+OUTPUT_TXT = OUTPUT_DIR / "community_intelligence.txt"
 
 
-# ============================================================
-# SOURCE PRIORITY
-# ============================================================
+# =============================================================================
+# GENERIC HELPERS
+# =============================================================================
 
-STRATEGY_PRIORITY = [
-    "Digit Racing",
-    "Wombleleader Racing",
-    "ProdigyRacing",
-]
-
-LAP_GUIDE_PRIORITY = [
-    "GnC Racing",
-    "Digit Racing",
-]
-
-
-# ============================================================
-# BASIC HELPERS
-# ============================================================
-
-def load_json(path, default=None):
-
+def load_json(path: Path) -> Any:
     if not path.exists():
-        return default
+        return None
 
     try:
-        return json.loads(
-            path.read_text(
-                encoding="utf-8"
-            )
+        with path.open("r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as exc:
+        print(f"WARNING: unable to load {path}: {exc}")
+        return None
+
+
+def save_json(path: Path, data: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(
+            data,
+            f,
+            ensure_ascii=False,
+            indent=2,
         )
 
-    except Exception:
-        return default
+
+def normalize_space(text: str) -> str:
+    return re.sub(r"\s+", " ", text or "").strip()
 
 
-def normalize_space(text):
+def shorten(text: str, length: int = 360) -> str:
+    text = normalize_space(text)
 
-    return re.sub(
-        r"\s+",
-        " ",
-        text or ""
-    ).strip()
-
-
-def normalize_text(text):
-
-    text = normalize_space(
-        text
-    ).lower()
-
-    replacements = {
-        "é": "e",
-        "á": "a",
-        "à": "a",
-        "ã": "a",
-        "â": "a",
-        "í": "i",
-        "ó": "o",
-        "ô": "o",
-        "õ": "o",
-        "ú": "u",
-        "ç": "c",
-    }
-
-    for old, new in replacements.items():
-        text = text.replace(
-            old,
-            new
-        )
-
-    text = re.sub(
-        r"[^a-z0-9.+%'-]+",
-        " ",
-        text
-    )
-
-    return normalize_space(
-        text
-    )
-
-
-def compact_text(
-    text,
-    max_chars=360
-):
-
-    text = normalize_space(
-        text
-    )
-
-    if len(text) <= max_chars:
+    if len(text) <= length:
         return text
 
-    shortened = text[:max_chars]
-
-    cut = shortened.rfind(
-        " "
-    )
-
-    if cut > 0:
-        shortened = shortened[:cut]
-
-    return shortened + "..."
+    return text[: length - 3].rstrip() + "..."
 
 
-# ============================================================
-# NUMBER PARSING
-# ============================================================
+def fmt_mult(value: Any) -> str:
+    if value is None:
+        return "unknown"
 
-NUMBER_WORDS = {
-    "one": 1,
-    "two": 2,
-    "three": 3,
-    "four": 4,
-    "five": 5,
-    "six": 6,
-    "seven": 7,
-    "eight": 8,
-    "nine": 9,
-    "ten": 10,
+    text = str(value).strip()
+
+    if text.lower() in {
+        "",
+        "none",
+        "null",
+        "unknown",
+        "n/a",
+    }:
+        return "unknown"
+
+    if text.lower().startswith("x"):
+        return text
+
+    try:
+        number = int(float(text))
+        return f"x{number}"
+    except Exception:
+        return text
+
+
+def format_seconds(seconds: int | float | None) -> str:
+    if seconds is None:
+        return "?"
+
+    try:
+        total = int(seconds)
+    except Exception:
+        return "?"
+
+    hours = total // 3600
+    minutes = (total % 3600) // 60
+    secs = total % 60
+
+    if hours:
+        return f"{hours}:{minutes:02d}:{secs:02d}"
+
+    return f"{minutes}:{secs:02d}"
+
+
+# =============================================================================
+# TEXT EXTRACTION
+# =============================================================================
+
+TEXT_KEYS = {
+    "text",
+    "transcript",
+    "content",
+    "selected_text",
+    "extracted_text",
+    "raw_text",
+    "clean_text",
 }
 
 
-def parse_number_token(value):
-
-    if value is None:
-        return None
-
-    value = value.strip().lower()
-
-    if value.isdigit():
-        return int(value)
-
-    return NUMBER_WORDS.get(
-        value
-    )
-
-
-# ============================================================
-# GROUND TRUTH
-# ============================================================
-
-def build_ground_truth(
-    snapshot,
-    community_database
-):
-
-    race = snapshot.get(
-        "race",
-        {}
-    )
-
-    start_date = race.get(
-        "start_date"
-    )
-
-    week_key = (
-        start_date[:10]
-        if start_date
-        else None
-    )
-
-    community_week = {}
-
-    if community_database:
-
-        weeks = community_database.get(
-            "weeks",
-            {}
-        )
-
-        if (
-            week_key
-            and week_key in weeks
-        ):
-            community_week = weeks[
-                week_key
-            ]
-
-        elif weeks:
-            latest_key = sorted(
-                weeks.keys()
-            )[-1]
-
-            community_week = weeks[
-                latest_key
-            ]
-
-    description = race.get(
-        "description",
-        ""
-    )
-
-    race_class = community_week.get(
-        "race_class"
-    )
-
-    if not race_class:
-
-        match = re.search(
-            r"\bGr\.?\s*(\d+)\b",
-            description,
-            re.IGNORECASE
-        )
-
-        if match:
-            race_class = (
-                f"Gr.{match.group(1)}"
-            )
-
-    compounds = [
-        str(value).upper()
-        for value in race.get(
-            "compounds",
-            []
-        )
-    ]
-
-    return {
-        "week":
-            week_key,
-
-        "description":
-            description,
-
-        "track":
-            community_week.get(
-                "track"
-            ),
-
-        "race_class":
-            race_class,
-
-        "direction":
-            community_week.get(
-                "direction",
-                "NORMAL"
-            ),
-
-        "fuel_multiplier":
-            race.get(
-                "fuel_multiplier"
-            ),
-
-        "tyre_multiplier":
-            race.get(
-                "tyre_multiplier"
-            ),
-
-        "compounds":
-            compounds,
-
-        "top5_used_cars":
-            snapshot.get(
-                "top5_used_cars",
-                []
-            ),
-
-        "my_result":
-            snapshot.get(
-                "my_result"
-            ),
-    }
-
-
-# ============================================================
-# TRANSCRIPT LOADING
-# ============================================================
-
-def find_transcript_files():
-
-    results = {}
-
-    for base in TRANSCRIPT_DIRS:
-
-        if not base.exists():
-            continue
-
-        for path in base.rglob(
-            "*.json"
-        ):
-
-            data = load_json(
-                path
-            )
-
-            if not isinstance(
-                data,
-                dict
-            ):
-                continue
-
-            transcript = data.get(
-                "transcript"
-            )
-
-            video_id = data.get(
-                "video_id"
-            )
-
-            if (
-                not transcript
-                or not video_id
-            ):
-                continue
-
-            if video_id in results:
-                continue
-
-            results[
-                video_id
-            ] = {
-                "path":
-                    str(path),
-
-                "data":
-                    data,
-            }
-
-    return list(
-        results.values()
-    )
-
-
-# ============================================================
-# VALIDATION HELPERS
-# ============================================================
-
-def fuzzy_contains(
-    target,
-    text
-):
-
-    if not target:
-        return None
-
-    target_words = [
-        word
-        for word in normalize_text(
-            target
-        ).split()
-        if len(word) >= 3
-    ]
-
-    if not target_words:
-        return None
-
-    haystack = set(
-        normalize_text(
-            text
-        ).split()
-    )
-
-    matched = sum(
-        1
-        for word in target_words
-        if word in haystack
-    )
-
-    return (
-        matched
-        / len(target_words)
-    ) >= 0.60
-
-
-def detect_class_mentions(text):
-
-    matches = re.findall(
-        r"\b(?:gr|group)\s*\.?\s*(\d+)\b",
-        text,
-        re.IGNORECASE
-    )
-
-    return {
-        f"Gr.{value}"
-        for value in matches
-    }
-
-
-def detect_direction(text):
-
-    if "reverse" in normalize_text(
-        text
-    ):
-        return "REVERSE"
-
-    return None
-
-
-# ============================================================
-# MULTIPLIERS
-# ============================================================
-
-def extract_multiplier_mentions(
-    text,
-    kind
-):
-
-    normalized = normalize_space(
-        text
-    ).lower()
-
-    number_pattern = (
-        r"(?:"
-        r"\d+"
-        r"|one|two|three|four|five|six|seven|eight|nine|ten"
-        r")"
-    )
-
-    if kind == "fuel":
-
-        subject_pattern = (
-            r"(?:"
-            r"fuel rate"
-            r"|fuel consumption"
-            r"|fuel multiplier"
-            r"|fuel"
-            r")"
-        )
-
-    else:
-
-        subject_pattern = (
-            r"(?:"
-            r"tyre wear"
-            r"|tire wear"
-            r"|tyres"
-            r"|tires"
-            r"|tyre"
-            r"|tire"
-            r")"
-        )
-
-    patterns = [
-        (
-            rf"{subject_pattern}"
-            rf".{{0,50}}?"
-            rf"(?:x|times|multiplier(?:\s+of)?)"
-            rf"\s*({number_pattern})"
-        ),
-
-        (
-            rf"{subject_pattern}"
-            rf".{{0,50}}?"
-            rf"(?:at|is|of)"
-            rf"\s+(?:a\s+)?"
-            rf"({number_pattern})"
-            rf"\s*(?:times|x)?"
-        ),
-
-        (
-            rf"({number_pattern})"
-            rf"\s*(?:x|times)"
-            rf".{{0,40}}?"
-            rf"{subject_pattern}"
-        ),
-    ]
-
-    values = []
-
-    for pattern in patterns:
-
-        for match in re.findall(
-            pattern,
-            normalized,
-            re.IGNORECASE
-        ):
-
-            if isinstance(
-                match,
-                tuple
-            ):
-                match = next(
-                    (
-                        value
-                        for value in match
-                        if value
-                    ),
-                    None
-                )
-
-            number = parse_number_token(
-                match
-            )
-
-            if (
-                number is not None
-                and 1 <= number <= 20
-            ):
-                values.append(
-                    number
-                )
-
-    return values
-
-
-def dominant_value(values):
-
-    if not values:
-        return None
-
-    counter = Counter(
-        values
-    )
-
-    value, count = counter.most_common(
-        1
-    )[0]
-
-    return {
-        "value":
-            value,
-
-        "count":
-            count,
-
-        "mentions":
-            values,
-    }
-
-
-# ============================================================
-# COMPOUNDS
-# ============================================================
-
-def detect_regulation_compounds(
-    text
-):
-
-    normalized = normalize_space(
-        text
-    ).lower()
-
-    compounds = set()
-
-    # Direct expressions
-    direct_patterns = {
-        "RH": [
-            r"\bracing hard\b",
-            r"\bhard tires?\b",
-            r"\bhard tyres?\b",
-        ],
-
-        "RM": [
-            r"\bracing medium\b",
-            r"\bmedium tires?\b",
-            r"\bmedium tyres?\b",
-        ],
-
-        "RS": [
-            r"\bracing soft\b",
-            r"\bsoft tires?\b",
-            r"\bsoft tyres?\b",
-        ],
-    }
-
-    regulation_cues = [
-        "available",
-        "mandatory",
-        "required",
-        "must use",
-        "tire type",
-        "tyre type",
-        "tires are",
-        "tyres are",
-    ]
-
-    for code, patterns in direct_patterns.items():
-
-        for pattern in patterns:
-
-            for match in re.finditer(
-                pattern,
-                normalized,
-                re.IGNORECASE
-            ):
-
-                start = max(
-                    0,
-                    match.start()
-                    - 120
-                )
-
-                end = min(
-                    len(normalized),
-                    match.end()
-                    + 120
-                )
-
-                window = normalized[
-                    start:end
-                ]
-
-                if any(
-                    cue in window
-                    for cue in regulation_cues
-                ):
-                    compounds.add(
-                        code
-                    )
-
-    # Shared noun expressions:
-    # "medium and soft tires"
-    shared_patterns = [
-        (
-            r"\bmedium\s+and\s+soft\s+tires?\b",
-            {"RM", "RS"}
-        ),
-
-        (
-            r"\bmedium\s+and\s+soft\s+tyres?\b",
-            {"RM", "RS"}
-        ),
-
-        (
-            r"\bhard\s+and\s+medium\s+tires?\b",
-            {"RH", "RM"}
-        ),
-
-        (
-            r"\bhard\s+and\s+medium\s+tyres?\b",
-            {"RH", "RM"}
-        ),
-
-        (
-            r"\bsoft\s+and\s+medium\s+tires?\b",
-            {"RS", "RM"}
-        ),
-
-        (
-            r"\bsoft\s+and\s+medium\s+tyres?\b",
-            {"RS", "RM"}
-        ),
-    ]
-
-    for pattern, detected in (
-        shared_patterns
-    ):
-
-        if re.search(
-            pattern,
-            normalized,
-            re.IGNORECASE
-        ):
-            compounds.update(
-                detected
-            )
-
-    return compounds
-
-
-# ============================================================
-# SOURCE VALIDATION
-# ============================================================
-
-def validate_source(
-    source,
-    ground_truth
-):
-
-    data = source[
-        "data"
-    ]
-
-    title = data.get(
-        "title",
-        ""
-    )
-
-    transcript = normalize_space(
-        data.get(
-            "transcript",
-            ""
-        )
-    )
-
-    evidence_text = (
-        title
-        + " "
-        + transcript[:15000]
-    )
-
-    matches = []
-    reasons = []
-
-    rejected = False
-
-    # Track
-    if fuzzy_contains(
-        ground_truth.get(
-            "track"
-        ),
-        title
-    ):
-        matches.append(
-            "TRACK_MATCH"
-        )
-
-    # Class
-    expected_class = ground_truth.get(
-        "race_class"
-    )
-
-    detected_classes = (
-        detect_class_mentions(
-            evidence_text
-        )
-    )
-
-    if (
-        expected_class
-        and detected_classes
-    ):
-
-        if expected_class in detected_classes:
-            matches.append(
-                "CLASS_MATCH"
-            )
-
-        else:
-            rejected = True
-
-            reasons.append(
-                (
-                    "CLASS_CONFLICT: "
-                    f"expected {expected_class}, "
-                    f"detected "
-                    f"{', '.join(sorted(detected_classes))}"
-                )
-            )
-
-    # Direction
-    expected_direction = (
-        ground_truth.get(
-            "direction"
-        )
-        or "NORMAL"
-    )
-
-    detected_direction = (
-        detect_direction(
-            title
-        )
-    )
-
-    if (
-        expected_direction == "NORMAL"
-        and detected_direction == "REVERSE"
-    ):
-        rejected = True
-
-        reasons.append(
-            "DIRECTION_CONFLICT"
-        )
-
-    # Fuel
-    expected_fuel = ground_truth.get(
-        "fuel_multiplier"
-    )
-
-    fuel = dominant_value(
-        extract_multiplier_mentions(
-            transcript,
-            "fuel"
-        )
-    )
-
-    if (
-        expected_fuel
-        and fuel
-    ):
-
-        if fuel[
-            "value"
-        ] == expected_fuel:
-            matches.append(
-                "FUEL_MATCH"
-            )
-
-        else:
-            rejected = True
-
-            reasons.append(
-                (
-                    "FUEL_CONFLICT: "
-                    f"video x{fuel['value']} "
-                    f"vs live x{expected_fuel}"
-                )
-            )
-
-    # Tyres
-    expected_tyre = ground_truth.get(
-        "tyre_multiplier"
-    )
-
-    tyre = dominant_value(
-        extract_multiplier_mentions(
-            transcript,
-            "tyre"
-        )
-    )
-
-    if (
-        expected_tyre
-        and tyre
-    ):
-
-        if tyre[
-            "value"
-        ] == expected_tyre:
-            matches.append(
-                "TYRE_MATCH"
-            )
-
-        else:
-            rejected = True
-
-            reasons.append(
-                (
-                    "TYRE_CONFLICT: "
-                    f"video x{tyre['value']} "
-                    f"vs live x{expected_tyre}"
-                )
-            )
-
-    # Compounds
-    expected_compounds = set(
-        ground_truth.get(
-            "compounds",
-            []
-        )
-    )
-
-    detected_compounds = (
-        detect_regulation_compounds(
-            transcript
-        )
-    )
-
-    if (
-        expected_compounds
-        and detected_compounds
-    ):
-
-        conflicts = (
-            detected_compounds
-            - expected_compounds
-        )
-
-        overlap = (
-            detected_compounds
-            & expected_compounds
-        )
-
-        if conflicts:
-            rejected = True
-
-            reasons.append(
-                (
-                    "COMPOUND_CONFLICT: "
-                    f"video "
-                    f"{'/'.join(sorted(detected_compounds))} "
-                    f"vs live "
-                    f"{'/'.join(sorted(expected_compounds))}"
-                )
-            )
-
-        elif overlap:
-            matches.append(
-                "COMPOUND_MATCH"
-            )
-
-    if rejected:
-
-        status = "REJECTED"
-        reliability = (
-            "STALE_OR_WRONG_RACE"
-        )
-
-    else:
-
-        technical_matches = sum(
-            1
-            for item in matches
-            if item in {
-                "FUEL_MATCH",
-                "TYRE_MATCH",
-                "COMPOUND_MATCH",
-            }
-        )
-
-        if technical_matches >= 2:
-            status = "CONFIRMED"
-            reliability = "HIGH"
-
-        elif matches:
-            status = "PARTIAL"
-            reliability = "MEDIUM"
-
-        else:
-            status = "UNVERIFIED"
-            reliability = "LOW"
-
-    return {
-        "video_id":
-            data.get(
-                "video_id"
-            ),
-
-        "channel":
-            data.get(
-                "channel",
-                "Unknown"
-            ),
-
-        "title":
-            title,
-
-        "content_type":
-            data.get(
-                "content_type",
-                "OTHER"
-            ),
-
-        "status":
-            status,
-
-        "reliability":
-            reliability,
-
-        "matches":
-            matches,
-
-        "reasons":
-            reasons,
-
-        "detected": {
-            "fuel_multiplier":
-                (
-                    fuel["value"]
-                    if fuel
-                    else None
-                ),
-
-            "tyre_multiplier":
-                (
-                    tyre["value"]
-                    if tyre
-                    else None
-                ),
-
-            "compounds":
-                sorted(
-                    detected_compounds
-                ),
-        },
-    }
-
-
-# ============================================================
-# SOURCE SELECTION
-# ============================================================
-
-def select_priority_source(
-    transcript_sources,
-    validations,
-    priority_channels,
-    allowed_types=None
-):
-
-    validation_lookup = {
-        item[
-            "video_id"
-        ]:
-            item
-        for item in validations
-    }
-
-    candidates = []
-
-    for source in transcript_sources:
-
-        data = source[
-            "data"
-        ]
-
-        validation = validation_lookup.get(
-            data.get(
-                "video_id"
-            )
-        )
-
-        if not validation:
-            continue
-
-        if (
-            validation[
-                "status"
-            ]
-            == "REJECTED"
-        ):
-            continue
-
-        content_type = data.get(
-            "content_type",
-            "OTHER"
-        )
-
-        if (
-            allowed_types
-            and content_type
-            not in allowed_types
-        ):
-            continue
-
-        candidates.append(
-            source
-        )
-
-    for priority_channel in (
-        priority_channels
-    ):
-
-        for source in candidates:
-
-            channel = (
-                source[
-                    "data"
-                ]
-                .get(
+def collect_strings(value: Any, key_hint: str = "") -> list[str]:
+    """
+    Recursively extracts plausible transcript text from different versions of
+    the transcript database, without depending on a single JSON schema.
+    """
+
+    strings: list[str] = []
+
+    if isinstance(value, str):
+        if len(value.strip()) >= 20:
+            strings.append(value)
+        return strings
+
+    if isinstance(value, list):
+        for item in value:
+            strings.extend(collect_strings(item, key_hint))
+        return strings
+
+    if isinstance(value, dict):
+        priority_found = False
+
+        # Prefer known transcript text keys.
+        for key, item in value.items():
+            key_lower = str(key).lower()
+
+            if key_lower in TEXT_KEYS:
+                priority_found = True
+                strings.extend(collect_strings(item, key_lower))
+
+        # If none of the known keys exists at this level, recurse normally.
+        if not priority_found:
+            for key, item in value.items():
+                if str(key).lower() in {
+                    "title",
                     "channel",
-                    ""
+                    "url",
+                    "video_id",
+                    "provider",
+                    "status",
+                    "role",
+                }:
+                    continue
+
+                strings.extend(
+                    collect_strings(
+                        item,
+                        str(key).lower(),
+                    )
                 )
-            )
 
-            if (
-                channel.strip().lower()
-                == priority_channel.lower()
-            ):
-                return source
-
-    return None
+    return strings
 
 
-# ============================================================
-# SEGMENTATION
-# ============================================================
+def extract_transcript_text(data: Any) -> str:
+    if data is None:
+        return ""
 
-def transcript_segments(
-    text,
-    min_words=10,
-    target_words=32,
-    max_words=52
-):
+    candidates = collect_strings(data)
 
-    text = normalize_space(
-        text
-    )
+    if not candidates:
+        return ""
+
+    # Remove exact duplicates while preserving order.
+    unique: list[str] = []
+    seen: set[str] = set()
+
+    for text in candidates:
+        normalized = normalize_space(text)
+
+        if not normalized:
+            continue
+
+        if normalized in seen:
+            continue
+
+        seen.add(normalized)
+        unique.append(text)
+
+    if not unique:
+        return ""
+
+    # Usually the longest field is the actual selected transcript.
+    unique.sort(key=len, reverse=True)
+
+    return unique[0]
+
+
+# =============================================================================
+# SENTENCE / EVIDENCE HELPERS
+# =============================================================================
+
+def split_sentences(text: str) -> list[str]:
+    """
+    Works with ordinary transcript text and timestamped transcript text.
+    """
 
     if not text:
         return []
 
-    punctuation_parts = re.split(
-        r"(?<=[.!?])\s+",
-        text
+    text = text.replace("\r", "\n")
+
+    # Preserve timestamp starts as natural boundaries.
+    text = re.sub(
+        r"(?=\[\d{1,2}:\d{2}(?::\d{2})?\])",
+        "\n",
+        text,
     )
 
-    output = []
+    raw_parts = re.split(
+        r"(?<=[.!?])\s+|\n+",
+        text,
+    )
 
-    for part in punctuation_parts:
+    result: list[str] = []
 
-        words = part.split()
+    for part in raw_parts:
+        part = normalize_space(part)
 
-        if len(words) < min_words:
+        if len(part) < 15:
             continue
 
-        if len(words) <= max_words:
-            output.append(
-                part.strip()
-            )
-            continue
+        result.append(part)
 
-        for start in range(
-            0,
-            len(words),
-            target_words
-        ):
+    return result
 
-            chunk = words[
-                start:
-                start + max_words
-            ]
 
-            if len(chunk) < min_words:
+def find_evidence(
+    sentences: list[str],
+    patterns: list[str],
+    max_results: int = 5,
+) -> list[str]:
+
+    results: list[str] = []
+    seen: set[str] = set()
+
+    regexes = [
+        re.compile(pattern, re.I)
+        for pattern in patterns
+    ]
+
+    for sentence in sentences:
+        if any(regex.search(sentence) for regex in regexes):
+            normalized = normalize_space(sentence)
+
+            if normalized in seen:
                 continue
 
-            output.append(
-                " ".join(
-                    chunk
-                )
-            )
+            seen.add(normalized)
+            results.append(normalized)
 
-    return output
+            if len(results) >= max_results:
+                break
+
+    return results
 
 
-# ============================================================
-# LAP GUIDE EXTRACTION
-# ============================================================
+def find_last_evidence(
+    sentences: list[str],
+    patterns: list[str],
+) -> str | None:
 
-def lap_guide_score(text):
-
-    normalized = (
-        text.lower()
-    )
-
-    patterns = [
-        r"\bbrak",
-        r"\bboard\b",
-        r"\bgear\b",
-        r"\bdownshift",
-        r"\bupshift",
-        r"\bturn in\b",
-        r"\bapex\b",
-        r"\bcurb\b",
-        r"\bkerb\b",
-        r"\bthrottle\b",
-        r"\baccelerat",
-        r"\bpower\b",
-        r"\bentry\b",
-        r"\bexit\b",
-        r"\bwhite line\b",
-        r"\bundersteer\b",
-    ]
-
-    return sum(
-        1
+    regexes = [
+        re.compile(pattern, re.I)
         for pattern in patterns
-        if re.search(
-            pattern,
-            normalized
-        )
-    )
-
-
-def extract_reference(text):
-
-    normalized = (
-        text.lower()
-    )
-
-    patterns = [
-        r"\baround\s+\d+\s*m\b",
-        r"\b\d+\s*m\b",
-        r"\b\d+\s*(?:feet|ft)\b",
-        r"\b\d+\s+board\b",
-        r"\b\d+\s+sign\b",
-        r"\bunder the bridge\b",
-        r"\bafter we pass under this bridge\b",
-        r"\bout of the tunnel\b",
-        r"\bdark mark in the sand\b",
-        r"\barrow sign\b",
     ]
 
-    for pattern in patterns:
-
-        match = re.search(
-            pattern,
-            normalized
-        )
-
-        if match:
-            return match.group(
-                0
-            )
+    for sentence in reversed(sentences):
+        if any(regex.search(sentence) for regex in regexes):
+            return normalize_space(sentence)
 
     return None
 
 
-def extract_gear(text):
+def contains_any(text: str, patterns: list[str]) -> bool:
+    return any(
+        re.search(pattern, text, re.I)
+        for pattern in patterns
+    )
 
-    normalized = text.lower()
 
-    patterns = [
-        r"\b(first|second|third|fourth|fifth|sixth)\s+gear\b",
-        r"\b([1-6])(?:st|nd|rd|th)\s+gear\b",
-    ]
+# =============================================================================
+# LIVE SNAPSHOT EXTRACTION
+# =============================================================================
 
-    for pattern in patterns:
+def recursive_find_first(
+    value: Any,
+    candidate_keys: list[str],
+) -> Any:
 
-        match = re.search(
-            pattern,
-            normalized
-        )
+    candidate_keys = [x.lower() for x in candidate_keys]
 
-        if match:
-            return match.group(
-                0
+    if isinstance(value, dict):
+        for key, item in value.items():
+            if str(key).lower() in candidate_keys:
+                if item not in {
+                    None,
+                    "",
+                    [],
+                    {},
+                }:
+                    return item
+
+        for item in value.values():
+            found = recursive_find_first(
+                item,
+                candidate_keys,
             )
+
+            if found is not None:
+                return found
+
+    elif isinstance(value, list):
+        for item in value:
+            found = recursive_find_first(
+                item,
+                candidate_keys,
+            )
+
+            if found is not None:
+                return found
 
     return None
 
 
-def extract_lap_guide(
-    source
-):
-
-    if not source:
-        return []
-
-    data = source[
-        "data"
-    ]
-
-    segments = transcript_segments(
-        data.get(
-            "transcript",
-            ""
-        )
-    )
-
-    entries = []
-
-    for index, segment in enumerate(
-        segments
-    ):
-
-        score = lap_guide_score(
-            segment
-        )
-
-        if score < 2:
-            continue
-
-        entries.append({
-            "sequence":
-                index,
-
-            "reference":
-                extract_reference(
-                    segment
-                ),
-
-            "gear":
-                extract_gear(
-                    segment
-                ),
-
-            "text":
-                compact_text(
-                    segment,
-                    300
-                ),
-
-            "score":
-                score,
-        })
-
-    # Avoid near-neighbor repetition
-    cleaned = []
-
-    previous_sequence = None
-
-    for entry in entries:
-
-        if (
-            previous_sequence
-            is not None
-            and entry[
-                "sequence"
-            ]
-            == previous_sequence + 1
-            and entry[
-                "reference"
-            ]
-            == (
-                cleaned[
-                    -1
-                ][
-                    "reference"
-                ]
-                if cleaned
-                else None
-            )
-        ):
-            continue
-
-        cleaned.append(
-            entry
-        )
-
-        previous_sequence = entry[
-            "sequence"
-        ]
-
-    return cleaned[:16]
-
-
-# ============================================================
-# STRATEGY EXTRACTION
-# ============================================================
-
-STRATEGY_PATTERNS = {
-    "PIT":
-        [
-            r"\bpit\b",
-            r"\bno stop\b",
-            r"\bone stop\b",
-            r"\bstop strategy\b",
-        ],
-
-    "TYRES":
-        [
-            r"\btyre\b",
-            r"\btire\b",
-            r"\bmandatory\b",
-            r"\bcompound\b",
-        ],
-
-    "FUEL":
-        [
-            r"\bfuel\b",
-            r"\bshort shift\b",
-            r"\bsave fuel\b",
-        ],
-
-    "RACECRAFT":
-        [
-            r"\bovertak",
-            r"\bslipstream\b",
-            r"\bdraft\b",
-            r"\btraffic\b",
-            r"\bdefend",
-        ],
-
-    "WARNINGS":
-        [
-            r"\bpenalty\b",
-            r"\btrack limits\b",
-            r"\bcareful\b",
-            r"\bavoid\b",
-        ],
-}
-
-
-def strategy_segment_score(
-    text
-):
-
-    normalized = (
-        text.lower()
-    )
-
-    score = 0
-
-    for patterns in (
-        STRATEGY_PATTERNS.values()
-    ):
-
-        score += sum(
-            1
-            for pattern in patterns
-            if re.search(
-                pattern,
-                normalized
-            )
-        )
-
-    return score
-
-
-def strategy_categories(
-    text
-):
-
-    normalized = text.lower()
-
-    categories = []
-
-    for category, patterns in (
-        STRATEGY_PATTERNS.items()
-    ):
-
-        if any(
-            re.search(
-                pattern,
-                normalized
-            )
-            for pattern in patterns
-        ):
-            categories.append(
-                category
-            )
-
-    return categories
-
-
-def extract_strategy(
-    source
-):
-
-    if not source:
-        return []
-
-    data = source[
-        "data"
-    ]
-
-    segments = transcript_segments(
-        data.get(
-            "transcript",
-            ""
-        )
-    )
-
-    rows = []
-
-    for segment in segments:
-
-        score = strategy_segment_score(
-            segment
-        )
-
-        if score < 1:
-            continue
-
-        rows.append({
-            "categories":
-                strategy_categories(
-                    segment
-                ),
-
-            "text":
-                compact_text(
-                    segment,
-                    360
-                ),
-
-            "score":
-                score,
-        })
-
-    rows.sort(
-        key=lambda item:
-            item[
-                "score"
-            ],
-        reverse=True
-    )
-
-    output = []
-
-    seen = set()
-
-    for row in rows:
-
-        key = normalize_text(
-            row[
-                "text"
-            ]
-        )[:120]
-
-        if key in seen:
-            continue
-
-        seen.add(
-            key
-        )
-
-        output.append(
-            row
-        )
-
-        if len(output) >= 8:
-            break
-
-    return output
-
-
-# ============================================================
-# LIVE META
-# ============================================================
-
-def build_live_meta(
-    ground_truth
-):
-
-    return [
-        {
-            "car":
-                item.get(
-                    "car"
-                ),
-
-            "drivers":
-                item.get(
-                    "count"
-                ),
-
-            "percentage":
-                item.get(
-                    "percentage"
-                ),
+def extract_live_config(snapshot: Any) -> dict[str, Any]:
+    if not isinstance(snapshot, (dict, list)):
+        return {
+            "week": None,
+            "track": None,
+            "race_class": None,
+            "direction": None,
+            "fuel_multiplier": None,
+            "tyre_multiplier": None,
+            "compounds": [],
         }
 
-        for item in ground_truth.get(
-            "top5_used_cars",
-            []
-        )
-    ]
-
-
-# ============================================================
-# REPORT
-# ============================================================
-
-def format_compounds(values):
-
-    if not values:
-        return "Not detected"
-
-    return ", ".join(
-        values
-    )
-
-
-def source_description(
-    source
-):
-
-    if not source:
-        return "NOT AVAILABLE"
-
-    data = source[
-        "data"
-    ]
-
-    return (
-        f"{data.get('channel','Unknown')} | "
-        f"{data.get('content_type','OTHER')} | "
-        f"{data.get('title','')}"
-    )
-
-
-def build_report(
-    ground_truth,
-    validations,
-    strategy_source,
-    strategy_rows,
-    lap_source,
-    lap_rows,
-    live_meta
-):
-
-    lines = []
-
-    lines.append(
-        "GT7 COMMUNITY INTELLIGENCE V4"
-    )
-
-    lines.append(
-        "=" * 96
-    )
-
-    lines.append(
-        f"Race week        : "
-        f"{ground_truth.get('week')}"
-    )
-
-    lines.append(
-        f"Track            : "
-        f"{ground_truth.get('track') or 'Unknown'}"
-    )
-
-    lines.append(
-        f"Class            : "
-        f"{ground_truth.get('race_class') or 'Unknown'}"
-    )
-
-    lines.append(
-        f"Direction        : "
-        f"{ground_truth.get('direction')}"
-    )
-
-    lines.append(
-        f"Fuel             : "
-        f"x{ground_truth.get('fuel_multiplier')}"
-    )
-
-    lines.append(
-        f"Tyre wear        : "
-        f"x{ground_truth.get('tyre_multiplier')}"
-    )
-
-    lines.append(
-        f"Compounds        : "
-        f"{format_compounds(ground_truth.get('compounds'))}"
-    )
-
-    # ========================================================
-    # SOURCE VALIDATION
-    # ========================================================
-
-    lines.append("")
-    lines.append(
-        "SOURCE VALIDATION"
-    )
-
-    lines.append(
-        "-" * 96
-    )
-
-    for item in validations:
-
-        lines.append(
-            f"{item['channel']} | "
-            f"{item['status']} | "
-            f"{item['reliability']}"
-        )
-
-        detected = item[
-            "detected"
-        ]
-
-        details = []
-
-        if (
-            detected[
-                "fuel_multiplier"
-            ]
-            is not None
-        ):
-            details.append(
-                f"Fuel x"
-                f"{detected['fuel_multiplier']}"
-            )
-
-        if (
-            detected[
-                "tyre_multiplier"
-            ]
-            is not None
-        ):
-            details.append(
-                f"Tyres x"
-                f"{detected['tyre_multiplier']}"
-            )
-
-        if detected[
-            "compounds"
-        ]:
-            details.append(
-                "Compounds "
-                + "/".join(
-                    detected[
-                        "compounds"
-                    ]
-                )
-            )
-
-        if details:
-            lines.append(
-                "  Detected: "
-                + " | ".join(
-                    details
-                )
-            )
-
-        if item[
-            "matches"
-        ]:
-            lines.append(
-                "  Matches : "
-                + ", ".join(
-                    item[
-                        "matches"
-                    ]
-                )
-            )
-
-        for reason in item[
-            "reasons"
-        ]:
-            lines.append(
-                f"  REJECT  : "
-                f"{reason}"
-            )
-
-    # ========================================================
-    # SELECTED SOURCES
-    # ========================================================
-
-    lines.append("")
-    lines.append(
-        "SELECTED COMMUNITY SOURCES"
-    )
-
-    lines.append(
-        "-" * 96
-    )
-
-    lines.append(
-        "Race strategy   : "
-        + source_description(
-            strategy_source
-        )
-    )
-
-    lines.append(
-        "Lap guide       : "
-        + source_description(
-            lap_source
-        )
-    )
-
-    # ========================================================
-    # RACE STRATEGY
-    # ========================================================
-
-    lines.append("")
-    lines.append(
-        "RACE STRATEGY"
-    )
-
-    lines.append(
-        "-" * 96
-    )
-
-    lines.append(
-        f"Official/live fuel      : "
-        f"x{ground_truth.get('fuel_multiplier')}"
-    )
-
-    lines.append(
-        f"Official/live tyre wear : "
-        f"x{ground_truth.get('tyre_multiplier')}"
-    )
-
-    lines.append(
-        f"Official/live compounds : "
-        f"{format_compounds(ground_truth.get('compounds'))}"
-    )
-
-    if not strategy_source:
-
-        lines.append("")
-        lines.append(
-            "Digit Racing strategy source: NOT AVAILABLE."
-        )
-
-        lines.append(
-            "No community pit/fuel/tyre strategy is inferred."
-        )
-
-    elif not strategy_rows:
-
-        lines.append("")
-        lines.append(
-            "Selected strategy source contains no strong "
-            "strategy evidence."
-        )
-
-    else:
-
-        lines.append("")
-
-        for index, row in enumerate(
-            strategy_rows,
-            start=1
-        ):
-
-            categories = (
-                ", ".join(
-                    row[
-                        "categories"
-                    ]
-                )
-                or "GENERAL"
-            )
-
-            lines.append(
-                f"{index}. "
-                f"[{categories}] "
-                f"{row['text']}"
-            )
-
-    # ========================================================
-    # LAP GUIDE
-    # ========================================================
-
-    lines.append("")
-    lines.append(
-        "QUALIFYING / LAP GUIDE"
-    )
-
-    lines.append(
-        "-" * 96
-    )
-
-    if not lap_source:
-
-        lines.append(
-            "GnC Racing lap guide source: NOT AVAILABLE."
-        )
-
-    elif not lap_rows:
-
-        lines.append(
-            "Selected lap guide contains no strong technical evidence."
-        )
-
-    else:
-
-        for index, row in enumerate(
-            lap_rows,
-            start=1
-        ):
-
-            lines.append(
-                f"{index}. "
-                f"{row['text']}"
-            )
-
-            details = []
-
-            if row[
-                "reference"
-            ]:
-                details.append(
-                    "Ref "
-                    + row[
-                        "reference"
-                    ]
-                )
-
-            if row[
-                "gear"
-            ]:
-                details.append(
-                    "Gear "
-                    + row[
-                        "gear"
-                    ]
-                )
-
-            if details:
-                lines.append(
-                    "   "
-                    + " | ".join(
-                        details
-                    )
-                )
-
-    # ========================================================
-    # LIVE META
-    # ========================================================
-
-    lines.append("")
-    lines.append(
-        "LIVE CAR META - TOP 1000"
-    )
-
-    lines.append(
-        "-" * 96
-    )
-
-    if not live_meta:
-
-        lines.append(
-            "No live leaderboard meta data available."
-        )
-
-    else:
-
-        for index, item in enumerate(
-            live_meta,
-            start=1
-        ):
-
-            percentage = item.get(
-                "percentage"
-            )
-
-            if isinstance(
-                percentage,
-                (int, float)
-            ):
-                percentage_text = (
-                    f"{percentage:.1f}%"
-                )
-
-            else:
-                percentage_text = "N/A"
-
-            lines.append(
-                f"{index}. "
-                f"{item.get('car')} | "
-                f"{item.get('drivers')} drivers | "
-                f"{percentage_text}"
-            )
-
-    # ========================================================
-    # POLICY
-    # ========================================================
-
-    lines.append("")
-    lines.append(
-        "SOURCE POLICY"
-    )
-
-    lines.append(
-        "-" * 96
-    )
-
-    lines.append(
-        "Race regulations come from live GT7/GTSH data, "
-        "not from community videos."
-    )
-
-    lines.append(
-        "Strategy uses one selected source only."
-    )
-
-    lines.append(
-        "Lap guidance uses one selected source only."
-    )
-
-    lines.append(
-        "Rejected/stale sources cannot contribute recommendations."
-    )
-
-    lines.append(
-        "Live leaderboard data remains authoritative for car meta."
-    )
-
-    lines.append("")
-    lines.append(
-        "=" * 96
-    )
-
-    return "\n".join(
-        lines
-    )
-
-
-# ============================================================
-# MAIN
-# ============================================================
-
-def main():
-
-    OUTPUT_DIR.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-    snapshot = load_json(
-        LATEST_SNAPSHOT_FILE
-    )
-
-    if not snapshot:
-        raise RuntimeError(
-            "data/latest_snapshot.json not found or invalid."
-        )
-
-    community_database = load_json(
-        COMMUNITY_SOURCES_FILE,
-        {}
-    )
-
-    ground_truth = build_ground_truth(
+    week = recursive_find_first(
         snapshot,
-        community_database
+        [
+            "race_week",
+            "week",
+            "week_start",
+            "start_date",
+        ],
     )
 
-    transcript_sources = (
-        find_transcript_files()
+    track = recursive_find_first(
+        snapshot,
+        [
+            "track",
+            "track_name",
+            "circuit",
+            "circuit_name",
+        ],
     )
 
-    if not transcript_sources:
-        raise RuntimeError(
-            "No transcript files were found."
-        )
-
-    print(
-        "=" * 96
+    race_class = recursive_find_first(
+        snapshot,
+        [
+            "race_class",
+            "class",
+            "car_class",
+            "category",
+        ],
     )
 
-    print(
-        "GT7 COMMUNITY ANALYZER V4"
+    direction = recursive_find_first(
+        snapshot,
+        [
+            "direction",
+            "layout_direction",
+        ],
     )
 
-    print(
-        "=" * 96
+    fuel = recursive_find_first(
+        snapshot,
+        [
+            "fuel_multiplier",
+            "fuel_rate",
+            "fuel_consumption",
+            "fuel",
+        ],
     )
 
-    print(
-        f"Transcript sources found : "
-        f"{len(transcript_sources)}"
+    tyres = recursive_find_first(
+        snapshot,
+        [
+            "tyre_multiplier",
+            "tire_multiplier",
+            "tyre_wear",
+            "tire_wear",
+            "tyre_wear_rate",
+            "tire_wear_rate",
+        ],
     )
 
-    # ========================================================
-    # VALIDATION
-    # ========================================================
-
-    validations = [
-        validate_source(
-            source,
-            ground_truth
-        )
-        for source in transcript_sources
-    ]
-
-    # ========================================================
-    # SELECT STRATEGY SOURCE
-    # ========================================================
-
-    strategy_source = (
-        select_priority_source(
-            transcript_sources,
-            validations,
-            STRATEGY_PRIORITY,
-            allowed_types={
-                "STRATEGY",
-                "RACE",
-                "LIVESTREAM",
-            }
-        )
+    compounds_raw = recursive_find_first(
+        snapshot,
+        [
+            "compounds",
+            "tyres",
+            "tires",
+            "available_tyres",
+            "available_tires",
+        ],
     )
 
-    # ========================================================
-    # SELECT LAP GUIDE SOURCE
-    # ========================================================
+    compounds: list[str] = []
 
-    lap_source = (
-        select_priority_source(
-            transcript_sources,
-            validations,
-            LAP_GUIDE_PRIORITY,
-            allowed_types={
-                "LAP_GUIDE",
-                "QUALIFYING",
-            }
-        )
-    )
+    if isinstance(compounds_raw, str):
+        for item in re.split(
+            r"[,;/|]+",
+            compounds_raw,
+        ):
+            item = item.strip()
 
-    # ========================================================
-    # ANALYSIS
-    # ========================================================
+            if item:
+                compounds.append(item)
 
-    strategy_rows = (
-        extract_strategy(
-            strategy_source
-        )
-    )
+    elif isinstance(compounds_raw, list):
+        for item in compounds_raw:
+            if isinstance(item, str):
+                compounds.append(item)
 
-    lap_rows = (
-        extract_lap_guide(
-            lap_source
-        )
-    )
-
-    live_meta = (
-        build_live_meta(
-            ground_truth
-        )
-    )
-
-    output = {
-        "version":
-            4,
-
-        "ground_truth":
-            ground_truth,
-
-        "source_validation":
-            validations,
-
-        "selected_sources": {
-            "strategy":
-                (
-                    strategy_source[
-                        "data"
-                    ]
-                    if strategy_source
-                    else None
-                ),
-
-            "lap_guide":
-                (
-                    lap_source[
-                        "data"
-                    ]
-                    if lap_source
-                    else None
-                ),
-        },
-
-        "strategy":
-            strategy_rows,
-
-        "lap_guide":
-            lap_rows,
-
-        "live_meta":
-            live_meta,
+    return {
+        "week": week,
+        "track": track,
+        "race_class": race_class,
+        "direction": direction,
+        "fuel_multiplier": fuel,
+        "tyre_multiplier": tyres,
+        "compounds": compounds,
     }
 
-    OUTPUT_JSON.write_text(
-        json.dumps(
-            output,
-            ensure_ascii=False,
-            indent=2
+
+# =============================================================================
+# DIGIT RACING — STRATEGY ANALYSIS
+# =============================================================================
+
+def analyse_digit_strategy(text: str) -> dict[str, Any]:
+    sentences = split_sentences(text)
+    full = " ".join(sentences)
+
+    evidence: dict[str, list[str]] = {}
+
+    evidence["pit_window"] = find_evidence(
+        sentences,
+        [
+            r"\blap\s*(?:four|4)\b.*\blap\s*(?:five|5)\b",
+            r"\blap\s*(?:4|four)[\s/-]*(?:5|five)\b",
+            r"\bpit\b.*\blap\s*(?:four|4|five|5)\b",
+        ],
+        8,
+    )
+
+    evidence["overcut"] = find_evidence(
+        sentences,
+        [
+            r"\bovercut\b",
+            r"\bstayed out\b",
+            r"\bstay out\b",
+            r"\bpitted earlier\b",
+            r"\bpit(?:ted)? earlier\b",
+        ],
+        10,
+    )
+
+    evidence["undercut"] = find_evidence(
+        sentences,
+        [
+            r"\bundercut\b",
+        ],
+        5,
+    )
+
+    evidence["tyre_saving"] = find_evidence(
+        sentences,
+        [
+            r"\btire saving\b",
+            r"\btyre saving\b",
+            r"\bsaving tires\b",
+            r"\bsaving tyres\b",
+            r"\bsave the tires\b",
+            r"\bsave the tyres\b",
+            r"\bgentle\b.*\btire",
+            r"\bgentle\b.*\btyre",
+        ],
+        8,
+    )
+
+    evidence["mandatory_change"] = find_evidence(
+        sentences,
+        [
+            r"\brequired tire change\b",
+            r"\brequired tyre change\b",
+            r"\bmandatory\b.*\btire",
+            r"\bmandatory\b.*\btyre",
+            r"\bpit stop is required\b",
+            r"\bneed to change the tires\b",
+            r"\bneed to change the tyres\b",
+        ],
+        6,
+    )
+
+    evidence["compounds"] = find_evidence(
+        sentences,
+        [
+            r"\bracing mediums?\b",
+            r"\bracing softs?\b",
+            r"\bmediums? and soft\b",
+            r"\bmedium.*soft\b",
+        ],
+        6,
+    )
+
+    evidence["citroen"] = find_evidence(
+        sentences,
+        [
+            r"\bcitro[eë]n\b",
+            r"\bcitroen\b",
+        ],
+        8,
+    )
+
+    evidence["meta"] = find_evidence(
+        sentences,
+        [
+            r"\bmeta\b",
+            r"\bcitroen cup\b",
+            r"\bcar to go with\b",
+        ],
+        6,
+    )
+
+    evidence["track_limits"] = find_evidence(
+        sentences,
+        [
+            r"\btrack limits?\b",
+            r"\bpenalt(?:y|ies)\b",
+        ],
+        6,
+    )
+
+    # -------------------------------------------------------------------------
+    # Strategy conclusion
+    #
+    # Key project rule:
+    # later race-tested conclusions have greater value than the early prediction.
+    # -------------------------------------------------------------------------
+
+    latest_overcut_statement = find_last_evidence(
+        sentences,
+        [
+            r"\bovercut\b",
+            r"\bshould have stayed out\b",
+            r"\bpitted earlier\b.*\blost\b",
+        ],
+    )
+
+    overcut_supported = contains_any(
+        full,
+        [
+            r"\bovercut\b",
+            r"\bshould have stayed out\b",
+        ],
+    )
+
+    early_pit_supported = bool(
+        evidence["pit_window"]
+    )
+
+    tyre_saving_supported = bool(
+        evidence["tyre_saving"]
+    )
+
+    mandatory_change_supported = bool(
+        evidence["mandatory_change"]
+    )
+
+    citroen_supported = bool(
+        evidence["citroen"]
+    )
+
+    strategy_summary: list[str] = []
+
+    if mandatory_change_supported:
+        strategy_summary.append(
+            "A tyre change is required during the race."
+        )
+
+    if early_pit_supported and overcut_supported:
+        strategy_summary.append(
+            "Digit initially considered roughly lap 4-5 as the pit window, "
+            "but his later race-tested conclusion favoured extending the stint."
+        )
+    elif early_pit_supported:
+        strategy_summary.append(
+            "Digit identified approximately lap 4-5 as a possible pit window."
+        )
+
+    if overcut_supported:
+        strategy_summary.append(
+            "The later evidence favours the overcut: staying out longer "
+            "performed better than stopping early."
+        )
+
+    if tyre_saving_supported:
+        strategy_summary.append(
+            "Tyre preservation is an important component of race pace."
+        )
+
+    if citroen_supported:
+        strategy_summary.append(
+            "Digit identifies the GT by Citroën Gr.4 as particularly strong "
+            "for this race, including tyre performance."
+        )
+
+    confidence = "HIGH" if (
+        overcut_supported
+        and mandatory_change_supported
+    ) else "MEDIUM"
+
+    return {
+        "source": "Digit Racing",
+        "role": "RACE_STRATEGY",
+        "video_id": DIGIT_VIDEO_ID,
+        "confidence": confidence,
+        "pit_window_initial": (
+            "approximately laps 4-5"
+            if early_pit_supported
+            else None
         ),
-        encoding="utf-8"
+        "preferred_pit_logic": (
+            "OVERCUT / EXTEND FIRST STINT"
+            if overcut_supported
+            else (
+                "LAP 4-5 WINDOW"
+                if early_pit_supported
+                else None
+            )
+        ),
+        "tyre_saving": tyre_saving_supported,
+        "mandatory_tyre_change": mandatory_change_supported,
+        "citroen_recommended": citroen_supported,
+        "latest_strategy_statement": latest_overcut_statement,
+        "summary": strategy_summary,
+        "evidence": evidence,
+    }
+
+
+# =============================================================================
+# GNC RACING — LAP GUIDE ANALYSIS
+# =============================================================================
+
+def analyse_gnc_lap_guide(text: str) -> dict[str, Any]:
+    sentences = split_sentences(text)
+
+    braking = find_evidence(
+        sentences,
+        [
+            r"\bbrak",
+            r"\bbreak\b",
+            r"\b100 board\b",
+            r"\b200 board\b",
+            r"\b300\b",
+            r"\b350 m\b",
+            r"\b50 m\b",
+        ],
+        16,
     )
 
-    report = build_report(
-        ground_truth,
-        validations,
-        strategy_source,
-        strategy_rows,
-        lap_source,
-        lap_rows,
-        live_meta
+    gears = find_evidence(
+        sentences,
+        [
+            r"\b(?:first|second|third|fourth|fifth|sixth) gear\b",
+            r"\bshift(?:ing)? down\b",
+            r"\bshift(?:ing)? up\b",
+        ],
+        12,
     )
 
-    OUTPUT_REPORT.write_text(
-        report,
-        encoding="utf-8"
+    throttle = find_evidence(
+        sentences,
+        [
+            r"\baccelerat",
+            r"\bfull throttle\b",
+            r"\bget on the power\b",
+            r"\bpower down\b",
+        ],
+        14,
     )
 
-    print("")
+    line = find_evidence(
+        sentences,
+        [
+            r"\btight line\b",
+            r"\binside line\b",
+            r"\bwhite line\b",
+            r"\bleft side\b",
+            r"\bright side\b",
+            r"\bturn in\b",
+            r"\bapex\b",
+        ],
+        16,
+    )
+
+    kerbs = find_evidence(
+        sentences,
+        [
+            r"\bcurb\b",
+            r"\bkerb\b",
+            r"\bbollard",
+            r"\bwhite line\b",
+            r"\btrack limit",
+        ],
+        12,
+    )
+
+    markers = []
+
+    marker_patterns = [
+        r"\b(?:100|200|300|350|400)\s*(?:m|meter|metre|board)?\b",
+        r"\barrow sign\b",
+        r"\bbridge\b",
+        r"\btunnel\b",
+        r"\breflective post\b",
+        r"\brock",
+        r"\byellow signs?\b",
+        r"\bGran Turismo logo\b",
+        r"\bpower line\b",
+    ]
+
+    for sentence in sentences:
+        if contains_any(sentence, marker_patterns):
+            markers.append(sentence)
+
+    # Deduplicate preserving order.
+    unique_markers = []
+    seen = set()
+
+    for item in markers:
+        item_norm = normalize_space(item)
+
+        if item_norm in seen:
+            continue
+
+        seen.add(item_norm)
+        unique_markers.append(item_norm)
+
+    # Build compact sequence from transcript order.
+    sequential = []
+
+    for sentence in sentences:
+        categories = []
+
+        lower = sentence.lower()
+
+        if re.search(
+            r"\bbrak|\bbreak\b",
+            lower,
+        ):
+            categories.append("BRAKING")
+
+        if re.search(
+            r"\bsecond gear\b|\bshift",
+            lower,
+        ):
+            categories.append("GEAR")
+
+        if re.search(
+            r"\baccelerat|\bpower\b|\bfull throttle\b",
+            lower,
+        ):
+            categories.append("THROTTLE")
+
+        if re.search(
+            r"\bcurb\b|\bkerb\b|\bwhite line\b|\bbollard",
+            lower,
+        ):
+            categories.append("TRACK_LIMIT")
+
+        if not categories:
+            continue
+
+        if len(sentence) < 35:
+            continue
+
+        sequential.append(
+            {
+                "categories": categories,
+                "instruction": sentence,
+            }
+        )
+
+        if len(sequential) >= 18:
+            break
+
+    return {
+        "source": "GnC Racing",
+        "role": "QUALIFYING_LAP_GUIDE",
+        "video_id": GNC_VIDEO_ID,
+        "confidence": "HIGH",
+        "braking_points": braking,
+        "gears": gears,
+        "throttle": throttle,
+        "racing_line": line,
+        "kerbs_track_limits": kerbs,
+        "reference_markers": unique_markers[:16],
+        "sequential_guide": sequential,
+    }
+
+
+# =============================================================================
+# LIVE LEADERBOARD META
+# =============================================================================
+
+def extract_car_entries(value: Any) -> list[tuple[str, int]]:
+    """
+    Tries to recover car-use statistics from changing snapshot schemas.
+
+    Returns:
+        [(car_name, count), ...]
+    """
+
+    entries: list[tuple[str, int]] = []
+
+    if isinstance(value, list):
+        for item in value:
+            entries.extend(
+                extract_car_entries(item)
+            )
+
+    elif isinstance(value, dict):
+        name = None
+        count = None
+
+        for key in [
+            "car",
+            "car_name",
+            "vehicle",
+            "model",
+        ]:
+            if key in value and isinstance(
+                value[key],
+                str,
+            ):
+                name = value[key]
+                break
+
+        for key in [
+            "count",
+            "drivers",
+            "usage_count",
+            "entries",
+        ]:
+            if key in value:
+                try:
+                    count = int(value[key])
+                except Exception:
+                    pass
+
+                if count is not None:
+                    break
+
+        if name and count is not None:
+            entries.append(
+                (
+                    normalize_space(name),
+                    count,
+                )
+            )
+
+        for item in value.values():
+            entries.extend(
+                extract_car_entries(item)
+            )
+
+    return entries
+
+
+def build_live_meta(snapshot: Any) -> list[dict[str, Any]]:
+    entries = extract_car_entries(snapshot)
+
+    if not entries:
+        return []
+
+    totals = Counter()
+
+    for car, count in entries:
+        totals[car] += count
+
+    ranked = totals.most_common(10)
+
+    overall = sum(
+        count
+        for _, count in ranked
+    )
+
+    result = []
+
+    for car, count in ranked:
+        pct = (
+            count / overall * 100
+            if overall
+            else 0
+        )
+
+        result.append(
+            {
+                "car": car,
+                "drivers": count,
+                "percentage": round(
+                    pct,
+                    1,
+                ),
+            }
+        )
+
+    return result
+
+
+# =============================================================================
+# TEXT REPORT
+# =============================================================================
+
+def make_text_report(report: dict[str, Any]) -> str:
+    lines: list[str] = []
+
+    width = 100
+
+    def heading(title: str) -> None:
+        lines.append("")
+        lines.append(title)
+        lines.append("-" * width)
+
+    race = report["race"]
+    strategy = report["strategy"]
+    lap = report["lap_guide"]
+    meta = report["live_car_meta"]
+
+    lines.append("=" * width)
+    lines.append(
+        f"GT7 COMMUNITY INTELLIGENCE {VERSION}"
+    )
+    lines.append("=" * width)
+
+    lines.append(
+        f"Race week        : {race.get('week') or 'unknown'}"
+    )
+    lines.append(
+        f"Track            : {race.get('track') or 'unknown'}"
+    )
+    lines.append(
+        f"Class            : {race.get('race_class') or 'unknown'}"
+    )
+    lines.append(
+        f"Direction        : {race.get('direction') or 'unknown'}"
+    )
+    lines.append(
+        f"Fuel             : {fmt_mult(race.get('fuel_multiplier'))}"
+    )
+    lines.append(
+        f"Tyre wear        : {fmt_mult(race.get('tyre_multiplier'))}"
+    )
+
+    compounds = race.get("compounds") or []
+
+    lines.append(
+        "Compounds        : "
+        + (
+            ", ".join(compounds)
+            if compounds
+            else "unknown"
+        )
+    )
+
+    heading("SOURCE POLICY")
+
+    lines.append(
+        "Race strategy    : Digit Racing only"
+    )
+    lines.append(
+        "Qualifying guide : GnC Racing only"
+    )
+    lines.append(
+        "Race regulations : live GT7/GTSH snapshot"
+    )
+    lines.append(
+        "Car meta         : live leaderboard"
+    )
+
+    heading("RACE STRATEGY — DIGIT RACING")
+
+    lines.append(
+        f"Confidence       : {strategy['confidence']}"
+    )
+
+    pit_logic = (
+        strategy.get("preferred_pit_logic")
+        or "No supported conclusion"
+    )
+
+    lines.append(
+        f"Preferred logic  : {pit_logic}"
+    )
+
+    if strategy.get("pit_window_initial"):
+        lines.append(
+            "Initial estimate : "
+            + strategy["pit_window_initial"]
+        )
+
+    lines.append(
+        "Tyre saving      : "
+        + (
+            "IMPORTANT"
+            if strategy.get("tyre_saving")
+            else "not explicitly established"
+        )
+    )
+
+    lines.append(
+        "Tyre change      : "
+        + (
+            "REQUIRED"
+            if strategy.get(
+                "mandatory_tyre_change"
+            )
+            else "not established from Digit transcript"
+        )
+    )
+
+    lines.append(
+        "Citroën          : "
+        + (
+            "SUPPORTED BY DIGIT"
+            if strategy.get(
+                "citroen_recommended"
+            )
+            else "not explicitly supported"
+        )
+    )
+
+    lines.append("")
+
+    for index, item in enumerate(
+        strategy.get("summary", []),
+        start=1,
+    ):
+        lines.append(
+            f"{index}. {item}"
+        )
+
+    if strategy.get(
+        "latest_strategy_statement"
+    ):
+        lines.append("")
+        lines.append(
+            "Latest race-tested strategy evidence:"
+        )
+        lines.append(
+            "  "
+            + shorten(
+                strategy[
+                    "latest_strategy_statement"
+                ],
+                650,
+            )
+        )
+
+    heading("STRATEGY EVIDENCE")
+
+    evidence_order = [
+        (
+            "Overcut / stay out",
+            "overcut",
+        ),
+        (
+            "Pit window",
+            "pit_window",
+        ),
+        (
+            "Tyre saving",
+            "tyre_saving",
+        ),
+        (
+            "Mandatory change",
+            "mandatory_change",
+        ),
+        (
+            "Compounds",
+            "compounds",
+        ),
+        (
+            "Citroën / meta",
+            "citroen",
+        ),
+    ]
+
+    for title, key in evidence_order:
+        values = strategy.get(
+            "evidence",
+            {},
+        ).get(
+            key,
+            [],
+        )
+
+        if not values:
+            continue
+
+        lines.append("")
+        lines.append(f"{title}:")
+
+        for value in values[:4]:
+            lines.append(
+                "  - "
+                + shorten(
+                    value,
+                    520,
+                )
+            )
+
+    heading("QUALIFYING / FAST LAP — GNC RACING")
+
+    lines.append(
+        f"Confidence       : {lap['confidence']}"
+    )
+
+    guide = lap.get(
+        "sequential_guide",
+        [],
+    )
+
+    if not guide:
+        lines.append(
+            "No structured lap-guide evidence found."
+        )
+
+    for index, item in enumerate(
+        guide,
+        start=1,
+    ):
+        cats = "/".join(
+            item["categories"]
+        )
+
+        lines.append(
+            f"{index:2d}. [{cats}] "
+            + shorten(
+                item["instruction"],
+                580,
+            )
+        )
+
+    heading("BRAKING REFERENCES — GNC")
+
+    braking = lap.get(
+        "braking_points",
+        [],
+    )
+
+    if not braking:
+        lines.append(
+            "No braking references extracted."
+        )
+    else:
+        for item in braking[:12]:
+            lines.append(
+                "- "
+                + shorten(
+                    item,
+                    560,
+                )
+            )
+
+    heading("GEARS / SHIFTING — GNC")
+
+    gears = lap.get(
+        "gears",
+        [],
+    )
+
+    if not gears:
+        lines.append(
+            "No gear references extracted."
+        )
+    else:
+        for item in gears[:10]:
+            lines.append(
+                "- "
+                + shorten(
+                    item,
+                    560,
+                )
+            )
+
+    heading("TRACK LIMITS / KERBS — GNC")
+
+    kerbs = lap.get(
+        "kerbs_track_limits",
+        [],
+    )
+
+    if not kerbs:
+        lines.append(
+            "No kerb/track-limit guidance extracted."
+        )
+    else:
+        for item in kerbs[:10]:
+            lines.append(
+                "- "
+                + shorten(
+                    item,
+                    560,
+                )
+            )
+
+    heading("LIVE CAR META")
+
+    if not meta:
+        lines.append(
+            "Live leaderboard car distribution "
+            "was not found in the snapshot."
+        )
+    else:
+        for index, item in enumerate(
+            meta[:10],
+            start=1,
+        ):
+            lines.append(
+                f"{index:2d}. "
+                f"{item['car']} | "
+                f"{item['drivers']} drivers | "
+                f"{item['percentage']:.1f}%"
+            )
+
+    heading("PRACTICAL RACE PLAN")
+
+    practical = report.get(
+        "practical_plan",
+        [],
+    )
+
+    for index, item in enumerate(
+        practical,
+        start=1,
+    ):
+        lines.append(
+            f"{index}. {item}"
+        )
+
+    heading("ANALYSIS POLICY")
+
+    lines.append(
+        "1. Digit Racing is the sole community source for race strategy."
+    )
+    lines.append(
+        "2. GnC Racing is the sole community source for qualifying/lap guidance."
+    )
+    lines.append(
+        "3. Live GT7/GTSH data overrides any conflicting community statement."
+    )
+    lines.append(
+        "4. Later race-tested Digit conclusions override earlier speculative strategy comments."
+    )
+    lines.append(
+        "5. Live leaderboard usage is authoritative for current car meta."
+    )
+    lines.append(
+        "6. Transcript evidence is never used to invent missing braking points, gears or strategy."
+    )
+
+    lines.append("")
+    lines.append("=" * width)
+
+    return "\n".join(lines)
+
+
+# =============================================================================
+# MAIN
+# =============================================================================
+
+def main() -> None:
+    print("=" * 100)
     print(
+        f"GT7 COMMUNITY ANALYZER {VERSION}"
+    )
+    print("=" * 100)
+
+    snapshot = load_json(
+        LATEST_SNAPSHOT
+    )
+
+    digit_data = load_json(
+        DIGIT_TRANSCRIPT
+    )
+
+    gnc_data = load_json(
+        GNC_TRANSCRIPT
+    )
+
+    print(
+        f"Digit transcript : {'FOUND' if digit_data else 'MISSING'}"
+    )
+
+    print(
+        f"GnC transcript   : {'FOUND' if gnc_data else 'MISSING'}"
+    )
+
+    if digit_data is None:
+        raise SystemExit(
+            f"ERROR: missing Digit transcript: "
+            f"{DIGIT_TRANSCRIPT}"
+        )
+
+    if gnc_data is None:
+        raise SystemExit(
+            f"ERROR: missing GnC transcript: "
+            f"{GNC_TRANSCRIPT}"
+        )
+
+    digit_text = extract_transcript_text(
+        digit_data
+    )
+
+    gnc_text = extract_transcript_text(
+        gnc_data
+    )
+
+    print(
+        f"Digit characters : {len(digit_text):,}"
+    )
+
+    print(
+        f"GnC characters   : {len(gnc_text):,}"
+    )
+
+    if not digit_text:
+        raise SystemExit(
+            "ERROR: Digit transcript JSON exists "
+            "but no usable transcript text was found."
+        )
+
+    if not gnc_text:
+        raise SystemExit(
+            "ERROR: GnC transcript JSON exists "
+            "but no usable transcript text was found."
+        )
+
+    race = extract_live_config(
+        snapshot
+    )
+
+    strategy = analyse_digit_strategy(
+        digit_text
+    )
+
+    lap_guide = analyse_gnc_lap_guide(
+        gnc_text
+    )
+
+    live_meta = build_live_meta(
+        snapshot
+    )
+
+    practical_plan: list[str] = []
+
+    practical_plan.append(
+        "Use the official/live race configuration as the regulatory baseline."
+    )
+
+    if strategy.get(
+        "mandatory_tyre_change"
+    ):
+        practical_plan.append(
+            "Plan the race around the required tyre change."
+        )
+
+    if strategy.get(
+        "tyre_saving"
+    ):
+        practical_plan.append(
+            "Protect the tyres during the opening stint; "
+            "unnecessary sliding and steering input can compromise the later laps."
+        )
+
+    if (
+        strategy.get(
+            "preferred_pit_logic"
+        )
+        == "OVERCUT / EXTEND FIRST STINT"
+    ):
+        practical_plan.append(
+            "Do not treat laps 4-5 as a rigid pit window. "
+            "Digit's later race-tested conclusion favours staying out longer "
+            "and using the overcut rather than stopping early."
+        )
+    elif strategy.get(
+        "pit_window_initial"
+    ):
+        practical_plan.append(
+            "Use approximately laps 4-5 as the currently supported pit reference."
+        )
+
+    if strategy.get(
+        "citroen_recommended"
+    ):
+        practical_plan.append(
+            "The GT by Citroën Gr.4 is supported by Digit's race experience; "
+            "compare that recommendation with the live leaderboard before choosing the car."
+        )
+
+    practical_plan.append(
+        "Use the GnC guide for braking references, gears, line and throttle technique; "
+        "do not mix lap instructions from other community sources."
+    )
+
+    report = {
+        "generated_at_utc": datetime.now(
+            timezone.utc
+        ).isoformat(),
+        "version": VERSION,
+        "race": race,
+        "sources": {
+            "strategy": {
+                "channel": "Digit Racing",
+                "video_id": DIGIT_VIDEO_ID,
+                "role": "RACE_STRATEGY",
+            },
+            "lap_guide": {
+                "channel": "GnC Racing",
+                "video_id": GNC_VIDEO_ID,
+                "role": "QUALIFYING_LAP_GUIDE",
+            },
+        },
+        "strategy": strategy,
+        "lap_guide": lap_guide,
+        "live_car_meta": live_meta,
+        "practical_plan": practical_plan,
+        "policy": {
+            "strategy_source_count": 1,
+            "lap_guide_source_count": 1,
+            "strategy_source": "Digit Racing",
+            "lap_guide_source": "GnC Racing",
+            "regulation_authority": "LIVE_GT7_GTSH",
+            "car_meta_authority": "LIVE_LEADERBOARD",
+            "later_race_tested_strategy_overrides_early_prediction": True,
+        },
+    }
+
+    text_report = make_text_report(
         report
     )
 
-    print("")
-
-    print(
-        f"JSON report      : "
-        f"{OUTPUT_JSON}"
+    OUTPUT_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
     )
 
-    print(
-        f"Text report      : "
-        f"{OUTPUT_REPORT}"
+    save_json(
+        OUTPUT_JSON,
+        report,
     )
+
+    OUTPUT_TXT.write_text(
+        text_report,
+        encoding="utf-8",
+    )
+
+    print()
+    print(text_report)
+
+    print()
+    print(
+        f"JSON report      : {OUTPUT_JSON}"
+    )
+    print(
+        f"Text report      : {OUTPUT_TXT}"
+    )
+
+    print()
+    print("=" * 100)
+    print(
+        "COMMUNITY INTELLIGENCE COMPLETE"
+    )
+    print("=" * 100)
 
 
 if __name__ == "__main__":
