@@ -83,24 +83,13 @@ CAR_TECHNICAL_INFO = {
     3399: {"layout": "FR"},
     3477: {"layout": "FR"},
     3480: {"layout": "FF"},
-
-    # Genesis G70 GR4 is 4WD
     3501: {"layout": "4WD"},
-
     3537: {"layout": "FF"}
 }
 
 
 # ============================================================
 # BRAKE BIAS V2
-#
-# Conservative heuristic starting ranges.
-#
-# Negative = more front
-# Positive = more rear
-#
-# Tyre wear does not expand these ranges.
-# It only determines the suggested starting value within them.
 # ============================================================
 
 BRAKE_BIAS_BASELINES = {
@@ -183,7 +172,6 @@ def laptime_to_score(text):
         return None
 
     try:
-
         minutes, rest = text.split(":")
         seconds, milliseconds = rest.split(".")
 
@@ -194,7 +182,6 @@ def laptime_to_score(text):
         )
 
     except Exception:
-
         return None
 
 
@@ -440,10 +427,7 @@ def find_current_race_c(
 # PERSONAL RATINGS
 # ============================================================
 
-def position_score(
-    rank,
-    total
-):
+def position_score(rank, total):
 
     if (
         rank is None
@@ -469,10 +453,7 @@ def position_score(
     )
 
 
-def elite_score(
-    rank,
-    total
-):
+def elite_score(rank, total):
 
     if (
         rank is None
@@ -500,10 +481,7 @@ def elite_score(
     )
 
 
-def composite_rating(
-    general,
-    elite
-):
+def composite_rating(general, elite):
 
     if (
         general is None
@@ -517,10 +495,7 @@ def composite_rating(
     )
 
 
-def percentile_ahead(
-    rank,
-    total
-):
+def percentile_ahead(rank, total):
 
     if (
         rank is None
@@ -536,9 +511,7 @@ def percentile_ahead(
     )
 
 
-def pace_band(
-    wr_percentage
-):
+def pace_band(wr_percentage):
 
     if wr_percentage <= 101:
         return "ALIEN"
@@ -587,9 +560,7 @@ def load_weekly_history():
     return []
 
 
-def save_weekly_history(
-    history
-):
+def save_weekly_history(history):
 
     history.sort(
         key=lambda item:
@@ -919,9 +890,7 @@ def metric_trend(
 # COMPARISON HELPERS
 # ============================================================
 
-def signed_seconds(
-    delta_ms
-):
+def signed_seconds(delta_ms):
 
     if delta_ms is None:
         return "N/A"
@@ -955,13 +924,11 @@ def position_change(
     )
 
     if difference > 0:
-
         return (
             f"+{difference} positions"
         )
 
     if difference < 0:
-
         return (
             f"{difference} positions"
         )
@@ -985,7 +952,6 @@ def extract_multiplier(
     )
 
     if match:
-
         return int(
             match.group(1)
         )
@@ -1033,9 +999,7 @@ def extract_start_date(
 # BRAKE BIAS V2
 # ============================================================
 
-def format_bb_value(
-    value
-):
+def format_bb_value(value):
 
     if value is None:
         return "N/A"
@@ -1048,9 +1012,7 @@ def format_bb_value(
     )
 
 
-def format_bb_range(
-    range_value
-):
+def format_bb_range(range_value):
 
     if not range_value:
         return "N/A"
@@ -1058,7 +1020,6 @@ def format_bb_range(
     low, high = range_value
 
     if low == high:
-
         return format_bb_value(
             low
         )
@@ -1383,7 +1344,6 @@ def load_history_for_race(
                 )
 
         except Exception:
-
             pass
 
     return snapshots
@@ -1431,7 +1391,6 @@ def snapshot_metric_score(
             value,
             dict
         ):
-
             return value.get(
                 "score"
             )
@@ -1440,14 +1399,12 @@ def snapshot_metric_score(
             value,
             int
         ):
-
             return value
 
         if isinstance(
             value,
             str
         ):
-
             return laptime_to_score(
                 value
             )
@@ -1456,30 +1413,24 @@ def snapshot_metric_score(
 
 
 # ============================================================
-# FORECAST V2 - HELPERS
+# FORECAST V2 HELPERS
 # ============================================================
 
-def forecast_parse_datetime(
-    value
-):
+def forecast_parse_datetime(value):
 
     if not value:
         return None
 
     try:
-
         return datetime.fromisoformat(
             value
         )
 
     except Exception:
-
         return None
 
 
-def forecast_linear_regression(
-    points
-):
+def forecast_linear_regression(points):
 
     if len(points) < 2:
         return None
@@ -1586,7 +1537,6 @@ def forecast_threshold_score(
         value,
         dict
     ):
-
         return value.get(
             "score"
         )
@@ -1595,7 +1545,43 @@ def forecast_threshold_score(
         value,
         (int, float)
     ):
+        return value
 
+    return None
+
+
+# ============================================================
+# NEW: DIRECT PERCENTILE SNAPSHOT METRICS
+# ============================================================
+
+def forecast_percentile_threshold_score(
+    snapshot,
+    percent
+):
+
+    value = (
+        snapshot
+        .get(
+            "percentile_thresholds",
+            {}
+        )
+        .get(
+            str(percent)
+        )
+    )
+
+    if isinstance(
+        value,
+        dict
+    ):
+        return value.get(
+            "score"
+        )
+
+    if isinstance(
+        value,
+        (int, float)
+    ):
         return value
 
     return None
@@ -1969,6 +1955,10 @@ def forecast_current_percentile_score(
     }
 
 
+# ============================================================
+# FALLBACK PERCENTILE FORECAST
+# ============================================================
+
 def forecast_projected_percentile_score(
     ranking,
     top500_forecast,
@@ -2019,6 +2009,30 @@ def forecast_projected_percentile_score(
         else 0
     )
 
+    confidence_values = []
+
+    if top500_forecast:
+        confidence_values.append(
+            top500_forecast.get(
+                "confidence",
+                "LOW"
+            )
+        )
+
+    if top1000_forecast:
+        confidence_values.append(
+            top1000_forecast.get(
+                "confidence",
+                "LOW"
+            )
+        )
+
+    confidence = (
+        "LOW"
+        if not confidence_values
+        else confidence_values[0]
+    )
+
     return {
         "current_rank":
             current[
@@ -2041,9 +2055,124 @@ def forecast_projected_percentile_score(
                 round(
                     expected_delta
                 )
-            )
+            ),
+
+        "mode":
+            "FALLBACK",
+
+        "confidence":
+            confidence,
+
+        "samples":
+            0
     }
 
+
+# ============================================================
+# NEW: DIRECT PERCENTILE FORECAST WITH FALLBACK
+# ============================================================
+
+def build_percentile_forecast(
+    snapshots,
+    ranking,
+    race_start,
+    sunday_end,
+    percent,
+    top500_forecast,
+    top1000_forecast
+):
+
+    direct = forecast_metric_v2(
+        snapshots,
+        race_start,
+        sunday_end,
+        extractor=lambda snapshot:
+            forecast_percentile_threshold_score(
+                snapshot,
+                percent
+            ),
+        direction="down"
+    )
+
+    current = forecast_current_percentile_score(
+        ranking,
+        percent
+    )
+
+    if direct:
+
+        return {
+            "current_rank":
+                current[
+                    "rank"
+                ],
+
+            "current_score":
+                current[
+                    "score"
+                ],
+
+            "predicted_score":
+                int(
+                    round(
+                        direct[
+                            "predicted"
+                        ]
+                    )
+                ),
+
+            "estimated_change_ms":
+                int(
+                    round(
+                        direct[
+                            "predicted"
+                        ]
+                        - direct[
+                            "current"
+                        ]
+                    )
+                ),
+
+            "mode":
+                "DIRECT",
+
+            "confidence":
+                direct[
+                    "confidence"
+                ],
+
+            "samples":
+                direct[
+                    "samples"
+                ],
+
+            "span_hours":
+                direct[
+                    "span_hours"
+                ],
+
+            "rmse":
+                direct[
+                    "rmse"
+                ]
+        }
+
+    fallback = forecast_projected_percentile_score(
+        ranking,
+        top500_forecast,
+        top1000_forecast,
+        percent
+    )
+
+    if fallback:
+        return fallback
+
+    return None
+
+
+# ============================================================
+# PERSONAL RANK FORECAST
+# ============================================================
 
 def forecast_rank_if_no_improvement(
     snapshots,
@@ -2071,7 +2200,6 @@ def forecast_rank_if_no_improvement(
         current_score is None
         or current_rank is None
     ):
-
         return None
 
     comparable = []
@@ -2272,6 +2400,10 @@ def forecast_overall_confidence(
     return "LOW"
 
 
+# ============================================================
+# FORECAST V2 MAIN
+# ============================================================
+
 def build_forecast_v2(
     history,
     current_snapshot,
@@ -2339,18 +2471,30 @@ def build_forecast_v2(
         direction="down"
     )
 
-    top10 = forecast_projected_percentile_score(
+    # ========================================================
+    # NEW:
+    # Prefer directly observed percentile histories.
+    # Falls back automatically until >= 3 direct observations.
+    # ========================================================
+
+    top10 = build_percentile_forecast(
+        snapshots,
         ranking,
+        race_start,
+        sunday_end,
+        10,
         top500_forecast,
-        top1000_forecast,
-        10
+        top1000_forecast
     )
 
-    top5 = forecast_projected_percentile_score(
+    top5 = build_percentile_forecast(
+        snapshots,
         ranking,
+        race_start,
+        sunday_end,
+        5,
         top500_forecast,
-        top1000_forecast,
-        5
+        top1000_forecast
     )
 
     total_forecast = forecast_total_drivers(
@@ -2479,6 +2623,12 @@ def build_forecast_v2(
                         - top10[
                             "predicted_score"
                         ]
+                    ),
+
+                "mode":
+                    top10.get(
+                        "mode",
+                        "UNKNOWN"
                     )
             }
 
@@ -2499,6 +2649,12 @@ def build_forecast_v2(
                         - top5[
                             "predicted_score"
                         ]
+                    ),
+
+                "mode":
+                    top5.get(
+                        "mode",
+                        "UNKNOWN"
                     )
             }
 
@@ -2508,7 +2664,9 @@ def build_forecast_v2(
             top100_forecast,
             top500_forecast,
             top1000_forecast,
-            total_forecast
+            total_forecast,
+            top10,
+            top5
         ]
     )
 
@@ -2583,6 +2741,10 @@ def build_forecast_v2(
             targets
     }
 
+
+# ============================================================
+# FORECAST REPORT
+# ============================================================
 
 def forecast_report_lines(
     forecast
@@ -2680,7 +2842,9 @@ def forecast_report_lines(
 
         lines.append(
             f"{'Top 10%':<15}: "
-            f"{score_to_laptime(top10['predicted_score'])}"
+            f"{score_to_laptime(top10['predicted_score'])} | "
+            f"{top10.get('mode','UNKNOWN')} | "
+            f"{top10.get('confidence','LOW')}"
         )
 
     top5 = forecast.get(
@@ -2691,7 +2855,9 @@ def forecast_report_lines(
 
         lines.append(
             f"{'Top 5%':<15}: "
-            f"{score_to_laptime(top5['predicted_score'])}"
+            f"{score_to_laptime(top5['predicted_score'])} | "
+            f"{top5.get('mode','UNKNOWN')} | "
+            f"{top5.get('confidence','LOW')}"
         )
 
     total = forecast.get(
@@ -2797,7 +2963,8 @@ def forecast_report_lines(
                 f"Top 10% target  : "
                 f"{score_to_laptime(target['score'])} | "
                 f"gain needed "
-                f"{target['gain_needed_ms']/1000:.3f}s"
+                f"{target['gain_needed_ms']/1000:.3f}s | "
+                f"{target.get('mode','UNKNOWN')}"
             )
 
         if "top5" in targets:
@@ -2810,10 +2977,17 @@ def forecast_report_lines(
                 f"Top 5% target   : "
                 f"{score_to_laptime(target['score'])} | "
                 f"gain needed "
-                f"{target['gain_needed_ms']/1000:.3f}s"
+                f"{target['gain_needed_ms']/1000:.3f}s | "
+                f"{target.get('mode','UNKNOWN')}"
             )
 
     lines.append("")
+
+    lines.append(
+        "Percentile mode : "
+        "DIRECT = forecast learned from the observed Top 5%/10% series; "
+        "FALLBACK = inferred from Top 500/1000 until enough direct snapshots exist."
+    )
 
     lines.append(
         "Forecast note   : "
@@ -3358,34 +3532,22 @@ def main():
         HEADERS
     )
 
-    # ========================================================
-    # TIME
-    # ========================================================
-
     now = datetime.now(
         SAO_PAULO
     )
 
-    timestamp_iso = (
-        now.isoformat()
+    timestamp_iso = now.isoformat()
+
+    timestamp_display = now.strftime(
+        "%d/%m/%Y %H:%M:%S"
     )
 
-    timestamp_display = (
-        now.strftime(
-            "%d/%m/%Y %H:%M:%S"
-        )
+    history_filename = now.strftime(
+        "%Y-%m-%d_%H-%M-%S.json"
     )
 
-    history_filename = (
-        now.strftime(
-            "%Y-%m-%d_%H-%M-%S.json"
-        )
-    )
-
-    report_filename = (
-        now.strftime(
-            "%Y-%m-%d_%H-%M-%S.txt"
-        )
+    report_filename = now.strftime(
+        "%Y-%m-%d_%H-%M-%S.txt"
     )
 
     # ========================================================
@@ -3421,11 +3583,9 @@ def main():
         "text"
     ]
 
-    race_detection_mode = (
-        race_c[
-            "detection_mode"
-        ]
-    )
+    race_detection_mode = race_c[
+        "detection_mode"
+    ]
 
     # ========================================================
     # LEADERBOARD PAGE
@@ -3438,51 +3598,37 @@ def main():
 
     leaderboard_response.raise_for_status()
 
-    html = (
-        leaderboard_response.text
-    )
+    html = leaderboard_response.text
 
     # ========================================================
-    # UPDATE CENTRAL CAR DATABASE
+    # CAR DATABASE UPDATE
     # ========================================================
 
     try:
 
-        car_update = (
-            update_car_database_from_html(
-                html
-            )
+        car_update = update_car_database_from_html(
+            html
         )
 
-        CAR_DATABASE = (
-            car_update[
-                "database"
-            ]
-        )
+        CAR_DATABASE = car_update[
+            "database"
+        ]
 
-        cars_discovered_this_run = (
-            car_update[
-                "discovered"
-            ]
-        )
+        cars_discovered_this_run = car_update[
+            "discovered"
+        ]
 
-        cars_added_this_run = (
-            car_update[
-                "added"
-            ]
-        )
+        cars_added_this_run = car_update[
+            "added"
+        ]
 
-        cars_updated_this_run = (
-            car_update[
-                "updated"
-            ]
-        )
+        cars_updated_this_run = car_update[
+            "updated"
+        ]
 
     except Exception:
 
-        CAR_DATABASE = (
-            load_car_database()
-        )
+        CAR_DATABASE = load_car_database()
 
         cars_discovered_this_run = 0
         cars_added_this_run = 0
@@ -3492,19 +3638,14 @@ def main():
     # EXTRACT RANKING
     # ========================================================
 
-    marker = (
-        "const initialRanking = "
-    )
+    marker = "const initialRanking = "
 
     start = html.find(
         marker
     )
 
     ranking = None
-
-    source_mode = (
-        "initialRanking"
-    )
+    source_mode = "initialRanking"
 
     if start != -1:
 
@@ -3512,23 +3653,17 @@ def main():
             marker
         )
 
-        decoder = (
-            json.JSONDecoder()
-        )
+        decoder = json.JSONDecoder()
 
-        ranking, _ = (
-            decoder.raw_decode(
-                html[
-                    start:
-                ].lstrip()
-            )
+        ranking, _ = decoder.raw_decode(
+            html[
+                start:
+            ].lstrip()
         )
 
     if not ranking:
 
-        source_mode = (
-            "update_endpoint"
-        )
+        source_mode = "update_endpoint"
 
         update_url = (
             race_c_link
@@ -3539,18 +3674,14 @@ def main():
             )
         )
 
-        update_response = (
-            session.get(
-                update_url,
-                timeout=60
-            )
+        update_response = session.get(
+            update_url,
+            timeout=60
         )
 
         update_response.raise_for_status()
 
-        update_data = (
-            update_response.json()
-        )
+        update_data = update_response.json()
 
         if isinstance(
             update_data,
@@ -3577,7 +3708,6 @@ def main():
                 candidate,
                 list
             ):
-
                 ranking = candidate
 
     if not ranking:
@@ -3598,9 +3728,7 @@ def main():
     # WORLD RECORD
     # ========================================================
 
-    winner = ranking[
-        0
-    ]
+    winner = ranking[0]
 
     wr_score = winner.get(
         "score"
@@ -3615,13 +3743,11 @@ def main():
     )
 
     time_103 = round(
-        wr_score
-        * 1.03
+        wr_score * 1.03
     )
 
     time_105 = round(
-        wr_score
-        * 1.05
+        wr_score * 1.05
     )
 
     # ========================================================
@@ -3647,7 +3773,7 @@ def main():
     )
 
     # ========================================================
-    # THRESHOLDS
+    # FIXED-RANK THRESHOLDS
     # ========================================================
 
     threshold_positions = [
@@ -3686,6 +3812,47 @@ def main():
                         score
                     )
             }
+
+    # ========================================================
+    # NEW: DIRECT PERCENTILE THRESHOLDS
+    #
+    # These are stored in every snapshot from now on.
+    # ========================================================
+
+    percentile_thresholds = {}
+
+    for percent in [
+        10,
+        5
+    ]:
+
+        percentile_rank_value = forecast_percentile_rank(
+            len(ranking),
+            percent
+        )
+
+        percentile_score_value = forecast_score_at_rank(
+            ranking,
+            percentile_rank_value
+        )
+
+        percentile_thresholds[
+            str(percent)
+        ] = {
+            "percent":
+                percent,
+
+            "rank":
+                percentile_rank_value,
+
+            "score":
+                percentile_score_value,
+
+            "laptime":
+                score_to_laptime(
+                    percentile_score_value
+                )
+        }
 
     # ========================================================
     # MY RESULT
@@ -3798,11 +3965,9 @@ def main():
             my_driver
         )
 
-        my_brake_bias = (
-            brake_bias_recommendation(
-                my_car_code,
-                tyre_multiplier
-            )
+        my_brake_bias = brake_bias_recommendation(
+            my_car_code,
+            tyre_multiplier
         )
 
         my_result = {
@@ -3914,17 +4079,9 @@ def main():
         ) is not None
     )
 
-    top100 = ranking[
-        :100
-    ]
-
-    top500 = ranking[
-        :500
-    ]
-
-    top1000 = ranking[
-        :1000
-    ]
+    top100 = ranking[:100]
+    top500 = ranking[:500]
+    top1000 = ranking[:1000]
 
     top100_counter = Counter(
         get_car_code(
@@ -3957,7 +4114,7 @@ def main():
     )
 
     # ========================================================
-    # TOP 5 CARS + BRAKE BIAS
+    # TOP 5 USED CARS + BRAKE BIAS
     # ========================================================
 
     top5_used_cars = []
@@ -3972,11 +4129,9 @@ def main():
         )
     ):
 
-        bb = (
-            brake_bias_recommendation(
-                car_code,
-                tyre_multiplier
-            )
+        bb = brake_bias_recommendation(
+            car_code,
+            tyre_multiplier
         )
 
         top5_used_cars.append({
@@ -4043,13 +4198,11 @@ def main():
     # CAR OVERPERFORMANCE
     # ========================================================
 
-    overperformance = (
-        car_performance_indices(
-            ranking,
-            all_counter,
-            top100_counter,
-            top1000_counter
-        )
+    overperformance = car_performance_indices(
+        ranking,
+        all_counter,
+        top100_counter,
+        top1000_counter
     )
 
     credible_overperformance = [
@@ -4061,14 +4214,9 @@ def main():
     ]
 
     if not credible_overperformance:
-
         credible_overperformance = (
             overperformance
         )
-
-    # ========================================================
-    # BEST DRIVER PER CAR
-    # ========================================================
 
     best_by_car = best_driver_by_car(
         ranking
@@ -4095,10 +4243,8 @@ def main():
             else None
         )
 
-        my_car_best = (
-            best_by_car.get(
-                my_code
-            )
+        my_car_best = best_by_car.get(
+            my_code
         )
 
         meta_car_best = (
@@ -4191,10 +4337,6 @@ def main():
                     else None
                 )
         }
-
-    # ========================================================
-    # PREVIOUS SNAPSHOT
-    # ========================================================
 
     previous = load_previous_snapshot()
 
@@ -4341,6 +4483,10 @@ def main():
         "thresholds":
             thresholds,
 
+        # NEW
+        "percentile_thresholds":
+            percentile_thresholds,
+
         "my_result":
             my_result,
 
@@ -4411,10 +4557,6 @@ def main():
         }
     }
 
-    # ========================================================
-    # ANOMALY DETECTION
-    # ========================================================
-
     warnings = anomaly_warnings(
         previous,
         snapshot,
@@ -4456,18 +4598,14 @@ def main():
             )
         ):
 
-            fallback_record = (
-                build_weekly_record(
-                    previous,
-                    "backfill_last_available_snapshot"
-                )
+            fallback_record = build_weekly_record(
+                previous,
+                "backfill_last_available_snapshot"
             )
 
-            weekly_history = (
-                upsert_weekly_record(
-                    weekly_history,
-                    fallback_record
-                )
+            weekly_history = upsert_weekly_record(
+                weekly_history,
+                fallback_record
             )
 
     force_final = (
@@ -4490,18 +4628,14 @@ def main():
 
     if weekly_finalized_now:
 
-        final_record = (
-            build_weekly_record(
-                snapshot,
-                "sunday_final"
-            )
+        final_record = build_weekly_record(
+            snapshot,
+            "sunday_final"
         )
 
-        weekly_history = (
-            upsert_weekly_record(
-                weekly_history,
-                final_record
-            )
+        weekly_history = upsert_weekly_record(
+            weekly_history,
+            final_record
         )
 
     # ========================================================
@@ -4561,10 +4695,6 @@ def main():
         "forecast_v2"
     ] = forecast_v2
 
-    # ========================================================
-    # SAME RACE?
-    # ========================================================
-
     same_race = (
         previous is not None
         and previous
@@ -4579,7 +4709,7 @@ def main():
     )
 
     # ========================================================
-    # BUILD REPORT
+    # REPORT
     # ========================================================
 
     lines = []
@@ -4809,7 +4939,7 @@ def main():
         )
 
     # ========================================================
-    # MY CAR VS META
+    # YOUR CAR VS META
     # ========================================================
 
     lines.append("")
@@ -4915,7 +5045,7 @@ def main():
         )
 
     # ========================================================
-    # YOUR BRAKE BIAS
+    # BRAKE BIAS
     # ========================================================
 
     lines.append("")
@@ -4983,10 +5113,6 @@ def main():
         lines.append(
             "No personal Brake Bias recommendation available."
         )
-
-    # ========================================================
-    # BRAKE BIAS TOP 5
-    # ========================================================
 
     lines.append("")
     lines.append(
@@ -5083,7 +5209,7 @@ def main():
         )
 
     # ========================================================
-    # FORECAST V2 REPORT
+    # FORECAST
     # ========================================================
 
     lines.append("")
@@ -5095,7 +5221,7 @@ def main():
     )
 
     # ========================================================
-    # LONG-TERM RATING TREND
+    # LONG-TERM RATING
     # ========================================================
 
     lines.append("")
@@ -5166,11 +5292,9 @@ def main():
 
     if weekly_history:
 
-        latest_final = (
-            weekly_history[
-                -1
-            ]
-        )
+        latest_final = weekly_history[
+            -1
+        ]
 
         lines.append("")
         lines.append(
@@ -5209,64 +5333,44 @@ def main():
 
         if my_result:
 
-            current_general = (
-                my_result.get(
-                    "position_score"
-                )
+            current_general = my_result.get(
+                "position_score"
             )
 
-            current_elite = (
-                my_result.get(
-                    "elite_score"
-                )
+            current_elite = my_result.get(
+                "elite_score"
             )
 
-            current_composite = (
-                my_result.get(
-                    "composite_rating"
-                )
+            current_composite = my_result.get(
+                "composite_rating"
             )
 
-            current_top = (
-                my_result.get(
-                    "top_percent"
-                )
+            current_top = my_result.get(
+                "top_percent"
             )
 
-            current_wr = (
-                my_result.get(
-                    "wr_percentage"
-                )
+            current_wr = my_result.get(
+                "wr_percentage"
             )
 
-            last_general = (
-                latest_final.get(
-                    "general_score"
-                )
+            last_general = latest_final.get(
+                "general_score"
             )
 
-            last_elite = (
-                latest_final.get(
-                    "elite_score"
-                )
+            last_elite = latest_final.get(
+                "elite_score"
             )
 
-            last_composite = (
-                latest_final.get(
-                    "composite_rating"
-                )
+            last_composite = latest_final.get(
+                "composite_rating"
             )
 
-            last_top = (
-                latest_final.get(
-                    "top_percent"
-                )
+            last_top = latest_final.get(
+                "top_percent"
             )
 
-            last_wr = (
-                latest_final.get(
-                    "wr_percentage"
-                )
+            last_wr = latest_final.get(
+                "wr_percentage"
             )
 
             lines.append("")
@@ -5342,43 +5446,34 @@ def main():
             assessment_score = 0
 
             if delta_composite > 0.05:
-
                 assessment_score += 2
 
             elif delta_composite < -0.05:
-
                 assessment_score -= 2
 
             if delta_top < -0.50:
-
                 assessment_score += 1
 
             elif delta_top > 0.50:
-
                 assessment_score -= 1
 
             if delta_wr < -0.05:
-
                 assessment_score += 1
 
             elif delta_wr > 0.05:
-
                 assessment_score -= 1
 
             if assessment_score >= 2:
-
                 current_assessment = (
                     "ABOVE LAST WEEK"
                 )
 
             elif assessment_score <= -2:
-
                 current_assessment = (
                     "BELOW LAST WEEK"
                 )
 
             else:
-
                 current_assessment = (
                     "SIMILAR TO LAST WEEK"
                 )
@@ -5394,11 +5489,9 @@ def main():
             weekly_history
         ) >= 2:
 
-            previous_final = (
-                weekly_history[
-                    -2
-                ]
-            )
+            previous_final = weekly_history[
+                -2
+            ]
 
             lines.append("")
             lines.append(
@@ -5651,7 +5744,7 @@ def main():
         )
 
     # ========================================================
-    # WHAT CHANGED SINCE PREVIOUS SNAPSHOT
+    # CHANGES SINCE PREVIOUS SNAPSHOT
     # ========================================================
 
     lines.append("")
@@ -5816,6 +5909,11 @@ def main():
     lines.append(
         f"Weekly final   : "
         f"{'YES' if weekly_finalized_now else 'No'}"
+    )
+
+    lines.append(
+        f"Percentile data: "
+        f"Top 10% and Top 5% direct snapshot stored"
     )
 
     if cars_discovered_this_run:
