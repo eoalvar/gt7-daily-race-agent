@@ -1,314 +1,648 @@
 {
-  "generated_at_utc": "2026-08-16T23:14:33.167955+00:00",
-  "version": "V5.1",
+  "analyzer_version": "5.2",
   "race": {
     "week": "2026-08-10T00:00:00-03:00",
-    "track": null,
-    "race_class": null,
-    "direction": null,
+    "track": "Grand Valley - Highway 1",
+    "class": "Gr.4",
+    "direction": "NORMAL",
     "fuel_multiplier": 2,
     "tyre_multiplier": 4,
     "compounds": [
       "RM",
       "RS"
-    ]
+    ],
+    "description": "C Gr.4 Running 10 Aug 2026 Daily Race C i 16:48 Grand Valley - Highway 1 M. Estevez - GT by Citroën Gr.4 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "detection_mode": "explicit_running",
+    "source_mode": "initialRanking"
   },
   "sources": {
     "strategy": {
       "channel": "Digit Racing",
-      "video_id": "O-AfZNXuGBg",
-      "role": "RACE_STRATEGY"
+      "available": true,
+      "file": "data/community_transcripts/O-AfZNXuGBg_digit_racing.json"
     },
     "lap_guide": {
       "channel": "GnC Racing",
-      "video_id": "qHfm2RjbRjI",
-      "role": "QUALIFYING_LAP_GUIDE"
+      "available": true,
+      "file": "data/community_transcripts/qHfm2RjbRjI_gnc_racing.json"
     }
   },
   "strategy": {
-    "source": "Digit Racing",
-    "role": "RACE_STRATEGY",
-    "video_id": "O-AfZNXuGBg",
-    "confidence": "MEDIUM",
-    "pit_window_initial": null,
-    "preferred_pit_logic": "OVERCUT / EXTEND FIRST STINT",
-    "tyre_saving": false,
-    "mandatory_tyre_change": false,
-    "citroen_recommended": true,
-    "latest_strategy_statement": "[2:40:33] Overcut it is.",
-    "summary": [
-      "The later evidence favours the overcut: staying out longer performed better than stopping early.",
+    "confidence": "HIGH",
+    "preferred_logic": "OVERCUT / EXTEND FIRST STINT",
+    "tyre_saving_supported": false,
+    "tyre_change_supported": false,
+    "citroen_supported": true,
+    "recommendations": [
+      "The later race-tested evidence favours the overcut: staying out longer performed better than stopping early.",
       "Digit identifies the GT by Citroën Gr.4 as particularly strong for this race, including tyre performance."
     ],
     "evidence": {
-      "pit_window": [],
       "overcut": [
         "[2:36:51] It seems like the overcut is more [music] powerful than the undercut.",
-        "[2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have I should have stayed out.",
-        "I should have stayed out.",
-        "And all of those that pitted earlier just lost more time.",
-        "[2:40:33] Overcut it is."
+        "[2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have I should have stayed out. stayed out. stayed out. should have put it when he put it. Then we would have a race like this.",
+        "[2:40:03] qual. qual. Thank you. Thank you, casual driver. I should have stayed out. That's it. And all of those that pitted earlier just lost more time.",
+        "[2:40:33] Overcut it is. At least I know for next time. If you ask me like last week we had a bit of diversity. Now we are back to the roots roots roots but it's also okay. Uh tire wear times four and you can see fuel is uh is times two."
       ],
-      "undercut": [
-        "[2:36:51] It seems like the overcut is more [music] powerful than the undercut."
+      "tyre_saving": [
+        "[2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have I should have stayed out. stayed out. stayed out. should have put it when he put it. Then we would have a race like this.",
+        "[2:40:33] Overcut it is. At least I know for next time. If you ask me like last week we had a bit of diversity. Now we are back to the roots roots roots but it's also okay. Uh tire wear times four and you can see fuel is uh is times two.",
+        "[3:59:25] I switched to wheel in the middle of endurance championship because of the tire wear issue. Of course, the switch made me even slower. Uh yeah, it's it's actually difficult to get used to the wheel."
       ],
-      "tyre_saving": [],
-      "mandatory_change": [],
+      "tyre_change": [],
       "compounds": [
         "[3:58:37] Uh, racing mediums and racing soft tires."
       ],
       "citroen": [
-        "[2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have I should have stayed out.",
-        "Once again, Citroen tires are better than Porsches, [music] even if you do one more lap on the S.",
-        "[snorts] I mean, it's it's [music] a it's a Citroen cup basically"
+        "[2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have I should have stayed out. stayed out. stayed out. should have put it when he put it. Then we would have a race like this.",
+        "[2:39:29] Well, second it's it's not bad, but it's also not good. You know what? For the next time, I know bit later. Ocean. Hello. Hello. Once again, Citroen tires are better than Porsches, [music] even if you do one more lap on the S. because it's just faster overall. It's not worth. [snorts] I mean, it's it's [music] a it's a Citroen cup basically"
       ],
-      "meta": [
-        "[snorts] I mean, it's it's [music] a it's a Citroen cup basically"
-      ],
-      "track_limits": []
+      "pit_window": []
     }
   },
-  "lap_guide": {
-    "source": "GnC Racing",
-    "role": "QUALIFYING_LAP_GUIDE",
-    "video_id": "qHfm2RjbRjI",
+  "qualifying_lap_guide": {
     "confidence": "HIGH",
-    "braking_points": [
-      "On the way down to turn one, we're looking for the 200 board.",
-      "We're going to break just before we reach this.",
-      "And we're going to start to turn in as we are around midway between the 200 and the 100 board.",
-      "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.",
-      "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
-      "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.",
-      "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.",
-      "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
-      "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.",
-      "Going through the short tunnel and looking to the right for the 100 board.",
-      "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner.",
-      "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.",
-      "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel.",
-      "And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left.",
-      "And as we pass the 200 board, start to bring the car over to the right."
-    ],
-    "gears": [
-      "Shifting down to second gear.",
-      "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
-      "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.",
-      "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner."
-    ],
-    "throttle": [
-      "We're going to start to accelerate just as we reach the one before last.",
-      "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.",
-      "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right.",
-      "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner.",
-      "Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available.",
-      "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
-      "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.",
-      "As we pass under the banner above the track, we'll get on the power, but another good acceleration marker.",
-      "And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge.",
-      "When we have entered the darker part of the tunnel, we'll start to accelerate.",
-      "As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards."
-    ],
-    "racing_line": [
-      "And we're going to start to turn in as we are around midway between the 200 and the 100 board.",
-      "Then allow the car to drift over to the left side, turning in so we hug the next bend.",
-      "And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex.",
-      "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right.",
-      "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.",
-      "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner.",
-      "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
-      "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.",
-      "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner.",
-      "A little bit further around the corner, there are these posts on the left side.",
-      "Keep the car to the left side.",
-      "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.",
-      "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel.",
-      "Again, we want to take a tight line around this corner.",
-      "And it's important to keep the car to the right side for the chicane that follows.",
-      "Just being careful not to run over the white line with all four wheels."
-    ],
-    "kerbs_track_limits": [
-      "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.",
-      "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.",
-      "Then, as soon as we are over the first curb, turn immediately back to the right for the second.",
-      "Again, aiming to clip the curb and just brush in those bolards as we go through.",
-      "Just being careful not to run over the white line with all four wheels.",
-      "We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight."
-    ],
-    "reference_markers": [
-      "On the way down to turn one, we're looking for the 200 board.",
-      "And we're going to start to turn in as we are around midway between the 200 and the 100 board.",
-      "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.",
-      "Then, as we pass under this bridge, we want to bring the car back over to the right.",
-      "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.",
-      "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
-      "And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex.",
-      "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right.",
-      "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.",
-      "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner.",
-      "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.",
-      "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
-      "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.",
-      "Going through the short tunnel and looking to the right for the 100 board.",
-      "And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge.",
-      "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel."
-    ],
-    "sequential_guide": [
+    "guide": [
       {
         "categories": [
           "BRAKING"
         ],
-        "instruction": "We're going to break just before we reach this."
+        "text": "On the way down to turn one, we're looking for the 200 board."
+      },
+      {
+        "categories": [
+          "BRAKING",
+          "LINE"
+        ],
+        "text": "And we're going to start to turn in as we are around midway between the 200 and the 100 board."
       },
       {
         "categories": [
           "THROTTLE"
         ],
-        "instruction": "We're going to start to accelerate just as we reach the one before last."
+        "text": "We're going to start to accelerate just as we reach the one before last."
       },
       {
         "categories": [
           "THROTTLE",
           "TRACK_LIMIT"
         ],
-        "instruction": "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill."
+        "text": "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill."
+      },
+      {
+        "categories": [
+          "LINE"
+        ],
+        "text": "Then allow the car to drift over to the left side, turning in so we hug the next bend."
       },
       {
         "categories": [
           "BRAKING"
         ],
-        "instruction": "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines."
+        "text": "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines."
+      },
+      {
+        "categories": [
+          "BRAKING",
+          "GEAR"
+        ],
+        "text": "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear."
+      },
+      {
+        "categories": [
+          "LINE"
+        ],
+        "text": "And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex."
+      },
+      {
+        "categories": [
+          "THROTTLE",
+          "LINE"
+        ],
+        "text": "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right."
+      },
+      {
+        "categories": [
+          "BRAKING",
+          "LINE"
+        ],
+        "text": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take."
+      },
+      {
+        "categories": [
+          "THROTTLE",
+          "LINE"
+        ],
+        "text": "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner."
+      },
+      {
+        "categories": [
+          "THROTTLE"
+        ],
+        "text": "Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available."
+      },
+      {
+        "categories": [
+          "BRAKING"
+        ],
+        "text": "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry."
+      },
+      {
+        "categories": [
+          "BRAKING",
+          "THROTTLE",
+          "LINE"
+        ],
+        "text": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge."
       },
       {
         "categories": [
           "GEAR"
         ],
-        "instruction": "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear."
+        "text": "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker."
       },
       {
         "categories": [
-          "THROTTLE"
+          "TRACK_LIMIT",
+          "LINE"
         ],
-        "instruction": "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right."
+        "text": "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit."
       },
       {
         "categories": [
           "BRAKING"
         ],
-        "instruction": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take."
+        "text": "Going through the short tunnel and looking to the right for the 100 board."
       },
       {
         "categories": [
-          "THROTTLE"
-        ],
-        "instruction": "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner."
-      },
-      {
-        "categories": [
-          "THROTTLE"
-        ],
-        "instruction": "Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available."
-      },
-      {
-        "categories": [
-          "BRAKING"
-        ],
-        "instruction": "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry."
-      },
-      {
-        "categories": [
-          "BRAKING",
-          "THROTTLE"
-        ],
-        "instruction": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge."
-      },
-      {
-        "categories": [
-          "BRAKING",
           "GEAR",
-          "THROTTLE"
+          "LINE"
         ],
-        "instruction": "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker."
+        "text": "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner."
       },
       {
         "categories": [
-          "TRACK_LIMIT"
+          "THROTTLE"
         ],
-        "instruction": "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit."
+        "text": "As we pass under the banner above the track, we'll get on the power, but another good acceleration marker."
+      },
+      {
+        "categories": [
+          "LINE"
+        ],
+        "text": "A little bit further around the corner, there are these posts on the left side."
+      },
+      {
+        "categories": [
+          "THROTTLE"
+        ],
+        "text": "As they start to become visible, we can hit the throttle."
       },
       {
         "categories": [
           "BRAKING",
-          "GEAR"
+          "THROTTLE",
+          "LINE"
         ],
-        "instruction": "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner."
+        "text": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up."
       },
       {
         "categories": [
           "THROTTLE"
         ],
-        "instruction": "As we pass under the banner above the track, we'll get on the power, but another good acceleration marker."
+        "text": "And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge."
       },
       {
         "categories": [
-          "BRAKING"
+          "BRAKING",
+          "LINE"
         ],
-        "instruction": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up."
-      },
-      {
-        "categories": [
-          "THROTTLE"
-        ],
-        "instruction": "And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge."
-      },
-      {
-        "categories": [
-          "BRAKING"
-        ],
-        "instruction": "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel."
+        "text": "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel."
       }
+    ],
+    "braking": [
+      "On the way down to turn one, we're looking for the 200 board.",
+      "And we're going to start to turn in as we are around midway between the 200 and the 100 board.",
+      "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.",
+      "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
+      "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.",
+      "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.",
+      "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
+      "Going through the short tunnel and looking to the right for the 100 board.",
+      "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.",
+      "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel."
+    ],
+    "gears": [
+      "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
+      "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.",
+      "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner."
+    ],
+    "track_limits": [
+      "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.",
+      "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit."
     ]
   },
   "live_car_meta": [
     {
+      "car_code": 3248,
       "car": "GT by Citroën Gr.4",
-      "drivers": 567,
-      "percentage": 65.3
+      "count": 567,
+      "percentage": 56.699999999999996,
+      "layout": "MR",
+      "qualifying_range": [
+        -1,
+        0
+      ],
+      "race_range": [
+        -1,
+        0
+      ],
+      "qualifying_start": 0,
+      "race_start": -1,
+      "confidence": "HEURISTIC",
+      "reason": "MR cars can become sensitive to rear instability under braking. A neutral to slightly forward bias is a conservative starting point.",
+      "wear_adjustment": "Meaningful tyre wear: start toward the forward end of the race range to prioritize rear stability."
     },
     {
+      "car_code": 3501,
       "car": "Genesis G70 GR4",
-      "drivers": 146,
-      "percentage": 16.8
+      "count": 146,
+      "percentage": 14.6,
+      "layout": "4WD",
+      "qualifying_range": [
+        1,
+        2
+      ],
+      "race_range": [
+        2,
+        3
+      ],
+      "qualifying_start": 2,
+      "race_start": 3,
+      "confidence": "HEURISTIC",
+      "reason": "4WD cars generally tolerate a modest rearward bias, helping rotation while retaining strong braking stability.",
+      "wear_adjustment": "Meaningful tyre wear: start toward the rearward end of the race range to reduce front-axle load."
     },
     {
+      "car_code": 2161,
       "car": "Nissan GT-R Gr.4",
-      "drivers": 82,
-      "percentage": 9.4
+      "count": 82,
+      "percentage": 8.200000000000001,
+      "layout": "4WD",
+      "qualifying_range": [
+        1,
+        2
+      ],
+      "race_range": [
+        2,
+        3
+      ],
+      "qualifying_start": 2,
+      "race_start": 3,
+      "confidence": "HEURISTIC",
+      "reason": "4WD cars generally tolerate a modest rearward bias, helping rotation while retaining strong braking stability.",
+      "wear_adjustment": "Meaningful tyre wear: start toward the rearward end of the race range to reduce front-axle load."
     },
     {
+      "car_code": 3480,
       "car": "Suzuki Swift Sport KATANA Edition Gr.4",
-      "drivers": 43,
-      "percentage": 5.0
+      "count": 43,
+      "percentage": 4.3,
+      "layout": "FF",
+      "qualifying_range": [
+        1,
+        2
+      ],
+      "race_range": [
+        2,
+        3
+      ],
+      "qualifying_start": 2,
+      "race_start": 3,
+      "confidence": "HEURISTIC",
+      "reason": "FF cars place substantial braking and cornering load on the front axle. A modest rearward bias can aid rotation and reduce front tyre stress.",
+      "wear_adjustment": "Meaningful tyre wear: start toward the rearward end of the race range to reduce front-axle load."
     },
     {
+      "car_code": 3251,
       "car": "Honda NSX Gr.4",
-      "drivers": 30,
-      "percentage": 3.5
+      "count": 30,
+      "percentage": 3.0,
+      "layout": "MR",
+      "qualifying_range": [
+        -1,
+        0
+      ],
+      "race_range": [
+        -1,
+        0
+      ],
+      "qualifying_start": 0,
+      "race_start": -1,
+      "confidence": "HEURISTIC",
+      "reason": "MR cars can become sensitive to rear instability under braking. A neutral to slightly forward bias is a conservative starting point.",
+      "wear_adjustment": "Meaningful tyre wear: start toward the forward end of the race range to prioritize rear stability."
     }
   ],
-  "practical_plan": [
+  "world_record": {
+    "score": 114623,
+    "laptime": "1:54.623",
+    "driver": "M. Estevez",
+    "psn_id": "MateoEstevez",
+    "car_code": 3248,
+    "car": "GT by Citroën Gr.4"
+  },
+  "my_result": {
+    "psn_id": "crazy_rooster74",
+    "rank": 4551,
+    "score": 117248,
+    "laptime": "1:57.248",
+    "car_code": 3501,
+    "car": "Genesis G70 GR4",
+    "country": "BR",
+    "driver_rating": 4,
+    "gap_to_wr_ms": 2625,
+    "wr_percentage": 102.29011629428648,
+    "position_score": 8.41865637924443,
+    "elite_score": 1.7961277434101541,
+    "composite_rating": 5.769644924910719,
+    "percentile_ahead": 84.1865637924443,
+    "top_percent": 15.816361993466325,
+    "pace_band": "VERY FAST"
+  },
+  "next_targets": [
+    {
+      "label": "Top 10%",
+      "rank": 2878,
+      "score": 116786,
+      "laptime": "1:56.786",
+      "gain_needed_ms": 462
+    },
+    {
+      "label": "Top 5%",
+      "rank": 1439,
+      "score": 116288,
+      "laptime": "1:56.288",
+      "gain_needed_ms": 960
+    },
+    {
+      "label": "Top 1000",
+      "rank": 1000,
+      "score": 116090,
+      "laptime": "1:56.090",
+      "gain_needed_ms": 1158
+    },
+    {
+      "label": "Top 2%",
+      "rank": 576,
+      "score": 115870,
+      "laptime": "1:55.870",
+      "gain_needed_ms": 1378
+    }
+  ],
+  "same_car_stats": {
+    "rank": 688,
+    "total": 2327
+  },
+  "country_stats": {
+    "rank": 203,
+    "total": 1427,
+    "country": "BR"
+  },
+  "dr_stats": {
+    "rank": 2094,
+    "total": 8004,
+    "dr": 4
+  },
+  "car_comparison": {
+    "my_car": "Genesis G70 GR4",
+    "my_car_best_score": 115161,
+    "my_car_best_laptime": "1:55.161",
+    "gap_to_best_same_car_ms": 2087,
+    "meta_car": "GT by Citroën Gr.4",
+    "meta_car_best_score": 114623,
+    "meta_car_best_laptime": "1:54.623",
+    "theoretical_car_gap_ms": 538
+  },
+  "overperformance": [
+    {
+      "car_code": 3248,
+      "car": "GT by Citroën Gr.4",
+      "all_count": 9984,
+      "top100": 65,
+      "top1000": 567,
+      "oi100": 1.8733072916666667,
+      "oi1000": 1.6341003605769229,
+      "overperformance_index": 1.8015452123397435,
+      "confidence": "High"
+    },
+    {
+      "car_code": 2161,
+      "car": "Nissan GT-R Gr.4",
+      "all_count": 2043,
+      "top100": 14,
+      "top1000": 82,
+      "oi100": 1.971786588350465,
+      "oi1000": 1.154903573176701,
+      "overperformance_index": 1.7267216837983357,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3480,
+      "car": "Suzuki Swift Sport KATANA Edition Gr.4",
+      "all_count": 593,
+      "top100": 3,
+      "top1000": 43,
+      "oi100": 1.4556829679595278,
+      "oi1000": 2.08647892074199,
+      "overperformance_index": 1.6449217537942664,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3251,
+      "car": "Honda NSX Gr.4",
+      "all_count": 936,
+      "top100": 4,
+      "top1000": 30,
+      "oi100": 1.2296581196581198,
+      "oi1000": 0.9222435897435898,
+      "overperformance_index": 1.1374337606837608,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3501,
+      "car": "Genesis G70 GR4",
+      "all_count": 2327,
+      "top100": 2,
+      "top1000": 146,
+      "oi100": 0.2473055436183928,
+      "oi1000": 1.8053304684142673,
+      "overperformance_index": 0.7147130210571551,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3310,
+      "car": "Porsche Cayman GT4 Clubsport '16",
+      "all_count": 1445,
+      "top100": 4,
+      "top1000": 20,
+      "oi100": 0.7965121107266436,
+      "oi1000": 0.3982560553633218,
+      "overperformance_index": 0.6770352941176471,
+      "confidence": "Medium"
+    },
+    {
+      "car_code": 3263,
+      "car": "Ferrari 458 Italia Gr.4",
+      "all_count": 2143,
+      "top100": 2,
+      "top1000": 27,
+      "oi100": 0.26853943070461966,
+      "oi1000": 0.3625282314512365,
+      "overperformance_index": 0.2967360709286047,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3231,
+      "car": "Volkswagen Scirocco Gr.4",
+      "all_count": 558,
+      "top100": 0,
+      "top1000": 19,
+      "oi100": 0.0,
+      "oi1000": 0.9797598566308243,
+      "overperformance_index": 0.2939279569892473,
+      "confidence": "Medium"
+    },
+    {
+      "car_code": 3537,
+      "car": "MAZDA3 Gr.4",
+      "all_count": 455,
+      "top100": 0,
+      "top1000": 11,
+      "oi100": 0.0,
+      "oi1000": 0.6956351648351647,
+      "overperformance_index": 0.2086905494505494,
+      "confidence": "Medium"
+    },
+    {
+      "car_code": 3298,
+      "car": "Audi TT Cup '16",
+      "all_count": 569,
+      "top100": 0,
+      "top1000": 11,
+      "oi100": 0.0,
+      "oi1000": 0.5562636203866432,
+      "overperformance_index": 0.16687908611599298,
+      "confidence": "Medium"
+    }
+  ],
+  "forecast_v2": {
+    "available": true,
+    "model": "CURRENT_WEEK_HYBRID_V2",
+    "historical_training": "INSUFFICIENT",
+    "samples": 19,
+    "span_hours": 30.612727369444446,
+    "confidence": "MEDIUM",
+    "world_record": {
+      "predicted": 114623.0,
+      "current": 114623.0,
+      "slope_per_hour": 0.0,
+      "rmse": 0.0,
+      "samples": 19,
+      "span_hours": 30.61272736944443,
+      "confidence": "MEDIUM"
+    },
+    "top100": {
+      "predicted": 115293.68523492638,
+      "current": 115304.0,
+      "slope_per_hour": -1.2738952610661585,
+      "rmse": 4.776955924184045,
+      "samples": 16,
+      "span_hours": 30.61272736944443,
+      "confidence": "MEDIUM"
+    },
+    "top500": {
+      "predicted": 115802.31908519423,
+      "current": 115821.0,
+      "slope_per_hour": -1.005267033446098,
+      "rmse": 1.5500673781245697,
+      "samples": 16,
+      "span_hours": 30.61272736944443,
+      "confidence": "MEDIUM"
+    },
+    "top1000": {
+      "predicted": 116055.63438983829,
+      "current": 116090.0,
+      "slope_per_hour": -1.5915501150136862,
+      "rmse": 1.929797341417721,
+      "samples": 16,
+      "span_hours": 30.61272736944443,
+      "confidence": "MEDIUM"
+    },
+    "top10_percent": {
+      "current_rank": 2878,
+      "current_score": 116786,
+      "predicted_score": 116712,
+      "estimated_change_ms": -74,
+      "mode": "DIRECT",
+      "confidence": "LOW",
+      "samples": 3,
+      "span_hours": 8.293440770833314,
+      "rmse": 0.06775153709820471
+    },
+    "top5_percent": {
+      "current_rank": 1439,
+      "current_score": 116288,
+      "predicted_score": 116251,
+      "estimated_change_ms": -37,
+      "mode": "DIRECT",
+      "confidence": "LOW",
+      "samples": 3,
+      "span_hours": 8.293440770833314,
+      "rmse": 0.033875768551885975
+    },
+    "total_drivers": {
+      "current": 28774,
+      "predicted": 31206,
+      "confidence": "MEDIUM",
+      "samples": 19
+    },
+    "personal": {
+      "score": 117248,
+      "current_rank": 4551,
+      "current_top_percent": 15.816361993466325,
+      "projected_rank": 4870,
+      "projected_top_percent": 15.605973210280075,
+      "rank_forecast_confidence": "MEDIUM"
+    },
+    "targets": {
+      "top10": {
+        "score": 116712,
+        "gain_needed_ms": 536,
+        "mode": "DIRECT"
+      },
+      "top5": {
+        "score": 116251,
+        "gain_needed_ms": 997,
+        "mode": "DIRECT"
+      }
+    }
+  },
+  "practical_race_plan": [
     "Use the official/live race configuration as the regulatory baseline.",
     "Do not treat laps 4-5 as a rigid pit window. Digit's later race-tested conclusion favours staying out longer and using the overcut rather than stopping early.",
-    "The GT by Citroën Gr.4 is supported by Digit's race experience; compare that recommendation with the live leaderboard before choosing the car.",
-    "Use the GnC guide for braking references, gears, line and throttle technique; do not mix lap instructions from other community sources."
+    "The GT by Citroën Gr.4 is supported independently by both Digit's race experience and the live leaderboard meta.",
+    "Use the GnC guide for braking references, gears, racing line and throttle technique; do not mix lap instructions from other community sources."
   ],
-  "policy": {
-    "strategy_source_count": 1,
-    "lap_guide_source_count": 1,
-    "strategy_source": "Digit Racing",
-    "lap_guide_source": "GnC Racing",
-    "regulation_authority": "LIVE_GT7_GTSH",
-    "car_meta_authority": "LIVE_LEADERBOARD",
-    "later_race_tested_strategy_overrides_early_prediction": true
-  }
+  "policy": [
+    "Digit Racing is the sole community source for race strategy.",
+    "GnC Racing is the sole community source for qualifying/lap guidance.",
+    "Live GT7/GTSH data overrides any conflicting community statement.",
+    "Later race-tested Digit conclusions override earlier speculative strategy comments.",
+    "Live leaderboard usage is authoritative for current car meta.",
+    "Percentages stored in top5_used_cars are not renormalized.",
+    "Transcript evidence is never used to invent missing braking points, gears or strategy."
+  ]
 }
