@@ -1,5 +1,6 @@
 import json
 import re
+
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -82,29 +83,67 @@ def normalize_text(text):
         text
     ).lower()
 
-    text = (
-        text
-        .replace("é", "e")
-        .replace("á", "a")
-        .replace("à", "a")
-        .replace("ã", "a")
-        .replace("â", "a")
-        .replace("í", "i")
-        .replace("ó", "o")
-        .replace("ô", "o")
-        .replace("õ", "o")
-        .replace("ú", "u")
-        .replace("ç", "c")
-    )
+    replacements = {
+        "é": "e",
+        "á": "a",
+        "à": "a",
+        "ã": "a",
+        "â": "a",
+        "í": "i",
+        "ó": "o",
+        "ô": "o",
+        "õ": "o",
+        "ú": "u",
+        "ç": "c",
+    }
+
+    for old, new in replacements.items():
+
+        text = text.replace(
+            old,
+            new
+        )
 
     text = re.sub(
-        r"[^a-z0-9.+%-]+",
+        r"[^a-z0-9.+%'-]+",
         " ",
         text
     )
 
     return normalize_space(
         text
+    )
+
+
+def compact_text(
+    text,
+    max_chars=330
+):
+
+    text = normalize_space(
+        text
+    )
+
+    if len(text) <= max_chars:
+        return text
+
+    shortened = text[
+        :max_chars
+    ]
+
+    cut = shortened.rfind(
+        " "
+    )
+
+    if cut > 0:
+
+        shortened = shortened[
+            :cut
+        ]
+
+    return (
+        shortened
+        + "..."
     )
 
 
@@ -153,7 +192,9 @@ def parse_number_token(value):
         return None
 
     value = (
-        value.strip().lower()
+        value
+        .strip()
+        .lower()
     )
 
     if value.isdigit():
@@ -168,7 +209,7 @@ def parse_number_token(value):
 
 
 # ============================================================
-# CURRENT RACE GROUND TRUTH
+# GROUND TRUTH
 # ============================================================
 
 def build_ground_truth(
@@ -185,13 +226,11 @@ def build_ground_truth(
         "start_date"
     )
 
-    week_key = None
-
-    if start_date:
-
-        week_key = (
-            start_date[:10]
-        )
+    week_key = (
+        start_date[:10]
+        if start_date
+        else None
+    )
 
     community_week = {}
 
@@ -246,25 +285,12 @@ def build_ground_truth(
                 f"Gr.{match.group(1)}"
             )
 
-    track = community_week.get(
-        "track"
-    )
-
-    direction = (
-        community_week.get(
-            "direction",
-            "NORMAL"
-        )
-    )
-
-    compounds = race.get(
-        "compounds",
-        []
-    )
-
     compounds = [
         str(value).upper()
-        for value in compounds
+        for value in race.get(
+            "compounds",
+            []
+        )
     ]
 
     return {
@@ -274,19 +300,19 @@ def build_ground_truth(
         "description":
             description,
 
-        "leaderboard_url":
-            race.get(
-                "leaderboard_url"
-            ),
-
         "track":
-            track,
+            community_week.get(
+                "track"
+            ),
 
         "race_class":
             race_class,
 
         "direction":
-            direction,
+            community_week.get(
+                "direction",
+                "NORMAL"
+            ),
 
         "fuel_multiplier":
             race.get(
@@ -310,11 +336,6 @@ def build_ground_truth(
         "my_result":
             snapshot.get(
                 "my_result"
-            ),
-
-        "car_comparison":
-            snapshot.get(
-                "car_comparison"
             ),
     }
 
@@ -370,7 +391,7 @@ def find_transcript_files():
                     str(path),
 
                 "data":
-                    data
+                    data,
             }
 
     return list(
@@ -379,7 +400,7 @@ def find_transcript_files():
 
 
 # ============================================================
-# TITLE / TRACK VALIDATION
+# TRACK / CLASS / DIRECTION VALIDATION
 # ============================================================
 
 def fuzzy_contains(
@@ -392,12 +413,14 @@ def fuzzy_contains(
 
     target_words = [
         word
-        for word
-        in normalize_text(
+        for word in normalize_text(
             target
         ).split()
         if len(word) >= 3
     ]
+
+    if not target_words:
+        return None
 
     haystack = set(
         normalize_text(
@@ -405,17 +428,14 @@ def fuzzy_contains(
         ).split()
     )
 
-    if not target_words:
-        return None
-
-    matches = sum(
+    matched = sum(
         1
         for word in target_words
         if word in haystack
     )
 
     ratio = (
-        matches
+        matched
         / len(target_words)
     )
 
@@ -450,7 +470,7 @@ def detect_direction(text):
 
 
 # ============================================================
-# MULTIPLIER DETECTION
+# MULTIPLIER DETECTION V3
 # ============================================================
 
 def extract_multiplier_mentions(
@@ -462,27 +482,6 @@ def extract_multiplier_mentions(
         text
     ).lower()
 
-    if kind == "fuel":
-
-        prefixes = [
-            "fuel",
-            "fuel rate",
-            "fuel consumption",
-        ]
-
-    else:
-
-        prefixes = [
-            "tyre",
-            "tyres",
-            "tire",
-            "tires",
-            "tyre wear",
-            "tire wear",
-        ]
-
-    values = []
-
     number_pattern = (
         r"(?:"
         r"\d+"
@@ -490,43 +489,97 @@ def extract_multiplier_mentions(
         r")"
     )
 
-    for prefix in prefixes:
+    if kind == "fuel":
 
-        patterns = [
-            rf"{re.escape(prefix)}"
-            rf".{{0,30}}?"
-            rf"(?:x|times)\s*"
-            rf"({number_pattern})",
+        subject_pattern = (
+            r"(?:"
+            r"fuel"
+            r"|fuel rate"
+            r"|fuel consumption"
+            r"|fuel multiplier"
+            r")"
+        )
 
-            rf"{re.escape(prefix)}"
-            rf".{{0,30}}?"
-            rf"(?:at|is|of)\s+"
-            rf"(?:times\s+)?"
-            rf"({number_pattern})",
-        ]
+    else:
 
-        for pattern in patterns:
+        subject_pattern = (
+            r"(?:"
+            r"tyre wear"
+            r"|tire wear"
+            r"|tyres"
+            r"|tires"
+            r"|tyre"
+            r"|tire"
+            r")"
+        )
 
-            for match in re.findall(
-                pattern,
-                normalized,
-                re.IGNORECASE
+    patterns = [
+        (
+            rf"{subject_pattern}"
+            rf".{{0,45}}?"
+            rf"(?:x|times|multiplier(?:\s+of)?)"
+            rf"\s*({number_pattern})"
+        ),
+
+        (
+            rf"{subject_pattern}"
+            rf".{{0,45}}?"
+            rf"(?:at|is|of)"
+            rf"\s+(?:a\s+)?"
+            rf"({number_pattern})"
+            rf"\s*(?:times|x)?"
+        ),
+
+        (
+            rf"({number_pattern})"
+            rf"\s*(?:x|times)"
+            rf".{{0,35}}?"
+            rf"{subject_pattern}"
+        ),
+    ]
+
+    values = []
+
+    for pattern in patterns:
+
+        matches = re.findall(
+            pattern,
+            normalized,
+            re.IGNORECASE
+        )
+
+        for match in matches:
+
+            if isinstance(
+                match,
+                tuple
             ):
 
-                number = (
-                    parse_number_token(
-                        match
-                    )
+                tokens = [
+                    item
+                    for item in match
+                    if item
+                ]
+
+                if not tokens:
+                    continue
+
+                match = tokens[
+                    0
+                ]
+
+            number = parse_number_token(
+                match
+            )
+
+            if (
+                number is not None
+                and 1 <= number <= 20
+            ):
+
+                values.append(
+                    number
                 )
-
-                if (
-                    number is not None
-                    and 1 <= number <= 20
-                ):
-
-                    values.append(
-                        number
-                    )
 
     return values
 
@@ -559,27 +612,37 @@ def dominant_value(values):
 
 
 # ============================================================
-# COMPOUND DETECTION
+# COMPOUND DETECTION V3
 # ============================================================
 
-COMPOUND_NAMES = {
-    "racing hard": "RH",
-    "hard tire": "RH",
-    "hard tyre": "RH",
-    "hard tires": "RH",
-    "hard tyres": "RH",
+COMPOUND_PATTERNS = {
+    "RH": [
+        r"\bracing hard\b",
+        r"\bhard tires?\b",
+        r"\bhard tyres?\b",
+    ],
 
-    "racing medium": "RM",
-    "medium tire": "RM",
-    "medium tyre": "RM",
-    "medium tires": "RM",
-    "medium tyres": "RM",
+    "RM": [
+        r"\bracing medium\b",
+        r"\bmedium tires?\b",
+        r"\bmedium tyres?\b",
+    ],
 
-    "racing soft": "RS",
-    "soft tire": "RS",
-    "soft tyre": "RS",
-    "soft tires": "RS",
-    "soft tyres": "RS",
+    "RS": [
+        r"\bracing soft\b",
+        r"\bsoft tires?\b",
+        r"\bsoft tyres?\b",
+    ],
+
+    "IM": [
+        r"\bintermediate tires?\b",
+        r"\bintermediate tyres?\b",
+    ],
+
+    "W": [
+        r"\bwet tires?\b",
+        r"\bwet tyres?\b",
+    ],
 }
 
 
@@ -587,66 +650,71 @@ def detect_regulation_compounds(
     text
 ):
 
-    normalized = normalize_text(
+    normalized = normalize_space(
         text
-    )
+    ).lower()
 
-    regulation_cues = [
-        "available",
-        "mandatory",
-        "required",
-        "must use",
-        "tire choice",
-        "tyre choice",
-        "tires available",
-        "tyres available",
+    cue_patterns = [
+        r"available",
+        r"mandatory",
+        r"required",
+        r"must use",
+        r"tire type",
+        r"tyre type",
+        r"tires are",
+        r"tyres are",
+        r"tire choice",
+        r"tyre choice",
     ]
 
-    results = []
+    compounds = set()
 
-    words = normalized.split()
-
-    for index, word in enumerate(
-        words
+    for code, patterns in (
+        COMPOUND_PATTERNS.items()
     ):
 
-        start = max(
-            0,
-            index - 15
-        )
+        for pattern in patterns:
 
-        end = min(
-            len(words),
-            index + 16
-        )
+            for match in re.finditer(
+                pattern,
+                normalized,
+                re.IGNORECASE
+            ):
 
-        window = " ".join(
-            words[start:end]
-        )
-
-        if not any(
-            cue in window
-            for cue in regulation_cues
-        ):
-            continue
-
-        for phrase, code in (
-            COMPOUND_NAMES.items()
-        ):
-
-            if phrase in window:
-
-                results.append(
-                    code
+                start = max(
+                    0,
+                    match.start()
+                    - 120
                 )
 
-    return set(
-        results
-    )
+                end = min(
+                    len(normalized),
+                    match.end()
+                    + 120
+                )
+
+                window = normalized[
+                    start:end
+                ]
+
+                if any(
+                    re.search(
+                        cue,
+                        window,
+                        re.IGNORECASE
+                    )
+                    for cue in cue_patterns
+                ):
+
+                    compounds.add(
+                        code
+                    )
+
+    return compounds
 
 
 # ============================================================
-# VIDEO VALIDATION
+# SOURCE VALIDATION
 # ============================================================
 
 def validate_source(
@@ -674,13 +742,13 @@ def validate_source(
         title
         + " "
         + transcript[
-            :12000
+            :15000
         ]
     )
 
+    matches = []
     reasons = []
     warnings = []
-    matches = []
 
     rejected = False
 
@@ -688,12 +756,10 @@ def validate_source(
     # TRACK
     # --------------------------------------------------------
 
-    track = ground_truth.get(
-        "track"
-    )
-
     track_match = fuzzy_contains(
-        track,
+        ground_truth.get(
+            "track"
+        ),
         title
     )
 
@@ -703,21 +769,14 @@ def validate_source(
             "TRACK_MATCH"
         )
 
-    elif (
-        track
-        and track_match is False
-    ):
-
-        warnings.append(
-            "TRACK_NOT_CONFIRMED_FROM_TITLE"
-        )
-
     # --------------------------------------------------------
     # CLASS
     # --------------------------------------------------------
 
-    expected_class = ground_truth.get(
-        "race_class"
+    expected_class = (
+        ground_truth.get(
+            "race_class"
+        )
     )
 
     detected_classes = (
@@ -775,22 +834,7 @@ def validate_source(
         rejected = True
 
         reasons.append(
-            "DIRECTION_CONFLICT: video says Reverse"
-        )
-
-    elif (
-        expected_direction == "REVERSE"
-        and detected_direction != "REVERSE"
-    ):
-
-        warnings.append(
-            "REVERSE_NOT_CONFIRMED"
-        )
-
-    elif detected_direction:
-
-        matches.append(
-            "DIRECTION_MATCH"
+            "DIRECTION_CONFLICT"
         )
 
     # --------------------------------------------------------
@@ -834,7 +878,7 @@ def validate_source(
             )
 
     # --------------------------------------------------------
-    # TYRE WEAR
+    # TYRES
     # --------------------------------------------------------
 
     expected_tyre = ground_truth.get(
@@ -936,7 +980,7 @@ def validate_source(
 
     else:
 
-        strong_matches = sum(
+        technical_matches = sum(
             1
             for item in matches
             if item in {
@@ -946,7 +990,7 @@ def validate_source(
             }
         )
 
-        if strong_matches >= 2:
+        if technical_matches >= 2:
 
             status = "CONFIRMED"
             reliability = "HIGH"
@@ -1038,15 +1082,7 @@ def validate_source(
                 sorted(
                     detected_compounds
                 ),
-
-            "classes":
-                sorted(
-                    detected_classes
-                ),
-
-            "direction":
-                detected_direction,
-        }
+        },
     }
 
 
@@ -1056,9 +1092,9 @@ def validate_source(
 
 def transcript_segments(
     text,
-    min_words=18,
-    target_words=55,
-    max_words=90
+    min_words=12,
+    target_words=38,
+    max_words=65
 ):
 
     text = normalize_space(
@@ -1068,35 +1104,27 @@ def transcript_segments(
     if not text:
         return []
 
-    # --------------------------------------------------------
-    # First use punctuation where it exists.
-    # --------------------------------------------------------
-
     punctuation_parts = re.split(
         r"(?<=[.!?])\s+",
         text
     )
 
-    results = []
+    output = []
 
     for part in punctuation_parts:
 
         words = part.split()
 
-        if len(words) <= max_words:
-
-            if len(words) >= min_words:
-
-                results.append(
-                    part.strip()
-                )
-
+        if len(words) < min_words:
             continue
 
-        # ----------------------------------------------------
-        # Transcript has little/no punctuation.
-        # Break it into overlapping semantic windows.
-        # ----------------------------------------------------
+        if len(words) <= max_words:
+
+            output.append(
+                part.strip()
+            )
+
+            continue
 
         step = target_words
 
@@ -1115,24 +1143,51 @@ def transcript_segments(
             if len(chunk) < min_words:
                 continue
 
-            results.append(
+            output.append(
                 " ".join(
                     chunk
                 )
             )
 
-    return results
+    return output
 
 
 # ============================================================
-# TECHNICAL CATEGORY DETECTION
+# LOW VALUE FILTER
+# ============================================================
+
+LOW_VALUE_PATTERNS = [
+    "welcome back to the channel",
+    "leave a like",
+    "subscribe",
+    "thank you very much for watching",
+    "catch you guys next time",
+    "chapter markers",
+    "do not want to miss this",
+]
+
+
+def low_value_segment(text):
+
+    normalized = normalize_text(
+        text
+    )
+
+    return any(
+        pattern in normalized
+        for pattern in LOW_VALUE_PATTERNS
+    )
+
+
+# ============================================================
+# TECHNICAL PATTERNS
 # ============================================================
 
 CATEGORY_PATTERNS = {
 
     "BRAKING": [
         r"\bbrak(?:e|es|ing)\b",
-        r"\b\d+\s*(?:m|meter|meters|feet|ft)\b",
+        r"\b\d+\s*(?:m|meters?|feet|ft)\b",
         r"\b\d+\s+board\b",
         r"\bbrake marker\b",
         r"\bbraking point\b",
@@ -1144,16 +1199,14 @@ CATEGORY_PATTERNS = {
         r"\bdownshift",
         r"\bupshift",
         r"\bshort shift",
-        r"\bshift",
     ],
 
     "RACING_LINE": [
         r"\bapex\b",
         r"\bturn in\b",
-        r"\bturn-in\b",
         r"\binside line\b",
         r"\btight line\b",
-        r"\bwide\b",
+        r"\bnarrowest\b",
         r"\bposition the car\b",
         r"\byellow lines\b",
         r"\bentry\b",
@@ -1164,8 +1217,8 @@ CATEGORY_PATTERNS = {
         r"\bfull throttle\b",
         r"\bthrottle\b",
         r"\baccelerat",
-        r"\bpower down\b",
         r"\bget on the power\b",
+        r"\bpower down\b",
         r"\blift\b",
         r"\bcoast",
     ],
@@ -1179,23 +1232,11 @@ CATEGORY_PATTERNS = {
         r"\bpenalty\b",
     ],
 
-    "RACECRAFT": [
-        r"\bovertak",
-        r"\bdefend",
-        r"\bslipstream\b",
-        r"\bdraft\b",
-        r"\btraffic\b",
-        r"\bbattle\b",
-        r"\bdirty air\b",
-    ],
-
     "TYRE_MANAGEMENT": [
         r"\btyre wear\b",
         r"\btire wear\b",
         r"\bfront tyre\b",
         r"\bfront tire\b",
-        r"\btyres\b",
-        r"\btires\b",
     ],
 
     "FUEL_MANAGEMENT": [
@@ -1203,7 +1244,6 @@ CATEGORY_PATTERNS = {
         r"\bsave fuel\b",
         r"\bfuel map\b",
         r"\bshort shift\b",
-        r"\bfuel\b",
     ],
 
     "PIT_STRATEGY": [
@@ -1231,21 +1271,21 @@ CATEGORY_PATTERNS = {
 
 
 def category_hits(
-    segment,
+    text,
     category
 ):
 
-    patterns = CATEGORY_PATTERNS[
-        category
-    ]
-
     normalized = (
-        segment.lower()
+        text.lower()
     )
 
     return sum(
         1
-        for pattern in patterns
+        for pattern in (
+            CATEGORY_PATTERNS[
+                category
+            ]
+        )
         if re.search(
             pattern,
             normalized
@@ -1254,36 +1294,7 @@ def category_hits(
 
 
 # ============================================================
-# REMOVE LOW-VALUE SPEECH
-# ============================================================
-
-LOW_VALUE_PATTERNS = [
-    "welcome back to the channel",
-    "leave a like",
-    "subscribe",
-    "thank you very much for watching",
-    "catch you guys next time",
-    "chapter markers",
-    "do not want to miss this",
-]
-
-
-def low_value_segment(
-    text
-):
-
-    normalized = normalize_text(
-        text
-    )
-
-    return any(
-        pattern in normalized
-        for pattern in LOW_VALUE_PATTERNS
-    )
-
-
-# ============================================================
-# BUILD OBSERVATIONS
+# OBSERVATIONS
 # ============================================================
 
 def build_observations(
@@ -1309,23 +1320,16 @@ def build_observations(
             "data"
         ]
 
-        video_id = data.get(
-            "video_id"
-        )
-
         validation = (
             validation_lookup.get(
-                video_id
+                data.get(
+                    "video_id"
+                )
             )
         )
 
         if not validation:
-
             continue
-
-        # ----------------------------------------------------
-        # Rejected videos cannot contribute recommendations.
-        # ----------------------------------------------------
 
         if (
             validation[
@@ -1343,7 +1347,9 @@ def build_observations(
             )
         )
 
-        for segment in segments:
+        for segment_index, segment in enumerate(
+            segments
+        ):
 
             if low_value_segment(
                 segment
@@ -1374,39 +1380,30 @@ def build_observations(
                 reverse=True
             )
 
+            reliability_bonus = {
+                "HIGH": 6,
+                "MEDIUM": 3,
+                "LOW": 0,
+            }.get(
+                validation[
+                    "reliability"
+                ],
+                0
+            )
+
             for category, hits in (
-                category_scores[:2]
+                category_scores[
+                    :2
+                ]
             ):
-
-                reliability_bonus = {
-                    "HIGH": 6,
-                    "MEDIUM": 3,
-                    "LOW": 0,
-                }.get(
-                    validation[
-                        "reliability"
-                    ],
-                    0
-                )
-
-                content_bonus = {
-                    "LAP_GUIDE": 4,
-                    "STRATEGY": 4,
-                    "QUALIFYING": 3,
-                    "RACE": 2,
-                    "LIVESTREAM": 1,
-                }.get(
-                    data.get(
-                        "content_type"
-                    ),
-                    0
-                )
 
                 observations[
                     category
                 ].append({
                     "video_id":
-                        video_id,
+                        data.get(
+                            "video_id"
+                        ),
 
                     "channel":
                         data.get(
@@ -1414,20 +1411,14 @@ def build_observations(
                             "Unknown"
                         ),
 
-                    "title":
-                        data.get(
-                            "title"
-                    ),
-
                     "content_type":
                         data.get(
-                            "content_type"
-                    ),
+                            "content_type",
+                            "OTHER"
+                        ),
 
-                    "validation":
-                        validation[
-                            "status"
-                        ],
+                    "segment_index":
+                        segment_index,
 
                     "reliability":
                         validation[
@@ -1441,7 +1432,6 @@ def build_observations(
                         (
                             hits * 10
                             + reliability_bonus
-                            + content_bonus
                         ),
                 })
 
@@ -1449,7 +1439,7 @@ def build_observations(
 
 
 # ============================================================
-# DEDUPLICATION
+# SIMILARITY
 # ============================================================
 
 def text_tokens(text):
@@ -1476,8 +1466,7 @@ def text_tokens(text):
 
     return {
         word
-        for word
-        in normalize_text(
+        for word in normalize_text(
             text
         ).split()
         if (
@@ -1489,27 +1478,27 @@ def text_tokens(text):
 
 def similarity(a, b):
 
-    set_a = text_tokens(
+    a_tokens = text_tokens(
         a
     )
 
-    set_b = text_tokens(
+    b_tokens = text_tokens(
         b
     )
 
     if (
-        not set_a
-        or not set_b
+        not a_tokens
+        or not b_tokens
     ):
 
         return 0.0
 
     return (
         len(
-            set_a & set_b
+            a_tokens & b_tokens
         )
         / len(
-            set_a | set_b
+            a_tokens | b_tokens
         )
     )
 
@@ -1532,8 +1521,11 @@ def rank_and_dedupe(
 
     for item in items:
 
-        if any(
-            (
+        duplicate = False
+
+        for existing in output:
+
+            if (
                 item[
                     "channel"
                 ]
@@ -1548,11 +1540,13 @@ def rank_and_dedupe(
                         "text"
                     ]
                 )
-                >= 0.45
-            )
-            for existing in output
-        ):
+                >= 0.42
+            ):
 
+                duplicate = True
+                break
+
+        if duplicate:
             continue
 
         output.append(
@@ -1566,56 +1560,376 @@ def rank_and_dedupe(
 
 
 # ============================================================
-# TECHNICAL CONCEPT TAGS
+# DRIVING REFERENCE EXTRACTION
+# ============================================================
+
+def extract_brake_reference(text):
+
+    normalized = (
+        text.lower()
+    )
+
+    patterns = [
+        r"\baround\s+(\d+)\s*m\b",
+        r"\bat\s+(\d+)\s*m\b",
+        r"\b(\d+)\s*m\b",
+        r"\b(\d+)\s*(?:feet|ft)\b",
+        r"\b(\d+)\s+board\b",
+        r"\b(\d+)\s+sign\b",
+    ]
+
+    for pattern in patterns:
+
+        match = re.search(
+            pattern,
+            normalized
+        )
+
+        if match:
+
+            return match.group(
+                0
+            )
+
+    reference_phrases = [
+        "after we pass under this bridge",
+        "under the bridge",
+        "dark mark in the sand",
+        "arrow sign",
+        "yellow lines",
+        "out of the tunnel",
+    ]
+
+    for phrase in reference_phrases:
+
+        if phrase in normalized:
+
+            return phrase
+
+    return None
+
+
+def extract_gear(text):
+
+    normalized = (
+        text.lower()
+    )
+
+    patterns = [
+        (
+            r"\b(first|second|third|fourth|fifth|sixth)\s+gear\b"
+        ),
+        (
+            r"\b([1-6])(?:st|nd|rd|th)\s+gear\b"
+        ),
+    ]
+
+    for pattern in patterns:
+
+        match = re.search(
+            pattern,
+            normalized
+        )
+
+        if match:
+
+            return match.group(
+                0
+            )
+
+    return None
+
+
+def extract_technique(text):
+
+    normalized = (
+        text.lower()
+    )
+
+    techniques = []
+
+    checks = [
+        (
+            "release brake to help rotation",
+            [
+                "let go of the brakes",
+                "release the brakes",
+                "release brake",
+            ]
+        ),
+
+        (
+            "avoid prolonged trail braking",
+            [
+                "trail braking",
+                "brakes for too long",
+                "stay on the brakes for too long",
+            ]
+        ),
+
+        (
+            "keep a tight/narrow line",
+            [
+                "tight line",
+                "narrowest possible",
+                "hugging the inside",
+            ]
+        ),
+
+        (
+            "use early throttle",
+            [
+                "power as soon as possible",
+                "accelerate as soon as possible",
+                "get on the power",
+            ]
+        ),
+
+        (
+            "use kerb to aid rotation",
+            [
+                "curbs on the right",
+                "curb",
+                "kerb",
+            ]
+        ),
+
+        (
+            "coast to help rotation",
+            [
+                "coast",
+                "coasting",
+            ]
+        ),
+    ]
+
+    for label, phrases in checks:
+
+        if any(
+            phrase in normalized
+            for phrase in phrases
+        ):
+
+            techniques.append(
+                label
+            )
+
+    return techniques
+
+
+# ============================================================
+# CORNER-BY-CORNER APPROXIMATION
+# ============================================================
+
+def build_corner_guide(
+    transcript_sources,
+    validations
+):
+
+    validation_lookup = {
+        item[
+            "video_id"
+        ]:
+            item
+        for item in validations
+    }
+
+    guide = []
+
+    for source in transcript_sources:
+
+        data = source[
+            "data"
+        ]
+
+        validation = (
+            validation_lookup.get(
+                data.get(
+                    "video_id"
+                )
+            )
+        )
+
+        if (
+            not validation
+            or validation[
+                "status"
+            ]
+            == "REJECTED"
+        ):
+
+            continue
+
+        segments = transcript_segments(
+            data.get(
+                "transcript",
+                ""
+            )
+        )
+
+        for index, segment in enumerate(
+            segments
+        ):
+
+            braking_hits = (
+                category_hits(
+                    segment,
+                    "BRAKING"
+                )
+            )
+
+            line_hits = (
+                category_hits(
+                    segment,
+                    "RACING_LINE"
+                )
+            )
+
+            throttle_hits = (
+                category_hits(
+                    segment,
+                    "THROTTLE"
+                )
+            )
+
+            gear_hits = (
+                category_hits(
+                    segment,
+                    "GEARS"
+                )
+            )
+
+            total_hits = (
+                braking_hits
+                + line_hits
+                + throttle_hits
+                + gear_hits
+            )
+
+            if total_hits < 2:
+                continue
+
+            previous_text = (
+                segments[
+                    index - 1
+                ]
+                if index > 0
+                else ""
+            )
+
+            next_text = (
+                segments[
+                    index + 1
+                ]
+                if index
+                + 1
+                < len(
+                    segments
+                )
+                else ""
+            )
+
+            context = normalize_space(
+                previous_text
+                + " "
+                + segment
+                + " "
+                + next_text
+            )
+
+            guide.append({
+                "channel":
+                    data.get(
+                        "channel",
+                        "Unknown"
+                    ),
+
+                "reliability":
+                    validation[
+                        "reliability"
+                    ],
+
+                "segment_index":
+                    index,
+
+                "brake_reference":
+                    extract_brake_reference(
+                        segment
+                    )
+                    or extract_brake_reference(
+                        context
+                    ),
+
+                "gear":
+                    extract_gear(
+                        segment
+                    )
+                    or extract_gear(
+                        context
+                    ),
+
+                "techniques":
+                    extract_technique(
+                        context
+                    ),
+
+                "summary":
+                    compact_text(
+                        segment,
+                        300
+                    ),
+
+                "score":
+                    total_hits,
+            })
+
+    guide.sort(
+        key=lambda item:
+            (
+                item[
+                    "channel"
+                ],
+                item[
+                    "segment_index"
+                ]
+            )
+    )
+
+    return guide
+
+
+# ============================================================
+# CONSENSUS
 # ============================================================
 
 CONCEPT_PATTERNS = {
-    "RELEASE_BRAKE_TO_ROTATE": [
-        r"release.*brake",
-        r"let go.*brake",
-        r"brake.*understeer",
-    ],
-
-    "AVOID_LONG_TRAIL_BRAKING": [
-        r"trail braking.*understeer",
-        r"stay on the brakes.*understeer",
-        r"brakes for too long",
-    ],
 
     "TIGHT_LINE": [
         r"tight line",
         r"narrowest possible",
-        r"stay.*inside",
         r"hugging the inside",
     ],
 
     "EARLY_POWER": [
-        r"power.*as soon as possible",
-        r"accelerate.*early",
+        r"power as soon as possible",
         r"get on the power",
+        r"accelerate",
+    ],
+
+    "RELEASE_BRAKE_FOR_ROTATION": [
+        r"release.*brake",
+        r"let go.*brake",
+    ],
+
+    "AVOID_LONG_TRAIL_BRAKING": [
+        r"trail braking",
+        r"brakes for too long",
     ],
 
     "TRACK_LIMIT_RISK": [
         r"track limits",
-        r"half second penalty",
         r"white line",
-        r"bollard",
-    ],
-
-    "USE_KERB_FOR_ROTATION": [
-        r"curb.*rotate",
-        r"kerb.*rotate",
-        r"curb.*help",
-    ],
-
-    "FULL_THROTTLE_EXIT": [
-        r"full throttle",
-        r"carry.*speed.*straight",
-    ],
-
-    "NO_STOP": [
-        r"no stop",
-        r"no-stop",
+        r"penalty",
     ],
 }
 
@@ -1647,10 +1961,6 @@ def concept_tags(text):
     return tags
 
 
-# ============================================================
-# CONSENSUS ENGINE
-# ============================================================
-
 def build_consensus(
     observations
 ):
@@ -1663,19 +1973,15 @@ def build_consensus(
         list
     )
 
-    for category, items in (
-        observations.items()
-    ):
+    for items in observations.values():
 
         for item in items:
 
-            tags = concept_tags(
+            for tag in concept_tags(
                 item[
                     "text"
                 ]
-            )
-
-            for tag in tags:
+            ):
 
                 tag_sources[
                     tag
@@ -1687,20 +1993,11 @@ def build_consensus(
 
                 tag_examples[
                     tag
-                ].append({
-                    "category":
-                        category,
-
-                    "channel":
-                        item[
-                            "channel"
-                        ],
-
-                    "text":
-                        item[
-                            "text"
-                        ],
-                })
+                ].append(
+                    item[
+                        "text"
+                    ]
+                )
 
     results = []
 
@@ -1715,22 +2012,22 @@ def build_consensus(
             "concept":
                 tag,
 
-            "source_count":
-                len(
-                    sources
-                ),
-
             "sources":
                 sorted(
                     sources
                 ),
 
+            "source_count":
+                len(
+                    sources
+                ),
+
             "example":
-                tag_examples[
-                    tag
-                ][0][
-                    "text"
-                ],
+                compact_text(
+                    tag_examples[
+                        tag
+                    ][0]
+                ),
         })
 
     results.sort(
@@ -1745,10 +2042,11 @@ def build_consensus(
 
 
 # ============================================================
-# COMMUNITY CAR MENTIONS
+# CAR MENTIONS
 # ============================================================
 
 KNOWN_CAR_TERMS = {
+
     "GT by Citroën Gr.4": [
         "gt by citroen",
         "citroen gr 4",
@@ -1801,7 +2099,6 @@ def community_car_mentions(
     }
 
     counts = Counter()
-
     channels = defaultdict(
         set
     )
@@ -1850,7 +2147,7 @@ def community_car_mentions(
                 for term in terms
             )
 
-            if hits:
+            if hits > 0:
 
                 counts[
                     car
@@ -1865,13 +2162,8 @@ def community_car_mentions(
                     )
                 )
 
-    results = []
-
-    for car, count in (
-        counts.most_common()
-    ):
-
-        results.append({
+    return [
+        {
             "car":
                 car,
 
@@ -1884,13 +2176,16 @@ def community_car_mentions(
                         car
                     ]
                 ),
-        })
+        }
 
-    return results
+        for car, count in (
+            counts.most_common()
+        )
+    ]
 
 
 # ============================================================
-# COMMUNITY VS LIVE META
+# META COMPARISON
 # ============================================================
 
 def build_meta_comparison(
@@ -1932,7 +2227,7 @@ def build_meta_comparison(
 
 
 # ============================================================
-# TOP TAKEAWAYS
+# TAKEAWAYS
 # ============================================================
 
 def build_takeaways(
@@ -1942,23 +2237,9 @@ def build_takeaways(
 
     results = []
 
-    priority = [
-        "BRAKING",
-        "RACING_LINE",
-        "THROTTLE",
-        "GEARS",
-        "KERBS_TRACK_LIMITS",
-        "TYRE_MANAGEMENT",
-        "PIT_STRATEGY",
-        "WARNINGS",
-    ]
-
     for item in consensus:
 
         results.append({
-            "type":
-                "CONSENSUS",
-
             "category":
                 "MULTI_SOURCE",
 
@@ -1978,6 +2259,15 @@ def build_takeaways(
         if len(results) >= 3:
             break
 
+    priority = [
+        "BRAKING",
+        "RACING_LINE",
+        "THROTTLE",
+        "GEARS",
+        "KERBS_TRACK_LIMITS",
+        "WARNINGS",
+    ]
+
     for category in priority:
 
         for item in ranked.get(
@@ -1994,16 +2284,13 @@ def build_takeaways(
                         "text"
                     ]
                 )
-                > 0.40
+                >= 0.40
                 for existing in results
             ):
 
                 continue
 
             results.append({
-                "type":
-                    "SOURCE",
-
                 "category":
                     category,
 
@@ -2013,20 +2300,21 @@ def build_takeaways(
                     ],
 
                 "text":
-                    item[
-                        "text"
-                    ],
+                    compact_text(
+                        item[
+                            "text"
+                        ]
+                    ),
             })
 
             if len(results) >= 10:
-
                 return results
 
     return results
 
 
 # ============================================================
-# REPORT HELPERS
+# REPORT
 # ============================================================
 
 def format_compounds(values):
@@ -2039,46 +2327,11 @@ def format_compounds(values):
     )
 
 
-def compact_text(
-    text,
-    max_chars=420
-):
-
-    text = normalize_space(
-        text
-    )
-
-    if len(text) <= max_chars:
-        return text
-
-    shortened = text[
-        :max_chars
-    ]
-
-    cut = shortened.rfind(
-        " "
-    )
-
-    if cut > 0:
-
-        shortened = shortened[
-            :cut
-        ]
-
-    return (
-        shortened
-        + "..."
-    )
-
-
-# ============================================================
-# BUILD REPORT
-# ============================================================
-
 def build_report(
     ground_truth,
     validations,
     ranked,
+    corner_guide,
     consensus,
     meta_comparison,
     takeaways
@@ -2087,11 +2340,11 @@ def build_report(
     lines = []
 
     lines.append(
-        "GT7 COMMUNITY INTELLIGENCE V2"
+        "GT7 COMMUNITY INTELLIGENCE V3"
     )
 
     lines.append(
-        "=" * 92
+        "=" * 94
     )
 
     lines.append(
@@ -2111,7 +2364,7 @@ def build_report(
 
     lines.append(
         f"Direction        : "
-        f"{ground_truth.get('direction') or 'Unknown'}"
+        f"{ground_truth.get('direction')}"
     )
 
     lines.append(
@@ -2139,7 +2392,7 @@ def build_report(
     )
 
     lines.append(
-        "-" * 92
+        "-" * 94
     )
 
     for item in validations:
@@ -2148,10 +2401,6 @@ def build_report(
             f"{item['channel']} | "
             f"{item['status']} | "
             f"{item['reliability']}"
-        )
-
-        lines.append(
-            f"  {item['title']}"
         )
 
         detected = item[
@@ -2228,47 +2477,74 @@ def build_report(
                 f"{reason}"
             )
 
-        for warning in item[
-            "warnings"
-        ]:
-
-            lines.append(
-                f"  Note    : "
-                f"{warning}"
-            )
-
-    accepted = sum(
-        1
-        for item in validations
-        if item[
-            "status"
-        ]
-        != "REJECTED"
-    )
-
-    rejected = sum(
-        1
-        for item in validations
-        if item[
-            "status"
-        ]
-        == "REJECTED"
-    )
+    # ========================================================
+    # CORNER GUIDE
+    # ========================================================
 
     lines.append("")
-
     lines.append(
-        f"Usable sources   : "
-        f"{accepted}"
+        "CORNER-BY-CORNER / SEQUENTIAL GUIDE"
     )
 
     lines.append(
-        f"Rejected sources : "
-        f"{rejected}"
+        "-" * 94
     )
+
+    if not corner_guide:
+
+        lines.append(
+            "No sequential technical guide extracted."
+        )
+
+    else:
+
+        for index, item in enumerate(
+            corner_guide[
+                :18
+            ],
+            start=1
+        ):
+
+            lines.append(
+                f"{index}. "
+                f"[{item['channel']} | "
+                f"{item['reliability']}]"
+            )
+
+            if item[
+                "brake_reference"
+            ]:
+
+                lines.append(
+                    f"   Brake ref : "
+                    f"{item['brake_reference']}"
+                )
+
+            if item[
+                "gear"
+            ]:
+
+                lines.append(
+                    f"   Gear      : "
+                    f"{item['gear']}"
+                )
+
+            if item[
+                "techniques"
+            ]:
+
+                lines.append(
+                    f"   Technique : "
+                    f"{'; '.join(item['techniques'])}"
+                )
+
+            lines.append(
+                f"   Note      : "
+                f"{item['summary']}"
+            )
 
     # ========================================================
-    # TECHNICAL SECTIONS
+    # TECHNICAL CATEGORIES
     # ========================================================
 
     section_titles = {
@@ -2296,9 +2572,6 @@ def build_report(
         "PIT_STRATEGY":
             "PIT / RACE STRATEGY",
 
-        "RACECRAFT":
-            "RACECRAFT",
-
         "WARNINGS":
             "MISTAKES / WARNINGS",
     }
@@ -2313,7 +2586,7 @@ def build_report(
         )
 
         lines.append(
-            "-" * 92
+            "-" * 94
         )
 
         items = ranked.get(
@@ -2347,13 +2620,13 @@ def build_report(
     )
 
     lines.append(
-        "-" * 92
+        "-" * 94
     )
 
     if not consensus:
 
         lines.append(
-            "No strong multi-source technical consensus detected yet."
+            "No strong multi-source consensus detected."
         )
 
     else:
@@ -2371,11 +2644,11 @@ def build_report(
 
             lines.append(
                 f"  Example: "
-                f"{compact_text(item['example'])}"
+                f"{item['example']}"
             )
 
     # ========================================================
-    # COMMUNITY VS LIVE META
+    # META
     # ========================================================
 
     lines.append("")
@@ -2384,7 +2657,7 @@ def build_report(
     )
 
     lines.append(
-        "-" * 92
+        "-" * 94
     )
 
     community_mentions = (
@@ -2396,7 +2669,7 @@ def build_report(
     if community_mentions:
 
         lines.append(
-            "Community car mentions:"
+            "Community mentions:"
         )
 
         for item in (
@@ -2414,19 +2687,18 @@ def build_report(
     else:
 
         lines.append(
-            "Community car mentions: none detected."
+            "Community mentions: none."
         )
+
+    lines.append("")
+    lines.append(
+        "Live Top 1000:"
+    )
 
     live_top5 = (
         meta_comparison[
             "live_top5"
         ]
-    )
-
-    lines.append("")
-
-    lines.append(
-        "Live leaderboard Top 1000:"
     )
 
     if live_top5:
@@ -2436,24 +2708,18 @@ def build_report(
             start=1
         ):
 
-            percentage = (
-                item.get(
-                    "percentage"
-                )
+            percentage = item.get(
+                "percentage"
             )
 
-            if isinstance(
-                percentage,
-                (int, float)
-            ):
-
-                percentage_text = (
-                    f"{percentage:.1f}%"
+            percentage_text = (
+                f"{percentage:.1f}%"
+                if isinstance(
+                    percentage,
+                    (int, float)
                 )
-
-            else:
-
-                percentage_text = "N/A"
+                else "N/A"
+            )
 
             lines.append(
                 f"{index}. "
@@ -2461,12 +2727,6 @@ def build_report(
                 f"{item.get('drivers')} drivers | "
                 f"{percentage_text}"
             )
-
-    else:
-
-        lines.append(
-            "No live meta data available."
-        )
 
     # ========================================================
     # TAKEAWAYS
@@ -2478,35 +2738,27 @@ def build_report(
     )
 
     lines.append(
-        "-" * 92
+        "-" * 94
     )
 
-    if not takeaways:
+    for index, item in enumerate(
+        takeaways,
+        start=1
+    ):
 
         lines.append(
-            "No validated takeaways available."
+            f"{index}. "
+            f"[{item['category']}] "
+            f"{item['text']}"
         )
 
-    else:
-
-        for index, item in enumerate(
-            takeaways,
-            start=1
-        ):
-
-            lines.append(
-                f"{index}. "
-                f"[{item['category']}] "
-                f"{compact_text(item['text'])}"
-            )
-
-            lines.append(
-                f"   Source: "
-                f"{item['source']}"
-            )
+        lines.append(
+            f"   Source: "
+            f"{item['source']}"
+        )
 
     # ========================================================
-    # NOTES
+    # POLICY
     # ========================================================
 
     lines.append("")
@@ -2515,32 +2767,31 @@ def build_report(
     )
 
     lines.append(
-        "-" * 92
+        "-" * 94
     )
 
     lines.append(
-        "Live race configuration from latest_snapshot.json is treated "
-        "as ground truth."
+        "Live race configuration remains the authoritative source "
+        "for current regulations."
     )
 
     lines.append(
-        "A community source that materially contradicts the live race "
-        "configuration is excluded from recommendations."
+        "Rejected community sources cannot influence strategy or "
+        "driving recommendations."
     )
 
     lines.append(
-        "Unverified sources may contribute driving technique only when "
-        "they do not contradict known race facts."
+        "Sequential corner guidance is inferred from transcript order "
+        "and is not yet mapped to official corner numbers."
     )
 
     lines.append(
-        "Community car opinions are shown separately from actual "
-        "leaderboard usage."
+        "Leaderboard usage remains the primary evidence for live car meta."
     )
 
     lines.append("")
     lines.append(
-        "=" * 92
+        "=" * 94
     )
 
     return "\n".join(
@@ -2590,15 +2841,15 @@ def main():
         )
 
     print(
-        "=" * 92
+        "=" * 94
     )
 
     print(
-        "GT7 COMMUNITY ANALYZER V2"
+        "GT7 COMMUNITY ANALYZER V3"
     )
 
     print(
-        "=" * 92
+        "=" * 94
     )
 
     print(
@@ -2622,21 +2873,16 @@ def main():
     )
 
     # ========================================================
-    # VALIDATE
+    # VALIDATION
     # ========================================================
 
-    validations = []
-
-    for source in transcript_sources:
-
-        validation = validate_source(
+    validations = [
+        validate_source(
             source,
             ground_truth
         )
-
-        validations.append(
-            validation
-        )
+        for source in transcript_sources
+    ]
 
     # ========================================================
     # OBSERVATIONS
@@ -2659,6 +2905,15 @@ def main():
                 []
             )
         )
+
+    # ========================================================
+    # CORNER GUIDE
+    # ========================================================
+
+    corner_guide = build_corner_guide(
+        transcript_sources,
+        validations
+    )
 
     # ========================================================
     # CONSENSUS
@@ -2696,18 +2951,21 @@ def main():
     )
 
     # ========================================================
-    # OUTPUT STRUCTURE
+    # OUTPUT
     # ========================================================
 
     output = {
         "version":
-            2,
+            3,
 
         "ground_truth":
             ground_truth,
 
         "source_validation":
             validations,
+
+        "corner_guide":
+            corner_guide,
 
         "categories":
             ranked,
@@ -2735,6 +2993,7 @@ def main():
         ground_truth,
         validations,
         ranked,
+        corner_guide,
         consensus,
         meta_comparison,
         takeaways
@@ -2745,8 +3004,7 @@ def main():
         encoding="utf-8"
     )
 
-    print()
-
+    print("")
     print(
         report
     )
