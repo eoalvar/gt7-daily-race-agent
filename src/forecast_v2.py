@@ -20,41 +20,28 @@ def score_to_laptime(score):
     return f"{minutes}:{seconds:02d}.{milliseconds:03d}"
 
 
+def parse_datetime(value):
+
+    if not value:
+        return None
+
+    try:
+        return datetime.fromisoformat(value)
+
+    except Exception:
+        return None
+
+
 def linear_regression(points):
-
-    """
-    points = [(x, y), ...]
-
-    Returns:
-        slope
-        intercept
-        rmse
-    """
 
     if len(points) < 2:
         return None
 
-    xs = [
-        float(x)
-        for x, _
-        in points
-    ]
+    xs = [float(x) for x, _ in points]
+    ys = [float(y) for _, y in points]
 
-    ys = [
-        float(y)
-        for _, y
-        in points
-    ]
-
-    x_mean = (
-        sum(xs)
-        / len(xs)
-    )
-
-    y_mean = (
-        sum(ys)
-        / len(ys)
-    )
+    x_mean = sum(xs) / len(xs)
+    y_mean = sum(ys) / len(ys)
 
     denominator = sum(
         (x - x_mean) ** 2
@@ -68,8 +55,7 @@ def linear_regression(points):
         sum(
             (x - x_mean)
             * (y - y_mean)
-            for x, y
-            in zip(xs, ys)
+            for x, y in zip(xs, ys)
         )
         / denominator
     )
@@ -85,132 +71,76 @@ def linear_regression(points):
             slope * x
             + intercept
         )
-        for x, y
-        in zip(xs, ys)
+        for x, y in zip(xs, ys)
     ]
 
     rmse = math.sqrt(
         sum(
             residual ** 2
-            for residual
-            in residuals
+            for residual in residuals
         )
         / len(residuals)
     )
 
     return {
-        "slope":
-            slope,
-
-        "intercept":
-            intercept,
-
-        "rmse":
-            rmse
+        "slope": slope,
+        "intercept": intercept,
+        "rmse": rmse
     }
 
 
 # ============================================================
-# SNAPSHOT HELPERS
+# SNAPSHOT METRICS
 # ============================================================
 
-def parse_datetime(value):
-
-    if not value:
-        return None
-
-    try:
-        return datetime.fromisoformat(
-            value
-        )
-
-    except Exception:
-        return None
-
-
-def threshold_score(
-    snapshot,
-    rank
-):
+def threshold_score(snapshot, rank):
 
     value = (
         snapshot
-        .get(
-            "thresholds",
-            {}
-        )
-        .get(
-            str(rank)
-        )
+        .get("thresholds", {})
+        .get(str(rank))
     )
 
-    if isinstance(
-        value,
-        dict
-    ):
-        return value.get(
-            "score"
-        )
+    if isinstance(value, dict):
+        return value.get("score")
 
-    if isinstance(
-        value,
-        (int, float)
-    ):
+    if isinstance(value, (int, float)):
         return value
 
     return None
 
 
-def world_record_score(
-    snapshot
-):
+def world_record_score(snapshot):
 
     return (
         snapshot
-        .get(
-            "world_record",
-            {}
-        )
-        .get(
-            "score"
-        )
+        .get("world_record", {})
+        .get("score")
     )
 
 
-def my_score(
-    snapshot
-):
+def personal_score(snapshot):
 
-    result = snapshot.get(
-        "my_result"
-    )
+    result = snapshot.get("my_result")
 
     if not result:
         return None
 
-    return result.get(
-        "score"
-    )
+    return result.get("score")
 
 
-def my_rank(
-    snapshot
-):
+def personal_rank(snapshot):
 
-    result = snapshot.get(
-        "my_result"
-    )
+    result = snapshot.get("my_result")
 
     if not result:
         return None
 
-    return result.get(
-        "rank"
-    )
+    return result.get("rank")
 
 
 # ============================================================
-# CURRENT-WEEK FILTER
+# CURRENT-WEEK SNAPSHOTS
 # ============================================================
 
 def current_week_snapshots(
@@ -220,13 +150,8 @@ def current_week_snapshots(
 
     current_url = (
         current_snapshot
-        .get(
-            "race",
-            {}
-        )
-        .get(
-            "leaderboard_url"
-        )
+        .get("race", {})
+        .get("leaderboard_url")
     )
 
     combined = (
@@ -235,43 +160,35 @@ def current_week_snapshots(
     )
 
     selected = []
-
     seen = set()
 
     for snapshot in combined:
 
         url = (
             snapshot
-            .get(
-                "race",
-                {}
-            )
-            .get(
-                "leaderboard_url"
-            )
+            .get("race", {})
+            .get("leaderboard_url")
         )
 
         if url != current_url:
             continue
 
+        timestamp_text = snapshot.get(
+            "timestamp"
+        )
+
         timestamp = parse_datetime(
-            snapshot.get(
-                "timestamp"
-            )
+            timestamp_text
         )
 
         if not timestamp:
             continue
 
-        key = snapshot.get(
-            "timestamp"
-        )
-
-        if key in seen:
+        if timestamp_text in seen:
             continue
 
         seen.add(
-            key
+            timestamp_text
         )
 
         selected.append(
@@ -281,9 +198,7 @@ def current_week_snapshots(
     selected.sort(
         key=lambda item:
             parse_datetime(
-                item[
-                    "timestamp"
-                ]
+                item["timestamp"]
             )
     )
 
@@ -304,9 +219,7 @@ def build_time_axis(
     for snapshot in snapshots:
 
         timestamp = parse_datetime(
-            snapshot.get(
-                "timestamp"
-            )
+            snapshot.get("timestamp")
         )
 
         if not timestamp:
@@ -328,7 +241,7 @@ def build_time_axis(
 
 
 # ============================================================
-# METRIC FORECAST
+# GENERIC FORECAST
 # ============================================================
 
 def forecast_metric(
@@ -375,24 +288,14 @@ def forecast_metric(
         return None
 
     span_hours = (
-        max(
-            x
-            for x, _
-            in points
-        )
-        - min(
-            x
-            for x, _
-            in points
-        )
+        max(x for x, _ in points)
+        - min(x for x, _ in points)
     )
 
     slope = regression[
         "slope"
     ]
 
-    # Leaderboard lap-time thresholds should normally
-    # improve, i.e. milliseconds decrease.
     if direction == "down":
         slope = min(
             slope,
@@ -411,27 +314,19 @@ def forecast_metric(
     ).total_seconds() / 3600
 
     predicted = (
-        regression[
-            "intercept"
-        ]
+        regression["intercept"]
         + slope * target_x
     )
 
-    current_value = points[
-        -1
-    ][
-        1
-    ]
+    current_value = points[-1][1]
 
     if direction == "down":
-
         predicted = min(
             predicted,
             current_value
         )
 
     elif direction == "up":
-
         predicted = max(
             predicted,
             current_value
@@ -441,18 +336,15 @@ def forecast_metric(
         len(points) >= 10
         and span_hours >= 72
     ):
-
         confidence = "HIGH"
 
     elif (
         len(points) >= 6
         and span_hours >= 24
     ):
-
         confidence = "MEDIUM"
 
     else:
-
         confidence = "LOW"
 
     return {
@@ -466,9 +358,7 @@ def forecast_metric(
             slope,
 
         "rmse":
-            regression[
-                "rmse"
-            ],
+            regression["rmse"],
 
         "samples":
             len(points),
@@ -482,10 +372,10 @@ def forecast_metric(
 
 
 # ============================================================
-# SCORE AT RANK
+# RANK / PERCENTILE HELPERS
 # ============================================================
 
-def current_score_at_rank(
+def score_at_rank(
     ranking,
     rank
 ):
@@ -503,14 +393,8 @@ def current_score_at_rank(
 
     return ranking[
         rank - 1
-    ].get(
-        "score"
-    )
+    ].get("score")
 
-
-# ============================================================
-# PERCENTILE THRESHOLDS
-# ============================================================
 
 def percentile_rank(
     total,
@@ -545,7 +429,7 @@ def current_percentile_score(
             rank,
 
         "score":
-            current_score_at_rank(
+            score_at_rank(
                 ranking,
                 rank
             )
@@ -553,7 +437,7 @@ def current_percentile_score(
 
 
 # ============================================================
-# FIELD THRESHOLD DETERIORATION MODEL
+# PERCENTILE FORECAST
 # ============================================================
 
 def projected_percentile_score(
@@ -573,7 +457,6 @@ def projected_percentile_score(
     ]
 
     if current_score is None:
-
         return None
 
     projected_deltas = []
@@ -581,41 +464,27 @@ def projected_percentile_score(
     if top500_forecast:
 
         projected_deltas.append(
-            top500_forecast[
-                "predicted"
-            ]
-            - top500_forecast[
-                "current"
-            ]
+            top500_forecast["predicted"]
+            - top500_forecast["current"]
         )
 
     if top1000_forecast:
 
         projected_deltas.append(
-            top1000_forecast[
-                "predicted"
-            ]
-            - top1000_forecast[
-                "current"
-            ]
+            top1000_forecast["predicted"]
+            - top1000_forecast["current"]
         )
 
-    if projected_deltas:
-
-        expected_delta = (
-            sum(projected_deltas)
-            / len(projected_deltas)
-        )
-
-    else:
-
-        expected_delta = 0
+    expected_delta = (
+        sum(projected_deltas)
+        / len(projected_deltas)
+        if projected_deltas
+        else 0
+    )
 
     return {
         "current_rank":
-            current[
-                "rank"
-            ],
+            current["rank"],
 
         "current_score":
             current_score,
@@ -648,26 +517,21 @@ def rank_forecast(
     target_time
 ):
 
-    current_personal_score = (
+    current_result = (
         current_snapshot
-        .get(
-            "my_result",
-            {}
-        )
-        .get(
-            "score"
-        )
+        .get("my_result")
+    )
+
+    if not current_result:
+
+        return None
+
+    current_personal_score = (
+        current_result.get("score")
     )
 
     current_personal_rank = (
-        current_snapshot
-        .get(
-            "my_result",
-            {}
-        )
-        .get(
-            "rank"
-        )
+        current_result.get("rank")
     )
 
     if (
@@ -677,29 +541,20 @@ def rank_forecast(
 
         return None
 
-    # --------------------------------------------------------
-    # Only use snapshots since the current lap time was set.
-    #
-    # If the driver improves the lap, old rank deterioration
-    # is no longer comparable.
-    # --------------------------------------------------------
-
     comparable = []
 
     for snapshot in snapshots:
 
-        score = my_score(
+        score = personal_score(
             snapshot
         )
 
-        rank = my_rank(
+        rank = personal_rank(
             snapshot
         )
 
         timestamp = parse_datetime(
-            snapshot.get(
-                "timestamp"
-            )
+            snapshot.get("timestamp")
         )
 
         if (
@@ -738,21 +593,18 @@ def rank_forecast(
         comparable,
         race_start,
         target_time,
-        extractor=my_rank,
+        extractor=personal_rank,
         direction="up"
     )
 
     if not forecast:
-
         return None
 
     projected_rank = max(
         current_personal_rank,
         int(
             round(
-                forecast[
-                    "predicted"
-                ]
+                forecast["predicted"]
             )
         )
     )
@@ -765,29 +617,21 @@ def rank_forecast(
             projected_rank,
 
         "confidence":
-            forecast[
-                "confidence"
-            ],
+            forecast["confidence"],
 
         "samples":
-            forecast[
-                "samples"
-            ],
+            forecast["samples"],
 
         "span_hours":
-            forecast[
-                "span_hours"
-            ],
+            forecast["span_hours"],
 
         "rank_growth_per_hour":
-            forecast[
-                "slope_per_hour"
-            ]
+            forecast["slope_per_hour"]
     }
 
 
 # ============================================================
-# TOTAL PARTICIPANTS FORECAST
+# TOTAL DRIVERS FORECAST
 # ============================================================
 
 def total_driver_forecast(
@@ -796,17 +640,14 @@ def total_driver_forecast(
     target_time
 ):
 
-    def extractor(snapshot):
-
-        return snapshot.get(
-            "total_drivers"
-        )
-
     forecast = forecast_metric(
         snapshots,
         race_start,
         target_time,
-        extractor=extractor,
+        extractor=lambda snapshot:
+            snapshot.get(
+                "total_drivers"
+            ),
         direction="up"
     )
 
@@ -817,50 +658,37 @@ def total_driver_forecast(
         "current":
             int(
                 round(
-                    forecast[
-                        "current"
-                    ]
+                    forecast["current"]
                 )
             ),
 
         "predicted":
             int(
                 round(
-                    forecast[
-                        "predicted"
-                    ]
+                    forecast["predicted"]
                 )
             ),
 
         "confidence":
-            forecast[
-                "confidence"
-            ],
+            forecast["confidence"],
 
         "samples":
-            forecast[
-                "samples"
-            ]
+            forecast["samples"]
     }
 
 
 # ============================================================
-# CONFIDENCE COMBINER
+# OVERALL CONFIDENCE
 # ============================================================
 
 def overall_confidence(
     forecasts
 ):
 
-    weights = {
-        "HIGH":
-            3,
-
-        "MEDIUM":
-            2,
-
-        "LOW":
-            1
+    values = {
+        "HIGH": 3,
+        "MEDIUM": 2,
+        "LOW": 1
     }
 
     scores = []
@@ -874,10 +702,10 @@ def overall_confidence(
             "confidence"
         )
 
-        if confidence in weights:
+        if confidence in values:
 
             scores.append(
-                weights[
+                values[
                     confidence
                 ]
             )
@@ -900,7 +728,7 @@ def overall_confidence(
 
 
 # ============================================================
-# MAIN FORECAST V2
+# FORECAST V2
 # ============================================================
 
 def build_forecast_v2(
@@ -925,10 +753,6 @@ def build_forecast_v2(
             "reason":
                 "Fewer than 3 comparable current-week snapshots."
         }
-
-    # ========================================================
-    # CORE LEADERBOARD FORECASTS
-    # ========================================================
 
     wr_forecast = forecast_metric(
         snapshots,
@@ -974,10 +798,6 @@ def build_forecast_v2(
         direction="down"
     )
 
-    # ========================================================
-    # PERCENTILE TARGETS
-    # ========================================================
-
     top10 = projected_percentile_score(
         ranking,
         top500_forecast,
@@ -992,54 +812,50 @@ def build_forecast_v2(
         5
     )
 
-    # ========================================================
-    # PARTICIPANT GROWTH
-    # ========================================================
-
     total_forecast = total_driver_forecast(
         snapshots,
         race_start,
         sunday_end
     )
 
-    # ========================================================
-    # DRIVER POSITION IF LAP DOES NOT IMPROVE
-    # ========================================================
-
-    personal_rank_forecast = rank_forecast(
+    personal_rank_projection = rank_forecast(
         snapshots,
         current_snapshot,
         race_start,
         sunday_end
     )
 
-    current_result = current_snapshot.get(
-        "my_result"
+    current_result = (
+        current_snapshot
+        .get("my_result")
     )
 
     personal = None
 
     if current_result:
 
-        current_score = current_result.get(
-            "score"
+        current_score = (
+            current_result.get("score")
         )
 
-        current_rank = current_result.get(
-            "rank"
+        current_rank = (
+            current_result.get("rank")
         )
 
-        current_top_percent = current_result.get(
-            "top_percent"
+        current_top_percent = (
+            current_result.get(
+                "top_percent"
+            )
         )
 
         projected_rank = None
         projected_top_percent = None
 
-        if personal_rank_forecast:
+        if personal_rank_projection:
 
             projected_rank = (
-                personal_rank_forecast.get(
+                personal_rank_projection
+                .get(
                     "projected_rank"
                 )
             )
@@ -1050,9 +866,7 @@ def build_forecast_v2(
         ):
 
             projected_total = max(
-                total_forecast[
-                    "predicted"
-                ],
+                total_forecast["predicted"],
                 projected_rank
             )
 
@@ -1080,36 +894,29 @@ def build_forecast_v2(
 
             "rank_forecast_confidence":
                 (
-                    personal_rank_forecast.get(
+                    personal_rank_projection
+                    .get(
                         "confidence"
                     )
-                    if personal_rank_forecast
+                    if personal_rank_projection
                     else "INSUFFICIENT"
                 )
         }
-
-    # ========================================================
-    # TARGET GAINS
-    # ========================================================
 
     targets = {}
 
     if (
         current_result
-        and current_result.get(
-            "score"
-        )
+        and current_result.get("score")
     ):
 
-        personal_score = current_result[
-            "score"
-        ]
+        current_score = (
+            current_result["score"]
+        )
 
         if top10:
 
-            targets[
-                "top10"
-            ] = {
+            targets["top10"] = {
                 "score":
                     top10[
                         "predicted_score"
@@ -1118,7 +925,7 @@ def build_forecast_v2(
                 "gain_needed_ms":
                     max(
                         0,
-                        personal_score
+                        current_score
                         - top10[
                             "predicted_score"
                         ]
@@ -1127,9 +934,7 @@ def build_forecast_v2(
 
         if top5:
 
-            targets[
-                "top5"
-            ] = {
+            targets["top5"] = {
                 "score":
                     top5[
                         "predicted_score"
@@ -1138,7 +943,7 @@ def build_forecast_v2(
                 "gain_needed_ms":
                     max(
                         0,
-                        personal_score
+                        current_score
                         - top5[
                             "predicted_score"
                         ]
@@ -1157,7 +962,7 @@ def build_forecast_v2(
 
     timestamps = [
         parse_datetime(
-            snapshot[
+            snapshot.get(
                 "timestamp"
             )
         )
@@ -1228,7 +1033,7 @@ def build_forecast_v2(
 
 
 # ============================================================
-# REPORT BUILDER
+# REPORT OUTPUT
 # ============================================================
 
 def forecast_report_lines(
@@ -1284,7 +1089,7 @@ def forecast_report_lines(
         "PROJECTED LEADERBOARD"
     )
 
-    metric_labels = [
+    metrics = [
         (
             "world_record",
             "WR"
@@ -1303,7 +1108,7 @@ def forecast_report_lines(
         )
     ]
 
-    for key, label in metric_labels:
+    for key, label in metrics:
 
         item = forecast.get(
             key
@@ -1353,10 +1158,6 @@ def forecast_report_lines(
             f"~{total['predicted']:,}"
         )
 
-    # ========================================================
-    # PERSONAL PROJECTION
-    # ========================================================
-
     personal = forecast.get(
         "personal"
     )
@@ -1378,18 +1179,24 @@ def forecast_report_lines(
             f"#{personal['current_rank']:,}"
         )
 
-        if personal[
-            "current_top_percent"
-        ] is not None:
+        if (
+            personal[
+                "current_top_percent"
+            ]
+            is not None
+        ):
 
             lines.append(
                 f"Current Top %   : "
                 f"{personal['current_top_percent']:.2f}%"
             )
 
-        if personal[
-            "projected_rank"
-        ] is not None:
+        if (
+            personal[
+                "projected_rank"
+            ]
+            is not None
+        ):
 
             lines.append(
                 f"Projected rank  : "
@@ -1403,9 +1210,12 @@ def forecast_report_lines(
                 "insufficient comparable rank history"
             )
 
-        if personal[
-            "projected_top_percent"
-        ] is not None:
+        if (
+            personal[
+                "projected_top_percent"
+            ]
+            is not None
+        ):
 
             lines.append(
                 f"Projected Top % : "
@@ -1416,10 +1226,6 @@ def forecast_report_lines(
             f"Rank confidence : "
             f"{personal['rank_forecast_confidence']}"
         )
-
-    # ========================================================
-    # TARGETS
-    # ========================================================
 
     targets = forecast.get(
         "targets",
@@ -1435,9 +1241,11 @@ def forecast_report_lines(
 
         if "top10" in targets:
 
-            target = targets[
-                "top10"
-            ]
+            target = (
+                targets[
+                    "top10"
+                ]
+            )
 
             lines.append(
                 f"Top 10% target  : "
@@ -1448,9 +1256,11 @@ def forecast_report_lines(
 
         if "top5" in targets:
 
-            target = targets[
-                "top5"
-            ]
+            target = (
+                targets[
+                    "top5"
+                ]
+            )
 
             lines.append(
                 f"Top 5% target   : "
@@ -1463,7 +1273,7 @@ def forecast_report_lines(
     lines.append(
         "Forecast note   : "
         "V2 uses current-week leaderboard evolution. "
-        "Cross-week historical learning will activate only "
+        "Cross-week historical learning will activate "
         "after sufficient multi-week intraday data exists."
     )
 
