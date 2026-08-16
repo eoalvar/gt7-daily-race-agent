@@ -28,13 +28,19 @@ jobs:
 
           mkdir -p data/community_supadata_test/transcripts
 
-          EXISTING_COUNT=$(find data/community_transcripts data/community_supadata_test/transcripts \
-            -type f -name "*.json" 2>/dev/null | wc -l || true)
+          EXISTING_COUNT=$(find \
+            data/community_transcripts \
+            data/community_supadata_test/transcripts \
+            -type f \
+            -name "*.json" \
+            2>/dev/null \
+            | wc -l || true)
 
           echo "Existing transcript files: $EXISTING_COUNT"
 
           if [ "$EXISTING_COUNT" -gt 0 ]; then
-            echo "Transcript files already available. Artifact recovery not required."
+            echo "Transcript files already exist in repository."
+            echo "Artifact recovery not required."
             exit 0
           fi
 
@@ -60,10 +66,14 @@ jobs:
             --name gt7-community-supadata-test \
             --dir /tmp/gt7-supadata-artifact
 
+          echo ""
           echo "Downloaded artifact contents:"
-          find /tmp/gt7-supadata-artifact -type f -print
+          find /tmp/gt7-supadata-artifact \
+            -type f \
+            -print
 
-          TRANSCRIPT_SOURCE=$(find /tmp/gt7-supadata-artifact \
+          TRANSCRIPT_SOURCE=$(find \
+            /tmp/gt7-supadata-artifact \
             -type d \
             -path "*/transcripts" \
             | head -n 1)
@@ -73,15 +83,52 @@ jobs:
             exit 1
           fi
 
-          cp -R "$TRANSCRIPT_SOURCE"/. \
+          cp -R \
+            "$TRANSCRIPT_SOURCE"/. \
             data/community_supadata_test/transcripts/
 
           echo ""
           echo "Recovered transcript files:"
-          find data/community_supadata_test/transcripts \
+
+          find \
+            data/community_supadata_test/transcripts \
             -type f \
             -name "*.json" \
             -print
+
+      - name: Verify required input files
+        run: |
+          echo "=========================================="
+          echo "Required GT7 Community Analyzer inputs"
+          echo "=========================================="
+
+          test -f data/latest_snapshot.json || {
+            echo "ERROR: data/latest_snapshot.json missing"
+            exit 1
+          }
+
+          test -f data/community_sources.json || {
+            echo "ERROR: data/community_sources.json missing"
+            exit 1
+          }
+
+          echo "latest_snapshot.json : OK"
+          echo "community_sources.json: OK"
+
+          TRANSCRIPT_COUNT=$(find \
+            data/community_transcripts \
+            data/community_supadata_test/transcripts \
+            -type f \
+            -name "*.json" \
+            2>/dev/null \
+            | wc -l || true)
+
+          echo "Transcript files      : $TRANSCRIPT_COUNT"
+
+          if [ "$TRANSCRIPT_COUNT" -eq 0 ]; then
+            echo "ERROR: no transcript files available"
+            exit 1
+          fi
 
       - name: Run community analyzer
         run: |
@@ -91,11 +138,12 @@ jobs:
         if: always()
         run: |
           echo "=========================================="
-          echo "GT7 Community Intelligence Files"
+          echo "GT7 Community Intelligence V2 Files"
           echo "=========================================="
 
           if [ -d data/community_intelligence ]; then
-            find data/community_intelligence \
+            find \
+              data/community_intelligence \
               -type f \
               -maxdepth 3 \
               -print
@@ -119,7 +167,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No community intelligence changes to commit."
           else
-            git commit -m "Update GT7 community intelligence"
+            git commit -m "Update GT7 community intelligence V2"
             git push
           fi
 
@@ -127,7 +175,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: gt7-community-intelligence
+          name: gt7-community-intelligence-v2
           path: |
             data/community_intelligence/
             data/community_supadata_test/transcripts/
