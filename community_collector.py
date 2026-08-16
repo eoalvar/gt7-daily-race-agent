@@ -2,7 +2,7 @@ import json
 import re
 import subprocess
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
@@ -24,10 +24,6 @@ COMMUNITY_SOURCES_FILE = (
 )
 
 SEARCH_RESULTS_PER_QUERY = 20
-
-MAX_GENERAL_RESULTS = 120
-MAX_DIGIT_RESULTS = 80
-
 MAX_SAVED_VIDEOS = 60
 
 
@@ -99,7 +95,9 @@ def save_json(
     )
 
 
-def normalize_space(text):
+def normalize_space(
+    text
+):
 
     return re.sub(
         r"\s+",
@@ -108,7 +106,9 @@ def normalize_space(text):
     ).strip()
 
 
-def normalize_text(text):
+def normalize_text(
+    text
+):
 
     text = normalize_space(
         text
@@ -178,6 +178,146 @@ def canonical_channel_name(
         value,
         channel
     )
+
+
+# ============================================================
+# TRACK DETECTION
+# ============================================================
+
+def detect_track(
+    description
+):
+
+    text = normalize_space(
+        description
+    )
+
+    # ========================================================
+    # KNOWN SAFE TRACK PATTERNS
+    # ========================================================
+
+    known_patterns = [
+        (
+            r"Grand Valley\s*-\s*Highway 1",
+            "Grand Valley - Highway 1"
+        ),
+        (
+            r"Grand Valley Highway 1",
+            "Grand Valley - Highway 1"
+        ),
+        (
+            r"Grand Valley-Highway 1",
+            "Grand Valley - Highway 1"
+        ),
+        (
+            r"Grand Valley Highway One",
+            "Grand Valley - Highway 1"
+        ),
+    ]
+
+    for pattern, canonical in known_patterns:
+
+        if re.search(
+            pattern,
+            text,
+            re.IGNORECASE
+        ):
+            return canonical
+
+    # ========================================================
+    # GENERIC FALLBACK
+    # ========================================================
+
+    patterns = [
+        (
+            r"Daily Race C.*?"
+            r"\d{1,2}:\d{2}\s+"
+            r"(.+?)"
+            r"\s+(?:Gr\.?\s*\d+|Group\s+\d+)\b"
+        ),
+        (
+            r"Daily Race C.*?"
+            r"(.+?)"
+            r"\s+(?:Gr\.?\s*\d+|Group\s+\d+)\b"
+        ),
+    ]
+
+    for pattern in patterns:
+
+        match = re.search(
+            pattern,
+            text,
+            re.IGNORECASE
+        )
+
+        if not match:
+            continue
+
+        candidate = normalize_space(
+            match.group(
+                1
+            )
+        )
+
+        candidate = re.sub(
+            r"^\d{1,2}:\d{2}\s+",
+            "",
+            candidate
+        )
+
+        cleanup_patterns = [
+            r"\s+[A-Z]\.\s+[A-Za-zÀ-ÿ'-]+\s+-\s+.+$",
+            r"\s+-\s+GT by .+$",
+            r"\s+-\s+[A-Za-z0-9]+(?:\s+[A-Za-z0-9]+){0,5}\s+Gr\.?\s*\d+.*$",
+        ]
+
+        for cleanup_pattern in cleanup_patterns:
+
+            candidate = re.sub(
+                cleanup_pattern,
+                "",
+                candidate
+            ).strip()
+
+        if len(candidate) >= 4:
+            return candidate
+
+    return None
+
+
+# ============================================================
+# RACE CLASS
+# ============================================================
+
+def detect_race_class(
+    text
+):
+
+    match = re.search(
+        r"\bGr\.?\s*(\d+)\b",
+        text,
+        re.IGNORECASE
+    )
+
+    if match:
+
+        return (
+            f"Gr.{match.group(1)}"
+        )
+
+    match = re.search(
+        r"\bGroup\s+(\d+)\b",
+        text,
+        re.IGNORECASE
+    )
+
+    if match:
+
+        return (
+            f"Gr.{match.group(1)}"
+        )
+
+    return None
 
 
 # ============================================================
@@ -259,119 +399,6 @@ def build_race_context(
         "direction":
             direction,
     }
-
-
-def detect_track(
-    description
-):
-
-    text = normalize_space(
-        description
-    )
-
-    # Typical GTSH Daily Race text:
-    # ... Daily Race C ... Grand Valley - Highway 1 ...
-    #
-    # First try known separators / class markers.
-
-    patterns = [
-        (
-            r"Daily Race C.*?"
-            r"\d{1,2}:\d{2}\s+"
-            r"(.+?)"
-            r"\s+(?:Gr\.?\s*\d+|Group\s+\d+)"
-        ),
-
-        (
-            r"Daily Race C.*?"
-            r"([A-Za-z0-9 .'\-–]+?)"
-            r"\s+(?:Gr\.?\s*\d+|Group\s+\d+)"
-        ),
-    ]
-
-    for pattern in patterns:
-
-        match = re.search(
-            pattern,
-            text,
-            re.IGNORECASE
-        )
-
-        if match:
-
-            candidate = normalize_space(
-                match.group(
-                    1
-                )
-            )
-
-            candidate = re.sub(
-                r"^\d{1,2}:\d{2}\s+",
-                "",
-                candidate
-            )
-
-            if len(candidate) >= 4:
-
-                return candidate
-
-    # Specific fallback for current known structure.
-
-    known_track_patterns = [
-        r"Grand Valley\s*-\s*Highway 1",
-        r"Grand Valley Highway 1",
-        r"Grand Valley-Highway 1",
-        r"Grand Valley Highway One",
-    ]
-
-    for pattern in (
-        known_track_patterns
-    ):
-
-        match = re.search(
-            pattern,
-            text,
-            re.IGNORECASE
-        )
-
-        if match:
-
-            return (
-                "Grand Valley - Highway 1"
-            )
-
-    return None
-
-
-def detect_race_class(
-    text
-):
-
-    match = re.search(
-        r"\bGr\.?\s*(\d+)\b",
-        text,
-        re.IGNORECASE
-    )
-
-    if match:
-
-        return (
-            f"Gr.{match.group(1)}"
-        )
-
-    match = re.search(
-        r"\bGroup\s+(\d+)\b",
-        text,
-        re.IGNORECASE
-    )
-
-    if match:
-
-        return (
-            f"Gr.{match.group(1)}"
-        )
-
-    return None
 
 
 # ============================================================
@@ -751,10 +778,6 @@ def detect_title_date(
     if not week_start:
         return None
 
-    # US style:
-    # 8-11-26
-    # 08/11/2026
-
     patterns = [
         r"\b(\d{1,2})[-/](\d{1,2})[-/](\d{2,4})\b",
     ]
@@ -789,7 +812,6 @@ def detect_title_date(
 
             possible_dates = []
 
-            # US MM-DD-YY
             try:
 
                 possible_dates.append(
@@ -804,7 +826,6 @@ def detect_title_date(
 
                 pass
 
-            # International DD-MM-YY
             try:
 
                 possible_dates.append(
@@ -934,8 +955,6 @@ def classify_content_type(
     text = normalize_text(
         title
     )
-
-    # Strategy gets priority over generic race classification.
 
     strategy_terms = [
         "strategy",
@@ -1170,10 +1189,6 @@ def validate_candidate(
     reasons = []
     notes = []
 
-    # --------------------------------------------------------
-    # GT7
-    # --------------------------------------------------------
-
     gt7_signal = any(
         term in normalized
         for term in [
@@ -1188,10 +1203,6 @@ def validate_candidate(
         reasons.append(
             "NOT_GT7"
         )
-
-    # --------------------------------------------------------
-    # TRACK
-    # --------------------------------------------------------
 
     track_score = track_match_score(
         title,
@@ -1211,10 +1222,6 @@ def validate_candidate(
             "TRACK_MISMATCH"
         )
 
-    # --------------------------------------------------------
-    # DAILY RACE
-    # --------------------------------------------------------
-
     letter = daily_race_letter(
         title
     )
@@ -1233,10 +1240,6 @@ def validate_candidate(
         notes.append(
             "RACE_LETTER_UNVERIFIED"
         )
-
-    # --------------------------------------------------------
-    # CLASS
-    # --------------------------------------------------------
 
     expected_class = context.get(
         "race_class"
@@ -1266,10 +1269,6 @@ def validate_candidate(
             "CLASS_UNVERIFIED"
         )
 
-    # --------------------------------------------------------
-    # DIRECTION
-    # --------------------------------------------------------
-
     expected_direction = context.get(
         "direction",
         "NORMAL"
@@ -1298,10 +1297,6 @@ def validate_candidate(
         notes.append(
             "DIRECTION_UNVERIFIED"
         )
-
-    # --------------------------------------------------------
-    # DATE
-    # --------------------------------------------------------
 
     detected_date = detect_title_date(
         title,
@@ -1341,19 +1336,11 @@ def validate_candidate(
             "OLD_MONTH_YEAR_IN_TITLE"
         )
 
-    # --------------------------------------------------------
-    # CONTENT
-    # --------------------------------------------------------
-
     content_type = (
         classify_content_type(
             title
         )
     )
-
-    # --------------------------------------------------------
-    # BASE SCORE
-    # --------------------------------------------------------
 
     score = 0
 
@@ -1364,40 +1351,28 @@ def validate_candidate(
     )
 
     if letter == "C":
-
         score += 10
 
     if detected_class == expected_class:
-
         score += 8
 
     if detected_date:
-
         score += 14
 
     if content_type == "STRATEGY":
-
         score += 12
 
     elif content_type == "LAP_GUIDE":
-
         score += 10
 
     elif content_type == "QUALIFYING":
-
         score += 8
 
     elif content_type == "RACE":
-
         score += 5
 
     elif content_type == "LIVESTREAM":
-
         score += 4
-
-    # --------------------------------------------------------
-    # SPECIAL ROLE BOOSTS
-    # --------------------------------------------------------
 
     if is_digit_channel(
         channel
@@ -1407,7 +1382,6 @@ def validate_candidate(
 
         if content_type == "STRATEGY":
 
-            # This is exactly what we want.
             score += 35
 
             notes.append(
@@ -1419,7 +1393,6 @@ def validate_candidate(
             "LIVESTREAM",
         }:
 
-            # Could contain strategy discussion.
             score += 12
 
             notes.append(
@@ -1428,8 +1401,6 @@ def validate_candidate(
 
         elif content_type == "LAP_GUIDE":
 
-            # Keep it in database, but do not promote
-            # as race strategy.
             notes.append(
                 "DIGIT_LAP_GUIDE_NOT_STRATEGY"
             )
@@ -1449,10 +1420,6 @@ def validate_candidate(
                 "GNC_LAP_GUIDE_PRIMARY"
             )
 
-    # --------------------------------------------------------
-    # ACCEPT / REJECT
-    # --------------------------------------------------------
-
     hard_rejects = {
         "NOT_GT7",
         "TRACK_MISMATCH",
@@ -1467,7 +1434,6 @@ def validate_candidate(
         for reason in reasons
     )
 
-    # Generic weak videos need minimum evidence.
     if (
         accepted
         and score < 12
@@ -1853,7 +1819,7 @@ def main():
     )
 
     print(
-        "GT7 COMMUNITY SOURCE COLLECTOR V5"
+        "GT7 COMMUNITY SOURCE COLLECTOR V5.1"
     )
 
     print(
@@ -1879,10 +1845,6 @@ def main():
         f"Direction       : "
         f"{context.get('direction')}"
     )
-
-    # ========================================================
-    # QUERIES
-    # ========================================================
 
     general_queries = build_general_queries(
         context
@@ -1911,36 +1873,20 @@ def main():
         f"{len(gnc_queries)}"
     )
 
-    # ========================================================
-    # GENERAL SEARCH
-    # ========================================================
-
     general_results = execute_queries(
         general_queries,
         "GENERAL COMMUNITY SEARCH"
     )
-
-    # ========================================================
-    # DIGIT SEARCH
-    # ========================================================
 
     digit_results = execute_queries(
         digit_queries,
         "DIGIT RACING STRATEGY SEARCH"
     )
 
-    # ========================================================
-    # GNC SEARCH
-    # ========================================================
-
     gnc_results = execute_queries(
         gnc_queries,
         "GNC LAP GUIDE SEARCH"
     )
-
-    # ========================================================
-    # COMBINE
-    # ========================================================
 
     unique = {}
 
@@ -1963,10 +1909,6 @@ def main():
     raw_candidates = list(
         unique.values()
     )
-
-    # ========================================================
-    # VALIDATE
-    # ========================================================
 
     validated = [
         validate_candidate(
@@ -2000,10 +1942,6 @@ def main():
             ),
         reverse=True
     )
-
-    # ========================================================
-    # LOAD EXISTING DATABASE
-    # ========================================================
 
     database = normalize_existing_database(
         load_json(
@@ -2054,10 +1992,6 @@ def main():
         accepted
     )
 
-    # ========================================================
-    # ROLE SELECTION
-    # ========================================================
-
     digit_strategy = (
         best_digit_strategy(
             merged
@@ -2070,20 +2004,16 @@ def main():
         )
     )
 
-    # ========================================================
-    # SAVE DATABASE
-    # ========================================================
-
     database[
         "version"
-    ] = 5
+    ] = 5.1
 
     database[
         "updated_at"
     ] = (
-        datetime.utcnow()
-        .isoformat()
-        + "Z"
+        datetime.now(
+            UTC
+        ).isoformat()
     )
 
     database[
@@ -2137,10 +2067,6 @@ def main():
         COMMUNITY_SOURCES_FILE,
         database
     )
-
-    # ========================================================
-    # REPORT
-    # ========================================================
 
     print("")
     print(
@@ -2212,10 +2138,6 @@ def main():
         f"Date unverified   : "
         f"{unverified_dates}"
     )
-
-    # ========================================================
-    # ROLE STATUS
-    # ========================================================
 
     print("")
     print(
@@ -2322,10 +2244,6 @@ def main():
             "LAP GUIDE PRIMARY: NOT FOUND"
         )
 
-    # ========================================================
-    # DIGIT CANDIDATES
-    # ========================================================
-
     print("")
     print(
         "DIGIT RACING CANDIDATES"
@@ -2382,10 +2300,6 @@ def main():
                 f"   {video.get('url')}"
             )
 
-    # ========================================================
-    # TOP ACCEPTED
-    # ========================================================
-
     print("")
     print(
         "TOP ACCEPTED COMMUNITY SOURCES"
@@ -2409,10 +2323,6 @@ def main():
             f"{video.get('channel')} | "
             f"{video.get('title')}"
         )
-
-    # ========================================================
-    # REJECTED SAMPLE
-    # ========================================================
 
     print("")
     print(
