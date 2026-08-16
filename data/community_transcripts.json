@@ -1,5 +1,5 @@
 {
-  "version": "6.2",
+  "version": "V6.3",
   "weeks": {
     "2026-08-10": {
       "track": "Grand Valley - Highway 1",
@@ -665,5 +665,6 @@
     "minimum_strategy_hits": 3,
     "fingerprint_min_score": 12,
     "weak_fallback": false
-  }
+  },
+  "primary_sources": {}
 }
