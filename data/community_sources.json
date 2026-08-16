@@ -1,13 +1,34 @@
 {
-  "version": 5,
+  "version": 5.1,
   "weeks": {
     "2026-08-10": {
-      "track": "Grand Valley - Highway 1 M. Estevez - GT by Citroën",
+      "track": "Grand Valley - Highway 1",
       "race_class": "Gr.4",
       "direction": "NORMAL",
       "race_description": "C Gr.4 Running 10 Aug 2026 Daily Race C i 16:48 Grand Valley - Highway 1 M. Estevez - GT by Citroën Gr.4 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom",
       "selected_sources": {
-        "strategy_primary": null,
+        "strategy_primary": {
+          "video_id": "O-AfZNXuGBg",
+          "title": "🔴 GT7 | Grand Valley - New Week Of Daily Racing! | Live 🔴",
+          "channel": "Digit Racing",
+          "url": "https://www.youtube.com/watch?v=O-AfZNXuGBg",
+          "duration": 16256,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 67,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED",
+            "DIGIT_STRATEGY_CANDIDATE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": "STRATEGY_PRIMARY"
+        },
         "lap_guide_primary": {
           "video_id": "qHfm2RjbRjI",
           "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
@@ -17,7 +38,7 @@
           "timestamp": null,
           "upload_date": null,
           "content_type": "LAP_GUIDE",
-          "priority_score": 83,
+          "priority_score": 90,
           "date_confidence": "UNVERIFIED",
           "detected_date": null,
           "notes": [
@@ -39,7 +60,7 @@
           "timestamp": null,
           "upload_date": null,
           "content_type": "LAP_GUIDE",
-          "priority_score": 83,
+          "priority_score": 90,
           "date_confidence": "UNVERIFIED",
           "detected_date": null,
           "notes": [
@@ -51,6 +72,415 @@
           "role": "LAP_GUIDE_PRIMARY"
         },
         {
+          "video_id": "iDNGTMZUMS8",
+          "title": "Gran Turismo 7: Grand Valley - Highway One - Track Guide | Nissan Silvia Gr.4",
+          "channel": "Digit Racing",
+          "url": "https://www.youtube.com/watch?v=iDNGTMZUMS8",
+          "duration": 362,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "LAP_GUIDE",
+          "priority_score": 75,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "DATE_UNVERIFIED",
+            "DIGIT_LAP_GUIDE_NOT_STRATEGY"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": "STRATEGY_PRIMARY"
+        },
+        {
+          "video_id": "O-AfZNXuGBg",
+          "title": "🔴 GT7 | Grand Valley - New Week Of Daily Racing! | Live 🔴",
+          "channel": "Digit Racing",
+          "url": "https://www.youtube.com/watch?v=O-AfZNXuGBg",
+          "duration": 16256,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 67,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED",
+            "DIGIT_STRATEGY_CANDIDATE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": "STRATEGY_PRIMARY"
+        },
+        {
+          "video_id": "rN4vaMiYZss",
+          "title": "🔴 GT7 | More Daily Racing - Route X, Fuji and Grand Valley | Live 🔴",
+          "channel": "Digit Racing",
+          "url": "https://www.youtube.com/watch?v=rN4vaMiYZss",
+          "duration": 14406,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 67,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED",
+            "DIGIT_STRATEGY_CANDIDATE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": "STRATEGY_PRIMARY"
+        },
+        {
+          "video_id": "XgWagdA5HAM",
+          "title": "🔴 GT7 | New Daily Races - Grand Valley and More | Live 🔴",
+          "channel": "Digit Racing",
+          "url": "https://www.youtube.com/watch?v=XgWagdA5HAM",
+          "duration": 17498,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 67,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED",
+            "DIGIT_STRATEGY_CANDIDATE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": "STRATEGY_PRIMARY"
+        },
+        {
+          "video_id": "3SX5P8k_FA4",
+          "title": "🔴 Gran Turismo 7 | Grand Valley - New Daily Races | Live Stream🔴",
+          "channel": "Digit Racing",
+          "url": "https://www.youtube.com/watch?v=3SX5P8k_FA4",
+          "duration": 14121,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "LIVESTREAM",
+          "priority_score": 66,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED",
+            "DIGIT_STRATEGY_CANDIDATE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": "STRATEGY_PRIMARY"
+        },
+        {
+          "video_id": "gIl-52ifnX0",
+          "title": "🔴 Gran Turismo 7 | Nations at Grand Valley | Live Stream🔴",
+          "channel": "Digit Racing",
+          "url": "https://www.youtube.com/watch?v=gIl-52ifnX0",
+          "duration": 12941,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "LIVESTREAM",
+          "priority_score": 66,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED",
+            "DIGIT_STRATEGY_CANDIDATE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": "STRATEGY_PRIMARY"
+        },
+        {
+          "video_id": "60UbjwyAOQ8",
+          "title": "🔴 Gran Turismo 7 | Grand Valley - Round 4 | Live Stream🔴",
+          "channel": "Digit Racing",
+          "url": "https://www.youtube.com/watch?v=60UbjwyAOQ8",
+          "duration": 14216,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "LIVESTREAM",
+          "priority_score": 66,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED",
+            "DIGIT_STRATEGY_CANDIDATE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": "STRATEGY_PRIMARY"
+        },
+        {
+          "video_id": "aoPvEaeXgbM",
+          "title": "Gran Turismo 7 Daily Race C Grand Valley Highway Qualifying lap 8-11-26",
+          "channel": "MotoSeventeenX",
+          "url": "https://www.youtube.com/watch?v=aoPvEaeXgbM",
+          "duration": 138,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "QUALIFYING",
+          "priority_score": 56,
+          "date_confidence": "CONFIRMED",
+          "detected_date": "2026-08-11",
+          "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_FROM_TITLE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "fjlHea-GYB0",
+          "title": "Gran Turismo 7 Daily Race C Grand Valley Highway 8-12-26",
+          "channel": "MotoSeventeenX",
+          "url": "https://www.youtube.com/watch?v=fjlHea-GYB0",
+          "duration": 1319,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 53,
+          "date_confidence": "CONFIRMED",
+          "detected_date": "2026-08-12",
+          "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_FROM_TITLE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "uq0Jvd-OBRM",
+          "title": "Gran Turismo 7 Daily Race C Grand Valley Highway race 8-11-26",
+          "channel": "MotoSeventeenX",
+          "url": "https://www.youtube.com/watch?v=uq0Jvd-OBRM",
+          "duration": 1340,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 53,
+          "date_confidence": "CONFIRMED",
+          "detected_date": "2026-08-11",
+          "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_FROM_TITLE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "EUhlt1EvYVw",
+          "title": "Gran Turismo 7 Daily race C Grand Valley Highway 8-10-26",
+          "channel": "MotoSeventeenX",
+          "url": "https://www.youtube.com/watch?v=EUhlt1EvYVw",
+          "duration": 1313,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 53,
+          "date_confidence": "CONFIRMED",
+          "detected_date": "2026-08-10",
+          "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_FROM_TITLE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "220rObIr6do",
+          "title": "Gran Turismo 7 daily race C race and strategy guide...Group 4...Grand Valley Highway 1",
+          "channel": "Wombleleader Racing",
+          "url": "https://www.youtube.com/watch?v=220rObIr6do",
+          "duration": 619,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "STRATEGY",
+          "priority_score": 50,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "pt9it8QbYyM",
+          "title": "Gran Turismo 7: Grand Valley is Back in Style",
+          "channel": "Digit Racing",
+          "url": "https://www.youtube.com/watch?v=pt9it8QbYyM",
+          "duration": 1119,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "OTHER",
+          "priority_score": 50,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": "STRATEGY_PRIMARY"
+        },
+        {
+          "video_id": "xg-Tl52Pzbk",
+          "title": "Gran Turismo 7 - Grand Valley Highway 1 Gr.4 - Daily Race Strategy Guide",
+          "channel": "ProdigyRacing",
+          "url": "https://www.youtube.com/watch?v=xg-Tl52Pzbk",
+          "duration": 1238,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "STRATEGY",
+          "priority_score": 44,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "WalTrUnnvnE",
+          "title": "Gran Turismo 7 livestream - Daily race C...Group 4..Grand Valley Highway 1",
+          "channel": "Wombleleader Racing",
+          "url": "https://www.youtube.com/watch?v=WalTrUnnvnE",
+          "duration": 14696,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "LIVESTREAM",
+          "priority_score": 42,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "iY5qP6J5O7c",
+          "title": "Gran Turismo 7_online daily race C Grand Valley highway 1 GT by Citroen GR 4",
+          "channel": "Konstantin Racing",
+          "url": "https://www.youtube.com/watch?v=iY5qP6J5O7c",
+          "duration": 1285,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 35,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "Pt25anlvct8",
+          "title": "Gran Turismo 7|Daily Race C|Grand Valley - Highway 1|G70 GR4",
+          "channel": "VIP_Scarlxrd",
+          "url": "https://www.youtube.com/watch?v=Pt25anlvct8",
+          "duration": 1256,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 35,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "zZh2CT0flEc",
+          "title": "GT7 Daily Race C | Grand Valley - Highway 1 | Genesis G70 | PB 1:59.5",
+          "channel": "ApexBonesGT",
+          "url": "https://www.youtube.com/watch?v=zZh2CT0flEc",
+          "duration": 125,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "QUALIFYING",
+          "priority_score": 30,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "MZe3S7dnnig",
+          "title": "Gran Turismo 7: Controller Daily Race Grand Valley Highway 1 | Citroen GT Gr. 4 Hotlap",
+          "channel": "GT Racing",
+          "url": "https://www.youtube.com/watch?v=MZe3S7dnnig",
+          "duration": 530,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "QUALIFYING",
+          "priority_score": 28,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "HxgqcIYABu0",
+          "title": "Can the Citroen Actually Last 10 Laps at Grand Valley? | GT7 Gr.4 Daily Race C LIVE",
+          "channel": "LGS Racing",
+          "url": "https://www.youtube.com/watch?v=HxgqcIYABu0",
+          "duration": 12317,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 28,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
           "video_id": "4E43u3YLASg",
           "title": "Gran Turismo 7 | Daily Race C | Grand Valley - Highway 1 | Hyundai ELANTRA N TC",
           "channel": "PureGameplay Motorsport",
@@ -59,10 +489,257 @@
           "timestamp": null,
           "upload_date": null,
           "content_type": "RACE",
-          "priority_score": 20,
+          "priority_score": 27,
           "date_confidence": "UNVERIFIED",
           "detected_date": null,
           "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "WF3Gb4tnVF4",
+          "title": "Gran Turismo 7 | Daily Race C | Grand Valley - Highway 1 |  Suzuki Swift Sport",
+          "channel": "Rob_Silo VR Racing",
+          "url": "https://www.youtube.com/watch?v=WF3Gb4tnVF4",
+          "duration": 1318,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 27,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "ZNPiZuLJMzo",
+          "title": "Crazy Race at Grand Valley Highway Daily Race C #gt7 #granturismo7",
+          "channel": "SimonJerryNCF1",
+          "url": "https://www.youtube.com/watch?v=ZNPiZuLJMzo",
+          "duration": 2925,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 27,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "FmfXXzH6svQ",
+          "title": "Gran Turismo 7 - Daily Race C Grand Valley Highway 1- 1:54.930 Huracán",
+          "channel": "Harambe Racing",
+          "url": "https://www.youtube.com/watch?v=FmfXXzH6svQ",
+          "duration": 122,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 27,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "RVcyWDPL7H0",
+          "title": "Grand Valley In Depth Track Guide - GR4! #granturismo7 #gt7",
+          "channel": "SparksTheory",
+          "url": "https://www.youtube.com/watch?v=RVcyWDPL7H0",
+          "duration": 854,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "LAP_GUIDE",
+          "priority_score": 23,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "ONzsTiVNkBs",
+          "title": "Gran Turismo 7: Grand Valley guide track guide in the GR4 Silvia. Lap put me 68th in the world.",
+          "channel": "France 88",
+          "url": "https://www.youtube.com/watch?v=ONzsTiVNkBs",
+          "duration": 481,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "LAP_GUIDE",
+          "priority_score": 23,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "krP1mzrXZa0",
+          "title": "GT7 - GRAND VALLEY HIGHWAY - 1 - LAP GUIDE IN GT4 CLASS",
+          "channel": "HogstonGT",
+          "url": "https://www.youtube.com/watch?v=krP1mzrXZa0",
+          "duration": 349,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "LAP_GUIDE",
+          "priority_score": 22,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "q4jmsNHkEGM",
+          "title": "Top 1500 Global Ranking - Lap Guide at Grand Valley Highway | Gran Turismo 7",
+          "channel": "Viper S. Recordings",
+          "url": "https://www.youtube.com/watch?v=q4jmsNHkEGM",
+          "duration": 413,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "LAP_GUIDE",
+          "priority_score": 22,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "S7l4F5CCy6E",
+          "title": "Gran Turismo 7 | Daily Race | Grand Valley - Highway 1 | Hyundai ELANTRA N TC",
+          "channel": "PureGameplay Motorsport",
+          "url": "https://www.youtube.com/watch?v=S7l4F5CCy6E",
+          "duration": 1367,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 17,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "NGRTLzZfKIQ",
+          "title": "Gran Turismo 7 | Daily Race | Grand Valley - Highway 1 | Hyundai ELANTRA N TC",
+          "channel": "PureGameplay Motorsport",
+          "url": "https://www.youtube.com/watch?v=NGRTLzZfKIQ",
+          "duration": 1315,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 17,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "3h9fpLXbmZc",
+          "title": "Gran Turismo 7 | Daily Race | Grand Valley - Highway 1 | Honda NSX Type R | DNF",
+          "channel": "PureGameplay Motorsport",
+          "url": "https://www.youtube.com/watch?v=3h9fpLXbmZc",
+          "duration": 547,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 17,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "15qkKCu3xbM",
+          "title": "Gran Turismo 7 Guide: Beat the Meta Car at Grand Valley Highway 1!",
+          "channel": "TyrannoCyrusRex",
+          "url": "https://www.youtube.com/watch?v=15qkKCu3xbM",
+          "duration": 1238,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "OTHER",
+          "priority_score": 12,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "WBVae2twCqg",
+          "title": "Gran Turismo 7 | Circuit Experience | Grand Valley - Highway 1 | Nissan GT-R NISMO GT3",
+          "channel": "PureGameplay Motorsport",
+          "url": "https://www.youtube.com/watch?v=WBVae2twCqg",
+          "duration": 130,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "OTHER",
+          "priority_score": 12,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
             "CLASS_UNVERIFIED",
             "DATE_UNVERIFIED"
           ],
@@ -73,5 +750,5 @@
       ]
     }
   },
-  "updated_at": "2026-08-16T16:10:13.435851Z"
+  "updated_at": "2026-08-16T16:15:00.464615+00:00"
 }
