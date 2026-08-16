@@ -22,7 +22,7 @@ MAX_RESULTS_PER_QUERY = 20
 
 
 # ============================================================
-# JSON
+# JSON HELPERS
 # ============================================================
 
 def load_json(path, default):
@@ -32,7 +32,9 @@ def load_json(path, default):
 
     try:
         return json.loads(
-            path.read_text(encoding="utf-8")
+            path.read_text(
+                encoding="utf-8"
+            )
         )
 
     except Exception:
@@ -57,7 +59,7 @@ def save_json(path, data):
 
 
 # ============================================================
-# TEXT
+# TEXT HELPERS
 # ============================================================
 
 def normalize_text(text):
@@ -78,9 +80,14 @@ def normalize_text(text):
 
 def normalize_track_text(text):
 
-    text = normalize_text(text)
+    text = normalize_text(
+        text
+    )
 
-    text = text.replace("-", " ")
+    text = text.replace(
+        "-",
+        " "
+    )
 
     text = re.sub(
         r"[^a-z0-9à-ÿ ]+",
@@ -105,8 +112,13 @@ def parse_week_start(snapshot):
 
     start_date = (
         snapshot
-        .get("race", {})
-        .get("start_date")
+        .get(
+            "race",
+            {}
+        )
+        .get(
+            "start_date"
+        )
     )
 
     if not start_date:
@@ -137,14 +149,18 @@ def extract_track(race_text):
 
     if match:
 
-        track = match.group(1).strip()
+        track = (
+            match
+            .group(1)
+            .strip()
+        )
 
         if track:
             return track
 
     manufacturer_pattern = (
-        r"(?:GT by|Genesis|Hyundai|Nissan|Toyota|"
-        r"Honda|Suzuki|BMW|Mazda|Ferrari|Porsche|"
+        r"(?:GT by|Genesis|Hyundai|Nissan|Toyota|TOYOTA|"
+        r"Honda|Suzuki|BMW|Mazda|MAZDA|Ferrari|Porsche|"
         r"Renault|Volkswagen|Audi|Lexus|Ford|Chevrolet|"
         r"Jaguar|McLaren|Peugeot|Subaru|Mitsubishi|"
         r"Lamborghini|Dodge|Alfa|Mercedes-Benz|Bugatti|"
@@ -162,7 +178,11 @@ def extract_track(race_text):
 
     if match:
 
-        track = match.group(1).strip()
+        track = (
+            match
+            .group(1)
+            .strip()
+        )
 
         if track:
             return track
@@ -184,14 +204,18 @@ def extract_race_class(race_text):
     if not match:
         return None
 
-    return f"Gr.{match.group(1)}"
+    return (
+        f"Gr.{match.group(1)}"
+    )
 
 
 def race_is_reverse(race_text):
 
     return (
         "reverse"
-        in normalize_text(race_text)
+        in normalize_text(
+            race_text
+        )
     )
 
 
@@ -203,8 +227,14 @@ def build_queries(snapshot):
 
     race_text = (
         snapshot
-        .get("race", {})
-        .get("description", "")
+        .get(
+            "race",
+            {}
+        )
+        .get(
+            "description",
+            ""
+        )
     )
 
     if not race_text:
@@ -213,7 +243,9 @@ def build_queries(snapshot):
             "Race description not found."
         )
 
-    track = extract_track(race_text)
+    track = extract_track(
+        race_text
+    )
 
     race_class = extract_race_class(
         race_text
@@ -232,7 +264,10 @@ def build_queries(snapshot):
             f"GT7 {track} Daily Race"
         ])
 
-    if track and race_class:
+    if (
+        track
+        and race_class
+    ):
 
         queries.extend([
             f"GT7 Daily Race C {track} {race_class}",
@@ -245,13 +280,20 @@ def build_queries(snapshot):
 
     for query in queries:
 
-        key = normalize_text(query)
+        key = normalize_text(
+            query
+        )
 
         if key in seen:
             continue
 
-        seen.add(key)
-        unique.append(query)
+        seen.add(
+            key
+        )
+
+        unique.append(
+            query
+        )
 
     return (
         unique,
@@ -305,7 +347,9 @@ def search_youtube(query):
             f"{query}"
         )
 
-        print(exc)
+        print(
+            exc
+        )
 
         return []
 
@@ -319,7 +363,9 @@ def search_youtube(query):
         if result.stderr:
 
             print(
-                result.stderr[-1000:]
+                result.stderr[
+                    -1000:
+                ]
             )
 
         return []
@@ -344,21 +390,56 @@ def search_youtube(query):
         []
     )
 
-    if not isinstance(entries, list):
+    if not isinstance(
+        entries,
+        list
+    ):
+
         return []
 
     return [
         entry
         for entry in entries
-        if isinstance(entry, dict)
+        if isinstance(
+            entry,
+            dict
+        )
     ]
 
 
 # ============================================================
-# TITLE DATE DETECTION
+# DATE DETECTION
 # ============================================================
 
-def detect_date_from_title(
+MONTHS = {
+    "jan": 1,
+    "january": 1,
+    "feb": 2,
+    "february": 2,
+    "mar": 3,
+    "march": 3,
+    "apr": 4,
+    "april": 4,
+    "may": 5,
+    "jun": 6,
+    "june": 6,
+    "jul": 7,
+    "july": 7,
+    "aug": 8,
+    "august": 8,
+    "sep": 9,
+    "sept": 9,
+    "september": 9,
+    "oct": 10,
+    "october": 10,
+    "nov": 11,
+    "november": 11,
+    "dec": 12,
+    "december": 12
+}
+
+
+def detect_numeric_date_from_title(
     title,
     week_start
 ):
@@ -366,67 +447,71 @@ def detect_date_from_title(
     if not title:
         return None
 
-    # Examples:
-    # 8-11-26
-    # 8/11/26
-    # 08-11-2026
-
-    patterns = [
-        r"\b(\d{1,2})[-/](\d{1,2})[-/](\d{2,4})\b"
-    ]
-
     candidates = []
 
-    for pattern in patterns:
+    pattern = (
+        r"\b"
+        r"(\d{1,2})"
+        r"[-/]"
+        r"(\d{1,2})"
+        r"[-/]"
+        r"(\d{2,4})"
+        r"\b"
+    )
 
-        for match in re.finditer(
-            pattern,
-            title
-        ):
+    for match in re.finditer(
+        pattern,
+        title
+    ):
 
-            a = int(match.group(1))
-            b = int(match.group(2))
-            year = int(match.group(3))
+        first = int(
+            match.group(1)
+        )
 
-            if year < 100:
-                year += 2000
+        second = int(
+            match.group(2)
+        )
 
-            # YouTube GT7 titles are often US-style
-            # month-day-year.
-            try:
+        year = int(
+            match.group(3)
+        )
 
-                dt = datetime(
+        if year < 100:
+            year += 2000
+
+        # Month / day / year
+        try:
+
+            candidates.append(
+                datetime(
                     year,
-                    a,
-                    b,
+                    first,
+                    second,
                     tzinfo=SAO_PAULO
                 )
+            )
 
-                candidates.append(dt)
+        except ValueError:
+            pass
 
-            except ValueError:
-                pass
+        # Day / month / year
+        try:
 
-            # Also test day-month-year.
-            try:
-
-                dt = datetime(
+            candidates.append(
+                datetime(
                     year,
-                    b,
-                    a,
+                    second,
+                    first,
                     tzinfo=SAO_PAULO
                 )
+            )
 
-                candidates.append(dt)
-
-            except ValueError:
-                pass
+        except ValueError:
+            pass
 
     if not candidates:
         return None
 
-    # Pick the interpretation closest to
-    # the current race week.
     return min(
         candidates,
         key=lambda dt:
@@ -439,13 +524,248 @@ def detect_date_from_title(
     )
 
 
+def detect_month_year_from_title(title):
+
+    if not title:
+        return None
+
+    title_lower = title.lower()
+
+    month_pattern = (
+        r"\b"
+        r"(jan(?:uary)?|"
+        r"feb(?:ruary)?|"
+        r"mar(?:ch)?|"
+        r"apr(?:il)?|"
+        r"may|"
+        r"jun(?:e)?|"
+        r"jul(?:y)?|"
+        r"aug(?:ust)?|"
+        r"sep(?:t(?:ember)?)?|"
+        r"oct(?:ober)?|"
+        r"nov(?:ember)?|"
+        r"dec(?:ember)?)"
+        r"\s*"
+        r"['’]?"
+        r"(\d{2,4})"
+        r"\b"
+    )
+
+    match = re.search(
+        month_pattern,
+        title_lower,
+        re.IGNORECASE
+    )
+
+    if not match:
+        return None
+
+    month_text = (
+        match.group(1)
+        .lower()
+    )
+
+    year = int(
+        match.group(2)
+    )
+
+    if year < 100:
+        year += 2000
+
+    month_number = None
+
+    for key, value in MONTHS.items():
+
+        if month_text.startswith(
+            key
+        ):
+
+            month_number = value
+            break
+
+    if not month_number:
+        return None
+
+    try:
+
+        return datetime(
+            year,
+            month_number,
+            1,
+            tzinfo=SAO_PAULO
+        )
+
+    except ValueError:
+
+        return None
+
+
+def detect_year_from_title(title):
+
+    if not title:
+        return None
+
+    years = re.findall(
+        r"\b(20\d{2})\b",
+        title
+    )
+
+    if not years:
+        return None
+
+    return int(
+        years[-1]
+    )
+
+
+def analyze_title_date(
+    title,
+    week_start
+):
+
+    numeric_date = (
+        detect_numeric_date_from_title(
+            title,
+            week_start
+        )
+    )
+
+    if numeric_date:
+
+        earliest = (
+            week_start
+            - timedelta(
+                days=1
+            )
+        )
+
+        latest = (
+            week_start
+            + timedelta(
+                days=7
+            )
+        )
+
+        if (
+            numeric_date >= earliest
+            and numeric_date < latest
+        ):
+
+            return {
+                "status":
+                    "CURRENT_WEEK",
+
+                "date":
+                    numeric_date
+                    .date()
+                    .isoformat(),
+
+                "reason":
+                    "DATE_FROM_TITLE"
+            }
+
+        return {
+            "status":
+                "OLD_OR_OTHER_WEEK",
+
+            "date":
+                numeric_date
+                .date()
+                .isoformat(),
+
+            "reason":
+                "TITLE_DATE_OUTSIDE_WEEK"
+        }
+
+    month_year = (
+        detect_month_year_from_title(
+            title
+        )
+    )
+
+    if month_year:
+
+        same_month = (
+            month_year.year
+            == week_start.year
+            and month_year.month
+            == week_start.month
+        )
+
+        if same_month:
+
+            return {
+                "status":
+                    "POSSIBLY_CURRENT_MONTH",
+
+                "date":
+                    month_year
+                    .date()
+                    .isoformat(),
+
+                "reason":
+                    "MONTH_YEAR_FROM_TITLE"
+            }
+
+        return {
+            "status":
+                "OLD_OR_OTHER_WEEK",
+
+            "date":
+                month_year
+                .date()
+                .isoformat(),
+
+            "reason":
+                "OLD_MONTH_YEAR_IN_TITLE"
+        }
+
+    explicit_year = (
+        detect_year_from_title(
+            title
+        )
+    )
+
+    if (
+        explicit_year
+        and explicit_year
+        != week_start.year
+    ):
+
+        return {
+            "status":
+                "OLD_OR_OTHER_WEEK",
+
+            "date":
+                str(
+                    explicit_year
+                ),
+
+            "reason":
+                "OLD_YEAR_IN_TITLE"
+        }
+
+    return {
+        "status":
+            "UNKNOWN",
+
+        "date":
+            None,
+
+        "reason":
+            "DATE_UNVERIFIED"
+    }
+
+
 # ============================================================
 # CLASS DETECTION
 # ============================================================
 
 def detect_explicit_classes(text):
 
-    text = normalize_text(text)
+    text = normalize_text(
+        text
+    )
 
     classes = set()
 
@@ -470,12 +790,14 @@ def detect_explicit_classes(text):
 
 
 # ============================================================
-# DAILY RACE DETECTION
+# DAILY RACE LETTER
 # ============================================================
 
 def detect_explicit_race_letter(text):
 
-    text = normalize_text(text)
+    text = normalize_text(
+        text
+    )
 
     letters = set()
 
@@ -493,31 +815,36 @@ def detect_explicit_race_letter(text):
         ):
 
             letters.add(
-                match.group(1).upper()
+                match.group(1)
+                .upper()
             )
 
     return letters
 
 
 # ============================================================
-# CONTENT TYPE
+# CONTENT CLASSIFICATION
 # ============================================================
 
 def classify_content(title):
 
-    text = normalize_text(title)
+    text = normalize_text(
+        title
+    )
 
     if (
         "strategy guide" in text
         or "race strategy" in text
         or "strategy" in text
     ):
+
         return "STRATEGY"
 
     if (
         "lap guide" in text
         or "track guide" in text
     ):
+
         return "LAP_GUIDE"
 
     if (
@@ -525,26 +852,33 @@ def classify_content(title):
         or "hotlap" in text
         or "hot lap" in text
         or "world record" in text
+        or re.search(
+            r"\bpb\b",
+            text
+        )
     ):
+
         return "QUALIFYING"
 
     if (
         "livestream" in text
         or " live" in text
-        or text.startswith("live")
+        or text.startswith(
+            "live"
+        )
     ):
+
         return "LIVESTREAM"
 
-    if (
-        "race" in text
-    ):
+    if "race" in text:
+
         return "RACE"
 
     return "OTHER"
 
 
 # ============================================================
-# RELEVANCE
+# RELEVANCE SCORE
 # ============================================================
 
 def relevance_score(
@@ -554,7 +888,10 @@ def relevance_score(
 ):
 
     title = normalize_text(
-        entry.get("title", "")
+        entry.get(
+            "title",
+            ""
+        )
     )
 
     score = 0
@@ -573,12 +910,16 @@ def relevance_score(
 
     if track:
 
-        track_norm = normalize_track_text(
-            track
+        track_norm = (
+            normalize_track_text(
+                track
+            )
         )
 
-        title_norm = normalize_track_text(
-            title
+        title_norm = (
+            normalize_track_text(
+                title
+            )
         )
 
         if track_norm in title_norm:
@@ -598,17 +939,23 @@ def relevance_score(
 
     if race_class:
 
-        expected = race_class[-1]
+        expected = (
+            race_class[-1]
+        )
 
-        classes = detect_explicit_classes(
-            title
+        classes = (
+            detect_explicit_classes(
+                title
+            )
         )
 
         if expected in classes:
             score += 6
 
-    content_type = classify_content(
-        title
+    content_type = (
+        classify_content(
+            title
+        )
     )
 
     bonuses = {
@@ -637,8 +984,7 @@ def validate_candidate(
     track,
     race_class,
     current_reverse,
-    week_start,
-    now
+    week_start
 ):
 
     title = entry.get(
@@ -646,7 +992,9 @@ def validate_candidate(
         ""
     )
 
-    text = normalize_text(title)
+    text = normalize_text(
+        title
+    )
 
     reasons = []
     notes = []
@@ -668,7 +1016,7 @@ def validate_candidate(
         )
 
     # --------------------------------------------------------
-    # DAILY RACE LETTER
+    # DAILY RACE
     # --------------------------------------------------------
 
     race_letters = (
@@ -687,9 +1035,6 @@ def validate_candidate(
 
     else:
 
-        # Search may find useful titles without an
-        # explicit letter, but they must at least
-        # mention Daily Race.
         if "daily race" not in text:
 
             notes.append(
@@ -702,12 +1047,16 @@ def validate_candidate(
 
     if track:
 
-        track_norm = normalize_track_text(
-            track
+        track_norm = (
+            normalize_track_text(
+                track
+            )
         )
 
-        title_norm = normalize_track_text(
-            title
+        title_norm = (
+            normalize_track_text(
+                title
+            )
         )
 
         track_words = [
@@ -738,7 +1087,8 @@ def validate_candidate(
     # --------------------------------------------------------
 
     video_reverse = (
-        "reverse" in text
+        "reverse"
+        in text
     )
 
     if (
@@ -765,7 +1115,9 @@ def validate_candidate(
         and explicit_classes
     ):
 
-        expected = race_class[-1]
+        expected = (
+            race_class[-1]
+        )
 
         if expected not in explicit_classes:
 
@@ -783,50 +1135,65 @@ def validate_candidate(
     # DATE
     # --------------------------------------------------------
 
-    title_date = detect_date_from_title(
-        title,
-        week_start
+    date_info = (
+        analyze_title_date(
+            title,
+            week_start
+        )
     )
 
-    earliest = (
-        week_start
-        - timedelta(days=1)
-    )
+    if (
+        date_info[
+            "status"
+        ]
+        == "OLD_OR_OTHER_WEEK"
+    ):
 
-    latest = (
-        week_start
-        + timedelta(days=7)
-    )
-
-    if title_date:
-
-        if title_date < earliest:
-
-            reasons.append(
-                "TITLE_DATE_TOO_OLD"
-            )
-
-        elif title_date > latest:
-
-            reasons.append(
-                "TITLE_DATE_OUTSIDE_WEEK"
-            )
-
-        else:
-
-            notes.append(
-                "DATE_FROM_TITLE"
-            )
+        reasons.append(
+            date_info[
+                "reason"
+            ]
+        )
 
     else:
 
         notes.append(
-            "DATE_UNVERIFIED"
+            date_info[
+                "reason"
+            ]
         )
 
     # --------------------------------------------------------
-    # FINAL
+    # TEMPORAL CONFIDENCE
     # --------------------------------------------------------
+
+    if (
+        date_info[
+            "status"
+        ]
+        == "CURRENT_WEEK"
+    ):
+
+        temporal_confidence = (
+            "CONFIRMED"
+        )
+
+    elif (
+        date_info[
+            "status"
+        ]
+        == "POSSIBLY_CURRENT_MONTH"
+    ):
+
+        temporal_confidence = (
+            "LIKELY"
+        )
+
+    else:
+
+        temporal_confidence = (
+            "UNVERIFIED"
+        )
 
     accepted = (
         len(reasons) == 0
@@ -842,17 +1209,18 @@ def validate_candidate(
         "notes":
             notes,
 
-        "title_date":
-            (
-                title_date.date().isoformat()
-                if title_date
-                else None
-            )
+        "detected_date":
+            date_info[
+                "date"
+            ],
+
+        "temporal_confidence":
+            temporal_confidence
     }
 
 
 # ============================================================
-# MERGE SEARCH RESULTS
+# SEARCH RESULT MERGE
 # ============================================================
 
 def merge_candidate(
@@ -863,7 +1231,9 @@ def merge_candidate(
     race_class
 ):
 
-    video_id = entry.get("id")
+    video_id = entry.get(
+        "id"
+    )
 
     if not video_id:
         return
@@ -874,9 +1244,15 @@ def merge_candidate(
     )
 
     channel = (
-        entry.get("channel")
-        or entry.get("uploader")
-        or entry.get("channel_id")
+        entry.get(
+            "channel"
+        )
+        or entry.get(
+            "uploader"
+        )
+        or entry.get(
+            "channel_id"
+        )
         or "Unknown"
     )
 
@@ -888,7 +1264,9 @@ def merge_candidate(
 
     if video_id not in candidates:
 
-        candidates[video_id] = {
+        candidates[
+            video_id
+        ] = {
             "video_id":
                 video_id,
 
@@ -908,7 +1286,9 @@ def merge_candidate(
                 score,
 
             "matched_queries":
-                [query]
+                [
+                    query
+                ]
         }
 
         return
@@ -927,13 +1307,67 @@ def merge_candidate(
         score
     )
 
-    if query not in candidate[
-        "matched_queries"
-    ]:
+    if (
+        query
+        not in candidate[
+            "matched_queries"
+        ]
+    ):
 
         candidate[
             "matched_queries"
-        ].append(query)
+        ].append(
+            query
+        )
+
+
+# ============================================================
+# SOURCE PRIORITY
+# ============================================================
+
+def source_priority(video):
+
+    score = video.get(
+        "search_relevance",
+        0
+    )
+
+    content_type = video.get(
+        "content_type",
+        "OTHER"
+    )
+
+    temporal = video.get(
+        "temporal_confidence",
+        "UNVERIFIED"
+    )
+
+    content_bonus = {
+        "STRATEGY": 20,
+        "LAP_GUIDE": 18,
+        "QUALIFYING": 15,
+        "RACE": 6,
+        "LIVESTREAM": 4,
+        "OTHER": 0
+    }
+
+    temporal_bonus = {
+        "CONFIRMED": 20,
+        "LIKELY": 10,
+        "UNVERIFIED": 0
+    }
+
+    return (
+        score
+        + content_bonus.get(
+            content_type,
+            0
+        )
+        + temporal_bonus.get(
+            temporal,
+            0
+        )
+    )
 
 
 # ============================================================
@@ -963,9 +1397,11 @@ def main():
         {}
     )
 
-    race_description = race.get(
-        "description",
-        ""
+    race_description = (
+        race.get(
+            "description",
+            ""
+        )
     )
 
     race_url = race.get(
@@ -984,8 +1420,10 @@ def main():
         snapshot
     )
 
-    current_reverse = race_is_reverse(
-        race_description
+    current_reverse = (
+        race_is_reverse(
+            race_description
+        )
     )
 
     print(
@@ -993,7 +1431,7 @@ def main():
     )
 
     print(
-        "GT7 COMMUNITY SOURCE COLLECTOR V3"
+        "GT7 COMMUNITY SOURCE COLLECTOR V4"
     )
 
     print(
@@ -1042,7 +1480,8 @@ def main():
         print()
 
         print(
-            f"Searching: {query}"
+            f"Searching: "
+            f"{query}"
         )
 
         entries = search_youtube(
@@ -1076,19 +1515,22 @@ def main():
         candidate
     ) in candidates.items():
 
-        validation = validate_candidate(
-            candidate,
-            track,
-            race_class,
-            current_reverse,
-            week_start,
-            now
+        validation = (
+            validate_candidate(
+                candidate,
+                track,
+                race_class,
+                current_reverse,
+                week_start
+            )
         )
 
-        content_type = classify_content(
-            candidate.get(
-                "title",
-                ""
+        content_type = (
+            classify_content(
+                candidate.get(
+                    "title",
+                    ""
+                )
             )
         )
 
@@ -1103,9 +1545,14 @@ def main():
                     "notes"
                 ],
 
-            "title_date":
+            "detected_date":
                 validation[
-                    "title_date"
+                    "detected_date"
+                ],
+
+            "temporal_confidence":
+                validation[
+                    "temporal_confidence"
                 ],
 
             "status":
@@ -1117,6 +1564,12 @@ def main():
                     else "REJECTED"
                 )
         }
+
+        video[
+            "priority_score"
+        ] = source_priority(
+            video
+        )
 
         if validation[
             "accepted"
@@ -1145,7 +1598,7 @@ def main():
     database = load_json(
         COMMUNITY_FILE,
         {
-            "version": 3,
+            "version": 4,
             "weeks": {}
         }
     )
@@ -1156,11 +1609,13 @@ def main():
     ):
 
         database = {
-            "version": 3,
+            "version": 4,
             "weeks": {}
         }
 
-    database["version"] = 3
+    database[
+        "version"
+    ] = 4
 
     database.setdefault(
         "weeks",
@@ -1176,7 +1631,8 @@ def main():
     old_week = (
         database[
             "weeks"
-        ].get(
+        ]
+        .get(
             week_key,
             {}
         )
@@ -1206,15 +1662,20 @@ def main():
 
         if video_id in old_videos:
 
-            old_video = old_videos[
-                video_id
-            ]
+            old_video = (
+                old_videos[
+                    video_id
+                ]
+            )
 
             video[
                 "first_seen"
-            ] = old_video.get(
-                "first_seen"
-            ) or now.isoformat()
+            ] = (
+                old_video.get(
+                    "first_seen"
+                )
+                or now.isoformat()
+            )
 
             known_count += 1
 
@@ -1272,13 +1733,19 @@ def main():
 
         "last_scan_stats": {
             "search_candidates":
-                len(candidates),
+                len(
+                    candidates
+                ),
 
             "accepted":
-                len(accepted),
+                len(
+                    accepted
+                ),
 
             "rejected":
-                len(rejected),
+                len(
+                    rejected
+                ),
 
             "new_videos":
                 new_count,
@@ -1287,7 +1754,9 @@ def main():
                 known_count,
 
             "total_tracked":
-                len(persistent)
+                len(
+                    persistent
+                )
         },
 
         "videos":
@@ -1313,7 +1782,7 @@ def main():
         persistent.values(),
         key=lambda item:
             item.get(
-                "search_relevance",
+                "priority_score",
                 0
             ),
         reverse=True
@@ -1363,6 +1832,48 @@ def main():
         f"{len(persistent)}"
     )
 
+    confirmed_count = sum(
+        1
+        for video in persistent.values()
+        if video.get(
+            "temporal_confidence"
+        )
+        == "CONFIRMED"
+    )
+
+    likely_count = sum(
+        1
+        for video in persistent.values()
+        if video.get(
+            "temporal_confidence"
+        )
+        == "LIKELY"
+    )
+
+    unverified_count = sum(
+        1
+        for video in persistent.values()
+        if video.get(
+            "temporal_confidence"
+        )
+        == "UNVERIFIED"
+    )
+
+    print(
+        f"Date confirmed    : "
+        f"{confirmed_count}"
+    )
+
+    print(
+        f"Date likely       : "
+        f"{likely_count}"
+    )
+
+    print(
+        f"Date unverified   : "
+        f"{unverified_count}"
+    )
+
     print()
 
     print(
@@ -1381,8 +1892,13 @@ def main():
 
     else:
 
-        for index, video in enumerate(
-            ranked[:25],
+        for (
+            index,
+            video
+        ) in enumerate(
+            ranked[
+                :25
+            ],
             start=1
         ):
 
@@ -1395,19 +1911,20 @@ def main():
 
             print(
                 f"{index:>2}. "
-                f"[{video.get('search_relevance',0):02d}] "
+                f"[P{video.get('priority_score',0):02d}] "
                 f"[{video.get('content_type','OTHER')}] "
+                f"[{video.get('temporal_confidence','UNVERIFIED')}] "
                 f"{video.get('channel','Unknown')} | "
                 f"{video.get('title','')}"
             )
 
             print(
-                f"    Date: "
-                f"{video.get('title_date') or 'unverified'}"
+                f"    Detected date: "
+                f"{video.get('detected_date') or 'unverified'}"
             )
 
             print(
-                f"    Notes: "
+                f"    Notes        : "
                 f"{notes or 'none'}"
             )
 
@@ -1436,8 +1953,13 @@ def main():
         reverse=True
     )
 
-    for index, video in enumerate(
-        rejected_ranked[:20],
+    for (
+        index,
+        video
+    ) in enumerate(
+        rejected_ranked[
+            :20
+        ],
         start=1
     ):
 
