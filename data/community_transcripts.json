@@ -8,7 +8,7 @@
       "race_description": "C Gr.4 Running 10 Aug 2026 Daily Race C i 16:48 Grand Valley - Highway 1 M. Estevez - GT by Citroën Gr.4 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom",
       "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
       "created_at": "2026-08-16T11:21:34.958901-03:00",
-      "updated_at": "2026-08-16T11:21:35.510149-03:00",
+      "updated_at": "2026-08-16T11:47:20.019262-03:00",
       "videos": {
         "220rObIr6do": {
           "video_id": "220rObIr6do",
@@ -65,9 +65,9 @@
           "word_count": 0,
           "language": null,
           "first_seen": "2026-08-16T11:21:34.958953-03:00",
-          "last_attempt": "2026-08-16T11:21:35.510112-03:00",
+          "last_attempt": "2026-08-16T11:47:20.019234-03:00",
           "last_success": null,
-          "attempt_count": 1,
+          "attempt_count": 2,
           "error": "RATE_LIMIT"
         },
         "xg-Tl52Pzbk": {
@@ -252,7 +252,7 @@
         }
       },
       "last_run": {
-        "timestamp": "2026-08-16T11:21:35.510154-03:00",
+        "timestamp": "2026-08-16T11:47:20.019265-03:00",
         "api_requests": 1,
         "rate_limited": true,
         "pending_jobs_checked": 0,
