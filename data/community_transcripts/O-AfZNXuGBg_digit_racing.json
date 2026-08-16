@@ -6,17 +6,358 @@
   "content_type": "RACE",
   "title": "🔴 GT7 | Grand Valley - New Week Of Daily Racing! | Live 🔴",
   "url": "https://www.youtube.com/watch?v=O-AfZNXuGBg",
-  "status": "NO_VALID_STRATEGY_SEGMENT",
+  "status": "AVAILABLE",
   "provider": "youtube-transcript.ai",
-  "word_count": 0,
-  "character_count": 0,
-  "transcript": null,
-  "updated_at": "2026-08-16T23:00:41.394588+00:00",
+  "api_status": "RAW_CACHE_REUSED",
+  "cache_source": "data/community_transcripts_raw/O-AfZNXuGBg_digit_racing.txt",
+  "raw_transcript_file": "data/community_transcripts_raw/O-AfZNXuGBg_digit_racing.txt",
+  "word_count": 807,
+  "character_count": 4279,
+  "transcript": "[2:31:46] Wow, he didn't really lose any time. He lost a bit of time, but not much. That's actually quite surprising. Okay.\n[2:33:25] I mean, now he's definitely going to be faster than me. Uh, that's a funny thing that happened with Seb. He can't change his nickname anymore. anymore. anymore. I don't know how many times he changed it and now he can't.\n[2:34:18] I mean, that's a mistake that a 13year-old would make.\n[2:35:16] M might wait for the final lap, but think he might even do it now. try to overtake. I won't [music] defend because I don't want Kelly to get us. Yeah.\n[2:36:11] Oh. Oh. Oh, yeah. I think he's out of this race. Especially Especially Especially now with dirty tires.\n[2:36:51] It seems like the overcut is more [music] powerful than the undercut.\n[2:38:11] I think I'll be second if I don't make a mistake.\n[2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have I should have stayed out. stayed out. stayed out. should have put it when he put it. Then we would have a race like this.\n[2:39:29] Well, second it's it's not bad, but it's also not good. You know what? For the next time, I know bit later. Ocean. Hello. Hello. Once again, Citroen tires are better than Porsches, [music] even if you do one more lap on the S. because it's just faster overall. It's not worth. [snorts] I mean, it's it's [music] a it's a Citroen cup basically\n[2:40:03] qual. qual. Thank you. Thank you, casual driver. I should have stayed out. That's it. And all of those that pitted earlier just lost more time.\n[2:40:33] Overcut it is. At least I know for next time. If you ask me like last week we had a bit of diversity. Now we are back to the roots roots roots but it's also okay. Uh tire wear times four and you can see fuel is uh is times two.\n[2:41:04] See See it's taking a while. Well, this weekend is going to be like this, but we also have Fuji, so I think it's going to be okay. And then on\n[2:41:35] it's going to be okay. And then on Thursday, there is an update. Most likely, it's going to be Thursday. [music] It usually is Thursday. Okay, let's let's [music] try to get a better lap.\n[2:42:05] You can rev the car, but it won't make much of a difference. Tire tires make more difference. more difference. more difference. Heat.\n[2:44:23] I think it's very difficult to beat the lap that I set.\n[2:45:30] Well, that gave me a slightly better angle for the exit of the corner.\n[2:46:01] What car is being [music] driven? Yeah, the thing is that I don't know where I would put that information. Just another piece of information that I don't know where to put maybe on top of I don't know. No, that that's okay. Now,\n[2:46:52] It would need to be a lot better than this.\n[3:53:08] At first I thought, you know, it's over. They got away. No, but I think the most important part in these races is just like turning less and that's just what it [music] is.\n[3:55:28] in some of the races. I think even uh Kster explained it a few times. The controller The controller The controller is [music] quite good on some of the circuits, but is quite a disadvantage on some of the others. And it [music] really depends on, for example, how fast the combo is and how sharp the turns are. And you know there are like a lot of these of these of these different things that [music] come into play for the controller versus the wheel. So\n[3:55:58] yeah, you you could have a good day, you could have a bad day, you can have, you know, the combo that suits you or just that it actually suits the controller more.\n[3:57:09] Let me Let me Yeah, I I need to get closer to them. I can't afford [music] to make a mistake now.\n[3:58:37] Uh, racing mediums and racing soft tires.\n[3:59:25] I switched to wheel in the middle of endurance championship because of the tire wear issue. Of course, the switch made me even slower. Uh yeah, it's it's actually difficult to get used to the wheel.\n[4:00:11] But my only mission now is to get closer to them\n[4:01:27] I'm in the middle of nowhere now. I mean, I just got to Oh, Oh, I mean, I have to hope that they will fight later.\n[4:02:56] I get closer, then I don't. And then it just goes like that. But without a little help, I don't know. Bump.\n[4:03:32] They're getting further and further away.",
+  "updated_at": "2026-08-16T23:04:38.493106+00:00",
   "strategy_extraction": {
-    "mode": "NO_VALID_STRATEGY_SEGMENT",
+    "mode": "STRATEGY_ROLLING_WINDOWS_V6_2",
+    "segments": [
+      {
+        "start_seconds": 9060,
+        "end_seconds": 10020,
+        "start": "2:31:00",
+        "end": "2:47:00",
+        "score": 92,
+        "evidence": [
+          {
+            "original_start": 9120,
+            "original_end": 9420,
+            "score": 40,
+            "identity_mode": "CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "lap",
+              "overcut",
+              "overtake",
+              "tire",
+              "tires",
+              "undercut"
+            ],
+            "fingerprint_hits": [
+              "OVERCUT",
+              "OVERCUT_UNDERCUT_COMPARISON",
+              "UNDERCUT"
+            ]
+          },
+          {
+            "original_start": 9180,
+            "original_end": 9480,
+            "score": 40,
+            "identity_mode": "CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "lap",
+              "overcut",
+              "overtake",
+              "tire",
+              "tires",
+              "undercut"
+            ],
+            "fingerprint_hits": [
+              "OVERCUT",
+              "OVERCUT_UNDERCUT_COMPARISON",
+              "UNDERCUT"
+            ]
+          },
+          {
+            "original_start": 9240,
+            "original_end": 9540,
+            "score": 54,
+            "identity_mode": "CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "citroen",
+              "lap",
+              "overcut",
+              "overtake",
+              "tire",
+              "tire wear",
+              "tires",
+              "undercut"
+            ],
+            "fingerprint_hits": [
+              "CITROEN",
+              "OVERCUT",
+              "OVERCUT_UNDERCUT_COMPARISON",
+              "STAY_OUT",
+              "UNDERCUT"
+            ]
+          },
+          {
+            "original_start": 9300,
+            "original_end": 9600,
+            "score": 54,
+            "identity_mode": "CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "citroen",
+              "lap",
+              "overcut",
+              "overtake",
+              "tire",
+              "tire wear",
+              "tires",
+              "undercut"
+            ],
+            "fingerprint_hits": [
+              "CITROEN",
+              "OVERCUT",
+              "OVERCUT_UNDERCUT_COMPARISON",
+              "STAY_OUT",
+              "UNDERCUT"
+            ]
+          },
+          {
+            "original_start": 9360,
+            "original_end": 9660,
+            "score": 92,
+            "identity_mode": "VERY_STRONG_CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "citroen",
+              "fuel",
+              "lap",
+              "overcut",
+              "pit",
+              "tire",
+              "tire wear",
+              "tires",
+              "undercut"
+            ],
+            "fingerprint_hits": [
+              "CITROEN",
+              "FUEL_X2",
+              "LIVE_MULTIPLIER_PAIR",
+              "OVERCUT",
+              "OVERCUT_UNDERCUT_COMPARISON",
+              "STAY_OUT",
+              "TYRE_WEAR_X4",
+              "UNDERCUT"
+            ]
+          },
+          {
+            "original_start": 9420,
+            "original_end": 9720,
+            "score": 75,
+            "identity_mode": "VERY_STRONG_CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "citroen",
+              "fuel",
+              "lap",
+              "overcut",
+              "pit",
+              "tire",
+              "tire wear",
+              "tires"
+            ],
+            "fingerprint_hits": [
+              "CITROEN",
+              "FUEL_X2",
+              "LIVE_MULTIPLIER_PAIR",
+              "OVERCUT",
+              "STAY_OUT",
+              "TYRE_WEAR_X4"
+            ]
+          },
+          {
+            "original_start": 9480,
+            "original_end": 9780,
+            "score": 75,
+            "identity_mode": "VERY_STRONG_CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "citroen",
+              "fuel",
+              "lap",
+              "overcut",
+              "pit",
+              "tire",
+              "tire wear",
+              "tires"
+            ],
+            "fingerprint_hits": [
+              "CITROEN",
+              "FUEL_X2",
+              "LIVE_MULTIPLIER_PAIR",
+              "OVERCUT",
+              "STAY_OUT",
+              "TYRE_WEAR_X4"
+            ]
+          },
+          {
+            "original_start": 9540,
+            "original_end": 9840,
+            "score": 75,
+            "identity_mode": "VERY_STRONG_CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "citroen",
+              "fuel",
+              "lap",
+              "overcut",
+              "pit",
+              "tire",
+              "tire wear",
+              "tires"
+            ],
+            "fingerprint_hits": [
+              "CITROEN",
+              "FUEL_X2",
+              "LIVE_MULTIPLIER_PAIR",
+              "OVERCUT",
+              "STAY_OUT",
+              "TYRE_WEAR_X4"
+            ]
+          },
+          {
+            "original_start": 9600,
+            "original_end": 9900,
+            "score": 71,
+            "identity_mode": "VERY_STRONG_CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "fuel",
+              "lap",
+              "overcut",
+              "pit",
+              "tire",
+              "tire wear",
+              "tires"
+            ],
+            "fingerprint_hits": [
+              "FUEL_X2",
+              "LIVE_MULTIPLIER_PAIR",
+              "OVERCUT",
+              "STAY_OUT",
+              "TYRE_WEAR_X4"
+            ]
+          }
+        ]
+      },
+      {
+        "start_seconds": 13980,
+        "end_seconds": 14700,
+        "start": "3:53:00",
+        "end": "4:05:00",
+        "score": 51,
+        "evidence": [
+          {
+            "original_start": 14040,
+            "original_end": 14340,
+            "score": 45,
+            "identity_mode": "CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "mediums",
+              "racing medium",
+              "racing soft",
+              "soft tire",
+              "tire",
+              "tires"
+            ],
+            "fingerprint_hits": [
+              "MEDIUM_COMPOUND",
+              "RM_RS_PAIR",
+              "SOFT_COMPOUND"
+            ]
+          },
+          {
+            "original_start": 14100,
+            "original_end": 14400,
+            "score": 51,
+            "identity_mode": "CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "mediums",
+              "racing medium",
+              "racing soft",
+              "soft tire",
+              "tire",
+              "tire wear",
+              "tires"
+            ],
+            "fingerprint_hits": [
+              "MEDIUM_COMPOUND",
+              "RM_RS_PAIR",
+              "SOFT_COMPOUND"
+            ]
+          },
+          {
+            "original_start": 14160,
+            "original_end": 14460,
+            "score": 51,
+            "identity_mode": "CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "mediums",
+              "racing medium",
+              "racing soft",
+              "soft tire",
+              "tire",
+              "tire wear",
+              "tires"
+            ],
+            "fingerprint_hits": [
+              "MEDIUM_COMPOUND",
+              "RM_RS_PAIR",
+              "SOFT_COMPOUND"
+            ]
+          },
+          {
+            "original_start": 14220,
+            "original_end": 14520,
+            "score": 51,
+            "identity_mode": "CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "mediums",
+              "racing medium",
+              "racing soft",
+              "soft tire",
+              "tire",
+              "tire wear",
+              "tires"
+            ],
+            "fingerprint_hits": [
+              "MEDIUM_COMPOUND",
+              "RM_RS_PAIR",
+              "SOFT_COMPOUND"
+            ]
+          },
+          {
+            "original_start": 14280,
+            "original_end": 14580,
+            "score": 51,
+            "identity_mode": "CURRENT_RACE_FINGERPRINT",
+            "race_hits": [],
+            "strategy_hits": [
+              "mediums",
+              "racing medium",
+              "racing soft",
+              "soft tire",
+              "tire",
+              "tire wear",
+              "tires"
+            ],
+            "fingerprint_hits": [
+              "MEDIUM_COMPOUND",
+              "RM_RS_PAIR",
+              "SOFT_COMPOUND"
+            ]
+          }
+        ]
+      }
+    ],
     "raw_chunks": 321,
     "candidate_windows": 267,
-    "valid_windows": 0,
-    "selected_chunks": 0
+    "valid_windows": 41,
+    "selected_chunks": 28
   }
 }
