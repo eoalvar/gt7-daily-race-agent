@@ -1,0 +1,53 @@
+name: GT7 Community Supadata Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  supadata-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run Supadata transcript test
+        env:
+          SUPADATA_API_KEY: ${{ secrets.SUPADATA_API_KEY }}
+        run: |
+          python community_supadata_test.py
+
+      - name: Show generated files
+        if: always()
+        run: |
+          echo "=========================================="
+          echo "Generated Supadata test files"
+          echo "=========================================="
+
+          if [ -d data/community_supadata_test ]; then
+            find data/community_supadata_test -type f -maxdepth 3 -print
+          else
+            echo "No Supadata test directory created."
+          fi
+
+      - name: Upload Supadata test artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gt7-community-supadata-test
+          path: data/community_supadata_test/
+          if-no-files-found: warn
+          retention-days: 7
