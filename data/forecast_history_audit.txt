@@ -1,0 +1,26 @@
+GT7 FORECAST HISTORY AUDIT
+====================================================================================
+Snapshot files read     : 15
+Unreadable files        : 0
+Race weeks represented  : 2
+Minimum usable weeks    : 1
+Good training weeks     : 0
+Strong training weeks   : 0
+
+WEEK-BY-WEEK COVERAGE
+------------------------------------------------------------------------------------
+UNKNOWN |   6 snapshots |    7.7 h | days: Fri, Sat
+    WR 6 | Top100 3 | Top500 3 | Top1000 3 | MyRank 6
+2026-08-10 |   9 snapshots |   12.4 h | days: Sat
+    WR 9 | Top100 9 | Top500 9 | Top1000 9 | MyRank 9
+
+TRAINING ASSESSMENT
+------------------------------------------------------------------------------------
+INSUFFICIENT - current history is not yet rich enough to train a reliable cross-week forecast model.
+
+Definitions:
+Minimum = >=3 snapshots spanning >=12h.
+Good    = >=6 snapshots spanning >=24h.
+Strong  = >=10 snapshots spanning >=72h.
+
+====================================================================================

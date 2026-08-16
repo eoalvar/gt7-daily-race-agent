@@ -1,0 +1,47 @@
+{
+  "history_files": 15,
+  "unreadable_files": 0,
+  "race_weeks": 2,
+  "weeks_usable_minimum": 1,
+  "weeks_usable_good": 0,
+  "weeks_usable_strong": 0,
+  "weeks": [
+    {
+      "week_start": null,
+      "race_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+      "snapshots": 6,
+      "first_snapshot": "2026-08-14T23:09:18.047947-03:00",
+      "last_snapshot": "2026-08-15T06:51:07.608685-03:00",
+      "span_hours": 7.697100205,
+      "days_present": [
+        "Fri",
+        "Sat"
+      ],
+      "metrics": {
+        "wr": 6,
+        "top100": 3,
+        "top500": 3,
+        "top1000": 3,
+        "my_rank": 6
+      }
+    },
+    {
+      "week_start": "2026-08-10",
+      "race_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+      "snapshots": 9,
+      "first_snapshot": "2026-08-15T07:07:01.404357-03:00",
+      "last_snapshot": "2026-08-15T19:31:21.149293-03:00",
+      "span_hours": 12.405484704444445,
+      "days_present": [
+        "Sat"
+      ],
+      "metrics": {
+        "wr": 9,
+        "top100": 9,
+        "top500": 9,
+        "top1000": 9,
+        "my_rank": 9
+      }
+    }
+  ]
+}
