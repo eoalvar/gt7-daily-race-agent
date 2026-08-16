@@ -1,0 +1,44 @@
+name: Community YouTube Transcript Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-youtube-transcript:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run YouTube transcript test
+        run: |
+          python community_youtube_transcript_test.py
+
+      - name: Show generated files
+        if: always()
+        run: |
+          echo "Generated files:"
+          find data/community_youtube_transcript_test -maxdepth 2 -type f -print 2>/dev/null || true
+
+      - name: Upload transcript test artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: community-youtube-transcript-test
+          path: data/community_youtube_transcript_test/
+          if-no-files-found: warn
+          retention-days: 7
