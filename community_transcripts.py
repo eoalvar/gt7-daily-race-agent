@@ -9,36 +9,42 @@ import requests
 
 
 # =============================================================================
-# GT7 COMMUNITY TRANSCRIPT COLLECTOR V6.1
+# GT7 COMMUNITY TRANSCRIPT COLLECTOR V6.2
 # =============================================================================
 #
 # SOURCE POLICY
 #
-# Strategy:
+# Race strategy:
 #   Digit Racing
 #
 # Qualifying / lap guide:
 #   GnC Racing
 #
 #
-# DIGIT STRATEGY EXTRACTION
+# IMPORTANT DESIGN RULE
 #
-# The full Digit Racing livestream is analysed as timestamped rolling windows.
+# Digit Racing livestreams can cover several Daily Races in one video.
 #
-# A window is accepted ONLY when:
+# Therefore:
 #
-#   1. It contains evidence identifying the current Daily Race C;
-#   2. It contains substantive race/strategy information;
-#   3. It reaches the minimum positive score;
-#   4. It is not dominated by intro/chat/other-race discussion.
+#   - We do NOT accept generic strategy talk blindly.
+#   - We prefer explicit Daily Race C / Grand Valley identity.
+#   - But once the video is already selected as the Digit Racing source for
+#     the current race, a window may also be accepted through a strong
+#     CURRENT-RACE STRATEGY FINGERPRINT.
+#
+# Current-race fingerprints include combinations such as:
+#
+#   - Medium + Soft tyre discussion
+#   - mandatory/required tyre change
+#   - pit window around lap 4 / lap 5
+#   - tyre saving
+#   - x4 tyre wear + x2 fuel
+#   - overcut / undercut discussion together with current-race tyre evidence
+#
+# Generic phrases such as "race a day..." are NOT interpreted as Daily Race A.
 #
 # There is NO weak fallback.
-#
-# V6.1 additionally prints diagnostic transcript windows at:
-#
-#   10:00 -> 30:00
-#   2:30:00 -> 2:50:00
-#   3:50:00 -> 4:10:00
 #
 # =============================================================================
 
@@ -113,178 +119,11 @@ DIGIT_MIN_SCORE = 15
 
 DIGIT_MIN_STRATEGY_HITS = 3
 
-
-# =============================================================================
-# RACE IDENTITY TERMS
-# =============================================================================
-
-RACE_IDENTITY_TERMS = {
-
-    "daily race c": 18,
-    "race c": 10,
-
-    "grand valley": 15,
-    "highway 1": 8,
-    "highway one": 8,
-
-    "group 4": 6,
-    "gr.4": 6,
-    "gr4": 6,
-    "group four": 6,
-}
+DIGIT_FINGERPRINT_MIN_SCORE = 12
 
 
 # =============================================================================
-# STRATEGY TERMS
-# =============================================================================
-
-STRATEGY_TERMS = {
-
-    "strategy": 8,
-
-    "pit stop": 8,
-    "pitstop": 8,
-    "pit lane": 6,
-    "pit": 4,
-
-    "mandatory": 8,
-    "required": 4,
-
-    "fuel": 5,
-    "fuel map": 7,
-    "fuel saving": 7,
-    "save fuel": 7,
-    "consumption": 5,
-
-    "tire": 4,
-    "tires": 4,
-    "tyre": 4,
-    "tyres": 4,
-
-    "tire wear": 6,
-    "tyre wear": 6,
-
-    "save tires": 6,
-    "save tyres": 6,
-
-    "racing soft": 6,
-    "racing medium": 6,
-    "racing hard": 6,
-
-    "soft tire": 5,
-    "soft tyre": 5,
-
-    "medium tire": 5,
-    "medium tyre": 5,
-
-    "hard tire": 5,
-    "hard tyre": 5,
-
-    "softs": 4,
-    "mediums": 4,
-    "hards": 4,
-
-    "lap": 1,
-    "laps": 2,
-    "stint": 6,
-
-    "race pace": 7,
-    "pace": 2,
-
-    "short shift": 6,
-    "short-shift": 6,
-
-    "undercut": 7,
-    "overcut": 7,
-    "one stop": 7,
-    "one-stop": 7,
-    "no stop": 7,
-    "no-stop": 7,
-
-    "slipstream": 3,
-    "draft": 3,
-
-    "overtake": 3,
-    "overtaking": 3,
-
-    "track limits": 5,
-    "penalty": 3,
-    "penalties": 3,
-
-    "meta": 5,
-    "car choice": 6,
-
-    "citroen": 2,
-    "citroën": 2,
-
-    "genesis": 2,
-    "g70": 2,
-
-    "gt-r": 2,
-    "gtr": 2,
-
-    "silvia": 2,
-}
-
-
-# =============================================================================
-# INTRO / CHAT PENALTIES
-# =============================================================================
-
-INTRO_CHAT_TERMS = {
-
-    "welcome back": 5,
-    "hello everyone": 6,
-    "hello to everyone": 6,
-
-    "welcome to": 3,
-
-    "chat": 3,
-
-    "subscriber": 3,
-    "subscribe": 3,
-
-    "like the stream": 4,
-
-    "copyright": 5,
-
-    "theme song": 6,
-
-    "pedal cam": 6,
-
-    "suno": 8,
-
-    "mechanic": 3,
-
-    "air conditioning": 3,
-
-    "lose power": 3,
-
-    "disconnected": 2,
-}
-
-
-# =============================================================================
-# OTHER RACES / DISTRACTOR PENALTIES
-# =============================================================================
-
-OTHER_RACE_TERMS = {
-
-    "daily race a": 10,
-    "race a": 6,
-
-    "daily race b": 10,
-    "race b": 6,
-
-    "route x": 8,
-    "special stage route x": 12,
-
-    "fuji": 6,
-}
-
-
-# =============================================================================
-# BASIC HELPERS
+# GENERAL TEXT HELPERS
 # =============================================================================
 
 def load_json(path, default=None):
@@ -293,6 +132,7 @@ def load_json(path, default=None):
         return default
 
     try:
+
         return json.loads(
             path.read_text(
                 encoding="utf-8"
@@ -300,6 +140,7 @@ def load_json(path, default=None):
         )
 
     except Exception:
+
         return default
 
 
@@ -359,7 +200,10 @@ def timestamp_to_seconds(timestamp):
             minutes = int(parts[0])
             seconds = int(parts[1])
 
-            return minutes * 60 + seconds
+            return (
+                minutes * 60
+                + seconds
+            )
 
         if len(parts) == 3:
 
@@ -374,6 +218,7 @@ def timestamp_to_seconds(timestamp):
             )
 
     except Exception:
+
         return None
 
     return None
@@ -386,16 +231,23 @@ def seconds_to_timestamp(total_seconds):
         int(total_seconds)
     )
 
-    hours = total_seconds // 3600
+    hours = (
+        total_seconds
+        // 3600
+    )
 
     minutes = (
         total_seconds
         % 3600
     ) // 60
 
-    seconds = total_seconds % 60
+    seconds = (
+        total_seconds
+        % 60
+    )
 
     if hours:
+
         return (
             f"{hours}:"
             f"{minutes:02d}:"
@@ -405,6 +257,25 @@ def seconds_to_timestamp(total_seconds):
     return (
         f"{minutes}:"
         f"{seconds:02d}"
+    )
+
+
+def contains_phrase(text, phrase):
+
+    return (
+        phrase.lower()
+        in (text or "").lower()
+    )
+
+
+def regex_search(text, pattern):
+
+    return bool(
+        re.search(
+            pattern,
+            text or "",
+            flags=re.IGNORECASE
+        )
     )
 
 
@@ -423,7 +294,11 @@ def transcript_text_from_payload(payload):
             payload
         )
 
-        return value if value else None
+        return (
+            value
+            if value
+            else None
+        )
 
     if isinstance(payload, list):
 
@@ -447,19 +322,25 @@ def transcript_text_from_payload(payload):
                 )
 
             else:
+
                 value = ""
 
             if value:
                 parts.append(value)
 
         if parts:
+
             return normalize_space(
                 " ".join(parts)
             )
 
         return None
 
-    if not isinstance(payload, dict):
+    if not isinstance(
+        payload,
+        dict
+    ):
+
         return None
 
     for key in [
@@ -467,9 +348,14 @@ def transcript_text_from_payload(payload):
         "text",
     ]:
 
-        value = payload.get(key)
+        value = payload.get(
+            key
+        )
 
-        if isinstance(value, str):
+        if isinstance(
+            value,
+            str
+        ):
 
             value = normalize_space(
                 value
@@ -478,7 +364,9 @@ def transcript_text_from_payload(payload):
             if value:
                 return value
 
-    content = payload.get("content")
+    content = payload.get(
+        "content"
+    )
 
     value = transcript_text_from_payload(
         content
@@ -494,7 +382,9 @@ def transcript_text_from_payload(payload):
         "response",
     ]:
 
-        nested = payload.get(key)
+        nested = payload.get(
+            key
+        )
 
         value = transcript_text_from_payload(
             nested
@@ -516,11 +406,12 @@ def normalize_database(database):
         database,
         dict
     ):
+
         database = {}
 
     database.setdefault(
         "version",
-        6
+        "6.2"
     )
 
     database.setdefault(
@@ -538,8 +429,13 @@ def get_existing_record(
 
     return (
         database
-        .get("videos", {})
-        .get(video_id)
+        .get(
+            "videos",
+            {}
+        )
+        .get(
+            video_id
+        )
     )
 
 
@@ -628,12 +524,16 @@ def select_primary_sources(
         )
     )
 
-    strategy = selected_sources.get(
-        "strategy_primary"
+    strategy = (
+        selected_sources.get(
+            "strategy_primary"
+        )
     )
 
-    lap_guide = selected_sources.get(
-        "lap_guide_primary"
+    lap_guide = (
+        selected_sources.get(
+            "lap_guide_primary"
+        )
     )
 
     output = []
@@ -644,11 +544,17 @@ def select_primary_sources(
         == STRATEGY_CHANNEL
     ):
 
-        item = dict(strategy)
+        item = dict(
+            strategy
+        )
 
-        item["purpose"] = "STRATEGY"
+        item["purpose"] = (
+            "STRATEGY"
+        )
 
-        output.append(item)
+        output.append(
+            item
+        )
 
     if (
         lap_guide
@@ -656,11 +562,17 @@ def select_primary_sources(
         == LAP_GUIDE_CHANNEL
     ):
 
-        item = dict(lap_guide)
+        item = dict(
+            lap_guide
+        )
 
-        item["purpose"] = "LAP_GUIDE"
+        item["purpose"] = (
+            "LAP_GUIDE"
+        )
 
-        output.append(item)
+        output.append(
+            item
+        )
 
     return output
 
@@ -676,7 +588,9 @@ def find_legacy_transcript(
     if not video_id:
         return None
 
-    for directory in LEGACY_TRANSCRIPT_DIRS:
+    for directory in (
+        LEGACY_TRANSCRIPT_DIRS
+    ):
 
         if not directory.exists():
             continue
@@ -700,15 +614,21 @@ def find_legacy_transcript(
 
         for path in matches:
 
-            if path.suffix.lower() == ".txt":
+            if (
+                path.suffix.lower()
+                == ".txt"
+            ):
 
                 try:
 
-                    raw_text = path.read_text(
-                        encoding="utf-8"
+                    raw_text = (
+                        path.read_text(
+                            encoding="utf-8"
+                        )
                     )
 
                 except Exception:
+
                     continue
 
                 text = normalize_space(
@@ -718,9 +638,14 @@ def find_legacy_transcript(
                 if text:
 
                     return {
-                        "text": text,
-                        "raw_text": raw_text,
-                        "source": str(path),
+                        "text":
+                            text,
+
+                        "raw_text":
+                            raw_text,
+
+                        "source":
+                            str(path),
                     }
 
             payload = load_json(
@@ -730,23 +655,30 @@ def find_legacy_transcript(
             if not payload:
                 continue
 
-            text = transcript_text_from_payload(
-                payload
+            text = (
+                transcript_text_from_payload(
+                    payload
+                )
             )
 
             if text:
 
                 return {
-                    "text": text,
-                    "raw_text": text,
-                    "source": str(path),
+                    "text":
+                        text,
+
+                    "raw_text":
+                        text,
+
+                    "source":
+                        str(path),
                 }
 
     return None
 
 
 # =============================================================================
-# WORD DE-DUPLICATION
+# TRANSCRIPT DUPLICATE CLEANING
 # =============================================================================
 
 def dedupe_consecutive_words(
@@ -765,7 +697,10 @@ def dedupe_consecutive_words(
     output = []
 
     index = 0
-    total = len(words)
+
+    total = len(
+        words
+    )
 
     while index < total:
 
@@ -809,16 +744,24 @@ def dedupe_consecutive_words(
                     + repeats * size
                 )
 
-                end = start + size
+                end = (
+                    start
+                    + size
+                )
 
                 if end > total:
                     break
 
                 candidate = words[
-                    start:end
+                    start:
+                    end
                 ]
 
-                if candidate != first:
+                if (
+                    candidate
+                    != first
+                ):
+
                     break
 
                 repeats += 1
@@ -875,7 +818,9 @@ def parse_timestamped_markdown(
 
     current = None
 
-    for raw_line in raw_text.splitlines():
+    for raw_line in (
+        raw_text.splitlines()
+    ):
 
         line = raw_line.strip()
 
@@ -887,9 +832,13 @@ def parse_timestamped_markdown(
 
             if current:
 
-                current["text"] = normalize_space(
-                    " ".join(
-                        current["text_parts"]
+                current["text"] = (
+                    normalize_space(
+                        " ".join(
+                            current[
+                                "text_parts"
+                            ]
+                        )
                     )
                 )
 
@@ -902,7 +851,9 @@ def parse_timestamped_markdown(
                     current
                 )
 
-            timestamp = match.group(1)
+            timestamp = (
+                match.group(1)
+            )
 
             current = {
 
@@ -929,13 +880,19 @@ def parse_timestamped_markdown(
 
                 current[
                     "text_parts"
-                ].append(line)
+                ].append(
+                    line
+                )
 
     if current:
 
-        current["text"] = normalize_space(
-            " ".join(
-                current["text_parts"]
+        current["text"] = (
+            normalize_space(
+                " ".join(
+                    current[
+                        "text_parts"
+                    ]
+                )
             )
         )
 
@@ -944,7 +901,9 @@ def parse_timestamped_markdown(
             None
         )
 
-        chunks.append(current)
+        chunks.append(
+            current
+        )
 
     return chunks
 
@@ -959,10 +918,12 @@ def clean_timestamp_chunks(
 
     for chunk in chunks:
 
-        text = dedupe_consecutive_words(
-            chunk.get(
-                "text",
-                ""
+        text = (
+            dedupe_consecutive_words(
+                chunk.get(
+                    "text",
+                    ""
+                )
             )
         )
 
@@ -981,8 +942,10 @@ def clean_timestamp_chunks(
 
         if (
             previous_text
-            and compare == previous_text
+            and compare
+            == previous_text
         ):
+
             continue
 
         previous_text = compare
@@ -990,10 +953,14 @@ def clean_timestamp_chunks(
         cleaned.append({
 
             "timestamp":
-                chunk.get("timestamp"),
+                chunk.get(
+                    "timestamp"
+                ),
 
             "seconds":
-                chunk.get("seconds"),
+                chunk.get(
+                    "seconds"
+                ),
 
             "text":
                 text,
@@ -1004,6 +971,286 @@ def clean_timestamp_chunks(
 
 # =============================================================================
 # TERM SCORING
+# =============================================================================
+
+RACE_IDENTITY_TERMS = {
+
+    "daily race c":
+        18,
+
+    "grand valley":
+        15,
+
+    "highway 1":
+        8,
+
+    "highway one":
+        8,
+
+    "group 4":
+        6,
+
+    "gr.4":
+        6,
+
+    "gr4":
+        6,
+
+    "group four":
+        6,
+}
+
+
+STRATEGY_TERMS = {
+
+    "strategy":
+        8,
+
+    "pit stop":
+        8,
+
+    "pitstop":
+        8,
+
+    "pit lane":
+        6,
+
+    "pit":
+        4,
+
+    "mandatory":
+        8,
+
+    "required":
+        4,
+
+    "fuel":
+        5,
+
+    "fuel map":
+        7,
+
+    "fuel saving":
+        7,
+
+    "save fuel":
+        7,
+
+    "consumption":
+        5,
+
+    "tire":
+        4,
+
+    "tires":
+        4,
+
+    "tyre":
+        4,
+
+    "tyres":
+        4,
+
+    "tire wear":
+        6,
+
+    "tyre wear":
+        6,
+
+    "tire saving":
+        7,
+
+    "tyre saving":
+        7,
+
+    "saving tires":
+        7,
+
+    "saving tyres":
+        7,
+
+    "save tires":
+        6,
+
+    "save tyres":
+        6,
+
+    "racing soft":
+        6,
+
+    "racing medium":
+        6,
+
+    "racing hard":
+        6,
+
+    "soft tire":
+        5,
+
+    "soft tyre":
+        5,
+
+    "medium tire":
+        5,
+
+    "medium tyre":
+        5,
+
+    "hard tire":
+        5,
+
+    "hard tyre":
+        5,
+
+    "softs":
+        4,
+
+    "mediums":
+        4,
+
+    "hards":
+        4,
+
+    "lap":
+        1,
+
+    "laps":
+        2,
+
+    "stint":
+        6,
+
+    "race pace":
+        7,
+
+    "pace":
+        2,
+
+    "short shift":
+        6,
+
+    "short-shift":
+        6,
+
+    "undercut":
+        7,
+
+    "overcut":
+        7,
+
+    "one stop":
+        7,
+
+    "one-stop":
+        7,
+
+    "no stop":
+        7,
+
+    "no-stop":
+        7,
+
+    "slipstream":
+        3,
+
+    "draft":
+        3,
+
+    "overtake":
+        3,
+
+    "overtaking":
+        3,
+
+    "track limits":
+        5,
+
+    "penalty":
+        3,
+
+    "penalties":
+        3,
+
+    "meta":
+        5,
+
+    "car choice":
+        6,
+
+    "citroen":
+        2,
+
+    "citroën":
+        2,
+
+    "genesis":
+        2,
+
+    "g70":
+        2,
+
+    "gt-r":
+        2,
+
+    "gtr":
+        2,
+
+    "silvia":
+        2,
+}
+
+
+INTRO_CHAT_TERMS = {
+
+    "welcome back":
+        5,
+
+    "hello everyone":
+        6,
+
+    "hello to everyone":
+        6,
+
+    "welcome to":
+        3,
+
+    "subscriber":
+        3,
+
+    "subscribe":
+        3,
+
+    "like the stream":
+        4,
+
+    "copyright":
+        5,
+
+    "theme song":
+        6,
+
+    "pedal cam":
+        6,
+
+    "suno":
+        8,
+
+    "mechanic":
+        3,
+
+    "air conditioning":
+        3,
+
+    "lose power":
+        3,
+
+    "disconnected":
+        2,
+}
+
+
+# =============================================================================
+# WEIGHTED PHRASE SCORE
 # =============================================================================
 
 def weighted_term_score(
@@ -1019,14 +1266,95 @@ def weighted_term_score(
     score = 0
     hits = []
 
-    for term, weight in terms.items():
+    for term, weight in (
+        terms.items()
+    ):
 
         if term in text_lower:
 
             score += weight
-            hits.append(term)
 
-    return score, hits
+            hits.append(
+                term
+            )
+
+    return (
+        score,
+        hits
+    )
+
+
+# =============================================================================
+# OTHER DAILY RACE DETECTION
+# =============================================================================
+#
+# IMPORTANT:
+#
+# We specifically require "daily race a" / "daily race b".
+#
+# We intentionally do NOT use generic:
+#
+#   "race a"
+#   "race b"
+#
+# because phrases such as:
+#
+#   "A race a day keeps the doctor away"
+#
+# produced false positives.
+#
+# =============================================================================
+
+def detect_other_daily_races(
+    text
+):
+
+    hits = []
+
+    penalty = 0
+
+    patterns = [
+
+        (
+            r"\bdaily\s+race\s+a\b",
+            "daily race a",
+            12
+        ),
+
+        (
+            r"\bdaily\s+race\s+b\b",
+            "daily race b",
+            12
+        ),
+
+        (
+            r"\bspecial\s+stage\s+route\s+x\b",
+            "special stage route x",
+            8
+        ),
+    ]
+
+    for (
+        pattern,
+        label,
+        weight
+    ) in patterns:
+
+        if regex_search(
+            text,
+            pattern
+        ):
+
+            hits.append(
+                label
+            )
+
+            penalty += weight
+
+    return (
+        penalty,
+        hits
+    )
 
 
 # =============================================================================
@@ -1041,21 +1369,30 @@ def calculate_track_bonus(
     if not track:
         return 0
 
-    text_lower = text.lower()
+    text_lower = (
+        text.lower()
+    )
 
     tokens = [
+
         token
+
         for token in re.findall(
             r"[a-z0-9]+",
             track.lower()
         )
+
         if len(token) >= 4
     ]
 
     matches = sum(
+
         1
+
         for token in tokens
-        if token in text_lower
+
+        if token
+        in text_lower
     )
 
     if matches >= 4:
@@ -1074,7 +1411,432 @@ def calculate_track_bonus(
 
 
 # =============================================================================
-# DIGIT WINDOW SCORING
+# CURRENT-RACE STRATEGY FINGERPRINT
+# =============================================================================
+
+def detect_strategy_fingerprint(
+    text
+):
+
+    text_lower = (
+        text
+        or ""
+    ).lower()
+
+    score = 0
+    hits = []
+
+    # -------------------------------------------------------------------------
+    # Medium compound
+    # -------------------------------------------------------------------------
+
+    medium_present = (
+        "mediums"
+        in text_lower
+        or "medium tires"
+        in text_lower
+        or "medium tyres"
+        in text_lower
+        or "racing medium"
+        in text_lower
+    )
+
+    if medium_present:
+
+        score += 4
+
+        hits.append(
+            "MEDIUM_COMPOUND"
+        )
+
+    # -------------------------------------------------------------------------
+    # Soft compound
+    # -------------------------------------------------------------------------
+
+    soft_present = (
+        "soft tires"
+        in text_lower
+        or "soft tyres"
+        in text_lower
+        or "soft tire"
+        in text_lower
+        or "soft tyre"
+        in text_lower
+        or "softs"
+        in text_lower
+        or "racing soft"
+        in text_lower
+    )
+
+    if soft_present:
+
+        score += 4
+
+        hits.append(
+            "SOFT_COMPOUND"
+        )
+
+    # -------------------------------------------------------------------------
+    # Current race compound pair
+    # -------------------------------------------------------------------------
+
+    if (
+        medium_present
+        and soft_present
+    ):
+
+        score += 8
+
+        hits.append(
+            "RM_RS_PAIR"
+        )
+
+    # -------------------------------------------------------------------------
+    # Mandatory / required tyre change
+    # -------------------------------------------------------------------------
+
+    mandatory_change = bool(
+        regex_search(
+            text,
+            (
+                r"\b("
+                r"mandatory|required"
+                r")\b"
+                r".{0,80}"
+                r"\b("
+                r"tire|tires|tyre|tyres|"
+                r"change|stop"
+                r")\b"
+            )
+        )
+        or regex_search(
+            text,
+            (
+                r"\b("
+                r"tire|tires|tyre|tyres"
+                r")\b"
+                r".{0,80}"
+                r"\b("
+                r"mandatory|required|change"
+                r")\b"
+            )
+        )
+    )
+
+    if mandatory_change:
+
+        score += 10
+
+        hits.append(
+            "MANDATORY_TYRE_CHANGE"
+        )
+
+    # -------------------------------------------------------------------------
+    # Explicit tyre saving
+    # -------------------------------------------------------------------------
+
+    tire_saving = bool(
+
+        regex_search(
+            text,
+            r"\b(tire|tyre)\s+saving\b"
+        )
+
+        or regex_search(
+            text,
+            r"\bsav(e|ing)\s+(the\s+)?(tire|tires|tyre|tyres)\b"
+        )
+
+        or regex_search(
+            text,
+            r"\bgentle.{0,50}(tire|tyre)"
+        )
+    )
+
+    if tire_saving:
+
+        score += 8
+
+        hits.append(
+            "TYRE_SAVING"
+        )
+
+    # -------------------------------------------------------------------------
+    # Lap 4 / Lap 5 pit window
+    # -------------------------------------------------------------------------
+
+    lap_45 = bool(
+
+        regex_search(
+            text,
+            (
+                r"\blap\s+("
+                r"four|4"
+                r")\b"
+            )
+        )
+
+        and regex_search(
+            text,
+            (
+                r"\blap\s+("
+                r"five|5"
+                r")\b"
+            )
+        )
+    )
+
+    if lap_45:
+
+        score += 8
+
+        hits.append(
+            "LAP_4_5_WINDOW"
+        )
+
+    # -------------------------------------------------------------------------
+    # Pit strategy near lap 4/5
+    # -------------------------------------------------------------------------
+
+    if (
+        lap_45
+        and (
+            "pit"
+            in text_lower
+            or "strategy"
+            in text_lower
+        )
+    ):
+
+        score += 6
+
+        hits.append(
+            "PIT_WINDOW_4_5"
+        )
+
+    # -------------------------------------------------------------------------
+    # x4 tyre wear
+    # -------------------------------------------------------------------------
+
+    tyre_x4 = bool(
+
+        regex_search(
+            text,
+            (
+                r"(tire|tyre)\s+wear"
+                r".{0,30}"
+                r"(times\s+four|times\s+4|x4)"
+            )
+        )
+
+        or regex_search(
+            text,
+            (
+                r"(times\s+four|times\s+4|x4)"
+                r".{0,30}"
+                r"(tire|tyre)\s+wear"
+            )
+        )
+    )
+
+    if tyre_x4:
+
+        score += 10
+
+        hits.append(
+            "TYRE_WEAR_X4"
+        )
+
+    # -------------------------------------------------------------------------
+    # x2 fuel
+    # -------------------------------------------------------------------------
+
+    fuel_x2 = bool(
+
+        regex_search(
+            text,
+            (
+                r"fuel"
+                r".{0,30}"
+                r"(times\s+two|times\s+2|x2)"
+            )
+        )
+
+        or regex_search(
+            text,
+            (
+                r"(times\s+two|times\s+2|x2)"
+                r".{0,30}"
+                r"fuel"
+            )
+        )
+    )
+
+    if fuel_x2:
+
+        score += 10
+
+        hits.append(
+            "FUEL_X2"
+        )
+
+    # -------------------------------------------------------------------------
+    # Exact current multiplier pair
+    # -------------------------------------------------------------------------
+
+    if (
+        tyre_x4
+        and fuel_x2
+    ):
+
+        score += 12
+
+        hits.append(
+            "LIVE_MULTIPLIER_PAIR"
+        )
+
+    # -------------------------------------------------------------------------
+    # Overcut / undercut
+    # -------------------------------------------------------------------------
+
+    overcut = (
+        "overcut"
+        in text_lower
+    )
+
+    undercut = (
+        "undercut"
+        in text_lower
+    )
+
+    if overcut:
+
+        score += 4
+
+        hits.append(
+            "OVERCUT"
+        )
+
+    if undercut:
+
+        score += 4
+
+        hits.append(
+            "UNDERCUT"
+        )
+
+    if (
+        overcut
+        and undercut
+    ):
+
+        score += 6
+
+        hits.append(
+            "OVERCUT_UNDERCUT_COMPARISON"
+        )
+
+    # -------------------------------------------------------------------------
+    # Explicit conclusion: stay out / pit later
+    # -------------------------------------------------------------------------
+
+    if regex_search(
+        text,
+        r"\bstay(ed)?\s+out\b"
+    ):
+
+        score += 4
+
+        hits.append(
+            "STAY_OUT"
+        )
+
+    if regex_search(
+        text,
+        r"\bpit.{0,40}\blater\b"
+    ):
+
+        score += 5
+
+        hits.append(
+            "PIT_LATER"
+        )
+
+    # -------------------------------------------------------------------------
+    # Citroen meta clue
+    # -------------------------------------------------------------------------
+
+    if (
+        "citroen"
+        in text_lower
+        or "citroën"
+        in text_lower
+    ):
+
+        score += 2
+
+        hits.append(
+            "CITROEN"
+        )
+
+    if (
+        (
+            "citroen"
+            in text_lower
+            or "citroën"
+            in text_lower
+        )
+        and "meta"
+        in text_lower
+    ):
+
+        score += 5
+
+        hits.append(
+            "CITROEN_META"
+        )
+
+    return {
+
+        "score":
+            score,
+
+        "hits":
+            sorted(
+                set(hits)
+            ),
+
+        "medium_present":
+            medium_present,
+
+        "soft_present":
+            soft_present,
+
+        "mandatory_change":
+            mandatory_change,
+
+        "tire_saving":
+            tire_saving,
+
+        "lap_45":
+            lap_45,
+
+        "tyre_x4":
+            tyre_x4,
+
+        "fuel_x2":
+            fuel_x2,
+
+        "overcut":
+            overcut,
+
+        "undercut":
+            undercut,
+    }
+
+
+# =============================================================================
+# DIGIT WINDOW SCORING V6.2
 # =============================================================================
 
 def score_digit_window(
@@ -1103,47 +1865,135 @@ def score_digit_window(
         )
     )
 
-    other_score, other_hits = (
-        weighted_term_score(
+    (
+        other_score,
+        other_hits
+    ) = detect_other_daily_races(
+        text
+    )
+
+    track_bonus = (
+        calculate_track_bonus(
             text,
-            OTHER_RACE_TERMS
+            track
         )
     )
 
-    track_bonus = calculate_track_bonus(
-        text,
-        track
+    fingerprint = (
+        detect_strategy_fingerprint(
+            text
+        )
     )
 
-    total_score = (
-        race_score
-        + strategy_score
-        + track_bonus
-        - intro_score
-        - other_score
+    fingerprint_score = (
+        fingerprint["score"]
     )
+
+    # -------------------------------------------------------------------------
+    # Explicit Daily Race C identity
+    # -------------------------------------------------------------------------
 
     strong_identity = (
 
-        "daily race c" in race_hits
+        "daily race c"
+        in race_hits
 
         or (
-            "grand valley" in race_hits
+            "grand valley"
+            in race_hits
             and (
-                "race c" in race_hits
-                or "group 4" in race_hits
-                or "gr.4" in race_hits
-                or "gr4" in race_hits
-                or "group four" in race_hits
+                "group 4"
+                in race_hits
+                or "gr.4"
+                in race_hits
+                or "gr4"
+                in race_hits
+                or "group four"
+                in race_hits
             )
         )
     )
 
+    # -------------------------------------------------------------------------
+    # Strong current-race fingerprint
+    # -------------------------------------------------------------------------
+
+    fingerprint_identity = (
+
+        fingerprint_score
+        >= DIGIT_FINGERPRINT_MIN_SCORE
+
+        and not other_hits
+    )
+
+    # -------------------------------------------------------------------------
+    # Strongest fingerprints can establish race identity by themselves.
+    # -------------------------------------------------------------------------
+
+    very_strong_fingerprint = (
+
+        fingerprint[
+            "mandatory_change"
+        ]
+        and fingerprint[
+            "medium_present"
+        ]
+        and fingerprint[
+            "soft_present"
+        ]
+
+    ) or (
+
+        fingerprint[
+            "tyre_x4"
+        ]
+        and fingerprint[
+            "fuel_x2"
+        ]
+
+    ) or (
+
+        fingerprint[
+            "lap_45"
+        ]
+        and fingerprint[
+            "tire_saving"
+        ]
+
+    )
+
+    # -------------------------------------------------------------------------
+    # Require substantive strategy discussion
+    # -------------------------------------------------------------------------
+
     enough_strategy = (
+
         len(
-            set(strategy_hits)
+            set(
+                strategy_hits
+            )
         )
         >= DIGIT_MIN_STRATEGY_HITS
+
+    )
+
+    # -------------------------------------------------------------------------
+    # Combined score
+    # -------------------------------------------------------------------------
+
+    total_score = (
+
+        race_score
+
+        + strategy_score
+
+        + track_bonus
+
+        + fingerprint_score
+
+        - intro_score
+
+        - other_score
     )
 
     positive_score = (
@@ -1151,18 +2001,34 @@ def score_digit_window(
         >= DIGIT_MIN_SCORE
     )
 
-    valid = (
+    race_context_valid = (
+
         strong_identity
+        or fingerprint_identity
+        or very_strong_fingerprint
+    )
+
+    valid = (
+
+        race_context_valid
+
         and enough_strategy
+
         and positive_score
+
+        and not (
+            other_score
+            >= 12
+            and not very_strong_fingerprint
+        )
     )
 
     rejection_reasons = []
 
-    if not strong_identity:
+    if not race_context_valid:
 
         rejection_reasons.append(
-            "NO_STRONG_RACE_IDENTITY"
+            "NO_CURRENT_RACE_IDENTITY_OR_FINGERPRINT"
         )
 
     if not enough_strategy:
@@ -1177,16 +2043,42 @@ def score_digit_window(
             "SCORE_BELOW_THRESHOLD"
         )
 
-    if intro_score >= 10:
+    if (
+        intro_score >= 10
+        and not very_strong_fingerprint
+    ):
 
         rejection_reasons.append(
             "INTRO_CHAT_HEAVY"
         )
 
-    if other_score >= 10:
+    if (
+        other_score >= 12
+        and not very_strong_fingerprint
+    ):
 
         rejection_reasons.append(
-            "OTHER_RACE_HEAVY"
+            "OTHER_DAILY_RACE_DETECTED"
+        )
+
+    identity_mode = None
+
+    if strong_identity:
+
+        identity_mode = (
+            "EXPLICIT_RACE_IDENTITY"
+        )
+
+    elif very_strong_fingerprint:
+
+        identity_mode = (
+            "VERY_STRONG_CURRENT_RACE_FINGERPRINT"
+        )
+
+    elif fingerprint_identity:
+
+        identity_mode = (
+            "CURRENT_RACE_FINGERPRINT"
         )
 
     return {
@@ -1197,11 +2089,17 @@ def score_digit_window(
         "score":
             total_score,
 
+        "identity_mode":
+            identity_mode,
+
         "race_score":
             race_score,
 
         "strategy_score":
             strategy_score,
+
+        "fingerprint_score":
+            fingerprint_score,
 
         "track_bonus":
             track_bonus,
@@ -1214,22 +2112,35 @@ def score_digit_window(
 
         "race_hits":
             sorted(
-                set(race_hits)
+                set(
+                    race_hits
+                )
             ),
 
         "strategy_hits":
             sorted(
-                set(strategy_hits)
+                set(
+                    strategy_hits
+                )
             ),
+
+        "fingerprint_hits":
+            fingerprint[
+                "hits"
+            ],
 
         "intro_hits":
             sorted(
-                set(intro_hits)
+                set(
+                    intro_hits
+                )
             ),
 
         "other_hits":
             sorted(
-                set(other_hits)
+                set(
+                    other_hits
+                )
             ),
 
         "rejection_reasons":
@@ -1246,9 +2157,15 @@ def build_digit_windows(
 ):
 
     seconds_values = [
+
         chunk["seconds"]
+
         for chunk in chunks
-        if chunk.get("seconds") is not None
+
+        if chunk.get(
+            "seconds"
+        )
+        is not None
     ]
 
     if not seconds_values:
@@ -1262,7 +2179,10 @@ def build_digit_windows(
 
     start = 0
 
-    while start <= max_seconds:
+    while (
+        start
+        <= max_seconds
+    ):
 
         end = (
             start
@@ -1276,8 +2196,11 @@ def build_digit_windows(
             for chunk in chunks
 
             if (
-                chunk.get("seconds")
+                chunk.get(
+                    "seconds"
+                )
                 is not None
+
                 and start
                 <= chunk["seconds"]
                 < end
@@ -1286,10 +2209,13 @@ def build_digit_windows(
 
         if window_chunks:
 
-            text = normalize_space(
-                " ".join(
-                    chunk["text"]
-                    for chunk in window_chunks
+            text = (
+                normalize_space(
+                    " ".join(
+                        chunk["text"]
+                        for chunk
+                        in window_chunks
+                    )
                 )
             )
 
@@ -1324,17 +2250,21 @@ def analyse_digit_windows(
     track
 ):
 
-    windows = build_digit_windows(
-        chunks
+    windows = (
+        build_digit_windows(
+            chunks
+        )
     )
 
     analysed = []
 
     for window in windows:
 
-        scoring = score_digit_window(
-            window["text"],
-            track
+        scoring = (
+            score_digit_window(
+                window["text"],
+                track
+            )
         )
 
         analysed.append({
@@ -1366,7 +2296,7 @@ def analyse_digit_windows(
 
 def print_digit_candidates(
     analysed,
-    limit=15
+    limit=20
 ):
 
     print(
@@ -1374,7 +2304,7 @@ def print_digit_candidates(
     )
 
     print(
-        "-" * 96
+        "-" * 100
     )
 
     if not analysed:
@@ -1409,12 +2339,26 @@ def print_digit_candidates(
         )
 
         print(
+            "    Identity : "
+            + (
+                item.get(
+                    "identity_mode"
+                )
+                or "-"
+            )
+        )
+
+        print(
             "    Race     : "
             + (
                 ", ".join(
-                    item["race_hits"]
+                    item[
+                        "race_hits"
+                    ]
                 )
-                if item["race_hits"]
+                if item[
+                    "race_hits"
+                ]
                 else "-"
             )
         )
@@ -1423,9 +2367,28 @@ def print_digit_candidates(
             "    Strategy : "
             + (
                 ", ".join(
-                    item["strategy_hits"]
+                    item[
+                        "strategy_hits"
+                    ]
                 )
-                if item["strategy_hits"]
+                if item[
+                    "strategy_hits"
+                ]
+                else "-"
+            )
+        )
+
+        print(
+            "    Fingerprt: "
+            + (
+                ", ".join(
+                    item[
+                        "fingerprint_hits"
+                    ]
+                )
+                if item[
+                    "fingerprint_hits"
+                ]
                 else "-"
             )
         )
@@ -1435,7 +2398,9 @@ def print_digit_candidates(
             print(
                 "    Intro/chat: "
                 + ", ".join(
-                    item["intro_hits"]
+                    item[
+                        "intro_hits"
+                    ]
                 )
             )
 
@@ -1444,7 +2409,9 @@ def print_digit_candidates(
             print(
                 "    Other race: "
                 + ", ".join(
-                    item["other_hits"]
+                    item[
+                        "other_hits"
+                    ]
                 )
             )
 
@@ -1453,84 +2420,10 @@ def print_digit_candidates(
             print(
                 "    Reject   : "
                 + ", ".join(
-                    item["rejection_reasons"]
+                    item[
+                        "rejection_reasons"
+                    ]
                 )
-            )
-
-    print("")
-
-
-# =============================================================================
-# DIAGNOSTIC WINDOWS
-# =============================================================================
-
-def print_digit_diagnostic_windows(
-    raw_text
-):
-
-    print(
-        "DIGIT DIAGNOSTIC WINDOWS"
-    )
-
-    print(
-        "-" * 96
-    )
-
-    diagnostic_ranges = [
-        (600, 1800),
-        (9000, 10200),
-        (13800, 15000),
-    ]
-
-    diagnostic_chunks = (
-        clean_timestamp_chunks(
-            parse_timestamped_markdown(
-                raw_text
-            )
-        )
-    )
-
-    for (
-        range_start,
-        range_end
-    ) in diagnostic_ranges:
-
-        print("")
-
-        print(
-            f"### "
-            f"{seconds_to_timestamp(range_start)} "
-            f"-> "
-            f"{seconds_to_timestamp(range_end)}"
-        )
-
-        found = False
-
-        for chunk in diagnostic_chunks:
-
-            seconds = chunk.get(
-                "seconds"
-            )
-
-            if (
-                seconds is not None
-                and range_start
-                <= seconds
-                <= range_end
-            ):
-
-                found = True
-
-                print(
-                    f"[{chunk.get('timestamp')}] "
-                    f"{chunk.get('text')}"
-                )
-
-        if not found:
-
-            print(
-                "No transcript chunks "
-                "in this interval."
             )
 
     print("")
@@ -1559,8 +2452,10 @@ def merge_valid_windows(
 
         start = max(
             0,
-            window["start"]
-            - DIGIT_CONTEXT_BEFORE_SECONDS
+            (
+                window["start"]
+                - DIGIT_CONTEXT_BEFORE_SECONDS
+            )
         )
 
         end = (
@@ -1590,11 +2485,25 @@ def merge_valid_windows(
                     "score":
                         window["score"],
 
+                    "identity_mode":
+                        window.get(
+                            "identity_mode"
+                        ),
+
                     "race_hits":
-                        window["race_hits"],
+                        window[
+                            "race_hits"
+                        ],
 
                     "strategy_hits":
-                        window["strategy_hits"],
+                        window[
+                            "strategy_hits"
+                        ],
+
+                    "fingerprint_hits":
+                        window[
+                            "fingerprint_hits"
+                        ],
                 }
             ],
         }
@@ -1607,7 +2516,9 @@ def merge_valid_windows(
 
             continue
 
-        previous = merged[-1]
+        previous = (
+            merged[-1]
+        )
 
         if (
             candidate["start"]
@@ -1627,7 +2538,9 @@ def merge_valid_windows(
             previous[
                 "evidence"
             ].extend(
-                candidate["evidence"]
+                candidate[
+                    "evidence"
+                ]
             )
 
         else:
@@ -1655,32 +2568,40 @@ def select_best_segments(
     )
 
     selected = []
+
     total_duration = 0
 
     for segment in ranked:
 
         duration = max(
             0,
-            segment["end"]
-            - segment["start"]
+            (
+                segment["end"]
+                - segment["start"]
+            )
         )
 
         if (
-            total_duration + duration
+            total_duration
+            + duration
             > DIGIT_MAX_TOTAL_SECONDS
         ):
+
             continue
 
         selected.append(
             segment
         )
 
-        total_duration += duration
+        total_duration += (
+            duration
+        )
 
         if (
             len(selected)
             >= DIGIT_MAX_SEGMENTS
         ):
+
             break
 
     selected.sort(
@@ -1700,12 +2621,16 @@ def extract_digit_strategy(
     track
 ):
 
-    raw_chunks = parse_timestamped_markdown(
-        raw_text
+    raw_chunks = (
+        parse_timestamped_markdown(
+            raw_text
+        )
     )
 
-    chunks = clean_timestamp_chunks(
-        raw_chunks
+    chunks = (
+        clean_timestamp_chunks(
+            raw_chunks
+        )
     )
 
     if not chunks:
@@ -1740,14 +2665,19 @@ def extract_digit_strategy(
                 [],
         }
 
-    analysed = analyse_digit_windows(
-        chunks,
-        track
+    analysed = (
+        analyse_digit_windows(
+            chunks,
+            track
+        )
     )
 
     valid_windows = [
+
         item
+
         for item in analysed
+
         if item["valid"]
     ]
 
@@ -1764,14 +2694,19 @@ def extract_digit_strategy(
     )
 
     selected_chunks = []
+
     seen = set()
 
-    for segment in selected_segments:
+    for segment in (
+        selected_segments
+    ):
 
         for chunk in chunks:
 
-            seconds = chunk.get(
-                "seconds"
+            seconds = (
+                chunk.get(
+                    "seconds"
+                )
             )
 
             if seconds is None:
@@ -1791,7 +2726,9 @@ def extract_digit_strategy(
                 if key in seen:
                     continue
 
-                seen.add(key)
+                seen.add(
+                    key
+                )
 
                 selected_chunks.append(
                     chunk
@@ -1807,20 +2744,26 @@ def extract_digit_strategy(
 
     lines = []
 
-    for chunk in selected_chunks:
+    for chunk in (
+        selected_chunks
+    ):
 
         lines.append(
             f"[{chunk['timestamp']}] "
             f"{chunk['text']}"
         )
 
-    text = "\n".join(
-        lines
-    ).strip()
+    text = (
+        "\n".join(
+            lines
+        ).strip()
+    )
 
     segment_metadata = []
 
-    for segment in selected_segments:
+    for segment in (
+        selected_segments
+    ):
 
         segment_metadata.append({
 
@@ -1857,7 +2800,7 @@ def extract_digit_strategy(
 
         "mode":
             (
-                "STRATEGY_ROLLING_WINDOWS_V6_1"
+                "STRATEGY_ROLLING_WINDOWS_V6_2"
                 if text
                 else
                 "NO_VALID_STRATEGY_SEGMENT"
@@ -1955,7 +2898,9 @@ def request_youtube_transcript_ai(
                 str(exc),
         }
 
-    http_status = response.status_code
+    http_status = (
+        response.status_code
+    )
 
     raw_text = (
         response.text
@@ -1999,7 +2944,9 @@ def request_youtube_transcript_ai(
                 http_status,
         }
 
-    lower = raw_text.lower()
+    lower = (
+        raw_text.lower()
+    )
 
     error_indicators = [
         "transcript unavailable",
@@ -2009,7 +2956,9 @@ def request_youtube_transcript_ai(
         "failed to fetch",
     ]
 
-    for indicator in error_indicators:
+    for indicator in (
+        error_indicators
+    ):
 
         if indicator in lower:
 
@@ -2115,7 +3064,10 @@ def poll_supadata_job(
             }
 
         try:
-            payload = response.json()
+
+            payload = (
+                response.json()
+            )
 
         except Exception:
 
@@ -2124,7 +3076,10 @@ def poll_supadata_job(
                     response.text[:2000]
             }
 
-        if response.status_code == 429:
+        if (
+            response.status_code
+            == 429
+        ):
 
             return {
 
@@ -2144,7 +3099,10 @@ def poll_supadata_job(
                     payload,
             }
 
-        if response.status_code != 200:
+        if (
+            response.status_code
+            != 200
+        ):
 
             return {
 
@@ -2167,8 +3125,10 @@ def poll_supadata_job(
                     payload,
             }
 
-        text = transcript_text_from_payload(
-            payload
+        text = (
+            transcript_text_from_payload(
+                payload
+            )
         )
 
         if text:
@@ -2194,12 +3154,14 @@ def poll_supadata_job(
                     text,
             }
 
-        status = normalize_space(
-            payload.get(
-                "status",
-                ""
-            )
-        ).lower()
+        status = (
+            normalize_space(
+                payload.get(
+                    "status",
+                    ""
+                )
+            ).lower()
+        )
 
         if status in {
             "failed",
@@ -2291,7 +3253,10 @@ def request_supadata_transcript(
         }
 
     try:
-        payload = response.json()
+
+        payload = (
+            response.json()
+        )
 
     except Exception:
 
@@ -2300,7 +3265,10 @@ def request_supadata_transcript(
                 response.text[:2000]
         }
 
-    if response.status_code == 429:
+    if (
+        response.status_code
+        == 429
+    ):
 
         return {
 
@@ -2320,7 +3288,10 @@ def request_supadata_transcript(
                 payload,
         }
 
-    if response.status_code == 202:
+    if (
+        response.status_code
+        == 202
+    ):
 
         job_id = (
             payload.get("jobId")
@@ -2341,11 +3312,16 @@ def request_supadata_transcript(
                     "Supadata",
             }
 
-        return poll_supadata_job(
-            job_id
+        return (
+            poll_supadata_job(
+                job_id
+            )
         )
 
-    if response.status_code != 200:
+    if (
+        response.status_code
+        != 200
+    ):
 
         return {
 
@@ -2362,8 +3338,10 @@ def request_supadata_transcript(
                 "Supadata",
         }
 
-    text = transcript_text_from_payload(
-        payload
+    text = (
+        transcript_text_from_payload(
+            payload
+        )
     )
 
     if not text:
@@ -2410,8 +3388,10 @@ def load_existing_raw_transcript(
     video
 ):
 
-    path = raw_transcript_file_path(
-        video
+    path = (
+        raw_transcript_file_path(
+            video
+        )
     )
 
     if not path.exists():
@@ -2419,11 +3399,14 @@ def load_existing_raw_transcript(
 
     try:
 
-        raw_text = path.read_text(
-            encoding="utf-8"
+        raw_text = (
+            path.read_text(
+                encoding="utf-8"
+            )
         )
 
     except Exception:
+
         return None
 
     if not raw_text.strip():
@@ -2445,8 +3428,10 @@ def save_raw_transcript(
         exist_ok=True
     )
 
-    path = raw_transcript_file_path(
-        video
+    path = (
+        raw_transcript_file_path(
+            video
+        )
     )
 
     path.write_text(
@@ -2483,22 +3468,34 @@ def create_available_record(
             week_key,
 
         "video_id":
-            video.get("video_id"),
+            video.get(
+                "video_id"
+            ),
 
         "channel":
-            video.get("channel"),
+            video.get(
+                "channel"
+            ),
 
         "purpose":
-            video.get("purpose"),
+            video.get(
+                "purpose"
+            ),
 
         "content_type":
-            video.get("content_type"),
+            video.get(
+                "content_type"
+            ),
 
         "title":
-            video.get("title"),
+            video.get(
+                "title"
+            ),
 
         "url":
-            video.get("url"),
+            video.get(
+                "url"
+            ),
 
         "status":
             "AVAILABLE",
@@ -2520,7 +3517,9 @@ def create_available_record(
             ),
 
         "word_count":
-            len(text.split()),
+            len(
+                text.split()
+            ),
 
         "character_count":
             len(text),
@@ -2588,22 +3587,34 @@ def create_unavailable_record(
             week_key,
 
         "video_id":
-            video.get("video_id"),
+            video.get(
+                "video_id"
+            ),
 
         "channel":
-            video.get("channel"),
+            video.get(
+                "channel"
+            ),
 
         "purpose":
-            video.get("purpose"),
+            video.get(
+                "purpose"
+            ),
 
         "content_type":
-            video.get("content_type"),
+            video.get(
+                "content_type"
+            ),
 
         "title":
-            video.get("title"),
+            video.get(
+                "title"
+            ),
 
         "url":
-            video.get("url"),
+            video.get(
+                "url"
+            ),
 
         "status":
             status,
@@ -2638,14 +3649,20 @@ def save_transcript_file(
     video = {
 
         "video_id":
-            record.get("video_id"),
+            record.get(
+                "video_id"
+            ),
 
         "channel":
-            record.get("channel"),
+            record.get(
+                "channel"
+            ),
     }
 
-    path = transcript_file_path(
-        video
+    path = (
+        transcript_file_path(
+            video
+        )
     )
 
     save_json(
@@ -2684,7 +3701,7 @@ def print_source(
 
 
 # =============================================================================
-# PROCESS DIGIT
+# PROCESS DIGIT STRATEGY
 # =============================================================================
 
 def process_digit_strategy(
@@ -2693,8 +3710,10 @@ def process_digit_strategy(
     track
 ):
 
-    video_id = video.get(
-        "video_id"
+    video_id = (
+        video.get(
+            "video_id"
+        )
     )
 
     raw_text = (
@@ -2709,7 +3728,7 @@ def process_digit_strategy(
     source_mode = None
 
     # -------------------------------------------------------------------------
-    # 1. RAW CACHE
+    # RAW CACHE FIRST
     # -------------------------------------------------------------------------
 
     if raw_text:
@@ -2742,7 +3761,7 @@ def process_digit_strategy(
         )
 
     # -------------------------------------------------------------------------
-    # 2. youtube-transcript.ai
+    # DOWNLOAD ONLY IF NO RAW CACHE
     # -------------------------------------------------------------------------
 
     else:
@@ -2786,16 +3805,20 @@ def process_digit_strategy(
                 None
             )
 
-        raw_text = result.get(
-            "raw_text"
+        raw_text = (
+            result.get(
+                "raw_text"
+            )
         )
 
         provider = (
             "youtube-transcript.ai"
         )
 
-        api_status = result.get(
-            "status"
+        api_status = (
+            result.get(
+                "status"
+            )
         )
 
         raw_path = (
@@ -2810,7 +3833,7 @@ def process_digit_strategy(
         )
 
     # -------------------------------------------------------------------------
-    # ANALYSE
+    # EXTRACT
     # -------------------------------------------------------------------------
 
     extraction = (
@@ -2827,15 +3850,7 @@ def process_digit_strategy(
             "analysed",
             []
         ),
-        limit=15
-    )
-
-    # -------------------------------------------------------------------------
-    # V6.1 DIAGNOSTIC OUTPUT
-    # -------------------------------------------------------------------------
-
-    print_digit_diagnostic_windows(
-        raw_text
+        limit=20
     )
 
     print(
@@ -2843,7 +3858,7 @@ def process_digit_strategy(
     )
 
     print(
-        "-" * 96
+        "-" * 100
     )
 
     print(
@@ -2902,26 +3917,50 @@ def process_digit_strategy(
             segment.get(
                 "evidence",
                 []
-            )[:3]
+            )[:5]
         ):
 
             print(
+                "    Identity : "
+                f"{evidence.get('identity_mode')}"
+            )
+
+            print(
                 "    Race     : "
-                + ", ".join(
-                    evidence.get(
-                        "race_hits",
-                        []
+                + (
+                    ", ".join(
+                        evidence.get(
+                            "race_hits",
+                            []
+                        )
                     )
+                    or "-"
                 )
             )
 
             print(
                 "    Strategy : "
-                + ", ".join(
-                    evidence.get(
-                        "strategy_hits",
-                        []
+                + (
+                    ", ".join(
+                        evidence.get(
+                            "strategy_hits",
+                            []
+                        )
                     )
+                    or "-"
+                )
+            )
+
+            print(
+                "    Fingerprt: "
+                + (
+                    ", ".join(
+                        evidence.get(
+                            "fingerprint_hits",
+                            []
+                        )
+                    )
+                    or "-"
                 )
             )
 
@@ -2988,9 +4027,11 @@ def process_digit_strategy(
     # SUCCESS
     # -------------------------------------------------------------------------
 
-    text = extraction.get(
-        "text",
-        ""
+    text = (
+        extraction.get(
+            "text",
+            ""
+        )
     )
 
     record = (
@@ -3018,14 +4059,17 @@ def process_digit_strategy(
     )
 
     print(
-        "-" * 96
+        "-" * 100
     )
 
     print(
-        text[:5000]
+        text[:7000]
     )
 
-    if len(text) > 5000:
+    if (
+        len(text)
+        > 7000
+    ):
 
         print(
             "[... preview truncated ...]"
@@ -3040,7 +4084,7 @@ def process_digit_strategy(
 
 
 # =============================================================================
-# PROCESS GNC
+# PROCESS GNC LAP GUIDE
 # =============================================================================
 
 def process_gnc_lap_guide(
@@ -3049,8 +4093,10 @@ def process_gnc_lap_guide(
     database
 ):
 
-    video_id = video.get(
-        "video_id"
+    video_id = (
+        video.get(
+            "video_id"
+        )
     )
 
     existing = (
@@ -3062,25 +4108,37 @@ def process_gnc_lap_guide(
 
     if (
         existing
-        and existing.get("status")
+        and existing.get(
+            "status"
+        )
         == "AVAILABLE"
-        and existing.get("transcript")
+        and existing.get(
+            "transcript"
+        )
     ):
 
         record = dict(
             existing
         )
 
-        record["purpose"] = (
+        record[
+            "purpose"
+        ] = (
             "LAP_GUIDE"
         )
 
-        record["channel"] = (
+        record[
+            "channel"
+        ] = (
             LAP_GUIDE_CHANNEL
         )
 
-        record["provider"] = (
-            record.get("provider")
+        record[
+            "provider"
+        ] = (
+            record.get(
+                "provider"
+            )
             or "LOCAL_DATABASE"
         )
 
@@ -3134,7 +4192,9 @@ def process_gnc_lap_guide(
 
     result = (
         request_supadata_transcript(
-            video.get("url")
+            video.get(
+                "url"
+            )
         )
     )
 
@@ -3182,13 +4242,19 @@ def process_gnc_lap_guide(
         )
 
     raw_text = (
-        result.get("raw_text")
-        or result.get("text")
+        result.get(
+            "raw_text"
+        )
+        or result.get(
+            "text"
+        )
         or ""
     )
 
     text = (
-        result.get("text")
+        result.get(
+            "text"
+        )
         or dedupe_consecutive_words(
             raw_text
         )
@@ -3246,10 +4312,11 @@ def main():
             "not found or invalid."
         )
 
-    week_key, week_data = (
-        get_current_week(
-            source_database
-        )
+    (
+        week_key,
+        week_data
+    ) = get_current_week(
+        source_database
     )
 
     selected_sources = (
@@ -3268,7 +4335,9 @@ def main():
     )
 
     track = (
-        week_data.get("track")
+        week_data.get(
+            "track"
+        )
         or ""
     )
 
@@ -3279,15 +4348,15 @@ def main():
     )
 
     print(
-        "=" * 96
+        "=" * 100
     )
 
     print(
-        "GT7 COMMUNITY TRANSCRIPT COLLECTOR V6.1"
+        "GT7 COMMUNITY TRANSCRIPT COLLECTOR V6.2"
     )
 
     print(
-        "=" * 96
+        "=" * 100
     )
 
     print(
@@ -3327,7 +4396,7 @@ def main():
     )
 
     print(
-        "-" * 96
+        "-" * 100
     )
 
     for index, source in enumerate(
@@ -3350,7 +4419,7 @@ def main():
     ):
 
         print(
-            "=" * 96
+            "=" * 100
         )
 
         print(
@@ -3362,7 +4431,7 @@ def main():
         )
 
         print(
-            "=" * 96
+            "=" * 100
         )
 
         print(
@@ -3383,13 +4452,21 @@ def main():
         print("")
 
         if (
-            video.get("purpose")
+            video.get(
+                "purpose"
+            )
             == "STRATEGY"
-            and video.get("channel")
+
+            and video.get(
+                "channel"
+            )
             == STRATEGY_CHANNEL
         ):
 
-            record, _ = (
+            (
+                record,
+                _
+            ) = (
                 process_digit_strategy(
                     week_key,
                     video,
@@ -3398,9 +4475,14 @@ def main():
             )
 
         elif (
-            video.get("purpose")
+            video.get(
+                "purpose"
+            )
             == "LAP_GUIDE"
-            and video.get("channel")
+
+            and video.get(
+                "channel"
+            )
             == LAP_GUIDE_CHANNEL
         ):
 
@@ -3425,7 +4507,9 @@ def main():
         database[
             "videos"
         ][
-            video.get("video_id")
+            video.get(
+                "video_id"
+            )
         ] = record
 
         run_records.append(
@@ -3449,7 +4533,9 @@ def main():
         )
 
         if (
-            record.get("status")
+            record.get(
+                "status"
+            )
             == "AVAILABLE"
         ):
 
@@ -3472,13 +4558,15 @@ def main():
 
     database[
         "version"
-    ] = "6.1"
+    ] = "6.2"
 
     database[
         "updated_at"
-    ] = datetime.now(
-        UTC
-    ).isoformat()
+    ] = (
+        datetime.now(
+            UTC
+        ).isoformat()
+    )
 
     database[
         "current_week"
@@ -3507,13 +4595,16 @@ def main():
         ],
 
         "digit_extractor":
-            "STRATEGY_ROLLING_WINDOWS_V6_1",
+            "STRATEGY_ROLLING_WINDOWS_V6_2",
 
         "minimum_digit_score":
             DIGIT_MIN_SCORE,
 
         "minimum_strategy_hits":
             DIGIT_MIN_STRATEGY_HITS,
+
+        "fingerprint_min_score":
+            DIGIT_FINGERPRINT_MIN_SCORE,
 
         "weak_fallback":
             False,
@@ -3527,34 +4618,56 @@ def main():
     strategy_record = None
     lap_record = None
 
-    for record in run_records:
+    for record in (
+        run_records
+    ):
 
         if (
-            record.get("purpose")
+            record.get(
+                "purpose"
+            )
             == "STRATEGY"
         ):
-            strategy_record = record
+
+            strategy_record = (
+                record
+            )
 
         if (
-            record.get("purpose")
+            record.get(
+                "purpose"
+            )
             == "LAP_GUIDE"
         ):
-            lap_record = record
+
+            lap_record = (
+                record
+            )
 
     strategy_ready = (
-        strategy_record is not None
-        and strategy_record.get("status")
+
+        strategy_record
+        is not None
+
+        and strategy_record.get(
+            "status"
+        )
         == "AVAILABLE"
     )
 
     lap_ready = (
-        lap_record is not None
-        and lap_record.get("status")
+
+        lap_record
+        is not None
+
+        and lap_record.get(
+            "status"
+        )
         == "AVAILABLE"
     )
 
     print(
-        "=" * 96
+        "=" * 100
     )
 
     print(
@@ -3562,7 +4675,7 @@ def main():
     )
 
     print(
-        "=" * 96
+        "=" * 100
     )
 
     print(
@@ -3577,7 +4690,7 @@ def main():
     )
 
     print(
-        "-" * 96
+        "-" * 100
     )
 
     if strategy_record:
@@ -3624,7 +4737,8 @@ def main():
     else:
 
         print(
-            "STRATEGY  : NOT SELECTED"
+            "STRATEGY  : "
+            "NOT SELECTED"
         )
 
     if lap_record:
@@ -3659,7 +4773,8 @@ def main():
     else:
 
         print(
-            "LAP_GUIDE : NOT SELECTED"
+            "LAP_GUIDE : "
+            "NOT SELECTED"
         )
 
     print("")
@@ -3669,7 +4784,7 @@ def main():
     )
 
     print(
-        "-" * 96
+        "-" * 100
     )
 
     print(
@@ -3705,7 +4820,7 @@ def main():
     )
 
     print(
-        "=" * 96
+        "=" * 100
     )
 
 
