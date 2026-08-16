@@ -1,9 +1,10 @@
 import json
 import os
-import time
 import re
-from pathlib import Path
+import time
+
 from datetime import datetime, UTC
+from pathlib import Path
 
 import requests
 
@@ -28,6 +29,18 @@ TRANSCRIPT_DIR = (
     DATA_DIR
     / "community_transcripts"
 )
+
+# Previous test directories that may already contain
+# successfully downloaded Supadata transcripts.
+LEGACY_TRANSCRIPT_DIRS = [
+    DATA_DIR
+    / "community_supadata_test"
+    / "transcripts",
+
+    DATA_DIR
+    / "community_transcript_test"
+    / "transcripts",
+]
 
 SUPADATA_BASE_URL = (
     "https://api.supadata.ai/v1"
@@ -62,7 +75,6 @@ def load_json(
 ):
 
     if not path.exists():
-
         return default
 
     try:
@@ -114,7 +126,8 @@ def safe_filename(
 ):
 
     text = (
-        text or "unknown"
+        text
+        or "unknown"
     ).lower()
 
     text = re.sub(
@@ -126,6 +139,167 @@ def safe_filename(
     return text.strip(
         "_"
     )
+
+
+# ============================================================
+# TRANSCRIPT TEXT EXTRACTION
+# ============================================================
+
+def transcript_text_from_payload(
+    payload
+):
+
+    if payload is None:
+        return None
+
+    # --------------------------------------------------------
+    # RAW STRING
+    # --------------------------------------------------------
+
+    if isinstance(
+        payload,
+        str
+    ):
+
+        text = normalize_space(
+            payload
+        )
+
+        return (
+            text
+            if text
+            else None
+        )
+
+    # --------------------------------------------------------
+    # LIST
+    # --------------------------------------------------------
+
+    if isinstance(
+        payload,
+        list
+    ):
+
+        pieces = []
+
+        for item in payload:
+
+            if isinstance(
+                item,
+                str
+            ):
+
+                text = normalize_space(
+                    item
+                )
+
+            elif isinstance(
+                item,
+                dict
+            ):
+
+                text = normalize_space(
+                    item.get(
+                        "text"
+                    )
+                    or item.get(
+                        "content"
+                    )
+                    or item.get(
+                        "transcript"
+                    )
+                    or ""
+                )
+
+            else:
+
+                text = ""
+
+            if text:
+
+                pieces.append(
+                    text
+                )
+
+        if pieces:
+
+            return normalize_space(
+                " ".join(
+                    pieces
+                )
+            )
+
+        return None
+
+    # --------------------------------------------------------
+    # DICTIONARY
+    # --------------------------------------------------------
+
+    if not isinstance(
+        payload,
+        dict
+    ):
+
+        return None
+
+    # Direct transcript fields first.
+
+    for key in [
+        "transcript",
+        "text",
+    ]:
+
+        value = payload.get(
+            key
+        )
+
+        if isinstance(
+            value,
+            str
+        ):
+
+            text = normalize_space(
+                value
+            )
+
+            if text:
+                return text
+
+    # Supadata normally uses content.
+
+    content = payload.get(
+        "content"
+    )
+
+    text = transcript_text_from_payload(
+        content
+    )
+
+    if text:
+        return text
+
+    # Some saved files may contain a result/payload/data
+    # wrapper.
+
+    for key in [
+        "result",
+        "payload",
+        "data",
+        "response",
+    ]:
+
+        nested = payload.get(
+            key
+        )
+
+        text = transcript_text_from_payload(
+            nested
+        )
+
+        if text:
+            return text
+
+    return None
 
 
 # ============================================================
@@ -145,7 +319,7 @@ def normalize_database(
 
     database.setdefault(
         "version",
-        2
+        3
     )
 
     database.setdefault(
@@ -301,120 +475,235 @@ def select_primary_sources(
 
 
 # ============================================================
-# SUPADATA RESPONSE PARSING
+# LEGACY TRANSCRIPT CACHE
 # ============================================================
 
-def transcript_text_from_payload(
-    payload
+def find_legacy_transcript(
+    video_id
 ):
 
-    if not isinstance(
-        payload,
-        dict
-    ):
-
+    if not video_id:
         return None
 
-    content = payload.get(
-        "content"
-    )
-
     # --------------------------------------------------------
-    # PLAIN STRING
+    # SEARCH KNOWN TEST DIRECTORIES
     # --------------------------------------------------------
 
-    if isinstance(
-        content,
-        str
-    ):
+    for directory in LEGACY_TRANSCRIPT_DIRS:
 
-        cleaned = normalize_space(
-            content
+        if not directory.exists():
+            continue
+
+        matches = list(
+            directory.glob(
+                f"{video_id}_*.json"
+            )
         )
 
-        return (
-            cleaned
-            if cleaned
-            else None
+        matches.extend(
+            directory.glob(
+                f"{video_id}.json"
+            )
         )
 
-    # --------------------------------------------------------
-    # SEGMENT LIST
-    # --------------------------------------------------------
+        for path in matches:
 
-    if isinstance(
-        content,
-        list
-    ):
+            payload = load_json(
+                path
+            )
 
-        pieces = []
+            if not payload:
+                continue
 
-        for item in content:
-
-            if isinstance(
-                item,
-                str
-            ):
-
-                text = normalize_space(
-                    item
-                )
-
-            elif isinstance(
-                item,
-                dict
-            ):
-
-                text = normalize_space(
-                    item.get(
-                        "text"
-                    )
-                    or item.get(
-                        "content"
-                    )
-                    or ""
-                )
-
-            else:
-
-                text = ""
+            text = transcript_text_from_payload(
+                payload
+            )
 
             if text:
 
-                pieces.append(
-                    text
+                return {
+                    "text":
+                        text,
+
+                    "source":
+                        str(
+                            path
+                        )
+                }
+
+    # --------------------------------------------------------
+    # BROADER SAFE FALLBACK
+    #
+    # Search JSON files under known community test folders.
+    # This allows us to recover transcripts even if an older
+    # test used a different filename format.
+    # --------------------------------------------------------
+
+    broader_dirs = [
+        DATA_DIR
+        / "community_supadata_test",
+
+        DATA_DIR
+        / "community_transcript_test",
+    ]
+
+    for directory in broader_dirs:
+
+        if not directory.exists():
+            continue
+
+        for path in directory.rglob(
+            "*.json"
+        ):
+
+            try:
+
+                raw_text = path.read_text(
+                    encoding="utf-8"
                 )
 
-        if pieces:
+            except Exception:
 
-            return normalize_space(
-                " ".join(
-                    pieces
+                continue
+
+            if video_id not in raw_text:
+
+                continue
+
+            try:
+
+                payload = json.loads(
+                    raw_text
                 )
+
+            except Exception:
+
+                continue
+
+            # ------------------------------------------------
+            # DIRECT FILE
+            # ------------------------------------------------
+
+            text = transcript_text_from_payload(
+                payload
             )
 
-    # --------------------------------------------------------
-    # POSSIBLE NESTED RESULT
-    # --------------------------------------------------------
+            if text:
 
-    result = payload.get(
-        "result"
-    )
+                # Avoid accidentally treating a large test
+                # result database itself as the transcript if
+                # the video-specific text cannot be isolated.
 
-    if isinstance(
-        result,
-        dict
-    ):
+                if (
+                    video_id
+                    in path.name
+                ):
 
-        return transcript_text_from_payload(
-            result
-        )
+                    return {
+                        "text":
+                            text,
+
+                        "source":
+                            str(
+                                path
+                            )
+                    }
+
+            # ------------------------------------------------
+            # LIST OF TEST RESULTS
+            # ------------------------------------------------
+
+            if isinstance(
+                payload,
+                list
+            ):
+
+                candidates = payload
+
+            elif isinstance(
+                payload,
+                dict
+            ):
+
+                candidates = []
+
+                for key in [
+                    "results",
+                    "videos",
+                    "items",
+                ]:
+
+                    value = payload.get(
+                        key
+                    )
+
+                    if isinstance(
+                        value,
+                        list
+                    ):
+
+                        candidates.extend(
+                            value
+                        )
+
+                    elif isinstance(
+                        value,
+                        dict
+                    ):
+
+                        candidates.extend(
+                            value.values()
+                        )
+
+            else:
+
+                candidates = []
+
+            for item in candidates:
+
+                if not isinstance(
+                    item,
+                    dict
+                ):
+
+                    continue
+
+                item_video_id = (
+                    item.get(
+                        "video_id"
+                    )
+                    or item.get(
+                        "videoId"
+                    )
+                    or item.get(
+                        "id"
+                    )
+                )
+
+                if item_video_id != video_id:
+                    continue
+
+                text = transcript_text_from_payload(
+                    item
+                )
+
+                if text:
+
+                    return {
+                        "text":
+                            text,
+
+                        "source":
+                            str(
+                                path
+                            )
+                    }
 
     return None
 
 
 # ============================================================
-# SUPADATA REQUEST
+# SUPADATA HEADERS
 # ============================================================
 
 def supadata_headers():
@@ -424,9 +713,242 @@ def supadata_headers():
             SUPADATA_API_KEY,
 
         "Accept":
-            "application/json"
+            "application/json",
     }
 
+
+# ============================================================
+# ASYNC JOB POLLING
+# ============================================================
+
+def poll_transcript_job(
+    job_id
+):
+
+    endpoint = (
+        f"{SUPADATA_BASE_URL}/"
+        f"transcript/{job_id}"
+    )
+
+    for attempt in range(
+        1,
+        MAX_POLL_ATTEMPTS + 1
+    ):
+
+        print(
+            f"Polling job      : "
+            f"{attempt}/"
+            f"{MAX_POLL_ATTEMPTS}"
+        )
+
+        try:
+
+            response = requests.get(
+                endpoint,
+                headers=supadata_headers(),
+                timeout=REQUEST_TIMEOUT
+            )
+
+        except Exception as exc:
+
+            return {
+                "success":
+                    False,
+
+                "status":
+                    "POLL_REQUEST_ERROR",
+
+                "delivery_mode":
+                    "ASYNC",
+
+                "job_id":
+                    job_id,
+
+                "error":
+                    str(
+                        exc
+                    )
+            }
+
+        http_status = (
+            response.status_code
+        )
+
+        try:
+
+            payload = response.json()
+
+        except Exception:
+
+            payload = {
+                "raw":
+                    response.text[
+                        :2000
+                    ]
+            }
+
+        if http_status == 429:
+
+            return {
+                "success":
+                    False,
+
+                "status":
+                    "PLAN_LIMIT",
+
+                "delivery_mode":
+                    "ASYNC",
+
+                "job_id":
+                    job_id,
+
+                "http_status":
+                    http_status,
+
+                "payload":
+                    payload
+            }
+
+        if http_status != 200:
+
+            return {
+                "success":
+                    False,
+
+                "status":
+                    f"HTTP_{http_status}",
+
+                "delivery_mode":
+                    "ASYNC",
+
+                "job_id":
+                    job_id,
+
+                "http_status":
+                    http_status,
+
+                "payload":
+                    payload
+            }
+
+        status = normalize_space(
+            payload.get(
+                "status",
+                ""
+            )
+        ).lower()
+
+        print(
+            f"Job status       : "
+            f"{status or 'UNKNOWN'}"
+        )
+
+        text = transcript_text_from_payload(
+            payload
+        )
+
+        # Some APIs may already include transcript content
+        # before or without an explicit "completed" status.
+
+        if text:
+
+            return {
+                "success":
+                    True,
+
+                "status":
+                    "ASYNC_SUCCESS",
+
+                "delivery_mode":
+                    "ASYNC",
+
+                "job_id":
+                    job_id,
+
+                "http_status":
+                    http_status,
+
+                "payload":
+                    payload,
+
+                "text":
+                    text
+            }
+
+        if status in {
+            "completed",
+            "complete",
+            "done",
+            "success",
+        }:
+
+            return {
+                "success":
+                    False,
+
+                "status":
+                    "ASYNC_COMPLETED_NO_CONTENT",
+
+                "delivery_mode":
+                    "ASYNC",
+
+                "job_id":
+                    job_id,
+
+                "http_status":
+                    http_status,
+
+                "payload":
+                    payload
+            }
+
+        if status in {
+            "failed",
+            "error",
+        }:
+
+            return {
+                "success":
+                    False,
+
+                "status":
+                    "ASYNC_FAILED",
+
+                "delivery_mode":
+                    "ASYNC",
+
+                "job_id":
+                    job_id,
+
+                "http_status":
+                    http_status,
+
+                "payload":
+                    payload
+            }
+
+        time.sleep(
+            POLL_INTERVAL_SECONDS
+        )
+
+    return {
+        "success":
+            False,
+
+        "status":
+            "ASYNC_TIMEOUT",
+
+        "delivery_mode":
+            "ASYNC",
+
+        "job_id":
+            job_id
+    }
+
+
+# ============================================================
+# SUPADATA REQUEST
+# ============================================================
 
 def request_transcript(
     video_url
@@ -446,7 +968,7 @@ def request_transcript(
                     video_url,
 
                 "text":
-                    "true"
+                    "true",
             },
             timeout=REQUEST_TIMEOUT
         )
@@ -574,7 +1096,7 @@ def request_transcript(
         )
 
     # --------------------------------------------------------
-    # RATE LIMIT
+    # PLAN / USAGE LIMIT
     # --------------------------------------------------------
 
     if http_status == 429:
@@ -584,7 +1106,7 @@ def request_transcript(
                 False,
 
             "status":
-                "RATE_LIMIT",
+                "PLAN_LIMIT",
 
             "http_status":
                 http_status,
@@ -609,266 +1131,22 @@ def request_transcript(
 
 
 # ============================================================
-# ASYNC JOB POLLING
-# ============================================================
-
-def poll_transcript_job(
-    job_id
-):
-
-    endpoint = (
-        f"{SUPADATA_BASE_URL}/"
-        f"transcript/{job_id}"
-    )
-
-    for attempt in range(
-        1,
-        MAX_POLL_ATTEMPTS + 1
-    ):
-
-        print(
-            f"Polling job      : "
-            f"{attempt}/{MAX_POLL_ATTEMPTS}"
-        )
-
-        try:
-
-            response = requests.get(
-                endpoint,
-                headers=supadata_headers(),
-                timeout=REQUEST_TIMEOUT
-            )
-
-        except Exception as exc:
-
-            return {
-                "success":
-                    False,
-
-                "status":
-                    "POLL_REQUEST_ERROR",
-
-                "delivery_mode":
-                    "ASYNC",
-
-                "job_id":
-                    job_id,
-
-                "error":
-                    str(
-                        exc
-                    )
-            }
-
-        http_status = (
-            response.status_code
-        )
-
-        try:
-
-            payload = response.json()
-
-        except Exception:
-
-            payload = {
-                "raw":
-                    response.text[
-                        :2000
-                    ]
-            }
-
-        if http_status == 429:
-
-            return {
-                "success":
-                    False,
-
-                "status":
-                    "RATE_LIMIT",
-
-                "delivery_mode":
-                    "ASYNC",
-
-                "job_id":
-                    job_id,
-
-                "http_status":
-                    http_status,
-
-                "payload":
-                    payload
-            }
-
-        if http_status != 200:
-
-            return {
-                "success":
-                    False,
-
-                "status":
-                    f"HTTP_{http_status}",
-
-                "delivery_mode":
-                    "ASYNC",
-
-                "job_id":
-                    job_id,
-
-                "http_status":
-                    http_status,
-
-                "payload":
-                    payload
-            }
-
-        status = (
-            payload.get(
-                "status"
-            )
-            or ""
-        ).lower()
-
-        print(
-            f"Job status       : "
-            f"{status or 'UNKNOWN'}"
-        )
-
-        # ----------------------------------------------------
-        # COMPLETED
-        # ----------------------------------------------------
-
-        if status == "completed":
-
-            text = transcript_text_from_payload(
-                payload
-            )
-
-            if text:
-
-                return {
-                    "success":
-                        True,
-
-                    "status":
-                        "ASYNC_SUCCESS",
-
-                    "delivery_mode":
-                        "ASYNC",
-
-                    "job_id":
-                        job_id,
-
-                    "http_status":
-                        http_status,
-
-                    "payload":
-                        payload,
-
-                    "text":
-                        text
-                }
-
-            return {
-                "success":
-                    False,
-
-                "status":
-                    "ASYNC_COMPLETED_NO_CONTENT",
-
-                "delivery_mode":
-                    "ASYNC",
-
-                "job_id":
-                    job_id,
-
-                "http_status":
-                    http_status,
-
-                "payload":
-                    payload
-            }
-
-        # ----------------------------------------------------
-        # FAILED
-        # ----------------------------------------------------
-
-        if status == "failed":
-
-            return {
-                "success":
-                    False,
-
-                "status":
-                    "ASYNC_FAILED",
-
-                "delivery_mode":
-                    "ASYNC",
-
-                "job_id":
-                    job_id,
-
-                "http_status":
-                    http_status,
-
-                "payload":
-                    payload
-            }
-
-        # ----------------------------------------------------
-        # STILL PROCESSING
-        # ----------------------------------------------------
-
-        if status in {
-            "queued",
-            "active",
-            "",
-        }:
-
-            time.sleep(
-                POLL_INTERVAL_SECONDS
-            )
-
-            continue
-
-        time.sleep(
-            POLL_INTERVAL_SECONDS
-        )
-
-    return {
-        "success":
-            False,
-
-        "status":
-            "ASYNC_TIMEOUT",
-
-        "delivery_mode":
-            "ASYNC",
-
-        "job_id":
-            job_id
-    }
-
-
-# ============================================================
 # RECORD CREATION
 # ============================================================
 
-def create_transcript_record(
+def create_available_record(
     week_key,
     video,
-    result
+    text,
+    api_status,
+    delivery_mode,
+    cache_source=None,
+    http_status=None,
+    job_id=None
 ):
 
-    text = result.get(
-        "text"
-    )
-
-    word_count = (
-        len(
-            text.split()
-        )
-        if text
-        else 0
+    text = normalize_space(
+        text
     )
 
     return {
@@ -906,15 +1184,87 @@ def create_transcript_record(
             ),
 
         "status":
-            (
-                "AVAILABLE"
-                if result.get(
-                    "success"
-                )
-                else result.get(
-                    "status",
-                    "UNAVAILABLE"
-                )
+            "AVAILABLE",
+
+        "api_status":
+            api_status,
+
+        "delivery_mode":
+            delivery_mode,
+
+        "http_status":
+            http_status,
+
+        "job_id":
+            job_id,
+
+        "cache_source":
+            cache_source,
+
+        "word_count":
+            len(
+                text.split()
+            ),
+
+        "character_count":
+            len(
+                text
+            ),
+
+        "transcript":
+            text,
+
+        "updated_at":
+            datetime.now(
+                UTC
+            ).isoformat()
+    }
+
+
+def create_unavailable_record(
+    week_key,
+    video,
+    result
+):
+
+    return {
+        "week":
+            week_key,
+
+        "video_id":
+            video.get(
+                "video_id"
+            ),
+
+        "channel":
+            video.get(
+                "channel"
+            ),
+
+        "purpose":
+            video.get(
+                "purpose"
+            ),
+
+        "content_type":
+            video.get(
+                "content_type"
+            ),
+
+        "title":
+            video.get(
+                "title"
+            ),
+
+        "url":
+            video.get(
+                "url"
+            ),
+
+        "status":
+            result.get(
+                "status",
+                "UNAVAILABLE"
             ),
 
         "api_status":
@@ -938,19 +1288,13 @@ def create_transcript_record(
             ),
 
         "word_count":
-            word_count,
+            0,
 
         "character_count":
-            (
-                len(
-                    text
-                )
-                if text
-                else 0
-            ),
+            0,
 
         "transcript":
-            text,
+            None,
 
         "updated_at":
             datetime.now(
@@ -1022,12 +1366,6 @@ def print_source(
 
 def main():
 
-    if not SUPADATA_API_KEY:
-
-        raise RuntimeError(
-            "SUPADATA_API_KEY is not configured."
-        )
-
     TRANSCRIPT_DIR.mkdir(
         parents=True,
         exist_ok=True
@@ -1050,10 +1388,8 @@ def main():
         )
     )
 
-    selected = (
-        select_primary_sources(
-            week_data
-        )
+    selected = select_primary_sources(
+        week_data
     )
 
     transcript_database = (
@@ -1070,7 +1406,7 @@ def main():
     )
 
     print(
-        "GT7 COMMUNITY TRANSCRIPT COLLECTOR V2"
+        "GT7 COMMUNITY TRANSCRIPT COLLECTOR V3"
     )
 
     print(
@@ -1110,7 +1446,8 @@ def main():
     if not selected:
 
         print(
-            "No primary community sources selected."
+            "No primary community "
+            "sources selected."
         )
 
     else:
@@ -1129,9 +1466,15 @@ def main():
 
     available_count = 0
     unavailable_count = 0
-    reused_count = 0
+    reused_database_count = 0
+    reused_legacy_count = 0
     api_requests = 0
-    rate_limited = False
+
+    # Once the account-level Supadata quota is known to be
+    # exhausted, no more API calls are made in the same run.
+    # Local/database cache processing continues normally.
+
+    supadata_plan_limit = False
 
     run_results = []
 
@@ -1173,14 +1516,14 @@ def main():
             f"{video.get('url')}"
         )
 
+        # ====================================================
+        # 1. REUSE DEFINITIVE DATABASE
+        # ====================================================
+
         existing = get_existing_record(
             transcript_database,
             video_id
         )
-
-        # ====================================================
-        # REUSE EXISTING TRANSCRIPT
-        # ====================================================
 
         if (
             existing
@@ -1197,16 +1540,21 @@ def main():
                 existing
             )
 
-            # Keep purpose aligned with current source policy.
             record[
                 "purpose"
             ] = video.get(
                 "purpose"
             )
 
+            record[
+                "content_type"
+            ] = video.get(
+                "content_type"
+            )
+
             print(
                 "Result           : "
-                "REUSED_EXISTING"
+                "REUSED_DATABASE"
             )
 
             print(
@@ -1223,7 +1571,7 @@ def main():
                 f"{path}"
             )
 
-            reused_count += 1
+            reused_database_count += 1
             available_count += 1
 
             run_results.append(
@@ -1241,20 +1589,155 @@ def main():
             continue
 
         # ====================================================
-        # REQUEST SUPADATA
+        # 2. REUSE LEGACY TEST TRANSCRIPTS
         # ====================================================
 
-        print(
-            "Result           : REQUESTING"
+        legacy = find_legacy_transcript(
+            video_id
         )
 
-        result = request_transcript(
-            video.get(
-                "url"
+        if legacy:
+
+            record = create_available_record(
+                week_key=week_key,
+                video=video,
+                text=legacy[
+                    "text"
+                ],
+                api_status="LEGACY_CACHE",
+                delivery_mode="LOCAL_CACHE",
+                cache_source=legacy[
+                    "source"
+                ]
             )
-        )
 
-        api_requests += 1
+            transcript_database[
+                "videos"
+            ][
+                video_id
+            ] = record
+
+            path = save_transcript_file(
+                record
+            )
+
+            print(
+                "Result           : "
+                "REUSED_LEGACY_CACHE"
+            )
+
+            print(
+                f"Legacy source    : "
+                f"{legacy['source']}"
+            )
+
+            print(
+                "Transcript       : YES"
+            )
+
+            print(
+                f"Words            : "
+                f"{record.get('word_count',0):,}"
+            )
+
+            print(
+                f"Saved file       : "
+                f"{path}"
+            )
+
+            available_count += 1
+            reused_legacy_count += 1
+
+            run_results.append(
+                record
+            )
+
+            print("")
+
+            continue
+
+        # ====================================================
+        # 3. NO LOCAL TRANSCRIPT
+        # ====================================================
+
+        if supadata_plan_limit:
+
+            result = {
+                "success":
+                    False,
+
+                "status":
+                    "PLAN_LIMIT_SKIPPED",
+
+                "http_status":
+                    429,
+            }
+
+            record = create_unavailable_record(
+                week_key,
+                video,
+                result
+            )
+
+            transcript_database[
+                "videos"
+            ][
+                video_id
+            ] = record
+
+            run_results.append(
+                record
+            )
+
+            unavailable_count += 1
+
+            print(
+                "Result           : "
+                "PLAN_LIMIT_SKIPPED"
+            )
+
+            print(
+                "Transcript       : NO"
+            )
+
+            print(
+                "Reason           : "
+                "Supadata plan limit was "
+                "already detected earlier "
+                "in this run."
+            )
+
+            print("")
+
+            continue
+
+        # ====================================================
+        # 4. REQUEST SUPADATA
+        # ====================================================
+
+        if not SUPADATA_API_KEY:
+
+            result = {
+                "success":
+                    False,
+
+                "status":
+                    "API_KEY_MISSING",
+            }
+
+        else:
+
+            print(
+                "Result           : REQUESTING"
+            )
+
+            result = request_transcript(
+                video.get(
+                    "url"
+                )
+            )
+
+            api_requests += 1
 
         print(
             f"API status       : "
@@ -1288,25 +1771,43 @@ def main():
                 f"{result.get('job_id')}"
             )
 
-        record = create_transcript_record(
-            week_key,
-            video,
-            result
-        )
-
-        transcript_database[
-            "videos"
-        ][
-            video_id
-        ] = record
-
-        run_results.append(
-            record
-        )
+        # ====================================================
+        # SUCCESS
+        # ====================================================
 
         if result.get(
             "success"
         ):
+
+            record = create_available_record(
+                week_key=week_key,
+                video=video,
+                text=result.get(
+                    "text"
+                ),
+                api_status=result.get(
+                    "status"
+                ),
+                delivery_mode=result.get(
+                    "delivery_mode"
+                ),
+                http_status=result.get(
+                    "http_status"
+                ),
+                job_id=result.get(
+                    "job_id"
+                )
+            )
+
+            transcript_database[
+                "videos"
+            ][
+                video_id
+            ] = record
+
+            run_results.append(
+                record
+            )
 
             available_count += 1
 
@@ -1347,7 +1848,27 @@ def main():
                 f"  {preview[:900]}"
             )
 
+        # ====================================================
+        # FAILURE
+        # ====================================================
+
         else:
+
+            record = create_unavailable_record(
+                week_key,
+                video,
+                result
+            )
+
+            transcript_database[
+                "videos"
+            ][
+                video_id
+            ] = record
+
+            run_results.append(
+                record
+            )
 
             unavailable_count += 1
 
@@ -1378,17 +1899,21 @@ def main():
                 result.get(
                     "status"
                 )
-                == "RATE_LIMIT"
+                == "PLAN_LIMIT"
             ):
 
-                rate_limited = True
+                supadata_plan_limit = True
 
                 print(
-                    "Rate limit reached. "
-                    "Stopping further API calls."
+                    "Supadata plan usage "
+                    "limit detected."
                 )
 
-                break
+                print(
+                    "Further API calls will "
+                    "be skipped, but local "
+                    "cache processing will continue."
+                )
 
         print("")
 
@@ -1398,7 +1923,7 @@ def main():
 
     transcript_database[
         "version"
-    ] = 2
+    ] = 3
 
     transcript_database[
         "updated_at"
@@ -1417,7 +1942,7 @@ def main():
             STRATEGY_CHANNEL,
 
         "lap_guide":
-            LAP_GUIDE_CHANNEL
+            LAP_GUIDE_CHANNEL,
     }
 
     save_json(
@@ -1452,8 +1977,13 @@ def main():
     )
 
     print(
-        f"Reused existing    : "
-        f"{reused_count}"
+        f"Reused database    : "
+        f"{reused_database_count}"
+    )
+
+    print(
+        f"Reused legacy      : "
+        f"{reused_legacy_count}"
     )
 
     print(
@@ -1467,8 +1997,8 @@ def main():
     )
 
     print(
-        f"Rate limited       : "
-        f"{'YES' if rate_limited else 'No'}"
+        f"Supadata plan limit: "
+        f"{'YES' if supadata_plan_limit else 'No'}"
     )
 
     print("")
@@ -1545,6 +2075,66 @@ def main():
                 f"  Words   : "
                 f"{record.get('word_count',0):,}"
             )
+
+            print(
+                f"  Source  : "
+                f"{record.get('api_status')}"
+            )
+
+    print("")
+
+    # ========================================================
+    # READINESS
+    # ========================================================
+
+    strategy_ready = (
+        purposes.get(
+            "STRATEGY"
+        )
+        is not None
+        and purposes[
+            "STRATEGY"
+        ].get(
+            "status"
+        )
+        == "AVAILABLE"
+    )
+
+    lap_ready = (
+        purposes.get(
+            "LAP_GUIDE"
+        )
+        is not None
+        and purposes[
+            "LAP_GUIDE"
+        ].get(
+            "status"
+        )
+        == "AVAILABLE"
+    )
+
+    print(
+        "COMMUNITY INTELLIGENCE READINESS"
+    )
+
+    print(
+        "-" * 88
+    )
+
+    print(
+        f"Digit strategy    : "
+        f"{'READY' if strategy_ready else 'PENDING'}"
+    )
+
+    print(
+        f"GnC lap guide     : "
+        f"{'READY' if lap_ready else 'PENDING'}"
+    )
+
+    print(
+        f"Full report ready : "
+        f"{'YES' if strategy_ready and lap_ready else 'No'}"
+    )
 
     print("")
 
