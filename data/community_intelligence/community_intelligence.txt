@@ -1,5 +1,5 @@
-GT7 COMMUNITY INTELLIGENCE V2
-============================================================================================
+GT7 COMMUNITY INTELLIGENCE V3
+==============================================================================================
 Race week        : 2026-08-10
 Track            : Grand Valley - Highway 1
 Class            : Gr.4
@@ -9,111 +9,170 @@ Live tyre wear   : x4
 Live compounds   : RM, RS
 
 SOURCE VALIDATION
---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 Wombleleader Racing | REJECTED | STALE_OR_WRONG_RACE
-  Gran Turismo 7 daily race C race and strategy guide...Group 4...Grand Valley Highway 1
   Detected: Fuel x3 | Tyres x3 | Compounds RH/RM
   Matches : TRACK_MATCH, CLASS_MATCH
   REJECT  : FUEL_CONFLICT: video x3 vs live x2
   REJECT  : TYRE_CONFLICT: video x3 vs live x4
   REJECT  : COMPOUND_CONFLICT: video RH/RM vs live RM/RS
 GnC Racing | CONFIRMED | HIGH
-  Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C
-  Detected: Fuel x2 | Compounds RS
-  Matches : TRACK_MATCH, CLASS_MATCH, FUEL_MATCH, COMPOUND_MATCH
+  Detected: Fuel x2 | Tyres x4 | Compounds RS
+  Matches : TRACK_MATCH, CLASS_MATCH, FUEL_MATCH, TYRE_MATCH, COMPOUND_MATCH
 Digit Racing | PARTIAL | MEDIUM
-  Gran Turismo 7: Grand Valley - Highway One - Track Guide | Nissan Silvia Gr.4
   Matches : TRACK_MATCH, CLASS_MATCH
 
-Usable sources   : 2
-Rejected sources : 1
+CORNER-BY-CORNER / SEQUENTIAL GUIDE
+----------------------------------------------------------------------------------------------
+1. [Digit Racing | MEDIUM]
+   Technique : coast to help rotation
+   Note      : going [Music] starting the lab and I usually like to wrap up the Ford gear until I reach 200 kilometers per hour sometimes you can do it a little bit more if it's the uphill section I will explain it all of that later here 300 and then you position the car straight up so if the car is turning and...
+2. [Digit Racing | MEDIUM]
+   Technique : use kerb to aid rotation; coast to help rotation
+   Note      : explain it all of that later here 300 and then you position the car straight up so if the car is turning and you hit the brakes exactly at that point you might get a little bit more understeer and usually it's just about a little bit of coasting until you really hit the brakes until this point...
+3. [Digit Racing | MEDIUM]
+   Technique : use kerb to aid rotation; coast to help rotation
+   Note      : understeer and usually it's just about a little bit of coasting until you really hit the brakes until this point which is your acceleration point so don't be afraid if you touch the curbs on the right they will actually help you to rotate the car even better so you can see I got a lot more time and...
+4. [Digit Racing | MEDIUM]
+   Technique : avoid prolonged trail braking; keep a tight/narrow line
+   Note      : to take the narrowest possible lines if you go wide a little bit you will eventually lose time so try to stay as narrow as possible so you can get the acceleration down quickly here I just try to turn in I mean it's nothing special in here just turning in and then when I reach this point it's about...
+5. [Digit Racing | MEDIUM]
+   Technique : avoid prolonged trail braking; keep a tight/narrow line
+   Note      : to turn in I mean it's nothing special in here just turning in and then when I reach this point it's about 40 50 percent of the brakes but for about a half a second to about a second and then just let the car go if you stay on the brakes for too long with this car you will eventually get a lot of
+6. [Digit Racing | MEDIUM]
+   Technique : avoid prolonged trail braking
+   Note      : second and then just let the car go if you stay on the brakes for too long with this car you will eventually get a lot of understeer and the car will not turn in so yeah this point I really don't have a reference point But as soon as I go to the left side I just hit the brakes maybe about 50 60
+7. [Digit Racing | MEDIUM]
+   Technique : avoid prolonged trail braking; use early throttle
+   Note      : point I really don't have a reference point But as soon as I go to the left side I just hit the brakes maybe about 50 60 percent and then I just try to position the car up straight and then brake under the board and then just a little bit more braking about 50 60 is just about enough and then you...
+8. [Digit Racing | MEDIUM]
+   Brake ref : 100 sign
+   Note      : before the 100 sign and then you're downshifting into second quickly up shifting into third and hitting the power at about 50 into the turn so when you see the exit I think this is kind of the safe way to put the power down here I like to tap the brakes at about 15 20 and this is usually the board...
+9. [Digit Racing | MEDIUM]
+   Brake ref : 100 sign
+   Note      : safe way to put the power down here I like to tap the brakes at about 15 20 and this is usually the board when I put the power down it always depends on the angle so there is not a point where I can say okay if you put the power down in there it's gonna be the best one and you can see
+10. [Digit Racing | MEDIUM]
+   Brake ref : out of the tunnel
+   Technique : release brake to help rotation; avoid prolonged trail braking
+   Note      : can give you let go of the brakes and the car will naturally rotate and as soon as you get out of the tunnel I just stopped the footage in here tap the brakes at about 20 30 percent the car ones again will turn in but don't stay on the brakes for too long because you just want to avoid that...
+11. [Digit Racing | MEDIUM]
+   Brake ref : out of the tunnel
+   Technique : release brake to help rotation; avoid prolonged trail braking
+   Note      : percent the car ones again will turn in but don't stay on the brakes for too long because you just want to avoid that understeer the car is let's say good when you don't break that much so if you start Trail braking with this car it will eventually understeer and it's gonna kill your lap and...
+12. [GnC Racing | HIGH]
+   Brake ref : 100 board
+   Note      : And we're going to start to turn in as we are around midway between the 200 and the 100 board.
+13. [GnC Racing | HIGH]
+   Brake ref : around 350 m
+   Gear      : second gear
+   Note      : And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.
+14. [GnC Racing | HIGH]
+   Brake ref : 100 board
+   Gear      : second gear
+   Note      : As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.
+15. [GnC Racing | HIGH]
+   Brake ref : 100 board
+   Note      : As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we...
+16. [GnC Racing | HIGH]
+   Brake ref : around 50 m
+   Technique : use early throttle
+   Note      : Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available.
+17. [GnC Racing | HIGH]
+   Brake ref : around 50 m
+   Note      : Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.
+18. [GnC Racing | HIGH]
+   Brake ref : after we pass under this bridge
+   Gear      : second gear
+   Note      : Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.
 
 BRAKING POINTS
---------------------------------------------------------------------------------------------
-- [GnC Racing | HIGH] As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.
+----------------------------------------------------------------------------------------------
+- [GnC Racing | HIGH] As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire
 - [GnC Racing | HIGH] And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.
 - [GnC Racing | HIGH] Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.
 - [GnC Racing | HIGH] And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel.
+- [GnC Racing | HIGH] On the way down to turn one, we're looking for the 200 board.
 - [GnC Racing | HIGH] And we're going to start to turn in as we are around midway between the 200 and the 100 board.
 - [GnC Racing | HIGH] As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.
-- [GnC Racing | HIGH] Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.
-- [GnC Racing | HIGH] And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.
+- [GnC Racing | HIGH] to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.
 
 GEARS / SHIFTING
---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 - [GnC Racing | HIGH] As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.
 - [GnC Racing | HIGH] Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.
 - [GnC Racing | HIGH] As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner.
-- [Digit Racing | MEDIUM] much so you can really work with the power as much as you want it and I mean it's really useful to get the rotation out of some specific Corners like this one so just a bit before the 100 sign and then you're downshifting into second quickly up shifting into third and hitting the power at about 50 into the turn so when you see the exit I think this is kind of the safe way to put the power down here I like to tap the...
+- [Digit Racing | MEDIUM] that much so you can really work with the power as much as you want it and I mean it's really useful to get the rotation out of some specific Corners like this one so just a bit before the 100 sign and then you're downshifting into second quickly up shifting into third and hitting the power at about 50 into the turn so when
+- [Digit Racing | MEDIUM] before the 100 sign and then you're downshifting into second quickly up shifting into third and hitting the power at about 50 into the turn so when you see the exit I think this is kind of the safe way to put the power down here I like to tap the brakes at about 15 20 and this is usually the board when I put
 
 RACING LINE
---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 - [GnC Racing | HIGH] Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.
 - [GnC Racing | HIGH] As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner.
 - [GnC Racing | HIGH] And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.
-- [Digit Racing | MEDIUM] 400 is usually your reference point I would say about 380 is usually when I try to break but just when you pass the 400 and now we need to take the narrowest possible lines if you go wide a little bit you will eventually lose time so try to stay as narrow as possible so you can get the acceleration down quickly here I just try to turn in I mean it's nothing special in here just turning in and then when I reach this...
-- [Digit Racing | MEDIUM] the car go if you stay on the brakes for too long with this car you will eventually get a lot of understeer and the car will not turn in so yeah this point I really don't have a reference point But as soon as I go to the left side I just hit the brakes maybe about 50 60 percent and then I just try to position the car up straight and then brake under the board and then just a little bit more braking about 50 60 is
+- [Digit Racing | MEDIUM] to take the narrowest possible lines if you go wide a little bit you will eventually lose time so try to stay as narrow as possible so you can get the acceleration down quickly here I just try to turn in I mean it's nothing special in here just turning in and then when I reach this point it's about 40 50 percent of the
 - [GnC Racing | HIGH] And we're going to start to turn in as we are around midway between the 200 and the 100 board.
 - [GnC Racing | HIGH] And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.
 - [GnC Racing | HIGH] And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex.
+- [GnC Racing | HIGH] Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.
 
 THROTTLE / ACCELERATION
---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 - [GnC Racing | HIGH] Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available.
 - [GnC Racing | HIGH] As we pass under the banner above the track, we'll get on the power, but another good acceleration marker.
-- [Digit Racing | MEDIUM] uphill section I will explain it all of that later here 300 and then you position the car straight up so if the car is turning and you hit the brakes exactly at that point you might get a little bit more understeer and usually it's just about a little bit of coasting until you really hit the brakes until this point which is your acceleration point so don't be afraid if you touch the curbs on the right they will...
-- [Digit Racing | MEDIUM] really hit the brakes until this point which is your acceleration point so don't be afraid if you touch the curbs on the right they will actually help you to rotate the car even better so you can see I got a lot more time and it was actually a pretty good sector so far so here just a little lift so you can kind of tap this curve I mean you don't want to go too wide but you just need to tap the curves and here I think
+- [Digit Racing | MEDIUM] explain it all of that later here 300 and then you position the car straight up so if the car is turning and you hit the brakes exactly at that point you might get a little bit more understeer and usually it's just about a little bit of coasting until you really hit the brakes until this point which is your acceleration point...
+- [Digit Racing | MEDIUM] understeer and usually it's just about a little bit of coasting until you really hit the brakes until this point which is your acceleration point so don't be afraid if you touch the curbs on the right they will actually help you to rotate the car even better so you can see I got a lot more time and it was actually a pretty good
+- [GnC Racing | HIGH] We're going to start to accelerate just as we reach the one before last.
 - [GnC Racing | HIGH] Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.
 - [GnC Racing | HIGH] Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right.
 - [GnC Racing | HIGH] Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner.
-- [GnC Racing | HIGH] Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.
 
 KERBS / TRACK LIMITS
---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 - [GnC Racing | HIGH] Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.
 - [GnC Racing | HIGH] Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.
 - [GnC Racing | HIGH] Then, as soon as we are over the first curb, turn immediately back to the right for the second.
+- [GnC Racing | HIGH] Again, aiming to clip the curb and just brush in those bolards as we go through.
+- [GnC Racing | HIGH] Just being careful not to run over the white line with all four wheels.
 - [GnC Racing | HIGH] We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight.
 
 TYRE MANAGEMENT
---------------------------------------------------------------------------------------------
-- [GnC Racing | HIGH] Medium and soft tires are available this week, but there is a mandatory change of tire type required during the race.
-- [GnC Racing | HIGH] Today's lap we're going to be looking at is at the time of this recording the top time on the global leaderboard of a 1 minute 54.990 completed in the Nissan GTR GR4 on Racing Soft tires.
-- [Digit Racing | MEDIUM] hello guys and welcome to another tracker video and this is the track guide for the Grand Valley Highway 1 in group four and for this one I'm going with this Nissan Silvia on racing medium tires so the car of choice is the most popular out there with the current Bop system and yeah just let's abuse the Bob as it is and get the most out of it so without further Ado let's get going [Music] starting the lab and I...
+----------------------------------------------------------------------------------------------
+- [GnC Racing | HIGH] Fuel rate is at times two and tire wear at a four times multiplier.
 
 FUEL MANAGEMENT
---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 No strong validated transcript evidence found.
 
 PIT / RACE STRATEGY
---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 - [GnC Racing | HIGH] Medium and soft tires are available this week, but there is a mandatory change of tire type required during the race.
 
-RACECRAFT
---------------------------------------------------------------------------------------------
-No strong validated transcript evidence found.
-
 MISTAKES / WARNINGS
---------------------------------------------------------------------------------------------
-- [Digit Racing | MEDIUM] stay on the brakes for too long because you just want to avoid that understeer the car is let's say good when you don't break that much so if you start Trail braking with this car it will eventually understeer and it's gonna kill your lap and without even thinking about it so you have to be careful on how much brake and pressure you're putting in Breaking the straight line as much as you can and then let the car do...
-- [Digit Racing | MEDIUM] think this is the best advice I can give you let go of the brakes and the car will naturally rotate and as soon as you get out of the tunnel I just stopped the footage in here tap the brakes at about 20 30 percent the car ones again will turn in but don't stay on the brakes for too long because you just want to avoid that understeer the car is let's say good when you don't break that much so if you start Trail...
+----------------------------------------------------------------------------------------------
+- [Digit Racing | MEDIUM] can give you let go of the brakes and the car will naturally rotate and as soon as you get out of the tunnel I just stopped the footage in here tap the brakes at about 20 30 percent the car ones again will turn in but don't stay on the brakes for too long because you just want to avoid that understeer the car
+- [Digit Racing | MEDIUM] percent the car ones again will turn in but don't stay on the brakes for too long because you just want to avoid that understeer the car is let's say good when you don't break that much so if you start Trail braking with this car it will eventually understeer and it's gonna kill your lap and without even thinking about it so...
+- [Digit Racing | MEDIUM] if you start Trail braking with this car it will eventually understeer and it's gonna kill your lap and without even thinking about it so you have to be careful on how much brake and pressure you're putting in Breaking the straight line as much as you can and then let the car do the work for you so basically just let the car do
+- [GnC Racing | HIGH] Be careful not to allow the car to drift too far over to the left.
+- [GnC Racing | HIGH] Just being careful not to run over the white line with all four wheels.
+- [Digit Racing | MEDIUM] will actually help you to rotate the car even better so you can see I got a lot more time and it was actually a pretty good sector so far so here just a little lift so you can kind of tap this curve I mean you don't want to go too wide but you just need to tap the curves and here I think
+- [Digit Racing | MEDIUM] can kind of tap this curve I mean you don't want to go too wide but you just need to tap the curves and here I think I went a little bit too wide you want to stay as close as possible to the left but the 400 is usually your reference point I would say about 380 is usually when I try to break
 
 CONSENSUS BETWEEN VALIDATED SOURCES
---------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+- EARLY_POWER
+  Sources: Digit Racing, GnC Racing
+  Example: Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.
 - TIGHT_LINE
   Sources: Digit Racing, GnC Racing
   Example: And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.
-- EARLY_POWER
-  Sources: Digit Racing, GnC Racing
-  Example: brakes maybe about 50 60 percent and then I just try to position the car up straight and then brake under the board and then just a little bit more braking about 50 60 is just about enough and then you want to hit the power as soon as possible this car doesn't slide that much so you can really work with the power as much as you want it and I mean it's really useful to get the rotation out of some specific Corners...
 
 COMMUNITY VS LIVE LEADERBOARD META
---------------------------------------------------------------------------------------------
-Community car mentions:
+----------------------------------------------------------------------------------------------
+Community mentions:
 - Nissan GT-R Gr.4 | 2 mentions | GnC Racing
 - Nissan Silvia Gr.4 | 1 mentions | Digit Racing
 
-Live leaderboard Top 1000:
+Live Top 1000:
 1. GT by Citroën Gr.4 | 567 drivers | 56.7%
 2. Genesis G70 GR4 | 146 drivers | 14.6%
 3. Nissan GT-R Gr.4 | 82 drivers | 8.2%
@@ -121,12 +180,12 @@ Live leaderboard Top 1000:
 5. Honda NSX Gr.4 | 30 drivers | 3.0%
 
 TOP PRACTICAL TAKEAWAYS
---------------------------------------------------------------------------------------------
-1. [MULTI_SOURCE] And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.
+----------------------------------------------------------------------------------------------
+1. [MULTI_SOURCE] Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.
    Source: Digit Racing, GnC Racing
-2. [MULTI_SOURCE] brakes maybe about 50 60 percent and then I just try to position the car up straight and then brake under the board and then just a little bit more braking about 50 60 is just about enough and then you want to hit the power as soon as possible this car doesn't slide that much so you can really work with the power as much as you want it and I mean it's really useful to get the rotation out of some specific Corners...
+2. [MULTI_SOURCE] And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.
    Source: Digit Racing, GnC Racing
-3. [BRAKING] As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.
+3. [BRAKING] As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire
    Source: GnC Racing
 4. [BRAKING] And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.
    Source: GnC Racing
@@ -134,20 +193,20 @@ TOP PRACTICAL TAKEAWAYS
    Source: GnC Racing
 6. [BRAKING] And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel.
    Source: GnC Racing
-7. [BRAKING] And we're going to start to turn in as we are around midway between the 200 and the 100 board.
+7. [BRAKING] On the way down to turn one, we're looking for the 200 board.
    Source: GnC Racing
-8. [BRAKING] As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.
+8. [BRAKING] And we're going to start to turn in as we are around midway between the 200 and the 100 board.
    Source: GnC Racing
-9. [BRAKING] Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.
+9. [BRAKING] As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.
    Source: GnC Racing
-10. [RACING_LINE] Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.
+10. [BRAKING] to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.
    Source: GnC Racing
 
 ANALYSIS POLICY
---------------------------------------------------------------------------------------------
-Live race configuration from latest_snapshot.json is treated as ground truth.
-A community source that materially contradicts the live race configuration is excluded from recommendations.
-Unverified sources may contribute driving technique only when they do not contradict known race facts.
-Community car opinions are shown separately from actual leaderboard usage.
+----------------------------------------------------------------------------------------------
+Live race configuration remains the authoritative source for current regulations.
+Rejected community sources cannot influence strategy or driving recommendations.
+Sequential corner guidance is inferred from transcript order and is not yet mapped to official corner numbers.
+Leaderboard usage remains the primary evidence for live car meta.
 
-============================================================================================
+==============================================================================================

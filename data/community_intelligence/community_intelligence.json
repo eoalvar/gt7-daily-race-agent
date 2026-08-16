@@ -1,9 +1,8 @@
 {
-  "version": 2,
+  "version": 3,
   "ground_truth": {
     "week": "2026-08-10",
     "description": "C Gr.4 Running 10 Aug 2026 Daily Race C i 16:48 Grand Valley - Highway 1 M. Estevez - GT by Citroën Gr.4 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom",
-    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
     "track": "Grand Valley - Highway 1",
     "race_class": "Gr.4",
     "direction": "NORMAL",
@@ -132,16 +131,6 @@
       "percentile_ahead": 84.1865637924443,
       "top_percent": 15.816361993466325,
       "pace_band": "VERY FAST"
-    },
-    "car_comparison": {
-      "my_car": "Genesis G70 GR4",
-      "my_car_best_score": 115161,
-      "my_car_best_laptime": "1:55.161",
-      "gap_to_best_same_car_ms": 2087,
-      "meta_car": "GT by Citroën Gr.4",
-      "meta_car_best_score": 114623,
-      "meta_car_best_laptime": "1:54.623",
-      "theoretical_car_gap_ms": 538
     }
   },
   "source_validation": [
@@ -165,28 +154,19 @@
       "detected": {
         "fuel_multiplier": 3,
         "fuel_mentions": [
-          3,
           3
         ],
         "tyre_multiplier": 3,
         "tyre_mentions": [
           3,
           3,
-          3,
-          3,
           1,
-          3,
-          3,
           1
         ],
         "compounds": [
           "RH",
           "RM"
-        ],
-        "classes": [
-          "Gr.4"
-        ],
-        "direction": null
+        ]
       }
     },
     {
@@ -200,6 +180,7 @@
         "TRACK_MATCH",
         "CLASS_MATCH",
         "FUEL_MATCH",
+        "TYRE_MATCH",
         "COMPOUND_MATCH"
       ],
       "reasons": [],
@@ -208,19 +189,16 @@
         "fuel_multiplier": 2,
         "fuel_mentions": [
           2,
-          2,
-          2,
-          2
+          4
         ],
-        "tyre_multiplier": null,
-        "tyre_mentions": [],
+        "tyre_multiplier": 4,
+        "tyre_mentions": [
+          4,
+          4
+        ],
         "compounds": [
           "RS"
-        ],
-        "classes": [
-          "Gr.4"
-        ],
-        "direction": null
+        ]
       }
     },
     {
@@ -241,12 +219,295 @@
         "fuel_mentions": [],
         "tyre_multiplier": null,
         "tyre_mentions": [],
-        "compounds": [],
-        "classes": [
-          "Gr.4"
-        ],
-        "direction": null
+        "compounds": []
       }
+    }
+  ],
+  "corner_guide": [
+    {
+      "channel": "Digit Racing",
+      "reliability": "MEDIUM",
+      "segment_index": 2,
+      "brake_reference": null,
+      "gear": null,
+      "techniques": [
+        "coast to help rotation"
+      ],
+      "summary": "going [Music] starting the lab and I usually like to wrap up the Ford gear until I reach 200 kilometers per hour sometimes you can do it a little bit more if it's the uphill section I will explain it all of that later here 300 and then you position the car straight up so if the car is turning and...",
+      "score": 2
+    },
+    {
+      "channel": "Digit Racing",
+      "reliability": "MEDIUM",
+      "segment_index": 3,
+      "brake_reference": null,
+      "gear": null,
+      "techniques": [
+        "use kerb to aid rotation",
+        "coast to help rotation"
+      ],
+      "summary": "explain it all of that later here 300 and then you position the car straight up so if the car is turning and you hit the brakes exactly at that point you might get a little bit more understeer and usually it's just about a little bit of coasting until you really hit the brakes until this point...",
+      "score": 4
+    },
+    {
+      "channel": "Digit Racing",
+      "reliability": "MEDIUM",
+      "segment_index": 4,
+      "brake_reference": null,
+      "gear": null,
+      "techniques": [
+        "use kerb to aid rotation",
+        "coast to help rotation"
+      ],
+      "summary": "understeer and usually it's just about a little bit of coasting until you really hit the brakes until this point which is your acceleration point so don't be afraid if you touch the curbs on the right they will actually help you to rotate the car even better so you can see I got a lot more time and...",
+      "score": 3
+    },
+    {
+      "channel": "Digit Racing",
+      "reliability": "MEDIUM",
+      "segment_index": 8,
+      "brake_reference": null,
+      "gear": null,
+      "techniques": [
+        "avoid prolonged trail braking",
+        "keep a tight/narrow line"
+      ],
+      "summary": "to take the narrowest possible lines if you go wide a little bit you will eventually lose time so try to stay as narrow as possible so you can get the acceleration down quickly here I just try to turn in I mean it's nothing special in here just turning in and then when I reach this point it's about...",
+      "score": 3
+    },
+    {
+      "channel": "Digit Racing",
+      "reliability": "MEDIUM",
+      "segment_index": 9,
+      "brake_reference": null,
+      "gear": null,
+      "techniques": [
+        "avoid prolonged trail braking",
+        "keep a tight/narrow line"
+      ],
+      "summary": "to turn in I mean it's nothing special in here just turning in and then when I reach this point it's about 40 50 percent of the brakes but for about a half a second to about a second and then just let the car go if you stay on the brakes for too long with this car you will eventually get a lot of",
+      "score": 2
+    },
+    {
+      "channel": "Digit Racing",
+      "reliability": "MEDIUM",
+      "segment_index": 10,
+      "brake_reference": null,
+      "gear": null,
+      "techniques": [
+        "avoid prolonged trail braking"
+      ],
+      "summary": "second and then just let the car go if you stay on the brakes for too long with this car you will eventually get a lot of understeer and the car will not turn in so yeah this point I really don't have a reference point But as soon as I go to the left side I just hit the brakes maybe about 50 60",
+      "score": 2
+    },
+    {
+      "channel": "Digit Racing",
+      "reliability": "MEDIUM",
+      "segment_index": 11,
+      "brake_reference": null,
+      "gear": null,
+      "techniques": [
+        "avoid prolonged trail braking",
+        "use early throttle"
+      ],
+      "summary": "point I really don't have a reference point But as soon as I go to the left side I just hit the brakes maybe about 50 60 percent and then I just try to position the car up straight and then brake under the board and then just a little bit more braking about 50 60 is just about enough and then you...",
+      "score": 2
+    },
+    {
+      "channel": "Digit Racing",
+      "reliability": "MEDIUM",
+      "segment_index": 14,
+      "brake_reference": "100 sign",
+      "gear": null,
+      "techniques": [],
+      "summary": "before the 100 sign and then you're downshifting into second quickly up shifting into third and hitting the power at about 50 into the turn so when you see the exit I think this is kind of the safe way to put the power down here I like to tap the brakes at about 15 20 and this is usually the board...",
+      "score": 4
+    },
+    {
+      "channel": "Digit Racing",
+      "reliability": "MEDIUM",
+      "segment_index": 15,
+      "brake_reference": "100 sign",
+      "gear": null,
+      "techniques": [],
+      "summary": "safe way to put the power down here I like to tap the brakes at about 15 20 and this is usually the board when I put the power down it always depends on the angle so there is not a point where I can say okay if you put the power down in there it's gonna be the best one and you can see",
+      "score": 2
+    },
+    {
+      "channel": "Digit Racing",
+      "reliability": "MEDIUM",
+      "segment_index": 19,
+      "brake_reference": "out of the tunnel",
+      "gear": null,
+      "techniques": [
+        "release brake to help rotation",
+        "avoid prolonged trail braking"
+      ],
+      "summary": "can give you let go of the brakes and the car will naturally rotate and as soon as you get out of the tunnel I just stopped the footage in here tap the brakes at about 20 30 percent the car ones again will turn in but don't stay on the brakes for too long because you just want to avoid that...",
+      "score": 2
+    },
+    {
+      "channel": "Digit Racing",
+      "reliability": "MEDIUM",
+      "segment_index": 20,
+      "brake_reference": "out of the tunnel",
+      "gear": null,
+      "techniques": [
+        "release brake to help rotation",
+        "avoid prolonged trail braking"
+      ],
+      "summary": "percent the car ones again will turn in but don't stay on the brakes for too long because you just want to avoid that understeer the car is let's say good when you don't break that much so if you start Trail braking with this car it will eventually understeer and it's gonna kill your lap and...",
+      "score": 2
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 13,
+      "brake_reference": "100 board",
+      "gear": null,
+      "techniques": [],
+      "summary": "And we're going to start to turn in as we are around midway between the 200 and the 100 board.",
+      "score": 2
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 20,
+      "brake_reference": "around 350 m",
+      "gear": "second gear",
+      "techniques": [],
+      "summary": "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.",
+      "score": 3
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 21,
+      "brake_reference": "100 board",
+      "gear": "second gear",
+      "techniques": [],
+      "summary": "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
+      "score": 2
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 25,
+      "brake_reference": "100 board",
+      "gear": null,
+      "techniques": [],
+      "summary": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we...",
+      "score": 3
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 28,
+      "brake_reference": "around 50 m",
+      "gear": null,
+      "techniques": [
+        "use early throttle"
+      ],
+      "summary": "Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available.",
+      "score": 2
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 29,
+      "brake_reference": "around 50 m",
+      "gear": null,
+      "techniques": [],
+      "summary": "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.",
+      "score": 3
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 30,
+      "brake_reference": "after we pass under this bridge",
+      "gear": "second gear",
+      "techniques": [],
+      "summary": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
+      "score": 2
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 31,
+      "brake_reference": "after we pass under this bridge",
+      "gear": "second gear",
+      "techniques": [],
+      "summary": "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.",
+      "score": 2
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 32,
+      "brake_reference": "100 board",
+      "gear": "second gear",
+      "techniques": [],
+      "summary": "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.",
+      "score": 2
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 34,
+      "brake_reference": "100 board",
+      "gear": "second gear",
+      "techniques": [
+        "keep a tight/narrow line",
+        "use early throttle"
+      ],
+      "summary": "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner.",
+      "score": 3
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 35,
+      "brake_reference": null,
+      "gear": "second gear",
+      "techniques": [
+        "keep a tight/narrow line",
+        "use early throttle"
+      ],
+      "summary": "As we pass under the banner above the track, we'll get on the power, but another good acceleration marker.",
+      "score": 2
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 37,
+      "brake_reference": "dark mark in the sand",
+      "gear": null,
+      "techniques": [
+        "keep a tight/narrow line"
+      ],
+      "summary": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our...",
+      "score": 4
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 39,
+      "brake_reference": "100 board",
+      "gear": null,
+      "techniques": [],
+      "summary": "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel.",
+      "score": 3
+    },
+    {
+      "channel": "GnC Racing",
+      "reliability": "HIGH",
+      "segment_index": 43,
+      "brake_reference": null,
+      "gear": null,
+      "techniques": [],
+      "summary": "And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left.",
+      "score": 2
     }
   ],
   "categories": {
@@ -254,363 +515,336 @@
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 25,
         "reliability": "HIGH",
-        "text": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.",
-        "score": 40
+        "text": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire",
+        "score": 36
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 20,
         "reliability": "HIGH",
         "text": "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.",
-        "score": 30
+        "score": 26
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 29,
         "reliability": "HIGH",
         "text": "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.",
-        "score": 30
+        "score": 26
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 39,
         "reliability": "HIGH",
         "text": "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel.",
-        "score": 30
+        "score": 26
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 12,
+        "reliability": "HIGH",
+        "text": "On the way down to turn one, we're looking for the 200 board.",
+        "score": 16
+      },
+      {
+        "video_id": "qHfm2RjbRjI",
+        "channel": "GnC Racing",
+        "content_type": "LAP_GUIDE",
+        "segment_index": 13,
         "reliability": "HIGH",
         "text": "And we're going to start to turn in as we are around midway between the 200 and the 100 board.",
-        "score": 20
+        "score": 16
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 21,
         "reliability": "HIGH",
         "text": "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
-        "score": 20
+        "score": 16
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 26,
         "reliability": "HIGH",
-        "text": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
-        "score": 20
-      },
-      {
-        "video_id": "qHfm2RjbRjI",
-        "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
-        "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
-        "reliability": "HIGH",
-        "text": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.",
-        "score": 20
+        "text": "to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.",
+        "score": 16
       }
     ],
     "GEARS": [
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 21,
         "reliability": "HIGH",
         "text": "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
-        "score": 30
+        "score": 16
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 31,
         "reliability": "HIGH",
         "text": "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.",
-        "score": 30
+        "score": 16
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 34,
         "reliability": "HIGH",
         "text": "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner.",
-        "score": 30
+        "score": 16
       },
       {
         "video_id": "iDNGTMZUMS8",
         "channel": "Digit Racing",
-        "title": "Gran Turismo 7: Grand Valley - Highway One - Track Guide | Nissan Silvia Gr.4",
         "content_type": "LAP_GUIDE",
-        "validation": "PARTIAL",
+        "segment_index": 13,
         "reliability": "MEDIUM",
-        "text": "much so you can really work with the power as much as you want it and I mean it's really useful to get the rotation out of some specific Corners like this one so just a bit before the 100 sign and then you're downshifting into second quickly up shifting into third and hitting the power at about 50 into the turn so when you see the exit I think this is kind of the safe way to put the power down here I like to tap the brakes at",
-        "score": 27
+        "text": "that much so you can really work with the power as much as you want it and I mean it's really useful to get the rotation out of some specific Corners like this one so just a bit before the 100 sign and then you're downshifting into second quickly up shifting into third and hitting the power at about 50 into the turn so when",
+        "score": 13
+      },
+      {
+        "video_id": "iDNGTMZUMS8",
+        "channel": "Digit Racing",
+        "content_type": "LAP_GUIDE",
+        "segment_index": 14,
+        "reliability": "MEDIUM",
+        "text": "before the 100 sign and then you're downshifting into second quickly up shifting into third and hitting the power at about 50 into the turn so when you see the exit I think this is kind of the safe way to put the power down here I like to tap the brakes at about 15 20 and this is usually the board when I put",
+        "score": 13
       }
     ],
     "RACING_LINE": [
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 32,
         "reliability": "HIGH",
         "text": "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.",
-        "score": 30
+        "score": 26
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 34,
         "reliability": "HIGH",
         "text": "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner.",
-        "score": 30
+        "score": 26
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 37,
         "reliability": "HIGH",
         "text": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.",
-        "score": 30
+        "score": 26
       },
       {
         "video_id": "iDNGTMZUMS8",
         "channel": "Digit Racing",
-        "title": "Gran Turismo 7: Grand Valley - Highway One - Track Guide | Nissan Silvia Gr.4",
         "content_type": "LAP_GUIDE",
-        "validation": "PARTIAL",
+        "segment_index": 8,
         "reliability": "MEDIUM",
-        "text": "400 is usually your reference point I would say about 380 is usually when I try to break but just when you pass the 400 and now we need to take the narrowest possible lines if you go wide a little bit you will eventually lose time so try to stay as narrow as possible so you can get the acceleration down quickly here I just try to turn in I mean it's nothing special in here just turning in and then when I reach this point it's about 40",
-        "score": 27
-      },
-      {
-        "video_id": "iDNGTMZUMS8",
-        "channel": "Digit Racing",
-        "title": "Gran Turismo 7: Grand Valley - Highway One - Track Guide | Nissan Silvia Gr.4",
-        "content_type": "LAP_GUIDE",
-        "validation": "PARTIAL",
-        "reliability": "MEDIUM",
-        "text": "the car go if you stay on the brakes for too long with this car you will eventually get a lot of understeer and the car will not turn in so yeah this point I really don't have a reference point But as soon as I go to the left side I just hit the brakes maybe about 50 60 percent and then I just try to position the car up straight and then brake under the board and then just a little bit more braking about 50 60 is",
-        "score": 27
+        "text": "to take the narrowest possible lines if you go wide a little bit you will eventually lose time so try to stay as narrow as possible so you can get the acceleration down quickly here I just try to turn in I mean it's nothing special in here just turning in and then when I reach this point it's about 40 50 percent of the",
+        "score": 23
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 13,
         "reliability": "HIGH",
         "text": "And we're going to start to turn in as we are around midway between the 200 and the 100 board.",
-        "score": 20
+        "score": 16
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 20,
         "reliability": "HIGH",
         "text": "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.",
-        "score": 20
+        "score": 16
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 22,
         "reliability": "HIGH",
         "text": "And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex.",
-        "score": 20
+        "score": 16
+      },
+      {
+        "video_id": "qHfm2RjbRjI",
+        "channel": "GnC Racing",
+        "content_type": "LAP_GUIDE",
+        "segment_index": 29,
+        "reliability": "HIGH",
+        "text": "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.",
+        "score": 16
       }
     ],
     "THROTTLE": [
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 28,
         "reliability": "HIGH",
         "text": "Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available.",
-        "score": 30
+        "score": 26
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 35,
         "reliability": "HIGH",
         "text": "As we pass under the banner above the track, we'll get on the power, but another good acceleration marker.",
-        "score": 30
+        "score": 26
       },
       {
         "video_id": "iDNGTMZUMS8",
         "channel": "Digit Racing",
-        "title": "Gran Turismo 7: Grand Valley - Highway One - Track Guide | Nissan Silvia Gr.4",
         "content_type": "LAP_GUIDE",
-        "validation": "PARTIAL",
+        "segment_index": 3,
         "reliability": "MEDIUM",
-        "text": "uphill section I will explain it all of that later here 300 and then you position the car straight up so if the car is turning and you hit the brakes exactly at that point you might get a little bit more understeer and usually it's just about a little bit of coasting until you really hit the brakes until this point which is your acceleration point so don't be afraid if you touch the curbs on the right they will actually help you to rotate the car even better",
-        "score": 27
+        "text": "explain it all of that later here 300 and then you position the car straight up so if the car is turning and you hit the brakes exactly at that point you might get a little bit more understeer and usually it's just about a little bit of coasting until you really hit the brakes until this point which is your acceleration point so don't",
+        "score": 23
       },
       {
         "video_id": "iDNGTMZUMS8",
         "channel": "Digit Racing",
-        "title": "Gran Turismo 7: Grand Valley - Highway One - Track Guide | Nissan Silvia Gr.4",
         "content_type": "LAP_GUIDE",
-        "validation": "PARTIAL",
+        "segment_index": 4,
         "reliability": "MEDIUM",
-        "text": "really hit the brakes until this point which is your acceleration point so don't be afraid if you touch the curbs on the right they will actually help you to rotate the car even better so you can see I got a lot more time and it was actually a pretty good sector so far so here just a little lift so you can kind of tap this curve I mean you don't want to go too wide but you just need to tap the curves and here I think",
-        "score": 27
+        "text": "understeer and usually it's just about a little bit of coasting until you really hit the brakes until this point which is your acceleration point so don't be afraid if you touch the curbs on the right they will actually help you to rotate the car even better so you can see I got a lot more time and it was actually a pretty good",
+        "score": 23
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 15,
+        "reliability": "HIGH",
+        "text": "We're going to start to accelerate just as we reach the one before last.",
+        "score": 16
+      },
+      {
+        "video_id": "qHfm2RjbRjI",
+        "channel": "GnC Racing",
+        "content_type": "LAP_GUIDE",
+        "segment_index": 16,
         "reliability": "HIGH",
         "text": "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.",
-        "score": 20
+        "score": 16
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 23,
         "reliability": "HIGH",
         "text": "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right.",
-        "score": 20
+        "score": 16
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 27,
         "reliability": "HIGH",
         "text": "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner.",
-        "score": 20
-      },
-      {
-        "video_id": "qHfm2RjbRjI",
-        "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
-        "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
-        "reliability": "HIGH",
-        "text": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
-        "score": 20
+        "score": 16
       }
     ],
     "KERBS_TRACK_LIMITS": [
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 16,
         "reliability": "HIGH",
         "text": "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.",
-        "score": 20
+        "score": 16
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 32,
         "reliability": "HIGH",
         "text": "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.",
-        "score": 20
+        "score": 16
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 45,
         "reliability": "HIGH",
         "text": "Then, as soon as we are over the first curb, turn immediately back to the right for the second.",
-        "score": 20
+        "score": 16
       },
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 46,
+        "reliability": "HIGH",
+        "text": "Again, aiming to clip the curb and just brush in those bolards as we go through.",
+        "score": 16
+      },
+      {
+        "video_id": "qHfm2RjbRjI",
+        "channel": "GnC Racing",
+        "content_type": "LAP_GUIDE",
+        "segment_index": 48,
+        "reliability": "HIGH",
+        "text": "Just being careful not to run over the white line with all four wheels.",
+        "score": 16
+      },
+      {
+        "video_id": "qHfm2RjbRjI",
+        "channel": "GnC Racing",
+        "content_type": "LAP_GUIDE",
+        "segment_index": 50,
         "reliability": "HIGH",
         "text": "We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight.",
-        "score": 20
+        "score": 16
       }
     ],
-    "RACECRAFT": [],
     "TYRE_MANAGEMENT": [
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 5,
         "reliability": "HIGH",
-        "text": "Medium and soft tires are available this week, but there is a mandatory change of tire type required during the race.",
-        "score": 20
-      },
-      {
-        "video_id": "qHfm2RjbRjI",
-        "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
-        "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
-        "reliability": "HIGH",
-        "text": "Today's lap we're going to be looking at is at the time of this recording the top time on the global leaderboard of a 1 minute 54.990 completed in the Nissan GTR GR4 on Racing Soft tires.",
-        "score": 20
-      },
-      {
-        "video_id": "iDNGTMZUMS8",
-        "channel": "Digit Racing",
-        "title": "Gran Turismo 7: Grand Valley - Highway One - Track Guide | Nissan Silvia Gr.4",
-        "content_type": "LAP_GUIDE",
-        "validation": "PARTIAL",
-        "reliability": "MEDIUM",
-        "text": "hello guys and welcome to another tracker video and this is the track guide for the Grand Valley Highway 1 in group four and for this one I'm going with this Nissan Silvia on racing medium tires so the car of choice is the most popular out there with the current Bop system and yeah just let's abuse the Bob as it is and get the most out of it so without further Ado let's get going [Music] starting the lab and I usually like to wrap up the Ford",
-        "score": 17
+        "text": "Fuel rate is at times two and tire wear at a four times multiplier.",
+        "score": 16
       }
     ],
     "FUEL_MANAGEMENT": [],
@@ -618,55 +852,97 @@
       {
         "video_id": "qHfm2RjbRjI",
         "channel": "GnC Racing",
-        "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
         "content_type": "LAP_GUIDE",
-        "validation": "CONFIRMED",
+        "segment_index": 6,
         "reliability": "HIGH",
         "text": "Medium and soft tires are available this week, but there is a mandatory change of tire type required during the race.",
-        "score": 20
+        "score": 16
       }
     ],
     "WARNINGS": [
       {
         "video_id": "iDNGTMZUMS8",
         "channel": "Digit Racing",
-        "title": "Gran Turismo 7: Grand Valley - Highway One - Track Guide | Nissan Silvia Gr.4",
         "content_type": "LAP_GUIDE",
-        "validation": "PARTIAL",
+        "segment_index": 19,
         "reliability": "MEDIUM",
-        "text": "stay on the brakes for too long because you just want to avoid that understeer the car is let's say good when you don't break that much so if you start Trail braking with this car it will eventually understeer and it's gonna kill your lap and without even thinking about it so you have to be careful on how much brake and pressure you're putting in Breaking the straight line as much as you can and then let the car do the work for you so basically just let",
-        "score": 37
+        "text": "can give you let go of the brakes and the car will naturally rotate and as soon as you get out of the tunnel I just stopped the footage in here tap the brakes at about 20 30 percent the car ones again will turn in but don't stay on the brakes for too long because you just want to avoid that understeer the car",
+        "score": 23
       },
       {
         "video_id": "iDNGTMZUMS8",
         "channel": "Digit Racing",
-        "title": "Gran Turismo 7: Grand Valley - Highway One - Track Guide | Nissan Silvia Gr.4",
         "content_type": "LAP_GUIDE",
-        "validation": "PARTIAL",
+        "segment_index": 20,
         "reliability": "MEDIUM",
-        "text": "think this is the best advice I can give you let go of the brakes and the car will naturally rotate and as soon as you get out of the tunnel I just stopped the footage in here tap the brakes at about 20 30 percent the car ones again will turn in but don't stay on the brakes for too long because you just want to avoid that understeer the car is let's say good when you don't break that much so if you start Trail braking with this",
-        "score": 27
+        "text": "percent the car ones again will turn in but don't stay on the brakes for too long because you just want to avoid that understeer the car is let's say good when you don't break that much so if you start Trail braking with this car it will eventually understeer and it's gonna kill your lap and without even thinking about it so you have",
+        "score": 23
+      },
+      {
+        "video_id": "iDNGTMZUMS8",
+        "channel": "Digit Racing",
+        "content_type": "LAP_GUIDE",
+        "segment_index": 21,
+        "reliability": "MEDIUM",
+        "text": "if you start Trail braking with this car it will eventually understeer and it's gonna kill your lap and without even thinking about it so you have to be careful on how much brake and pressure you're putting in Breaking the straight line as much as you can and then let the car do the work for you so basically just let the car do",
+        "score": 23
+      },
+      {
+        "video_id": "qHfm2RjbRjI",
+        "channel": "GnC Racing",
+        "content_type": "LAP_GUIDE",
+        "segment_index": 42,
+        "reliability": "HIGH",
+        "text": "Be careful not to allow the car to drift too far over to the left.",
+        "score": 16
+      },
+      {
+        "video_id": "qHfm2RjbRjI",
+        "channel": "GnC Racing",
+        "content_type": "LAP_GUIDE",
+        "segment_index": 48,
+        "reliability": "HIGH",
+        "text": "Just being careful not to run over the white line with all four wheels.",
+        "score": 16
+      },
+      {
+        "video_id": "iDNGTMZUMS8",
+        "channel": "Digit Racing",
+        "content_type": "LAP_GUIDE",
+        "segment_index": 5,
+        "reliability": "MEDIUM",
+        "text": "will actually help you to rotate the car even better so you can see I got a lot more time and it was actually a pretty good sector so far so here just a little lift so you can kind of tap this curve I mean you don't want to go too wide but you just need to tap the curves and here I think",
+        "score": 13
+      },
+      {
+        "video_id": "iDNGTMZUMS8",
+        "channel": "Digit Racing",
+        "content_type": "LAP_GUIDE",
+        "segment_index": 6,
+        "reliability": "MEDIUM",
+        "text": "can kind of tap this curve I mean you don't want to go too wide but you just need to tap the curves and here I think I went a little bit too wide you want to stay as close as possible to the left but the 400 is usually your reference point I would say about 380 is usually when I try to break",
+        "score": 13
       }
     ]
   },
   "consensus": [
     {
-      "concept": "TIGHT_LINE",
-      "source_count": 2,
+      "concept": "EARLY_POWER",
       "sources": [
         "Digit Racing",
         "GnC Racing"
       ],
-      "example": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up."
+      "source_count": 2,
+      "example": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge."
     },
     {
-      "concept": "EARLY_POWER",
-      "source_count": 2,
+      "concept": "TIGHT_LINE",
       "sources": [
         "Digit Racing",
         "GnC Racing"
       ],
-      "example": "brakes maybe about 50 60 percent and then I just try to position the car up straight and then brake under the board and then just a little bit more braking about 50 60 is just about enough and then you want to hit the power as soon as possible this car doesn't slide that much so you can really work with the power as much as you want it and I mean it's really useful to get the rotation out of some specific Corners like this one so just"
+      "source_count": 2,
+      "example": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up."
     }
   ],
   "meta_comparison": {
@@ -716,64 +992,54 @@
   },
   "top_takeaways": [
     {
-      "type": "CONSENSUS",
+      "category": "MULTI_SOURCE",
+      "source": "Digit Racing, GnC Racing",
+      "text": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge."
+    },
+    {
       "category": "MULTI_SOURCE",
       "source": "Digit Racing, GnC Racing",
       "text": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up."
     },
     {
-      "type": "CONSENSUS",
-      "category": "MULTI_SOURCE",
-      "source": "Digit Racing, GnC Racing",
-      "text": "brakes maybe about 50 60 percent and then I just try to position the car up straight and then brake under the board and then just a little bit more braking about 50 60 is just about enough and then you want to hit the power as soon as possible this car doesn't slide that much so you can really work with the power as much as you want it and I mean it's really useful to get the rotation out of some specific Corners like this one so just"
-    },
-    {
-      "type": "SOURCE",
       "category": "BRAKING",
       "source": "GnC Racing",
-      "text": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take."
+      "text": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire"
     },
     {
-      "type": "SOURCE",
       "category": "BRAKING",
       "source": "GnC Racing",
       "text": "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines."
     },
     {
-      "type": "SOURCE",
       "category": "BRAKING",
       "source": "GnC Racing",
       "text": "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry."
     },
     {
-      "type": "SOURCE",
       "category": "BRAKING",
       "source": "GnC Racing",
       "text": "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel."
     },
     {
-      "type": "SOURCE",
+      "category": "BRAKING",
+      "source": "GnC Racing",
+      "text": "On the way down to turn one, we're looking for the 200 board."
+    },
+    {
       "category": "BRAKING",
       "source": "GnC Racing",
       "text": "And we're going to start to turn in as we are around midway between the 200 and the 100 board."
     },
     {
-      "type": "SOURCE",
       "category": "BRAKING",
       "source": "GnC Racing",
       "text": "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear."
     },
     {
-      "type": "SOURCE",
       "category": "BRAKING",
       "source": "GnC Racing",
-      "text": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge."
-    },
-    {
-      "type": "SOURCE",
-      "category": "RACING_LINE",
-      "source": "GnC Racing",
-      "text": "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit."
+      "text": "to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take."
     }
   ]
 }
