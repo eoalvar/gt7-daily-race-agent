@@ -30,8 +30,11 @@ TRANSCRIPT_DIR = (
     / "community_transcripts"
 )
 
-# Previous test directories that may already contain
-# successfully downloaded Supadata transcripts.
+RAW_TRANSCRIPT_DIR = (
+    DATA_DIR
+    / "community_transcripts_raw"
+)
+
 LEGACY_TRANSCRIPT_DIRS = [
     DATA_DIR
     / "community_supadata_test"
@@ -40,6 +43,9 @@ LEGACY_TRANSCRIPT_DIRS = [
     DATA_DIR
     / "community_transcript_test"
     / "transcripts",
+
+    DATA_DIR
+    / "community_youtube_transcript_test",
 ]
 
 SUPADATA_BASE_URL = (
@@ -51,7 +57,11 @@ SUPADATA_API_KEY = os.environ.get(
     ""
 )
 
-REQUEST_TIMEOUT = 60
+YOUTUBE_TRANSCRIPT_BASE_URL = (
+    "https://youtube-transcript.ai/transcript"
+)
+
+REQUEST_TIMEOUT = 90
 
 POLL_INTERVAL_SECONDS = 2
 MAX_POLL_ATTEMPTS = 60
@@ -63,6 +73,62 @@ MAX_POLL_ATTEMPTS = 60
 
 STRATEGY_CHANNEL = "Digit Racing"
 LAP_GUIDE_CHANNEL = "GnC Racing"
+
+
+# ============================================================
+# DIGIT STRATEGY EXTRACTION CONFIG
+# ============================================================
+
+DIGIT_CONTEXT_BEFORE_SECONDS = 180
+DIGIT_CONTEXT_AFTER_SECONDS = 420
+
+DIGIT_MAX_SEGMENTS = 4
+DIGIT_MAX_TOTAL_SECONDS = 3600
+
+DIGIT_STRONG_KEYWORDS = [
+    "daily race c",
+    "race c",
+    "grand valley",
+    "highway 1",
+    "highway one",
+]
+
+DIGIT_STRATEGY_KEYWORDS = [
+    "strategy",
+    "pit",
+    "pit stop",
+    "pitstop",
+    "fuel",
+    "tyre",
+    "tire",
+    "medium",
+    "soft",
+    "hard",
+    "racing medium",
+    "racing soft",
+    "racing hard",
+    "mandatory",
+    "lap",
+    "laps",
+    "fuel map",
+    "short shift",
+    "short-shift",
+    "undercut",
+    "overcut",
+    "stint",
+    "wear",
+    "consumption",
+    "race pace",
+    "slipstream",
+    "draft",
+    "overtake",
+    "overtaking",
+    "brake",
+    "braking",
+    "track limits",
+    "penalty",
+    "penalties",
+]
 
 
 # ============================================================
@@ -141,6 +207,101 @@ def safe_filename(
     )
 
 
+def timestamp_to_seconds(
+    timestamp
+):
+
+    if not timestamp:
+        return None
+
+    parts = timestamp.split(
+        ":"
+    )
+
+    try:
+
+        if len(parts) == 2:
+
+            minutes = int(
+                parts[0]
+            )
+
+            seconds = int(
+                parts[1]
+            )
+
+            return (
+                minutes * 60
+                + seconds
+            )
+
+        if len(parts) == 3:
+
+            hours = int(
+                parts[0]
+            )
+
+            minutes = int(
+                parts[1]
+            )
+
+            seconds = int(
+                parts[2]
+            )
+
+            return (
+                hours * 3600
+                + minutes * 60
+                + seconds
+            )
+
+    except Exception:
+
+        return None
+
+    return None
+
+
+def seconds_to_timestamp(
+    total_seconds
+):
+
+    total_seconds = max(
+        0,
+        int(
+            total_seconds
+        )
+    )
+
+    hours = (
+        total_seconds
+        // 3600
+    )
+
+    minutes = (
+        total_seconds
+        % 3600
+    ) // 60
+
+    seconds = (
+        total_seconds
+        % 60
+    )
+
+    if hours:
+
+        return (
+            f"{hours}:"
+            f"{minutes:02d}:"
+            f"{seconds:02d}"
+        )
+
+    return (
+        f"{minutes}:"
+        f"{seconds:02d}"
+    )
+
+
 # ============================================================
 # TRANSCRIPT TEXT EXTRACTION
 # ============================================================
@@ -151,10 +312,6 @@ def transcript_text_from_payload(
 
     if payload is None:
         return None
-
-    # --------------------------------------------------------
-    # RAW STRING
-    # --------------------------------------------------------
 
     if isinstance(
         payload,
@@ -170,10 +327,6 @@ def transcript_text_from_payload(
             if text
             else None
         )
-
-    # --------------------------------------------------------
-    # LIST
-    # --------------------------------------------------------
 
     if isinstance(
         payload,
@@ -231,18 +384,12 @@ def transcript_text_from_payload(
 
         return None
 
-    # --------------------------------------------------------
-    # DICTIONARY
-    # --------------------------------------------------------
-
     if not isinstance(
         payload,
         dict
     ):
 
         return None
-
-    # Direct transcript fields first.
 
     for key in [
         "transcript",
@@ -265,8 +412,6 @@ def transcript_text_from_payload(
             if text:
                 return text
 
-    # Supadata normally uses content.
-
     content = payload.get(
         "content"
     )
@@ -277,9 +422,6 @@ def transcript_text_from_payload(
 
     if text:
         return text
-
-    # Some saved files may contain a result/payload/data
-    # wrapper.
 
     for key in [
         "result",
@@ -319,7 +461,7 @@ def normalize_database(
 
     database.setdefault(
         "version",
-        3
+        4
     )
 
     database.setdefault(
@@ -367,6 +509,29 @@ def transcript_file_path(
     return (
         TRANSCRIPT_DIR
         / f"{video_id}_{channel}.json"
+    )
+
+
+def raw_transcript_file_path(
+    video
+):
+
+    video_id = (
+        video.get(
+            "video_id"
+        )
+        or "unknown"
+    )
+
+    channel = safe_filename(
+        video.get(
+            "channel"
+        )
+    )
+
+    return (
+        RAW_TRANSCRIPT_DIR
+        / f"{video_id}_{channel}.txt"
     )
 
 
@@ -485,28 +650,62 @@ def find_legacy_transcript(
     if not video_id:
         return None
 
-    # --------------------------------------------------------
-    # SEARCH KNOWN TEST DIRECTORIES
-    # --------------------------------------------------------
-
     for directory in LEGACY_TRANSCRIPT_DIRS:
 
         if not directory.exists():
             continue
 
-        matches = list(
-            directory.glob(
-                f"{video_id}_*.json"
-            )
-        )
+        patterns = [
+            f"{video_id}_*.json",
+            f"{video_id}.json",
+            f"{video_id}_*.txt",
+            f"{video_id}.txt",
+        ]
 
-        matches.extend(
-            directory.glob(
-                f"{video_id}.json"
+        matches = []
+
+        for pattern in patterns:
+
+            matches.extend(
+                directory.glob(
+                    pattern
+                )
             )
-        )
 
         for path in matches:
+
+            if path.suffix.lower() == ".txt":
+
+                try:
+
+                    text = path.read_text(
+                        encoding="utf-8"
+                    )
+
+                except Exception:
+
+                    continue
+
+                text = normalize_space(
+                    text
+                )
+
+                if text:
+
+                    return {
+                        "text":
+                            text,
+
+                        "raw_text":
+                            path.read_text(
+                                encoding="utf-8"
+                            ),
+
+                        "source":
+                            str(
+                                path
+                            )
+                    }
 
             payload = load_json(
                 path
@@ -525,19 +724,14 @@ def find_legacy_transcript(
                     "text":
                         text,
 
+                    "raw_text":
+                        text,
+
                     "source":
                         str(
                             path
                         )
                 }
-
-    # --------------------------------------------------------
-    # BROADER SAFE FALLBACK
-    #
-    # Search JSON files under known community test folders.
-    # This allows us to recover transcripts even if an older
-    # test used a different filename format.
-    # --------------------------------------------------------
 
     broader_dirs = [
         DATA_DIR
@@ -545,6 +739,9 @@ def find_legacy_transcript(
 
         DATA_DIR
         / "community_transcript_test",
+
+        DATA_DIR
+        / "community_youtube_transcript_test",
     ]
 
     for directory in broader_dirs:
@@ -579,39 +776,6 @@ def find_legacy_transcript(
             except Exception:
 
                 continue
-
-            # ------------------------------------------------
-            # DIRECT FILE
-            # ------------------------------------------------
-
-            text = transcript_text_from_payload(
-                payload
-            )
-
-            if text:
-
-                # Avoid accidentally treating a large test
-                # result database itself as the transcript if
-                # the video-specific text cannot be isolated.
-
-                if (
-                    video_id
-                    in path.name
-                ):
-
-                    return {
-                        "text":
-                            text,
-
-                        "source":
-                            str(
-                                path
-                            )
-                    }
-
-            # ------------------------------------------------
-            # LIST OF TEST RESULTS
-            # ------------------------------------------------
 
             if isinstance(
                 payload,
@@ -693,6 +857,9 @@ def find_legacy_transcript(
                         "text":
                             text,
 
+                        "raw_text":
+                            text,
+
                         "source":
                             str(
                                 path
@@ -700,6 +867,1054 @@ def find_legacy_transcript(
                     }
 
     return None
+
+
+# ============================================================
+# TEXT DE-DUPLICATION
+# ============================================================
+
+def dedupe_consecutive_words(
+    text
+):
+
+    text = normalize_space(
+        text
+    )
+
+    if not text:
+        return ""
+
+    words = text.split()
+
+    output = []
+
+    index = 0
+    total = len(
+        words
+    )
+
+    while index < total:
+
+        best_size = 0
+        best_repeats = 1
+
+        max_size = min(
+            32,
+            (
+                total
+                - index
+            )
+            // 2
+        )
+
+        for size in range(
+            max_size,
+            2,
+            -1
+        ):
+
+            first = words[
+                index:
+                index + size
+            ]
+
+            next_start = (
+                index
+                + size
+            )
+
+            second = words[
+                next_start:
+                next_start
+                + size
+            ]
+
+            if first != second:
+                continue
+
+            repeats = 2
+
+            while True:
+
+                repeat_start = (
+                    index
+                    + repeats
+                    * size
+                )
+
+                repeat_end = (
+                    repeat_start
+                    + size
+                )
+
+                if repeat_end > total:
+                    break
+
+                candidate = words[
+                    repeat_start:
+                    repeat_end
+                ]
+
+                if candidate != first:
+                    break
+
+                repeats += 1
+
+            best_size = size
+            best_repeats = repeats
+
+            break
+
+        if best_size > 0:
+
+            output.extend(
+                words[
+                    index:
+                    index
+                    + best_size
+                ]
+            )
+
+            index += (
+                best_size
+                * best_repeats
+            )
+
+        else:
+
+            output.append(
+                words[
+                    index
+                ]
+            )
+
+            index += 1
+
+    return normalize_space(
+        " ".join(
+            output
+        )
+    )
+
+
+# ============================================================
+# YOUTUBE-TRANSCRIPT.AI PARSER
+# ============================================================
+
+def parse_timestamped_markdown(
+    raw_text
+):
+
+    chunks = []
+
+    if not raw_text:
+        return chunks
+
+    pattern = re.compile(
+        r"^\[(\d{1,2}:\d{2}(?::\d{2})?)\]\s*(.*)$"
+    )
+
+    current = None
+
+    for raw_line in raw_text.splitlines():
+
+        line = raw_line.strip()
+
+        match = pattern.match(
+            line
+        )
+
+        if match:
+
+            if current:
+
+                current[
+                    "text"
+                ] = normalize_space(
+                    " ".join(
+                        current[
+                            "text_parts"
+                        ]
+                    )
+                )
+
+                current.pop(
+                    "text_parts",
+                    None
+                )
+
+                chunks.append(
+                    current
+                )
+
+            timestamp = (
+                match.group(
+                    1
+                )
+            )
+
+            current = {
+                "timestamp":
+                    timestamp,
+
+                "seconds":
+                    timestamp_to_seconds(
+                        timestamp
+                    ),
+
+                "text_parts": [
+                    match.group(
+                        2
+                    )
+                ]
+            }
+
+        else:
+
+            if (
+                current
+                and line
+                and not line.startswith(
+                    "#"
+                )
+            ):
+
+                current[
+                    "text_parts"
+                ].append(
+                    line
+                )
+
+    if current:
+
+        current[
+            "text"
+        ] = normalize_space(
+            " ".join(
+                current[
+                    "text_parts"
+                ]
+            )
+        )
+
+        current.pop(
+            "text_parts",
+            None
+        )
+
+        chunks.append(
+            current
+        )
+
+    return chunks
+
+
+def clean_timestamp_chunks(
+    chunks
+):
+
+    cleaned = []
+
+    previous_text = None
+
+    for chunk in chunks:
+
+        text = dedupe_consecutive_words(
+            chunk.get(
+                "text",
+                ""
+            )
+        )
+
+        text = normalize_space(
+            text
+        )
+
+        if not text:
+            continue
+
+        normalized_compare = re.sub(
+            r"[^a-z0-9]+",
+            " ",
+            text.lower()
+        ).strip()
+
+        if (
+            previous_text
+            and normalized_compare
+            == previous_text
+        ):
+
+            continue
+
+        previous_text = (
+            normalized_compare
+        )
+
+        cleaned.append({
+            "timestamp":
+                chunk.get(
+                    "timestamp"
+                ),
+
+            "seconds":
+                chunk.get(
+                    "seconds"
+                ),
+
+            "text":
+                text
+        })
+
+    return cleaned
+
+
+# ============================================================
+# DIGIT STRATEGY EXTRACTION
+# ============================================================
+
+def digit_chunk_score(
+    text,
+    track
+):
+
+    text_lower = (
+        text
+        or ""
+    ).lower()
+
+    score = 0
+
+    strong_hits = 0
+
+    for keyword in DIGIT_STRONG_KEYWORDS:
+
+        if keyword in text_lower:
+
+            score += 10
+            strong_hits += 1
+
+    if track:
+
+        simplified_track = (
+            track
+            .lower()
+            .replace(
+                "-",
+                " "
+            )
+        )
+
+        simplified_text = (
+            text_lower
+            .replace(
+                "-",
+                " "
+            )
+        )
+
+        track_tokens = [
+            token
+            for token in re.findall(
+                r"[a-z0-9]+",
+                simplified_track
+            )
+            if len(
+                token
+            ) >= 4
+        ]
+
+        track_matches = sum(
+            1
+            for token in track_tokens
+            if token
+            in simplified_text
+        )
+
+        if track_matches >= 2:
+
+            score += 8
+
+        elif track_matches == 1:
+
+            score += 3
+
+    for keyword in DIGIT_STRATEGY_KEYWORDS:
+
+        if keyword in text_lower:
+
+            score += 1
+
+    if "race a" in text_lower:
+
+        score -= 6
+
+    if "race b" in text_lower:
+
+        score -= 6
+
+    if (
+        "route x"
+        in text_lower
+        and "grand valley"
+        not in text_lower
+    ):
+
+        score -= 4
+
+    if (
+        "fuji"
+        in text_lower
+        and "grand valley"
+        not in text_lower
+    ):
+
+        score -= 4
+
+    return (
+        score,
+        strong_hits
+    )
+
+
+def merge_intervals(
+    intervals
+):
+
+    if not intervals:
+        return []
+
+    intervals = sorted(
+        intervals,
+        key=lambda item:
+            item[
+                "start"
+            ]
+    )
+
+    merged = [
+        dict(
+            intervals[
+                0
+            ]
+        )
+    ]
+
+    for interval in intervals[
+        1:
+    ]:
+
+        current = merged[
+            -1
+        ]
+
+        if (
+            interval[
+                "start"
+            ]
+            <= current[
+                "end"
+            ]
+            + 60
+        ):
+
+            current[
+                "end"
+            ] = max(
+                current[
+                    "end"
+                ],
+                interval[
+                    "end"
+                ]
+            )
+
+            current[
+                "score"
+            ] += interval.get(
+                "score",
+                0
+            )
+
+            current[
+                "anchors"
+            ] += interval.get(
+                "anchors",
+                0
+            )
+
+        else:
+
+            merged.append(
+                dict(
+                    interval
+                )
+            )
+
+    return merged
+
+
+def extract_digit_strategy_segment(
+    raw_text,
+    track
+):
+
+    chunks = parse_timestamped_markdown(
+        raw_text
+    )
+
+    chunks = clean_timestamp_chunks(
+        chunks
+    )
+
+    if not chunks:
+
+        cleaned = dedupe_consecutive_words(
+            raw_text
+        )
+
+        return {
+            "text":
+                cleaned,
+
+            "mode":
+                "FULL_TEXT_FALLBACK",
+
+            "segments":
+                [],
+
+            "raw_chunks":
+                0,
+
+            "selected_chunks":
+                0
+        }
+
+    anchors = []
+
+    for chunk in chunks:
+
+        score, strong_hits = (
+            digit_chunk_score(
+                chunk.get(
+                    "text",
+                    ""
+                ),
+                track
+            )
+        )
+
+        # Require a strong race/track signal.
+        # This prevents generic strategy chat elsewhere in
+        # the livestream from becoming part of Race C.
+
+        if (
+            strong_hits >= 1
+            and score >= 8
+        ):
+
+            seconds = chunk.get(
+                "seconds"
+            )
+
+            if seconds is None:
+                continue
+
+            anchors.append({
+                "start":
+                    max(
+                        0,
+                        seconds
+                        - DIGIT_CONTEXT_BEFORE_SECONDS
+                    ),
+
+                "end":
+                    (
+                        seconds
+                        + DIGIT_CONTEXT_AFTER_SECONDS
+                    ),
+
+                "score":
+                    score,
+
+                "anchors":
+                    1
+            })
+
+    if not anchors:
+
+        # Secondary fallback:
+        # find the highest-scoring chunk even if it does not
+        # contain a direct Race C phrase.
+
+        scored = []
+
+        for chunk in chunks:
+
+            score, strong_hits = (
+                digit_chunk_score(
+                    chunk.get(
+                        "text",
+                        ""
+                    ),
+                    track
+                )
+            )
+
+            if score > 0:
+
+                scored.append(
+                    (
+                        score,
+                        strong_hits,
+                        chunk
+                    )
+                )
+
+        if scored:
+
+            scored.sort(
+                key=lambda item:
+                    (
+                        item[
+                            0
+                        ],
+                        item[
+                            1
+                        ]
+                    ),
+                reverse=True
+            )
+
+            best_chunk = scored[
+                0
+            ][
+                2
+            ]
+
+            seconds = (
+                best_chunk.get(
+                    "seconds"
+                )
+                or 0
+            )
+
+            anchors.append({
+                "start":
+                    max(
+                        0,
+                        seconds
+                        - DIGIT_CONTEXT_BEFORE_SECONDS
+                    ),
+
+                "end":
+                    (
+                        seconds
+                        + DIGIT_CONTEXT_AFTER_SECONDS
+                    ),
+
+                "score":
+                    scored[
+                        0
+                    ][
+                        0
+                    ],
+
+                "anchors":
+                    1
+            })
+
+    intervals = merge_intervals(
+        anchors
+    )
+
+    intervals.sort(
+        key=lambda item:
+            (
+                item.get(
+                    "anchors",
+                    0
+                ),
+                item.get(
+                    "score",
+                    0
+                )
+            ),
+        reverse=True
+    )
+
+    selected_intervals = []
+
+    total_duration = 0
+
+    for interval in intervals:
+
+        duration = max(
+            0,
+            interval[
+                "end"
+            ]
+            - interval[
+                "start"
+            ]
+        )
+
+        if (
+            selected_intervals
+            and total_duration
+            + duration
+            > DIGIT_MAX_TOTAL_SECONDS
+        ):
+
+            continue
+
+        selected_intervals.append(
+            interval
+        )
+
+        total_duration += (
+            duration
+        )
+
+        if (
+            len(
+                selected_intervals
+            )
+            >= DIGIT_MAX_SEGMENTS
+        ):
+
+            break
+
+    selected_intervals.sort(
+        key=lambda item:
+            item[
+                "start"
+            ]
+    )
+
+    selected_chunks = []
+
+    seen_chunk_keys = set()
+
+    for interval in selected_intervals:
+
+        for chunk in chunks:
+
+            seconds = chunk.get(
+                "seconds"
+            )
+
+            if seconds is None:
+                continue
+
+            if (
+                interval[
+                    "start"
+                ]
+                <= seconds
+                <= interval[
+                    "end"
+                ]
+            ):
+
+                key = (
+                    seconds,
+                    chunk.get(
+                        "text"
+                    )
+                )
+
+                if key in seen_chunk_keys:
+                    continue
+
+                seen_chunk_keys.add(
+                    key
+                )
+
+                selected_chunks.append(
+                    chunk
+                )
+
+    selected_chunks.sort(
+        key=lambda item:
+            item.get(
+                "seconds",
+                0
+            )
+    )
+
+    output_lines = []
+
+    for chunk in selected_chunks:
+
+        output_lines.append(
+            f"[{chunk['timestamp']}] "
+            f"{chunk['text']}"
+        )
+
+    selected_text = "\n".join(
+        output_lines
+    ).strip()
+
+    if not selected_text:
+
+        selected_text = dedupe_consecutive_words(
+            raw_text
+        )
+
+        mode = (
+            "FULL_TEXT_FALLBACK"
+        )
+
+    else:
+
+        mode = (
+            "RACE_C_CONTEXT_WINDOWS"
+        )
+
+    segment_metadata = []
+
+    for interval in selected_intervals:
+
+        segment_metadata.append({
+            "start_seconds":
+                interval[
+                    "start"
+                ],
+
+            "end_seconds":
+                interval[
+                    "end"
+                ],
+
+            "start":
+                seconds_to_timestamp(
+                    interval[
+                        "start"
+                    ]
+                ),
+
+            "end":
+                seconds_to_timestamp(
+                    interval[
+                        "end"
+                    ]
+                ),
+
+            "anchor_score":
+                interval.get(
+                    "score",
+                    0
+                ),
+
+            "anchors":
+                interval.get(
+                    "anchors",
+                    0
+                )
+        })
+
+    return {
+        "text":
+            selected_text,
+
+        "mode":
+            mode,
+
+        "segments":
+            segment_metadata,
+
+        "raw_chunks":
+            len(
+                chunks
+            ),
+
+        "selected_chunks":
+            len(
+                selected_chunks
+            )
+    }
+
+
+# ============================================================
+# YOUTUBE-TRANSCRIPT.AI
+# ============================================================
+
+def request_youtube_transcript_ai(
+    video_id
+):
+
+    endpoint = (
+        f"{YOUTUBE_TRANSCRIPT_BASE_URL}/"
+        f"{video_id}.txt"
+        f"?lang=en"
+    )
+
+    headers = {
+        "User-Agent":
+            (
+                "Mozilla/5.0 "
+                "(X11; Linux x86_64) "
+                "AppleWebKit/537.36 "
+                "(KHTML, like Gecko) "
+                "Chrome/127.0 Safari/537.36"
+            ),
+
+        "Accept":
+            (
+                "text/markdown,"
+                "text/plain;q=0.9,"
+                "*/*;q=0.8"
+            ),
+    }
+
+    try:
+
+        response = requests.get(
+            endpoint,
+            headers=headers,
+            timeout=REQUEST_TIMEOUT
+        )
+
+    except requests.Timeout:
+
+        return {
+            "success":
+                False,
+
+            "status":
+                "YTTAI_TIMEOUT",
+
+            "provider":
+                "youtube-transcript.ai",
+        }
+
+    except requests.RequestException as exc:
+
+        return {
+            "success":
+                False,
+
+            "status":
+                "YTTAI_REQUEST_ERROR",
+
+            "provider":
+                "youtube-transcript.ai",
+
+            "error":
+                str(
+                    exc
+                )
+        }
+
+    http_status = (
+        response.status_code
+    )
+
+    raw_text = (
+        response.text
+        or ""
+    ).strip()
+
+    if http_status != 200:
+
+        return {
+            "success":
+                False,
+
+            "status":
+                f"YTTAI_HTTP_{http_status}",
+
+            "provider":
+                "youtube-transcript.ai",
+
+            "http_status":
+                http_status,
+
+            "payload":
+                raw_text[
+                    :3000
+                ]
+        }
+
+    if not raw_text:
+
+        return {
+            "success":
+                False,
+
+            "status":
+                "YTTAI_EMPTY",
+
+            "provider":
+                "youtube-transcript.ai",
+
+            "http_status":
+                http_status
+        }
+
+    lower = raw_text.lower()
+
+    error_indicators = [
+        "transcript unavailable",
+        "video unavailable",
+        "captions unavailable",
+        "no transcript",
+        "error fetching",
+        "failed to fetch",
+    ]
+
+    detected_errors = [
+        indicator
+        for indicator
+        in error_indicators
+        if indicator
+        in lower
+    ]
+
+    if detected_errors:
+
+        return {
+            "success":
+                False,
+
+            "status":
+                "YTTAI_PROVIDER_ERROR",
+
+            "provider":
+                "youtube-transcript.ai",
+
+            "http_status":
+                http_status,
+
+            "errors":
+                detected_errors,
+
+            "payload":
+                raw_text[
+                    :3000
+                ]
+        }
+
+    return {
+        "success":
+            True,
+
+        "status":
+            "YTTAI_SUCCESS",
+
+        "provider":
+            "youtube-transcript.ai",
+
+        "delivery_mode":
+            "IMMEDIATE",
+
+        "http_status":
+            http_status,
+
+        "raw_text":
+            raw_text
+    }
 
 
 # ============================================================
@@ -718,10 +1933,10 @@ def supadata_headers():
 
 
 # ============================================================
-# ASYNC JOB POLLING
+# SUPADATA ASYNC JOB
 # ============================================================
 
-def poll_transcript_job(
+def poll_supadata_job(
     job_id
 ):
 
@@ -736,7 +1951,7 @@ def poll_transcript_job(
     ):
 
         print(
-            f"Polling job      : "
+            f"Polling Supadata : "
             f"{attempt}/"
             f"{MAX_POLL_ATTEMPTS}"
         )
@@ -756,10 +1971,10 @@ def poll_transcript_job(
                     False,
 
                 "status":
-                    "POLL_REQUEST_ERROR",
+                    "SUPADATA_POLL_ERROR",
 
-                "delivery_mode":
-                    "ASYNC",
+                "provider":
+                    "Supadata",
 
                 "job_id":
                     job_id,
@@ -794,10 +2009,10 @@ def poll_transcript_job(
                     False,
 
                 "status":
-                    "PLAN_LIMIT",
+                    "SUPADATA_PLAN_LIMIT",
 
-                "delivery_mode":
-                    "ASYNC",
+                "provider":
+                    "Supadata",
 
                 "job_id":
                     job_id,
@@ -816,10 +2031,10 @@ def poll_transcript_job(
                     False,
 
                 "status":
-                    f"HTTP_{http_status}",
+                    f"SUPADATA_HTTP_{http_status}",
 
-                "delivery_mode":
-                    "ASYNC",
+                "provider":
+                    "Supadata",
 
                 "job_id":
                     job_id,
@@ -831,24 +2046,9 @@ def poll_transcript_job(
                     payload
             }
 
-        status = normalize_space(
-            payload.get(
-                "status",
-                ""
-            )
-        ).lower()
-
-        print(
-            f"Job status       : "
-            f"{status or 'UNKNOWN'}"
-        )
-
         text = transcript_text_from_payload(
             payload
         )
-
-        # Some APIs may already include transcript content
-        # before or without an explicit "completed" status.
 
         if text:
 
@@ -857,7 +2057,10 @@ def poll_transcript_job(
                     True,
 
                 "status":
-                    "ASYNC_SUCCESS",
+                    "SUPADATA_ASYNC_SUCCESS",
+
+                "provider":
+                    "Supadata",
 
                 "delivery_mode":
                     "ASYNC",
@@ -868,39 +2071,19 @@ def poll_transcript_job(
                 "http_status":
                     http_status,
 
-                "payload":
-                    payload,
-
                 "text":
+                    text,
+
+                "raw_text":
                     text
             }
 
-        if status in {
-            "completed",
-            "complete",
-            "done",
-            "success",
-        }:
-
-            return {
-                "success":
-                    False,
-
-                "status":
-                    "ASYNC_COMPLETED_NO_CONTENT",
-
-                "delivery_mode":
-                    "ASYNC",
-
-                "job_id":
-                    job_id,
-
-                "http_status":
-                    http_status,
-
-                "payload":
-                    payload
-            }
+        status = normalize_space(
+            payload.get(
+                "status",
+                ""
+            )
+        ).lower()
 
         if status in {
             "failed",
@@ -912,10 +2095,10 @@ def poll_transcript_job(
                     False,
 
                 "status":
-                    "ASYNC_FAILED",
+                    "SUPADATA_ASYNC_FAILED",
 
-                "delivery_mode":
-                    "ASYNC",
+                "provider":
+                    "Supadata",
 
                 "job_id":
                     job_id,
@@ -936,10 +2119,10 @@ def poll_transcript_job(
             False,
 
         "status":
-            "ASYNC_TIMEOUT",
+            "SUPADATA_ASYNC_TIMEOUT",
 
-        "delivery_mode":
-            "ASYNC",
+        "provider":
+            "Supadata",
 
         "job_id":
             job_id
@@ -950,9 +2133,22 @@ def poll_transcript_job(
 # SUPADATA REQUEST
 # ============================================================
 
-def request_transcript(
+def request_supadata_transcript(
     video_url
 ):
+
+    if not SUPADATA_API_KEY:
+
+        return {
+            "success":
+                False,
+
+            "status":
+                "SUPADATA_API_KEY_MISSING",
+
+            "provider":
+                "Supadata"
+        }
 
     endpoint = (
         f"{SUPADATA_BASE_URL}/transcript"
@@ -980,10 +2176,10 @@ def request_transcript(
                 False,
 
             "status":
-                "REQUEST_ERROR",
+                "SUPADATA_REQUEST_ERROR",
 
-            "http_status":
-                None,
+            "provider":
+                "Supadata",
 
             "error":
                 str(
@@ -1008,10 +2204,6 @@ def request_transcript(
                 ]
         }
 
-    # --------------------------------------------------------
-    # IMMEDIATE RESULT
-    # --------------------------------------------------------
-
     if http_status == 200:
 
         text = transcript_text_from_payload(
@@ -1025,7 +2217,10 @@ def request_transcript(
                     True,
 
                 "status":
-                    "IMMEDIATE_SUCCESS",
+                    "SUPADATA_IMMEDIATE_SUCCESS",
+
+                "provider":
+                    "Supadata",
 
                 "delivery_mode":
                     "IMMEDIATE",
@@ -1033,10 +2228,10 @@ def request_transcript(
                 "http_status":
                     http_status,
 
-                "payload":
-                    payload,
-
                 "text":
+                    text,
+
+                "raw_text":
                     text
             }
 
@@ -1045,10 +2240,10 @@ def request_transcript(
                 False,
 
             "status":
-                "NO_TRANSCRIPT_CONTENT",
+                "SUPADATA_NO_CONTENT",
 
-            "delivery_mode":
-                "NONE",
+            "provider":
+                "Supadata",
 
             "http_status":
                 http_status,
@@ -1056,10 +2251,6 @@ def request_transcript(
             "payload":
                 payload
         }
-
-    # --------------------------------------------------------
-    # ASYNC RESULT
-    # --------------------------------------------------------
 
     if http_status == 202:
 
@@ -1079,10 +2270,10 @@ def request_transcript(
                     False,
 
                 "status":
-                    "ASYNC_NO_JOB_ID",
+                    "SUPADATA_NO_JOB_ID",
 
-                "delivery_mode":
-                    "ASYNC",
+                "provider":
+                    "Supadata",
 
                 "http_status":
                     http_status,
@@ -1091,13 +2282,9 @@ def request_transcript(
                     payload
             }
 
-        return poll_transcript_job(
+        return poll_supadata_job(
             job_id
         )
-
-    # --------------------------------------------------------
-    # PLAN / USAGE LIMIT
-    # --------------------------------------------------------
 
     if http_status == 429:
 
@@ -1106,7 +2293,10 @@ def request_transcript(
                 False,
 
             "status":
-                "PLAN_LIMIT",
+                "SUPADATA_PLAN_LIMIT",
+
+            "provider":
+                "Supadata",
 
             "http_status":
                 http_status,
@@ -1120,7 +2310,10 @@ def request_transcript(
             False,
 
         "status":
-            f"HTTP_{http_status}",
+            f"SUPADATA_HTTP_{http_status}",
+
+        "provider":
+            "Supadata",
 
         "http_status":
             http_status,
@@ -1131,25 +2324,98 @@ def request_transcript(
 
 
 # ============================================================
+# PROCESS PROVIDER RESULT
+# ============================================================
+
+def process_provider_result(
+    video,
+    result,
+    track
+):
+
+    if not result.get(
+        "success"
+    ):
+
+        return result
+
+    raw_text = (
+        result.get(
+            "raw_text"
+        )
+        or result.get(
+            "text"
+        )
+        or ""
+    )
+
+    channel = video.get(
+        "channel"
+    )
+
+    purpose = video.get(
+        "purpose"
+    )
+
+    if (
+        channel == STRATEGY_CHANNEL
+        and purpose == "STRATEGY"
+        and result.get(
+            "provider"
+        )
+        == "youtube-transcript.ai"
+    ):
+
+        extracted = (
+            extract_digit_strategy_segment(
+                raw_text,
+                track
+            )
+        )
+
+        result[
+            "text"
+        ] = extracted[
+            "text"
+        ]
+
+        result[
+            "extraction"
+        ] = extracted
+
+    else:
+
+        result[
+            "text"
+        ] = dedupe_consecutive_words(
+            result.get(
+                "text"
+            )
+            or raw_text
+        )
+
+    return result
+
+
+# ============================================================
 # RECORD CREATION
 # ============================================================
 
 def create_available_record(
     week_key,
     video,
-    text,
-    api_status,
-    delivery_mode,
-    cache_source=None,
-    http_status=None,
-    job_id=None
+    result,
+    cache_source=None
 ):
 
     text = normalize_space(
-        text
+        result.get(
+            "text",
+            ""
+        )
     )
 
-    return {
+    record = {
         "week":
             week_key,
 
@@ -1186,17 +2452,30 @@ def create_available_record(
         "status":
             "AVAILABLE",
 
+        "provider":
+            result.get(
+                "provider"
+            ),
+
         "api_status":
-            api_status,
+            result.get(
+                "status"
+            ),
 
         "delivery_mode":
-            delivery_mode,
+            result.get(
+                "delivery_mode"
+            ),
 
         "http_status":
-            http_status,
+            result.get(
+                "http_status"
+            ),
 
         "job_id":
-            job_id,
+            result.get(
+                "job_id"
+            ),
 
         "cache_source":
             cache_source,
@@ -1219,6 +2498,39 @@ def create_available_record(
                 UTC
             ).isoformat()
     }
+
+    extraction = result.get(
+        "extraction"
+    )
+
+    if extraction:
+
+        record[
+            "strategy_extraction"
+        ] = {
+            "mode":
+                extraction.get(
+                    "mode"
+                ),
+
+            "segments":
+                extraction.get(
+                    "segments",
+                    []
+                ),
+
+            "raw_chunks":
+                extraction.get(
+                    "raw_chunks"
+                ),
+
+            "selected_chunks":
+                extraction.get(
+                    "selected_chunks"
+                ),
+        }
+
+    return record
 
 
 def create_unavailable_record(
@@ -1265,6 +2577,11 @@ def create_unavailable_record(
             result.get(
                 "status",
                 "UNAVAILABLE"
+            ),
+
+        "provider":
+            result.get(
+                "provider"
             ),
 
         "api_status":
@@ -1335,6 +2652,31 @@ def save_transcript_file(
     return path
 
 
+def save_raw_transcript(
+    video,
+    raw_text
+):
+
+    if not raw_text:
+        return None
+
+    RAW_TRANSCRIPT_DIR.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    path = raw_transcript_file_path(
+        video
+    )
+
+    path.write_text(
+        raw_text,
+        encoding="utf-8"
+    )
+
+    return path
+
+
 # ============================================================
 # DISPLAY
 # ============================================================
@@ -1371,6 +2713,11 @@ def main():
         exist_ok=True
     )
 
+    RAW_TRANSCRIPT_DIR.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
     source_database = load_json(
         COMMUNITY_SOURCES_FILE
     )
@@ -1401,16 +2748,23 @@ def main():
         )
     )
 
-    print(
-        "=" * 88
+    track = (
+        week_data.get(
+            "track"
+        )
+        or ""
     )
 
     print(
-        "GT7 COMMUNITY TRANSCRIPT COLLECTOR V3"
+        "=" * 92
     )
 
     print(
-        "=" * 88
+        "GT7 COMMUNITY TRANSCRIPT COLLECTOR V4"
+    )
+
+    print(
+        "=" * 92
     )
 
     print(
@@ -1420,7 +2774,7 @@ def main():
 
     print(
         f"Track            : "
-        f"{week_data.get('track')}"
+        f"{track}"
     )
 
     print(
@@ -1433,6 +2787,12 @@ def main():
         f"{len(selected)}"
     )
 
+    print(
+        "Provider order   : "
+        "LOCAL CACHE -> SUPADATA -> "
+        "youtube-transcript.ai"
+    )
+
     print("")
 
     print(
@@ -1440,7 +2800,7 @@ def main():
     )
 
     print(
-        "-" * 88
+        "-" * 92
     )
 
     if not selected:
@@ -1468,11 +2828,9 @@ def main():
     unavailable_count = 0
     reused_database_count = 0
     reused_legacy_count = 0
-    api_requests = 0
 
-    # Once the account-level Supadata quota is known to be
-    # exhausted, no more API calls are made in the same run.
-    # Local/database cache processing continues normally.
+    supadata_requests = 0
+    yttai_requests = 0
 
     supadata_plan_limit = False
 
@@ -1488,7 +2846,7 @@ def main():
         )
 
         print(
-            "=" * 88
+            "=" * 92
         )
 
         print(
@@ -1498,7 +2856,7 @@ def main():
         )
 
         print(
-            "=" * 88
+            "=" * 92
         )
 
         print(
@@ -1517,7 +2875,7 @@ def main():
         )
 
         # ====================================================
-        # 1. REUSE DEFINITIVE DATABASE
+        # 1. DEFINITIVE CACHE
         # ====================================================
 
         existing = get_existing_record(
@@ -1552,9 +2910,23 @@ def main():
                 "content_type"
             )
 
+            transcript_database[
+                "videos"
+            ][
+                video_id
+            ] = record
+
+            path = save_transcript_file(
+                record
+            )
+
             print(
                 "Result           : "
                 "REUSED_DATABASE"
+            )
+
+            print(
+                "Transcript       : YES"
             )
 
             print(
@@ -1562,8 +2934,9 @@ def main():
                 f"{record.get('word_count',0):,}"
             )
 
-            path = save_transcript_file(
-                record
+            print(
+                f"Provider         : "
+                f"{record.get('provider') or record.get('api_status')}"
             )
 
             print(
@@ -1571,25 +2944,19 @@ def main():
                 f"{path}"
             )
 
-            reused_database_count += 1
             available_count += 1
+            reused_database_count += 1
 
             run_results.append(
                 record
             )
-
-            transcript_database[
-                "videos"
-            ][
-                video_id
-            ] = record
 
             print("")
 
             continue
 
         # ====================================================
-        # 2. REUSE LEGACY TEST TRANSCRIPTS
+        # 2. LEGACY CACHE
         # ====================================================
 
         legacy = find_legacy_transcript(
@@ -1598,14 +2965,45 @@ def main():
 
         if legacy:
 
+            legacy_result = {
+                "success":
+                    True,
+
+                "status":
+                    "LEGACY_CACHE",
+
+                "provider":
+                    "LOCAL_CACHE",
+
+                "delivery_mode":
+                    "LOCAL_CACHE",
+
+                "text":
+                    legacy.get(
+                        "text"
+                    ),
+
+                "raw_text":
+                    legacy.get(
+                        "raw_text"
+                    )
+                    or legacy.get(
+                        "text"
+                    )
+            }
+
+            legacy_result = (
+                process_provider_result(
+                    video,
+                    legacy_result,
+                    track
+                )
+            )
+
             record = create_available_record(
                 week_key=week_key,
                 video=video,
-                text=legacy[
-                    "text"
-                ],
-                api_status="LEGACY_CACHE",
-                delivery_mode="LOCAL_CACHE",
+                result=legacy_result,
                 cache_source=legacy[
                     "source"
                 ]
@@ -1645,6 +3043,24 @@ def main():
                 f"{path}"
             )
 
+            if record.get(
+                "strategy_extraction"
+            ):
+
+                extraction = record[
+                    "strategy_extraction"
+                ]
+
+                print(
+                    f"Extraction mode  : "
+                    f"{extraction.get('mode')}"
+                )
+
+                print(
+                    f"Segments         : "
+                    f"{len(extraction.get('segments',[]))}"
+                )
+
             available_count += 1
             reused_legacy_count += 1
 
@@ -1657,147 +3073,140 @@ def main():
             continue
 
         # ====================================================
-        # 3. NO LOCAL TRANSCRIPT
+        # 3. SUPADATA
         # ====================================================
 
-        if supadata_plan_limit:
+        provider_result = None
 
-            result = {
-                "success":
-                    False,
-
-                "status":
-                    "PLAN_LIMIT_SKIPPED",
-
-                "http_status":
-                    429,
-            }
-
-            record = create_unavailable_record(
-                week_key,
-                video,
-                result
-            )
-
-            transcript_database[
-                "videos"
-            ][
-                video_id
-            ] = record
-
-            run_results.append(
-                record
-            )
-
-            unavailable_count += 1
+        if not supadata_plan_limit:
 
             print(
-                "Result           : "
-                "PLAN_LIMIT_SKIPPED"
+                "Supadata         : REQUESTING"
             )
 
-            print(
-                "Transcript       : NO"
-            )
-
-            print(
-                "Reason           : "
-                "Supadata plan limit was "
-                "already detected earlier "
-                "in this run."
-            )
-
-            print("")
-
-            continue
-
-        # ====================================================
-        # 4. REQUEST SUPADATA
-        # ====================================================
-
-        if not SUPADATA_API_KEY:
-
-            result = {
-                "success":
-                    False,
-
-                "status":
-                    "API_KEY_MISSING",
-            }
-
-        else:
-
-            print(
-                "Result           : REQUESTING"
-            )
-
-            result = request_transcript(
-                video.get(
-                    "url"
+            provider_result = (
+                request_supadata_transcript(
+                    video.get(
+                        "url"
+                    )
                 )
             )
 
-            api_requests += 1
+            if (
+                provider_result.get(
+                    "status"
+                )
+                != "SUPADATA_API_KEY_MISSING"
+            ):
 
-        print(
-            f"API status       : "
-            f"{result.get('status')}"
-        )
-
-        if result.get(
-            "http_status"
-        ) is not None:
+                supadata_requests += 1
 
             print(
-                f"HTTP status      : "
-                f"{result.get('http_status')}"
+                f"Supadata status  : "
+                f"{provider_result.get('status')}"
             )
 
-        if result.get(
-            "delivery_mode"
-        ):
+            if (
+                provider_result.get(
+                    "status"
+                )
+                == "SUPADATA_PLAN_LIMIT"
+            ):
+
+                supadata_plan_limit = True
+
+                print(
+                    "Supadata quota exhausted. "
+                    "Fallback will be used."
+                )
+
+        else:
+
+            provider_result = {
+                "success":
+                    False,
+
+                "status":
+                    "SUPADATA_PLAN_LIMIT_SKIPPED",
+
+                "provider":
+                    "Supadata"
+            }
 
             print(
-                f"Delivery mode    : "
-                f"{result.get('delivery_mode')}"
-            )
-
-        if result.get(
-            "job_id"
-        ):
-
-            print(
-                f"Job ID           : "
-                f"{result.get('job_id')}"
+                "Supadata         : "
+                "SKIPPED - plan limit already known"
             )
 
         # ====================================================
-        # SUCCESS
+        # 4. FALLBACK TO YOUTUBE-TRANSCRIPT.AI
         # ====================================================
 
-        if result.get(
+        if not provider_result.get(
             "success"
         ):
+
+            print(
+                "Fallback         : "
+                "youtube-transcript.ai"
+            )
+
+            provider_result = (
+                request_youtube_transcript_ai(
+                    video_id
+                )
+            )
+
+            yttai_requests += 1
+
+            print(
+                f"Fallback status  : "
+                f"{provider_result.get('status')}"
+            )
+
+        # ====================================================
+        # 5. SUCCESS
+        # ====================================================
+
+        if provider_result.get(
+            "success"
+        ):
+
+            raw_text = (
+                provider_result.get(
+                    "raw_text"
+                )
+                or provider_result.get(
+                    "text"
+                )
+            )
+
+            raw_path = save_raw_transcript(
+                video,
+                raw_text
+            )
+
+            provider_result = (
+                process_provider_result(
+                    video,
+                    provider_result,
+                    track
+                )
+            )
 
             record = create_available_record(
                 week_key=week_key,
                 video=video,
-                text=result.get(
-                    "text"
-                ),
-                api_status=result.get(
-                    "status"
-                ),
-                delivery_mode=result.get(
-                    "delivery_mode"
-                ),
-                http_status=result.get(
-                    "http_status"
-                ),
-                job_id=result.get(
-                    "job_id"
-                )
+                result=provider_result
             )
+
+            if raw_path:
+
+                record[
+                    "raw_transcript_file"
+                ] = str(
+                    raw_path
+                )
 
             transcript_database[
                 "videos"
@@ -1820,6 +3229,11 @@ def main():
             )
 
             print(
+                f"Provider         : "
+                f"{record.get('provider')}"
+            )
+
+            print(
                 f"Words            : "
                 f"{record.get('word_count',0):,}"
             )
@@ -1829,27 +3243,93 @@ def main():
                 f"{record.get('character_count',0):,}"
             )
 
+            if raw_path:
+
+                print(
+                    f"Raw file         : "
+                    f"{raw_path}"
+                )
+
             print(
                 f"Saved file       : "
                 f"{path}"
             )
 
-            preview = normalize_space(
+            extraction = record.get(
+                "strategy_extraction"
+            )
+
+            if extraction:
+
+                print(
+                    f"Extraction mode  : "
+                    f"{extraction.get('mode')}"
+                )
+
+                print(
+                    f"Raw chunks       : "
+                    f"{extraction.get('raw_chunks')}"
+                )
+
+                print(
+                    f"Selected chunks  : "
+                    f"{extraction.get('selected_chunks')}"
+                )
+
+                print(
+                    f"Segments         : "
+                    f"{len(extraction.get('segments',[]))}"
+                )
+
+                for segment_number, segment in enumerate(
+                    extraction.get(
+                        "segments",
+                        []
+                    ),
+                    start=1
+                ):
+
+                    print(
+                        f"  Segment "
+                        f"{segment_number}: "
+                        f"{segment.get('start')} "
+                        f"-> "
+                        f"{segment.get('end')} "
+                        f"| score "
+                        f"{segment.get('anchor_score')}"
+                    )
+
+            preview = (
                 record.get(
                     "transcript"
                 )
+                or ""
+            )
+
+            print("")
+            print(
+                "TRANSCRIPT PREVIEW"
+            )
+            print(
+                "-" * 92
             )
 
             print(
-                "Preview          :"
+                preview[
+                    :2500
+                ]
             )
 
-            print(
-                f"  {preview[:900]}"
-            )
+            if len(
+                preview
+            ) > 2500:
+
+                print(
+                    "[... preview truncated ...]"
+                )
 
         # ====================================================
-        # FAILURE
+        # 6. BOTH PROVIDERS FAILED
         # ====================================================
 
         else:
@@ -1857,7 +3337,7 @@ def main():
             record = create_unavailable_record(
                 week_key,
                 video,
-                result
+                provider_result
             )
 
             transcript_database[
@@ -1876,44 +3356,15 @@ def main():
                 "Transcript       : NO"
             )
 
-            if result.get(
-                "payload"
-            ):
+            print(
+                f"Final status     : "
+                f"{record.get('status')}"
+            )
 
-                print(
-                    "API payload      :"
-                )
-
-                print(
-                    json.dumps(
-                        result.get(
-                            "payload"
-                        ),
-                        ensure_ascii=False
-                    )[
-                        :1500
-                    ]
-                )
-
-            if (
-                result.get(
-                    "status"
-                )
-                == "PLAN_LIMIT"
-            ):
-
-                supadata_plan_limit = True
-
-                print(
-                    "Supadata plan usage "
-                    "limit detected."
-                )
-
-                print(
-                    "Further API calls will "
-                    "be skipped, but local "
-                    "cache processing will continue."
-                )
+            print(
+                f"Provider         : "
+                f"{record.get('provider')}"
+            )
 
         print("")
 
@@ -1923,7 +3374,7 @@ def main():
 
     transcript_database[
         "version"
-    ] = 3
+    ] = 4
 
     transcript_database[
         "updated_at"
@@ -1943,6 +3394,12 @@ def main():
 
         "lap_guide":
             LAP_GUIDE_CHANNEL,
+
+        "provider_order": [
+            "LOCAL_CACHE",
+            "Supadata",
+            "youtube-transcript.ai",
+        ]
     }
 
     save_json(
@@ -1955,7 +3412,7 @@ def main():
     # ========================================================
 
     print(
-        "=" * 88
+        "=" * 92
     )
 
     print(
@@ -1963,7 +3420,7 @@ def main():
     )
 
     print(
-        "=" * 88
+        "=" * 92
     )
 
     print(
@@ -1992,12 +3449,17 @@ def main():
     )
 
     print(
-        f"API requests used  : "
-        f"{api_requests}"
+        f"Supadata requests  : "
+        f"{supadata_requests}"
     )
 
     print(
-        f"Supadata plan limit: "
+        f"YTTAI requests     : "
+        f"{yttai_requests}"
+    )
+
+    print(
+        f"Supadata limit     : "
         f"{'YES' if supadata_plan_limit else 'No'}"
     )
 
@@ -2008,7 +3470,7 @@ def main():
     )
 
     print(
-        "-" * 88
+        "-" * 92
     )
 
     purposes = {
@@ -2077,9 +3539,25 @@ def main():
             )
 
             print(
-                f"  Source  : "
-                f"{record.get('api_status')}"
+                f"  Provider: "
+                f"{record.get('provider') or record.get('api_status')}"
             )
+
+            extraction = record.get(
+                "strategy_extraction"
+            )
+
+            if extraction:
+
+                print(
+                    f"  Extract : "
+                    f"{extraction.get('mode')}"
+                )
+
+                print(
+                    f"  Segments: "
+                    f"{len(extraction.get('segments',[]))}"
+                )
 
     print("")
 
@@ -2118,7 +3596,7 @@ def main():
     )
 
     print(
-        "-" * 88
+        "-" * 92
     )
 
     print(
@@ -2149,7 +3627,12 @@ def main():
     )
 
     print(
-        "=" * 88
+        f"Raw transcript dir : "
+        f"{RAW_TRANSCRIPT_DIR}"
+    )
+
+    print(
+        "=" * 92
     )
 
 
