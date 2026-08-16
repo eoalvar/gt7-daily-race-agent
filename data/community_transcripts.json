@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": "6.1",
   "weeks": {
     "2026-08-10": {
       "track": "Grand Valley - Highway 1",
@@ -274,7 +274,7 @@
       "word_count": 0,
       "character_count": 0,
       "transcript": null,
-      "updated_at": "2026-08-16T22:56:28.103928+00:00",
+      "updated_at": "2026-08-16T23:00:41.394588+00:00",
       "strategy_extraction": {
         "mode": "NO_VALID_STRATEGY_SEGMENT",
         "raw_chunks": 321,
@@ -304,7 +304,7 @@
       "provider": "LOCAL_DATABASE"
     }
   },
-  "updated_at": "2026-08-16T22:56:28.104698+00:00",
+  "updated_at": "2026-08-16T23:00:41.395825+00:00",
   "current_week": "2026-08-10",
   "source_policy": {
     "strategy": "Digit Racing",
@@ -319,7 +319,7 @@
       "Supadata",
       "youtube-transcript.ai"
     ],
-    "digit_extractor": "STRATEGY_ROLLING_WINDOWS_V6",
+    "digit_extractor": "STRATEGY_ROLLING_WINDOWS_V6_1",
     "minimum_digit_score": 15,
     "minimum_strategy_hits": 3,
     "weak_fallback": false
