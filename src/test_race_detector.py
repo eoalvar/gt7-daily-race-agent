@@ -83,7 +83,10 @@ CAR_TECHNICAL_INFO = {
     3399: {"layout": "FR"},
     3477: {"layout": "FR"},
     3480: {"layout": "FF"},
+
+    # Genesis G70 GR4 is 4WD
     3501: {"layout": "4WD"},
+
     3537: {"layout": "FF"}
 }
 
@@ -96,8 +99,8 @@ CAR_TECHNICAL_INFO = {
 # Negative = more front
 # Positive = more rear
 #
-# Tyre wear no longer pushes the range to extremes.
-# It only changes the recommendation inside the same range.
+# Tyre wear does not expand these ranges.
+# It only determines the suggested starting value within them.
 # ============================================================
 
 BRAKE_BIAS_BASELINES = {
@@ -180,6 +183,7 @@ def laptime_to_score(text):
         return None
 
     try:
+
         minutes, rest = text.split(":")
         seconds, milliseconds = rest.split(".")
 
@@ -190,6 +194,7 @@ def laptime_to_score(text):
         )
 
     except Exception:
+
         return None
 
 
@@ -236,10 +241,7 @@ def find_my_driver(
         )
 
         if (
-            isinstance(
-                online_id,
-                str
-            )
+            isinstance(online_id, str)
             and online_id.strip().lower() == target
         ):
             return driver
@@ -290,6 +292,7 @@ def parse_race_date_from_text(text):
         )
 
     except ValueError:
+
         return None
 
 
@@ -655,9 +658,11 @@ def build_weekly_record(
             )
 
         except Exception:
+
             week_start = None
 
     else:
+
         week_start = None
 
     general = my.get(
@@ -950,11 +955,13 @@ def position_change(
     )
 
     if difference > 0:
+
         return (
             f"+{difference} positions"
         )
 
     if difference < 0:
+
         return (
             f"{difference} positions"
         )
@@ -1023,12 +1030,15 @@ def extract_start_date(
 
 
 # ============================================================
-# BRAKE BIAS V2 HELPERS
+# BRAKE BIAS V2
 # ============================================================
 
 def format_bb_value(
     value
 ):
+
+    if value is None:
+        return "N/A"
 
     if value > 0:
         return f"+{value}"
@@ -1048,6 +1058,7 @@ def format_bb_range(
     low, high = range_value
 
     if low == high:
+
         return format_bb_value(
             low
         )
@@ -1154,13 +1165,6 @@ def brake_bias_recommendation(
         ]
     )
 
-    # ========================================================
-    # STARTING VALUE
-    #
-    # Instead of moving the entire range because of tyre wear,
-    # we choose a conservative starting point inside it.
-    # ========================================================
-
     qualifying_start = int(
         round(
             (
@@ -1251,7 +1255,7 @@ def brake_bias_recommendation(
 
             wear_adjustment = (
                 "High tyre wear: begin at the rearward end of the "
-                "validated heuristic range, without exceeding it."
+                "heuristic range, without exceeding it."
             )
 
         elif layout in (
@@ -1263,7 +1267,7 @@ def brake_bias_recommendation(
 
             wear_adjustment = (
                 "High tyre wear: begin at the forward end of the "
-                "validated heuristic range, without exceeding it."
+                "heuristic range, without exceeding it."
             )
 
         else:
@@ -1335,6 +1339,7 @@ def load_previous_snapshot():
         )
 
     except Exception:
+
         return None
 
 
@@ -1372,11 +1377,13 @@ def load_history_for_race(
                 )
                 == leaderboard_url
             ):
+
                 snapshots.append(
                     data
                 )
 
         except Exception:
+
             pass
 
     return snapshots
@@ -1424,6 +1431,7 @@ def snapshot_metric_score(
             value,
             dict
         ):
+
             return value.get(
                 "score"
             )
@@ -1432,12 +1440,14 @@ def snapshot_metric_score(
             value,
             int
         ):
+
             return value
 
         if isinstance(
             value,
             str
         ):
+
             return laptime_to_score(
                 value
             )
@@ -1446,107 +1456,45 @@ def snapshot_metric_score(
 
 
 # ============================================================
-# FORECAST ENGINE
+# FORECAST V2 - HELPERS
 # ============================================================
 
-def linear_forecast(
-    history,
-    current_snapshot,
-    metric,
-    target_time
+def forecast_parse_datetime(
+    value
 ):
 
-    points = []
-
-    combined = (
-        list(history)
-        + [current_snapshot]
-    )
-
-    seen = set()
-
-    for snapshot in combined:
-
-        timestamp = snapshot.get(
-            "timestamp"
-        )
-
-        score = snapshot_metric_score(
-            snapshot,
-            metric
-        )
-
-        if (
-            timestamp
-            and isinstance(
-                score,
-                (int, float)
-            )
-        ):
-
-            key = (
-                timestamp,
-                score
-            )
-
-            if key in seen:
-                continue
-
-            seen.add(
-                key
-            )
-
-            try:
-
-                dt = datetime.fromisoformat(
-                    timestamp
-                )
-
-                points.append(
-                    (
-                        dt,
-                        float(score)
-                    )
-                )
-
-            except Exception:
-                pass
-
-    points.sort(
-        key=lambda point:
-            point[0]
-    )
-
-    if len(points) < 3:
+    if not value:
         return None
 
-    first_time = points[
-        0
-    ][
-        0
-    ]
+    try:
+
+        return datetime.fromisoformat(
+            value
+        )
+
+    except Exception:
+
+        return None
+
+
+def forecast_linear_regression(
+    points
+):
+
+    if len(points) < 2:
+        return None
 
     xs = [
-        (
-            point[0]
-            - first_time
-        ).total_seconds()
-        / 3600
-        for point in points
+        float(x)
+        for x, _
+        in points
     ]
 
     ys = [
-        point[1]
-        for point in points
+        float(y)
+        for _, y
+        in points
     ]
-
-    span_hours = (
-        max(xs)
-        - min(xs)
-    )
-
-    if span_hours < 4:
-        return None
 
     x_mean = (
         sum(xs)
@@ -1579,46 +1527,16 @@ def linear_forecast(
         / denominator
     )
 
-    slope = min(
-        slope,
-        0
-    )
-
-    target_x = (
-        (
-            target_time
-            - first_time
-        ).total_seconds()
-        / 3600
-    )
-
-    predicted = (
+    intercept = (
         y_mean
-        + slope
-        * (
-            target_x
-            - x_mean
-        )
-    )
-
-    current_score = ys[
-        -1
-    ]
-
-    predicted = min(
-        predicted,
-        current_score
+        - slope * x_mean
     )
 
     residuals = [
         y
         - (
-            y_mean
-            + slope
-            * (
-                x
-                - x_mean
-            )
+            slope * x
+            + intercept
         )
         for x, y
         in zip(
@@ -1636,48 +1554,1275 @@ def linear_forecast(
         / len(residuals)
     )
 
-    if (
-        len(points) >= 6
-        and span_hours >= 48
+    return {
+        "slope":
+            slope,
+
+        "intercept":
+            intercept,
+
+        "rmse":
+            rmse
+    }
+
+
+def forecast_threshold_score(
+    snapshot,
+    rank
+):
+
+    value = (
+        snapshot
+        .get(
+            "thresholds",
+            {}
+        )
+        .get(
+            str(rank)
+        )
+    )
+
+    if isinstance(
+        value,
+        dict
     ):
 
-        confidence = "High"
+        return value.get(
+            "score"
+        )
+
+    if isinstance(
+        value,
+        (int, float)
+    ):
+
+        return value
+
+    return None
+
+
+def forecast_world_record_score(
+    snapshot
+):
+
+    return (
+        snapshot
+        .get(
+            "world_record",
+            {}
+        )
+        .get(
+            "score"
+        )
+    )
+
+
+def forecast_personal_score(
+    snapshot
+):
+
+    result = snapshot.get(
+        "my_result"
+    )
+
+    if not result:
+        return None
+
+    return result.get(
+        "score"
+    )
+
+
+def forecast_personal_rank(
+    snapshot
+):
+
+    result = snapshot.get(
+        "my_result"
+    )
+
+    if not result:
+        return None
+
+    return result.get(
+        "rank"
+    )
+
+
+def current_week_forecast_snapshots(
+    history,
+    current_snapshot
+):
+
+    current_url = (
+        current_snapshot
+        .get(
+            "race",
+            {}
+        )
+        .get(
+            "leaderboard_url"
+        )
+    )
+
+    combined = (
+        list(history)
+        + [current_snapshot]
+    )
+
+    selected = []
+    seen = set()
+
+    for snapshot in combined:
+
+        url = (
+            snapshot
+            .get(
+                "race",
+                {}
+            )
+            .get(
+                "leaderboard_url"
+            )
+        )
+
+        if url != current_url:
+            continue
+
+        timestamp_text = snapshot.get(
+            "timestamp"
+        )
+
+        timestamp = forecast_parse_datetime(
+            timestamp_text
+        )
+
+        if not timestamp:
+            continue
+
+        if timestamp_text in seen:
+            continue
+
+        seen.add(
+            timestamp_text
+        )
+
+        selected.append(
+            snapshot
+        )
+
+    selected.sort(
+        key=lambda item:
+            forecast_parse_datetime(
+                item[
+                    "timestamp"
+                ]
+            )
+    )
+
+    return selected
+
+
+def forecast_build_time_axis(
+    snapshots,
+    race_start
+):
+
+    output = []
+
+    for snapshot in snapshots:
+
+        timestamp = forecast_parse_datetime(
+            snapshot.get(
+                "timestamp"
+            )
+        )
+
+        if not timestamp:
+            continue
+
+        hours = (
+            timestamp
+            - race_start
+        ).total_seconds() / 3600
+
+        output.append(
+            (
+                hours,
+                snapshot
+            )
+        )
+
+    return output
+
+
+def forecast_metric_v2(
+    snapshots,
+    race_start,
+    target_time,
+    extractor,
+    direction="down"
+):
+
+    axis = forecast_build_time_axis(
+        snapshots,
+        race_start
+    )
+
+    points = []
+
+    for hours, snapshot in axis:
+
+        value = extractor(
+            snapshot
+        )
+
+        if isinstance(
+            value,
+            (int, float)
+        ):
+
+            points.append(
+                (
+                    hours,
+                    float(value)
+                )
+            )
+
+    if len(points) < 3:
+        return None
+
+    regression = forecast_linear_regression(
+        points
+    )
+
+    if not regression:
+        return None
+
+    span_hours = (
+        max(
+            x
+            for x, _
+            in points
+        )
+        - min(
+            x
+            for x, _
+            in points
+        )
+    )
+
+    slope = regression[
+        "slope"
+    ]
+
+    if direction == "down":
+
+        slope = min(
+            slope,
+            0
+        )
+
+    elif direction == "up":
+
+        slope = max(
+            slope,
+            0
+        )
+
+    target_x = (
+        target_time
+        - race_start
+    ).total_seconds() / 3600
+
+    predicted = (
+        regression[
+            "intercept"
+        ]
+        + slope * target_x
+    )
+
+    current_value = points[
+        -1
+    ][
+        1
+    ]
+
+    if direction == "down":
+
+        predicted = min(
+            predicted,
+            current_value
+        )
+
+    elif direction == "up":
+
+        predicted = max(
+            predicted,
+            current_value
+        )
+
+    if (
+        len(points) >= 10
+        and span_hours >= 72
+    ):
+
+        confidence = "HIGH"
 
     elif (
-        len(points) >= 4
+        len(points) >= 6
         and span_hours >= 24
     ):
 
-        confidence = "Medium"
+        confidence = "MEDIUM"
 
     else:
 
-        confidence = "Low"
+        confidence = "LOW"
 
     return {
-        "predicted_score":
-            int(
-                round(
-                    predicted
-                )
-            ),
+        "predicted":
+            predicted,
 
-        "rmse_ms":
-            int(
-                round(
-                    rmse
-                )
-            ),
+        "current":
+            current_value,
 
-        "confidence":
-            confidence,
+        "slope_per_hour":
+            slope,
+
+        "rmse":
+            regression[
+                "rmse"
+            ],
 
         "samples":
             len(points),
 
         "span_hours":
-            span_hours
+            span_hours,
+
+        "confidence":
+            confidence
     }
+
+
+def forecast_score_at_rank(
+    ranking,
+    rank
+):
+
+    if not ranking:
+        return None
+
+    rank = max(
+        1,
+        min(
+            len(ranking),
+            int(rank)
+        )
+    )
+
+    return ranking[
+        rank - 1
+    ].get(
+        "score"
+    )
+
+
+def forecast_percentile_rank(
+    total,
+    percent
+):
+
+    return max(
+        1,
+        min(
+            total,
+            math.ceil(
+                total
+                * percent
+                / 100
+            )
+        )
+    )
+
+
+def forecast_current_percentile_score(
+    ranking,
+    percent
+):
+
+    rank = forecast_percentile_rank(
+        len(ranking),
+        percent
+    )
+
+    return {
+        "rank":
+            rank,
+
+        "score":
+            forecast_score_at_rank(
+                ranking,
+                rank
+            )
+    }
+
+
+def forecast_projected_percentile_score(
+    ranking,
+    top500_forecast,
+    top1000_forecast,
+    percent
+):
+
+    current = forecast_current_percentile_score(
+        ranking,
+        percent
+    )
+
+    current_score = current[
+        "score"
+    ]
+
+    if current_score is None:
+        return None
+
+    projected_deltas = []
+
+    if top500_forecast:
+
+        projected_deltas.append(
+            top500_forecast[
+                "predicted"
+            ]
+            - top500_forecast[
+                "current"
+            ]
+        )
+
+    if top1000_forecast:
+
+        projected_deltas.append(
+            top1000_forecast[
+                "predicted"
+            ]
+            - top1000_forecast[
+                "current"
+            ]
+        )
+
+    expected_delta = (
+        sum(projected_deltas)
+        / len(projected_deltas)
+        if projected_deltas
+        else 0
+    )
+
+    return {
+        "current_rank":
+            current[
+                "rank"
+            ],
+
+        "current_score":
+            current_score,
+
+        "predicted_score":
+            int(
+                round(
+                    current_score
+                    + expected_delta
+                )
+            ),
+
+        "estimated_change_ms":
+            int(
+                round(
+                    expected_delta
+                )
+            )
+    }
+
+
+def forecast_rank_if_no_improvement(
+    snapshots,
+    current_snapshot,
+    race_start,
+    target_time
+):
+
+    current_result = current_snapshot.get(
+        "my_result"
+    )
+
+    if not current_result:
+        return None
+
+    current_score = current_result.get(
+        "score"
+    )
+
+    current_rank = current_result.get(
+        "rank"
+    )
+
+    if (
+        current_score is None
+        or current_rank is None
+    ):
+
+        return None
+
+    comparable = []
+
+    for snapshot in snapshots:
+
+        score = forecast_personal_score(
+            snapshot
+        )
+
+        rank = forecast_personal_rank(
+            snapshot
+        )
+
+        timestamp = forecast_parse_datetime(
+            snapshot.get(
+                "timestamp"
+            )
+        )
+
+        if (
+            score == current_score
+            and isinstance(
+                rank,
+                (int, float)
+            )
+            and timestamp
+        ):
+
+            comparable.append(
+                snapshot
+            )
+
+    if len(comparable) < 3:
+
+        return {
+            "current_rank":
+                current_rank,
+
+            "projected_rank":
+                None,
+
+            "confidence":
+                "INSUFFICIENT",
+
+            "samples":
+                len(comparable),
+
+            "span_hours":
+                0
+        }
+
+    forecast = forecast_metric_v2(
+        comparable,
+        race_start,
+        target_time,
+        extractor=forecast_personal_rank,
+        direction="up"
+    )
+
+    if not forecast:
+        return None
+
+    projected_rank = max(
+        current_rank,
+        int(
+            round(
+                forecast[
+                    "predicted"
+                ]
+            )
+        )
+    )
+
+    return {
+        "current_rank":
+            current_rank,
+
+        "projected_rank":
+            projected_rank,
+
+        "confidence":
+            forecast[
+                "confidence"
+            ],
+
+        "samples":
+            forecast[
+                "samples"
+            ],
+
+        "span_hours":
+            forecast[
+                "span_hours"
+            ],
+
+        "rank_growth_per_hour":
+            forecast[
+                "slope_per_hour"
+            ]
+    }
+
+
+def forecast_total_drivers(
+    snapshots,
+    race_start,
+    target_time
+):
+
+    forecast = forecast_metric_v2(
+        snapshots,
+        race_start,
+        target_time,
+        extractor=lambda snapshot:
+            snapshot.get(
+                "total_drivers"
+            ),
+        direction="up"
+    )
+
+    if not forecast:
+        return None
+
+    return {
+        "current":
+            int(
+                round(
+                    forecast[
+                        "current"
+                    ]
+                )
+            ),
+
+        "predicted":
+            int(
+                round(
+                    forecast[
+                        "predicted"
+                    ]
+                )
+            ),
+
+        "confidence":
+            forecast[
+                "confidence"
+            ],
+
+        "samples":
+            forecast[
+                "samples"
+            ]
+    }
+
+
+def forecast_overall_confidence(
+    forecasts
+):
+
+    values = {
+        "HIGH": 3,
+        "MEDIUM": 2,
+        "LOW": 1
+    }
+
+    scores = []
+
+    for forecast in forecasts:
+
+        if not forecast:
+            continue
+
+        confidence = forecast.get(
+            "confidence"
+        )
+
+        if confidence in values:
+
+            scores.append(
+                values[
+                    confidence
+                ]
+            )
+
+    if not scores:
+        return "LOW"
+
+    average = (
+        sum(scores)
+        / len(scores)
+    )
+
+    if average >= 2.5:
+        return "HIGH"
+
+    if average >= 1.5:
+        return "MEDIUM"
+
+    return "LOW"
+
+
+def build_forecast_v2(
+    history,
+    current_snapshot,
+    ranking,
+    race_start,
+    sunday_end
+):
+
+    snapshots = current_week_forecast_snapshots(
+        history,
+        current_snapshot
+    )
+
+    if len(snapshots) < 3:
+
+        return {
+            "available":
+                False,
+
+            "reason":
+                "Fewer than 3 comparable current-week snapshots."
+        }
+
+    wr_forecast = forecast_metric_v2(
+        snapshots,
+        race_start,
+        sunday_end,
+        extractor=forecast_world_record_score,
+        direction="down"
+    )
+
+    top100_forecast = forecast_metric_v2(
+        snapshots,
+        race_start,
+        sunday_end,
+        extractor=lambda snapshot:
+            forecast_threshold_score(
+                snapshot,
+                100
+            ),
+        direction="down"
+    )
+
+    top500_forecast = forecast_metric_v2(
+        snapshots,
+        race_start,
+        sunday_end,
+        extractor=lambda snapshot:
+            forecast_threshold_score(
+                snapshot,
+                500
+            ),
+        direction="down"
+    )
+
+    top1000_forecast = forecast_metric_v2(
+        snapshots,
+        race_start,
+        sunday_end,
+        extractor=lambda snapshot:
+            forecast_threshold_score(
+                snapshot,
+                1000
+            ),
+        direction="down"
+    )
+
+    top10 = forecast_projected_percentile_score(
+        ranking,
+        top500_forecast,
+        top1000_forecast,
+        10
+    )
+
+    top5 = forecast_projected_percentile_score(
+        ranking,
+        top500_forecast,
+        top1000_forecast,
+        5
+    )
+
+    total_forecast = forecast_total_drivers(
+        snapshots,
+        race_start,
+        sunday_end
+    )
+
+    personal_rank_projection = (
+        forecast_rank_if_no_improvement(
+            snapshots,
+            current_snapshot,
+            race_start,
+            sunday_end
+        )
+    )
+
+    current_result = current_snapshot.get(
+        "my_result"
+    )
+
+    personal = None
+
+    if current_result:
+
+        current_score = (
+            current_result.get(
+                "score"
+            )
+        )
+
+        current_rank = (
+            current_result.get(
+                "rank"
+            )
+        )
+
+        current_top_percent = (
+            current_result.get(
+                "top_percent"
+            )
+        )
+
+        projected_rank = None
+        projected_top_percent = None
+
+        if personal_rank_projection:
+
+            projected_rank = (
+                personal_rank_projection.get(
+                    "projected_rank"
+                )
+            )
+
+        if (
+            projected_rank is not None
+            and total_forecast
+        ):
+
+            projected_total = max(
+                total_forecast[
+                    "predicted"
+                ],
+                projected_rank
+            )
+
+            projected_top_percent = (
+                projected_rank
+                / projected_total
+                * 100
+            )
+
+        personal = {
+            "score":
+                current_score,
+
+            "current_rank":
+                current_rank,
+
+            "current_top_percent":
+                current_top_percent,
+
+            "projected_rank":
+                projected_rank,
+
+            "projected_top_percent":
+                projected_top_percent,
+
+            "rank_forecast_confidence":
+                (
+                    personal_rank_projection.get(
+                        "confidence"
+                    )
+                    if personal_rank_projection
+                    else "INSUFFICIENT"
+                )
+        }
+
+    targets = {}
+
+    if (
+        current_result
+        and current_result.get(
+            "score"
+        )
+    ):
+
+        personal_score = current_result[
+            "score"
+        ]
+
+        if top10:
+
+            targets[
+                "top10"
+            ] = {
+                "score":
+                    top10[
+                        "predicted_score"
+                    ],
+
+                "gain_needed_ms":
+                    max(
+                        0,
+                        personal_score
+                        - top10[
+                            "predicted_score"
+                        ]
+                    )
+            }
+
+        if top5:
+
+            targets[
+                "top5"
+            ] = {
+                "score":
+                    top5[
+                        "predicted_score"
+                    ],
+
+                "gain_needed_ms":
+                    max(
+                        0,
+                        personal_score
+                        - top5[
+                            "predicted_score"
+                        ]
+                    )
+            }
+
+    confidence = forecast_overall_confidence(
+        [
+            wr_forecast,
+            top100_forecast,
+            top500_forecast,
+            top1000_forecast,
+            total_forecast
+        ]
+    )
+
+    timestamps = [
+        forecast_parse_datetime(
+            snapshot.get(
+                "timestamp"
+            )
+        )
+        for snapshot in snapshots
+    ]
+
+    timestamps = [
+        timestamp
+        for timestamp in timestamps
+        if timestamp
+    ]
+
+    span_hours = 0
+
+    if len(timestamps) >= 2:
+
+        span_hours = (
+            max(timestamps)
+            - min(timestamps)
+        ).total_seconds() / 3600
+
+    return {
+        "available":
+            True,
+
+        "model":
+            "CURRENT_WEEK_HYBRID_V2",
+
+        "historical_training":
+            "INSUFFICIENT",
+
+        "samples":
+            len(snapshots),
+
+        "span_hours":
+            span_hours,
+
+        "confidence":
+            confidence,
+
+        "world_record":
+            wr_forecast,
+
+        "top100":
+            top100_forecast,
+
+        "top500":
+            top500_forecast,
+
+        "top1000":
+            top1000_forecast,
+
+        "top10_percent":
+            top10,
+
+        "top5_percent":
+            top5,
+
+        "total_drivers":
+            total_forecast,
+
+        "personal":
+            personal,
+
+        "targets":
+            targets
+    }
+
+
+def forecast_report_lines(
+    forecast
+):
+
+    lines = []
+
+    lines.append(
+        "FORECAST TO SUNDAY - V2"
+    )
+
+    if not forecast.get(
+        "available"
+    ):
+
+        lines.append(
+            forecast.get(
+                "reason",
+                "Forecast unavailable."
+            )
+        )
+
+        return lines
+
+    lines.append(
+        f"Model           : "
+        f"{forecast['model']}"
+    )
+
+    lines.append(
+        f"Confidence      : "
+        f"{forecast['confidence']}"
+    )
+
+    lines.append(
+        f"Samples         : "
+        f"{forecast['samples']}"
+    )
+
+    lines.append(
+        f"Observed span   : "
+        f"{forecast['span_hours']:.1f} h"
+    )
+
+    lines.append(
+        "Historical model: not yet active "
+        "(insufficient cross-week training data)"
+    )
+
+    lines.append("")
+    lines.append(
+        "PROJECTED LEADERBOARD"
+    )
+
+    metrics = [
+        (
+            "world_record",
+            "WR"
+        ),
+        (
+            "top100",
+            "Top 100"
+        ),
+        (
+            "top500",
+            "Top 500"
+        ),
+        (
+            "top1000",
+            "Top 1000"
+        )
+    ]
+
+    for key, label in metrics:
+
+        item = forecast.get(
+            key
+        )
+
+        if not item:
+            continue
+
+        lines.append(
+            f"{label:<15}: "
+            f"{score_to_laptime(item['predicted'])} | "
+            f"{item['confidence']} | "
+            f"{item['samples']} samples"
+        )
+
+    top10 = forecast.get(
+        "top10_percent"
+    )
+
+    if top10:
+
+        lines.append(
+            f"{'Top 10%':<15}: "
+            f"{score_to_laptime(top10['predicted_score'])}"
+        )
+
+    top5 = forecast.get(
+        "top5_percent"
+    )
+
+    if top5:
+
+        lines.append(
+            f"{'Top 5%':<15}: "
+            f"{score_to_laptime(top5['predicted_score'])}"
+        )
+
+    total = forecast.get(
+        "total_drivers"
+    )
+
+    if total:
+
+        lines.append(
+            f"{'Drivers':<15}: "
+            f"{total['current']:,} -> "
+            f"~{total['predicted']:,}"
+        )
+
+    personal = forecast.get(
+        "personal"
+    )
+
+    if personal:
+
+        lines.append("")
+        lines.append(
+            "IF YOU DO NOT IMPROVE"
+        )
+
+        lines.append(
+            f"Current time    : "
+            f"{score_to_laptime(personal['score'])}"
+        )
+
+        lines.append(
+            f"Current rank    : "
+            f"#{personal['current_rank']:,}"
+        )
+
+        if (
+            personal[
+                "current_top_percent"
+            ]
+            is not None
+        ):
+
+            lines.append(
+                f"Current Top %   : "
+                f"{personal['current_top_percent']:.2f}%"
+            )
+
+        if (
+            personal[
+                "projected_rank"
+            ]
+            is not None
+        ):
+
+            lines.append(
+                f"Projected rank  : "
+                f"~#{personal['projected_rank']:,}"
+            )
+
+        else:
+
+            lines.append(
+                "Projected rank  : "
+                "insufficient comparable rank history"
+            )
+
+        if (
+            personal[
+                "projected_top_percent"
+            ]
+            is not None
+        ):
+
+            lines.append(
+                f"Projected Top % : "
+                f"~{personal['projected_top_percent']:.2f}%"
+            )
+
+        lines.append(
+            f"Rank confidence : "
+            f"{personal['rank_forecast_confidence']}"
+        )
+
+    targets = forecast.get(
+        "targets",
+        {}
+    )
+
+    if targets:
+
+        lines.append("")
+        lines.append(
+            "TARGETS FOR SUNDAY"
+        )
+
+        if "top10" in targets:
+
+            target = targets[
+                "top10"
+            ]
+
+            lines.append(
+                f"Top 10% target  : "
+                f"{score_to_laptime(target['score'])} | "
+                f"gain needed "
+                f"{target['gain_needed_ms']/1000:.3f}s"
+            )
+
+        if "top5" in targets:
+
+            target = targets[
+                "top5"
+            ]
+
+            lines.append(
+                f"Top 5% target   : "
+                f"{score_to_laptime(target['score'])} | "
+                f"gain needed "
+                f"{target['gain_needed_ms']/1000:.3f}s"
+            )
+
+    lines.append("")
+
+    lines.append(
+        "Forecast note   : "
+        "V2 uses current-week leaderboard evolution. "
+        "Cross-week historical learning will activate "
+        "after sufficient multi-week intraday data exists."
+    )
+
+    return lines
 
 
 # ============================================================
@@ -1810,6 +2955,7 @@ def build_targets(
     for label, rank in definitions:
 
         if rank < my_rank:
+
             unique_targets[
                 rank
             ] = label
@@ -2282,7 +3428,7 @@ def main():
     )
 
     # ========================================================
-    # LEADERBOARD
+    # LEADERBOARD PAGE
     # ========================================================
 
     leaderboard_response = session.get(
@@ -3079,8 +4225,7 @@ def main():
             count
         ) in all_counter.items()
         if (
-            car_code is None
-            or not isinstance(
+            not isinstance(
                 car_code,
                 int
             )
@@ -3303,7 +4448,8 @@ def main():
 
         if (
             previous_url
-            and previous_url != race_c_link
+            and previous_url
+            != race_c_link
             and not weekly_record_exists(
                 weekly_history,
                 previous_url
@@ -3359,14 +4505,20 @@ def main():
         )
 
     # ========================================================
-    # FORECAST
+    # FORECAST V2
     # ========================================================
 
     history = load_history_for_race(
         race_c_link
     )
 
-    forecasts = {}
+    forecast_v2 = {
+        "available":
+            False,
+
+        "reason":
+            "Race start date unavailable."
+    }
 
     if start_date:
 
@@ -3383,34 +4535,31 @@ def main():
 
         if sunday_end > now:
 
-            for metric in [
-                "world_record",
-                "top500",
-                "top1000"
-            ]:
-
-                forecast = (
-                    linear_forecast(
-                        history,
-                        snapshot,
-                        metric,
-                        sunday_end
-                    )
-                )
-
-                if forecast:
-
-                    forecasts[
-                        metric
-                    ] = forecast
+            forecast_v2 = build_forecast_v2(
+                history=history,
+                current_snapshot=snapshot,
+                ranking=ranking,
+                race_start=start_date,
+                sunday_end=sunday_end
+            )
 
             snapshot[
                 "forecast_target"
             ] = sunday_end.isoformat()
 
+        else:
+
+            forecast_v2 = {
+                "available":
+                    False,
+
+                "reason":
+                    "The race week has already ended."
+            }
+
     snapshot[
-        "forecasts"
-    ] = forecasts
+        "forecast_v2"
+    ] = forecast_v2
 
     # ========================================================
     # SAME RACE?
@@ -3836,7 +4985,7 @@ def main():
         )
 
     # ========================================================
-    # BRAKE BIAS - TOP 5 META CARS
+    # BRAKE BIAS TOP 5
     # ========================================================
 
     lines.append("")
@@ -3871,7 +5020,7 @@ def main():
         )
 
     # ========================================================
-    # STRATEGY
+    # STRATEGY FLAGS
     # ========================================================
 
     lines.append("")
@@ -3934,55 +5083,19 @@ def main():
         )
 
     # ========================================================
-    # FORECAST
+    # FORECAST V2 REPORT
     # ========================================================
 
     lines.append("")
-    lines.append(
-        "FORECAST TO SUNDAY"
+
+    lines.extend(
+        forecast_report_lines(
+            forecast_v2
+        )
     )
 
-    if forecasts:
-
-        forecast_labels = {
-            "world_record":
-                "World Record",
-
-            "top500":
-                "Top 500",
-
-            "top1000":
-                "Top 1000"
-        }
-
-        for metric in [
-            "world_record",
-            "top500",
-            "top1000"
-        ]:
-
-            forecast = forecasts.get(
-                metric
-            )
-
-            if forecast:
-
-                lines.append(
-                    f"{forecast_labels[metric]:<12}: "
-                    f"{score_to_laptime(forecast['predicted_score'])} "
-                    f"±{forecast['rmse_ms']/1000:.3f}s | "
-                    f"{forecast['confidence']} confidence | "
-                    f"{forecast['samples']} samples"
-                )
-
-    else:
-
-        lines.append(
-            "Not enough same-week history yet."
-        )
-
     # ========================================================
-    # LONG-TERM WEEKLY RATING HISTORY
+    # LONG-TERM RATING TREND
     # ========================================================
 
     lines.append("")
@@ -4229,21 +5342,27 @@ def main():
             assessment_score = 0
 
             if delta_composite > 0.05:
+
                 assessment_score += 2
 
             elif delta_composite < -0.05:
+
                 assessment_score -= 2
 
             if delta_top < -0.50:
+
                 assessment_score += 1
 
             elif delta_top > 0.50:
+
                 assessment_score -= 1
 
             if delta_wr < -0.05:
+
                 assessment_score += 1
 
             elif delta_wr > 0.05:
+
                 assessment_score -= 1
 
             if assessment_score >= 2:
@@ -4532,7 +5651,7 @@ def main():
         )
 
     # ========================================================
-    # WHAT CHANGED
+    # WHAT CHANGED SINCE PREVIOUS SNAPSHOT
     # ========================================================
 
     lines.append("")
@@ -4552,11 +5671,9 @@ def main():
             f"{signed_seconds(wr_score - old_wr) if old_wr else 'N/A'}"
         )
 
-        old_top500 = (
-            snapshot_metric_score(
-                previous,
-                "top500"
-            )
+        old_top500 = snapshot_metric_score(
+            previous,
+            "top500"
         )
 
         new_top500 = (
@@ -4648,7 +5765,7 @@ def main():
         )
 
     # ========================================================
-    # HEALTH
+    # DATA QUALITY
     # ========================================================
 
     lines.append("")
@@ -4754,7 +5871,7 @@ def main():
     )
 
     # ========================================================
-    # SMART EMAIL SUBJECT
+    # EMAIL SUBJECT
     # ========================================================
 
     if weekly_finalized_now:
