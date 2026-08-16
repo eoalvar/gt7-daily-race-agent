@@ -12,7 +12,7 @@ from typing import Any
 # CONFIGURATION
 # =============================================================================
 
-VERSION = "V5"
+VERSION = "V5.1"
 
 DATA_DIR = Path("data")
 
@@ -117,6 +117,27 @@ def format_seconds(seconds: int | float | None) -> str:
     return f"{minutes}:{secs:02d}"
 
 
+def is_nonempty(value: Any) -> bool:
+    """
+    Safe replacement for comparisons such as:
+
+        value not in {None, "", [], {}}
+
+    Lists and dictionaries are unhashable and cannot be placed inside a set.
+    """
+
+    if value is None:
+        return False
+
+    if isinstance(value, str):
+        return bool(value.strip())
+
+    if isinstance(value, (list, tuple, set, dict)):
+        return len(value) > 0
+
+    return True
+
+
 # =============================================================================
 # TEXT EXTRACTION
 # =============================================================================
@@ -147,7 +168,12 @@ def collect_strings(value: Any, key_hint: str = "") -> list[str]:
 
     if isinstance(value, list):
         for item in value:
-            strings.extend(collect_strings(item, key_hint))
+            strings.extend(
+                collect_strings(
+                    item,
+                    key_hint,
+                )
+            )
         return strings
 
     if isinstance(value, dict):
@@ -159,7 +185,12 @@ def collect_strings(value: Any, key_hint: str = "") -> list[str]:
 
             if key_lower in TEXT_KEYS:
                 priority_found = True
-                strings.extend(collect_strings(item, key_lower))
+                strings.extend(
+                    collect_strings(
+                        item,
+                        key_lower,
+                    )
+                )
 
         # If none of the known keys exists at this level, recurse normally.
         if not priority_found:
@@ -214,7 +245,10 @@ def extract_transcript_text(data: Any) -> str:
         return ""
 
     # Usually the longest field is the actual selected transcript.
-    unique.sort(key=len, reverse=True)
+    unique.sort(
+        key=len,
+        reverse=True,
+    )
 
     return unique[0]
 
@@ -231,7 +265,10 @@ def split_sentences(text: str) -> list[str]:
     if not text:
         return []
 
-    text = text.replace("\r", "\n")
+    text = text.replace(
+        "\r",
+        "\n",
+    )
 
     # Preserve timestamp starts as natural boundaries.
     text = re.sub(
@@ -268,13 +305,21 @@ def find_evidence(
     seen: set[str] = set()
 
     regexes = [
-        re.compile(pattern, re.I)
+        re.compile(
+            pattern,
+            re.I,
+        )
         for pattern in patterns
     ]
 
     for sentence in sentences:
-        if any(regex.search(sentence) for regex in regexes):
-            normalized = normalize_space(sentence)
+        if any(
+            regex.search(sentence)
+            for regex in regexes
+        ):
+            normalized = normalize_space(
+                sentence
+            )
 
             if normalized in seen:
                 continue
@@ -294,20 +339,36 @@ def find_last_evidence(
 ) -> str | None:
 
     regexes = [
-        re.compile(pattern, re.I)
+        re.compile(
+            pattern,
+            re.I,
+        )
         for pattern in patterns
     ]
 
     for sentence in reversed(sentences):
-        if any(regex.search(sentence) for regex in regexes):
-            return normalize_space(sentence)
+        if any(
+            regex.search(sentence)
+            for regex in regexes
+        ):
+            return normalize_space(
+                sentence
+            )
 
     return None
 
 
-def contains_any(text: str, patterns: list[str]) -> bool:
+def contains_any(
+    text: str,
+    patterns: list[str],
+) -> bool:
+
     return any(
-        re.search(pattern, text, re.I)
+        re.search(
+            pattern,
+            text,
+            re.I,
+        )
         for pattern in patterns
     )
 
@@ -320,44 +381,125 @@ def recursive_find_first(
     value: Any,
     candidate_keys: list[str],
 ) -> Any:
+    """
+    Recursively finds the first non-empty value associated with any candidate
+    key.
 
-    candidate_keys = [x.lower() for x in candidate_keys]
+    V5.1 fixes the previous unhashable-list bug.
+    """
+
+    candidate_keys_lower = {
+        str(key).lower()
+        for key in candidate_keys
+    }
 
     if isinstance(value, dict):
-        for key, item in value.items():
-            if str(key).lower() in candidate_keys:
-                if item not in {
-                    None,
-                    "",
-                    [],
-                    {},
-                }:
-                    return item
 
+        # First inspect keys at the current level.
+        for key, item in value.items():
+            key_lower = str(key).lower()
+
+            if (
+                key_lower in candidate_keys_lower
+                and is_nonempty(item)
+            ):
+                return item
+
+        # Then recurse through child values.
         for item in value.values():
             found = recursive_find_first(
                 item,
                 candidate_keys,
             )
 
-            if found is not None:
+            if is_nonempty(found):
                 return found
 
     elif isinstance(value, list):
+
         for item in value:
             found = recursive_find_first(
                 item,
                 candidate_keys,
             )
 
-            if found is not None:
+            if is_nonempty(found):
                 return found
 
     return None
 
 
-def extract_live_config(snapshot: Any) -> dict[str, Any]:
-    if not isinstance(snapshot, (dict, list)):
+def normalize_compounds(
+    compounds_raw: Any,
+) -> list[str]:
+
+    compounds: list[str] = []
+
+    if isinstance(compounds_raw, str):
+
+        for item in re.split(
+            r"[,;/|]+",
+            compounds_raw,
+        ):
+            item = item.strip()
+
+            if item:
+                compounds.append(item)
+
+    elif isinstance(compounds_raw, list):
+
+        for item in compounds_raw:
+
+            if isinstance(item, str):
+                item = item.strip()
+
+                if item:
+                    compounds.append(item)
+
+            elif isinstance(item, dict):
+
+                name = (
+                    item.get("name")
+                    or item.get("compound")
+                    or item.get("tyre")
+                    or item.get("tire")
+                )
+
+                if isinstance(name, str):
+                    name = name.strip()
+
+                    if name:
+                        compounds.append(name)
+
+    # Remove duplicates while preserving order.
+    result: list[str] = []
+    seen: set[str] = set()
+
+    for compound in compounds:
+        normalized = compound.strip()
+
+        if not normalized:
+            continue
+
+        if normalized.lower() in seen:
+            continue
+
+        seen.add(
+            normalized.lower()
+        )
+        result.append(normalized)
+
+    return result
+
+
+def extract_live_config(
+    snapshot: Any,
+) -> dict[str, Any]:
+
+    if not isinstance(
+        snapshot,
+        (dict, list),
+    ):
         return {
             "week": None,
             "track": None,
@@ -439,22 +581,9 @@ def extract_live_config(snapshot: Any) -> dict[str, Any]:
         ],
     )
 
-    compounds: list[str] = []
-
-    if isinstance(compounds_raw, str):
-        for item in re.split(
-            r"[,;/|]+",
-            compounds_raw,
-        ):
-            item = item.strip()
-
-            if item:
-                compounds.append(item)
-
-    elif isinstance(compounds_raw, list):
-        for item in compounds_raw:
-            if isinstance(item, str):
-                compounds.append(item)
+    compounds = normalize_compounds(
+        compounds_raw
+    )
 
     return {
         "week": week,
@@ -471,11 +600,22 @@ def extract_live_config(snapshot: Any) -> dict[str, Any]:
 # DIGIT RACING — STRATEGY ANALYSIS
 # =============================================================================
 
-def analyse_digit_strategy(text: str) -> dict[str, Any]:
-    sentences = split_sentences(text)
-    full = " ".join(sentences)
+def analyse_digit_strategy(
+    text: str,
+) -> dict[str, Any]:
 
-    evidence: dict[str, list[str]] = {}
+    sentences = split_sentences(
+        text
+    )
+
+    full = " ".join(
+        sentences
+    )
+
+    evidence: dict[
+        str,
+        list[str],
+    ] = {}
 
     evidence["pit_window"] = find_evidence(
         sentences,
@@ -576,10 +716,9 @@ def analyse_digit_strategy(text: str) -> dict[str, Any]:
     )
 
     # -------------------------------------------------------------------------
-    # Strategy conclusion
+    # Strategy conclusion:
     #
-    # Key project rule:
-    # later race-tested conclusions have greater value than the early prediction.
+    # later race-tested conclusions have greater value than initial prediction.
     # -------------------------------------------------------------------------
 
     latest_overcut_statement = find_last_evidence(
@@ -622,11 +761,15 @@ def analyse_digit_strategy(text: str) -> dict[str, Any]:
             "A tyre change is required during the race."
         )
 
-    if early_pit_supported and overcut_supported:
+    if (
+        early_pit_supported
+        and overcut_supported
+    ):
         strategy_summary.append(
             "Digit initially considered roughly lap 4-5 as the pit window, "
             "but his later race-tested conclusion favoured extending the stint."
         )
+
     elif early_pit_supported:
         strategy_summary.append(
             "Digit identified approximately lap 4-5 as a possible pit window."
@@ -649,10 +792,14 @@ def analyse_digit_strategy(text: str) -> dict[str, Any]:
             "for this race, including tyre performance."
         )
 
-    confidence = "HIGH" if (
-        overcut_supported
-        and mandatory_change_supported
-    ) else "MEDIUM"
+    confidence = (
+        "HIGH"
+        if (
+            overcut_supported
+            and mandatory_change_supported
+        )
+        else "MEDIUM"
+    )
 
     return {
         "source": "Digit Racing",
@@ -686,8 +833,13 @@ def analyse_digit_strategy(text: str) -> dict[str, Any]:
 # GNC RACING — LAP GUIDE ANALYSIS
 # =============================================================================
 
-def analyse_gnc_lap_guide(text: str) -> dict[str, Any]:
-    sentences = split_sentences(text)
+def analyse_gnc_lap_guide(
+    text: str,
+) -> dict[str, Any]:
+
+    sentences = split_sentences(
+        text
+    )
 
     braking = find_evidence(
         sentences,
@@ -750,7 +902,7 @@ def analyse_gnc_lap_guide(text: str) -> dict[str, Any]:
         12,
     )
 
-    markers = []
+    markers: list[str] = []
 
     marker_patterns = [
         r"\b(?:100|200|300|350|400)\s*(?:m|meter|metre|board)?\b",
@@ -765,27 +917,39 @@ def analyse_gnc_lap_guide(text: str) -> dict[str, Any]:
     ]
 
     for sentence in sentences:
-        if contains_any(sentence, marker_patterns):
-            markers.append(sentence)
+        if contains_any(
+            sentence,
+            marker_patterns,
+        ):
+            markers.append(
+                sentence
+            )
 
     # Deduplicate preserving order.
-    unique_markers = []
-    seen = set()
+    unique_markers: list[str] = []
+    seen: set[str] = set()
 
     for item in markers:
-        item_norm = normalize_space(item)
+        item_norm = normalize_space(
+            item
+        )
 
         if item_norm in seen:
             continue
 
         seen.add(item_norm)
-        unique_markers.append(item_norm)
+        unique_markers.append(
+            item_norm
+        )
 
     # Build compact sequence from transcript order.
-    sequential = []
+    sequential: list[
+        dict[str, Any]
+    ] = []
 
     for sentence in sentences:
-        categories = []
+
+        categories: list[str] = []
 
         lower = sentence.lower()
 
@@ -793,25 +957,33 @@ def analyse_gnc_lap_guide(text: str) -> dict[str, Any]:
             r"\bbrak|\bbreak\b",
             lower,
         ):
-            categories.append("BRAKING")
+            categories.append(
+                "BRAKING"
+            )
 
         if re.search(
             r"\bsecond gear\b|\bshift",
             lower,
         ):
-            categories.append("GEAR")
+            categories.append(
+                "GEAR"
+            )
 
         if re.search(
             r"\baccelerat|\bpower\b|\bfull throttle\b",
             lower,
         ):
-            categories.append("THROTTLE")
+            categories.append(
+                "THROTTLE"
+            )
 
         if re.search(
             r"\bcurb\b|\bkerb\b|\bwhite line\b|\bbollard",
             lower,
         ):
-            categories.append("TRACK_LIMIT")
+            categories.append(
+                "TRACK_LIMIT"
+            )
 
         if not categories:
             continue
@@ -848,7 +1020,10 @@ def analyse_gnc_lap_guide(text: str) -> dict[str, Any]:
 # LIVE LEADERBOARD META
 # =============================================================================
 
-def extract_car_entries(value: Any) -> list[tuple[str, int]]:
+def extract_car_entries(
+    value: Any,
+) -> list[tuple[str, int]]:
+
     """
     Tries to recover car-use statistics from changing snapshot schemas.
 
@@ -856,15 +1031,21 @@ def extract_car_entries(value: Any) -> list[tuple[str, int]]:
         [(car_name, count), ...]
     """
 
-    entries: list[tuple[str, int]] = []
+    entries: list[
+        tuple[str, int]
+    ] = []
 
     if isinstance(value, list):
+
         for item in value:
             entries.extend(
-                extract_car_entries(item)
+                extract_car_entries(
+                    item
+                )
             )
 
     elif isinstance(value, dict):
+
         name = None
         count = None
 
@@ -874,9 +1055,13 @@ def extract_car_entries(value: Any) -> list[tuple[str, int]]:
             "vehicle",
             "model",
         ]:
-            if key in value and isinstance(
-                value[key],
-                str,
+
+            if (
+                key in value
+                and isinstance(
+                    value[key],
+                    str,
+                )
             ):
                 name = value[key]
                 break
@@ -887,52 +1072,73 @@ def extract_car_entries(value: Any) -> list[tuple[str, int]]:
             "usage_count",
             "entries",
         ]:
+
             if key in value:
+
                 try:
-                    count = int(value[key])
+                    count = int(
+                        value[key]
+                    )
                 except Exception:
                     pass
 
                 if count is not None:
                     break
 
-        if name and count is not None:
+        if (
+            name
+            and count is not None
+        ):
             entries.append(
                 (
-                    normalize_space(name),
+                    normalize_space(
+                        name
+                    ),
                     count,
                 )
             )
 
         for item in value.values():
             entries.extend(
-                extract_car_entries(item)
+                extract_car_entries(
+                    item
+                )
             )
 
     return entries
 
 
-def build_live_meta(snapshot: Any) -> list[dict[str, Any]]:
-    entries = extract_car_entries(snapshot)
+def build_live_meta(
+    snapshot: Any,
+) -> list[dict[str, Any]]:
+
+    entries = extract_car_entries(
+        snapshot
+    )
 
     if not entries:
         return []
 
-    totals = Counter()
+    totals: Counter[str] = Counter()
 
     for car, count in entries:
         totals[car] += count
 
-    ranked = totals.most_common(10)
+    ranked = totals.most_common(
+        10
+    )
 
     overall = sum(
         count
         for _, count in ranked
     )
 
-    result = []
+    result: list[
+        dict[str, Any]
+    ] = []
 
     for car, count in ranked:
+
         pct = (
             count / overall * 100
             if overall
@@ -957,47 +1163,69 @@ def build_live_meta(snapshot: Any) -> list[dict[str, Any]]:
 # TEXT REPORT
 # =============================================================================
 
-def make_text_report(report: dict[str, Any]) -> str:
+def make_text_report(
+    report: dict[str, Any],
+) -> str:
+
     lines: list[str] = []
 
     width = 100
 
-    def heading(title: str) -> None:
+    def heading(
+        title: str,
+    ) -> None:
+
         lines.append("")
         lines.append(title)
-        lines.append("-" * width)
+        lines.append(
+            "-" * width
+        )
 
     race = report["race"]
     strategy = report["strategy"]
     lap = report["lap_guide"]
     meta = report["live_car_meta"]
 
-    lines.append("=" * width)
+    lines.append(
+        "=" * width
+    )
+
     lines.append(
         f"GT7 COMMUNITY INTELLIGENCE {VERSION}"
     )
-    lines.append("=" * width)
+
+    lines.append(
+        "=" * width
+    )
 
     lines.append(
         f"Race week        : {race.get('week') or 'unknown'}"
     )
+
     lines.append(
         f"Track            : {race.get('track') or 'unknown'}"
     )
+
     lines.append(
         f"Class            : {race.get('race_class') or 'unknown'}"
     )
+
     lines.append(
         f"Direction        : {race.get('direction') or 'unknown'}"
     )
+
     lines.append(
         f"Fuel             : {fmt_mult(race.get('fuel_multiplier'))}"
     )
+
     lines.append(
         f"Tyre wear        : {fmt_mult(race.get('tyre_multiplier'))}"
     )
 
-    compounds = race.get("compounds") or []
+    compounds = (
+        race.get("compounds")
+        or []
+    )
 
     lines.append(
         "Compounds        : "
@@ -1008,29 +1236,38 @@ def make_text_report(report: dict[str, Any]) -> str:
         )
     )
 
-    heading("SOURCE POLICY")
+    heading(
+        "SOURCE POLICY"
+    )
 
     lines.append(
         "Race strategy    : Digit Racing only"
     )
+
     lines.append(
         "Qualifying guide : GnC Racing only"
     )
+
     lines.append(
         "Race regulations : live GT7/GTSH snapshot"
     )
+
     lines.append(
         "Car meta         : live leaderboard"
     )
 
-    heading("RACE STRATEGY — DIGIT RACING")
+    heading(
+        "RACE STRATEGY — DIGIT RACING"
+    )
 
     lines.append(
         f"Confidence       : {strategy['confidence']}"
     )
 
     pit_logic = (
-        strategy.get("preferred_pit_logic")
+        strategy.get(
+            "preferred_pit_logic"
+        )
         or "No supported conclusion"
     )
 
@@ -1038,17 +1275,24 @@ def make_text_report(report: dict[str, Any]) -> str:
         f"Preferred logic  : {pit_logic}"
     )
 
-    if strategy.get("pit_window_initial"):
+    if strategy.get(
+        "pit_window_initial"
+    ):
+
         lines.append(
             "Initial estimate : "
-            + strategy["pit_window_initial"]
+            + strategy[
+                "pit_window_initial"
+            ]
         )
 
     lines.append(
         "Tyre saving      : "
         + (
             "IMPORTANT"
-            if strategy.get("tyre_saving")
+            if strategy.get(
+                "tyre_saving"
+            )
             else "not explicitly established"
         )
     )
@@ -1078,7 +1322,10 @@ def make_text_report(report: dict[str, Any]) -> str:
     lines.append("")
 
     for index, item in enumerate(
-        strategy.get("summary", []),
+        strategy.get(
+            "summary",
+            [],
+        ),
         start=1,
     ):
         lines.append(
@@ -1088,10 +1335,13 @@ def make_text_report(report: dict[str, Any]) -> str:
     if strategy.get(
         "latest_strategy_statement"
     ):
+
         lines.append("")
+
         lines.append(
             "Latest race-tested strategy evidence:"
         )
+
         lines.append(
             "  "
             + shorten(
@@ -1102,7 +1352,9 @@ def make_text_report(report: dict[str, Any]) -> str:
             )
         )
 
-    heading("STRATEGY EVIDENCE")
+    heading(
+        "STRATEGY EVIDENCE"
+    )
 
     evidence_order = [
         (
@@ -1132,19 +1384,26 @@ def make_text_report(report: dict[str, Any]) -> str:
     ]
 
     for title, key in evidence_order:
-        values = strategy.get(
-            "evidence",
-            {},
-        ).get(
-            key,
-            [],
+
+        values = (
+            strategy
+            .get(
+                "evidence",
+                {},
+            )
+            .get(
+                key,
+                [],
+            )
         )
 
         if not values:
             continue
 
         lines.append("")
-        lines.append(f"{title}:")
+        lines.append(
+            f"{title}:"
+        )
 
         for value in values[:4]:
             lines.append(
@@ -1155,7 +1414,9 @@ def make_text_report(report: dict[str, Any]) -> str:
                 )
             )
 
-    heading("QUALIFYING / FAST LAP — GNC RACING")
+    heading(
+        "QUALIFYING / FAST LAP — GNC RACING"
+    )
 
     lines.append(
         f"Confidence       : {lap['confidence']}"
@@ -1175,6 +1436,7 @@ def make_text_report(report: dict[str, Any]) -> str:
         guide,
         start=1,
     ):
+
         cats = "/".join(
             item["categories"]
         )
@@ -1182,12 +1444,16 @@ def make_text_report(report: dict[str, Any]) -> str:
         lines.append(
             f"{index:2d}. [{cats}] "
             + shorten(
-                item["instruction"],
+                item[
+                    "instruction"
+                ],
                 580,
             )
         )
 
-    heading("BRAKING REFERENCES — GNC")
+    heading(
+        "BRAKING REFERENCES — GNC"
+    )
 
     braking = lap.get(
         "braking_points",
@@ -1195,10 +1461,13 @@ def make_text_report(report: dict[str, Any]) -> str:
     )
 
     if not braking:
+
         lines.append(
             "No braking references extracted."
         )
+
     else:
+
         for item in braking[:12]:
             lines.append(
                 "- "
@@ -1208,7 +1477,9 @@ def make_text_report(report: dict[str, Any]) -> str:
                 )
             )
 
-    heading("GEARS / SHIFTING — GNC")
+    heading(
+        "GEARS / SHIFTING — GNC"
+    )
 
     gears = lap.get(
         "gears",
@@ -1216,10 +1487,13 @@ def make_text_report(report: dict[str, Any]) -> str:
     )
 
     if not gears:
+
         lines.append(
             "No gear references extracted."
         )
+
     else:
+
         for item in gears[:10]:
             lines.append(
                 "- "
@@ -1229,7 +1503,9 @@ def make_text_report(report: dict[str, Any]) -> str:
                 )
             )
 
-    heading("TRACK LIMITS / KERBS — GNC")
+    heading(
+        "TRACK LIMITS / KERBS — GNC"
+    )
 
     kerbs = lap.get(
         "kerbs_track_limits",
@@ -1237,10 +1513,13 @@ def make_text_report(report: dict[str, Any]) -> str:
     )
 
     if not kerbs:
+
         lines.append(
             "No kerb/track-limit guidance extracted."
         )
+
     else:
+
         for item in kerbs[:10]:
             lines.append(
                 "- "
@@ -1250,18 +1529,24 @@ def make_text_report(report: dict[str, Any]) -> str:
                 )
             )
 
-    heading("LIVE CAR META")
+    heading(
+        "LIVE CAR META"
+    )
 
     if not meta:
+
         lines.append(
             "Live leaderboard car distribution "
             "was not found in the snapshot."
         )
+
     else:
+
         for index, item in enumerate(
             meta[:10],
             start=1,
         ):
+
             lines.append(
                 f"{index:2d}. "
                 f"{item['car']} | "
@@ -1269,7 +1554,9 @@ def make_text_report(report: dict[str, Any]) -> str:
                 f"{item['percentage']:.1f}%"
             )
 
-    heading("PRACTICAL RACE PLAN")
+    heading(
+        "PRACTICAL RACE PLAN"
+    )
 
     practical = report.get(
         "practical_plan",
@@ -1280,35 +1567,47 @@ def make_text_report(report: dict[str, Any]) -> str:
         practical,
         start=1,
     ):
+
         lines.append(
             f"{index}. {item}"
         )
 
-    heading("ANALYSIS POLICY")
+    heading(
+        "ANALYSIS POLICY"
+    )
 
     lines.append(
         "1. Digit Racing is the sole community source for race strategy."
     )
+
     lines.append(
         "2. GnC Racing is the sole community source for qualifying/lap guidance."
     )
+
     lines.append(
         "3. Live GT7/GTSH data overrides any conflicting community statement."
     )
+
     lines.append(
         "4. Later race-tested Digit conclusions override earlier speculative strategy comments."
     )
+
     lines.append(
         "5. Live leaderboard usage is authoritative for current car meta."
     )
+
     lines.append(
         "6. Transcript evidence is never used to invent missing braking points, gears or strategy."
     )
 
     lines.append("")
-    lines.append("=" * width)
+    lines.append(
+        "=" * width
+    )
 
-    return "\n".join(lines)
+    return "\n".join(
+        lines
+    )
 
 
 # =============================================================================
@@ -1316,11 +1615,18 @@ def make_text_report(report: dict[str, Any]) -> str:
 # =============================================================================
 
 def main() -> None:
-    print("=" * 100)
+
+    print(
+        "=" * 100
+    )
+
     print(
         f"GT7 COMMUNITY ANALYZER {VERSION}"
     )
-    print("=" * 100)
+
+    print(
+        "=" * 100
+    )
 
     snapshot = load_json(
         LATEST_SNAPSHOT
@@ -1335,20 +1641,24 @@ def main() -> None:
     )
 
     print(
-        f"Digit transcript : {'FOUND' if digit_data else 'MISSING'}"
+        f"Digit transcript : "
+        f"{'FOUND' if digit_data else 'MISSING'}"
     )
 
     print(
-        f"GnC transcript   : {'FOUND' if gnc_data else 'MISSING'}"
+        f"GnC transcript   : "
+        f"{'FOUND' if gnc_data else 'MISSING'}"
     )
 
     if digit_data is None:
+
         raise SystemExit(
             f"ERROR: missing Digit transcript: "
             f"{DIGIT_TRANSCRIPT}"
         )
 
     if gnc_data is None:
+
         raise SystemExit(
             f"ERROR: missing GnC transcript: "
             f"{GNC_TRANSCRIPT}"
@@ -1363,28 +1673,94 @@ def main() -> None:
     )
 
     print(
-        f"Digit characters : {len(digit_text):,}"
+        f"Digit characters : "
+        f"{len(digit_text):,}"
     )
 
     print(
-        f"GnC characters   : {len(gnc_text):,}"
+        f"GnC characters   : "
+        f"{len(gnc_text):,}"
     )
 
     if not digit_text:
+
         raise SystemExit(
             "ERROR: Digit transcript JSON exists "
             "but no usable transcript text was found."
         )
 
     if not gnc_text:
+
         raise SystemExit(
             "ERROR: GnC transcript JSON exists "
             "but no usable transcript text was found."
         )
 
+    # -------------------------------------------------------------------------
+    # Live race configuration
+    # -------------------------------------------------------------------------
+
     race = extract_live_config(
         snapshot
     )
+
+    print()
+    print(
+        "LIVE CONFIGURATION"
+    )
+    print(
+        "-" * 100
+    )
+
+    print(
+        f"Week             : "
+        f"{race.get('week') or 'unknown'}"
+    )
+
+    print(
+        f"Track            : "
+        f"{race.get('track') or 'unknown'}"
+    )
+
+    print(
+        f"Class            : "
+        f"{race.get('race_class') or 'unknown'}"
+    )
+
+    print(
+        f"Direction        : "
+        f"{race.get('direction') or 'unknown'}"
+    )
+
+    print(
+        f"Fuel             : "
+        f"{fmt_mult(race.get('fuel_multiplier'))}"
+    )
+
+    print(
+        f"Tyre wear        : "
+        f"{fmt_mult(race.get('tyre_multiplier'))}"
+    )
+
+    print(
+        "Compounds        : "
+        + (
+            ", ".join(
+                race.get(
+                    "compounds",
+                    [],
+                )
+            )
+            if race.get(
+                "compounds"
+            )
+            else "unknown"
+        )
+    )
+
+    # -------------------------------------------------------------------------
+    # Community analysis
+    # -------------------------------------------------------------------------
 
     strategy = analyse_digit_strategy(
         digit_text
@@ -1407,6 +1783,7 @@ def main() -> None:
     if strategy.get(
         "mandatory_tyre_change"
     ):
+
         practical_plan.append(
             "Plan the race around the required tyre change."
         )
@@ -1414,6 +1791,7 @@ def main() -> None:
     if strategy.get(
         "tyre_saving"
     ):
+
         practical_plan.append(
             "Protect the tyres during the opening stint; "
             "unnecessary sliding and steering input can compromise the later laps."
@@ -1425,14 +1803,17 @@ def main() -> None:
         )
         == "OVERCUT / EXTEND FIRST STINT"
     ):
+
         practical_plan.append(
             "Do not treat laps 4-5 as a rigid pit window. "
             "Digit's later race-tested conclusion favours staying out longer "
             "and using the overcut rather than stopping early."
         )
+
     elif strategy.get(
         "pit_window_initial"
     ):
+
         practical_plan.append(
             "Use approximately laps 4-5 as the currently supported pit reference."
         )
@@ -1440,6 +1821,7 @@ def main() -> None:
     if strategy.get(
         "citroen_recommended"
     ):
+
         practical_plan.append(
             "The GT by Citroën Gr.4 is supported by Digit's race experience; "
             "compare that recommendation with the live leaderboard before choosing the car."
@@ -1503,22 +1885,33 @@ def main() -> None:
     )
 
     print()
-    print(text_report)
-
-    print()
     print(
-        f"JSON report      : {OUTPUT_JSON}"
-    )
-    print(
-        f"Text report      : {OUTPUT_TXT}"
+        text_report
     )
 
     print()
-    print("=" * 100)
+    print(
+        f"JSON report      : "
+        f"{OUTPUT_JSON}"
+    )
+
+    print(
+        f"Text report      : "
+        f"{OUTPUT_TXT}"
+    )
+
+    print()
+    print(
+        "=" * 100
+    )
+
     print(
         "COMMUNITY INTELLIGENCE COMPLETE"
     )
-    print("=" * 100)
+
+    print(
+        "=" * 100
+    )
 
 
 if __name__ == "__main__":
