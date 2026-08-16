@@ -2,7 +2,6 @@ import json
 import os
 import re
 import sys
-import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -13,10 +12,12 @@ import requests
 # CONFIGURATION
 # ==============================================================================
 
-VERSION = "V6.3"
+VERSION = "V6.4"
 
 DATA_DIR = Path("data")
+
 SOURCES_FILE = DATA_DIR / "community_sources.json"
+SNAPSHOT_FILE = DATA_DIR / "latest_snapshot.json"
 DATABASE_FILE = DATA_DIR / "community_transcripts.json"
 
 TRANSCRIPT_DIR = DATA_DIR / "community_transcripts"
@@ -34,65 +35,87 @@ YTTAI_BASE_URL = "https://youtube-transcript.ai/transcript"
 
 HTTP_TIMEOUT = 90
 
-STRATEGY_CHANNEL = "Digit Racing"
-LAP_GUIDE_CHANNEL = "GnC Racing"
 
-# We deliberately retain BOTH:
+# ==============================================================================
+# PRIMARY SOURCES
+# ==============================================================================
+
+STRATEGY_SOURCE = {
+    "channel": "Digit Racing",
+    "role": "STRATEGY",
+    "type": "RACE",
+    "title": "🔴 GT7 | Grand Valley - New Week Of Daily Racing! | Live 🔴",
+    "video_id": "O-AfZNXuGBg",
+    "url": "https://www.youtube.com/watch?v=O-AfZNXuGBg",
+}
+
+LAP_GUIDE_SOURCE = {
+    "channel": "GnC Racing",
+    "role": "LAP_GUIDE",
+    "type": "LAP_GUIDE",
+    "title": "Gran Turismo 7: Grand Valley Highway 1 | Lap Guide | Group 4 | Daily Race C",
+    "video_id": "qHfm2RjbRjI",
+    "url": "https://www.youtube.com/watch?v=qHfm2RjbRjI",
+}
+
+
+# ==============================================================================
+# DIGIT STRATEGY WINDOWS
+# ==============================================================================
+
+# Early part:
+# - tyre saving
+# - RM / RS
+# - pit around lap 4-5
+# - mandatory tyre change
 #
-# 1) the early race/strategy section, where Digit discusses:
-#    - tyre saving
-#    - medium / soft tyres
-#    - expected pit window
-#    - required tyre change
-#
-# 2) the later race-tested section, where Digit concludes:
-#    - overcut > undercut
-#    - staying out longer worked better
-#    - Citroën tyre behaviour
-#
-# These blocks are intentionally broad enough to survive small timestamp changes
-# in auto-generated YouTube transcripts.
+# Later part:
+# - actual race-tested conclusion
+# - overcut > undercut
+# - staying out longer
+# - Citroën tyre advantage
 
 DIGIT_FIXED_WINDOWS = [
     {
         "name": "EARLY_STRATEGY",
         "start": 18 * 60,
         "end": 33 * 60,
-        "priority": 90,
+        "priority": 100,
     },
     {
         "name": "LATE_OVERCUT_VALIDATION",
-        "start": 2 * 60 * 60 + 31 * 60,
-        "end": 2 * 60 * 60 + 47 * 60,
-        "priority": 100,
+        "start": 2 * 3600 + 31 * 60,
+        "end": 2 * 3600 + 47 * 60,
+        "priority": 110,
     },
 ]
 
-# Optional tertiary evidence. This is useful for compounds / tyre comments later
-# in the stream, but it has lower strategic weight.
 DIGIT_SECONDARY_WINDOWS = [
     {
         "name": "LATE_COMPOUND_CONTEXT",
-        "start": 3 * 60 * 60 + 53 * 60,
-        "end": 4 * 60 * 60 + 5 * 60,
+        "start": 3 * 3600 + 53 * 60,
+        "end": 4 * 3600 + 5 * 60,
         "priority": 50,
     }
 ]
+
+
+# ==============================================================================
+# TEXT / STRATEGY TERMS
+# ==============================================================================
 
 STRATEGY_TERMS = [
     "strategy",
     "pit",
     "pit stop",
     "pit window",
-    "stop",
     "stint",
     "overcut",
     "undercut",
     "stay out",
     "stayed out",
     "staying out",
-    "later",
-    "earlier",
+    "should have stayed out",
     "lap four",
     "lap five",
     "lap 4",
@@ -107,9 +130,8 @@ STRATEGY_TERMS = [
     "tyre saving",
     "saving tires",
     "saving tyres",
-    "save the tires",
-    "save the tyres",
-    "gentle",
+    "gentle with my tires",
+    "gentle with my tyres",
     "mandatory",
     "required",
     "change the tires",
@@ -125,27 +147,6 @@ STRATEGY_TERMS = [
     "citroën",
     "genesis",
     "meta",
-]
-
-RACE_C_TERMS = [
-    "race c",
-    "daily race c",
-    "grand valley",
-    "grand valley highway",
-    "group four",
-    "group 4",
-    "gr.4",
-    "gr4",
-]
-
-OTHER_RACE_TERMS = [
-    "race a",
-    "daily race a",
-    "race b",
-    "daily race b",
-    "fuji",
-    "route x",
-    "special stage route x",
 ]
 
 CURRENT_RACE_FINGERPRINT_TERMS = {
@@ -197,12 +198,6 @@ CURRENT_RACE_FINGERPRINT_TERMS = {
         "around lap four",
         "around lap five",
     ],
-    "LAP_4_5_WINDOW": [
-        "lap four",
-        "lap five",
-        "lap 4",
-        "lap 5",
-    ],
     "TYRE_SAVING": [
         "tire saving",
         "tyre saving",
@@ -227,11 +222,6 @@ CURRENT_RACE_FINGERPRINT_TERMS = {
     "UNDERCUT": [
         "undercut",
     ],
-    "OVERCUT_UNDERCUT_COMPARISON": [
-        "overcut is more",
-        "overcut is more powerful",
-        "overcut it is",
-    ],
     "STAY_OUT": [
         "stay out",
         "stayed out",
@@ -249,11 +239,6 @@ CURRENT_RACE_FINGERPRINT_TERMS = {
         "fuel times two",
         "fuel x2",
     ],
-    "LIVE_MULTIPLIER_PAIR": [
-        "tire wear times four",
-        "tyre wear times four",
-        "fuel is times two",
-    ],
 }
 
 
@@ -261,11 +246,11 @@ CURRENT_RACE_FINGERPRINT_TERMS = {
 # BASIC UTILITIES
 # ==============================================================================
 
-def print_rule(char: str = "=", width: int = 100) -> None:
+def print_rule(char="=", width=100):
     print(char * width)
 
 
-def load_json(path: Path, default: Any = None) -> Any:
+def load_json(path: Path, default=None):
     if not path.exists():
         return default
 
@@ -276,7 +261,7 @@ def load_json(path: Path, default: Any = None) -> Any:
         return default
 
 
-def save_json(path: Path, data: Any) -> None:
+def save_json(path: Path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
 
     with path.open("w", encoding="utf-8") as f:
@@ -289,7 +274,7 @@ def save_json(path: Path, data: Any) -> None:
 
 
 def slugify(value: str) -> str:
-    value = value.lower().strip()
+    value = (value or "").lower().strip()
     value = re.sub(r"[^a-z0-9]+", "_", value)
     value = re.sub(r"_+", "_", value)
     return value.strip("_")
@@ -306,44 +291,24 @@ def count_words(text: str) -> int:
     return len(re.findall(r"\b\S+\b", text or ""))
 
 
-def parse_youtube_id(url: str) -> Optional[str]:
-    if not url:
-        return None
-
-    patterns = [
-        r"[?&]v=([A-Za-z0-9_-]{11})",
-        r"youtu\.be/([A-Za-z0-9_-]{11})",
-        r"youtube\.com/shorts/([A-Za-z0-9_-]{11})",
-    ]
-
-    for pattern in patterns:
-        match = re.search(pattern, url)
-        if match:
-            return match.group(1)
-
-    return None
-
-
 def parse_timestamp(value: str) -> Optional[int]:
     if not value:
         return None
 
-    value = value.strip()
-
-    parts = value.split(":")
-
     try:
-        nums = [int(x) for x in parts]
+        parts = [int(x) for x in value.strip().split(":")]
     except ValueError:
         return None
 
-    if len(nums) == 2:
-        minutes, seconds = nums
-        return minutes * 60 + seconds
+    if len(parts) == 2:
+        return parts[0] * 60 + parts[1]
 
-    if len(nums) == 3:
-        hours, minutes, seconds = nums
-        return hours * 3600 + minutes * 60 + seconds
+    if len(parts) == 3:
+        return (
+            parts[0] * 3600
+            + parts[1] * 60
+            + parts[2]
+        )
 
     return None
 
@@ -351,188 +316,250 @@ def parse_timestamp(value: str) -> Optional[int]:
 def seconds_to_timestamp(seconds: int) -> str:
     seconds = max(0, int(seconds))
 
-    hours = seconds // 3600
-    minutes = (seconds % 3600) // 60
-    secs = seconds % 60
+    h = seconds // 3600
+    m = (seconds % 3600) // 60
+    s = seconds % 60
 
-    if hours:
-        return f"{hours}:{minutes:02d}:{secs:02d}"
+    if h:
+        return f"{h}:{m:02d}:{s:02d}"
 
-    return f"{minutes}:{secs:02d}"
+    return f"{m}:{s:02d}"
 
 
 # ==============================================================================
-# SOURCE SELECTION
+# RECURSIVE JSON SEARCH
 # ==============================================================================
 
-def flatten_source_candidates(data: Any) -> List[Dict[str, Any]]:
-    if isinstance(data, list):
-        return [
-            x for x in data
-            if isinstance(x, dict)
+def recursive_dicts(obj: Any):
+    """
+    Yield every dict contained anywhere in a JSON-compatible structure.
+    """
+
+    if isinstance(obj, dict):
+        yield obj
+
+        for value in obj.values():
+            yield from recursive_dicts(value)
+
+    elif isinstance(obj, list):
+        for item in obj:
+            yield from recursive_dicts(item)
+
+
+def find_video_record(
+    source_db: Any,
+    video_id: str,
+) -> Optional[Dict[str, Any]]:
+
+    for item in recursive_dicts(source_db):
+        values = [
+            str(item.get("video_id", "")),
+            str(item.get("id", "")),
+            str(item.get("url", "")),
+            str(item.get("video_url", "")),
+            str(item.get("youtube_url", "")),
         ]
 
-    if not isinstance(data, dict):
-        return []
+        if any(video_id in value for value in values):
+            return item
 
-    candidates = []
+    return None
 
-    for key in [
-        "sources",
-        "videos",
-        "accepted",
-        "community_sources",
-        "tracked",
-        "results",
+
+def enrich_primary_source(
+    fallback: Dict[str, Any],
+    source_db: Any,
+) -> Dict[str, Any]:
+
+    result = dict(fallback)
+
+    found = find_video_record(
+        source_db,
+        fallback["video_id"],
+    )
+
+    if not found:
+        return result
+
+    for source_key, target_key in [
+        ("channel", "channel"),
+        ("channel_name", "channel"),
+        ("title", "title"),
+        ("type", "type"),
+        ("video_type", "type"),
+        ("url", "url"),
+        ("video_url", "url"),
+        ("youtube_url", "url"),
     ]:
-        value = data.get(key)
+        value = found.get(source_key)
 
-        if isinstance(value, list):
-            candidates.extend(
-                x for x in value
-                if isinstance(x, dict)
+        if value:
+            result[target_key] = value
+
+    return result
+
+
+# ==============================================================================
+# RACE METADATA
+# ==============================================================================
+
+def infer_track_from_description(description: str) -> str:
+    if not description:
+        return "unknown"
+
+    if "Grand Valley - Highway 1" in description:
+        return "Grand Valley - Highway 1"
+
+    if "Grand Valley Highway 1" in description:
+        return "Grand Valley - Highway 1"
+
+    return "unknown"
+
+
+def infer_class_from_description(description: str) -> str:
+    if not description:
+        return "unknown"
+
+    lower = description.lower()
+
+    if "gr.4" in lower or "gr4" in lower:
+        return "Gr.4"
+
+    if "gr.3" in lower or "gr3" in lower:
+        return "Gr.3"
+
+    return "unknown"
+
+
+def extract_race_metadata(
+    source_db: Any,
+    snapshot: Any,
+) -> Dict[str, Any]:
+
+    result = {
+        "week": "unknown",
+        "track": "unknown",
+        "race_class": "unknown",
+    }
+
+    # --------------------------------------------------------------------------
+    # Preferred: latest_snapshot.json
+    # --------------------------------------------------------------------------
+
+    if isinstance(snapshot, dict):
+
+        race = snapshot.get("race", {})
+
+        if isinstance(race, dict):
+
+            start_date = race.get("start_date")
+
+            if start_date:
+                result["week"] = start_date
+
+            description = str(
+                race.get("description", "")
             )
 
-    # Some database versions store entries directly by video ID.
-    for key, value in data.items():
-        if isinstance(value, dict):
-            if any(
-                field in value
-                for field in [
-                    "url",
-                    "video_url",
-                    "youtube_url",
-                    "title",
-                    "channel",
-                ]
+            track = (
+                race.get("track")
+                or race.get("circuit")
+            )
+
+            if track:
+                result["track"] = str(track)
+            else:
+                result["track"] = infer_track_from_description(
+                    description
+                )
+
+            race_class = (
+                race.get("class")
+                or race.get("race_class")
+            )
+
+            if race_class:
+                result["race_class"] = str(
+                    race_class
+                )
+            else:
+                result["race_class"] = infer_class_from_description(
+                    description
+                )
+
+    # --------------------------------------------------------------------------
+    # Fallback: recursively inspect community_sources.json
+    # --------------------------------------------------------------------------
+
+    if source_db is not None:
+
+        for item in recursive_dicts(source_db):
+
+            if result["week"] == "unknown":
+
+                for key in [
+                    "start_date",
+                    "week",
+                    "race_week",
+                ]:
+                    if item.get(key):
+                        result["week"] = str(
+                            item[key]
+                        )
+                        break
+
+            if result["track"] == "unknown":
+
+                for key in [
+                    "track",
+                    "circuit",
+                ]:
+                    if item.get(key):
+                        result["track"] = str(
+                            item[key]
+                        )
+                        break
+
+            if result["race_class"] == "unknown":
+
+                for key in [
+                    "race_class",
+                    "class",
+                ]:
+                    if item.get(key):
+                        result["race_class"] = str(
+                            item[key]
+                        )
+                        break
+
+            description = str(
+                item.get("description", "")
+            )
+
+            if (
+                result["track"] == "unknown"
+                and description
             ):
-                candidates.append(value)
+                result["track"] = infer_track_from_description(
+                    description
+                )
 
-    # Deduplicate by URL / ID / title.
-    seen = set()
-    output = []
+            if (
+                result["race_class"] == "unknown"
+                and description
+            ):
+                result["race_class"] = infer_class_from_description(
+                    description
+                )
 
-    for item in candidates:
-        url = (
-            item.get("url")
-            or item.get("video_url")
-            or item.get("youtube_url")
-            or ""
-        )
-
-        video_id = (
-            item.get("video_id")
-            or parse_youtube_id(url)
-            or ""
-        )
-
-        title = item.get("title") or ""
-        channel = item.get("channel") or item.get("channel_name") or ""
-
-        key = (
-            video_id,
-            title.lower().strip(),
-            channel.lower().strip(),
-        )
-
-        if key in seen:
-            continue
-
-        seen.add(key)
-        output.append(item)
-
-    return output
-
-
-def source_channel(item: Dict[str, Any]) -> str:
-    return (
-        item.get("channel")
-        or item.get("channel_name")
-        or item.get("author")
-        or ""
-    )
-
-
-def source_type(item: Dict[str, Any]) -> str:
-    return (
-        item.get("type")
-        or item.get("video_type")
-        or item.get("category")
-        or "OTHER"
-    ).upper()
-
-
-def source_score(item: Dict[str, Any]) -> float:
-    value = (
-        item.get("score")
-        or item.get("priority")
-        or item.get("ranking_score")
-        or 0
-    )
-
-    try:
-        return float(value)
-    except Exception:
-        return 0.0
-
-
-def select_primary_sources(
-    source_db: Any,
-) -> List[Dict[str, Any]]:
-    candidates = flatten_source_candidates(source_db)
-
-    digit_candidates = []
-    gnc_candidates = []
-
-    for item in candidates:
-        channel = source_channel(item).lower()
-
-        if "digit racing" in channel:
-            digit_candidates.append(item)
-
-        if "gnc racing" in channel:
-            gnc_candidates.append(item)
-
-    # Strategy priority:
-    # RACE / LIVESTREAM / STRATEGY from Digit.
-    digit_candidates.sort(
-        key=lambda x: (
-            1 if source_type(x) in {"STRATEGY", "RACE", "LIVESTREAM"} else 0,
-            source_score(x),
-        ),
-        reverse=True,
-    )
-
-    # Lap guide priority:
-    # LAP_GUIDE from GnC.
-    gnc_candidates.sort(
-        key=lambda x: (
-            1 if source_type(x) == "LAP_GUIDE" else 0,
-            source_score(x),
-        ),
-        reverse=True,
-    )
-
-    selected = []
-
-    if digit_candidates:
-        item = dict(digit_candidates[0])
-        item["_role"] = "STRATEGY"
-        selected.append(item)
-
-    if gnc_candidates:
-        item = dict(gnc_candidates[0])
-        item["_role"] = "LAP_GUIDE"
-        selected.append(item)
-
-    return selected
+    return result
 
 
 # ==============================================================================
 # TRANSCRIPT PARSING
 # ==============================================================================
 
-TIMESTAMP_LINE_RE = re.compile(
+TIMESTAMP_RE = re.compile(
     r"^\[(?P<ts>\d{1,2}:\d{2}(?::\d{2})?)\]\s*(?P<text>.*)$"
 )
 
@@ -540,26 +567,33 @@ TIMESTAMP_LINE_RE = re.compile(
 def parse_timestamped_chunks(
     raw_text: str,
 ) -> List[Dict[str, Any]]:
+
     chunks = []
 
     for raw_line in raw_text.splitlines():
+
         line = raw_line.strip()
 
         if not line:
             continue
 
-        match = TIMESTAMP_LINE_RE.match(line)
+        match = TIMESTAMP_RE.match(line)
 
         if not match:
             continue
 
         timestamp = match.group("ts")
-        seconds = parse_timestamp(timestamp)
+
+        seconds = parse_timestamp(
+            timestamp
+        )
 
         if seconds is None:
             continue
 
-        text = normalize_text(match.group("text"))
+        text = normalize_text(
+            match.group("text")
+        )
 
         if not text:
             continue
@@ -575,50 +609,12 @@ def parse_timestamped_chunks(
     return chunks
 
 
-def remove_duplicate_repetitions(text: str) -> str:
-    """
-    youtube-transcript.ai occasionally duplicates phrases 2-3 times.
-    This is intentionally conservative: only exact adjacent sentence-like
-    repetition is reduced.
-    """
-
-    text = normalize_text(text)
-
-    # Collapse repeated consecutive words/short phrases.
-    text = re.sub(
-        r"\b(\w+(?:\s+\w+){0,5})\s+\1(?:\s+\1)+\b",
-        r"\1",
-        text,
-        flags=re.IGNORECASE,
-    )
-
-    return normalize_text(text)
-
-
-def build_text_from_chunks(
-    chunks: List[Dict[str, Any]],
-) -> str:
-    lines = []
-
-    for chunk in chunks:
-        text = remove_duplicate_repetitions(chunk["text"])
-
-        lines.append(
-            f"[{chunk['timestamp']}] {text}"
-        )
-
-    return "\n".join(lines)
-
-
-# ==============================================================================
-# DIGIT STRATEGY EXTRACTION
-# ==============================================================================
-
 def extract_chunks_between(
     chunks: List[Dict[str, Any]],
     start: int,
     end: int,
 ) -> List[Dict[str, Any]]:
+
     return [
         chunk
         for chunk in chunks
@@ -626,505 +622,255 @@ def extract_chunks_between(
     ]
 
 
-def find_terms(
-    text: str,
-    terms: List[str],
-) -> List[str]:
-    lower = text.lower()
+def build_text_from_chunks(
+    chunks: List[Dict[str, Any]],
+) -> str:
 
-    found = []
-
-    for term in terms:
-        if term.lower() in lower:
-            found.append(term)
-
-    return found
+    return "\n".join(
+        f"[{chunk['timestamp']}] {chunk['text']}"
+        for chunk in chunks
+    )
 
 
-def detect_fingerprint(
-    text: str,
-) -> List[str]:
+def detect_fingerprint(text: str) -> List[str]:
+
     lower = text.lower()
 
     found = []
 
     for label, patterns in CURRENT_RACE_FINGERPRINT_TERMS.items():
-        if any(pattern.lower() in lower for pattern in patterns):
+
+        if any(
+            pattern.lower() in lower
+            for pattern in patterns
+        ):
             found.append(label)
 
     return found
 
 
-def window_strategy_score(
-    text: str,
-) -> Tuple[int, Dict[str, Any]]:
+def find_strategy_terms(text: str) -> List[str]:
+
     lower = text.lower()
 
-    strategy_hits = find_terms(
-        lower,
-        STRATEGY_TERMS,
+    return sorted(
+        {
+            term
+            for term in STRATEGY_TERMS
+            if term.lower() in lower
+        }
     )
 
-    race_hits = find_terms(
-        lower,
-        RACE_C_TERMS,
-    )
 
-    other_race_hits = find_terms(
-        lower,
-        OTHER_RACE_TERMS,
-    )
-
-    fingerprint = detect_fingerprint(lower)
-
-    score = 0
-
-    score += len(strategy_hits) * 2
-    score += len(race_hits) * 7
-    score += len(fingerprint) * 8
-
-    # High-value fingerprints.
-    high_value = {
-        "OVERCUT",
-        "UNDERCUT",
-        "OVERCUT_UNDERCUT_COMPARISON",
-        "STAY_OUT",
-        "PIT_WINDOW_4_5",
-        "MANDATORY_TYRE_CHANGE",
-        "TYRE_SAVING",
-        "LIVE_MULTIPLIER_PAIR",
-    }
-
-    score += sum(
-        6
-        for item in fingerprint
-        if item in high_value
-    )
-
-    if other_race_hits:
-        score -= len(other_race_hits) * 8
-
-    if "race a" in lower:
-        score -= 15
-
-    if "race b" in lower:
-        score -= 15
-
-    return score, {
-        "strategy_terms": sorted(set(strategy_hits)),
-        "race_terms": sorted(set(race_hits)),
-        "other_race_terms": sorted(set(other_race_hits)),
-        "fingerprint": sorted(set(fingerprint)),
-    }
-
-
-def classify_identity(
-    metadata: Dict[str, Any],
-) -> str:
-    fingerprint = set(metadata["fingerprint"])
-    race_terms = set(metadata["race_terms"])
-
-    very_strong_groups = [
-        {
-            "PIT_WINDOW_4_5",
-            "MEDIUM_COMPOUND",
-            "SOFT_COMPOUND",
-        },
-        {
-            "OVERCUT",
-            "UNDERCUT",
-        },
-        {
-            "OVERCUT_UNDERCUT_COMPARISON",
-            "STAY_OUT",
-        },
-        {
-            "TYRE_WEAR_X4",
-            "FUEL_X2",
-        },
-        {
-            "MANDATORY_TYRE_CHANGE",
-            "TYRE_SAVING",
-        },
-    ]
-
-    if race_terms:
-        return "EXPLICIT_CURRENT_RACE"
-
-    for group in very_strong_groups:
-        if group.issubset(fingerprint):
-            return "VERY_STRONG_CURRENT_RACE_FINGERPRINT"
-
-    if len(fingerprint) >= 3:
-        return "VERY_STRONG_CURRENT_RACE_FINGERPRINT"
-
-    if len(fingerprint) >= 1:
-        return "CURRENT_RACE_FINGERPRINT"
-
-    return ""
-
-
-def build_rolling_windows(
-    chunks: List[Dict[str, Any]],
-    width_seconds: int = 300,
-    step_seconds: int = 60,
-) -> List[Dict[str, Any]]:
-    if not chunks:
-        return []
-
-    start = chunks[0]["seconds"]
-    end = chunks[-1]["seconds"]
-
-    windows = []
-
-    cursor = start
-
-    while cursor <= end:
-        window_end = cursor + width_seconds
-
-        selected = extract_chunks_between(
-            chunks,
-            cursor,
-            window_end,
-        )
-
-        if selected:
-            text = build_text_from_chunks(selected)
-
-            score, metadata = window_strategy_score(text)
-            identity = classify_identity(metadata)
-
-            valid = bool(identity)
-
-            windows.append(
-                {
-                    "start": cursor,
-                    "end": window_end,
-                    "score": score,
-                    "identity": identity,
-                    "valid": valid,
-                    "metadata": metadata,
-                    "chunks": selected,
-                    "text": text,
-                }
-            )
-
-        cursor += step_seconds
-
-    return windows
-
-
-def merge_overlapping_ranges(
-    ranges: List[Tuple[int, int, int, str]],
-    merge_gap: int = 120,
-) -> List[Dict[str, Any]]:
-    """
-    Each item:
-      (start, end, priority, name)
-    """
-
-    if not ranges:
-        return []
-
-    ranges = sorted(
-        ranges,
-        key=lambda x: (x[0], x[1]),
-    )
-
-    merged = []
-
-    current = {
-        "start": ranges[0][0],
-        "end": ranges[0][1],
-        "priority": ranges[0][2],
-        "names": [ranges[0][3]],
-    }
-
-    for start, end, priority, name in ranges[1:]:
-        if start <= current["end"] + merge_gap:
-            current["end"] = max(
-                current["end"],
-                end,
-            )
-
-            current["priority"] = max(
-                current["priority"],
-                priority,
-            )
-
-            if name not in current["names"]:
-                current["names"].append(name)
-
-        else:
-            merged.append(current)
-
-            current = {
-                "start": start,
-                "end": end,
-                "priority": priority,
-                "names": [name],
-            }
-
-    merged.append(current)
-
-    return merged
-
+# ==============================================================================
+# DIGIT STRATEGY EXTRACTION
+# ==============================================================================
 
 def extract_digit_strategy(
     raw_text: str,
 ) -> Dict[str, Any]:
-    chunks = parse_timestamped_chunks(raw_text)
 
-    rolling_windows = build_rolling_windows(chunks)
-
-    fixed_ranges: List[Tuple[int, int, int, str]] = []
-
-    # --------------------------------------------------------------------------
-    # CRITICAL CHANGE V6.3:
-    #
-    # Always preserve the two known strategy zones from this Digit stream.
-    #
-    # We do NOT rely solely on automated rolling-window scoring because the
-    # early section may not say "Race C" repeatedly even though it is clearly
-    # discussing the live Grand Valley Daily Race C.
-    # --------------------------------------------------------------------------
-
-    for fixed in DIGIT_FIXED_WINDOWS:
-        fixed_chunks = extract_chunks_between(
-            chunks,
-            fixed["start"],
-            fixed["end"],
-        )
-
-        if fixed_chunks:
-            fixed_ranges.append(
-                (
-                    fixed["start"],
-                    fixed["end"],
-                    fixed["priority"],
-                    fixed["name"],
-                )
-            )
-
-    # Secondary evidence is included only when it contains current-race
-    # fingerprint terms.
-    for fixed in DIGIT_SECONDARY_WINDOWS:
-        fixed_chunks = extract_chunks_between(
-            chunks,
-            fixed["start"],
-            fixed["end"],
-        )
-
-        if not fixed_chunks:
-            continue
-
-        text = build_text_from_chunks(fixed_chunks)
-
-        _, metadata = window_strategy_score(text)
-        identity = classify_identity(metadata)
-
-        if identity:
-            fixed_ranges.append(
-                (
-                    fixed["start"],
-                    fixed["end"],
-                    fixed["priority"],
-                    fixed["name"],
-                )
-            )
-
-    # Add strong dynamic windows outside the fixed zones.
-    dynamic_ranges = []
-
-    for window in rolling_windows:
-        if not window["valid"]:
-            continue
-
-        if window["score"] < 50:
-            continue
-
-        dynamic_ranges.append(
-            (
-                window["start"],
-                window["end"],
-                window["score"],
-                "ROLLING_WINDOW",
-            )
-        )
-
-    all_ranges = fixed_ranges + dynamic_ranges
-
-    merged_ranges = merge_overlapping_ranges(
-        all_ranges,
-        merge_gap=120,
-    )
-
-    # Keep the strongest meaningful segments but preserve chronological order.
-    #
-    # Because fixed early strategy and late validation ranges are assigned high
-    # priority, they will always survive.
-    merged_ranges.sort(
-        key=lambda x: (
-            -x["priority"],
-            x["start"],
-        )
-    )
-
-    selected_ranges = merged_ranges[:4]
-
-    selected_ranges.sort(
-        key=lambda x: x["start"]
+    chunks = parse_timestamped_chunks(
+        raw_text
     )
 
     selected_chunks = []
-
-    seen_chunk_keys = set()
-
+    seen = set()
     segments = []
 
-    for segment in selected_ranges:
+    # --------------------------------------------------------------------------
+    # Fixed strategic windows
+    # --------------------------------------------------------------------------
+
+    for fixed in DIGIT_FIXED_WINDOWS:
+
         segment_chunks = extract_chunks_between(
             chunks,
-            segment["start"],
-            segment["end"],
+            fixed["start"],
+            fixed["end"],
         )
 
         if not segment_chunks:
             continue
 
-        segment_text = build_text_from_chunks(segment_chunks)
+        segment_text = build_text_from_chunks(
+            segment_chunks
+        )
 
-        score, metadata = window_strategy_score(segment_text)
-        identity = classify_identity(metadata)
+        fingerprint = detect_fingerprint(
+            segment_text
+        )
+
+        terms = find_strategy_terms(
+            segment_text
+        )
 
         segments.append(
             {
-                "start_seconds": segment["start"],
-                "end_seconds": segment["end"],
-                "start": seconds_to_timestamp(segment["start"]),
-                "end": seconds_to_timestamp(segment["end"]),
-                "score": score,
-                "priority": segment["priority"],
-                "identity": identity,
-                "names": segment["names"],
-                "strategy_terms": metadata["strategy_terms"],
-                "race_terms": metadata["race_terms"],
-                "other_race_terms": metadata["other_race_terms"],
-                "fingerprint": metadata["fingerprint"],
+                "name": fixed["name"],
+                "start_seconds": fixed["start"],
+                "end_seconds": fixed["end"],
+                "start": seconds_to_timestamp(
+                    fixed["start"]
+                ),
+                "end": seconds_to_timestamp(
+                    fixed["end"]
+                ),
+                "priority": fixed["priority"],
+                "fingerprint": fingerprint,
+                "strategy_terms": terms,
             }
         )
 
         for chunk in segment_chunks:
+
             key = (
                 chunk["seconds"],
                 chunk["text"],
             )
 
-            if key in seen_chunk_keys:
+            if key in seen:
                 continue
 
-            seen_chunk_keys.add(key)
+            seen.add(key)
+            selected_chunks.append(chunk)
+
+    # --------------------------------------------------------------------------
+    # Secondary compound context
+    # --------------------------------------------------------------------------
+
+    for fixed in DIGIT_SECONDARY_WINDOWS:
+
+        segment_chunks = extract_chunks_between(
+            chunks,
+            fixed["start"],
+            fixed["end"],
+        )
+
+        if not segment_chunks:
+            continue
+
+        segment_text = build_text_from_chunks(
+            segment_chunks
+        )
+
+        fingerprint = detect_fingerprint(
+            segment_text
+        )
+
+        if not fingerprint:
+            continue
+
+        terms = find_strategy_terms(
+            segment_text
+        )
+
+        segments.append(
+            {
+                "name": fixed["name"],
+                "start_seconds": fixed["start"],
+                "end_seconds": fixed["end"],
+                "start": seconds_to_timestamp(
+                    fixed["start"]
+                ),
+                "end": seconds_to_timestamp(
+                    fixed["end"]
+                ),
+                "priority": fixed["priority"],
+                "fingerprint": fingerprint,
+                "strategy_terms": terms,
+            }
+        )
+
+        for chunk in segment_chunks:
+
+            key = (
+                chunk["seconds"],
+                chunk["text"],
+            )
+
+            if key in seen:
+                continue
+
+            seen.add(key)
             selected_chunks.append(chunk)
 
     selected_chunks.sort(
         key=lambda x: x["seconds"]
     )
 
-    final_text = build_text_from_chunks(
+    segments.sort(
+        key=lambda x: x["start_seconds"]
+    )
+
+    text = build_text_from_chunks(
         selected_chunks
     )
 
     status = (
         "AVAILABLE"
-        if final_text.strip()
+        if text.strip()
         else "NO_VALID_STRATEGY_SEGMENT"
     )
 
     return {
         "status": status,
-        "mode": "STRATEGY_FIXED_PLUS_ROLLING_V6_3",
+        "mode": "FIXED_STRATEGY_WINDOWS_V6_4",
         "raw_chunks": len(chunks),
-        "candidate_windows": len(rolling_windows),
-        "valid_windows": sum(
-            1 for x in rolling_windows
-            if x["valid"]
-        ),
         "selected_chunks": len(selected_chunks),
         "segments": segments,
-        "text": final_text,
-        "words": count_words(final_text),
-        "characters": len(final_text),
-        "rolling_windows": rolling_windows,
+        "text": text,
+        "words": count_words(text),
+        "characters": len(text),
     }
 
 
 # ==============================================================================
-# PROVIDERS / CACHE
+# CACHE
 # ==============================================================================
 
-def read_raw_cache(
-    video_id: str,
-    channel: str,
-) -> Tuple[Optional[str], Optional[Path]]:
-    slug = slugify(channel)
+def raw_cache_path(
+    source: Dict[str, Any],
+) -> Path:
 
-    candidates = [
-        RAW_TRANSCRIPT_DIR / f"{video_id}_{slug}.txt",
-        RAW_TRANSCRIPT_DIR / f"{video_id}.txt",
-    ]
-
-    for path in candidates:
-        if not path.exists():
-            continue
-
-        try:
-            return (
-                path.read_text(
-                    encoding="utf-8",
-                    errors="ignore",
-                ),
-                path,
-            )
-        except Exception:
-            pass
-
-    return None, None
+    return (
+        RAW_TRANSCRIPT_DIR
+        / (
+            f"{source['video_id']}_"
+            f"{slugify(source['channel'])}.txt"
+        )
+    )
 
 
-def find_existing_transcript_json(
-    video_id: str,
-    channel: str,
+def transcript_json_path(
+    source: Dict[str, Any],
+) -> Path:
+
+    return (
+        TRANSCRIPT_DIR
+        / (
+            f"{source['video_id']}_"
+            f"{slugify(source['channel'])}.json"
+        )
+    )
+
+
+def find_legacy_json(
+    source: Dict[str, Any],
 ) -> Optional[Path]:
-    slug = slugify(channel)
-
-    candidates = [
-        TRANSCRIPT_DIR / f"{video_id}_{slug}.json",
-        TRANSCRIPT_DIR / f"{video_id}.json",
-    ]
-
-    for path in candidates:
-        if path.exists():
-            return path
-
-    return None
-
-
-def find_legacy_transcript_json(
-    video_id: str,
-    channel: str,
-) -> Optional[Path]:
-    slug = slugify(channel)
 
     names = [
-        f"{video_id}_{slug}.json",
-        f"{video_id}.json",
+        (
+            f"{source['video_id']}_"
+            f"{slugify(source['channel'])}.json"
+        ),
+        f"{source['video_id']}.json",
     ]
 
     for folder in LEGACY_DIRS:
-        if not folder.exists():
-            continue
 
         for name in names:
+
             path = folder / name
 
             if path.exists():
@@ -1133,509 +879,244 @@ def find_legacy_transcript_json(
     return None
 
 
-def extract_text_from_json_payload(
-    payload: Any,
+def extract_text_from_payload(
+    obj: Any,
 ) -> Optional[str]:
-    if payload is None:
-        return None
 
-    if isinstance(payload, str):
-        return payload.strip() or None
+    if isinstance(obj, str):
+        return obj.strip() or None
 
-    if isinstance(payload, list):
+    if isinstance(obj, list):
+
         pieces = []
 
-        for item in payload:
-            if isinstance(item, str):
-                pieces.append(item)
+        for item in obj:
 
-            elif isinstance(item, dict):
-                for key in [
-                    "text",
-                    "content",
-                    "transcript",
-                ]:
-                    value = item.get(key)
+            found = extract_text_from_payload(
+                item
+            )
 
-                    if isinstance(value, str):
-                        pieces.append(value)
-                        break
+            if found:
+                pieces.append(found)
 
         text = "\n".join(pieces).strip()
 
         return text or None
 
-    if isinstance(payload, dict):
+    if isinstance(obj, dict):
+
         for key in [
-            "text",
             "transcript",
+            "text",
             "content",
         ]:
-            value = payload.get(key)
 
-            result = extract_text_from_json_payload(value)
+            if key in obj:
 
-            if result:
-                return result
+                found = extract_text_from_payload(
+                    obj[key]
+                )
 
-        for key in [
-            "data",
-            "result",
-            "segments",
-            "items",
-        ]:
-            value = payload.get(key)
+                if found:
+                    return found
 
-            result = extract_text_from_json_payload(value)
+        for value in obj.values():
 
-            if result:
-                return result
+            found = extract_text_from_payload(
+                value
+            )
+
+            if found:
+                return found
 
     return None
 
 
-def request_supadata(
-    youtube_url: str,
-) -> Dict[str, Any]:
-    if not SUPADATA_API_KEY:
-        return {
-            "status": "SUPADATA_NOT_CONFIGURED",
-            "text": None,
-            "http_status": None,
-        }
-
-    headers = {
-        "x-api-key": SUPADATA_API_KEY,
-    }
-
-    params = {
-        "url": youtube_url,
-        "text": "true",
-    }
-
-    try:
-        response = requests.get(
-            SUPADATA_URL,
-            headers=headers,
-            params=params,
-            timeout=HTTP_TIMEOUT,
-        )
-    except Exception as exc:
-        return {
-            "status": f"SUPADATA_EXCEPTION:{type(exc).__name__}",
-            "text": None,
-            "http_status": None,
-        }
-
-    status_code = response.status_code
-
-    try:
-        payload = response.json()
-    except Exception:
-        payload = response.text
-
-    if status_code == 429:
-        details = json.dumps(
-            payload,
-            ensure_ascii=False,
-        ).lower()
-
-        if "plan usage limit" in details:
-            status = "SUPADATA_PLAN_LIMIT"
-        else:
-            status = "SUPADATA_RATE_LIMIT"
-
-        return {
-            "status": status,
-            "text": None,
-            "http_status": status_code,
-            "payload": payload,
-        }
-
-    if status_code != 200:
-        return {
-            "status": f"SUPADATA_HTTP_{status_code}",
-            "text": None,
-            "http_status": status_code,
-            "payload": payload,
-        }
-
-    text = extract_text_from_json_payload(payload)
-
-    if not text:
-        return {
-            "status": "SUPADATA_EMPTY",
-            "text": None,
-            "http_status": status_code,
-            "payload": payload,
-        }
-
-    return {
-        "status": "SUPADATA_SUCCESS",
-        "text": text,
-        "http_status": status_code,
-        "payload": payload,
-    }
-
+# ==============================================================================
+# YOUTUBE-TRANSCRIPT.AI
+# ==============================================================================
 
 def request_yttai(
-    video_id: str,
-    youtube_url: str,
-) -> Dict[str, Any]:
+    source: Dict[str, Any],
+) -> Optional[str]:
+
     endpoint = (
         f"{YTTAI_BASE_URL}/"
-        f"{video_id}.txt?lang=en"
+        f"{source['video_id']}.txt?lang=en"
+    )
+
+    print(
+        "Provider         : youtube-transcript.ai"
     )
 
     try:
+
         response = requests.get(
             endpoint,
             timeout=HTTP_TIMEOUT,
         )
+
     except Exception as exc:
-        return {
-            "status": f"YTTAI_EXCEPTION:{type(exc).__name__}",
-            "text": None,
-            "http_status": None,
-            "endpoint": endpoint,
-        }
+
+        print(
+            f"Provider error   : "
+            f"{type(exc).__name__}"
+        )
+
+        return None
+
+    print(
+        f"HTTP status      : "
+        f"{response.status_code}"
+    )
 
     if response.status_code != 200:
-        return {
-            "status": f"YTTAI_HTTP_{response.status_code}",
-            "text": None,
-            "http_status": response.status_code,
-            "endpoint": endpoint,
-        }
+        return None
 
     text = response.text.strip()
 
     if not text:
-        return {
-            "status": "YTTAI_EMPTY",
-            "text": None,
-            "http_status": 200,
-            "endpoint": endpoint,
-        }
+        return None
 
-    return {
-        "status": "YTTAI_SUCCESS",
-        "text": text,
-        "http_status": 200,
-        "endpoint": endpoint,
-    }
+    return text
 
 
 # ==============================================================================
-# TRANSCRIPT STORAGE
+# SAVE TRANSCRIPT
 # ==============================================================================
 
-def save_transcript_entry(
+def save_transcript(
     source: Dict[str, Any],
-    role: str,
-    video_id: str,
     text: str,
     provider: str,
     extraction: Optional[Dict[str, Any]] = None,
 ) -> Path:
-    channel = source_channel(source)
-    slug = slugify(channel)
 
-    output_path = (
-        TRANSCRIPT_DIR
-        / f"{video_id}_{slug}.json"
+    path = transcript_json_path(
+        source
     )
 
     payload = {
-        "video_id": video_id,
-        "channel": channel,
-        "role": role,
-        "type": source_type(source),
-        "title": source.get("title") or "",
-        "url": (
-            source.get("url")
-            or source.get("video_url")
-            or source.get("youtube_url")
-            or ""
-        ),
-        "provider": provider,
+        "video_id": source["video_id"],
+        "channel": source["channel"],
+        "role": source["role"],
+        "type": source["type"],
+        "title": source["title"],
+        "url": source["url"],
         "status": "AVAILABLE",
+        "provider": provider,
         "words": count_words(text),
         "characters": len(text),
         "transcript": text,
     }
 
     if extraction:
+
         payload["extraction"] = {
             key: value
             for key, value in extraction.items()
-            if key != "rolling_windows"
-            and key != "text"
+            if key != "text"
         }
 
     save_json(
-        output_path,
+        path,
         payload,
-    )
-
-    return output_path
-
-
-def write_raw_cache(
-    video_id: str,
-    channel: str,
-    text: str,
-) -> Path:
-    RAW_TRANSCRIPT_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    path = (
-        RAW_TRANSCRIPT_DIR
-        / f"{video_id}_{slugify(channel)}.txt"
-    )
-
-    path.write_text(
-        text,
-        encoding="utf-8",
     )
 
     return path
 
 
 # ==============================================================================
-# DATABASE MANAGEMENT
+# DIGIT PROCESSOR
 # ==============================================================================
 
-def load_transcript_database() -> Dict[str, Any]:
-    data = load_json(
-        DATABASE_FILE,
-        default={},
-    )
-
-    if not isinstance(data, dict):
-        data = {}
-
-    if "videos" not in data:
-        data["videos"] = {}
-
-    return data
-
-
-def update_database(
-    database: Dict[str, Any],
-    video_id: str,
-    entry: Dict[str, Any],
-) -> None:
-    database.setdefault(
-        "videos",
-        {},
-    )
-
-    database["videos"][video_id] = entry
-
-
-# ==============================================================================
-# SOURCE PROCESSING
-# ==============================================================================
-
-def load_existing_entry(
-    path: Path,
-) -> Optional[Dict[str, Any]]:
-    data = load_json(
-        path,
-        default=None,
-    )
-
-    if not isinstance(data, dict):
-        return None
-
-    return data
-
-
-def process_digit_strategy(
+def process_digit(
     source: Dict[str, Any],
-    video_id: str,
-    youtube_url: str,
 ) -> Dict[str, Any]:
-    channel = source_channel(source)
 
-    print(f"Title            : {source.get('title', '')}")
-    print(f"Video ID         : {video_id}")
-    print(f"URL              : {youtube_url}")
+    print(
+        f"Title            : "
+        f"{source['title']}"
+    )
+    print(
+        f"Video ID         : "
+        f"{source['video_id']}"
+    )
+    print(
+        f"URL              : "
+        f"{source['url']}"
+    )
     print()
 
-    # --------------------------------------------------------------------------
-    # 1. Prefer raw transcript cache.
-    #    This is important because strategy extraction logic can evolve without
-    #    requiring another external API request.
-    # --------------------------------------------------------------------------
-
-    raw_text, raw_path = read_raw_cache(
-        video_id,
-        channel,
+    raw_path = raw_cache_path(
+        source
     )
 
-    if raw_text:
+    raw_text = None
+    provider = None
+
+    if raw_path.exists():
+
         print("Raw cache        : FOUND")
-        print(f"Raw file         : {raw_path}")
-
-        source_mode = "RAW_CACHE"
-        provider = "youtube-transcript.ai"
-
-    else:
-        print("Raw cache        : NOT FOUND")
-
-        source_mode = "DOWNLOADED"
-        provider = ""
-
-        # ----------------------------------------------------------------------
-        # 2. Supadata
-        # ----------------------------------------------------------------------
-
-        if SUPADATA_API_KEY:
-            print("Supadata         : REQUESTING")
-
-            supadata_result = request_supadata(
-                youtube_url
-            )
-
-            print(
-                f"Supadata status  : "
-                f"{supadata_result['status']}"
-            )
-
-            if supadata_result.get("text"):
-                raw_text = supadata_result["text"]
-                provider = "Supadata"
-
-        # ----------------------------------------------------------------------
-        # 3. youtube-transcript.ai fallback
-        # ----------------------------------------------------------------------
-
-        if not raw_text:
-            print(
-                "Provider         : "
-                "youtube-transcript.ai"
-            )
-
-            yttai_result = request_yttai(
-                video_id,
-                youtube_url,
-            )
-
-            print(
-                f"Provider status  : "
-                f"{yttai_result['status']}"
-            )
-
-            if yttai_result.get("text"):
-                raw_text = yttai_result["text"]
-                provider = "youtube-transcript.ai"
-
-        if not raw_text:
-            return {
-                "status": "UNAVAILABLE",
-                "provider": provider or None,
-                "text": "",
-                "words": 0,
-                "characters": 0,
-            }
-
-        raw_path = write_raw_cache(
-            video_id,
-            channel,
-            raw_text,
+        print(
+            f"Raw file         : "
+            f"{raw_path}"
         )
 
-        print(f"Raw file         : {raw_path}")
+        raw_text = raw_path.read_text(
+            encoding="utf-8",
+            errors="ignore",
+        )
+
+        provider = "RAW_CACHE"
+
+    else:
+
+        print("Raw cache        : NOT FOUND")
+
+        raw_text = request_yttai(
+            source
+        )
+
+        if raw_text:
+
+            provider = "youtube-transcript.ai"
+
+            raw_path.parent.mkdir(
+                parents=True,
+                exist_ok=True,
+            )
+
+            raw_path.write_text(
+                raw_text,
+                encoding="utf-8",
+            )
+
+            print(
+                f"Raw file         : "
+                f"{raw_path}"
+            )
+
+    if not raw_text:
+
+        print(
+            "Final status     : UNAVAILABLE"
+        )
+
+        return {
+            "status": "UNAVAILABLE",
+            "words": 0,
+            "characters": 0,
+        }
 
     extraction = extract_digit_strategy(
         raw_text
     )
 
-    rolling_windows = extraction.get(
-        "rolling_windows",
-        [],
-    )
-
-    print()
-    print("TOP DIGIT STRATEGY CANDIDATES")
-    print_rule("-")
-
-    top_candidates = sorted(
-        rolling_windows,
-        key=lambda x: x["score"],
-        reverse=True,
-    )[:20]
-
-    for idx, window in enumerate(
-        top_candidates,
-        start=1,
-    ):
-        status = (
-            "ACCEPT"
-            if window["valid"]
-            else "REJECT"
-        )
-
-        print(
-            f"{idx:2d}. "
-            f"{seconds_to_timestamp(window['start'])} "
-            f"-> "
-            f"{seconds_to_timestamp(window['end'])} "
-            f"| score {window['score']} "
-            f"| {status}"
-        )
-
-        print(
-            f"    Identity : "
-            f"{window['identity'] or '-'}"
-        )
-
-        race_terms = (
-            ", ".join(
-                window["metadata"]["race_terms"]
-            )
-            or "-"
-        )
-
-        strategy_terms = (
-            ", ".join(
-                window["metadata"]["strategy_terms"]
-            )
-            or "-"
-        )
-
-        fingerprint = (
-            ", ".join(
-                window["metadata"]["fingerprint"]
-            )
-            or "-"
-        )
-
-        print(f"    Race     : {race_terms}")
-        print(
-            f"    Strategy : "
-            f"{strategy_terms}"
-        )
-        print(
-            f"    Fingerprt: "
-            f"{fingerprint}"
-        )
-
-        if not window["valid"]:
-            print(
-                "    Reject   : "
-                "NO_CURRENT_RACE_IDENTITY_OR_FINGERPRINT"
-            )
-
     print()
     print("DIGIT STRATEGY EXTRACTION")
     print_rule("-")
 
-    print(f"Source mode      : {source_mode}")
     print(
         f"Extraction mode  : "
         f"{extraction['mode']}"
@@ -1643,14 +1124,6 @@ def process_digit_strategy(
     print(
         f"Raw chunks       : "
         f"{extraction['raw_chunks']}"
-    )
-    print(
-        f"Candidate windows: "
-        f"{extraction['candidate_windows']}"
-    )
-    print(
-        f"Valid windows    : "
-        f"{extraction['valid_windows']}"
     )
     print(
         f"Selected chunks  : "
@@ -1665,334 +1138,281 @@ def process_digit_strategy(
         extraction["segments"],
         start=1,
     ):
-        names = ", ".join(
-            segment.get("names", [])
-        )
 
         print(
             f"  Segment {index}: "
             f"{segment['start']} "
             f"-> "
             f"{segment['end']} "
-            f"| score {segment['score']}"
-        )
-
-        if names:
-            print(
-                f"    Source   : {names}"
-            )
-
-        print(
-            f"    Identity : "
-            f"{segment['identity'] or '-'}"
-        )
-
-        strategy_terms = (
-            ", ".join(
-                segment["strategy_terms"]
-            )
-            or "-"
-        )
-
-        fingerprint = (
-            ", ".join(
-                segment["fingerprint"]
-            )
-            or "-"
+            f"| {segment['name']}"
         )
 
         print(
-            f"    Strategy : "
-            f"{strategy_terms}"
+            "    Fingerprt: "
+            + (
+                ", ".join(
+                    segment["fingerprint"]
+                )
+                or "-"
+            )
         )
 
         print(
-            f"    Fingerprt: "
-            f"{fingerprint}"
+            "    Strategy : "
+            + (
+                ", ".join(
+                    segment["strategy_terms"]
+                )
+                or "-"
+            )
         )
 
     if extraction["status"] != "AVAILABLE":
-        print()
-        print(
-            "No valid Digit Racing strategy "
-            "segment found."
-        )
 
         print(
-            f"Final status     : "
+            "Final status     : "
             f"{extraction['status']}"
         )
 
         return {
             "status": extraction["status"],
-            "provider": provider,
-            "text": "",
             "words": 0,
             "characters": 0,
             "extraction": extraction,
         }
 
-    text = extraction["text"]
-
     print()
     print("STRATEGY TRANSCRIPT PREVIEW")
     print_rule("-")
 
-    preview = text[:10000]
+    preview = extraction["text"][:12000]
 
     print(preview)
 
-    if len(text) > len(preview):
-        print()
+    if len(extraction["text"]) > 12000:
         print(
-            "[... preview truncated ...]"
+            "\n[... preview truncated ...]"
         )
 
-    output_path = save_transcript_entry(
-        source=source,
-        role="STRATEGY",
-        video_id=video_id,
-        text=text,
-        provider=provider,
-        extraction=extraction,
+    saved = save_transcript(
+        source,
+        extraction["text"],
+        provider or "UNKNOWN",
+        extraction,
     )
 
     print()
     print("Final status     : AVAILABLE")
-    print(f"Provider         : {provider}")
+    print(
+        f"Provider         : "
+        f"{provider}"
+    )
     print(
         f"Words            : "
-        f"{count_words(text):,}"
+        f"{extraction['words']:,}"
     )
     print(
         f"Characters       : "
-        f"{len(text):,}"
+        f"{extraction['characters']:,}"
     )
     print(
         f"Saved file       : "
-        f"{output_path}"
+        f"{saved}"
     )
 
     return {
         "status": "AVAILABLE",
         "provider": provider,
-        "text": text,
-        "words": count_words(text),
-        "characters": len(text),
-        "saved_file": str(output_path),
+        "words": extraction["words"],
+        "characters": extraction["characters"],
+        "saved_file": str(saved),
         "extraction": extraction,
     }
 
 
-def process_lap_guide(
-    source: Dict[str, Any],
-    video_id: str,
-    youtube_url: str,
-) -> Dict[str, Any]:
-    channel = source_channel(source)
+# ==============================================================================
+# GNC PROCESSOR
+# ==============================================================================
 
-    print(f"Title            : {source.get('title', '')}")
-    print(f"Video ID         : {video_id}")
-    print(f"URL              : {youtube_url}")
+def process_gnc(
+    source: Dict[str, Any],
+) -> Dict[str, Any]:
+
+    print(
+        f"Title            : "
+        f"{source['title']}"
+    )
+    print(
+        f"Video ID         : "
+        f"{source['video_id']}"
+    )
+    print(
+        f"URL              : "
+        f"{source['url']}"
+    )
     print()
 
-    # --------------------------------------------------------------------------
-    # Existing current database transcript
-    # --------------------------------------------------------------------------
-
-    existing_path = find_existing_transcript_json(
-        video_id,
-        channel,
+    current_path = transcript_json_path(
+        source
     )
 
-    if existing_path:
-        existing = load_existing_entry(
-            existing_path
+    if current_path.exists():
+
+        current = load_json(
+            current_path,
+            {},
         )
 
-        if existing:
-            text = (
-                existing.get("transcript")
-                or existing.get("text")
-                or ""
+        text = (
+            current.get("transcript")
+            or current.get("text")
+            or ""
+        )
+
+        if text.strip():
+
+            print(
+                "Result           : "
+                "REUSED_DATABASE"
+            )
+            print(
+                "Final status     : AVAILABLE"
+            )
+            print(
+                "Provider         : LOCAL_DATABASE"
+            )
+            print(
+                f"Words            : "
+                f"{count_words(text):,}"
+            )
+            print(
+                f"Characters       : "
+                f"{len(text):,}"
+            )
+            print(
+                f"Saved file       : "
+                f"{current_path}"
             )
 
-            if text.strip():
-                print(
-                    "Result           : "
-                    "REUSED_DATABASE"
-                )
-                print(
-                    "Final status     : "
-                    "AVAILABLE"
-                )
-                print(
-                    "Provider         : "
-                    "LOCAL_DATABASE"
-                )
-                print(
-                    f"Words            : "
-                    f"{count_words(text):,}"
-                )
-                print(
-                    f"Characters       : "
-                    f"{len(text):,}"
-                )
-                print(
-                    f"Saved file       : "
-                    f"{existing_path}"
-                )
+            return {
+                "status": "AVAILABLE",
+                "provider": "LOCAL_DATABASE",
+                "words": count_words(text),
+                "characters": len(text),
+                "saved_file": str(current_path),
+            }
 
-                return {
-                    "status": "AVAILABLE",
-                    "provider": "LOCAL_DATABASE",
-                    "text": text,
-                    "words": count_words(text),
-                    "characters": len(text),
-                    "saved_file": str(existing_path),
-                }
-
-    # --------------------------------------------------------------------------
-    # Legacy transcript cache
-    # --------------------------------------------------------------------------
-
-    legacy_path = find_legacy_transcript_json(
-        video_id,
-        channel,
+    legacy_path = find_legacy_json(
+        source
     )
 
     if legacy_path:
-        legacy = load_existing_entry(
-            legacy_path
+
+        legacy = load_json(
+            legacy_path,
+            {},
         )
 
-        if legacy:
-            text = (
-                legacy.get("transcript")
-                or legacy.get("text")
-                or ""
+        text = extract_text_from_payload(
+            legacy
+        )
+
+        if text:
+
+            saved = save_transcript(
+                source,
+                text,
+                "LEGACY_CACHE",
             )
 
-            if not text:
-                text = extract_text_from_json_payload(
-                    legacy
-                ) or ""
+            print(
+                "Result           : "
+                "REUSED_LEGACY_CACHE"
+            )
+            print(
+                f"Legacy source    : "
+                f"{legacy_path}"
+            )
+            print(
+                "Final status     : AVAILABLE"
+            )
+            print(
+                "Provider         : LEGACY_CACHE"
+            )
+            print(
+                f"Words            : "
+                f"{count_words(text):,}"
+            )
+            print(
+                f"Characters       : "
+                f"{len(text):,}"
+            )
+            print(
+                f"Saved file       : "
+                f"{saved}"
+            )
 
-            if text.strip():
-                output_path = save_transcript_entry(
-                    source=source,
-                    role="LAP_GUIDE",
-                    video_id=video_id,
-                    text=text,
-                    provider="LEGACY_CACHE",
-                )
+            return {
+                "status": "AVAILABLE",
+                "provider": "LEGACY_CACHE",
+                "words": count_words(text),
+                "characters": len(text),
+                "saved_file": str(saved),
+            }
 
-                print(
-                    "Result           : "
-                    "REUSED_LEGACY_CACHE"
-                )
-                print(
-                    f"Legacy source    : "
-                    f"{legacy_path}"
-                )
-                print(
-                    "Final status     : "
-                    "AVAILABLE"
-                )
-                print(
-                    "Provider         : "
-                    "LEGACY_CACHE"
-                )
-                print(
-                    f"Words            : "
-                    f"{count_words(text):,}"
-                )
-                print(
-                    f"Characters       : "
-                    f"{len(text):,}"
-                )
-                print(
-                    f"Saved file       : "
-                    f"{output_path}"
-                )
-
-                return {
-                    "status": "AVAILABLE",
-                    "provider": "LEGACY_CACHE",
-                    "text": text,
-                    "words": count_words(text),
-                    "characters": len(text),
-                    "saved_file": str(output_path),
-                }
-
-    # --------------------------------------------------------------------------
-    # Download if not cached
-    # --------------------------------------------------------------------------
-
-    raw_text, raw_path = read_raw_cache(
-        video_id,
-        channel,
+    raw_path = raw_cache_path(
+        source
     )
 
-    provider = None
+    if raw_path.exists():
 
-    if raw_text:
+        text = raw_path.read_text(
+            encoding="utf-8",
+            errors="ignore",
+        )
+
         provider = "RAW_CACHE"
 
-    if not raw_text and SUPADATA_API_KEY:
-        supadata_result = request_supadata(
-            youtube_url
+    else:
+
+        text = request_yttai(
+            source
         )
 
-        if supadata_result.get("text"):
-            raw_text = supadata_result["text"]
-            provider = "Supadata"
+        provider = "youtube-transcript.ai"
 
-    if not raw_text:
-        yttai_result = request_yttai(
-            video_id,
-            youtube_url,
-        )
+        if text:
 
-        if yttai_result.get("text"):
-            raw_text = yttai_result["text"]
-            provider = "youtube-transcript.ai"
+            raw_path.parent.mkdir(
+                parents=True,
+                exist_ok=True,
+            )
 
-    if not raw_text:
+            raw_path.write_text(
+                text,
+                encoding="utf-8",
+            )
+
+    if not text:
+
         print(
-            "Final status     : "
-            "UNAVAILABLE"
+            "Final status     : UNAVAILABLE"
         )
 
         return {
             "status": "UNAVAILABLE",
-            "provider": provider,
-            "text": "",
             "words": 0,
             "characters": 0,
         }
 
-    if provider != "RAW_CACHE":
-        raw_path = write_raw_cache(
-            video_id,
-            channel,
-            raw_text,
-        )
-
-    # For the concise GnC guide we keep the complete transcript.
-    text = raw_text.strip()
-
-    output_path = save_transcript_entry(
-        source=source,
-        role="LAP_GUIDE",
-        video_id=video_id,
-        text=text,
-        provider=provider or "UNKNOWN",
+    saved = save_transcript(
+        source,
+        text,
+        provider,
     )
 
     print(
-        "Final status     : "
-        "AVAILABLE"
+        "Final status     : AVAILABLE"
     )
     print(
         f"Provider         : "
@@ -2008,86 +1428,16 @@ def process_lap_guide(
     )
     print(
         f"Saved file       : "
-        f"{output_path}"
+        f"{saved}"
     )
 
     return {
         "status": "AVAILABLE",
         "provider": provider,
-        "text": text,
         "words": count_words(text),
         "characters": len(text),
-        "saved_file": str(output_path),
+        "saved_file": str(saved),
     }
-
-
-# ==============================================================================
-# RACE METADATA
-# ==============================================================================
-
-def extract_race_metadata(
-    source_db: Any,
-) -> Dict[str, Any]:
-    defaults = {
-        "week": "unknown",
-        "track": "unknown",
-        "race_class": "unknown",
-    }
-
-    if not isinstance(source_db, dict):
-        return defaults
-
-    race = (
-        source_db.get("race")
-        or source_db.get("race_info")
-        or {}
-    )
-
-    if isinstance(race, dict):
-        defaults["week"] = (
-            race.get("start_date")
-            or race.get("week")
-            or defaults["week"]
-        )
-
-        defaults["track"] = (
-            race.get("track")
-            or race.get("circuit")
-            or defaults["track"]
-        )
-
-        defaults["race_class"] = (
-            race.get("class")
-            or race.get("race_class")
-            or defaults["race_class"]
-        )
-
-    for key in [
-        "week",
-        "race_week",
-        "start_date",
-    ]:
-        if source_db.get(key):
-            defaults["week"] = source_db[key]
-            break
-
-    for key in [
-        "track",
-        "circuit",
-    ]:
-        if source_db.get(key):
-            defaults["track"] = source_db[key]
-            break
-
-    for key in [
-        "class",
-        "race_class",
-    ]:
-        if source_db.get(key):
-            defaults["race_class"] = source_db[key]
-            break
-
-    return defaults
 
 
 # ==============================================================================
@@ -2095,6 +1445,7 @@ def extract_race_metadata(
 # ==============================================================================
 
 def main() -> int:
+
     TRANSCRIPT_DIR.mkdir(
         parents=True,
         exist_ok=True,
@@ -2107,30 +1458,40 @@ def main() -> int:
 
     source_db = load_json(
         SOURCES_FILE,
-        default={},
+        {},
     )
 
-    if source_db is None:
-        print(
-            f"ERROR: source database not found: "
-            f"{SOURCES_FILE}"
-        )
-        return 1
-
-    selected_sources = select_primary_sources(
-        source_db
+    snapshot = load_json(
+        SNAPSHOT_FILE,
+        {},
     )
+
+    strategy_source = enrich_primary_source(
+        STRATEGY_SOURCE,
+        source_db,
+    )
+
+    lap_source = enrich_primary_source(
+        LAP_GUIDE_SOURCE,
+        source_db,
+    )
+
+    selected_sources = [
+        strategy_source,
+        lap_source,
+    ]
 
     race_meta = extract_race_metadata(
-        source_db
+        source_db,
+        snapshot,
     )
 
-    print_rule("=")
+    print_rule()
     print(
         f"GT7 COMMUNITY TRANSCRIPT COLLECTOR "
         f"{VERSION}"
     )
-    print_rule("=")
+    print_rule()
 
     print(
         f"Week             : "
@@ -2149,161 +1510,93 @@ def main() -> int:
         f"{len(selected_sources)}"
     )
     print(
-        f"Strategy source  : "
-        f"{STRATEGY_CHANNEL}"
+        "Strategy source  : Digit Racing"
     )
     print(
-        f"Lap guide source : "
-        f"{LAP_GUIDE_CHANNEL}"
+        "Lap guide source : GnC Racing"
     )
-    print()
 
+    print()
     print("PRIMARY SOURCES")
     print_rule("-")
 
-    for idx, source in enumerate(
+    for i, source in enumerate(
         selected_sources,
         start=1,
     ):
-        channel = source_channel(source)
-        role = source.get("_role") or ""
-        stype = source_type(source)
-
-        url = (
-            source.get("url")
-            or source.get("video_url")
-            or source.get("youtube_url")
-            or ""
-        )
 
         print(
-            f"{idx}. "
-            f"{channel} "
-            f"| {role} "
-            f"| [{stype}]"
+            f"{i}. "
+            f"{source['channel']} "
+            f"| {source['role']} "
+            f"| [{source['type']}]"
         )
         print(
-            f"   {source.get('title', '')}"
+            f"   {source['title']}"
         )
-        print(f"   {url}")
-
-    database = load_transcript_database()
+        print(
+            f"   {source['url']}"
+        )
 
     results = {}
 
-    for idx, source in enumerate(
-        selected_sources,
-        start=1,
-    ):
-        role = source.get("_role") or ""
-        channel = source_channel(source)
+    print()
+    print_rule()
+    print(
+        "[1/2] Digit Racing - STRATEGY"
+    )
+    print_rule()
 
-        url = (
-            source.get("url")
-            or source.get("video_url")
-            or source.get("youtube_url")
-            or ""
-        )
+    results["STRATEGY"] = process_digit(
+        strategy_source
+    )
 
-        video_id = (
-            source.get("video_id")
-            or parse_youtube_id(url)
-        )
+    print()
+    print_rule()
+    print(
+        "[2/2] GnC Racing - LAP_GUIDE"
+    )
+    print_rule()
 
-        print()
-        print_rule("=")
-        print(
-            f"[{idx}/{len(selected_sources)}] "
-            f"{channel} - {role}"
-        )
-        print_rule("=")
+    results["LAP_GUIDE"] = process_gnc(
+        lap_source
+    )
 
-        if not video_id:
-            print(
-                "ERROR: unable to determine "
-                "YouTube video ID."
-            )
-
-            results[role] = {
-                "status": "INVALID_VIDEO_ID",
-                "channel": channel,
-            }
-
-            continue
-
-        if role == "STRATEGY":
-            result = process_digit_strategy(
-                source,
-                video_id,
-                url,
-            )
-
-        elif role == "LAP_GUIDE":
-            result = process_lap_guide(
-                source,
-                video_id,
-                url,
-            )
-
-        else:
-            result = {
-                "status": "IGNORED_ROLE",
-                "text": "",
-                "words": 0,
-                "characters": 0,
-            }
-
-        result["channel"] = channel
-        result["title"] = source.get(
-            "title",
-            "",
-        )
-        result["url"] = url
-        result["video_id"] = video_id
-
-        results[role] = result
-
-        update_database(
-            database,
-            video_id,
-            {
-                "video_id": video_id,
-                "channel": channel,
-                "role": role,
-                "title": source.get(
-                    "title",
-                    "",
-                ),
-                "url": url,
-                "status": result.get(
-                    "status"
-                ),
-                "provider": result.get(
-                    "provider"
-                ),
-                "words": result.get(
-                    "words",
-                    0,
-                ),
-                "characters": result.get(
-                    "characters",
-                    0,
-                ),
-                "saved_file": result.get(
-                    "saved_file"
-                ),
+    database = {
+        "version": VERSION,
+        "race": race_meta,
+        "primary_sources": {
+            "STRATEGY": {
+                **strategy_source,
+                "status": results[
+                    "STRATEGY"
+                ].get("status"),
+                "provider": results[
+                    "STRATEGY"
+                ].get("provider"),
+                "words": results[
+                    "STRATEGY"
+                ].get("words", 0),
+                "saved_file": results[
+                    "STRATEGY"
+                ].get("saved_file"),
             },
-        )
-
-    database["version"] = VERSION
-    database["primary_sources"] = {
-        role: {
-            key: value
-            for key, value in result.items()
-            if key != "text"
-            and key != "extraction"
-        }
-        for role, result in results.items()
+            "LAP_GUIDE": {
+                **lap_source,
+                "status": results[
+                    "LAP_GUIDE"
+                ].get("status"),
+                "provider": results[
+                    "LAP_GUIDE"
+                ].get("provider"),
+                "words": results[
+                    "LAP_GUIDE"
+                ].get("words", 0),
+                "saved_file": results[
+                    "LAP_GUIDE"
+                ].get("saved_file"),
+            },
+        },
     }
 
     save_json(
@@ -2312,123 +1605,98 @@ def main() -> int:
     )
 
     print()
-    print_rule("=")
+    print_rule()
     print("FINAL SUMMARY")
-    print_rule("=")
+    print_rule()
 
     print(
-        f"Primary sources    : "
-        f"{len(selected_sources)}"
+        "Primary sources    : 2"
     )
 
     print()
-    print("PRIMARY TRANSCRIPT STATUS")
+    print(
+        "PRIMARY TRANSCRIPT STATUS"
+    )
     print_rule("-")
 
-    strategy = results.get(
-        "STRATEGY",
-        {},
-    )
-
-    lap_guide = results.get(
-        "LAP_GUIDE",
-        {},
-    )
+    strategy = results["STRATEGY"]
+    lap = results["LAP_GUIDE"]
 
     print(
         f"STRATEGY  : "
-        f"{strategy.get('status', 'NOT SELECTED')}"
+        f"{strategy['status']}"
+    )
+    print(
+        "  Channel : Digit Racing"
+    )
+    print(
+        f"  Video   : "
+        f"{strategy_source['title']}"
     )
 
-    if strategy:
+    if strategy["status"] == "AVAILABLE":
+
         print(
-            f"  Channel : "
-            f"{strategy.get('channel', '-')}"
-        )
-        print(
-            f"  Video   : "
-            f"{strategy.get('title', '-')}"
+            f"  Words   : "
+            f"{strategy['words']:,}"
         )
 
-        if strategy.get("status") == "AVAILABLE":
+        extraction = strategy.get(
+            "extraction",
+            {},
+        )
+
+        print(
+            f"  Extract : "
+            f"{extraction.get('mode', '-')}"
+        )
+
+        print(
+            f"  Segments: "
+            f"{len(extraction.get('segments', []))}"
+        )
+
+        for segment in extraction.get(
+            "segments",
+            [],
+        ):
+
             print(
-                f"  Words   : "
-                f"{strategy.get('words', 0):,}"
+                f"    {segment['start']} "
+                f"-> "
+                f"{segment['end']} "
+                f"| {segment['name']}"
             )
-
-            extraction = strategy.get(
-                "extraction",
-                {},
-            )
-
-            if extraction:
-                print(
-                    f"  Extract : "
-                    f"{extraction.get('mode', '-')}"
-                )
-
-                print(
-                    f"  Segments: "
-                    f"{len(extraction.get('segments', []))}"
-                )
-
-                for segment in extraction.get(
-                    "segments",
-                    [],
-                ):
-                    names = ", ".join(
-                        segment.get(
-                            "names",
-                            [],
-                        )
-                    )
-
-                    print(
-                        f"    {segment.get('start')} "
-                        f"-> "
-                        f"{segment.get('end')}"
-                        + (
-                            f" | {names}"
-                            if names
-                            else ""
-                        )
-                    )
 
     print(
         f"LAP_GUIDE : "
-        f"{lap_guide.get('status', 'NOT SELECTED')}"
+        f"{lap['status']}"
+    )
+    print(
+        "  Channel : GnC Racing"
+    )
+    print(
+        f"  Video   : "
+        f"{lap_source['title']}"
     )
 
-    if lap_guide:
-        print(
-            f"  Channel : "
-            f"{lap_guide.get('channel', '-')}"
-        )
-        print(
-            f"  Video   : "
-            f"{lap_guide.get('title', '-')}"
-        )
+    if lap["status"] == "AVAILABLE":
 
-        if lap_guide.get(
-            "status"
-        ) == "AVAILABLE":
-            print(
-                f"  Words   : "
-                f"{lap_guide.get('words', 0):,}"
-            )
-            print(
-                f"  Provider: "
-                f"{lap_guide.get('provider', '-')}"
-            )
+        print(
+            f"  Words   : "
+            f"{lap['words']:,}"
+        )
+        print(
+            f"  Provider: "
+            f"{lap.get('provider', '-')}"
+        )
 
     strategy_ready = (
-        strategy.get("status")
-        == "AVAILABLE"
+        strategy["status"] == "AVAILABLE"
     )
 
     lap_ready = (
-        lap_guide.get("status")
-        == "AVAILABLE"
+        lap["status"] == "AVAILABLE"
     )
 
     print()
@@ -2438,18 +1706,31 @@ def main() -> int:
     print_rule("-")
 
     print(
-        f"Digit strategy    : "
-        f"{'READY' if strategy_ready else 'PENDING'}"
+        "Digit strategy    : "
+        + (
+            "READY"
+            if strategy_ready
+            else "PENDING"
+        )
     )
 
     print(
-        f"GnC lap guide     : "
-        f"{'READY' if lap_ready else 'PENDING'}"
+        "GnC lap guide     : "
+        + (
+            "READY"
+            if lap_ready
+            else "PENDING"
+        )
     )
 
     print(
-        f"Full report ready : "
-        f"{'YES' if strategy_ready and lap_ready else 'No'}"
+        "Full report ready : "
+        + (
+            "YES"
+            if strategy_ready
+            and lap_ready
+            else "No"
+        )
     )
 
     print()
@@ -2466,7 +1747,7 @@ def main() -> int:
         f"{RAW_TRANSCRIPT_DIR}"
     )
 
-    print_rule("=")
+    print_rule()
 
     return 0
 
