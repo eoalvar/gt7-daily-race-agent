@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "weeks": {
     "2026-08-10": {
       "track": "Grand Valley - Highway 1",
@@ -269,237 +269,19 @@
       "content_type": "RACE",
       "title": "🔴 GT7 | Grand Valley - New Week Of Daily Racing! | Live 🔴",
       "url": "https://www.youtube.com/watch?v=O-AfZNXuGBg",
-      "status": "AVAILABLE",
+      "status": "NO_VALID_STRATEGY_SEGMENT",
       "provider": "youtube-transcript.ai",
-      "api_status": "YTTAI_SUCCESS",
-      "delivery_mode": "IMMEDIATE",
-      "http_status": 200,
-      "job_id": null,
-      "cache_source": null,
-      "word_count": 805,
-      "character_count": 3992,
-      "transcript": "[2:51] Amen. Oh, hello hello everyone. Welcome uh welcome back to another live stream and welcome back to well more daily races. So uh we are back with more daily racing as you probably can see and it's a new week and it's I mean we even before this week we knew what uh what it's all all going to be about. So, we got special stage RTX, Fuji, and Grand Valley Highway 1. And um it seems like there is a 1,000% increase in reward for daily [music]\n[3:21] daily [music] daily [music] race B, which is also quite interesting. And also, we got this kind of a meme combo, which Yeah, it it it is kind of a meme combo. It isn't. Yeah, it is usually a meme combo. Uh special stage route X route X route X H. Um, but before we even get into it, before we get into daily race uh C, hello everyone and welcome to this new week. And I got to say hi to Boret Greg is here. Samo Bibbo, Sailor Kimon,\n[3:55] is here. Samo Bibbo, Sailor Kimon, Nightbot, Nightbot, Nightbot, you're just a bot, man. Petrol, hi there. Marian, Seba is here as well. And John, John is usually the first. So, hello. Hello to everyone in the [music] chat. And I think I'll have to Yeah, I think I'll have to like slightly adjust the angle of the pedal cam. I think it moved a little bit. Um, but Ven Hi there. So, what is the name of the theme song? What if I told you it's AI?\n[4:28] So, I don't really have like a theme song, but there was like a really really good way to avoid copyright strikes and uh a difficulty of finding music when you're doing anything online. So, I just went to Suno and played with it a little. So, yeah, that's that's simply what it is. Let me just uh get into this one, but let me fix the pedal cam. I think I don't know why it moved. Maybe it's not. Probably if you Okay, something like this is going to be okay. Yeah, if you probably watched my\n[4:59] okay. Yeah, if you probably watched my video, you already know how it all looks like. And um I said if it works, it works. Well, Well, man, that is actually crazy. That is pretty crazy when you think about it. But uh just avoiding copyright strikes is even crazier. Okay, I did do need to buy the soft tires. I don't Okay, so I would really like to begin this day with\n[5:29] would really like to begin this day with just the usual casual um yeah, just like a warm-up race where I'll start from the back. I might do a lap, I don't know. And uh some I wish this is my space. This we don't let anyone touch this. I know. It was uh it was probably me like shooting shooting the video and uh like moving [music] stuff around. So, it\n[5:59] like moving [music] stuff around. So, it is it is definitely my bet. What is going to be the meta? I mean, I'm using the Citroen and I can already tell you like the Citroen is going to be the meta of the week because how competitive it really is. It's a man cave. My favorite part of the day is not seeing Tokyo. Huh.\n[6:33] Just a second. Um, I'm actually contacting my mechanic. I'm actually contacting my mechanic. I need to put the new brakes on.\n[7:37] Oh, if she unplugged any. No, no, no. You know what is the worst thing of it? When Okay. when we are like I don't know why why it even happens but basically when AC is running when [music] like a lot of these appliances are working like drawing a lot of power and then I lose [music] power and I'm like why and that's like the worst [music] thing that I get disconnected lose a couple of thousand DR points and you know I can I can basically call it a day\n[8:08] know I can I can basically call it a day let's see on the softs I think this one is going to be quite uh But I'm not going to say quite an easy one. Let's see. I don't know if it's going to be that difficult to overtake here. Probably not. And yeah, by the way, I don't know if you see it. Uh I got I got new springs for the pedals. And you know how I've been like uh trying to twist my preload every once in a while because it was well, it was it was basically [music] too loose. It was",
-      "updated_at": "2026-08-16T22:49:53.250442+00:00",
+      "word_count": 0,
+      "character_count": 0,
+      "transcript": null,
+      "updated_at": "2026-08-16T22:56:28.103928+00:00",
       "strategy_extraction": {
-        "mode": "STRATEGY_ROLLING_WINDOWS_V5",
-        "segments": [
-          {
-            "start_seconds": 0,
-            "end_seconds": 510,
-            "start": "0:00",
-            "end": "8:30",
-            "score": -7,
-            "evidence": [
-              {
-                "race_hits": [
-                  "grand valley",
-                  "highway 1"
-                ],
-                "strategy_hits": [
-                  "tire",
-                  "tires",
-                  "soft",
-                  "lap",
-                  "pace",
-                  "meta",
-                  "citroen"
-                ],
-                "score": -7
-              }
-            ]
-          }
-        ],
+        "mode": "NO_VALID_STRATEGY_SEGMENT",
         "raw_chunks": 321,
-        "selected_chunks": 10,
         "candidate_windows": 267,
-        "valid_windows": 1,
-        "diagnostics": [
-          {
-            "start": "25:00",
-            "end": "30:00",
-            "score": 38,
-            "valid": false,
-            "race_hits": [],
-            "strategy_hits": [
-              "strategy",
-              "pit stop",
-              "pit",
-              "mandatory",
-              "tire",
-              "tires",
-              "medium",
-              "soft",
-              "lap",
-              "draft"
-            ]
-          },
-          {
-            "start": "21:00",
-            "end": "26:00",
-            "score": 37,
-            "valid": false,
-            "race_hits": [],
-            "strategy_hits": [
-              "strategy",
-              "pit stop",
-              "pit",
-              "mandatory",
-              "tire",
-              "tires",
-              "draft",
-              "penalty"
-            ]
-          },
-          {
-            "start": "2:36:00",
-            "end": "2:41:00",
-            "score": 37,
-            "valid": false,
-            "race_hits": [],
-            "strategy_hits": [
-              "pit",
-              "fuel",
-              "tire",
-              "tires",
-              "wear",
-              "lap",
-              "undercut",
-              "overcut",
-              "citroen"
-            ]
-          },
-          {
-            "start": "16:00",
-            "end": "21:00",
-            "score": 35,
-            "valid": false,
-            "race_hits": [],
-            "strategy_hits": [
-              "strategy",
-              "pit",
-              "tire",
-              "tires",
-              "medium",
-              "soft",
-              "lap",
-              "overtake",
-              "meta",
-              "genesis"
-            ]
-          },
-          {
-            "start": "17:00",
-            "end": "22:00",
-            "score": 35,
-            "valid": false,
-            "race_hits": [],
-            "strategy_hits": [
-              "strategy",
-              "pit",
-              "tire",
-              "tires",
-              "medium",
-              "soft",
-              "lap",
-              "overtake",
-              "meta",
-              "genesis"
-            ]
-          },
-          {
-            "start": "18:00",
-            "end": "23:00",
-            "score": 35,
-            "valid": false,
-            "race_hits": [],
-            "strategy_hits": [
-              "strategy",
-              "pit",
-              "tire",
-              "tires",
-              "medium",
-              "soft",
-              "lap",
-              "overtake",
-              "meta",
-              "genesis"
-            ]
-          },
-          {
-            "start": "19:00",
-            "end": "24:00",
-            "score": 33,
-            "valid": false,
-            "race_hits": [],
-            "strategy_hits": [
-              "strategy",
-              "pit",
-              "tire",
-              "tires",
-              "medium",
-              "soft",
-              "lap",
-              "overtake",
-              "penalty",
-              "genesis"
-            ]
-          },
-          {
-            "start": "15:00",
-            "end": "20:00",
-            "score": 32,
-            "valid": false,
-            "race_hits": [],
-            "strategy_hits": [
-              "pit",
-              "tire",
-              "tires",
-              "medium",
-              "soft",
-              "lap",
-              "track limits",
-              "meta",
-              "citroen",
-              "genesis"
-            ]
-          },
-          {
-            "start": "28:00",
-            "end": "33:00",
-            "score": 31,
-            "valid": false,
-            "race_hits": [],
-            "strategy_hits": [
-              "strategy",
-              "pit",
-              "tire",
-              "tires",
-              "wear",
-              "medium",
-              "soft",
-              "lap"
-            ]
-          },
-          {
-            "start": "29:00",
-            "end": "34:00",
-            "score": 31,
-            "valid": false,
-            "race_hits": [],
-            "strategy_hits": [
-              "strategy",
-              "pit",
-              "tire",
-              "tires",
-              "wear",
-              "medium",
-              "soft",
-              "lap"
-            ]
-          }
-        ]
-      },
-      "raw_transcript_file": "data/community_transcripts_raw/O-AfZNXuGBg_digit_racing.txt"
+        "valid_windows": 0,
+        "selected_chunks": 0
+      }
     },
     "qHfm2RjbRjI": {
       "week": "2026-08-10",
@@ -518,20 +300,28 @@
       "word_count": 1422,
       "character_count": 7274,
       "transcript": "Welcome back to the channel for another Gran Turismo 7 lap guide. This week's Daily Race C takes us all the way over to the US of A for a race at Grand Valley Highway 1. Join me as I take us through all the essential information you need to know along with some tips to help you start as high up the grid as possible. If you're planning on competing this week, stay tuned. You do not want to miss this. Let's dive straight in. Before we jump into the lap, let's go through some key pieces of race information. So for this week's race, we are in group four cars for a 10lap race around Grand Valley. Fuel rate is at times two and tire wear at a four times multiplier. Medium and soft tires are available this week, but there is a mandatory change of tire type required during the race. Today's lap we're going to be looking at is at the time of this recording the top time on the global leaderboard of a 1 minute 54.990 completed in the Nissan GTR GR4 on Racing Soft tires. Stick around after the lap guide for a real-time commentaryfree replay of the lap from both the bumper and bonnet cameras. And a shout out to TX3 Bonu 67 for the lap we're going to be looking through. Chapter markers are in the description for you to skip around to the parts that you're interested in. But for now, with all the formalities out of the way, let's get out on track. On the way down to turn one, we're looking for the 200 board. We're going to break just before we reach this. And we're going to start to turn in as we are around midway between the 200 and the 100 board. Shifting down to second gear. If we look to the left, we can see some white markers with Gran Turismo logos on them. We're going to start to accelerate just as we reach the one before last. Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill. Keeping to the left around the first corner here. Then, as we pass under this bridge, we want to bring the car back over to the right. And we're aiming to clip this bend as we go through, just enough so our right wheels make contact with the gray concrete strip by the tarmac. Then allow the car to drift over to the left side, turning in so we hug the next bend. And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines. As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear. And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex. Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right. We're going to make sure we're turning in for the next corner. As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take. Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner. Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available. We're going to be constantly turning right through this section. Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry. Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge. Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker. Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit. Going through the short tunnel and looking to the right for the 100 board. As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner. As we pass under the banner above the track, we'll get on the power, but another good acceleration marker. A little bit further around the corner, there are these posts on the left side. As they start to become visible, we can hit the throttle. Keep the car to the left side. And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up. And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge. And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel. Again, we want to take a tight line around this corner. And it's important to keep the car to the right side for the chicane that follows. When we have entered the darker part of the tunnel, we'll start to accelerate. Be careful not to allow the car to drift too far over to the left. And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left. As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards. Then, as soon as we are over the first curb, turn immediately back to the right for the second. Again, aiming to clip the curb and just brush in those bolards as we go through. Keeping our right foot pinned, using all the space on the left as we exit. Just being careful not to run over the white line with all four wheels. Approaching the tunnel, keep the car to the left side. And as we pass the 200 board, start to bring the car over to the right. We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight. Give ourselves a pat on the back for completing a lap of Grand Valley Highway 1 in 1 minute 54.990. I'm going to leave you in peace to enjoy the commentary replays of the lap from this insanely fast driver. We'll start with the bumper cam and end with the bonnet cam. Don't forget there are chapter markers in the description for you to skip around to the section that you're interested in. I'll see you back here after the replays. Heat. [music] Heat. Heat. Heat. Heat. Heat. Heat. Heat. And there we are. That is this week's lap guide for Daily Race C completed. Let me know in the comments if this has helped you out. And feel free to drop by during the week to let me know how you're getting on. Have fun and race well. It would be great if you could consider subscribing to the channel so you never miss another lap guide. Thanks for watching and I'll see you in the next one.",
-      "updated_at": "2026-08-16T16:21:46.887772+00:00"
+      "updated_at": "2026-08-16T16:21:46.887772+00:00",
+      "provider": "LOCAL_DATABASE"
     }
   },
-  "updated_at": "2026-08-16T22:49:53.251294+00:00",
+  "updated_at": "2026-08-16T22:56:28.104698+00:00",
   "current_week": "2026-08-10",
   "source_policy": {
     "strategy": "Digit Racing",
     "lap_guide": "GnC Racing",
-    "provider_order": [
-      "LOCAL_CACHE",
+    "digit_provider_order": [
       "RAW_CACHE",
+      "youtube-transcript.ai"
+    ],
+    "lap_guide_provider_order": [
+      "DATABASE_CACHE",
+      "LEGACY_CACHE",
       "Supadata",
       "youtube-transcript.ai"
     ],
-    "digit_extractor": "ROLLING_WINDOWS_V5"
+    "digit_extractor": "STRATEGY_ROLLING_WINDOWS_V6",
+    "minimum_digit_score": 15,
+    "minimum_strategy_hits": 3,
+    "weak_fallback": false
   }
 }
