@@ -1,4 +1,4 @@
-name: GT7 Community Transcripts
+name: Community Transcripts
 
 on:
   workflow_dispatch:
@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -30,54 +32,37 @@ jobs:
         run: |
           python community_transcripts.py
 
-      - name: Show transcript files
-        if: always()
+      - name: Show generated files
         run: |
           echo "=========================================="
-          echo "GT7 Community Transcript Files"
+          echo "Community transcript files"
           echo "=========================================="
 
-          if [ -f data/community_transcripts.json ]; then
-            echo "Database:"
-            echo "data/community_transcripts.json"
+          if [ -d data/community_transcripts ]; then
+            find data/community_transcripts -maxdepth 2 -type f -print
           fi
 
           echo ""
+          echo "=========================================="
+          echo "Raw transcript files"
+          echo "=========================================="
 
-          if [ -d data/community_transcripts ]; then
-            echo "Transcript files:"
-            find data/community_transcripts -maxdepth 4 -type f -print
-          else
-            echo "No transcript directory created."
+          if [ -d data/community_transcripts_raw ]; then
+            find data/community_transcripts_raw -maxdepth 2 -type f -print
           fi
 
-      - name: Commit transcript updates
+      - name: Commit transcript cache
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          if [ -f data/community_transcripts.json ]; then
-            git add data/community_transcripts.json
-          fi
-
-          if [ -d data/community_transcripts ]; then
-            git add data/community_transcripts/
-          fi
+          git add data/community_transcripts.json || true
+          git add data/community_transcripts || true
+          git add data/community_transcripts_raw || true
 
           if git diff --cached --quiet; then
             echo "No transcript changes to commit."
           else
-            git commit -m "Update GT7 community transcripts"
+            git commit -m "Update community transcript cache"
             git push
           fi
-
-      - name: Upload transcript artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: gt7-community-transcripts
-          path: |
-            data/community_transcripts.json
-            data/community_transcripts/
-          if-no-files-found: warn
-          retention-days: 7
