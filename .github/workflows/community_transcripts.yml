@@ -30,26 +30,23 @@ jobs:
         run: |
           python community_transcripts.py
 
-      - name: Show transcript database
+      - name: Show transcript files
         if: always()
         run: |
           echo "=========================================="
-          echo "Community transcript files"
+          echo "GT7 Community Transcript Files"
           echo "=========================================="
 
           if [ -f data/community_transcripts.json ]; then
-            echo ""
             echo "Database:"
             echo "data/community_transcripts.json"
-          else
-            echo "Transcript database not created."
           fi
 
           echo ""
 
           if [ -d data/community_transcripts ]; then
             echo "Transcript files:"
-            find data/community_transcripts -type f -maxdepth 4 -print
+            find data/community_transcripts -maxdepth 4 -type f -print
           else
             echo "No transcript directory created."
           fi
