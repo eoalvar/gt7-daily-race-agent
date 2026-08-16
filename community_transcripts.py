@@ -41,38 +41,41 @@ SAO_PAULO = ZoneInfo(
 
 # ============================================================
 # API CONTROL
+# ============================================================
+
+MAX_API_REQUESTS_PER_RUN = 2
+
+MIN_SECONDS_BETWEEN_REQUESTS = 10
+
+MAX_VIDEOS_TRACKED_PER_WEEK = 10
+
+
+# ============================================================
+# SOURCE TIERS
 #
-# Important for free / low-rate plans:
+# Tier 1:
+# Sources already proven to provide useful native transcripts.
 #
-# - Do not aggressively poll async jobs.
-# - Persist jobId for the next workflow execution.
-# - Cache completed transcripts permanently.
-# - Stop immediately if API returns HTTP 429.
+# Tier 2:
+# High-value sources, but native transcript availability has
+# not yet been proven.
+#
+# Tier 3:
+# Sources previously observed with no usable native transcript
+# or that are less suitable for automated textual analysis.
 # ============================================================
 
-MAX_API_REQUESTS_PER_RUN = 3
+SOURCE_TIERS = {
 
-MIN_SECONDS_BETWEEN_REQUESTS = 20
+    "Wombleleader Racing": 1,
+    "GnC Racing": 1,
+    "Digit Racing": 1,
 
-MAX_VIDEOS_TRACKED_PER_WEEK = 12
+    "ProdigyRacing": 2,
 
+    "MotoSeventeenX": 3
+}
 
-# ============================================================
-# PRIORITY CHANNELS
-# ============================================================
-
-PRIORITY_CHANNELS = [
-    "Wombleleader Racing",
-    "GnC Racing",
-    "MotoSeventeenX",
-    "ProdigyRacing",
-    "Digit Racing"
-]
-
-
-# ============================================================
-# PRIORITY VALUES
-# ============================================================
 
 CONTENT_PRIORITY = {
     "STRATEGY": 6,
@@ -82,6 +85,7 @@ CONTENT_PRIORITY = {
     "LIVESTREAM": 2,
     "OTHER": 1
 }
+
 
 TEMPORAL_PRIORITY = {
     "CONFIRMED": 5,
@@ -94,13 +98,9 @@ TEMPORAL_PRIORITY = {
 # JSON HELPERS
 # ============================================================
 
-def load_json(
-    path,
-    default
-):
+def load_json(path, default):
 
     if not path.exists():
-
         return default
 
     try:
@@ -116,10 +116,7 @@ def load_json(
         return default
 
 
-def save_json(
-    path,
-    data
-):
+def save_json(path, data):
 
     path.parent.mkdir(
         parents=True,
@@ -143,7 +140,6 @@ def save_json(
 def normalize_text(text):
 
     if not text:
-
         return ""
 
     text = text.lower()
@@ -169,12 +165,8 @@ def safe_filename(text):
         text
     )
 
-    text = text.strip(
-        "_"
-    )
-
     return (
-        text[:80]
+        text.strip("_")[:80]
         or "video"
     )
 
@@ -194,48 +186,46 @@ def now_iso():
 
 
 # ============================================================
-# DATABASE INITIALIZATION
+# DATABASE
 # ============================================================
 
 def load_transcript_database():
 
-    data = load_json(
+    database = load_json(
         TRANSCRIPT_DATABASE_FILE,
         {
-            "version": 1,
+            "version": 2,
             "weeks": {}
         }
     )
 
     if not isinstance(
-        data,
+        database,
         dict
     ):
 
-        data = {
-            "version": 1,
+        database = {
+            "version": 2,
             "weeks": {}
         }
 
-    data[
+    database[
         "version"
-    ] = 1
+    ] = 2
 
-    data.setdefault(
+    database.setdefault(
         "weeks",
         {}
     )
 
-    return data
+    return database
 
 
 # ============================================================
-# CURRENT COMMUNITY WEEK
+# CURRENT WEEK
 # ============================================================
 
-def get_latest_week(
-    source_database
-):
+def get_latest_week(source_database):
 
     weeks = source_database.get(
         "weeks",
@@ -245,8 +235,7 @@ def get_latest_week(
     if not weeks:
 
         raise RuntimeError(
-            "No weeks found in "
-            "data/community_sources.json."
+            "No community source weeks found."
         )
 
     week_key = sorted(
@@ -262,129 +251,105 @@ def get_latest_week(
 
 
 # ============================================================
-# CHANNEL PRIORITY
+# SOURCE TIER
 # ============================================================
 
-def priority_channel_index(
-    channel
-):
+def source_tier(channel):
 
-    channel_norm = normalize_text(
-        channel
-    )
-
-    for index, target in enumerate(
-        PRIORITY_CHANNELS
-    ):
-
-        target_norm = normalize_text(
-            target
-        )
-
-        if target_norm in channel_norm:
-
-            return index
-
-    return None
-
-
-def channel_is_priority(
-    channel
-):
-
-    return (
-        priority_channel_index(
+    normalized_channel = (
+        normalize_text(
             channel
         )
-        is not None
     )
 
+    for known_channel, tier in (
+        SOURCE_TIERS.items()
+    ):
 
-# ============================================================
-# VIDEO PRIORITY
-# ============================================================
-
-def video_priority_score(
-    video
-):
-
-    score = 0
-
-    channel_index = (
-        priority_channel_index(
-            video.get(
-                "channel",
-                ""
+        if (
+            normalize_text(
+                known_channel
             )
-        )
-    )
+            in normalized_channel
+        ):
 
-    if channel_index is not None:
+            return tier
 
-        # All preferred channels receive a large bonus.
-        # Earlier entries receive a very small additional bonus.
-        score += (
-            100
-            - channel_index
-        )
+    return 2
 
-    content_type = (
+
+# ============================================================
+# VIDEO SCORE
+# ============================================================
+
+def video_priority_score(video):
+
+    tier = source_tier(
         video.get(
-            "content_type",
-            "OTHER"
+            "channel",
+            ""
         )
     )
 
-    score += (
+    # Tier dominates all other criteria.
+    tier_score = {
+        1: 1000,
+        2: 500,
+        3: 0
+    }.get(
+        tier,
+        500
+    )
+
+    content_score = (
         CONTENT_PRIORITY.get(
-            content_type,
+            video.get(
+                "content_type",
+                "OTHER"
+            ),
             1
         )
-        * 15
+        * 20
     )
 
-    temporal = (
-        video.get(
-            "temporal_confidence",
-            "UNVERIFIED"
-        )
-    )
-
-    score += (
+    temporal_score = (
         TEMPORAL_PRIORITY.get(
-            temporal,
+            video.get(
+                "temporal_confidence",
+                "UNVERIFIED"
+            ),
             1
         )
         * 10
     )
 
-    source_priority = (
+    source_score = video.get(
+        "priority_score",
         video.get(
-            "priority_score",
-            video.get(
-                "search_relevance",
-                0
-            )
+            "search_relevance",
+            0
         )
     )
 
-    if isinstance(
-        source_priority,
+    if not isinstance(
+        source_score,
         (int, float)
     ):
+        source_score = 0
 
-        score += source_priority
-
-    return score
+    return (
+        tier_score
+        + content_score
+        + temporal_score
+        + source_score
+    )
 
 
 # ============================================================
-# SELECT VIDEOS TO TRACK
+# SELECT WEEK VIDEOS
 # ============================================================
 
-def select_week_videos(
-    week_data
-):
+def select_week_videos(week_data):
 
     videos = list(
         week_data
@@ -411,12 +376,17 @@ def select_week_videos(
     selected = []
 
     # --------------------------------------------------------
-    # First pass:
-    # guarantee one source from each preferred channel
-    # whenever available.
+    # Guarantee Tier-1 sources first.
     # --------------------------------------------------------
 
-    for target_channel in PRIORITY_CHANNELS:
+    tier1_channels = [
+        channel
+        for channel, tier
+        in SOURCE_TIERS.items()
+        if tier == 1
+    ]
+
+    for target_channel in tier1_channels:
 
         target = normalize_text(
             target_channel
@@ -435,7 +405,6 @@ def select_week_videos(
         ]
 
         if not matches:
-
             continue
 
         matches.sort(
@@ -443,9 +412,7 @@ def select_week_videos(
             reverse=True
         )
 
-        candidate = matches[
-            0
-        ]
+        candidate = matches[0]
 
         if not any(
             item.get(
@@ -462,19 +429,15 @@ def select_week_videos(
             )
 
     # --------------------------------------------------------
-    # Second pass:
-    # fill remaining positions with strongest sources.
+    # Fill remaining slots by priority score.
     # --------------------------------------------------------
 
     for video in videos:
 
         if (
-            len(
-                selected
-            )
+            len(selected)
             >= MAX_VIDEOS_TRACKED_PER_WEEK
         ):
-
             break
 
         if any(
@@ -486,7 +449,6 @@ def select_week_videos(
             )
             for item in selected
         ):
-
             continue
 
         selected.append(
@@ -499,12 +461,10 @@ def select_week_videos(
 
 
 # ============================================================
-# TRANSCRIPT CONTENT PARSER
+# TRANSCRIPT PARSER
 # ============================================================
 
-def extract_text_from_content(
-    content
-):
+def extract_text_from_content(content):
 
     if isinstance(
         content,
@@ -527,12 +487,10 @@ def extract_text_from_content(
                 str
             ):
 
-                value = item.strip()
-
-                if value:
+                if item.strip():
 
                     parts.append(
-                        value
+                        item.strip()
                     )
 
             elif isinstance(
@@ -540,20 +498,20 @@ def extract_text_from_content(
                 dict
             ):
 
-                value = item.get(
+                text = item.get(
                     "text"
                 )
 
                 if (
                     isinstance(
-                        value,
+                        text,
                         str
                     )
-                    and value.strip()
+                    and text.strip()
                 ):
 
                     parts.append(
-                        value.strip()
+                        text.strip()
                     )
 
         return " ".join(
@@ -563,113 +521,13 @@ def extract_text_from_content(
     return ""
 
 
-def extract_transcript_from_payload(
-    payload
-):
-
-    if not isinstance(
-        payload,
-        dict
-    ):
-
-        return {
-            "text":
-                "",
-
-            "language":
-                None
-        }
-
-    # --------------------------------------------------------
-    # Immediate response:
-    #
-    # {
-    #   "content": ...,
-    #   "lang": ...
-    # }
-    # --------------------------------------------------------
-
-    direct_text = (
-        extract_text_from_content(
-            payload.get(
-                "content"
-            )
-        )
-    )
-
-    if direct_text:
-
-        return {
-            "text":
-                direct_text,
-
-            "language":
-                payload.get(
-                    "lang"
-                )
-        }
-
-    # --------------------------------------------------------
-    # Async completed response:
-    #
-    # {
-    #   "status": "completed",
-    #   "result": {
-    #       "content": ...,
-    #       "lang": ...
-    #   }
-    # }
-    # --------------------------------------------------------
-
-    result = payload.get(
-        "result"
-    )
-
-    if isinstance(
-        result,
-        dict
-    ):
-
-        result_text = (
-            extract_text_from_content(
-                result.get(
-                    "content"
-                )
-            )
-        )
-
-        if result_text:
-
-            return {
-                "text":
-                    result_text,
-
-                "language":
-                    result.get(
-                        "lang"
-                    )
-            }
-
-    return {
-        "text":
-            "",
-
-        "language":
-            payload.get(
-                "lang"
-            )
-    }
-
-
 # ============================================================
-# RATE LIMIT CONTROLLER
+# REQUEST CONTROLLER
 # ============================================================
 
-class ApiRequestController:
+class ApiController:
 
-    def __init__(
-        self
-    ):
+    def __init__(self):
 
         self.requests_used = 0
 
@@ -678,9 +536,7 @@ class ApiRequestController:
         self.rate_limited = False
 
 
-    def can_request(
-        self
-    ):
+    def can_request(self):
 
         return (
             not self.rate_limited
@@ -689,15 +545,9 @@ class ApiRequestController:
         )
 
 
-    def wait_if_needed(
-        self
-    ):
+    def wait_if_needed(self):
 
-        if (
-            self.last_request_time
-            is None
-        ):
-
+        if self.last_request_time is None:
             return
 
         elapsed = (
@@ -714,8 +564,7 @@ class ApiRequestController:
 
             print(
                 f"API pacing       : "
-                f"waiting "
-                f"{remaining:.1f}s"
+                f"waiting {remaining:.1f}s"
             )
 
             time.sleep(
@@ -723,9 +572,7 @@ class ApiRequestController:
             )
 
 
-    def register_request(
-        self
-    ):
+    def register_request(self):
 
         self.requests_used += 1
 
@@ -734,22 +581,19 @@ class ApiRequestController:
         )
 
 
-    def register_rate_limit(
-        self
-    ):
+    def set_rate_limited(self):
 
         self.rate_limited = True
 
 
 # ============================================================
-# SUPADATA HTTP
+# SUPADATA REQUEST
 # ============================================================
 
-def supadata_get(
+def request_native_transcript(
     controller,
-    url,
     api_key,
-    params=None
+    video
 ):
 
     if not controller.can_request():
@@ -757,6 +601,12 @@ def supadata_get(
         return {
             "status":
                 "REQUEST_BUDGET_EXHAUSTED",
+
+            "text":
+                "",
+
+            "language":
+                None,
 
             "http_status":
                 None,
@@ -767,34 +617,42 @@ def supadata_get(
 
     controller.wait_if_needed()
 
+    video_url = (
+        video.get(
+            "url"
+        )
+        or (
+            "https://www.youtube.com/watch?v="
+            f"{video['video_id']}"
+        )
+    )
+
     headers = {
         "x-api-key":
             api_key
     }
 
+    params = {
+        "url":
+            video_url,
+
+        "text":
+            "true",
+
+        # Native only.
+        # Never trigger AI transcription in this collector.
+        "mode":
+            "native"
+    }
+
     try:
 
         response = requests.get(
-            url,
+            SUPADATA_ENDPOINT,
             headers=headers,
             params=params,
-            timeout=120
+            timeout=90
         )
-
-    except requests.Timeout:
-
-        controller.register_request()
-
-        return {
-            "status":
-                "TIMEOUT",
-
-            "http_status":
-                None,
-
-            "payload":
-                None
-        }
 
     except Exception as exc:
 
@@ -804,14 +662,18 @@ def supadata_get(
             "status":
                 "REQUEST_ERROR",
 
+            "text":
+                "",
+
+            "language":
+                None,
+
             "http_status":
                 None,
 
             "payload": {
                 "error":
-                    str(
-                        exc
-                    )
+                    str(exc)
             }
         }
 
@@ -830,11 +692,17 @@ def supadata_get(
 
     if response.status_code == 429:
 
-        controller.register_rate_limit()
+        controller.set_rate_limited()
 
         return {
             "status":
                 "RATE_LIMIT",
+
+            "text":
+                "",
+
+            "language":
+                None,
 
             "http_status":
                 429,
@@ -843,63 +711,49 @@ def supadata_get(
                 payload
         }
 
-    if response.status_code == 401:
+    if response.status_code != 200:
 
         return {
             "status":
-                "AUTH_ERROR",
+                f"HTTP_{response.status_code}",
+
+            "text":
+                "",
+
+            "language":
+                None,
 
             "http_status":
-                401,
+                response.status_code,
 
             "payload":
                 payload
         }
 
-    if response.status_code == 402:
+    text = extract_text_from_content(
+        payload.get(
+            "content"
+        )
+        if isinstance(
+            payload,
+            dict
+        )
+        else None
+    )
+
+    if text:
 
         return {
             "status":
-                "PLAN_OR_CREDIT_LIMIT",
+                "AVAILABLE",
 
-            "http_status":
-                402,
+            "text":
+                text,
 
-            "payload":
-                payload
-        }
-
-    if response.status_code == 403:
-
-        return {
-            "status":
-                "FORBIDDEN",
-
-            "http_status":
-                403,
-
-            "payload":
-                payload
-        }
-
-    if response.status_code == 404:
-
-        return {
-            "status":
-                "NOT_FOUND",
-
-            "http_status":
-                404,
-
-            "payload":
-                payload
-        }
-
-    if response.status_code >= 500:
-
-        return {
-            "status":
-                "SERVER_ERROR",
+            "language":
+                payload.get(
+                    "lang"
+                ),
 
             "http_status":
                 response.status_code,
@@ -910,154 +764,7 @@ def supadata_get(
 
     return {
         "status":
-            "OK",
-
-        "http_status":
-            response.status_code,
-
-        "payload":
-            payload
-    }
-
-
-# ============================================================
-# START TRANSCRIPT REQUEST
-# ============================================================
-
-def start_transcript_request(
-    controller,
-    api_key,
-    video
-):
-
-    video_id = video.get(
-        "video_id"
-    )
-
-    video_url = (
-        video.get(
-            "url"
-        )
-        or (
-            "https://www.youtube.com/watch?v="
-            f"{video_id}"
-        )
-    )
-
-    params = {
-        "url":
-            video_url,
-
-        "text":
-            "true",
-
-        "mode":
-            "auto"
-    }
-
-    response = supadata_get(
-        controller=controller,
-        url=SUPADATA_ENDPOINT,
-        api_key=api_key,
-        params=params
-    )
-
-    if response[
-        "status"
-    ] != "OK":
-
-        return {
-            **response,
-
-            "result_type":
-                response[
-                    "status"
-                ],
-
-            "job_id":
-                None,
-
-            "text":
-                "",
-
-            "language":
-                None
-        }
-
-    payload = response.get(
-        "payload"
-    )
-
-    transcript = (
-        extract_transcript_from_payload(
-            payload
-        )
-    )
-
-    if transcript[
-        "text"
-    ]:
-
-        return {
-            **response,
-
-            "result_type":
-                "IMMEDIATE_SUCCESS",
-
-            "job_id":
-                None,
-
-            "text":
-                transcript[
-                    "text"
-                ],
-
-            "language":
-                transcript[
-                    "language"
-                ]
-        }
-
-    job_id = None
-
-    if isinstance(
-        payload,
-        dict
-    ):
-
-        job_id = payload.get(
-            "jobId"
-        )
-
-    if job_id:
-
-        return {
-            **response,
-
-            "result_type":
-                "ASYNC_PENDING",
-
-            "job_id":
-                job_id,
-
-            "text":
-                "",
-
-            "language":
-                None
-        }
-
-    # A successful HTTP response with no transcript and no job
-    # means the provider returned no usable content.
-
-    return {
-        **response,
-
-        "result_type":
-            "NO_TRANSCRIPT",
-
-        "job_id":
-            None,
+            "NO_NATIVE_TRANSCRIPT",
 
         "text":
             "",
@@ -1072,172 +779,13 @@ def start_transcript_request(
                     dict
                 )
                 else None
-            )
-    }
+            ),
 
+        "http_status":
+            response.status_code,
 
-# ============================================================
-# CHECK EXISTING ASYNC JOB
-# ============================================================
-
-def check_transcript_job(
-    controller,
-    api_key,
-    job_id
-):
-
-    job_url = (
-        f"{SUPADATA_ENDPOINT}/"
-        f"{job_id}"
-    )
-
-    response = supadata_get(
-        controller=controller,
-        url=job_url,
-        api_key=api_key
-    )
-
-    if response[
-        "status"
-    ] != "OK":
-
-        return {
-            **response,
-
-            "result_type":
-                response[
-                    "status"
-                ],
-
-            "job_status":
-                None,
-
-            "text":
-                "",
-
-            "language":
-                None
-        }
-
-    payload = response.get(
-        "payload"
-    )
-
-    job_status = None
-
-    if isinstance(
-        payload,
-        dict
-    ):
-
-        job_status = payload.get(
-            "status"
-        )
-
-    transcript = (
-        extract_transcript_from_payload(
+        "payload":
             payload
-        )
-    )
-
-    if transcript[
-        "text"
-    ]:
-
-        return {
-            **response,
-
-            "result_type":
-                "ASYNC_COMPLETED",
-
-            "job_status":
-                (
-                    job_status
-                    or "completed"
-                ),
-
-            "text":
-                transcript[
-                    "text"
-                ],
-
-            "language":
-                transcript[
-                    "language"
-                ]
-        }
-
-    if job_status in {
-        "queued",
-        "active"
-    }:
-
-        return {
-            **response,
-
-            "result_type":
-                "ASYNC_STILL_PENDING",
-
-            "job_status":
-                job_status,
-
-            "text":
-                "",
-
-            "language":
-                None
-        }
-
-    if job_status == "failed":
-
-        return {
-            **response,
-
-            "result_type":
-                "ASYNC_FAILED",
-
-            "job_status":
-                "failed",
-
-            "text":
-                "",
-
-            "language":
-                None
-        }
-
-    if job_status == "completed":
-
-        return {
-            **response,
-
-            "result_type":
-                "ASYNC_COMPLETED_NO_TEXT",
-
-            "job_status":
-                "completed",
-
-            "text":
-                "",
-
-            "language":
-                None
-        }
-
-    return {
-        **response,
-
-        "result_type":
-            "ASYNC_UNKNOWN",
-
-        "job_status":
-            job_status,
-
-        "text":
-            "",
-
-        "language":
-            None
     }
 
 
@@ -1250,39 +798,30 @@ def transcript_file_path(
     video
 ):
 
-    video_id = video.get(
-        "video_id"
-    )
-
-    channel = safe_filename(
-        video.get(
-            "channel",
-            "unknown"
-        )
-    )
-
     return (
         TRANSCRIPT_STORAGE_DIR
         / week_key
         / (
-            f"{video_id}_"
-            f"{channel}.json"
+            f"{video['video_id']}_"
+            f"{safe_filename(video.get('channel'))}.json"
         )
     )
 
 
-def save_transcript_file(
+def save_transcript(
     week_key,
     video,
-    transcript_text,
-    language,
-    delivery_mode
+    result
 ):
 
     path = transcript_file_path(
         week_key,
         video
     )
+
+    text = result[
+        "text"
+    ]
 
     data = {
         "week":
@@ -1318,27 +857,36 @@ def save_transcript_file(
                 "temporal_confidence"
             ),
 
-        "language":
-            language,
+        "source_tier":
+            source_tier(
+                video.get(
+                    "channel"
+                )
+            ),
 
-        "delivery_mode":
-            delivery_mode,
+        "language":
+            result.get(
+                "language"
+            ),
+
+        "mode":
+            "native",
 
         "word_count":
             len(
-                transcript_text.split()
+                text.split()
             ),
 
         "character_count":
             len(
-                transcript_text
+                text
             ),
 
         "saved_at":
             now_iso(),
 
         "transcript":
-            transcript_text
+            text
     }
 
     save_json(
@@ -1346,86 +894,74 @@ def save_transcript_file(
         data
     )
 
-    return str(
-        path
+    return (
+        str(path),
+        data[
+            "word_count"
+        ]
     )
 
 
 # ============================================================
-# WEEK DATABASE RECORD
+# WEEK RECORD
 # ============================================================
 
 def ensure_week_record(
-    transcript_database,
+    database,
     week_key,
     week_data
 ):
 
-    weeks = transcript_database[
+    weeks = database[
         "weeks"
     ]
 
-    if week_key not in weeks:
-
-        weeks[
-            week_key
-        ] = {
-            "track":
-                week_data.get(
-                    "track"
-                ),
-
-            "race_class":
-                week_data.get(
-                    "race_class"
-                ),
-
-            "direction":
-                week_data.get(
-                    "direction"
-                ),
-
-            "race_description":
-                week_data.get(
-                    "race_description"
-                ),
-
-            "leaderboard_url":
-                week_data.get(
-                    "leaderboard_url"
-                ),
-
+    week = weeks.setdefault(
+        week_key,
+        {
             "created_at":
-                now_iso(),
-
-            "updated_at":
                 now_iso(),
 
             "videos":
                 {}
         }
+    )
 
-    week_record = weeks[
-        week_key
-    ]
-
-    week_record[
+    week[
         "updated_at"
     ] = now_iso()
 
-    week_record.setdefault(
+    week[
+        "track"
+    ] = week_data.get(
+        "track"
+    )
+
+    week[
+        "race_class"
+    ] = week_data.get(
+        "race_class"
+    )
+
+    week[
+        "direction"
+    ] = week_data.get(
+        "direction"
+    )
+
+    week.setdefault(
         "videos",
         {}
     )
 
-    return week_record
+    return week
 
 
 # ============================================================
-# REGISTER DISCOVERED VIDEOS
+# SYNC VIDEOS
 # ============================================================
 
-def sync_selected_videos(
+def sync_videos(
     week_record,
     selected_videos
 ):
@@ -1436,13 +972,9 @@ def sync_selected_videos(
 
     for video in selected_videos:
 
-        video_id = video.get(
+        video_id = video[
             "video_id"
-        )
-
-        if not video_id:
-
-            continue
+        ]
 
         if video_id not in records:
 
@@ -1477,6 +1009,13 @@ def sync_selected_videos(
                         "temporal_confidence"
                     ),
 
+                "source_tier":
+                    source_tier(
+                        video.get(
+                            "channel"
+                        )
+                    ),
+
                 "priority_score":
                     video_priority_score(
                         video
@@ -1485,32 +1024,17 @@ def sync_selected_videos(
                 "status":
                     "NEW",
 
-                "job_id":
-                    None,
-
-                "job_status":
-                    None,
-
                 "transcript_file":
                     None,
 
                 "word_count":
                     0,
 
-                "language":
-                    None,
-
-                "first_seen":
-                    now_iso(),
+                "attempt_count":
+                    0,
 
                 "last_attempt":
                     None,
-
-                "last_success":
-                    None,
-
-                "attempt_count":
-                    0,
 
                 "error":
                     None
@@ -1518,439 +1042,84 @@ def sync_selected_videos(
 
         else:
 
-            record = records[
+            records[
                 video_id
-            ]
-
-            record[
-                "channel"
-            ] = video.get(
-                "channel"
-            )
-
-            record[
-                "title"
-            ] = video.get(
-                "title"
-            )
-
-            record[
-                "url"
-            ] = video.get(
-                "url"
-            )
-
-            record[
-                "content_type"
-            ] = video.get(
-                "content_type"
-            )
-
-            record[
-                "temporal_confidence"
-            ] = video.get(
-                "temporal_confidence"
-            )
-
-            record[
+            ][
                 "priority_score"
             ] = video_priority_score(
                 video
             )
 
-
-# ============================================================
-# PERSIST COMPLETED TRANSCRIPT
-# ============================================================
-
-def mark_available(
-    week_key,
-    record,
-    video,
-    text,
-    language,
-    delivery_mode
-):
-
-    transcript_path = (
-        save_transcript_file(
-            week_key=week_key,
-            video=video,
-            transcript_text=text,
-            language=language,
-            delivery_mode=delivery_mode
-        )
-    )
-
-    record[
-        "status"
-    ] = "AVAILABLE"
-
-    record[
-        "job_status"
-    ] = "completed"
-
-    record[
-        "transcript_file"
-    ] = transcript_path
-
-    record[
-        "word_count"
-    ] = len(
-        text.split()
-    )
-
-    record[
-        "language"
-    ] = language
-
-    record[
-        "last_success"
-    ] = now_iso()
-
-    record[
-        "error"
-    ] = None
-
-
-# ============================================================
-# BUILD VIDEO LOOKUP
-# ============================================================
-
-def selected_video_lookup(
-    selected_videos
-):
-
-    return {
-        video.get(
-            "video_id"
-        ):
-            video
-        for video in selected_videos
-        if video.get(
-            "video_id"
-        )
-    }
-
-
-# ============================================================
-# PROCESS PENDING JOBS
-# ============================================================
-
-def process_pending_jobs(
-    controller,
-    api_key,
-    week_key,
-    week_record,
-    video_lookup
-):
-
-    records = week_record[
-        "videos"
-    ]
-
-    pending = [
-        record
-        for record in records.values()
-        if (
-            record.get(
-                "status"
-            )
-            == "PENDING"
-            and record.get(
-                "job_id"
-            )
-        )
-    ]
-
-    pending.sort(
-        key=lambda item:
-            item.get(
-                "priority_score",
-                0
-            ),
-        reverse=True
-    )
-
-    checked = 0
-
-    for record in pending:
-
-        if not controller.can_request():
-
-            break
-
-        video_id = record.get(
-            "video_id"
-        )
-
-        video = (
-            video_lookup.get(
+            records[
                 video_id
+            ][
+                "source_tier"
+            ] = source_tier(
+                video.get(
+                    "channel"
+                )
             )
-            or {
-                "video_id":
-                    video_id,
-
-                "channel":
-                    record.get(
-                        "channel"
-                    ),
-
-                "title":
-                    record.get(
-                        "title"
-                    ),
-
-                "url":
-                    record.get(
-                        "url"
-                    ),
-
-                "content_type":
-                    record.get(
-                        "content_type"
-                    ),
-
-                "temporal_confidence":
-                    record.get(
-                        "temporal_confidence"
-                    )
-            }
-        )
-
-        print()
-
-        print(
-            f"Checking pending : "
-            f"{record.get('channel')}"
-        )
-
-        print(
-            f"Video ID         : "
-            f"{video_id}"
-        )
-
-        print(
-            f"Job ID           : "
-            f"{record.get('job_id')}"
-        )
-
-        result = check_transcript_job(
-            controller=controller,
-            api_key=api_key,
-            job_id=record[
-                "job_id"
-            ]
-        )
-
-        checked += 1
-
-        record[
-            "last_attempt"
-        ] = now_iso()
-
-        record[
-            "attempt_count"
-        ] = (
-            record.get(
-                "attempt_count",
-                0
-            )
-            + 1
-        )
-
-        print(
-            f"Result           : "
-            f"{result['result_type']}"
-        )
-
-        if (
-            result[
-                "result_type"
-            ]
-            == "ASYNC_COMPLETED"
-        ):
-
-            mark_available(
-                week_key=week_key,
-                record=record,
-                video=video,
-                text=result[
-                    "text"
-                ],
-                language=result[
-                    "language"
-                ],
-                delivery_mode="ASYNC"
-            )
-
-            print(
-                f"Transcript       : YES"
-            )
-
-            print(
-                f"Words            : "
-                f"{record['word_count']:,}"
-            )
-
-        elif (
-            result[
-                "result_type"
-            ]
-            == "ASYNC_STILL_PENDING"
-        ):
-
-            record[
-                "status"
-            ] = "PENDING"
-
-            record[
-                "job_status"
-            ] = result.get(
-                "job_status"
-            )
-
-            print(
-                f"Job status       : "
-                f"{record['job_status']}"
-            )
-
-        elif (
-            result[
-                "result_type"
-            ]
-            in {
-                "ASYNC_FAILED",
-                "ASYNC_COMPLETED_NO_TEXT"
-            }
-        ):
-
-            record[
-                "status"
-            ] = "UNAVAILABLE"
-
-            record[
-                "job_status"
-            ] = result.get(
-                "job_status"
-            )
-
-            record[
-                "error"
-            ] = result[
-                "result_type"
-            ]
-
-        elif (
-            result[
-                "result_type"
-            ]
-            == "RATE_LIMIT"
-        ):
-
-            record[
-                "error"
-            ] = "RATE_LIMIT"
-
-            print(
-                "API rate limit reached. "
-                "Stopping this run."
-            )
-
-            break
-
-        else:
-
-            record[
-                "error"
-            ] = result[
-                "result_type"
-            ]
-
-    return checked
 
 
 # ============================================================
 # PROCESS NEW VIDEOS
 # ============================================================
 
-def process_new_videos(
+def process_videos(
     controller,
     api_key,
     week_key,
     week_record,
-    video_lookup
+    selected_videos
 ):
 
-    records = week_record[
-        "videos"
-    ]
+    lookup = {
+        video[
+            "video_id"
+        ]:
+            video
+        for video in selected_videos
+    }
 
-    new_records = [
+    records = [
         record
-        for record in records.values()
+        for record
+        in week_record[
+            "videos"
+        ].values()
         if record.get(
             "status"
         )
         == "NEW"
     ]
 
-    new_records.sort(
+    records.sort(
         key=lambda item:
-            item.get(
-                "priority_score",
-                0
-            ),
-        reverse=True
+            (
+                item.get(
+                    "source_tier",
+                    2
+                ),
+                -item.get(
+                    "priority_score",
+                    0
+                )
+            )
     )
 
-    started = 0
-
-    for record in new_records:
+    for record in records:
 
         if not controller.can_request():
-
             break
 
-        video_id = record[
-            "video_id"
-        ]
-
-        video = (
-            video_lookup.get(
-                video_id
-            )
-            or {
-                "video_id":
-                    video_id,
-
-                "channel":
-                    record.get(
-                        "channel"
-                    ),
-
-                "title":
-                    record.get(
-                        "title"
-                    ),
-
-                "url":
-                    record.get(
-                        "url"
-                    ),
-
-                "content_type":
-                    record.get(
-                        "content_type"
-                    ),
-
-                "temporal_confidence":
-                    record.get(
-                        "temporal_confidence"
-                    )
-            }
+        video = lookup.get(
+            record[
+                "video_id"
+            ]
         )
+
+        if not video:
+            continue
 
         print()
 
@@ -1960,8 +1129,13 @@ def process_new_videos(
         )
 
         print(
+            f"Source tier      : "
+            f"{record.get('source_tier')}"
+        )
+
+        print(
             f"Video ID         : "
-            f"{video_id}"
+            f"{record.get('video_id')}"
         )
 
         print(
@@ -1969,52 +1143,55 @@ def process_new_videos(
             f"{record.get('content_type')}"
         )
 
-        result = start_transcript_request(
-            controller=controller,
-            api_key=api_key,
-            video=video
+        result = request_native_transcript(
+            controller,
+            api_key,
+            video
         )
 
-        started += 1
+        record[
+            "attempt_count"
+        ] += 1
 
         record[
             "last_attempt"
         ] = now_iso()
 
-        record[
-            "attempt_count"
-        ] = (
-            record.get(
-                "attempt_count",
-                0
-            )
-            + 1
-        )
-
         print(
             f"Result           : "
-            f"{result['result_type']}"
+            f"{result['status']}"
         )
 
         if (
             result[
-                "result_type"
+                "status"
             ]
-            == "IMMEDIATE_SUCCESS"
+            == "AVAILABLE"
         ):
 
-            mark_available(
-                week_key=week_key,
-                record=record,
-                video=video,
-                text=result[
-                    "text"
-                ],
-                language=result[
-                    "language"
-                ],
-                delivery_mode="IMMEDIATE"
+            path, word_count = (
+                save_transcript(
+                    week_key,
+                    video,
+                    result
+                )
             )
+
+            record[
+                "status"
+            ] = "AVAILABLE"
+
+            record[
+                "transcript_file"
+            ] = path
+
+            record[
+                "word_count"
+            ] = word_count
+
+            record[
+                "error"
+            ] = None
 
             print(
                 "Transcript       : YES"
@@ -2022,58 +1199,25 @@ def process_new_videos(
 
             print(
                 f"Words            : "
-                f"{record['word_count']:,}"
+                f"{word_count:,}"
             )
 
         elif (
             result[
-                "result_type"
+                "status"
             ]
-            == "ASYNC_PENDING"
+            == "NO_NATIVE_TRANSCRIPT"
         ):
 
             record[
                 "status"
-            ] = "PENDING"
-
-            record[
-                "job_id"
-            ] = result[
-                "job_id"
-            ]
-
-            record[
-                "job_status"
-            ] = "queued"
+            ] = "NO_NATIVE"
 
             record[
                 "error"
-            ] = None
-
-            print(
-                f"Job ID           : "
-                f"{record['job_id']}"
+            ] = (
+                "NO_NATIVE_TRANSCRIPT"
             )
-
-            print(
-                "Transcript will be checked "
-                "in a future workflow run."
-            )
-
-        elif (
-            result[
-                "result_type"
-            ]
-            == "NO_TRANSCRIPT"
-        ):
-
-            record[
-                "status"
-            ] = "UNAVAILABLE"
-
-            record[
-                "error"
-            ] = "NO_TRANSCRIPT"
 
             print(
                 "Transcript       : NO"
@@ -2081,12 +1225,10 @@ def process_new_videos(
 
         elif (
             result[
-                "result_type"
+                "status"
             ]
             == "RATE_LIMIT"
         ):
-
-            # Keep NEW so the next run can try again.
 
             record[
                 "status"
@@ -2097,40 +1239,12 @@ def process_new_videos(
             ] = "RATE_LIMIT"
 
             print(
-                "API rate limit reached. "
-                "Stopping this run."
-            )
-
-            break
-
-        elif (
-            result[
-                "result_type"
-            ]
-            == "PLAN_OR_CREDIT_LIMIT"
-        ):
-
-            record[
-                "status"
-            ] = "NEW"
-
-            record[
-                "error"
-            ] = (
-                "PLAN_OR_CREDIT_LIMIT"
-            )
-
-            print(
-                "Supadata plan or credit "
-                "limit reached."
+                "Supadata returned HTTP 429."
             )
 
             break
 
         else:
-
-            # Temporary errors remain NEW so they may be
-            # attempted again on a future run.
 
             record[
                 "status"
@@ -2139,52 +1253,8 @@ def process_new_videos(
             record[
                 "error"
             ] = result[
-                "result_type"
+                "status"
             ]
-
-    return started
-
-
-# ============================================================
-# SUMMARY
-# ============================================================
-
-def build_status_counts(
-    week_record
-):
-
-    counts = {
-        "AVAILABLE": 0,
-        "PENDING": 0,
-        "NEW": 0,
-        "UNAVAILABLE": 0,
-        "OTHER": 0
-    }
-
-    for record in (
-        week_record[
-            "videos"
-        ]
-        .values()
-    ):
-
-        status = record.get(
-            "status"
-        )
-
-        if status in counts:
-
-            counts[
-                status
-            ] += 1
-
-        else:
-
-            counts[
-                "OTHER"
-            ] += 1
-
-    return counts
 
 
 # ============================================================
@@ -2200,8 +1270,7 @@ def main():
     if not api_key:
 
         raise RuntimeError(
-            "SUPADATA_API_KEY environment "
-            "variable is not available."
+            "SUPADATA_API_KEY not available."
         )
 
     source_database = load_json(
@@ -2212,8 +1281,7 @@ def main():
     if not source_database:
 
         raise RuntimeError(
-            "data/community_sources.json "
-            "not found or invalid."
+            "community_sources.json not found."
         )
 
     (
@@ -2239,27 +1307,19 @@ def main():
         week_data
     )
 
-    sync_selected_videos(
+    sync_videos(
         week_record,
         selected_videos
     )
 
-    video_lookup = (
-        selected_video_lookup(
-            selected_videos
-        )
-    )
-
-    controller = (
-        ApiRequestController()
-    )
+    controller = ApiController()
 
     print(
         "=" * 88
     )
 
     print(
-        "GT7 COMMUNITY TRANSCRIPT COLLECTOR"
+        "GT7 COMMUNITY TRANSCRIPT COLLECTOR V2"
     )
 
     print(
@@ -2273,17 +1333,21 @@ def main():
 
     print(
         f"Track            : "
-        f"{week_data.get('track','UNKNOWN')}"
+        f"{week_data.get('track')}"
     )
 
     print(
         f"Race class       : "
-        f"{week_data.get('race_class','UNKNOWN')}"
+        f"{week_data.get('race_class')}"
     )
 
     print(
-        f"Videos selected  : "
+        f"Videos tracked   : "
         f"{len(selected_videos)}"
+    )
+
+    print(
+        f"Transcript mode  : NATIVE ONLY"
     )
 
     print(
@@ -2291,74 +1355,32 @@ def main():
         f"{MAX_API_REQUESTS_PER_RUN}"
     )
 
-    print(
-        f"API spacing      : "
-        f"{MIN_SECONDS_BETWEEN_REQUESTS}s"
-    )
-
     print()
 
     print(
-        "PRIORITY SOURCES"
+        "VIDEO PRIORITY"
     )
 
     print(
         "-" * 88
     )
 
-    for channel in PRIORITY_CHANNELS:
-
-        selected = any(
-            normalize_text(
-                channel
-            )
-            in normalize_text(
-                video.get(
-                    "channel",
-                    ""
-                )
-            )
-            for video in selected_videos
-        )
+    for video in selected_videos:
 
         print(
-            f"{channel:<25} : "
-            f"{'TRACKED' if selected else 'NOT FOUND'}"
+            f"T{source_tier(video.get('channel'))} | "
+            f"{video.get('channel')} | "
+            f"{video.get('content_type')} | "
+            f"{video.get('title')}"
         )
 
-    # ========================================================
-    # FIRST:
-    # Check previously-created async jobs.
-    # ========================================================
-
-    pending_checked = (
-        process_pending_jobs(
-            controller=controller,
-            api_key=api_key,
-            week_key=week_key,
-            week_record=week_record,
-            video_lookup=video_lookup
-        )
+    process_videos(
+        controller,
+        api_key,
+        week_key,
+        week_record,
+        selected_videos
     )
-
-    # ========================================================
-    # SECOND:
-    # Spend remaining request budget on new videos.
-    # ========================================================
-
-    new_started = (
-        process_new_videos(
-            controller=controller,
-            api_key=api_key,
-            week_key=week_key,
-            week_record=week_record,
-            video_lookup=video_lookup
-        )
-    )
-
-    week_record[
-        "updated_at"
-    ] = now_iso()
 
     week_record[
         "last_run"
@@ -2366,17 +1388,11 @@ def main():
         "timestamp":
             now_iso(),
 
-        "api_requests":
+        "requests":
             controller.requests_used,
 
         "rate_limited":
-            controller.rate_limited,
-
-        "pending_jobs_checked":
-            pending_checked,
-
-        "new_videos_started":
-            new_started
+            controller.rate_limited
     }
 
     save_json(
@@ -2384,9 +1400,28 @@ def main():
         transcript_database
     )
 
-    counts = build_status_counts(
-        week_record
-    )
+    statuses = {}
+
+    for record in (
+        week_record[
+            "videos"
+        ].values()
+    ):
+
+        status = record.get(
+            "status",
+            "UNKNOWN"
+        )
+
+        statuses[
+            status
+        ] = (
+            statuses.get(
+                status,
+                0
+            )
+            + 1
+        )
 
     print()
 
@@ -2395,7 +1430,7 @@ def main():
     )
 
     print(
-        "TRANSCRIPT DATABASE STATUS"
+        "FINAL STATUS"
     )
 
     print(
@@ -2404,22 +1439,17 @@ def main():
 
     print(
         f"Available         : "
-        f"{counts['AVAILABLE']}"
+        f"{statuses.get('AVAILABLE',0)}"
     )
 
     print(
-        f"Pending           : "
-        f"{counts['PENDING']}"
+        f"No native         : "
+        f"{statuses.get('NO_NATIVE',0)}"
     )
 
     print(
         f"New / waiting     : "
-        f"{counts['NEW']}"
-    )
-
-    print(
-        f"Unavailable       : "
-        f"{counts['UNAVAILABLE']}"
+        f"{statuses.get('NEW',0)}"
     )
 
     print(
@@ -2454,19 +1484,10 @@ def main():
         == "AVAILABLE"
     ]
 
-    available.sort(
-        key=lambda item:
-            item.get(
-                "priority_score",
-                0
-            ),
-        reverse=True
-    )
-
     if not available:
 
         print(
-            "None available yet."
+            "None."
         )
 
     else:
@@ -2475,54 +1496,12 @@ def main():
 
             print(
                 f"{record.get('channel')} | "
-                f"{record.get('content_type')} | "
                 f"{record.get('word_count',0):,} words"
             )
 
             print(
-                f"  {record.get('title')}"
-            )
-
-            print(
-                f"  {record.get('transcript_file')}"
-            )
-
-    print()
-
-    print(
-        "PENDING TRANSCRIPTS"
-    )
-
-    print(
-        "-" * 88
-    )
-
-    pending = [
-        record
-        for record
-        in week_record[
-            "videos"
-        ].values()
-        if record.get(
-            "status"
-        )
-        == "PENDING"
-    ]
-
-    if not pending:
-
-        print(
-            "None."
-        )
-
-    else:
-
-        for record in pending:
-
-            print(
-                f"{record.get('channel')} | "
-                f"{record.get('job_status')} | "
-                f"{record.get('job_id')}"
+                f"  "
+                f"{record.get('transcript_file')}"
             )
 
     print()
@@ -2530,11 +1509,6 @@ def main():
     print(
         f"Database file    : "
         f"{TRANSCRIPT_DATABASE_FILE}"
-    )
-
-    print(
-        f"Transcript dir   : "
-        f"{TRANSCRIPT_STORAGE_DIR}"
     )
 
     print(
