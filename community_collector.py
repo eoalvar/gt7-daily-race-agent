@@ -29,6 +29,9 @@ SAO_PAULO = ZoneInfo(
 
 MAX_RESULTS_PER_QUERY = 20
 
+# Avoid enriching too many weak search results.
+MAX_ENRICH_CANDIDATES = 40
+
 
 # ============================================================
 # JSON HELPERS
@@ -97,8 +100,36 @@ def normalize_text(
     return text.strip()
 
 
+def normalize_track_text(
+    text
+):
+
+    text = normalize_text(
+        text
+    )
+
+    text = text.replace(
+        "-",
+        " "
+    )
+
+    text = re.sub(
+        r"[^a-z0-9à-ÿ ]+",
+        " ",
+        text
+    )
+
+    text = re.sub(
+        r"\s+",
+        " ",
+        text
+    )
+
+    return text.strip()
+
+
 # ============================================================
-# RACE WEEK
+# RACE METADATA
 # ============================================================
 
 def parse_week_start(
@@ -128,26 +159,12 @@ def parse_week_start(
     )
 
 
-# ============================================================
-# TRACK EXTRACTION
-# ============================================================
-
 def extract_track(
     race_text
 ):
 
     if not race_text:
         return None
-
-    # Expected structure:
-    #
-    # C Gr.4 Running 10 Aug 2026 Daily Race C i 16:48
-    # Grand Valley - Highway 1
-    # M. Estevez - GT by Citroën Gr.4
-    # RM RS BoP ...
-    #
-    # The driver name immediately after the track normally
-    # starts with an initial followed by a dot.
 
     match = re.search(
         r"Daily Race C.*?"
@@ -169,11 +186,6 @@ def extract_track(
 
         if track:
             return track
-
-    # --------------------------------------------------------
-    # Fallback:
-    # Attempt extraction before common car/manufacturer names.
-    # --------------------------------------------------------
 
     manufacturer_pattern = (
         r"(?:GT by|Genesis|Hyundai|Nissan|Toyota|TOYOTA|"
@@ -207,6 +219,39 @@ def extract_track(
     return None
 
 
+def extract_race_class(
+    race_text
+):
+
+    if not race_text:
+        return None
+
+    match = re.search(
+        r"\bGr\.(\d)\b",
+        race_text,
+        re.IGNORECASE
+    )
+
+    if not match:
+        return None
+
+    return (
+        f"Gr.{match.group(1)}"
+    )
+
+
+def race_is_reverse(
+    race_text
+):
+
+    return (
+        "reverse"
+        in normalize_text(
+            race_text
+        )
+    )
+
+
 # ============================================================
 # SEARCH QUERIES
 # ============================================================
@@ -237,6 +282,10 @@ def build_queries(
         race_text
     )
 
+    race_class = extract_race_class(
+        race_text
+    )
+
     queries = [
         "GT7 Daily Race C",
         "Gran Turismo 7 Daily Race C"
@@ -245,23 +294,30 @@ def build_queries(
     if track:
 
         queries.extend([
+            f"GT7 Daily Race C {track}",
+            f"Gran Turismo 7 Daily Race C {track}",
+            f"GT7 {track} Daily Race"
+        ])
+
+    if (
+        track
+        and race_class
+    ):
+
+        queries.extend([
             (
                 f"GT7 Daily Race C "
-                f"{track}"
-            ),
-            (
-                f"Gran Turismo 7 Daily Race C "
-                f"{track}"
+                f"{track} {race_class}"
             ),
             (
                 f"GT7 {track} "
-                f"Daily Race"
+                f"{race_class} guide"
+            ),
+            (
+                f"GT7 {track} "
+                f"{race_class} strategy"
             )
         ])
-
-    # --------------------------------------------------------
-    # Remove duplicate queries while keeping original order.
-    # --------------------------------------------------------
 
     unique_queries = []
 
@@ -286,15 +342,13 @@ def build_queries(
 
     return (
         unique_queries,
-        track
+        track,
+        race_class
     )
 
 
 # ============================================================
 # YOUTUBE SEARCH VIA YT-DLP
-#
-# IMPORTANT:
-# Use ytsearchN:, not ytsearchdateN:.
 # ============================================================
 
 def search_youtube(
@@ -327,7 +381,7 @@ def search_youtube(
     except subprocess.TimeoutExpired:
 
         print(
-            f"WARNING: search timed out for: "
+            f"WARNING: search timed out: "
             f"{query}"
         )
 
@@ -336,8 +390,8 @@ def search_youtube(
     except Exception as exc:
 
         print(
-            f"WARNING: yt-dlp execution failed "
-            f"for: {query}"
+            f"WARNING: yt-dlp search failed: "
+            f"{query}"
         )
 
         print(
@@ -349,7 +403,7 @@ def search_youtube(
     if result.returncode != 0:
 
         print(
-            f"WARNING: search failed for: "
+            f"WARNING: search failed: "
             f"{query}"
         )
 
@@ -357,7 +411,7 @@ def search_youtube(
 
             print(
                 result.stderr[
-                    -1500:
+                    -1200:
                 ]
             )
 
@@ -372,17 +426,9 @@ def search_youtube(
     except Exception:
 
         print(
-            f"WARNING: invalid JSON returned "
-            f"for query: {query}"
+            f"WARNING: invalid search JSON: "
+            f"{query}"
         )
-
-        if result.stdout:
-
-            print(
-                result.stdout[
-                    -1000:
-                ]
-            )
 
         return []
 
@@ -409,7 +455,85 @@ def search_youtube(
 
 
 # ============================================================
-# UPLOAD DATE
+# FULL VIDEO METADATA
+# ============================================================
+
+def get_full_video_metadata(
+    video_id
+):
+
+    url = (
+        "https://www.youtube.com/watch?v="
+        f"{video_id}"
+    )
+
+    command = [
+        "yt-dlp",
+        "--ignore-errors",
+        "--skip-download",
+        "--dump-single-json",
+        "--no-playlist",
+        url
+    ]
+
+    try:
+
+        result = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            timeout=90
+        )
+
+    except subprocess.TimeoutExpired:
+
+        print(
+            f"    Metadata timeout: "
+            f"{video_id}"
+        )
+
+        return None
+
+    except Exception as exc:
+
+        print(
+            f"    Metadata failure: "
+            f"{video_id} | {exc}"
+        )
+
+        return None
+
+    if result.returncode != 0:
+
+        print(
+            f"    Metadata unavailable: "
+            f"{video_id}"
+        )
+
+        return None
+
+    try:
+
+        payload = json.loads(
+            result.stdout
+        )
+
+    except Exception:
+
+        return None
+
+    if not isinstance(
+        payload,
+        dict
+    ):
+
+        return None
+
+    return payload
+
+
+# ============================================================
+# DATE HELPERS
 # ============================================================
 
 def parse_upload_date(
@@ -429,6 +553,25 @@ def parse_upload_date(
 
             return datetime.fromtimestamp(
                 timestamp,
+                tz=SAO_PAULO
+            )
+
+        except Exception:
+            pass
+
+    release_timestamp = entry.get(
+        "release_timestamp"
+    )
+
+    if isinstance(
+        release_timestamp,
+        (int, float)
+    ):
+
+        try:
+
+            return datetime.fromtimestamp(
+                release_timestamp,
                 tz=SAO_PAULO
             )
 
@@ -457,35 +600,17 @@ def parse_upload_date(
         except Exception:
             pass
 
-    release_timestamp = entry.get(
-        "release_timestamp"
-    )
-
-    if isinstance(
-        release_timestamp,
-        (int, float)
-    ):
-
-        try:
-
-            return datetime.fromtimestamp(
-                release_timestamp,
-                tz=SAO_PAULO
-            )
-
-        except Exception:
-            pass
-
     return None
 
 
 # ============================================================
-# RELEVANCE SCORING
+# RELEVANCE
 # ============================================================
 
 def relevance_score(
     entry,
-    track
+    track,
+    race_class
 ):
 
     title = normalize_text(
@@ -510,25 +635,14 @@ def relevance_score(
 
     score = 0
 
-    # --------------------------------------------------------
-    # GT7 identity
-    # --------------------------------------------------------
-
     if "gt7" in title:
         score += 3
 
     if "gran turismo 7" in title:
         score += 3
 
-    # --------------------------------------------------------
-    # Daily Race identity
-    # --------------------------------------------------------
-
     if "daily race c" in title:
         score += 7
-
-    elif "daily races" in title:
-        score += 3
 
     elif "daily race" in title:
         score += 3
@@ -536,33 +650,29 @@ def relevance_score(
     if "race c" in title:
         score += 3
 
-    # --------------------------------------------------------
-    # Track identity
-    # --------------------------------------------------------
-
     if track:
 
-        track_norm = normalize_text(
+        track_norm = normalize_track_text(
             track
         )
 
-        if track_norm in text:
+        text_norm = normalize_track_text(
+            text
+        )
 
-            score += 7
+        if track_norm in text_norm:
+            score += 8
 
         important_words = [
             word
-            for word in re.findall(
-                r"[a-z0-9]+",
-                track_norm
-            )
+            for word in track_norm.split()
             if len(word) >= 4
         ]
 
         matching_words = sum(
             1
             for word in important_words
-            if word in text
+            if word in text_norm
         )
 
         score += min(
@@ -570,9 +680,34 @@ def relevance_score(
             4
         )
 
-    # --------------------------------------------------------
-    # Useful GT7 content keywords
-    # --------------------------------------------------------
+    if race_class:
+
+        class_norm = normalize_text(
+            race_class
+        )
+
+        class_variants = [
+            class_norm,
+            class_norm.replace(
+                ".",
+                ""
+            ),
+            class_norm.replace(
+                ".",
+                " "
+            ),
+            (
+                "group "
+                + race_class[-1]
+            )
+        ]
+
+        if any(
+            variant in text
+            for variant in class_variants
+        ):
+
+            score += 5
 
     useful_terms = [
         "guide",
@@ -584,27 +719,248 @@ def relevance_score(
         "hot lap",
         "track guide",
         "daily races",
-        "weekly races"
+        "weekly races",
+        "tips"
     ]
 
     for term in useful_terms:
 
         if term in title:
-
             score += 1
 
     return score
 
 
 # ============================================================
-# ENTRY NORMALIZATION
+# EXACT RACE VALIDATION
 # ============================================================
 
-def normalize_entry(
+def validate_video(
+    metadata,
+    track,
+    race_class,
+    current_reverse,
+    earliest_allowed,
+    latest_allowed
+):
+
+    reasons = []
+
+    title = normalize_text(
+        metadata.get(
+            "title",
+            ""
+        )
+    )
+
+    description = normalize_text(
+        metadata.get(
+            "description",
+            ""
+        )
+    )
+
+    text = (
+        title
+        + " "
+        + description
+    )
+
+    # --------------------------------------------------------
+    # DATE
+    # --------------------------------------------------------
+
+    upload_datetime = parse_upload_date(
+        metadata
+    )
+
+    if upload_datetime is None:
+
+        reasons.append(
+            "DATE_UNKNOWN"
+        )
+
+    else:
+
+        if upload_datetime < earliest_allowed:
+
+            reasons.append(
+                "TOO_OLD"
+            )
+
+        if upload_datetime > latest_allowed:
+
+            reasons.append(
+                "FUTURE_DATE"
+            )
+
+    # --------------------------------------------------------
+    # GT7 / DAILY RACE C IDENTITY
+    # --------------------------------------------------------
+
+    gt7_match = (
+        "gt7" in text
+        or "gran turismo 7" in text
+    )
+
+    if not gt7_match:
+
+        reasons.append(
+            "NOT_GT7"
+        )
+
+    race_c_match = (
+        "daily race c" in text
+        or (
+            "daily race" in text
+            and "race c" in text
+        )
+    )
+
+    if not race_c_match:
+
+        reasons.append(
+            "NOT_RACE_C"
+        )
+
+    # --------------------------------------------------------
+    # TRACK
+    # --------------------------------------------------------
+
+    if track:
+
+        track_norm = normalize_track_text(
+            track
+        )
+
+        text_norm = normalize_track_text(
+            text
+        )
+
+        track_words = [
+            word
+            for word in track_norm.split()
+            if len(word) >= 4
+        ]
+
+        matches = sum(
+            1
+            for word in track_words
+            if word in text_norm
+        )
+
+        minimum_matches = max(
+            2,
+            len(track_words) - 1
+        )
+
+        if matches < minimum_matches:
+
+            reasons.append(
+                "WRONG_TRACK"
+            )
+
+    # --------------------------------------------------------
+    # REVERSE / NORMAL DIRECTION
+    # --------------------------------------------------------
+
+    video_reverse = (
+        "reverse"
+        in text
+    )
+
+    if (
+        current_reverse
+        and not video_reverse
+    ):
+
+        # Do not strictly reject normal titles for a Reverse
+        # race unless enough metadata exists.
+        pass
+
+    elif (
+        not current_reverse
+        and video_reverse
+    ):
+
+        reasons.append(
+            "WRONG_DIRECTION"
+        )
+
+    # --------------------------------------------------------
+    # RACE CLASS
+    #
+    # Explicit wrong class is rejected.
+    # Lack of class text is allowed because some excellent
+    # guides omit it from the title/description.
+    # --------------------------------------------------------
+
+    explicit_classes = set(
+        re.findall(
+            r"\b(?:gr\.?|group)\s*([1-4])\b",
+            text,
+            re.IGNORECASE
+        )
+    )
+
+    if (
+        race_class
+        and explicit_classes
+    ):
+
+        expected_number = (
+            race_class[
+                -1
+            ]
+        )
+
+        if expected_number not in explicit_classes:
+
+            reasons.append(
+                "WRONG_CLASS"
+            )
+
+    hard_rejections = {
+        "TOO_OLD",
+        "FUTURE_DATE",
+        "NOT_GT7",
+        "NOT_RACE_C",
+        "WRONG_TRACK",
+        "WRONG_DIRECTION",
+        "WRONG_CLASS"
+    }
+
+    rejected = any(
+        reason in hard_rejections
+        for reason in reasons
+    )
+
+    return {
+        "accepted":
+            not rejected,
+
+        "reasons":
+            reasons,
+
+        "upload_datetime":
+            (
+                upload_datetime.isoformat()
+                if upload_datetime
+                else None
+            )
+    }
+
+
+# ============================================================
+# SEARCH CANDIDATE MERGE
+# ============================================================
+
+def merge_search_candidate(
+    candidates,
     entry,
     query,
     track,
-    now
+    race_class
 ):
 
     video_id = entry.get(
@@ -612,7 +968,7 @@ def normalize_entry(
     )
 
     if not video_id:
-        return None
+        return
 
     title = entry.get(
         "title",
@@ -632,142 +988,61 @@ def normalize_entry(
         or "Unknown"
     )
 
-    upload_datetime = (
-        parse_upload_date(
-            entry
-        )
-    )
-
     score = relevance_score(
         entry,
-        track
+        track,
+        race_class
     )
-
-    url = (
-        "https://www.youtube.com/watch?v="
-        f"{video_id}"
-    )
-
-    return {
-        "video_id":
-            video_id,
-
-        "title":
-            title,
-
-        "channel":
-            channel,
-
-        "url":
-            url,
-
-        "upload_datetime":
-            (
-                upload_datetime.isoformat()
-                if upload_datetime
-                else None
-            ),
-
-        "duration":
-            entry.get(
-                "duration"
-            ),
-
-        "view_count":
-            entry.get(
-                "view_count"
-            ),
-
-        "relevance_score":
-            score,
-
-        "matched_queries":
-            [
-                query
-            ],
-
-        "first_seen":
-            now.isoformat(),
-
-        "last_seen":
-            now.isoformat(),
-
-        "status":
-            "DISCOVERED"
-    }
-
-
-# ============================================================
-# MERGE CANDIDATES
-# ============================================================
-
-def merge_candidate(
-    candidates,
-    candidate
-):
-
-    video_id = candidate[
-        "video_id"
-    ]
 
     if video_id not in candidates:
 
         candidates[
             video_id
-        ] = candidate
+        ] = {
+            "video_id":
+                video_id,
+
+            "title":
+                title,
+
+            "channel":
+                channel,
+
+            "search_relevance":
+                score,
+
+            "matched_queries":
+                [
+                    query
+                ]
+        }
 
         return
 
-    existing = candidates[
+    candidate = candidates[
         video_id
     ]
 
-    existing[
-        "relevance_score"
+    candidate[
+        "search_relevance"
     ] = max(
-        existing.get(
-            "relevance_score",
+        candidate.get(
+            "search_relevance",
             0
         ),
-        candidate.get(
-            "relevance_score",
-            0
-        )
+        score
     )
 
-    existing_queries = (
-        existing
-        .setdefault(
-            "matched_queries",
-            []
-        )
-    )
-
-    for query in candidate.get(
+    queries = candidate.setdefault(
         "matched_queries",
         []
-    ):
+    )
 
-        if query not in existing_queries:
+    if query not in queries:
 
-            existing_queries.append(
-                query
-            )
-
-    if (
-        not existing.get(
-            "upload_datetime"
+        queries.append(
+            query
         )
-        and candidate.get(
-            "upload_datetime"
-        )
-    ):
-
-        existing[
-            "upload_datetime"
-        ] = candidate[
-            "upload_datetime"
-        ]
 
 
 # ============================================================
@@ -802,18 +1077,23 @@ def main():
     )
 
     race_description = race.get(
-        "description"
+        "description",
+        ""
     )
 
     week_start = parse_week_start(
         snapshot
     )
 
-    # --------------------------------------------------------
-    # Permit videos published on Sunday before the race week.
-    # This catches previews uploaded shortly before Monday.
-    # --------------------------------------------------------
+    queries, track, race_class = build_queries(
+        snapshot
+    )
 
+    current_reverse = race_is_reverse(
+        race_description
+    )
+
+    # Include preview videos from Sunday before Monday.
     earliest_allowed = (
         week_start
         - timedelta(
@@ -821,8 +1101,12 @@ def main():
         )
     )
 
-    queries, track = build_queries(
-        snapshot
+    # Do not allow timestamps beyond the current scan.
+    latest_allowed = (
+        now
+        + timedelta(
+            hours=2
+        )
     )
 
     print(
@@ -830,7 +1114,7 @@ def main():
     )
 
     print(
-        "GT7 COMMUNITY SOURCE COLLECTOR"
+        "GT7 COMMUNITY SOURCE COLLECTOR V2"
     )
 
     print(
@@ -848,6 +1132,21 @@ def main():
     )
 
     print(
+        f"Race class      : "
+        f"{race_class or 'UNKNOWN'}"
+    )
+
+    print(
+        f"Direction       : "
+        f"{'REVERSE' if current_reverse else 'NORMAL'}"
+    )
+
+    print(
+        f"Earliest video  : "
+        f"{earliest_allowed.date().isoformat()}"
+    )
+
+    print(
         f"Search queries  : "
         f"{len(queries)}"
     )
@@ -859,102 +1158,10 @@ def main():
         )
 
     # ========================================================
-    # LOAD COMMUNITY DATABASE
+    # SEARCH
     # ========================================================
-
-    existing = load_json(
-        COMMUNITY_FILE,
-        {
-            "version": 1,
-            "weeks": {}
-        }
-    )
-
-    if not isinstance(
-        existing,
-        dict
-    ):
-
-        existing = {
-            "version": 1,
-            "weeks": {}
-        }
-
-    existing.setdefault(
-        "version",
-        1
-    )
-
-    existing.setdefault(
-        "weeks",
-        {}
-    )
-
-    week_key = (
-        week_start
-        .date()
-        .isoformat()
-    )
-
-    week_data = (
-        existing[
-            "weeks"
-        ]
-        .setdefault(
-            week_key,
-            {
-                "race_description":
-                    race_description,
-
-                "leaderboard_url":
-                    race_url,
-
-                "track":
-                    track,
-
-                "first_scan":
-                    now.isoformat(),
-
-                "last_scan":
-                    None,
-
-                "videos":
-                    {}
-            }
-        )
-    )
-
-    # --------------------------------------------------------
-    # Refresh metadata every run.
-    # --------------------------------------------------------
-
-    week_data[
-        "race_description"
-    ] = race_description
-
-    week_data[
-        "leaderboard_url"
-    ] = race_url
-
-    if track:
-
-        week_data[
-            "track"
-        ] = track
-
-    videos = (
-        week_data
-        .setdefault(
-            "videos",
-            {}
-        )
-    )
 
     candidates = {}
-
-    # ========================================================
-    # RUN SEARCHES
-    # ========================================================
 
     for query in queries:
 
@@ -973,243 +1180,434 @@ def main():
             f"{len(entries)}"
         )
 
-        accepted_this_query = 0
-
         for entry in entries:
 
-            candidate = normalize_entry(
+            merge_search_candidate(
+                candidates,
                 entry,
                 query,
                 track,
-                now
+                race_class
             )
 
-            if not candidate:
-                continue
+    # --------------------------------------------------------
+    # Rank candidates BEFORE expensive metadata enrichment.
+    # --------------------------------------------------------
 
-            upload_datetime_text = (
-                candidate.get(
-                    "upload_datetime"
-                )
-            )
-
-            upload_datetime = None
-
-            if upload_datetime_text:
-
-                try:
-
-                    upload_datetime = (
-                        datetime
-                        .fromisoformat(
-                            upload_datetime_text
-                        )
-                    )
-
-                except Exception:
-                    pass
-
-            # ------------------------------------------------
-            # Reject clearly old videos where date is known.
-            #
-            # Flat search results may not always provide a date,
-            # so unknown dates are not rejected at this stage.
-            # ------------------------------------------------
-
-            if (
-                upload_datetime
-                and upload_datetime
-                < earliest_allowed
-            ):
-
-                continue
-
-            # ------------------------------------------------
-            # Minimum relevance.
-            # ------------------------------------------------
-
-            if (
-                candidate[
-                    "relevance_score"
-                ]
-                < 5
-            ):
-
-                continue
-
-            merge_candidate(
-                candidates,
-                candidate
-            )
-
-            accepted_this_query += 1
-
-        print(
-            f"  Accepted: "
-            f"{accepted_this_query}"
-        )
-
-    # ========================================================
-    # MERGE INTO PERSISTENT DATABASE
-    # ========================================================
-
-    new_count = 0
-    seen_again_count = 0
-
-    for (
-        video_id,
-        candidate
-    ) in candidates.items():
-
-        if video_id in videos:
-
-            existing_video = videos[
-                video_id
-            ]
-
-            existing_video[
-                "last_seen"
-            ] = now.isoformat()
-
-            existing_video[
-                "title"
-            ] = candidate[
-                "title"
-            ]
-
-            existing_video[
-                "channel"
-            ] = candidate[
-                "channel"
-            ]
-
-            existing_video[
-                "url"
-            ] = candidate[
-                "url"
-            ]
-
-            existing_video[
-                "relevance_score"
-            ] = max(
-                existing_video.get(
-                    "relevance_score",
-                    0
-                ),
-                candidate[
-                    "relevance_score"
-                ]
-            )
-
-            if (
-                candidate.get(
-                    "view_count"
-                )
-                is not None
-            ):
-
-                existing_video[
-                    "view_count"
-                ] = candidate[
-                    "view_count"
-                ]
-
-            if (
-                candidate.get(
-                    "duration"
-                )
-                is not None
-            ):
-
-                existing_video[
-                    "duration"
-                ] = candidate[
-                    "duration"
-                ]
-
-            old_queries = (
-                existing_video
-                .setdefault(
-                    "matched_queries",
-                    []
-                )
-            )
-
-            for query in candidate.get(
-                "matched_queries",
-                []
-            ):
-
-                if query not in old_queries:
-
-                    old_queries.append(
-                        query
-                    )
-
-            if (
-                not existing_video.get(
-                    "upload_datetime"
-                )
-                and candidate.get(
-                    "upload_datetime"
-                )
-            ):
-
-                existing_video[
-                    "upload_datetime"
-                ] = candidate[
-                    "upload_datetime"
-                ]
-
-            seen_again_count += 1
-
-        else:
-
-            videos[
-                video_id
-            ] = candidate
-
-            new_count += 1
-
-    # ========================================================
-    # SCAN METADATA
-    # ========================================================
-
-    week_data[
-        "last_scan"
-    ] = now.isoformat()
-
-    week_data[
-        "last_scan_stats"
-    ] = {
-        "candidates_found":
-            len(
-                candidates
+    ranked_candidates = sorted(
+        candidates.values(),
+        key=lambda item:
+            item.get(
+                "search_relevance",
+                0
             ),
+        reverse=True
+    )
 
-        "new_videos":
-            new_count,
+    ranked_candidates = ranked_candidates[
+        :MAX_ENRICH_CANDIDATES
+    ]
 
-        "previously_known":
-            seen_again_count,
+    print()
 
-        "total_tracked":
-            len(
-                videos
-            )
-    }
+    print(
+        f"Unique search candidates : "
+        f"{len(candidates)}"
+    )
 
-    save_json(
-        COMMUNITY_FILE,
-        existing
+    print(
+        f"Candidates to enrich     : "
+        f"{len(ranked_candidates)}"
     )
 
     # ========================================================
-    # DISPLAY RESULTS
+    # ENRICH + VALIDATE
     # ========================================================
 
-    ranked = sorted(
-        videos.values(),
+    accepted = {}
+    rejected = {}
+
+    for index, search_candidate in enumerate(
+        ranked_candidates,
+        start=1
+    ):
+
+        video_id = search_candidate[
+            "video_id"
+        ]
+
+        print(
+            f"[{index:02d}/{len(ranked_candidates):02d}] "
+            f"Enriching {video_id} | "
+            f"{search_candidate.get('title','')[:70]}"
+        )
+
+        metadata = get_full_video_metadata(
+            video_id
+        )
+
+        if not metadata:
+
+            rejected[
+                video_id
+            ] = {
+                "video_id":
+                    video_id,
+
+                "title":
+                    search_candidate.get(
+                        "title"
+                    ),
+
+                "channel":
+                    search_candidate.get(
+                        "channel"
+                    ),
+
+                "reasons":
+                    [
+                        "METADATA_UNAVAILABLE"
+                    ]
+            }
+
+            continue
+
+        validation = validate_video(
+            metadata,
+            track,
+            race_class,
+            current_reverse,
+            earliest_allowed,
+            latest_allowed
+        )
+
+        score = relevance_score(
+            metadata,
+            track,
+            race_class
+        )
+
+        video = {
+            "video_id":
+                video_id,
+
+            "title":
+                metadata.get(
+                    "title"
+                )
+                or search_candidate.get(
+                    "title"
+                ),
+
+            "channel":
+                (
+                    metadata.get(
+                        "channel"
+                    )
+                    or metadata.get(
+                        "uploader"
+                    )
+                    or search_candidate.get(
+                        "channel"
+                    )
+                    or "Unknown"
+                ),
+
+            "channel_id":
+                metadata.get(
+                    "channel_id"
+                ),
+
+            "url":
+                (
+                    "https://www.youtube.com/watch?v="
+                    f"{video_id}"
+                ),
+
+            "upload_datetime":
+                validation[
+                    "upload_datetime"
+                ],
+
+            "duration":
+                metadata.get(
+                    "duration"
+                ),
+
+            "view_count":
+                metadata.get(
+                    "view_count"
+                ),
+
+            "description":
+                metadata.get(
+                    "description"
+                ),
+
+            "relevance_score":
+                score,
+
+            "matched_queries":
+                search_candidate.get(
+                    "matched_queries",
+                    []
+                ),
+
+            "validation_notes":
+                validation[
+                    "reasons"
+                ]
+        }
+
+        if validation[
+            "accepted"
+        ]:
+
+            accepted[
+                video_id
+            ] = video
+
+        else:
+
+            rejected[
+                video_id
+            ] = {
+                **video,
+
+                "reasons":
+                    validation[
+                        "reasons"
+                    ]
+            }
+
+    # ========================================================
+    # LOAD PERSISTENT DATABASE
+    # ========================================================
+
+    database = load_json(
+        COMMUNITY_FILE,
+        {
+            "version": 2,
+            "weeks": {}
+        }
+    )
+
+    if not isinstance(
+        database,
+        dict
+    ):
+
+        database = {
+            "version": 2,
+            "weeks": {}
+        }
+
+    database[
+        "version"
+    ] = 2
+
+    database.setdefault(
+        "weeks",
+        {}
+    )
+
+    week_key = (
+        week_start
+        .date()
+        .isoformat()
+    )
+
+    old_week = (
+        database[
+            "weeks"
+        ]
+        .get(
+            week_key,
+            {}
+        )
+    )
+
+    old_videos = (
+        old_week.get(
+            "videos",
+            {}
+        )
+        if isinstance(
+            old_week,
+            dict
+        )
+        else {}
+    )
+
+    # ========================================================
+    # PRESERVE PREVIOUSLY ACCEPTED VIDEOS
+    #
+    # But revalidate them where possible so the bad V1 entries
+    # are cleaned automatically.
+    # ========================================================
+
+    persistent_videos = {}
+
+    new_count = 0
+    known_count = 0
+
+    for (
+        video_id,
+        video
+    ) in accepted.items():
+
+        if video_id in old_videos:
+
+            old_video = old_videos[
+                video_id
+            ]
+
+            video[
+                "first_seen"
+            ] = old_video.get(
+                "first_seen"
+            ) or now.isoformat()
+
+            known_count += 1
+
+        else:
+
+            video[
+                "first_seen"
+            ] = now.isoformat()
+
+            new_count += 1
+
+        video[
+            "last_seen"
+        ] = now.isoformat()
+
+        video[
+            "status"
+        ] = "ACCEPTED"
+
+        persistent_videos[
+            video_id
+        ] = video
+
+    # --------------------------------------------------------
+    # Preserve older ACCEPTED entries that were not returned
+    # in today's search, but do NOT preserve old V1 entries
+    # blindly. They need to have a validated upload date.
+    # --------------------------------------------------------
+
+    for (
+        video_id,
+        old_video
+    ) in old_videos.items():
+
+        if video_id in persistent_videos:
+            continue
+
+        if (
+            old_video.get(
+                "status"
+            )
+            == "ACCEPTED"
+            and old_video.get(
+                "upload_datetime"
+            )
+        ):
+
+            persistent_videos[
+                video_id
+            ] = old_video
+
+    week_data = {
+        "race_description":
+            race_description,
+
+        "leaderboard_url":
+            race_url,
+
+        "track":
+            track,
+
+        "race_class":
+            race_class,
+
+        "direction":
+            (
+                "REVERSE"
+                if current_reverse
+                else "NORMAL"
+            ),
+
+        "first_scan":
+            (
+                old_week.get(
+                    "first_scan"
+                )
+                if isinstance(
+                    old_week,
+                    dict
+                )
+                else None
+            )
+            or now.isoformat(),
+
+        "last_scan":
+            now.isoformat(),
+
+        "last_scan_stats": {
+            "search_candidates":
+                len(
+                    candidates
+                ),
+
+            "enriched":
+                len(
+                    ranked_candidates
+                ),
+
+            "accepted_this_scan":
+                len(
+                    accepted
+                ),
+
+            "rejected_this_scan":
+                len(
+                    rejected
+                ),
+
+            "new_videos":
+                new_count,
+
+            "previously_known":
+                known_count,
+
+            "total_tracked":
+                len(
+                    persistent_videos
+                )
+        },
+
+        "videos":
+            persistent_videos
+    }
+
+    database[
+        "weeks"
+    ][
+        week_key
+    ] = week_data
+
+    save_json(
+        COMMUNITY_FILE,
+        database
+    )
+
+    # ========================================================
+    # REPORT
+    # ========================================================
+
+    ranked_accepted = sorted(
+        persistent_videos.values(),
         key=lambda item: (
             item.get(
                 "relevance_score",
@@ -1238,81 +1636,125 @@ def main():
     )
 
     print(
-        f"Candidates found : "
+        f"Search candidates : "
         f"{len(candidates)}"
     )
 
     print(
-        f"New videos       : "
+        f"Enriched          : "
+        f"{len(ranked_candidates)}"
+    )
+
+    print(
+        f"Accepted          : "
+        f"{len(accepted)}"
+    )
+
+    print(
+        f"Rejected          : "
+        f"{len(rejected)}"
+    )
+
+    print(
+        f"New videos        : "
         f"{new_count}"
     )
 
     print(
-        f"Already known    : "
-        f"{seen_again_count}"
+        f"Already known     : "
+        f"{known_count}"
     )
 
     print(
-        f"Total tracked    : "
-        f"{len(videos)}"
+        f"Total tracked     : "
+        f"{len(persistent_videos)}"
     )
 
     print()
 
     print(
-        "TOP DISCOVERED SOURCES"
+        "ACCEPTED COMMUNITY SOURCES"
     )
 
     print(
         "-" * 78
     )
 
-    if not ranked:
+    if not ranked_accepted:
 
         print(
-            "No relevant videos found."
+            "No validated current-week videos found."
         )
 
     else:
 
-        for (
-            index,
-            video
-        ) in enumerate(
-            ranked[
+        for index, video in enumerate(
+            ranked_accepted[
                 :20
             ],
             start=1
         ):
 
-            upload_display = (
-                video.get(
-                    "upload_datetime"
-                )
-                or "date unknown"
-            )
-
             print(
                 f"{index:>2}. "
-                f"[{video.get('relevance_score', 0):02d}] "
-                f"{video.get('channel', 'Unknown')} | "
-                f"{video.get('title', '')}"
+                f"[{video.get('relevance_score',0):02d}] "
+                f"{video.get('channel','Unknown')} | "
+                f"{video.get('title','')}"
             )
 
             print(
                 f"    Published: "
-                f"{upload_display}"
+                f"{video.get('upload_datetime','unknown')}"
             )
 
             print(
                 f"    "
-                f"{video.get('url', '')}"
+                f"{video.get('url','')}"
             )
+
+            if video.get(
+                "validation_notes"
+            ):
+
+                print(
+                    f"    Notes: "
+                    f"{', '.join(video['validation_notes'])}"
+                )
 
     print()
 
     print(
-        f"Database saved   : "
+        "REJECTED SAMPLE"
+    )
+
+    print(
+        "-" * 78
+    )
+
+    for index, video in enumerate(
+        list(
+            rejected.values()
+        )[
+            :15
+        ],
+        start=1
+    ):
+
+        print(
+            f"{index:>2}. "
+            f"{video.get('channel','Unknown')} | "
+            f"{video.get('title','')}"
+        )
+
+        print(
+            f"    Reasons: "
+            f"{', '.join(video.get('reasons', []))}"
+        )
+
+    print()
+
+    print(
+        f"Database saved    : "
         f"{COMMUNITY_FILE}"
     )
 
