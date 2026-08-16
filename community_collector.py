@@ -1,6 +1,7 @@
 import json
 import re
 import subprocess
+
 from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -11,33 +12,53 @@ from zoneinfo import ZoneInfo
 # ============================================================
 
 DATA_DIR = Path("data")
-LATEST_SNAPSHOT_FILE = DATA_DIR / "latest_snapshot.json"
-COMMUNITY_FILE = DATA_DIR / "community_sources.json"
 
-SAO_PAULO = ZoneInfo("America/Sao_Paulo")
+LATEST_SNAPSHOT_FILE = (
+    DATA_DIR
+    / "latest_snapshot.json"
+)
+
+COMMUNITY_FILE = (
+    DATA_DIR
+    / "community_sources.json"
+)
+
+SAO_PAULO = ZoneInfo(
+    "America/Sao_Paulo"
+)
 
 MAX_RESULTS_PER_QUERY = 20
 
 
 # ============================================================
-# HELPERS
+# JSON HELPERS
 # ============================================================
 
-def load_json(path, default):
+def load_json(
+    path,
+    default
+):
 
     if not path.exists():
         return default
 
     try:
+
         return json.loads(
-            path.read_text(encoding="utf-8")
+            path.read_text(
+                encoding="utf-8"
+            )
         )
 
     except Exception:
+
         return default
 
 
-def save_json(path, data):
+def save_json(
+    path,
+    data
+):
 
     path.parent.mkdir(
         parents=True,
@@ -54,7 +75,13 @@ def save_json(path, data):
     )
 
 
-def normalize_text(text):
+# ============================================================
+# TEXT HELPERS
+# ============================================================
+
+def normalize_text(
+    text
+):
 
     if not text:
         return ""
@@ -70,17 +97,30 @@ def normalize_text(text):
     return text.strip()
 
 
-def parse_week_start(snapshot):
+# ============================================================
+# RACE WEEK
+# ============================================================
+
+def parse_week_start(
+    snapshot
+):
 
     start_date = (
         snapshot
-        .get("race", {})
-        .get("start_date")
+        .get(
+            "race",
+            {}
+        )
+        .get(
+            "start_date"
+        )
     )
 
     if not start_date:
+
         raise RuntimeError(
-            "Race start_date not found in latest_snapshot.json."
+            "Race start_date not found "
+            "in data/latest_snapshot.json."
         )
 
     return datetime.fromisoformat(
@@ -89,47 +129,113 @@ def parse_week_start(snapshot):
 
 
 # ============================================================
-# BUILD SEARCH QUERIES
+# TRACK EXTRACTION
 # ============================================================
 
-def build_queries(snapshot):
-
-    race_text = (
-        snapshot
-        .get("race", {})
-        .get("description", "")
-    )
+def extract_track(
+    race_text
+):
 
     if not race_text:
-        raise RuntimeError(
-            "Race description not found."
-        )
+        return None
 
-    # Remove the long regulations section as much as possible.
-    clean = race_text
-
-    clean = re.sub(
-        r"^C\s+",
-        "",
-        clean
-    )
-
-    # Extract track from the known GTSH text.
-    track = None
+    # Expected structure:
+    #
+    # C Gr.4 Running 10 Aug 2026 Daily Race C i 16:48
+    # Grand Valley - Highway 1
+    # M. Estevez - GT by Citroën Gr.4
+    # RM RS BoP ...
+    #
+    # The driver name immediately after the track normally
+    # starts with an initial followed by a dot.
 
     match = re.search(
-        r"Daily Race C.*?\d{1,2}:\d{2}\s+(.+?)\s+"
-        r"(?:[A-Z]\.\s*[A-Za-z]|GT by|Genesis|Nissan|Toyota|"
-        r"TOYOTA|Honda|Suzuki|BMW|Mazda|MAZDA|Ferrari|"
-        r"Porsche|Renault|Volkswagen|Audi|Lexus|Ford|"
-        r"Chevrolet|Jaguar|McLaren|Peugeot|Subaru|"
-        r"Mitsubishi|Lamborghini|Dodge|Alfa)",
-        clean,
+        r"Daily Race C.*?"
+        r"\d{1,2}:\d{2}\s+"
+        r"(.+?)\s+"
+        r"[A-Z]\.\s*"
+        r"[A-Za-zÀ-ÿ]",
+        race_text,
         re.IGNORECASE
     )
 
     if match:
-        track = match.group(1).strip()
+
+        track = (
+            match
+            .group(1)
+            .strip()
+        )
+
+        if track:
+            return track
+
+    # --------------------------------------------------------
+    # Fallback:
+    # Attempt extraction before common car/manufacturer names.
+    # --------------------------------------------------------
+
+    manufacturer_pattern = (
+        r"(?:GT by|Genesis|Hyundai|Nissan|Toyota|TOYOTA|"
+        r"Honda|Suzuki|BMW|Mazda|MAZDA|Ferrari|Porsche|"
+        r"Renault|Volkswagen|Audi|Lexus|Ford|Chevrolet|"
+        r"Jaguar|McLaren|Peugeot|Subaru|Mitsubishi|"
+        r"Lamborghini|Dodge|Alfa|Mercedes-Benz|Bugatti|"
+        r"Aston Martin)"
+    )
+
+    match = re.search(
+        r"Daily Race C.*?"
+        r"\d{1,2}:\d{2}\s+"
+        r"(.+?)\s+"
+        + manufacturer_pattern,
+        race_text,
+        re.IGNORECASE
+    )
+
+    if match:
+
+        track = (
+            match
+            .group(1)
+            .strip()
+        )
+
+        if track:
+            return track
+
+    return None
+
+
+# ============================================================
+# SEARCH QUERIES
+# ============================================================
+
+def build_queries(
+    snapshot
+):
+
+    race_text = (
+        snapshot
+        .get(
+            "race",
+            {}
+        )
+        .get(
+            "description",
+            ""
+        )
+    )
+
+    if not race_text:
+
+        raise RuntimeError(
+            "Race description not found."
+        )
+
+    track = extract_track(
+        race_text
+    )
 
     queries = [
         "GT7 Daily Race C",
@@ -139,36 +245,64 @@ def build_queries(snapshot):
     if track:
 
         queries.extend([
-            f"GT7 Daily Race C {track}",
-            f"Gran Turismo 7 Daily Race C {track}",
-            f"GT7 {track} Daily Race"
+            (
+                f"GT7 Daily Race C "
+                f"{track}"
+            ),
+            (
+                f"Gran Turismo 7 Daily Race C "
+                f"{track}"
+            ),
+            (
+                f"GT7 {track} "
+                f"Daily Race"
+            )
         ])
 
-    # Remove duplicates while preserving order.
-    unique = []
+    # --------------------------------------------------------
+    # Remove duplicate queries while keeping original order.
+    # --------------------------------------------------------
+
+    unique_queries = []
 
     seen = set()
 
     for query in queries:
 
-        key = normalize_text(query)
+        key = normalize_text(
+            query
+        )
 
-        if key not in seen:
+        if key in seen:
+            continue
 
-            seen.add(key)
-            unique.append(query)
+        seen.add(
+            key
+        )
 
-    return unique, track
+        unique_queries.append(
+            query
+        )
+
+    return (
+        unique_queries,
+        track
+    )
 
 
 # ============================================================
-# YT-DLP SEARCH
+# YOUTUBE SEARCH VIA YT-DLP
+#
+# IMPORTANT:
+# Use ytsearchN:, not ytsearchdateN:.
 # ============================================================
 
-def search_youtube(query):
+def search_youtube(
+    query
+):
 
     search_target = (
-        f"ytsearchdate{MAX_RESULTS_PER_QUERY}:"
+        f"ytsearch{MAX_RESULTS_PER_QUERY}:"
         f"{query}"
     )
 
@@ -181,22 +315,50 @@ def search_youtube(query):
         search_target
     ]
 
-    result = subprocess.run(
-        command,
-        capture_output=True,
-        text=True,
-        timeout=120
-    )
+    try:
+
+        result = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            timeout=120
+        )
+
+    except subprocess.TimeoutExpired:
+
+        print(
+            f"WARNING: search timed out for: "
+            f"{query}"
+        )
+
+        return []
+
+    except Exception as exc:
+
+        print(
+            f"WARNING: yt-dlp execution failed "
+            f"for: {query}"
+        )
+
+        print(
+            f"Reason: {exc}"
+        )
+
+        return []
 
     if result.returncode != 0:
 
         print(
-            f"WARNING: search failed for: {query}"
+            f"WARNING: search failed for: "
+            f"{query}"
         )
 
         if result.stderr:
+
             print(
-                result.stderr[-1000:]
+                result.stderr[
+                    -1500:
+                ]
             )
 
         return []
@@ -210,8 +372,17 @@ def search_youtube(query):
     except Exception:
 
         print(
-            f"WARNING: invalid JSON for query: {query}"
+            f"WARNING: invalid JSON returned "
+            f"for query: {query}"
         )
+
+        if result.stdout:
+
+            print(
+                result.stdout[
+                    -1000:
+                ]
+            )
 
         return []
 
@@ -220,21 +391,30 @@ def search_youtube(query):
         []
     )
 
-    if not isinstance(entries, list):
+    if not isinstance(
+        entries,
+        list
+    ):
+
         return []
 
     return [
         entry
         for entry in entries
-        if isinstance(entry, dict)
+        if isinstance(
+            entry,
+            dict
+        )
     ]
 
 
 # ============================================================
-# DATE FILTER
+# UPLOAD DATE
 # ============================================================
 
-def parse_upload_date(entry):
+def parse_upload_date(
+    entry
+):
 
     timestamp = entry.get(
         "timestamp"
@@ -246,6 +426,7 @@ def parse_upload_date(entry):
     ):
 
         try:
+
             return datetime.fromtimestamp(
                 timestamp,
                 tz=SAO_PAULO
@@ -263,7 +444,9 @@ def parse_upload_date(entry):
         try:
 
             parsed = datetime.strptime(
-                str(upload_date),
+                str(
+                    upload_date
+                ),
                 "%Y%m%d"
             )
 
@@ -274,11 +457,30 @@ def parse_upload_date(entry):
         except Exception:
             pass
 
+    release_timestamp = entry.get(
+        "release_timestamp"
+    )
+
+    if isinstance(
+        release_timestamp,
+        (int, float)
+    ):
+
+        try:
+
+            return datetime.fromtimestamp(
+                release_timestamp,
+                tz=SAO_PAULO
+            )
+
+        except Exception:
+            pass
+
     return None
 
 
 # ============================================================
-# RELEVANCE
+# RELEVANCE SCORING
 # ============================================================
 
 def relevance_score(
@@ -287,10 +489,30 @@ def relevance_score(
 ):
 
     title = normalize_text(
-        entry.get("title", "")
+        entry.get(
+            "title",
+            ""
+        )
+    )
+
+    description = normalize_text(
+        entry.get(
+            "description",
+            ""
+        )
+    )
+
+    text = (
+        title
+        + " "
+        + description
     )
 
     score = 0
+
+    # --------------------------------------------------------
+    # GT7 identity
+    # --------------------------------------------------------
 
     if "gt7" in title:
         score += 3
@@ -298,11 +520,25 @@ def relevance_score(
     if "gran turismo 7" in title:
         score += 3
 
+    # --------------------------------------------------------
+    # Daily Race identity
+    # --------------------------------------------------------
+
     if "daily race c" in title:
-        score += 5
+        score += 7
+
+    elif "daily races" in title:
+        score += 3
 
     elif "daily race" in title:
-        score += 2
+        score += 3
+
+    if "race c" in title:
+        score += 3
+
+    # --------------------------------------------------------
+    # Track identity
+    # --------------------------------------------------------
 
     if track:
 
@@ -310,10 +546,10 @@ def relevance_score(
             track
         )
 
-        if track_norm in title:
-            score += 5
+        if track_norm in text:
 
-        # Useful if title contains only part of a long track name.
+            score += 7
+
         important_words = [
             word
             for word in re.findall(
@@ -323,18 +559,215 @@ def relevance_score(
             if len(word) >= 4
         ]
 
-        matches = sum(
+        matching_words = sum(
             1
             for word in important_words
-            if word in title
+            if word in text
         )
 
         score += min(
-            matches,
-            3
+            matching_words,
+            4
         )
 
+    # --------------------------------------------------------
+    # Useful GT7 content keywords
+    # --------------------------------------------------------
+
+    useful_terms = [
+        "guide",
+        "lap guide",
+        "strategy",
+        "race strategy",
+        "qualifying",
+        "hotlap",
+        "hot lap",
+        "track guide",
+        "daily races",
+        "weekly races"
+    ]
+
+    for term in useful_terms:
+
+        if term in title:
+
+            score += 1
+
     return score
+
+
+# ============================================================
+# ENTRY NORMALIZATION
+# ============================================================
+
+def normalize_entry(
+    entry,
+    query,
+    track,
+    now
+):
+
+    video_id = entry.get(
+        "id"
+    )
+
+    if not video_id:
+        return None
+
+    title = entry.get(
+        "title",
+        ""
+    )
+
+    channel = (
+        entry.get(
+            "channel"
+        )
+        or entry.get(
+            "uploader"
+        )
+        or entry.get(
+            "channel_id"
+        )
+        or "Unknown"
+    )
+
+    upload_datetime = (
+        parse_upload_date(
+            entry
+        )
+    )
+
+    score = relevance_score(
+        entry,
+        track
+    )
+
+    url = (
+        "https://www.youtube.com/watch?v="
+        f"{video_id}"
+    )
+
+    return {
+        "video_id":
+            video_id,
+
+        "title":
+            title,
+
+        "channel":
+            channel,
+
+        "url":
+            url,
+
+        "upload_datetime":
+            (
+                upload_datetime.isoformat()
+                if upload_datetime
+                else None
+            ),
+
+        "duration":
+            entry.get(
+                "duration"
+            ),
+
+        "view_count":
+            entry.get(
+                "view_count"
+            ),
+
+        "relevance_score":
+            score,
+
+        "matched_queries":
+            [
+                query
+            ],
+
+        "first_seen":
+            now.isoformat(),
+
+        "last_seen":
+            now.isoformat(),
+
+        "status":
+            "DISCOVERED"
+    }
+
+
+# ============================================================
+# MERGE CANDIDATES
+# ============================================================
+
+def merge_candidate(
+    candidates,
+    candidate
+):
+
+    video_id = candidate[
+        "video_id"
+    ]
+
+    if video_id not in candidates:
+
+        candidates[
+            video_id
+        ] = candidate
+
+        return
+
+    existing = candidates[
+        video_id
+    ]
+
+    existing[
+        "relevance_score"
+    ] = max(
+        existing.get(
+            "relevance_score",
+            0
+        ),
+        candidate.get(
+            "relevance_score",
+            0
+        )
+    )
+
+    existing_queries = (
+        existing
+        .setdefault(
+            "matched_queries",
+            []
+        )
+    )
+
+    for query in candidate.get(
+        "matched_queries",
+        []
+    ):
+
+        if query not in existing_queries:
+
+            existing_queries.append(
+                query
+            )
+
+    if (
+        not existing.get(
+            "upload_datetime"
+        )
+        and candidate.get(
+            "upload_datetime"
+        )
+    ):
+
+        existing[
+            "upload_datetime"
+        ] = candidate[
+            "upload_datetime"
+        ]
 
 
 # ============================================================
@@ -355,7 +788,8 @@ def main():
     if not snapshot:
 
         raise RuntimeError(
-            "data/latest_snapshot.json not found or invalid."
+            "data/latest_snapshot.json "
+            "not found or invalid."
         )
 
     race = snapshot.get(
@@ -375,20 +809,33 @@ def main():
         snapshot
     )
 
-    # Allow a small margin before Monday in case a creator
-    # publishes an early preview.
+    # --------------------------------------------------------
+    # Permit videos published on Sunday before the race week.
+    # This catches previews uploaded shortly before Monday.
+    # --------------------------------------------------------
+
     earliest_allowed = (
         week_start
-        - timedelta(days=1)
+        - timedelta(
+            days=1
+        )
     )
 
     queries, track = build_queries(
         snapshot
     )
 
-    print("=" * 78)
-    print("GT7 COMMUNITY SOURCE COLLECTOR")
-    print("=" * 78)
+    print(
+        "=" * 78
+    )
+
+    print(
+        "GT7 COMMUNITY SOURCE COLLECTOR"
+    )
+
+    print(
+        "=" * 78
+    )
 
     print(
         f"Race week       : "
@@ -406,7 +853,14 @@ def main():
     )
 
     for query in queries:
-        print(f"  - {query}")
+
+        print(
+            f"  - {query}"
+        )
+
+    # ========================================================
+    # LOAD COMMUNITY DATABASE
+    # ========================================================
 
     existing = load_json(
         COMMUNITY_FILE,
@@ -443,7 +897,9 @@ def main():
     )
 
     week_data = (
-        existing["weeks"]
+        existing[
+            "weeks"
+        ]
         .setdefault(
             week_key,
             {
@@ -468,7 +924,10 @@ def main():
         )
     )
 
-    # If race metadata improves later, refresh it.
+    # --------------------------------------------------------
+    # Refresh metadata every run.
+    # --------------------------------------------------------
+
     week_data[
         "race_description"
     ] = race_description
@@ -478,18 +937,29 @@ def main():
     ] = race_url
 
     if track:
-        week_data["track"] = track
 
-    videos = week_data.setdefault(
-        "videos",
-        {}
+        week_data[
+            "track"
+        ] = track
+
+    videos = (
+        week_data
+        .setdefault(
+            "videos",
+            {}
+        )
     )
 
     candidates = {}
 
+    # ========================================================
+    # RUN SEARCHES
+    # ========================================================
+
     for query in queries:
 
         print()
+
         print(
             f"Searching: {query}"
         )
@@ -499,127 +969,89 @@ def main():
         )
 
         print(
-            f"  Results: {len(entries)}"
+            f"  Results: "
+            f"{len(entries)}"
         )
+
+        accepted_this_query = 0
 
         for entry in entries:
 
-            video_id = entry.get(
-                "id"
+            candidate = normalize_entry(
+                entry,
+                query,
+                track,
+                now
             )
 
-            if not video_id:
+            if not candidate:
                 continue
 
-            title = entry.get(
-                "title",
-                ""
-            )
-
-            channel = (
-                entry.get("channel")
-                or entry.get("uploader")
-                or entry.get("channel_id")
-                or "Unknown"
-            )
-
-            upload_datetime = (
-                parse_upload_date(
-                    entry
+            upload_datetime_text = (
+                candidate.get(
+                    "upload_datetime"
                 )
             )
 
-            # If date is known, reject clearly old videos.
+            upload_datetime = None
+
+            if upload_datetime_text:
+
+                try:
+
+                    upload_datetime = (
+                        datetime
+                        .fromisoformat(
+                            upload_datetime_text
+                        )
+                    )
+
+                except Exception:
+                    pass
+
+            # ------------------------------------------------
+            # Reject clearly old videos where date is known.
+            #
+            # Flat search results may not always provide a date,
+            # so unknown dates are not rejected at this stage.
+            # ------------------------------------------------
+
             if (
                 upload_datetime
                 and upload_datetime
                 < earliest_allowed
             ):
+
                 continue
 
-            score = relevance_score(
-                entry,
-                track
-            )
+            # ------------------------------------------------
+            # Minimum relevance.
+            # ------------------------------------------------
 
-            # Keep only plausibly relevant material.
-            if score < 5:
-                continue
-
-            url = (
-                f"https://www.youtube.com/watch?v="
-                f"{video_id}"
-            )
-
-            candidate = {
-                "video_id":
-                    video_id,
-
-                "title":
-                    title,
-
-                "channel":
-                    channel,
-
-                "url":
-                    url,
-
-                "upload_datetime":
-                    (
-                        upload_datetime.isoformat()
-                        if upload_datetime
-                        else None
-                    ),
-
-                "relevance_score":
-                    score,
-
-                "matched_queries":
-                    [query],
-
-                "first_seen":
-                    now.isoformat(),
-
-                "last_seen":
-                    now.isoformat(),
-
-                "status":
-                    "DISCOVERED"
-            }
-
-            if video_id in candidates:
-
-                old_candidate = candidates[
-                    video_id
-                ]
-
-                old_candidate[
+            if (
+                candidate[
                     "relevance_score"
-                ] = max(
-                    old_candidate[
-                        "relevance_score"
-                    ],
-                    score
-                )
+                ]
+                < 5
+            ):
 
-                if (
-                    query
-                    not in old_candidate[
-                        "matched_queries"
-                    ]
-                ):
+                continue
 
-                    old_candidate[
-                        "matched_queries"
-                    ].append(
-                        query
-                    )
+            merge_candidate(
+                candidates,
+                candidate
+            )
 
-            else:
+            accepted_this_query += 1
 
-                candidates[
-                    video_id
-                ] = candidate
+        print(
+            f"  Accepted: "
+            f"{accepted_this_query}"
+        )
+
+    # ========================================================
+    # MERGE INTO PERSISTENT DATABASE
+    # ========================================================
 
     new_count = 0
     seen_again_count = 0
@@ -669,6 +1101,32 @@ def main():
                 ]
             )
 
+            if (
+                candidate.get(
+                    "view_count"
+                )
+                is not None
+            ):
+
+                existing_video[
+                    "view_count"
+                ] = candidate[
+                    "view_count"
+                ]
+
+            if (
+                candidate.get(
+                    "duration"
+                )
+                is not None
+            ):
+
+                existing_video[
+                    "duration"
+                ] = candidate[
+                    "duration"
+                ]
+
             old_queries = (
                 existing_video
                 .setdefault(
@@ -677,12 +1135,16 @@ def main():
                 )
             )
 
-            for query in candidate[
-                "matched_queries"
-            ]:
+            for query in candidate.get(
+                "matched_queries",
+                []
+            ):
 
                 if query not in old_queries:
-                    old_queries.append(query)
+
+                    old_queries.append(
+                        query
+                    )
 
             if (
                 not existing_video.get(
@@ -709,6 +1171,10 @@ def main():
 
             new_count += 1
 
+    # ========================================================
+    # SCAN METADATA
+    # ========================================================
+
     week_data[
         "last_scan"
     ] = now.isoformat()
@@ -717,7 +1183,9 @@ def main():
         "last_scan_stats"
     ] = {
         "candidates_found":
-            len(candidates),
+            len(
+                candidates
+            ),
 
         "new_videos":
             new_count,
@@ -726,13 +1194,19 @@ def main():
             seen_again_count,
 
         "total_tracked":
-            len(videos)
+            len(
+                videos
+            )
     }
 
     save_json(
         COMMUNITY_FILE,
         existing
     )
+
+    # ========================================================
+    # DISPLAY RESULTS
+    # ========================================================
 
     ranked = sorted(
         videos.values(),
@@ -750,9 +1224,18 @@ def main():
     )
 
     print()
-    print("=" * 78)
-    print("COLLECTOR RESULT")
-    print("=" * 78)
+
+    print(
+        "=" * 78
+    )
+
+    print(
+        "COLLECTOR RESULT"
+    )
+
+    print(
+        "=" * 78
+    )
 
     print(
         f"Candidates found : "
@@ -775,8 +1258,14 @@ def main():
     )
 
     print()
-    print("TOP DISCOVERED SOURCES")
-    print("-" * 78)
+
+    print(
+        "TOP DISCOVERED SOURCES"
+    )
+
+    print(
+        "-" * 78
+    )
 
     if not ranked:
 
@@ -786,10 +1275,22 @@ def main():
 
     else:
 
-        for index, video in enumerate(
-            ranked[:20],
+        for (
+            index,
+            video
+        ) in enumerate(
+            ranked[
+                :20
+            ],
             start=1
         ):
+
+            upload_display = (
+                video.get(
+                    "upload_datetime"
+                )
+                or "date unknown"
+            )
 
             print(
                 f"{index:>2}. "
@@ -799,17 +1300,27 @@ def main():
             )
 
             print(
-                f"    {video.get('url', '')}"
+                f"    Published: "
+                f"{upload_display}"
+            )
+
+            print(
+                f"    "
+                f"{video.get('url', '')}"
             )
 
     print()
+
     print(
         f"Database saved   : "
         f"{COMMUNITY_FILE}"
     )
 
-    print("=" * 78)
+    print(
+        "=" * 78
+    )
 
 
 if __name__ == "__main__":
+
     main()
