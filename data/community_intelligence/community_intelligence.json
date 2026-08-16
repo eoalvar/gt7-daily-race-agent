@@ -31,34 +31,55 @@
   "strategy": {
     "confidence": "HIGH",
     "preferred_logic": "OVERCUT / EXTEND FIRST STINT",
-    "tyre_saving_supported": false,
-    "tyre_change_supported": false,
+    "tyre_saving_supported": true,
+    "tyre_change_supported": true,
     "citroen_supported": true,
     "recommendations": [
       "The later race-tested evidence favours the overcut: staying out longer performed better than stopping early.",
+      "Tyre preservation is strategically important; avoid unnecessary sliding and steering input during the first stint.",
+      "Digit confirms that the race requires use of the tyre-change rule.",
       "Digit identifies the GT by Citroën Gr.4 as particularly strong for this race, including tyre performance."
     ],
     "evidence": {
       "overcut": [
-        "[2:36:51] It seems like the overcut is more [music] powerful than the undercut.",
-        "[2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have I should have stayed out. stayed out. stayed out. should have put it when he put it. Then we would have a race like this.",
-        "[2:40:03] qual. qual. Thank you. Thank you, casual driver. I should have stayed out. That's it. And all of those that pitted earlier just lost more time.",
-        "[2:40:33] Overcut it is. At least I know for next time. If you ask me like last week we had a bit of diversity. Now we are back to the roots roots roots but it's also okay. Uh tire wear times four and you can see fuel is uh is times two."
+        "[2:36:51] It seems like the overcut is more It seems like the overcut is more [music] powerful than the undercut.",
+        "[2:38:47] Yeah, Citroen is typically strong when Yeah, Citroen is typically strong when it comes to tire wear, it comes to tire wear, it comes to tire wear, but yeah, I should have I should have but yeah, I should have I should have but yeah, I should have I should have stayed out. stayed out. stayed out. should have put it when he put it. Then should have put it when he put it. Then should have put it when he put it. Then we would have a race like this.",
+        "[2:40:03] qual. qual. Thank you. Thank you, casual driver. I should have stayed out. That's it. And I should have stayed out. That's it. And all of those that pitted earlier just all of those that pitted earlier just all of those that pitted earlier just lost more time.",
+        "[2:40:33] Overcut it is. Overcut it is. At least I know for next time. If you ask me like last week we had a If you ask me like last week we had a bit of diversity. Now we are back to the bit of diversity. Now we are back to the bit of diversity. Now we are back to the roots roots roots but it's also okay. but it's also okay. but it's also okay. Uh tire wear times four and you can see Uh tire wear times four and you can see Uh tire wear times four and you can see fuel is uh is times two."
       ],
       "tyre_saving": [
-        "[2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have I should have stayed out. stayed out. stayed out. should have put it when he put it. Then we would have a race like this.",
-        "[2:40:33] Overcut it is. At least I know for next time. If you ask me like last week we had a bit of diversity. Now we are back to the roots roots roots but it's also okay. Uh tire wear times four and you can see fuel is uh is times two.",
-        "[3:59:25] I switched to wheel in the middle of endurance championship because of the tire wear issue. Of course, the switch made me even slower. Uh yeah, it's it's actually difficult to get used to the wheel."
+        "[music] So radar is on as usual, [music] So radar is on as usual, [music] So radar is on as usual, but this is going to be like a typical but this is going to be like a typical but this is going to be like a typical tire saving race, at least in my tire saving race, at least in my tire saving race, at least in my opinion. opinion. opinion.",
+        "I think tire saving is Yeah.",
+        "I think tire saving is going to be very, very important here. going to be very, very important here. going to be very, very important here.",
+        "[27:53] A race a day keeps the doctor away. A race a day keeps the doctor away. That's actually a good one. Okay. Okay. Yeah. I don't know if you've seen my Yeah. I don't know if you've seen my Yeah. I don't know if you've seen my setup video. Basically, I'm I was showing everything Basically, I'm I was showing everything that I have. though. that I have. though. that I have. though. Go check it out. Okay. Saving tires Okay. Saving tires and getting closer to the lead.",
+        "[28:25] and getting closer to the lead. and getting closer to the lead. That's typically what works. I have to be very very gentle with my I have to be very very gentle with my tires.",
+        "So, the tire wear good at the same time.",
+        "So, the tire wear is going to be significantly less.",
+        "[2:38:47] Yeah, Citroen is typically strong when Yeah, Citroen is typically strong when it comes to tire wear, it comes to tire wear, it comes to tire wear, but yeah, I should have I should have but yeah, I should have I should have but yeah, I should have I should have stayed out. stayed out. stayed out. should have put it when he put it. Then should have put it when he put it. Then should have put it when he put it. Then we would have a race like this.",
+        "[2:40:33] Overcut it is. Overcut it is. At least I know for next time. If you ask me like last week we had a If you ask me like last week we had a bit of diversity. Now we are back to the bit of diversity. Now we are back to the bit of diversity. Now we are back to the roots roots roots but it's also okay. but it's also okay. but it's also okay. Uh tire wear times four and you can see Uh tire wear times four and you can see Uh tire wear times four and you can see fuel is uh is times two.",
+        "[3:59:25] I switched to wheel in the middle of I switched to wheel in the middle of endurance championship because of the endurance championship because of the endurance championship because of the tire wear issue. Of course, the switch tire wear issue. Of course, the switch tire wear issue. Of course, the switch made me even slower. made me even slower. made me even slower. Uh yeah, it's Uh yeah, it's Uh yeah, it's it's actually difficult to get used to it's actually difficult to get used to it's actually difficult to get used to the wheel."
       ],
-      "tyre_change": [],
+      "tyre_change": [
+        "[25:10] Okay. Okay. Uh, pit stop is required in this race. Uh, pit stop is required in this race. Uh, pit stop is required in this race. There is a required [music] tire change. So, it's not like a mandatory stop, but So, it's not like a mandatory stop, but at the same time, we just [music] need at the same time, we just [music] need at the same time, we just [music] need to change the tires.",
+        "The strategy is to change the tires [music] roughly about lap four, tires [music] roughly about lap four, tires [music] roughly about lap four, lap five, mediums and soft."
+      ],
       "compounds": [
-        "[3:58:37] Uh, racing mediums and racing soft tires."
+        "Mediums and soft tires.",
+        "So, let's just Mediums and soft tires.",
+        "The strategy is to change the tires [music] roughly about lap four, tires [music] roughly about lap four, tires [music] roughly about lap four, lap five, mediums and soft.",
+        "Typically lap five, mediums and soft.",
+        "[3:58:37] Uh, racing mediums and racing soft Uh, racing mediums and racing soft tires."
       ],
       "citroen": [
-        "[2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have I should have stayed out. stayed out. stayed out. should have put it when he put it. Then we would have a race like this.",
-        "[2:39:29] Well, second it's it's not bad, but it's also not good. You know what? For the next time, I know bit later. Ocean. Hello. Hello. Once again, Citroen tires are better than Porsches, [music] even if you do one more lap on the S. because it's just faster overall. It's not worth. [snorts] I mean, it's it's [music] a it's a Citroen cup basically"
+        "[2:38:47] Yeah, Citroen is typically strong when Yeah, Citroen is typically strong when it comes to tire wear, it comes to tire wear, it comes to tire wear, but yeah, I should have I should have but yeah, I should have I should have but yeah, I should have I should have stayed out. stayed out. stayed out. should have put it when he put it. Then should have put it when he put it. Then should have put it when he put it. Then we would have a race like this.",
+        "Once again, Citroen tires are better than Porsches, Citroen tires are better than Porsches, Citroen tires are better than Porsches, [music] even if you do one more lap on [music] even if you do one more lap on [music] even if you do one more lap on the S. because it's just faster overall. the S. because it's just faster overall. the S. because it's just faster overall.",
+        "[snorts] I mean, it's it's [music] a [snorts] I mean, it's it's [music] a [snorts] I mean, it's it's [music] a it's a Citroen cup basically"
       ],
-      "pit_window": []
+      "pit_window": [
+        "[19:00] I guess the ideal pit window, as you I guess the ideal pit window, as you guys told me, is around lap four, lap guys told me, is around lap four, lap guys told me, is around lap four, lap five. five. five. We'll see. Hello, Daniel. I still need We'll see. Hello, Daniel. I still need We'll see. Hello, Daniel. I still need to send you the package. Andre, hi there. Lap four, five. Okay. Andre, hi there. Lap four, five. Okay. So, I'm supposed to start So, I'm supposed to start So, I'm supposed to start um I mean, let's see how this is going to I mean, let's see how this is going to look like. I don't think the Genesis is",
+        "The strategy is to change the tires [music] roughly about lap four, tires [music] roughly about lap four, tires [music] roughly about lap four, lap five, mediums and soft.",
+        "Typically lap five, mediums and soft."
+      ]
     }
   },
   "qualifying_lap_guide": {
@@ -633,6 +654,7 @@
   "practical_race_plan": [
     "Use the official/live race configuration as the regulatory baseline.",
     "Do not treat laps 4-5 as a rigid pit window. Digit's later race-tested conclusion favours staying out longer and using the overcut rather than stopping early.",
+    "Protect the tyres during the first stint; excessive steering, sliding and front-tyre overload reduce the benefit of the overcut.",
     "The GT by Citroën Gr.4 is supported independently by both Digit's race experience and the live leaderboard meta.",
     "Use the GnC guide for braking references, gears, racing line and throttle technique; do not mix lap instructions from other community sources."
   ],
