@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "weeks": {
     "2026-08-10": {
       "track": "Grand Valley - Highway 1",
@@ -259,5 +259,31 @@
         "new_videos_started": 1
       }
     }
+  },
+  "videos": {
+    "O-AfZNXuGBg": {
+      "week": "2026-08-10",
+      "video_id": "O-AfZNXuGBg",
+      "channel": "Digit Racing",
+      "purpose": "STRATEGY",
+      "content_type": "RACE",
+      "title": "🔴 GT7 | Grand Valley - New Week Of Daily Racing! | Live 🔴",
+      "url": "https://www.youtube.com/watch?v=O-AfZNXuGBg",
+      "status": "RATE_LIMIT",
+      "api_status": "RATE_LIMIT",
+      "delivery_mode": null,
+      "http_status": 429,
+      "job_id": null,
+      "word_count": 0,
+      "character_count": 0,
+      "transcript": null,
+      "updated_at": "2026-08-16T16:18:53.453032+00:00"
+    }
+  },
+  "updated_at": "2026-08-16T16:18:53.453085+00:00",
+  "current_week": "2026-08-10",
+  "source_policy": {
+    "strategy": "Digit Racing",
+    "lap_guide": "GnC Racing"
   }
 }
