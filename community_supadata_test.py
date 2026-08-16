@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import time
 import requests
 
 from pathlib import Path
@@ -16,11 +17,12 @@ COMMUNITY_FILE = DATA_DIR / "community_sources.json"
 OUTPUT_DIR = DATA_DIR / "community_supadata_test"
 OUTPUT_FILE = OUTPUT_DIR / "supadata_test_results.json"
 
-SUPADATA_ENDPOINT = (
-    "https://api.supadata.ai/v1/transcript"
-)
+SUPADATA_ENDPOINT = "https://api.supadata.ai/v1/transcript"
 
 MAX_VIDEOS_TO_TEST = 5
+
+POLL_INTERVAL_SECONDS = 5
+MAX_POLL_ATTEMPTS = 24
 
 PRIORITY_CHANNELS = [
     "Wombleleader Racing",
@@ -56,7 +58,6 @@ def load_json(path, default):
         return default
 
     try:
-
         return json.loads(
             path.read_text(
                 encoding="utf-8"
@@ -64,7 +65,6 @@ def load_json(path, default):
         )
 
     except Exception:
-
         return default
 
 
@@ -99,6 +99,28 @@ def normalize_text(text):
     )
 
     return text.strip()
+
+
+def safe_filename(text):
+
+    text = normalize_text(
+        text
+    )
+
+    text = re.sub(
+        r"[^a-z0-9_-]+",
+        "_",
+        text
+    )
+
+    text = text.strip(
+        "_"
+    )
+
+    return (
+        text[:80]
+        or "video"
+    )
 
 
 def get_latest_week(database):
@@ -210,9 +232,8 @@ def select_videos(week_data):
 
     selected = []
 
-    # --------------------------------------------------------
-    # First: try one video from each priority channel.
-    # --------------------------------------------------------
+    # First pass:
+    # try one video from each priority channel.
 
     for priority_channel in PRIORITY_CHANNELS:
 
@@ -252,9 +273,8 @@ def select_videos(week_data):
                 candidate
             )
 
-    # --------------------------------------------------------
-    # Fill remaining slots with strongest sources.
-    # --------------------------------------------------------
+    # Second pass:
+    # fill remaining positions with strongest sources.
 
     for video in videos:
 
@@ -272,9 +292,7 @@ def select_videos(week_data):
             video
         )
 
-    return selected[
-        :MAX_VIDEOS_TO_TEST
-    ]
+    return selected[:MAX_VIDEOS_TO_TEST]
 
 
 # ============================================================
@@ -287,7 +305,6 @@ def extract_text_from_content(content):
         content,
         str
     ):
-
         return content.strip()
 
     if isinstance(
@@ -308,11 +325,13 @@ def extract_text_from_content(content):
                     "text"
                 )
 
-                if isinstance(
-                    text,
-                    str
-                ) and text.strip():
-
+                if (
+                    isinstance(
+                        text,
+                        str
+                    )
+                    and text.strip()
+                ):
                     parts.append(
                         text.strip()
                     )
@@ -323,7 +342,6 @@ def extract_text_from_content(content):
             ):
 
                 if item.strip():
-
                     parts.append(
                         item.strip()
                     )
@@ -335,45 +353,23 @@ def extract_text_from_content(content):
     return ""
 
 
-def classify_response_status(
-    response,
-    payload
-):
+def transcript_from_payload(payload):
 
-    if response.status_code == 200:
-        return "SUCCESS"
+    if not isinstance(
+        payload,
+        dict
+    ):
+        return ""
 
-    if response.status_code == 202:
-        return "ASYNC_JOB"
-
-    if response.status_code == 206:
-        return "PARTIAL"
-
-    if response.status_code == 401:
-        return "AUTH_ERROR"
-
-    if response.status_code == 402:
-        return "CREDITS_OR_PLAN"
-
-    if response.status_code == 403:
-        return "FORBIDDEN"
-
-    if response.status_code == 404:
-        return "NOT_FOUND"
-
-    if response.status_code == 429:
-        return "RATE_LIMIT"
-
-    if response.status_code >= 500:
-        return "SERVER_ERROR"
-
-    return (
-        f"HTTP_{response.status_code}"
+    return extract_text_from_content(
+        payload.get(
+            "content"
+        )
     )
 
 
 # ============================================================
-# SUPADATA REQUEST
+# INITIAL SUPADATA REQUEST
 # ============================================================
 
 def request_transcript(
@@ -400,10 +396,18 @@ def request_transcript(
             api_key
     }
 
-    # Current generic transcript endpoint accepts the URL.
     params = {
         "url":
-            video_url
+            video_url,
+
+        # Plain text is enough for this test.
+        "text":
+            "true",
+
+        # Try existing captions first and use generation
+        # only when necessary.
+        "mode":
+            "auto"
     }
 
     try:
@@ -430,8 +434,8 @@ def request_transcript(
             "text":
                 "",
 
-            "error":
-                "Request timed out."
+            "job_id":
+                None
         }
 
     except Exception as exc:
@@ -443,45 +447,79 @@ def request_transcript(
             "http_status":
                 None,
 
-            "payload":
-                None,
+            "payload": {
+                "error":
+                    str(
+                        exc
+                    )
+            },
 
             "text":
                 "",
 
-            "error":
-                str(exc)
+            "job_id":
+                None
         }
 
     try:
-
         payload = response.json()
 
     except Exception:
-
         payload = {
             "raw":
                 response.text
         }
 
-    status = classify_response_status(
-        response,
+    transcript_text = transcript_from_payload(
         payload
     )
 
-    transcript_text = ""
+    job_id = None
 
     if isinstance(
         payload,
         dict
     ):
+        job_id = payload.get(
+            "jobId"
+        )
 
-        transcript_text = (
-            extract_text_from_content(
-                payload.get(
-                    "content"
-                )
-            )
+    if transcript_text:
+
+        status = "IMMEDIATE_SUCCESS"
+
+    elif job_id:
+
+        status = "ASYNC_JOB"
+
+    elif response.status_code == 401:
+
+        status = "AUTH_ERROR"
+
+    elif response.status_code == 402:
+
+        status = "CREDITS_OR_PLAN"
+
+    elif response.status_code == 403:
+
+        status = "FORBIDDEN"
+
+    elif response.status_code == 404:
+
+        status = "NOT_FOUND"
+
+    elif response.status_code == 429:
+
+        status = "RATE_LIMIT"
+
+    elif response.status_code >= 500:
+
+        status = "SERVER_ERROR"
+
+    else:
+
+        status = (
+            f"HTTP_{response.status_code}"
         )
 
     return {
@@ -497,9 +535,392 @@ def request_transcript(
         "text":
             transcript_text,
 
-        "error":
-            None
+        "job_id":
+            job_id
     }
+
+
+# ============================================================
+# ASYNC JOB POLLING
+# ============================================================
+
+def poll_transcript_job(
+    api_key,
+    job_id
+):
+
+    headers = {
+        "x-api-key":
+            api_key
+    }
+
+    job_url = (
+        f"{SUPADATA_ENDPOINT}/"
+        f"{job_id}"
+    )
+
+    last_payload = None
+    last_http_status = None
+
+    for attempt in range(
+        1,
+        MAX_POLL_ATTEMPTS + 1
+    ):
+
+        print(
+            f"Polling job      : "
+            f"{attempt}/{MAX_POLL_ATTEMPTS}"
+        )
+
+        try:
+
+            response = requests.get(
+                job_url,
+                headers=headers,
+                timeout=60
+            )
+
+        except requests.Timeout:
+
+            print(
+                "Poll result      : TIMEOUT"
+            )
+
+            time.sleep(
+                POLL_INTERVAL_SECONDS
+            )
+
+            continue
+
+        except Exception as exc:
+
+            return {
+                "status":
+                    "POLL_REQUEST_ERROR",
+
+                "http_status":
+                    None,
+
+                "payload": {
+                    "error":
+                        str(
+                            exc
+                        )
+                },
+
+                "text":
+                    ""
+            }
+
+        last_http_status = (
+            response.status_code
+        )
+
+        try:
+            payload = response.json()
+
+        except Exception:
+            payload = {
+                "raw":
+                    response.text
+            }
+
+        last_payload = payload
+
+        job_status = None
+
+        if isinstance(
+            payload,
+            dict
+        ):
+
+            job_status = (
+                payload.get(
+                    "status"
+                )
+            )
+
+        transcript_text = (
+            transcript_from_payload(
+                payload
+            )
+        )
+
+        print(
+            f"Poll status      : "
+            f"{job_status or 'UNKNOWN'}"
+        )
+
+        if transcript_text:
+
+            return {
+                "status":
+                    "ASYNC_COMPLETED",
+
+                "http_status":
+                    response.status_code,
+
+                "payload":
+                    payload,
+
+                "text":
+                    transcript_text
+            }
+
+        if job_status == "completed":
+
+            return {
+                "status":
+                    "ASYNC_COMPLETED_NO_TEXT",
+
+                "http_status":
+                    response.status_code,
+
+                "payload":
+                    payload,
+
+                "text":
+                    ""
+            }
+
+        if job_status == "failed":
+
+            return {
+                "status":
+                    "ASYNC_FAILED",
+
+                "http_status":
+                    response.status_code,
+
+                "payload":
+                    payload,
+
+                "text":
+                    ""
+            }
+
+        if response.status_code in (
+            400,
+            401,
+            402,
+            403,
+            404,
+            429
+        ):
+
+            return {
+                "status":
+                    (
+                        f"POLL_HTTP_"
+                        f"{response.status_code}"
+                    ),
+
+                "http_status":
+                    response.status_code,
+
+                "payload":
+                    payload,
+
+                "text":
+                    ""
+            }
+
+        time.sleep(
+            POLL_INTERVAL_SECONDS
+        )
+
+    return {
+        "status":
+            "ASYNC_TIMEOUT",
+
+        "http_status":
+            last_http_status,
+
+        "payload":
+            last_payload,
+
+        "text":
+            ""
+    }
+
+
+# ============================================================
+# COMPLETE TRANSCRIPT REQUEST
+# ============================================================
+
+def get_transcript(
+    api_key,
+    video
+):
+
+    initial = request_transcript(
+        api_key,
+        video
+    )
+
+    if (
+        initial[
+            "status"
+        ]
+        == "IMMEDIATE_SUCCESS"
+    ):
+
+        return {
+            **initial,
+
+            "delivery_mode":
+                "IMMEDIATE"
+        }
+
+    if (
+        initial[
+            "status"
+        ]
+        == "ASYNC_JOB"
+        and initial.get(
+            "job_id"
+        )
+    ):
+
+        print(
+            f"Async job ID     : "
+            f"{initial['job_id']}"
+        )
+
+        async_result = (
+            poll_transcript_job(
+                api_key,
+                initial[
+                    "job_id"
+                ]
+            )
+        )
+
+        return {
+            **async_result,
+
+            "job_id":
+                initial[
+                    "job_id"
+                ],
+
+            "delivery_mode":
+                "ASYNC"
+        }
+
+    return {
+        **initial,
+
+        "delivery_mode":
+            "NONE"
+    }
+
+
+# ============================================================
+# SAVE INDIVIDUAL TRANSCRIPT
+# ============================================================
+
+def save_video_transcript(
+    week_key,
+    video,
+    result
+):
+
+    transcript_text = result.get(
+        "text",
+        ""
+    )
+
+    if not transcript_text:
+        return None
+
+    video_id = video.get(
+        "video_id"
+    )
+
+    channel = video.get(
+        "channel",
+        "Unknown"
+    )
+
+    name = (
+        f"{video_id}_"
+        f"{safe_filename(channel)}.json"
+    )
+
+    path = (
+        OUTPUT_DIR
+        / "transcripts"
+        / name
+    )
+
+    data = {
+        "week":
+            week_key,
+
+        "video_id":
+            video_id,
+
+        "channel":
+            channel,
+
+        "title":
+            video.get(
+                "title"
+            ),
+
+        "url":
+            video.get(
+                "url"
+            ),
+
+        "content_type":
+            video.get(
+                "content_type"
+            ),
+
+        "temporal_confidence":
+            video.get(
+                "temporal_confidence"
+            ),
+
+        "delivery_mode":
+            result.get(
+                "delivery_mode"
+            ),
+
+        "api_status":
+            result.get(
+                "status"
+            ),
+
+        "job_id":
+            result.get(
+                "job_id"
+            ),
+
+        "word_count":
+            len(
+                transcript_text.split()
+            ),
+
+        "character_count":
+            len(
+                transcript_text
+            ),
+
+        "transcript":
+            transcript_text
+    }
+
+    save_json(
+        path,
+        data
+    )
+
+    return str(
+        path
+    )
 
 
 # ============================================================
@@ -542,12 +963,17 @@ def main():
         week_data
     )
 
+    OUTPUT_DIR.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
     print(
         "=" * 88
     )
 
     print(
-        "GT7 SUPADATA TRANSCRIPT TEST"
+        "GT7 SUPADATA TRANSCRIPT TEST V2"
     )
 
     print(
@@ -662,26 +1088,41 @@ def main():
             f"{video.get('video_id','')}"
         )
 
-        result = request_transcript(
+        result = get_transcript(
             api_key,
             video
         )
 
+        transcript_text = (
+            result.get(
+                "text",
+                ""
+            )
+        )
+
         print(
             f"HTTP status      : "
-            f"{result['http_status']}"
+            f"{result.get('http_status')}"
         )
 
         print(
             f"API status       : "
-            f"{result['status']}"
+            f"{result.get('status')}"
         )
 
-        transcript_text = (
-            result[
-                "text"
-            ]
+        print(
+            f"Delivery mode    : "
+            f"{result.get('delivery_mode')}"
         )
+
+        if result.get(
+            "job_id"
+        ):
+
+            print(
+                f"Job ID           : "
+                f"{result['job_id']}"
+            )
 
         if transcript_text:
 
@@ -691,6 +1132,14 @@ def main():
 
             character_count = len(
                 transcript_text
+            )
+
+            transcript_file = (
+                save_video_transcript(
+                    week_key,
+                    video,
+                    result
+                )
             )
 
             print(
@@ -708,13 +1157,18 @@ def main():
             )
 
             print(
+                f"Saved file       : "
+                f"{transcript_file}"
+            )
+
+            print(
                 "Preview          :"
             )
 
             print(
                 "  "
                 + transcript_text[
-                    :1200
+                    :1000
                 ]
                 .replace(
                     "\n",
@@ -730,6 +1184,7 @@ def main():
 
             word_count = 0
             character_count = 0
+            transcript_file = None
 
             print(
                 "Transcript       : NO"
@@ -749,9 +1204,11 @@ def main():
                     "API payload      :"
                 )
 
-                payload_preview = json.dumps(
-                    payload,
-                    ensure_ascii=False
+                payload_preview = (
+                    json.dumps(
+                        payload,
+                        ensure_ascii=False
+                    )
                 )
 
                 print(
@@ -792,37 +1249,41 @@ def main():
                     "temporal_confidence"
                 ),
 
+            "delivery_mode":
+                result.get(
+                    "delivery_mode"
+                ),
+
             "api_status":
-                result[
+                result.get(
                     "status"
-                ],
+                ),
 
             "http_status":
-                result[
+                result.get(
                     "http_status"
-                ],
+                ),
+
+            "job_id":
+                result.get(
+                    "job_id"
+                ),
 
             "transcript_status":
                 transcript_status,
+
+            "transcript_file":
+                transcript_file,
 
             "word_count":
                 word_count,
 
             "character_count":
-                character_count,
-
-            "transcript_preview":
-                (
-                    transcript_text[
-                        :1000
-                    ]
-                    if transcript_text
-                    else None
-                )
+                character_count
         })
 
     # ========================================================
-    # SAVE
+    # SAVE SUMMARY
     # ========================================================
 
     output = {
@@ -837,6 +1298,12 @@ def main():
         "priority_channels":
             PRIORITY_CHANNELS,
 
+        "poll_interval_seconds":
+            POLL_INTERVAL_SECONDS,
+
+        "max_poll_attempts":
+            MAX_POLL_ATTEMPTS,
+
         "results":
             results
     }
@@ -847,25 +1314,43 @@ def main():
     )
 
     # ========================================================
-    # SUMMARY
+    # FINAL SUMMARY
     # ========================================================
 
     available = [
-        result
-        for result in results
-        if result[
+        item
+        for item in results
+        if item[
             "transcript_status"
         ]
         == "AVAILABLE"
     ]
 
-    async_jobs = [
-        result
-        for result in results
-        if result[
-            "api_status"
+    immediate = [
+        item
+        for item in available
+        if item.get(
+            "delivery_mode"
+        )
+        == "IMMEDIATE"
+    ]
+
+    async_completed = [
+        item
+        for item in available
+        if item.get(
+            "delivery_mode"
+        )
+        == "ASYNC"
+    ]
+
+    unavailable = [
+        item
+        for item in results
+        if item[
+            "transcript_status"
         ]
-        == "ASYNC_JOB"
+        != "AVAILABLE"
     ]
 
     print()
@@ -893,8 +1378,18 @@ def main():
     )
 
     print(
-        f"Async jobs returned : "
-        f"{len(async_jobs)}"
+        f"Immediate           : "
+        f"{len(immediate)}"
+    )
+
+    print(
+        f"Async completed     : "
+        f"{len(async_completed)}"
+    )
+
+    print(
+        f"Unavailable         : "
+        f"{len(unavailable)}"
     )
 
     print()
@@ -913,15 +1408,30 @@ def main():
 
             print(
                 f"{item['channel']} | "
+                f"{item['delivery_mode']} | "
                 f"{item['word_count']:,} words | "
                 f"{item['title']}"
             )
 
-    else:
+    if unavailable:
+
+        print()
 
         print(
-            "No transcript returned immediately."
+            "TRANSCRIPTS UNAVAILABLE"
         )
+
+        print(
+            "-" * 88
+        )
+
+        for item in unavailable:
+
+            print(
+                f"{item['channel']} | "
+                f"{item['api_status']} | "
+                f"{item['title']}"
+            )
 
     print()
 
