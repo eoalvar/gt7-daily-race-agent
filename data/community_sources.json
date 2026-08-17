@@ -895,10 +895,10 @@
       ]
     },
     "2026-08-17": {
-      "track": null,
+      "track": "Yas Marina Circuit Holl01ISAFATPIG - Peugeot RCZ",
       "race_class": "Gr.3",
       "direction": "NORMAL",
-      "race_description": "C Gr.3 Running 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit L. Burton - GT by Citroën Race Car (Gr.3) RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom",
+      "race_description": "C Gr.3 Running Race Control 2 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit Holl01ISAFATPIG - Peugeot RCZ Gr.3 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom",
       "selected_sources": {
         "strategy_primary": {
           "video_id": "PNb7qyyRaRk",
@@ -2106,6 +2106,25 @@
           "role": "LAP_GUIDE_PRIMARY"
         },
         {
+          "video_id": "kDi3wF-XCuc",
+          "title": "Gran Turismo™7 | Daily Race C | Despite | Yas Marina Circuit | Porsche 911 GT3 R (GR.3)",
+          "channel": "MiB_Racing",
+          "url": "https://www.youtube.com/watch?v=kDi3wF-XCuc",
+          "duration": 1574,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 28,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
           "video_id": "ic6R7vfTrUA",
           "title": "Gran Turismo 7: Provisional World Record - Daily Race C - Gr3 Suzuka - 1:58.626 and Explanation",
           "channel": "Wind",
@@ -2144,6 +2163,26 @@
           "role": null
         },
         {
+          "video_id": "NIRpmJfhzhs",
+          "title": "Gran Turismo 7 | Daily Race C | Yas Marina Circuit | Ferrari 296 GT3",
+          "channel": "PureGameplay Motorsport",
+          "url": "https://www.youtube.com/watch?v=NIRpmJfhzhs",
+          "duration": 1520,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 20,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
           "video_id": "4E43u3YLASg",
           "title": "Gran Turismo 7 | Daily Race C | Grand Valley - Highway 1 | Hyundai ELANTRA N TC",
           "channel": "PureGameplay Motorsport",
@@ -2162,49 +2201,9 @@
           "rejection_reasons": [],
           "accepted": true,
           "role": null
-        },
-        {
-          "video_id": "aIDtJPrgFLE",
-          "title": "Gran Turismo 7 | Daily Race C | Tokyo Expressway - East Clockwise | Lexus RC F GT3",
-          "channel": "PureGameplay Motorsport",
-          "url": "https://www.youtube.com/watch?v=aIDtJPrgFLE",
-          "duration": 1349,
-          "timestamp": null,
-          "upload_date": null,
-          "content_type": "RACE",
-          "priority_score": 15,
-          "date_confidence": "UNVERIFIED",
-          "detected_date": null,
-          "notes": [
-            "CLASS_UNVERIFIED",
-            "DATE_UNVERIFIED"
-          ],
-          "rejection_reasons": [],
-          "accepted": true,
-          "role": null
-        },
-        {
-          "video_id": "TGDoGoOIuHE",
-          "title": "Gran Turismo 7 - Daily Race C - Yas Marina Circuit - Renault R.S.01 GT3 '16",
-          "channel": "Maometto-GT",
-          "url": "https://www.youtube.com/watch?v=TGDoGoOIuHE",
-          "duration": 1544,
-          "timestamp": null,
-          "upload_date": null,
-          "content_type": "RACE",
-          "priority_score": 15,
-          "date_confidence": "UNVERIFIED",
-          "detected_date": null,
-          "notes": [
-            "CLASS_UNVERIFIED",
-            "DATE_UNVERIFIED"
-          ],
-          "rejection_reasons": [],
-          "accepted": true,
-          "role": null
         }
       ]
     }
   },
-  "updated_at": "2026-08-17T14:12:57.286876+00:00"
+  "updated_at": "2026-08-17T19:49:34.127971+00:00"
 }

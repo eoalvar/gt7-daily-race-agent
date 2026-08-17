@@ -2,7 +2,7 @@
 GT7 COMMUNITY INTELLIGENCE AUDIT V7.1
 ====================================================================================================
 Race week        : 2026-08-17T00:00:00-03:00
-Track            : Yas Marina Circuit
+Track            : unknown
 Class            : Gr.3
 Fuel             : x3
 Tyre wear        : x4
@@ -139,15 +139,15 @@ Event 11: Brake=200 board | Gear=gear not explicit | Steps=[38]
 
 LIVE CAR META
 ----------------------------------------------------------------------------------------------------
-1. Porsche 911 GT3 R (992) '22 | 653 | 65.3%
-2. Audi R8 LMS Evo '19 | 135 | 13.5%
-3. Ferrari 296 GT3 '23 | 30 | 3.0%
-4. Lamborghini Huracán GT3 '15 | 24 | 2.4%
-5. Ferrari 458 Italia GT3 '13 | 22 | 2.1999999999999997%
+1. Porsche 911 GT3 R (992) '22 | 696 | 69.6%
+2. Audi R8 LMS Evo '19 | 114 | 11.4%
+3. Ferrari 296 GT3 '23 | 26 | 2.6%
+4. Ferrari 458 Italia GT3 '13 | 23 | 2.3%
+5. Lamborghini Huracán GT3 '15 | 21 | 2.1%
 
 VALIDATION
 ----------------------------------------------------------------------------------------------------
-No live-configuration warnings.
+- Track could not be identified.
 
 ANALYSIS POLICY
 ----------------------------------------------------------------------------------------------------

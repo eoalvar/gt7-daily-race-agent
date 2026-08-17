@@ -2,7 +2,7 @@
   "version": "7.1",
   "live_configuration": {
     "week": "2026-08-17T00:00:00-03:00",
-    "track": "Yas Marina Circuit",
+    "track": "unknown",
     "class": "Gr.3",
     "direction": "NORMAL",
     "fuel_multiplier": 3,
@@ -11,10 +11,12 @@
       "RM",
       "RS"
     ],
-    "description": "C Gr.3 Running 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit L. Burton - GT by Citroën Race Car (Gr.3) RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom"
+    "description": "C Gr.3 Running Race Control 2 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit Holl01ISAFATPIG - Peugeot RCZ Gr.3 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom"
   },
   "validation": {
-    "warnings": []
+    "warnings": [
+      "Track could not be identified."
+    ]
   },
   "source_policy": {
     "race_strategy": "Digit Racing only",
@@ -27,21 +29,30 @@
     "gnc_transcript": "data/community_transcripts/qHfm2RjbRjI_gnc_racing.json"
   },
   "executive_summary": {
-    "race": "Yas Marina Circuit | Gr.3",
+    "race": "unknown | Gr.3",
     "regulations": "Fuel x3 | Tyres x4 | RM, RS",
     "recommended_strategy": "OVERCUT / EXTEND FIRST STINT",
     "compound_sequence": "RM -> RS",
     "tyre_saving": true,
     "meta_car": "Porsche 911 GT3 R (992) '22",
-    "meta_car_share": 65.3,
-    "my_current_laptime": null,
-    "my_current_rank": null,
-    "my_top_percent": null,
-    "my_current_car": null,
-    "same_car_best": null,
-    "meta_car_best": null,
-    "theoretical_car_gap_ms": null,
-    "brake_bias": {}
+    "meta_car_share": 69.6,
+    "my_current_laptime": "1:55.431",
+    "my_current_rank": 3123,
+    "my_top_percent": 21.76609980485085,
+    "my_current_car": "Audi R8 LMS Evo '19",
+    "same_car_best": "1:52.376",
+    "meta_car_best": "1:51.993",
+    "theoretical_car_gap_ms": 383,
+    "brake_bias": {
+      "layout": "Unknown",
+      "qualifying_range": null,
+      "race_range": null,
+      "qualifying_start": null,
+      "race_start": null,
+      "confidence": "UNVALIDATED",
+      "reason": "Car is identified, but drivetrain metadata has not yet been validated.",
+      "wear_adjustment": "No recommendation generated."
+    }
   },
   "race_strategy": {
     "confidence": "HIGH",
@@ -737,55 +748,130 @@
     {
       "car": "Porsche 911 GT3 R (992) '22",
       "car_code": 3600,
-      "count": 653,
-      "percentage": 65.3,
+      "count": 696,
+      "percentage": 69.6,
       "layout": "Unknown"
     },
     {
       "car": "Audi R8 LMS Evo '19",
       "car_code": 3405,
-      "count": 135,
-      "percentage": 13.5,
+      "count": 114,
+      "percentage": 11.4,
       "layout": "Unknown"
     },
     {
       "car": "Ferrari 296 GT3 '23",
       "car_code": 3588,
-      "count": 30,
-      "percentage": 3.0,
-      "layout": "Unknown"
-    },
-    {
-      "car": "Lamborghini Huracán GT3 '15",
-      "car_code": 2177,
-      "count": 24,
-      "percentage": 2.4,
+      "count": 26,
+      "percentage": 2.6,
       "layout": "Unknown"
     },
     {
       "car": "Ferrari 458 Italia GT3 '13",
       "car_code": 2158,
-      "count": 22,
-      "percentage": 2.1999999999999997,
+      "count": 23,
+      "percentage": 2.3,
+      "layout": "Unknown"
+    },
+    {
+      "car": "Lamborghini Huracán GT3 '15",
+      "car_code": 2177,
+      "count": 21,
+      "percentage": 2.1,
       "layout": "Unknown"
     }
   ],
   "personal_context": {
-    "my_result": {},
-    "world_record": {
-      "score": 112165,
-      "laptime": "1:52.165",
-      "driver": "L. Burton",
-      "psn_id": "SFE_Lewis10",
-      "car_code": 2190,
-      "car": "GT by Citroën Race Car (Gr.3)"
+    "my_result": {
+      "psn_id": "crazy_rooster74",
+      "rank": 3123,
+      "score": 115431,
+      "laptime": "1:55.431",
+      "car_code": 3405,
+      "car": "Audi R8 LMS Evo '19",
+      "country": "BR",
+      "driver_rating": 4,
+      "gap_to_wr_ms": 3993,
+      "wr_percentage": 103.58315834813978,
+      "position_score": 7.823935317487977,
+      "elite_score": 1.5931022876708034,
+      "composite_rating": 5.331602105561107,
+      "percentile_ahead": 78.23935317487977,
+      "top_percent": 21.76609980485085,
+      "pace_band": "COMPETITIVE"
     },
-    "next_targets": [],
-    "car_comparison": {},
-    "brake_bias": {},
-    "same_car_stats": {},
-    "country_stats": {},
-    "dr_stats": {}
+    "world_record": {
+      "score": 111438,
+      "laptime": "1:51.438",
+      "driver": "Holl01ISAFATPIG",
+      "psn_id": "Immortal_Mood01",
+      "car_code": 3238,
+      "car": "Peugeot RCZ Gr.3"
+    },
+    "next_targets": [
+      {
+        "label": "Top 10%",
+        "rank": 1435,
+        "score": 114563,
+        "laptime": "1:54.563",
+        "gain_needed_ms": 868
+      },
+      {
+        "label": "Top 1000",
+        "rank": 1000,
+        "score": 114278,
+        "laptime": "1:54.278",
+        "gain_needed_ms": 1153
+      },
+      {
+        "label": "Top 5%",
+        "rank": 718,
+        "score": 114003,
+        "laptime": "1:54.003",
+        "gain_needed_ms": 1428
+      },
+      {
+        "label": "Top 500",
+        "rank": 500,
+        "score": 113778,
+        "laptime": "1:53.778",
+        "gain_needed_ms": 1653
+      }
+    ],
+    "car_comparison": {
+      "my_car": "Audi R8 LMS Evo '19",
+      "my_car_best_score": 112376,
+      "my_car_best_laptime": "1:52.376",
+      "gap_to_best_same_car_ms": 3055,
+      "meta_car": "Porsche 911 GT3 R (992) '22",
+      "meta_car_best_score": 111993,
+      "meta_car_best_laptime": "1:51.993",
+      "theoretical_car_gap_ms": 383
+    },
+    "brake_bias": {
+      "layout": "Unknown",
+      "qualifying_range": null,
+      "race_range": null,
+      "qualifying_start": null,
+      "race_start": null,
+      "confidence": "UNVALIDATED",
+      "reason": "Car is identified, but drivetrain metadata has not yet been validated.",
+      "wear_adjustment": "No recommendation generated."
+    },
+    "same_car_stats": {
+      "rank": 325,
+      "total": 1237
+    },
+    "country_stats": {
+      "rank": 59,
+      "total": 376,
+      "country": "BR"
+    },
+    "dr_stats": {
+      "rank": 1460,
+      "total": 4760,
+      "dr": 4
+    }
   },
   "practical_race_plan": [
     "Use the live GT7/GTSH race configuration as the regulatory baseline.",
@@ -793,12 +879,13 @@
     "Protect the tyres in the opening stint: minimise sliding, excess steering angle and unnecessary front-axle load.",
     "Use RM -> RS: start on Racing Medium, preserve the tyre, then switch to Racing Soft for the second stint.",
     "Digit supports the GT by Citroen Gr.4; compare it with the current live leaderboard before selecting the car.",
+    "The best Citroen lap is 383 ms faster than the best lap in your current car in this snapshot. Treat this as a car benchmark delta, not a guaranteed personal gain.",
     "For qualifying, use only the GnC Racing guide for braking, gears, line, throttle references and track limits."
   ],
   "health": {
     "status": "WARNING",
     "issues": [
-      "Personal leaderboard result unavailable."
+      "Track could not be identified."
     ],
     "strategy_confidence": "HIGH",
     "lap_guide_confidence": "HIGH",
