@@ -1,5 +1,5 @@
 ====================================================================================================
-GT7 COMMUNITY INTELLIGENCE V5.4
+GT7 COMMUNITY INTELLIGENCE V6.0
 ====================================================================================================
 Race week        : 2026-08-10T00:00:00-03:00
 Track            : Grand Valley - Highway 1
@@ -8,6 +8,14 @@ Direction        : NORMAL
 Fuel             : x2
 Tyre wear        : x4
 Compounds        : RM, RS
+
+EXECUTIVE RACE SUMMARY
+----------------------------------------------------------------------------------------------------
+Strategy         : OVERCUT / EXTEND FIRST STINT
+Tyre sequence    : RM → RS
+Tyre saving      : YES
+Meta car         : GT by Citroën Gr.4 (56.7% of Top 1000)
+My current pace  : 1:57.248 | Rank 4551 | Top 15.82%
 
 SOURCE POLICY
 ----------------------------------------------------------------------------------------------------
@@ -23,86 +31,96 @@ Preferred logic  : OVERCUT / EXTEND FIRST STINT
 Tyre saving      : SUPPORTED BY DIGIT
 Tyre change      : SUPPORTED BY DIGIT
 Citroën          : SUPPORTED BY DIGIT
+Compound plan    : RM → RS
+Compound conf.   : HIGH
 
 1. The later race-tested evidence favours the overcut: staying out longer performed better than stopping early.
-2. Tyre preservation is strategically important; minimise unnecessary sliding, steering input and front-tyre overload.
-3. Digit confirms that the race requires the tyre-change rule to be satisfied.
-4. Digit identifies the GT by Citroën Gr.4 as particularly strong for this race, including tyre performance.
+2. Tyre preservation is strategically important. Minimise unnecessary steering input, sliding and front-tyre overload.
+3. The race requires the tyre-change rule to be satisfied.
+4. Digit's usable race evidence supports RM → RS: start on Racing Medium and switch to Racing Soft.
+5. Digit identifies the GT by Citroën Gr.4 as particularly strong, including tyre-life performance.
+
+PIT STRATEGY RECONCILIATION
+----------------------------------------------------------------------------------------------------
+Final logic      : OVERCUT / EXTEND FIRST STINT
+Confidence       : HIGH
+Initial evidence : Lap 4-5 was discussed initially.
+Final evidence   : Later race-tested evidence favours staying out longer than the initial Lap 4-5 reference when tyre condition and traffic allow.
 
 STRATEGY EVIDENCE — CLEANED
 ----------------------------------------------------------------------------------------------------
 
 Overcut / stay out:
-  - [2:36:51] It seems like the overcut is more It seems like the overcut is more powerful than the undercut.
-  - [2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, it comes to tire wear, but yeah, I should have stayed out. stayed out. should have put it when he put it. Then should have put it when he put it. Then we would have a race like this.
-  - [2:40:03] qual. Thank you. Thank you, casual driver. I should have stayed out. That's it. And I should have stayed out. That's it. And all of those that pitted earlier just all of those that pitted earlier just all of those that pitted earlier just lost more time.
-  - [2:40:33] Overcut it is. At least I know for next time. If you ask me like last week we had a If you ask me like last week we had a bit of diversity. Now we are back to the bit of diversity. Now we are back to the roots but it's also okay. but it's also okay. Uh tire wear times four and you can see Uh tire wear times four and you can see Uh tire wear times four and you can see fuel is uh is times two.
+  - [2:40:33] Overcut it is. At least I know for next time. If you ask me like last week we had a bit of diversity. Now we are back to the roots but it's also okay. Uh tire wear times four and you can see fuel is uh is times two.
+  - [2:40:03] qual. Thank you, casual driver. I should have stayed out. That's it. And all of those that pitted earlier just lost more time.
+  - [2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have stayed out. should have put it when he put it. Then we would have a race like this.
+  - [2:36:51] It seems like the overcut is more powerful than the undercut.
 
 Tyre saving:
-  - [19:30] look like. I don't think the Genesis is look like. I don't think the Genesis is going to be that degrade on tires, going to be that degrade on tires, going to be that degrade on tires, but it has quite a good acceleration. but it has quite a good acceleration. So radar is on as usual, So radar is on as usual, but this is going to be like a typical but this is going to be like a typical but this is going to be like a typical tire saving race, at least in my tire saving race, at least in my tire saving race, at least in my opinion. opinion. Yeah. I think tire saving is Yeah. Yeah. I think tire saving is Yeah. Yeah. I think tire saving is going to be very, very important here. going to be very, very important here. Mediums and soft tires. So, let's just Mediums and soft tires. So, let's just see how that's going to go. I can't cut see how that's going to go. I can't cut the corners. And he definitely went too the corners. And he definitely went too wide there
-  - [28:25] and getting closer to the lead. That's typically what works. I have to be very gentle with my I have to be very gentle with my tires.
-  - [30:07] I can rotate the back end, but I really I can rotate the back end, but I really don't want to get too much on don't want to get too much on don't want to get too much on the front. And I see the tires are the front. And I see the tires are pretty cold, which is it's good and not pretty cold, which is it's good and not pretty cold, which is it's good and not good at the same time. So, the tire wear good at the same time. So, the tire wear is going to be significantly less. Luckily, all of the other guys are now Luckily, all of the other guys are now behind me. And I think some of them behind me. And I think some of them stayed. stayed. Okay, but how long are they staying up Okay, but how long are they staying up Okay, but how long are they staying up there in the front?
+  - [19:30] look like. I don't think the Genesis is going to be that degrade on tires, but it has quite a good acceleration. So radar is on as usual, but this is going to be like a typical tire saving race, at least in my opinion. I think tire saving is going to be very important here. Mediums and soft tires. So, let's just see how that's going to go. I can't cut the corners. And he definitely went too wide there
+  - [28:25] and getting closer to the lead. That's typically what works. I have to be very gentle with my tires.
+  - [30:07] I can rotate the back end, but I really don't want to get too much on the front. And I see the tires are pretty cold, which is it's good and not good at the same time. So, the tire wear is going to be significantly less. Luckily, all of the other guys are now behind me. And I think some of them stayed. Okay, but how long are they staying up there in the front?
 
 Tyre change:
-  - [25:10] Okay. Uh, pit stop is required in this race. There is a required tire change. So, it's not like a mandatory stop, but So, it's not like a mandatory stop, but at the same time, we just need at the same time, we just need at the same time, we just need to change the tires.
-  - [29:37] Not the best exit, but let's see. 1.5. Not the best exit, but let's see. 1.5. If I can get into the slip in the next If I can get into the slip in the next If I can get into the slip in the next lap, lap, lap, that'll be amazing. that'll be amazing. Even now, I think I'm picking up a Even now, I think I'm picking up a Even now, I think I'm picking up a little bit of it. little bit of it. Oh, yeah. The strategy is to change the Oh, yeah. The strategy is to change the tires roughly about lap four, tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle, gentle, gentle. I can rotate the back end, but I really
+  - [29:37] Not the best exit, but let's see. 1.5. If I can get into the slip in the next lap, that'll be amazing. Even now, I think I'm picking up a little bit of it. Oh, yeah. The strategy is to change the tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle. I can rotate the back end, but I really
+  - [25:10] Uh, pit stop is required in this race. There is a required tire change. So, it's not like a mandatory stop, but at the same time, we just need to change the tires.
 
 Compounds:
-  - [19:30] look like. I don't think the Genesis is look like. I don't think the Genesis is going to be that degrade on tires, going to be that degrade on tires, going to be that degrade on tires, but it has quite a good acceleration. but it has quite a good acceleration. So radar is on as usual, So radar is on as usual, but this is going to be like a typical but this is going to be like a typical but this is going to be like a typical tire saving race, at least in my tire saving race, at least in my tire saving race, at least in my opinion. opinion. Yeah. I think tire saving is Yeah. Yeah. I think tire saving is Yeah. Yeah. I think tire saving is going to be very, very important here. going to be very, very important here. Mediums and soft tires. So, let's just Mediums and soft tires. So, let's just see how that's going to go. I can't cut see how that's going to go. I can't cut the corners. And he definitely went too the corners. And he definitely went too wide there
-  - [29:37] Not the best exit, but let's see. 1.5. Not the best exit, but let's see. 1.5. If I can get into the slip in the next If I can get into the slip in the next If I can get into the slip in the next lap, lap, lap, that'll be amazing. that'll be amazing. Even now, I think I'm picking up a Even now, I think I'm picking up a Even now, I think I'm picking up a little bit of it. little bit of it. Oh, yeah. The strategy is to change the Oh, yeah. The strategy is to change the tires roughly about lap four, tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle, gentle, gentle. I can rotate the back end, but I really
-  - [3:58:37] Uh, racing mediums and racing soft tires.
+  - [29:37] Not the best exit, but let's see. 1.5. If I can get into the slip in the next lap, that'll be amazing. Even now, I think I'm picking up a little bit of it. Oh, yeah. The strategy is to change the tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle. I can rotate the back end, but I really
+  - [19:30] look like. I don't think the Genesis is going to be that degrade on tires, but it has quite a good acceleration. So radar is on as usual, but this is going to be like a typical tire saving race, at least in my opinion. I think tire saving is going to be very important here. Mediums and soft tires. So, let's just see how that's going to go. I can't cut the corners. And he definitely went too wide there
 
 Citroën / meta:
-  - [2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, it comes to tire wear, but yeah, I should have stayed out. stayed out. should have put it when he put it. Then should have put it when he put it. Then we would have a race like this.
-  - [2:39:29] Well, second it's not bad, but it's Well, second it's not bad, but it's also not good. You know what? For the also not good. You know what? For the also not good. You know what? For the next time, I know bit later. Ocean. Hello. Once again, Ocean. Hello. Once again, Citroen tires are better than Porsches, Citroen tires are better than Porsches, even if you do one more lap on even if you do one more lap on even if you do one more lap on the S. because it's just faster overall. the S. because it's just faster overall. the S. because it's just faster overall. It's not worth. [snorts] I mean, it's a [snorts] I mean, it's a Citroen cup basically
+  - [2:39:29] Well, second it's not bad, but it's also not good. You know what? For the next time, I know bit later. Ocean. Hello. Once again, Citroen tires are better than Porsches, even if you do one more lap on the S. because it's just faster overall. It's not worth. I mean, it's a Citroen cup basically
+  - [2:38:47] Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have stayed out. should have put it when he put it. Then we would have a race like this.
 
-Pit-window discussion:
-  - [19:00] I guess the ideal pit window, as you I guess the ideal pit window, as you guys told me, is around lap four, lap guys told me, is around lap four, lap guys told me, is around lap four, lap five. five. We'll see. Hello, Daniel. I still need We'll see. Hello, Daniel. I still need We'll see. Hello, Daniel. I still need to send you the package. Andre, hi there. Lap four, five. Okay. Andre, hi there. Lap four, five. Okay. So, I'm supposed to start um I mean, let's see how this is going to I mean, let's see how this is going to look like. I don't think the Genesis is
-  - [29:37] Not the best exit, but let's see. 1.5. Not the best exit, but let's see. 1.5. If I can get into the slip in the next If I can get into the slip in the next If I can get into the slip in the next lap, lap, lap, that'll be amazing. that'll be amazing. Even now, I think I'm picking up a Even now, I think I'm picking up a Even now, I think I'm picking up a little bit of it. little bit of it. Oh, yeah. The strategy is to change the Oh, yeah. The strategy is to change the tires roughly about lap four, tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle, gentle, gentle. I can rotate the back end, but I really
+Initial pit-window discussion:
+  - [29:37] Not the best exit, but let's see. 1.5. If I can get into the slip in the next lap, that'll be amazing. Even now, I think I'm picking up a little bit of it. Oh, yeah. The strategy is to change the tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle. I can rotate the back end, but I really
+  - [19:00] I guess the ideal pit window, as you guys told me, is around lap four, lap five. We'll see. Hello, Daniel. I still need to send you the package. Andre, hi there. Lap four, five. So, I'm supposed to start um I mean, let's see how this is going to look like. I don't think the Genesis is
 
 QUALIFYING / FAST LAP — GNC RACING
 ----------------------------------------------------------------------------------------------------
 Confidence       : HIGH
- 1. [BRAKING] On the way down to turn one, we're looking for the 200 board.
+Mapping          : sequential transcript order; official corner numbers are not inferred
+
+ 1. [BRAKING] On the way down to turn one, we're looking for the 200 board. | Brake: 200 board
  2. [BRAKING] We're going to break just before we reach this.
- 3. [BRAKING/LINE] And we're going to start to turn in as we are around midway between the 200 and the 100 board.
- 4. [GEAR] Shifting down to second gear.
+ 3. [BRAKING/LINE] And we're going to start to turn in as we are around midway between the 200 and the 100 board. | Brake: 100 board
+ 4. [GEAR] Shifting down to second gear. | Gear: 2nd
  5. [THROTTLE] We're going to start to accelerate just as we reach the one before last.
  6. [THROTTLE/TRACK_LIMIT] Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.
- 7. [TRACK_LIMIT] Then, as we pass under this bridge, we want to bring the car back over to the right.
- 8. [LINE] Then allow the car to drift over to the left side, turning in so we hug the next bend.
- 9. [BRAKING/LINE] And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.
-10. [BRAKING/GEAR/LINE] As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.
-11. [LINE] And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex.
-12. [THROTTLE/LINE] Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right.
-13. [LINE] We're going to make sure we're turning in for the next corner.
-14. [BRAKING/LINE] As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.
-15. [THROTTLE/LINE] Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner.
-16. [THROTTLE] Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available.
-17. [BRAKING] Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.
-18. [BRAKING/THROTTLE/LINE/TRACK_LIMIT] Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.
-19. [BRAKING/GEAR/LINE] Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.
-20. [LINE/TRACK_LIMIT] Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.
-21. [BRAKING] Going through the short tunnel and looking to the right for the 100 board.
-22. [BRAKING/GEAR/LINE] As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner.
-23. [THROTTLE] As we pass under the banner above the track, we'll get on the power, but another good acceleration marker.
-24. [LINE] A little bit further around the corner, there are these posts on the left side.
-25. [THROTTLE] As they start to become visible, we can hit the throttle.
-26. [LINE] Keep the car to the left side.
-27. [BRAKING/THROTTLE/LINE] And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.
-28. [THROTTLE/TRACK_LIMIT] And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge.
-29. [BRAKING/LINE] And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel.
-30. [LINE] Again, we want to take a tight line around this corner.
-31. [LINE] And it's important to keep the car to the right side for the chicane that follows.
-32. [THROTTLE] When we have entered the darker part of the tunnel, we'll start to accelerate.
-33. [BRAKING/LINE] And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left.
-34. [THROTTLE/LINE/TRACK_LIMIT] As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards.
-35. [TRACK_LIMIT] Then, as soon as we are over the first curb, turn immediately back to the right for the second.
-36. [TRACK_LIMIT] Again, aiming to clip the curb and just brush in those bolards as we go through.
-37. [LINE/TRACK_LIMIT] Just being careful not to run over the white line with all four wheels.
-38. [LINE] Approaching the tunnel, keep the car to the left side.
-39. [BRAKING] And as we pass the 200 board, start to bring the car over to the right.
-40. [LINE/TRACK_LIMIT] We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight.
+ 7. [LINE] Then allow the car to drift over to the left side, turning in so we hug the next bend.
+ 8. [BRAKING/LINE] And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines. | Brake: around 350 m
+ 9. [BRAKING/GEAR/LINE] As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear. | Brake: 100 board | Gear: 2nd
+10. [LINE] And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex.
+11. [THROTTLE/LINE] Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right.
+12. [LINE] We're going to make sure we're turning in for the next corner.
+13. [BRAKING/LINE] As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take. | Brake: 100 board
+14. [THROTTLE/LINE] Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner.
+15. [THROTTLE] Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available.
+16. [BRAKING] Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry. | Brake: around 50 m
+17. [BRAKING/THROTTLE/LINE] Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge. | Brake: after the bridge
+18. [BRAKING/GEAR/LINE] Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker. | Gear: 2nd
+19. [LINE/TRACK_LIMIT] Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.
+20. [BRAKING] Going through the short tunnel and looking to the right for the 100 board. | Brake: 100 board
+21. [BRAKING/GEAR/LINE] As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner. | Gear: 2nd
+22. [THROTTLE] As we pass under the banner above the track, we'll get on the power, but another good acceleration marker.
+23. [LINE] A little bit further around the corner, there are these posts on the left side.
+24. [THROTTLE] As they start to become visible, we can hit the throttle.
+25. [LINE] Keep the car to the left side.
+26. [BRAKING/THROTTLE/LINE] And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up. | Brake: dark mark in the sand
+27. [THROTTLE] And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge.
+28. [BRAKING/LINE] And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel. | Brake: 100 board
+29. [LINE] Again, we want to take a tight line around this corner.
+30. [LINE] And it's important to keep the car to the right side for the chicane that follows.
+31. [THROTTLE] When we have entered the darker part of the tunnel, we'll start to accelerate.
+32. [BRAKING/LINE] And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left. | Brake: tunnel exit
+33. [THROTTLE/LINE/TRACK_LIMIT] As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards.
+34. [TRACK_LIMIT] Then, as soon as we are over the first curb, turn immediately back to the right for the second.
+35. [TRACK_LIMIT] Again, aiming to clip the curb and just brush in those bolards as we go through.
+36. [LINE/TRACK_LIMIT] Just being careful not to run over the white line with all four wheels.
+37. [LINE] Approaching the tunnel, keep the car to the left side.
+38. [BRAKING] And as we pass the 200 board, start to bring the car over to the right. | Brake: 200 board
+39. [LINE/TRACK_LIMIT] We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight.
 
 BRAKING REFERENCES — GNC
 ----------------------------------------------------------------------------------------------------
@@ -132,10 +150,7 @@ GEARS / SHIFTING — GNC
 TRACK LIMITS / KERBS — GNC
 ----------------------------------------------------------------------------------------------------
 - Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.
-- Then, as we pass under this bridge, we want to bring the car back over to the right.
-- Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.
 - Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.
-- And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge.
 - As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards.
 - Then, as soon as we are over the first curb, turn immediately back to the right for the second.
 - Again, aiming to clip the curb and just brush in those bolards as we go through.
@@ -150,14 +165,32 @@ LIVE CAR META — TOP 1000
  4. Suzuki Swift Sport KATANA Edition Gr.4 | 43 drivers | 4.3%
  5. Honda NSX Gr.4 | 30 drivers | 3.0%
 
+PERSONAL PERFORMANCE
+----------------------------------------------------------------------------------------------------
+Driver           : crazy_rooster74
+Current car      : Genesis G70 GR4
+Lap time         : 1:57.248
+Overall rank     : 4551
+Top percentage   : 15.82%
+Pace band        : VERY FAST
+Same-car best    : 1:55.161
+Meta-car best    : 1:54.623
+Theoretical car  : 538 ms between best same-car and meta-car laps
+
+Next targets:
+  - Top 10% | 1:56.786 | gain needed 462 ms
+  - Top 5% | 1:56.288 | gain needed 960 ms
+  - Top 1000 | 1:56.090 | gain needed 1158 ms
+  - Top 2% | 1:55.870 | gain needed 1378 ms
+
 PRACTICAL RACE PLAN
 ----------------------------------------------------------------------------------------------------
 1. Use the official/live race configuration as the regulatory baseline.
-2. Do not treat laps 4-5 as a rigid pit window. Digit's later race-tested conclusion favours staying out longer and using the overcut rather than stopping early.
-3. Protect the tyres during the first stint; excessive steering, sliding and front-tyre overload reduce the benefit of the overcut.
-4. Complete the required tyre change and ensure both permitted race compounds are handled consistently with the live regulations.
-5. The GT by Citroën Gr.4 is supported independently by both Digit's race experience and the live leaderboard meta.
-6. Use the GnC guide for braking references, gears, racing line and throttle technique; do not mix lap instructions from other community sources.
+2. Treat Lap 4-5 only as the initial reference, not a mandatory pit window. If tyre condition and traffic remain favourable, extend the first stint and exploit the overcut.
+3. Prioritise tyre preservation in the opening stint: minimise sliding, excess steering angle and unnecessary front-axle load.
+4. Use RM → RS: start on Racing Medium, preserve the tyre, then switch to Racing Soft for the second stint.
+5. Prefer the GT by Citroën Gr.4 as the reference meta car: Digit's race-tested assessment and the live Top-1000 usage agree.
+6. For qualifying, use only the GnC Racing guide for braking points, gear selection, racing line, throttle references and track limits.
 
 ANALYSIS POLICY
 ----------------------------------------------------------------------------------------------------
@@ -166,7 +199,9 @@ ANALYSIS POLICY
 3. Live GT7/GTSH data overrides any conflicting community statement.
 4. Later race-tested Digit conclusions override earlier speculative strategy comments.
 5. Live leaderboard usage is authoritative for current car meta.
-6. Snapshot Top-1000 car percentages are used directly and are never renormalized.
-7. Transcript evidence is cleaned for ASR duplication before analysis.
-8. Irrelevant tyre references such as controller/wheel discussion are excluded from strategy evidence.
-9. Transcript evidence is never used to invent missing braking points, gears or strategy.
+6. Snapshot Top-1000 percentages are used directly and are never renormalized.
+7. Transcript evidence is aggressively cleaned for ASR/provider duplication before analysis.
+8. Irrelevant tyre references, controller discussion, stream chatter and unrelated conversation are excluded.
+9. Compound order is only asserted when both community evidence and live race configuration support it.
+10. GnC instructions remain in transcript sequence; official corner numbers are never invented.
+11. Missing braking points, gears, pit windows or strategy details are never fabricated.

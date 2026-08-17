@@ -1,5 +1,5 @@
 {
-  "version": "5.4",
+  "version": "6.0",
   "live_configuration": {
     "week": "2026-08-10T00:00:00-03:00",
     "track": "Grand Valley - Highway 1",
@@ -10,7 +10,12 @@
     "compounds": [
       "RM",
       "RS"
-    ]
+    ],
+    "description": "C Gr.4 Running 10 Aug 2026 Daily Race C i 16:48 Grand Valley - Highway 1 M. Estevez - GT by Citroën Gr.4 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom",
+    "pit_reference_present": true
+  },
+  "validation": {
+    "warnings": []
   },
   "source_policy": {
     "race_strategy": "Digit Racing only",
@@ -22,364 +27,500 @@
     "digit_transcript": "data/community_transcripts/O-AfZNXuGBg_digit_racing.json",
     "gnc_transcript": "data/community_transcripts/qHfm2RjbRjI_gnc_racing.json"
   },
+  "executive_summary": {
+    "race": "Grand Valley - Highway 1 | Gr.4 | Fuel x2 | Tyres x4 | RM, RS",
+    "recommended_strategy": "OVERCUT / EXTEND FIRST STINT",
+    "compound_sequence": "RM → RS",
+    "tyre_saving": true,
+    "recommended_car": "GT by Citroën Gr.4",
+    "recommended_car_top1000_share": 56.699999999999996,
+    "my_current_car": "Genesis G70 GR4",
+    "my_current_laptime": "1:57.248",
+    "my_current_rank": 4551,
+    "my_top_percent": 15.816361993466325
+  },
   "race_strategy": {
     "confidence": "HIGH",
     "preferred_logic": "OVERCUT / EXTEND FIRST STINT",
+    "pit_strategy": {
+      "mode": "OVERCUT / EXTEND FIRST STINT",
+      "rigid_window": false,
+      "initial_reference": "Lap 4-5 was discussed initially.",
+      "final_conclusion": "Later race-tested evidence favours staying out longer than the initial Lap 4-5 reference when tyre condition and traffic allow.",
+      "latest_timestamp": "2:40:33",
+      "confidence": "HIGH"
+    },
+    "compound_plan": {
+      "established": true,
+      "start_compound": "RM",
+      "finish_compound": "RS",
+      "sequence": "RM → RS",
+      "confidence": "HIGH",
+      "reason": "Digit explicitly discusses starting on the mediums, changing tyres, and using medium/soft compounds; the live configuration confirms RM and RS."
+    },
     "tyre_saving_supported": true,
     "tyre_change_supported": true,
     "citroen_supported": true,
     "recommendations": [
       "The later race-tested evidence favours the overcut: staying out longer performed better than stopping early.",
-      "Tyre preservation is strategically important; minimise unnecessary sliding, steering input and front-tyre overload.",
-      "Digit confirms that the race requires the tyre-change rule to be satisfied.",
-      "Digit identifies the GT by Citroën Gr.4 as particularly strong for this race, including tyre performance."
+      "Tyre preservation is strategically important. Minimise unnecessary steering input, sliding and front-tyre overload.",
+      "The race requires the tyre-change rule to be satisfied.",
+      "Digit's usable race evidence supports RM → RS: start on Racing Medium and switch to Racing Soft.",
+      "Digit identifies the GT by Citroën Gr.4 as particularly strong, including tyre-life performance."
     ],
     "evidence": {
       "overcut": [
         {
-          "timestamp": "2:36:51",
-          "text": "It seems like the overcut is more It seems like the overcut is more powerful than the undercut."
-        },
-        {
-          "timestamp": "2:38:47",
-          "text": "Yeah, Citroen is typically strong when it comes to tire wear, it comes to tire wear, but yeah, I should have stayed out. stayed out. should have put it when he put it. Then should have put it when he put it. Then we would have a race like this."
+          "timestamp": "2:40:33",
+          "text": "Overcut it is. At least I know for next time. If you ask me like last week we had a bit of diversity. Now we are back to the roots but it's also okay. Uh tire wear times four and you can see fuel is uh is times two."
         },
         {
           "timestamp": "2:40:03",
-          "text": "qual. Thank you. Thank you, casual driver. I should have stayed out. That's it. And I should have stayed out. That's it. And all of those that pitted earlier just all of those that pitted earlier just all of those that pitted earlier just lost more time."
+          "text": "qual. Thank you, casual driver. I should have stayed out. That's it. And all of those that pitted earlier just lost more time."
         },
         {
-          "timestamp": "2:40:33",
-          "text": "Overcut it is. At least I know for next time. If you ask me like last week we had a If you ask me like last week we had a bit of diversity. Now we are back to the bit of diversity. Now we are back to the roots but it's also okay. but it's also okay. Uh tire wear times four and you can see Uh tire wear times four and you can see Uh tire wear times four and you can see fuel is uh is times two."
+          "timestamp": "2:38:47",
+          "text": "Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have stayed out. should have put it when he put it. Then we would have a race like this."
+        },
+        {
+          "timestamp": "2:36:51",
+          "text": "It seems like the overcut is more powerful than the undercut."
         }
       ],
       "tyre_saving": [
         {
           "timestamp": "19:30",
-          "text": "look like. I don't think the Genesis is look like. I don't think the Genesis is going to be that degrade on tires, going to be that degrade on tires, going to be that degrade on tires, but it has quite a good acceleration. but it has quite a good acceleration. So radar is on as usual, So radar is on as usual, but this is going to be like a typical but this is going to be like a typical but this is going to be like a typical tire saving race, at least in my tire saving race, at least in my tire saving race, at least in my opinion. opinion. Yeah. I think tire saving is Yeah. Yeah. I think tire saving is Yeah. Yeah. I think tire saving is going to be very, very important here. going to be very, very important here. Mediums and soft tires. So, let's just Mediums and soft tires. So, let's just see how that's going to go. I can't cut see how that's going to go. I can't cut the corners. And he definitely went too the corners. And he definitely went too wide there"
+          "text": "look like. I don't think the Genesis is going to be that degrade on tires, but it has quite a good acceleration. So radar is on as usual, but this is going to be like a typical tire saving race, at least in my opinion. I think tire saving is going to be very important here. Mediums and soft tires. So, let's just see how that's going to go. I can't cut the corners. And he definitely went too wide there"
         },
         {
           "timestamp": "28:25",
-          "text": "and getting closer to the lead. That's typically what works. I have to be very gentle with my I have to be very gentle with my tires."
+          "text": "and getting closer to the lead. That's typically what works. I have to be very gentle with my tires."
         },
         {
           "timestamp": "30:07",
-          "text": "I can rotate the back end, but I really I can rotate the back end, but I really don't want to get too much on don't want to get too much on don't want to get too much on the front. And I see the tires are the front. And I see the tires are pretty cold, which is it's good and not pretty cold, which is it's good and not pretty cold, which is it's good and not good at the same time. So, the tire wear good at the same time. So, the tire wear is going to be significantly less. Luckily, all of the other guys are now Luckily, all of the other guys are now behind me. And I think some of them behind me. And I think some of them stayed. stayed. Okay, but how long are they staying up Okay, but how long are they staying up Okay, but how long are they staying up there in the front?"
+          "text": "I can rotate the back end, but I really don't want to get too much on the front. And I see the tires are pretty cold, which is it's good and not good at the same time. So, the tire wear is going to be significantly less. Luckily, all of the other guys are now behind me. And I think some of them stayed. Okay, but how long are they staying up there in the front?"
         }
       ],
       "tyre_change": [
         {
-          "timestamp": "25:10",
-          "text": "Okay. Uh, pit stop is required in this race. There is a required tire change. So, it's not like a mandatory stop, but So, it's not like a mandatory stop, but at the same time, we just need at the same time, we just need at the same time, we just need to change the tires."
+          "timestamp": "29:37",
+          "text": "Not the best exit, but let's see. 1.5. If I can get into the slip in the next lap, that'll be amazing. Even now, I think I'm picking up a little bit of it. Oh, yeah. The strategy is to change the tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle. I can rotate the back end, but I really"
         },
         {
-          "timestamp": "29:37",
-          "text": "Not the best exit, but let's see. 1.5. Not the best exit, but let's see. 1.5. If I can get into the slip in the next If I can get into the slip in the next If I can get into the slip in the next lap, lap, lap, that'll be amazing. that'll be amazing. Even now, I think I'm picking up a Even now, I think I'm picking up a Even now, I think I'm picking up a little bit of it. little bit of it. Oh, yeah. The strategy is to change the Oh, yeah. The strategy is to change the tires roughly about lap four, tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle, gentle, gentle. I can rotate the back end, but I really"
+          "timestamp": "25:10",
+          "text": "Uh, pit stop is required in this race. There is a required tire change. So, it's not like a mandatory stop, but at the same time, we just need to change the tires."
         }
       ],
       "compounds": [
         {
-          "timestamp": "19:30",
-          "text": "look like. I don't think the Genesis is look like. I don't think the Genesis is going to be that degrade on tires, going to be that degrade on tires, going to be that degrade on tires, but it has quite a good acceleration. but it has quite a good acceleration. So radar is on as usual, So radar is on as usual, but this is going to be like a typical but this is going to be like a typical but this is going to be like a typical tire saving race, at least in my tire saving race, at least in my tire saving race, at least in my opinion. opinion. Yeah. I think tire saving is Yeah. Yeah. I think tire saving is Yeah. Yeah. I think tire saving is going to be very, very important here. going to be very, very important here. Mediums and soft tires. So, let's just Mediums and soft tires. So, let's just see how that's going to go. I can't cut see how that's going to go. I can't cut the corners. And he definitely went too the corners. And he definitely went too wide there"
-        },
-        {
           "timestamp": "29:37",
-          "text": "Not the best exit, but let's see. 1.5. Not the best exit, but let's see. 1.5. If I can get into the slip in the next If I can get into the slip in the next If I can get into the slip in the next lap, lap, lap, that'll be amazing. that'll be amazing. Even now, I think I'm picking up a Even now, I think I'm picking up a Even now, I think I'm picking up a little bit of it. little bit of it. Oh, yeah. The strategy is to change the Oh, yeah. The strategy is to change the tires roughly about lap four, tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle, gentle, gentle. I can rotate the back end, but I really"
+          "text": "Not the best exit, but let's see. 1.5. If I can get into the slip in the next lap, that'll be amazing. Even now, I think I'm picking up a little bit of it. Oh, yeah. The strategy is to change the tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle. I can rotate the back end, but I really"
         },
         {
-          "timestamp": "3:58:37",
-          "text": "Uh, racing mediums and racing soft tires."
+          "timestamp": "19:30",
+          "text": "look like. I don't think the Genesis is going to be that degrade on tires, but it has quite a good acceleration. So radar is on as usual, but this is going to be like a typical tire saving race, at least in my opinion. I think tire saving is going to be very important here. Mediums and soft tires. So, let's just see how that's going to go. I can't cut the corners. And he definitely went too wide there"
         }
       ],
       "citroen": [
         {
-          "timestamp": "2:38:47",
-          "text": "Yeah, Citroen is typically strong when it comes to tire wear, it comes to tire wear, but yeah, I should have stayed out. stayed out. should have put it when he put it. Then should have put it when he put it. Then we would have a race like this."
+          "timestamp": "2:39:29",
+          "text": "Well, second it's not bad, but it's also not good. You know what? For the next time, I know bit later. Ocean. Hello. Once again, Citroen tires are better than Porsches, even if you do one more lap on the S. because it's just faster overall. It's not worth. I mean, it's a Citroen cup basically"
         },
         {
-          "timestamp": "2:39:29",
-          "text": "Well, second it's not bad, but it's Well, second it's not bad, but it's also not good. You know what? For the also not good. You know what? For the also not good. You know what? For the next time, I know bit later. Ocean. Hello. Once again, Ocean. Hello. Once again, Citroen tires are better than Porsches, Citroen tires are better than Porsches, even if you do one more lap on even if you do one more lap on even if you do one more lap on the S. because it's just faster overall. the S. because it's just faster overall. the S. because it's just faster overall. It's not worth. [snorts] I mean, it's a [snorts] I mean, it's a Citroen cup basically"
+          "timestamp": "2:38:47",
+          "text": "Yeah, Citroen is typically strong when it comes to tire wear, but yeah, I should have stayed out. should have put it when he put it. Then we would have a race like this."
         }
       ],
       "pit_window": [
         {
-          "timestamp": "19:00",
-          "text": "I guess the ideal pit window, as you I guess the ideal pit window, as you guys told me, is around lap four, lap guys told me, is around lap four, lap guys told me, is around lap four, lap five. five. We'll see. Hello, Daniel. I still need We'll see. Hello, Daniel. I still need We'll see. Hello, Daniel. I still need to send you the package. Andre, hi there. Lap four, five. Okay. Andre, hi there. Lap four, five. Okay. So, I'm supposed to start um I mean, let's see how this is going to I mean, let's see how this is going to look like. I don't think the Genesis is"
+          "timestamp": "29:37",
+          "text": "Not the best exit, but let's see. 1.5. If I can get into the slip in the next lap, that'll be amazing. Even now, I think I'm picking up a little bit of it. Oh, yeah. The strategy is to change the tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle. I can rotate the back end, but I really"
         },
         {
-          "timestamp": "29:37",
-          "text": "Not the best exit, but let's see. 1.5. Not the best exit, but let's see. 1.5. If I can get into the slip in the next If I can get into the slip in the next If I can get into the slip in the next lap, lap, lap, that'll be amazing. that'll be amazing. Even now, I think I'm picking up a Even now, I think I'm picking up a Even now, I think I'm picking up a little bit of it. little bit of it. Oh, yeah. The strategy is to change the Oh, yeah. The strategy is to change the tires roughly about lap four, tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle, gentle, gentle. I can rotate the back end, but I really"
+          "timestamp": "19:00",
+          "text": "I guess the ideal pit window, as you guys told me, is around lap four, lap five. We'll see. Hello, Daniel. I still need to send you the package. Andre, hi there. Lap four, five. So, I'm supposed to start um I mean, let's see how this is going to look like. I don't think the Genesis is"
         }
       ]
     }
   },
   "lap_guide": {
     "confidence": "HIGH",
-    "sequential": [
+    "mapping_mode": "SEQUENTIAL_TRANSCRIPT_ORDER",
+    "official_corner_numbers": false,
+    "steps": [
       {
+        "sequence": 1,
         "tags": [
           "BRAKING"
         ],
-        "text": "On the way down to turn one, we're looking for the 200 board."
+        "brake_reference": "200 board",
+        "gear": null,
+        "instruction": "On the way down to turn one, we're looking for the 200 board."
       },
       {
+        "sequence": 2,
         "tags": [
           "BRAKING"
         ],
-        "text": "We're going to break just before we reach this."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "We're going to break just before we reach this."
       },
       {
+        "sequence": 3,
         "tags": [
           "BRAKING",
           "LINE"
         ],
-        "text": "And we're going to start to turn in as we are around midway between the 200 and the 100 board."
+        "brake_reference": "100 board",
+        "gear": null,
+        "instruction": "And we're going to start to turn in as we are around midway between the 200 and the 100 board."
       },
       {
+        "sequence": 4,
         "tags": [
           "GEAR"
         ],
-        "text": "Shifting down to second gear."
+        "brake_reference": null,
+        "gear": "2nd",
+        "instruction": "Shifting down to second gear."
       },
       {
+        "sequence": 5,
         "tags": [
           "THROTTLE"
         ],
-        "text": "We're going to start to accelerate just as we reach the one before last."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "We're going to start to accelerate just as we reach the one before last."
       },
       {
+        "sequence": 6,
         "tags": [
           "THROTTLE",
           "TRACK_LIMIT"
         ],
-        "text": "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill."
       },
       {
-        "tags": [
-          "TRACK_LIMIT"
-        ],
-        "text": "Then, as we pass under this bridge, we want to bring the car back over to the right."
-      },
-      {
+        "sequence": 7,
         "tags": [
           "LINE"
         ],
-        "text": "Then allow the car to drift over to the left side, turning in so we hug the next bend."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Then allow the car to drift over to the left side, turning in so we hug the next bend."
       },
       {
+        "sequence": 8,
         "tags": [
           "BRAKING",
           "LINE"
         ],
-        "text": "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines."
+        "brake_reference": "around 350 m",
+        "gear": null,
+        "instruction": "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines."
       },
       {
+        "sequence": 9,
         "tags": [
           "BRAKING",
           "GEAR",
           "LINE"
         ],
-        "text": "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear."
+        "brake_reference": "100 board",
+        "gear": "2nd",
+        "instruction": "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear."
       },
       {
+        "sequence": 10,
         "tags": [
           "LINE"
         ],
-        "text": "And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex."
       },
       {
+        "sequence": 11,
         "tags": [
           "THROTTLE",
           "LINE"
         ],
-        "text": "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right."
       },
       {
+        "sequence": 12,
         "tags": [
           "LINE"
         ],
-        "text": "We're going to make sure we're turning in for the next corner."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "We're going to make sure we're turning in for the next corner."
       },
       {
+        "sequence": 13,
         "tags": [
           "BRAKING",
           "LINE"
         ],
-        "text": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take."
+        "brake_reference": "100 board",
+        "gear": null,
+        "instruction": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take."
       },
       {
+        "sequence": 14,
         "tags": [
           "THROTTLE",
           "LINE"
         ],
-        "text": "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner."
       },
       {
+        "sequence": 15,
         "tags": [
           "THROTTLE"
         ],
-        "text": "Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available."
       },
       {
+        "sequence": 16,
         "tags": [
           "BRAKING"
         ],
-        "text": "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry."
+        "brake_reference": "around 50 m",
+        "gear": null,
+        "instruction": "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry."
       },
       {
+        "sequence": 17,
         "tags": [
           "BRAKING",
           "THROTTLE",
-          "LINE",
-          "TRACK_LIMIT"
+          "LINE"
         ],
-        "text": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge."
+        "brake_reference": "after the bridge",
+        "gear": null,
+        "instruction": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge."
       },
       {
+        "sequence": 18,
         "tags": [
           "BRAKING",
           "GEAR",
           "LINE"
         ],
-        "text": "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker."
+        "brake_reference": null,
+        "gear": "2nd",
+        "instruction": "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker."
       },
       {
+        "sequence": 19,
         "tags": [
           "LINE",
           "TRACK_LIMIT"
         ],
-        "text": "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit."
       },
       {
+        "sequence": 20,
         "tags": [
           "BRAKING"
         ],
-        "text": "Going through the short tunnel and looking to the right for the 100 board."
+        "brake_reference": "100 board",
+        "gear": null,
+        "instruction": "Going through the short tunnel and looking to the right for the 100 board."
       },
       {
+        "sequence": 21,
         "tags": [
           "BRAKING",
           "GEAR",
           "LINE"
         ],
-        "text": "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner."
+        "brake_reference": null,
+        "gear": "2nd",
+        "instruction": "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner."
       },
       {
+        "sequence": 22,
         "tags": [
           "THROTTLE"
         ],
-        "text": "As we pass under the banner above the track, we'll get on the power, but another good acceleration marker."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "As we pass under the banner above the track, we'll get on the power, but another good acceleration marker."
       },
       {
+        "sequence": 23,
         "tags": [
           "LINE"
         ],
-        "text": "A little bit further around the corner, there are these posts on the left side."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "A little bit further around the corner, there are these posts on the left side."
       },
       {
+        "sequence": 24,
         "tags": [
           "THROTTLE"
         ],
-        "text": "As they start to become visible, we can hit the throttle."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "As they start to become visible, we can hit the throttle."
       },
       {
+        "sequence": 25,
         "tags": [
           "LINE"
         ],
-        "text": "Keep the car to the left side."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Keep the car to the left side."
       },
       {
+        "sequence": 26,
         "tags": [
           "BRAKING",
           "THROTTLE",
           "LINE"
         ],
-        "text": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up."
+        "brake_reference": "dark mark in the sand",
+        "gear": null,
+        "instruction": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up."
       },
       {
-        "tags": [
-          "THROTTLE",
-          "TRACK_LIMIT"
-        ],
-        "text": "And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge."
-      },
-      {
-        "tags": [
-          "BRAKING",
-          "LINE"
-        ],
-        "text": "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel."
-      },
-      {
-        "tags": [
-          "LINE"
-        ],
-        "text": "Again, we want to take a tight line around this corner."
-      },
-      {
-        "tags": [
-          "LINE"
-        ],
-        "text": "And it's important to keep the car to the right side for the chicane that follows."
-      },
-      {
+        "sequence": 27,
         "tags": [
           "THROTTLE"
         ],
-        "text": "When we have entered the darker part of the tunnel, we'll start to accelerate."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge."
       },
       {
+        "sequence": 28,
         "tags": [
           "BRAKING",
           "LINE"
         ],
-        "text": "And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left."
+        "brake_reference": "100 board",
+        "gear": null,
+        "instruction": "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel."
       },
       {
+        "sequence": 29,
+        "tags": [
+          "LINE"
+        ],
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Again, we want to take a tight line around this corner."
+      },
+      {
+        "sequence": 30,
+        "tags": [
+          "LINE"
+        ],
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "And it's important to keep the car to the right side for the chicane that follows."
+      },
+      {
+        "sequence": 31,
+        "tags": [
+          "THROTTLE"
+        ],
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "When we have entered the darker part of the tunnel, we'll start to accelerate."
+      },
+      {
+        "sequence": 32,
+        "tags": [
+          "BRAKING",
+          "LINE"
+        ],
+        "brake_reference": "tunnel exit",
+        "gear": null,
+        "instruction": "And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left."
+      },
+      {
+        "sequence": 33,
         "tags": [
           "THROTTLE",
           "LINE",
           "TRACK_LIMIT"
         ],
-        "text": "As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards."
       },
       {
+        "sequence": 34,
         "tags": [
           "TRACK_LIMIT"
         ],
-        "text": "Then, as soon as we are over the first curb, turn immediately back to the right for the second."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Then, as soon as we are over the first curb, turn immediately back to the right for the second."
       },
       {
+        "sequence": 35,
         "tags": [
           "TRACK_LIMIT"
         ],
-        "text": "Again, aiming to clip the curb and just brush in those bolards as we go through."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Again, aiming to clip the curb and just brush in those bolards as we go through."
       },
       {
+        "sequence": 36,
         "tags": [
           "LINE",
           "TRACK_LIMIT"
         ],
-        "text": "Just being careful not to run over the white line with all four wheels."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Just being careful not to run over the white line with all four wheels."
       },
       {
+        "sequence": 37,
         "tags": [
           "LINE"
         ],
-        "text": "Approaching the tunnel, keep the car to the left side."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "Approaching the tunnel, keep the car to the left side."
       },
       {
+        "sequence": 38,
         "tags": [
           "BRAKING"
         ],
-        "text": "And as we pass the 200 board, start to bring the car over to the right."
+        "brake_reference": "200 board",
+        "gear": null,
+        "instruction": "And as we pass the 200 board, start to bring the car over to the right."
       },
       {
+        "sequence": 39,
         "tags": [
           "LINE",
           "TRACK_LIMIT"
         ],
-        "text": "We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight."
+        "brake_reference": null,
+        "gear": null,
+        "instruction": "We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight."
       }
     ],
     "braking_references": [
@@ -407,14 +548,51 @@
     ],
     "track_limits": [
       "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.",
-      "Then, as we pass under this bridge, we want to bring the car back over to the right.",
-      "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
       "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.",
-      "And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge.",
       "As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards.",
       "Then, as soon as we are over the first curb, turn immediately back to the right for the second.",
       "Again, aiming to clip the curb and just brush in those bolards as we go through.",
       "Just being careful not to run over the white line with all four wheels.",
+      "We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight."
+    ],
+    "throttle_references": [
+      "We're going to start to accelerate just as we reach the one before last.",
+      "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.",
+      "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right.",
+      "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner.",
+      "Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available.",
+      "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
+      "As we pass under the banner above the track, we'll get on the power, but another good acceleration marker.",
+      "As they start to become visible, we can hit the throttle.",
+      "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.",
+      "And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge.",
+      "When we have entered the darker part of the tunnel, we'll start to accelerate.",
+      "As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards."
+    ],
+    "racing_line": [
+      "And we're going to start to turn in as we are around midway between the 200 and the 100 board.",
+      "Then allow the car to drift over to the left side, turning in so we hug the next bend.",
+      "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.",
+      "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
+      "And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex.",
+      "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right.",
+      "We're going to make sure we're turning in for the next corner.",
+      "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.",
+      "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner.",
+      "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
+      "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.",
+      "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.",
+      "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner.",
+      "A little bit further around the corner, there are these posts on the left side.",
+      "Keep the car to the left side.",
+      "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.",
+      "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel.",
+      "Again, we want to take a tight line around this corner.",
+      "And it's important to keep the car to the right side for the chicane that follows.",
+      "And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left.",
+      "As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards.",
+      "Just being careful not to run over the white line with all four wheels.",
+      "Approaching the tunnel, keep the car to the left side.",
       "We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight."
     ]
   },
@@ -422,27 +600,97 @@
     {
       "car": "GT by Citroën Gr.4",
       "count": 567,
-      "percentage": 56.699999999999996
+      "percentage": 56.699999999999996,
+      "layout": "MR"
     },
     {
       "car": "Genesis G70 GR4",
       "count": 146,
-      "percentage": 14.6
+      "percentage": 14.6,
+      "layout": "4WD"
     },
     {
       "car": "Nissan GT-R Gr.4",
       "count": 82,
-      "percentage": 8.200000000000001
+      "percentage": 8.200000000000001,
+      "layout": "4WD"
     },
     {
       "car": "Suzuki Swift Sport KATANA Edition Gr.4",
       "count": 43,
-      "percentage": 4.3
+      "percentage": 4.3,
+      "layout": "FF"
     },
     {
       "car": "Honda NSX Gr.4",
       "count": 30,
-      "percentage": 3.0
+      "percentage": 3.0,
+      "layout": "MR"
     }
+  ],
+  "personal_context": {
+    "my_result": {
+      "psn_id": "crazy_rooster74",
+      "rank": 4551,
+      "laptime": "1:57.248",
+      "car": "Genesis G70 GR4",
+      "top_percent": 15.816361993466325,
+      "percentile_ahead": 84.1865637924443,
+      "pace_band": "VERY FAST",
+      "gap_to_wr_ms": 2625
+    },
+    "world_record": {
+      "laptime": "1:54.623",
+      "driver": "M. Estevez",
+      "car": "GT by Citroën Gr.4"
+    },
+    "next_targets": [
+      {
+        "label": "Top 10%",
+        "rank": 2878,
+        "score": 116786,
+        "laptime": "1:56.786",
+        "gain_needed_ms": 462
+      },
+      {
+        "label": "Top 5%",
+        "rank": 1439,
+        "score": 116288,
+        "laptime": "1:56.288",
+        "gain_needed_ms": 960
+      },
+      {
+        "label": "Top 1000",
+        "rank": 1000,
+        "score": 116090,
+        "laptime": "1:56.090",
+        "gain_needed_ms": 1158
+      },
+      {
+        "label": "Top 2%",
+        "rank": 576,
+        "score": 115870,
+        "laptime": "1:55.870",
+        "gain_needed_ms": 1378
+      }
+    ],
+    "car_comparison": {
+      "my_car": "Genesis G70 GR4",
+      "my_car_best_score": 115161,
+      "my_car_best_laptime": "1:55.161",
+      "gap_to_best_same_car_ms": 2087,
+      "meta_car": "GT by Citroën Gr.4",
+      "meta_car_best_score": 114623,
+      "meta_car_best_laptime": "1:54.623",
+      "theoretical_car_gap_ms": 538
+    }
+  },
+  "practical_race_plan": [
+    "Use the official/live race configuration as the regulatory baseline.",
+    "Treat Lap 4-5 only as the initial reference, not a mandatory pit window. If tyre condition and traffic remain favourable, extend the first stint and exploit the overcut.",
+    "Prioritise tyre preservation in the opening stint: minimise sliding, excess steering angle and unnecessary front-axle load.",
+    "Use RM → RS: start on Racing Medium, preserve the tyre, then switch to Racing Soft for the second stint.",
+    "Prefer the GT by Citroën Gr.4 as the reference meta car: Digit's race-tested assessment and the live Top-1000 usage agree.",
+    "For qualifying, use only the GnC Racing guide for braking points, gear selection, racing line, throttle references and track limits."
   ]
 }
