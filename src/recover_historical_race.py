@@ -3,59 +3,80 @@
 from __future__ import annotations
 
 import json
+import math
 import re
-import sys
+from collections import Counter
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import requests
 
 
-HISTORICAL_LEADERBOARD_URL = (
+# ======================================================================================
+# CONFIGURATION
+# ======================================================================================
+
+VERSION = "2.0"
+
+MY_PSN_ID = "crazy_rooster74"
+
+HISTORICAL_WEEK_START = "2026-08-10"
+HISTORICAL_WEEK_END = "2026-08-17"
+
+HISTORICAL_URL = (
     "https://gtsh-rank.com/daily/leaderboard?"
-    "event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUe"
-    "VklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1D"
-    "UBJbXEVSFVZJFg4eB1dN"
+    "event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN"
 )
 
-PSN_ID = "crazy_rooster74"
+DATA_DIR = Path("data")
+RECOVERY_DIR = DATA_DIR / "historical_recovery"
 
-OUTPUT_DIR = Path("data/historical_recovery")
-OUTPUT_JSON = OUTPUT_DIR / "daily_race_c_2026-08-10_final.json"
+OUTPUT_FILE = (
+    RECOVERY_DIR
+    / "daily_race_c_2026-08-10_final.json"
+)
+
+WEEKLY_HISTORY_FILE = (
+    DATA_DIR
+    / "weekly_rating_history.json"
+)
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (GT7 Daily Race Agent)"
+}
 
 SEPARATOR = "=" * 100
 SUB_SEPARATOR = "-" * 100
 
 
-def safe_get(
-    data: Dict[str, Any],
-    *keys: str,
-    default: Any = None,
-) -> Any:
-    current: Any = data
+# ======================================================================================
+# GENERIC HELPERS
+# ======================================================================================
 
-    for key in keys:
-        if not isinstance(current, dict):
-            return default
+def score_to_laptime(
+    score: Optional[int]
+) -> str:
 
-        current = current.get(key)
+    if score is None:
+        return "N/A"
 
-        if current is None:
-            return default
+    score = int(
+        round(score)
+    )
 
-    return current
+    minutes = (
+        score // 60000
+    )
 
+    seconds = (
+        (score % 60000)
+        // 1000
+    )
 
-def format_laptime_from_score(
-    score: Optional[int],
-) -> Optional[str]:
-    if not isinstance(score, int):
-        return None
-
-    minutes = score // 60000
-    remainder = score % 60000
-    seconds = remainder // 1000
-    milliseconds = remainder % 1000
+    milliseconds = (
+        score % 1000
+    )
 
     return (
         f"{minutes}:"
@@ -64,502 +85,1685 @@ def format_laptime_from_score(
     )
 
 
-def find_possible_rankings(
-    data: Any,
-) -> List[List[Dict[str, Any]]]:
-    results: List[List[Dict[str, Any]]] = []
+def get_user(
+    driver: Dict[str, Any]
+) -> Dict[str, Any]:
 
-    def walk(node: Any) -> None:
-        if isinstance(node, list):
-            if node and all(
-                isinstance(item, dict)
-                for item in node[: min(len(node), 10)]
-            ):
-                keys = set()
+    user = driver.get(
+        "user",
+        {}
+    )
 
-                for item in node[: min(len(node), 10)]:
-                    keys.update(item.keys())
+    if isinstance(
+        user,
+        dict
+    ):
+        return user
 
-                likely_fields = {
-                    "rank",
-                    "score",
-                    "psnId",
-                    "psn_id",
-                    "userId",
-                    "nickname",
-                    "displayName",
-                    "carCode",
-                    "car_code",
-                }
-
-                if keys & likely_fields:
-                    results.append(node)
-
-            for item in node:
-                walk(item)
-
-        elif isinstance(node, dict):
-            for value in node.values():
-                walk(value)
-
-    walk(data)
-
-    return results
+    return {}
 
 
-def extract_psn_id(
-    item: Dict[str, Any],
-) -> Optional[str]:
-    candidates = [
-        item.get("psn_id"),
-        item.get("psnId"),
-        item.get("userId"),
-        item.get("user_id"),
-        item.get("onlineId"),
-        item.get("online_id"),
-        item.get("accountId"),
-        item.get("account_id"),
-    ]
-
-    for candidate in candidates:
-        if isinstance(candidate, str) and candidate.strip():
-            return candidate.strip()
-
-    user = item.get("user")
-
-    if isinstance(user, dict):
-        return extract_psn_id(user)
-
-    driver = item.get("driver")
-
-    if isinstance(driver, dict):
-        return extract_psn_id(driver)
-
-    return None
-
-
-def extract_driver_name(
-    item: Dict[str, Any],
-) -> Optional[str]:
-    candidates = [
-        item.get("driver"),
-        item.get("nickname"),
-        item.get("displayName"),
-        item.get("display_name"),
-        item.get("name"),
-    ]
-
-    for candidate in candidates:
-        if isinstance(candidate, str) and candidate.strip():
-            return candidate.strip()
-
-    user = item.get("user")
-
-    if isinstance(user, dict):
-        return extract_driver_name(user)
-
-    return None
-
-
-def extract_rank(
-    item: Dict[str, Any],
+def get_car_code(
+    driver: Dict[str, Any]
 ) -> Optional[int]:
-    candidates = [
-        item.get("rank"),
-        item.get("position"),
-        item.get("ranking"),
-    ]
 
-    for candidate in candidates:
-        if isinstance(candidate, int):
-            return candidate
+    stats = driver.get(
+        "ranking_stats",
+        {}
+    )
 
-    return None
-
-
-def extract_score(
-    item: Dict[str, Any],
-) -> Optional[int]:
-    candidates = [
-        item.get("score"),
-        item.get("time"),
-        item.get("lapTime"),
-        item.get("laptime"),
-        item.get("lap_time"),
-    ]
-
-    for candidate in candidates:
-        if isinstance(candidate, int):
-            return candidate
-
-    return None
-
-
-def extract_car_code(
-    item: Dict[str, Any],
-) -> Optional[int]:
-    candidates = [
-        item.get("car_code"),
-        item.get("carCode"),
-        item.get("car_id"),
-        item.get("carId"),
-    ]
-
-    for candidate in candidates:
-        if isinstance(candidate, int):
-            return candidate
-
-    car = item.get("car")
-
-    if isinstance(car, dict):
-        return extract_car_code(car)
-
-    return None
-
-
-def extract_country(
-    item: Dict[str, Any],
-) -> Optional[str]:
-    candidates = [
-        item.get("country"),
-        item.get("countryCode"),
-        item.get("country_code"),
-    ]
-
-    for candidate in candidates:
-        if isinstance(candidate, str) and candidate.strip():
-            return candidate.strip()
-
-    user = item.get("user")
-
-    if isinstance(user, dict):
-        return extract_country(user)
-
-    return None
-
-
-def locate_driver(
-    ranking_lists: List[List[Dict[str, Any]]],
-    psn_id: str,
-) -> Optional[Dict[str, Any]]:
-    target = psn_id.lower()
-
-    for ranking in ranking_lists:
-        for item in ranking:
-            found_psn = extract_psn_id(item)
-
-            if found_psn and found_psn.lower() == target:
-                return item
-
-    return None
-
-
-def best_ranking_list(
-    ranking_lists: List[List[Dict[str, Any]]],
-) -> Optional[List[Dict[str, Any]]]:
-    if not ranking_lists:
+    if not isinstance(
+        stats,
+        dict
+    ):
         return None
 
-    ranked = sorted(
-        ranking_lists,
-        key=lambda rows: len(rows),
-        reverse=True,
+    return stats.get(
+        "car_code"
     )
 
-    return ranked[0]
 
+def get_rank(
+    driver: Dict[str, Any],
+    fallback: Optional[int] = None
+) -> Optional[int]:
 
-def print_sample(
-    ranking: Optional[List[Dict[str, Any]]],
-) -> None:
-    if not ranking:
-        return
+    rank = driver.get(
+        "display_rank"
+    )
 
-    print("")
-    print("RANKING SAMPLE")
-    print(SUB_SEPARATOR)
-
-    for index, item in enumerate(
-        ranking[:5],
-        start=1,
+    if isinstance(
+        rank,
+        (int, float)
     ):
-        print(
-            f"{index}. "
-            f"rank={extract_rank(item)} | "
-            f"psn={extract_psn_id(item)} | "
-            f"driver={extract_driver_name(item)} | "
-            f"score={extract_score(item)}"
+        return int(rank)
+
+    rank = driver.get(
+        "rank"
+    )
+
+    if isinstance(
+        rank,
+        (int, float)
+    ):
+        return int(rank)
+
+    return fallback
+
+
+def get_online_id(
+    driver: Dict[str, Any]
+) -> str:
+
+    value = get_user(
+        driver
+    ).get(
+        "np_online_id",
+        ""
+    )
+
+    if isinstance(
+        value,
+        str
+    ):
+        return value.strip()
+
+    return ""
+
+
+def get_driver_name(
+    driver: Dict[str, Any]
+) -> str:
+
+    user = get_user(
+        driver
+    )
+
+    for key in [
+        "nick_name",
+        "nickname",
+        "name",
+        "np_online_id",
+    ]:
+
+        value = user.get(
+            key
         )
 
+        if isinstance(
+            value,
+            str
+        ) and value.strip():
 
-def main() -> None:
-    OUTPUT_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
+            return value.strip()
+
+    return "Unknown"
+
+
+def find_my_driver(
+    ranking: List[Dict[str, Any]],
+    psn_id: str
+) -> Optional[Dict[str, Any]]:
+
+    target = (
+        psn_id
+        .strip()
+        .lower()
     )
 
-    print(SEPARATOR)
-    print("GT7 HISTORICAL DAILY RACE C RECOVERY")
-    print(SEPARATOR)
+    for driver in ranking:
 
-    print("Race week        : 2026-08-10 -> 2026-08-17")
-    print(f"PSN ID           : {PSN_ID}")
-    print(f"Historical URL   : {HISTORICAL_LEADERBOARD_URL}")
-    print("")
+        if (
+            get_online_id(driver)
+            .lower()
+            == target
+        ):
+            return driver
 
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 "
-            "(Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 "
-            "(KHTML, like Gecko) "
-            "Chrome/126.0 Safari/537.36"
-        ),
-        "Accept": (
-            "text/html,application/xhtml+xml,"
-            "application/xml;q=0.9,"
-            "image/avif,image/webp,*/*;q=0.8"
-        ),
-        "Accept-Language": "en-US,en;q=0.9",
+    return None
+
+
+# ======================================================================================
+# RATING HELPERS
+# ======================================================================================
+
+def position_score(
+    rank: Optional[int],
+    total: int
+) -> Optional[float]:
+
+    if (
+        rank is None
+        or total <= 1
+    ):
+        return None
+
+    result = (
+        10
+        * (
+            1
+            - (
+                (rank - 1)
+                / (total - 1)
+            )
+        )
+    )
+
+    return max(
+        0.0,
+        min(
+            10.0,
+            result
+        )
+    )
+
+
+def elite_score(
+    rank: Optional[int],
+    total: int
+) -> Optional[float]:
+
+    if (
+        rank is None
+        or rank < 1
+        or total <= 1
+    ):
+        return None
+
+    if rank == 1:
+        return 10.0
+
+    result = (
+        10
+        * (
+            1
+            - math.log(rank)
+            / math.log(total)
+        )
+    )
+
+    return max(
+        0.0,
+        min(
+            10.0,
+            result
+        )
+    )
+
+
+def composite_rating(
+    general: Optional[float],
+    elite: Optional[float]
+) -> Optional[float]:
+
+    if (
+        general is None
+        or elite is None
+    ):
+        return None
+
+    return (
+        0.60 * general
+        + 0.40 * elite
+    )
+
+
+def percentile_ahead(
+    rank: Optional[int],
+    total: int
+) -> Optional[float]:
+
+    if (
+        rank is None
+        or total <= 1
+    ):
+        return None
+
+    return (
+        (total - rank)
+        / (total - 1)
+        * 100
+    )
+
+
+def pace_band(
+    wr_percentage: float
+) -> str:
+
+    if wr_percentage <= 101:
+        return "ALIEN"
+
+    if wr_percentage <= 102:
+        return "ELITE"
+
+    if wr_percentage <= 103:
+        return "VERY FAST"
+
+    if wr_percentage <= 105:
+        return "COMPETITIVE"
+
+    if wr_percentage <= 108:
+        return "MID-PACK"
+
+    return "DEVELOPING"
+
+
+# ======================================================================================
+# INITIAL RANKING EXTRACTION
+# ======================================================================================
+
+def extract_initial_ranking(
+    html: str
+) -> List[Dict[str, Any]]:
+
+    marker = (
+        "const initialRanking = "
+    )
+
+    start = html.find(
+        marker
+    )
+
+    if start == -1:
+        return []
+
+    start += len(
+        marker
+    )
+
+    try:
+
+        decoder = json.JSONDecoder()
+
+        ranking, _ = (
+            decoder.raw_decode(
+                html[start:].lstrip()
+            )
+        )
+
+        if isinstance(
+            ranking,
+            list
+        ):
+            return ranking
+
+    except Exception:
+        pass
+
+    return []
+
+
+# ======================================================================================
+# UPDATE-ENDPOINT EXTRACTION
+# ======================================================================================
+
+def build_update_url(
+    leaderboard_url: str
+) -> str:
+
+    if "update=1" in leaderboard_url:
+        return leaderboard_url
+
+    if "?" in leaderboard_url:
+        return (
+            leaderboard_url
+            + "&update=1"
+        )
+
+    return (
+        leaderboard_url
+        + "?update=1"
+    )
+
+
+def extract_ranking_from_json(
+    data: Any
+) -> List[Dict[str, Any]]:
+
+    if isinstance(
+        data,
+        list
+    ):
+        return [
+            item
+            for item in data
+            if isinstance(
+                item,
+                dict
+            )
+        ]
+
+    if not isinstance(
+        data,
+        dict
+    ):
+        return []
+
+    possible_keys = [
+        "board",
+        "ranking",
+        "rankings",
+        "leaderboard",
+        "drivers",
+        "results",
+        "data",
+    ]
+
+    for key in possible_keys:
+
+        value = data.get(
+            key
+        )
+
+        if isinstance(
+            value,
+            list
+        ):
+
+            return [
+                item
+                for item in value
+                if isinstance(
+                    item,
+                    dict
+                )
+            ]
+
+        if isinstance(
+            value,
+            dict
+        ):
+
+            nested = (
+                extract_ranking_from_json(
+                    value
+                )
+            )
+
+            if nested:
+                return nested
+
+    for value in data.values():
+
+        if isinstance(
+            value,
+            (dict, list)
+        ):
+
+            nested = (
+                extract_ranking_from_json(
+                    value
+                )
+            )
+
+            if nested:
+                return nested
+
+    return []
+
+
+# ======================================================================================
+# RANKING NORMALIZATION
+# ======================================================================================
+
+def normalize_ranking(
+    ranking: List[Dict[str, Any]]
+) -> List[Dict[str, Any]]:
+
+    usable = []
+
+    for driver in ranking:
+
+        if not isinstance(
+            driver,
+            dict
+        ):
+            continue
+
+        score = driver.get(
+            "score"
+        )
+
+        if not isinstance(
+            score,
+            (int, float)
+        ):
+            continue
+
+        usable.append(
+            driver
+        )
+
+    # Prefer display_rank when present.
+    #
+    # If the archived endpoint has no rank,
+    # score ascending determines leaderboard order.
+
+    has_display_rank = any(
+        isinstance(
+            driver.get(
+                "display_rank"
+            ),
+            (int, float)
+        )
+        for driver in usable
+    )
+
+    if has_display_rank:
+
+        usable.sort(
+            key=lambda driver:
+                (
+                    driver.get(
+                        "display_rank",
+                        999999999
+                    ),
+                    driver.get(
+                        "score",
+                        999999999
+                    ),
+                )
+        )
+
+    else:
+
+        usable.sort(
+            key=lambda driver:
+                driver.get(
+                    "score",
+                    999999999
+                )
+        )
+
+    return usable
+
+
+# ======================================================================================
+# THRESHOLDS
+# ======================================================================================
+
+def build_thresholds(
+    ranking: List[Dict[str, Any]]
+) -> Dict[str, Any]:
+
+    positions = [
+        1,
+        10,
+        50,
+        100,
+        250,
+        500,
+        1000,
+        2500,
+        5000,
+        10000,
+    ]
+
+    result = {}
+
+    for position in positions:
+
+        if len(ranking) < position:
+            continue
+
+        driver = ranking[
+            position - 1
+        ]
+
+        score = driver.get(
+            "score"
+        )
+
+        result[
+            str(position)
+        ] = {
+            "rank":
+                position,
+
+            "score":
+                score,
+
+            "laptime":
+                score_to_laptime(
+                    score
+                ),
+        }
+
+    return result
+
+
+def percentile_rank(
+    total: int,
+    percent: float
+) -> int:
+
+    return max(
+        1,
+        min(
+            total,
+            math.ceil(
+                total
+                * percent
+                / 100
+            )
+        )
+    )
+
+
+def build_percentiles(
+    ranking: List[Dict[str, Any]]
+) -> Dict[str, Any]:
+
+    result = {}
+
+    for percent in [
+        10,
+        5,
+        2,
+        1,
+    ]:
+
+        rank = percentile_rank(
+            len(ranking),
+            percent
+        )
+
+        score = ranking[
+            rank - 1
+        ].get(
+            "score"
+        )
+
+        result[
+            str(percent)
+        ] = {
+            "percent":
+                percent,
+
+            "rank":
+                rank,
+
+            "score":
+                score,
+
+            "laptime":
+                score_to_laptime(
+                    score
+                ),
+        }
+
+    return result
+
+
+# ======================================================================================
+# PERSONAL RESULT
+# ======================================================================================
+
+def build_personal_result(
+    ranking: List[Dict[str, Any]],
+    my_driver: Dict[str, Any],
+    wr_score: int
+) -> Dict[str, Any]:
+
+    total = len(
+        ranking
+    )
+
+    # Some archived data may omit display_rank.
+    #
+    # Therefore determine position from the normalized
+    # leaderboard itself if necessary.
+
+    rank = None
+
+    for index, driver in enumerate(
+        ranking,
+        start=1
+    ):
+
+        if driver is my_driver:
+
+            rank = get_rank(
+                driver,
+                index
+            )
+
+            break
+
+    if rank is None:
+
+        rank = get_rank(
+            my_driver
+        )
+
+    score = my_driver.get(
+        "score"
+    )
+
+    user = get_user(
+        my_driver
+    )
+
+    car_code = get_car_code(
+        my_driver
+    )
+
+    if (
+        score is None
+        or wr_score is None
+    ):
+        raise RuntimeError(
+            "Historical personal score or WR is unavailable."
+        )
+
+    wr_percentage = (
+        score
+        / wr_score
+        * 100
+    )
+
+    general = position_score(
+        rank,
+        total
+    )
+
+    elite = elite_score(
+        rank,
+        total
+    )
+
+    ahead = percentile_ahead(
+        rank,
+        total
+    )
+
+    return {
+        "psn_id":
+            MY_PSN_ID,
+
+        "rank":
+            rank,
+
+        "score":
+            score,
+
+        "laptime":
+            score_to_laptime(
+                score
+            ),
+
+        "car_code":
+            car_code,
+
+        "country":
+            user.get(
+                "country_code"
+            ),
+
+        "driver_rating":
+            user.get(
+                "driver_rating"
+            ),
+
+        "gap_to_wr_ms":
+            score
+            - wr_score,
+
+        "wr_percentage":
+            wr_percentage,
+
+        "position_score":
+            general,
+
+        "elite_score":
+            elite,
+
+        "composite_rating":
+            composite_rating(
+                general,
+                elite
+            ),
+
+        "percentile_ahead":
+            ahead,
+
+        "top_percent":
+            (
+                rank
+                / total
+                * 100
+            )
+            if rank
+            else None,
+
+        "pace_band":
+            pace_band(
+                wr_percentage
+            ),
     }
 
-    response = requests.get(
-        HISTORICAL_LEADERBOARD_URL,
-        headers=headers,
-        timeout=45,
+
+# ======================================================================================
+# CAR META
+# ======================================================================================
+
+def build_car_meta(
+    ranking: List[Dict[str, Any]]
+) -> Dict[str, Any]:
+
+    all_counter = Counter(
+        get_car_code(driver)
+        for driver in ranking
+        if get_car_code(driver)
+        is not None
     )
 
-    print(f"HTTP status      : {response.status_code}")
-    print(f"Content-Type     : {response.headers.get('content-type')}")
-    print(f"Response bytes   : {len(response.content):,}")
+    top1000 = ranking[
+        :min(
+            1000,
+            len(ranking)
+        )
+    ]
 
-    response.raise_for_status()
+    top1000_counter = Counter(
+        get_car_code(driver)
+        for driver in top1000
+        if get_car_code(driver)
+        is not None
+    )
 
-    text = response.text
+    top5 = []
 
-    print("")
-    print("SEARCHING PAGE CONTENT")
-    print(SUB_SEPARATOR)
+    denominator = len(
+        top1000
+    )
 
-    psn_present = (
-        PSN_ID.lower()
-        in text.lower()
+    for (
+        car_code,
+        count
+    ) in top1000_counter.most_common(
+        5
+    ):
+
+        percentage = (
+            count
+            / denominator
+            * 100
+            if denominator
+            else 0
+        )
+
+        top5.append(
+            {
+                "car_code":
+                    car_code,
+
+                "count":
+                    count,
+
+                "percentage":
+                    percentage,
+
+                "all_entries":
+                    all_counter.get(
+                        car_code,
+                        0
+                    ),
+            }
+        )
+
+    return {
+        "top5_used_cars":
+            top5,
+
+        "unique_car_codes":
+            len(
+                all_counter
+            ),
+    }
+
+
+# ======================================================================================
+# WEEKLY HISTORY
+# ======================================================================================
+
+def load_weekly_history() -> List[Dict[str, Any]]:
+
+    if not WEEKLY_HISTORY_FILE.exists():
+        return []
+
+    try:
+
+        data = json.loads(
+            WEEKLY_HISTORY_FILE.read_text(
+                encoding="utf-8"
+            )
+        )
+
+        if isinstance(
+            data,
+            list
+        ):
+            return data
+
+    except Exception:
+        pass
+
+    return []
+
+
+def save_weekly_history(
+    history: List[Dict[str, Any]]
+) -> None:
+
+    history.sort(
+        key=lambda item:
+            item.get(
+                "week_start",
+                ""
+            )
+    )
+
+    WEEKLY_HISTORY_FILE.parent.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    WEEKLY_HISTORY_FILE.write_text(
+        json.dumps(
+            history,
+            ensure_ascii=False,
+            indent=2
+        ),
+        encoding="utf-8"
+    )
+
+
+def build_weekly_record(
+    recovery: Dict[str, Any]
+) -> Optional[Dict[str, Any]]:
+
+    my = recovery.get(
+        "my_result"
+    )
+
+    if not isinstance(
+        my,
+        dict
+    ):
+        return None
+
+    return {
+        "participated":
+            True,
+
+        "week_start":
+            HISTORICAL_WEEK_START,
+
+        "final_snapshot":
+            recovery.get(
+                "recovered_at"
+            ),
+
+        "finalization_mode":
+            "historical_recovery",
+
+        "race":
+            (
+                "Daily Race C "
+                "Grand Valley - Highway 1"
+            ),
+
+        "leaderboard_url":
+            HISTORICAL_URL,
+
+        "general_score":
+            my.get(
+                "position_score"
+            ),
+
+        "elite_score":
+            my.get(
+                "elite_score"
+            ),
+
+        "composite_rating":
+            my.get(
+                "composite_rating"
+            ),
+
+        "position":
+            my.get(
+                "rank"
+            ),
+
+        "total_drivers":
+            recovery.get(
+                "total_drivers"
+            ),
+
+        "top_percent":
+            my.get(
+                "top_percent"
+            ),
+
+        "percentile_ahead":
+            my.get(
+                "percentile_ahead"
+            ),
+
+        "wr_percentage":
+            my.get(
+                "wr_percentage"
+            ),
+
+        "laptime":
+            my.get(
+                "laptime"
+            ),
+
+        "score_ms":
+            my.get(
+                "score"
+            ),
+
+        "car_code":
+            my.get(
+                "car_code"
+            ),
+
+        "country":
+            my.get(
+                "country"
+            ),
+
+        "driver_rating":
+            my.get(
+                "driver_rating"
+            ),
+    }
+
+
+def upsert_weekly_history(
+    record: Dict[str, Any]
+) -> None:
+
+    history = load_weekly_history()
+
+    replaced = False
+
+    for index, existing in enumerate(
+        history
+    ):
+
+        same_week = (
+            existing.get(
+                "week_start"
+            )
+            == HISTORICAL_WEEK_START
+        )
+
+        same_url = (
+            existing.get(
+                "leaderboard_url"
+            )
+            == HISTORICAL_URL
+        )
+
+        if (
+            same_week
+            or same_url
+        ):
+
+            history[index] = record
+
+            replaced = True
+
+            break
+
+    if not replaced:
+
+        history.append(
+            record
+        )
+
+    save_weekly_history(
+        history
+    )
+
+
+# ======================================================================================
+# MAIN
+# ======================================================================================
+
+def main() -> None:
+
+    RECOVERY_DIR.mkdir(
+        parents=True,
+        exist_ok=True
     )
 
     print(
-        "PSN visible raw  : "
+        SEPARATOR
+    )
+
+    print(
+        f"GT7 HISTORICAL DAILY RACE C RECOVERY V{VERSION}"
+    )
+
+    print(
+        SEPARATOR
+    )
+
+    print(
+        f"Race week        : "
+        f"{HISTORICAL_WEEK_START} -> "
+        f"{HISTORICAL_WEEK_END}"
+    )
+
+    print(
+        f"PSN ID           : "
+        f"{MY_PSN_ID}"
+    )
+
+    print(
+        f"Historical URL   : "
+        f"{HISTORICAL_URL}"
+    )
+
+    session = requests.Session()
+
+    session.headers.update(
+        HEADERS
+    )
+
+    # ==================================================================================
+    # PAGE
+    # ==================================================================================
+
+    response = session.get(
+        HISTORICAL_URL,
+        timeout=60
+    )
+
+    response.raise_for_status()
+
+    html = response.text
+
+    print("")
+    print(
+        f"HTTP status      : "
+        f"{response.status_code}"
+    )
+
+    print(
+        f"Content-Type     : "
+        f"{response.headers.get('Content-Type')}"
+    )
+
+    print(
+        f"Response bytes   : "
+        f"{len(response.content):,}"
+    )
+
+    # ==================================================================================
+    # INITIAL RANKING
+    # ==================================================================================
+
+    initial_ranking = (
+        extract_initial_ranking(
+            html
+        )
+    )
+
+    print("")
+    print(
+        "INITIAL RANKING"
+    )
+
+    print(
+        SUB_SEPARATOR
+    )
+
+    print(
+        f"Entries          : "
+        f"{len(initial_ranking):,}"
+    )
+
+    initial_my_driver = (
+        find_my_driver(
+            initial_ranking,
+            MY_PSN_ID
+        )
+    )
+
+    print(
+        "My PSN present   : "
         + (
             "YES"
-            if psn_present
+            if initial_my_driver
             else "NO"
         )
     )
 
-    possible_json_objects: List[Any] = []
+    # ==================================================================================
+    # FULL UPDATE ENDPOINT
+    # ==================================================================================
 
-    try:
-        direct_json = response.json()
-        possible_json_objects.append(
-            direct_json
-        )
-
-        print("Direct JSON      : YES")
-
-    except Exception:
-        print("Direct JSON      : NO")
-
-    script_json_patterns = [
-        r'<script[^>]*type=["\']application/json["\'][^>]*>(.*?)</script>',
-        r'__NEXT_DATA__\s*=\s*({.*?})\s*;',
-        r'window\.__INITIAL_STATE__\s*=\s*({.*?})\s*;',
-        r'initialRanking\s*[:=]\s*(\[[\s\S]*?\])',
-    ]
-
-    for pattern in script_json_patterns:
-        matches = re.findall(
-            pattern,
-            text,
-            flags=re.IGNORECASE | re.DOTALL,
-        )
-
-        for match in matches:
-            candidate = match.strip()
-
-            try:
-                parsed = json.loads(
-                    candidate
-                )
-
-                possible_json_objects.append(
-                    parsed
-                )
-            except Exception:
-                continue
-
-    all_rankings: List[
-        List[Dict[str, Any]]
-    ] = []
-
-    for obj in possible_json_objects:
-        all_rankings.extend(
-            find_possible_rankings(obj)
-        )
-
-    print(
-        f"Ranking arrays   : {len(all_rankings)}"
-    )
-
-    primary_ranking = best_ranking_list(
-        all_rankings
-    )
-
-    if primary_ranking:
-        print(
-            f"Largest ranking  : {len(primary_ranking):,} entries"
-        )
-    else:
-        print(
-            "Largest ranking  : NOT FOUND"
-        )
-
-    print_sample(
-        primary_ranking
-    )
-
-    my_entry = locate_driver(
-        all_rankings,
-        PSN_ID,
-    )
-
-    result: Dict[str, Any] = {
-        "race_week": "2026-08-10",
-        "historical_url": HISTORICAL_LEADERBOARD_URL,
-        "http_status": response.status_code,
-        "response_bytes": len(
-            response.content
-        ),
-        "psn_id": PSN_ID,
-        "psn_visible_in_raw_page": psn_present,
-        "ranking_arrays_found": len(
-            all_rankings
-        ),
-        "largest_ranking_size": (
-            len(primary_ranking)
-            if primary_ranking
-            else None
-        ),
-        "driver_found": (
-            my_entry is not None
-        ),
-        "driver_result": None,
-    }
-
-    if my_entry is not None:
-        score = extract_score(
-            my_entry
-        )
-
-        driver_result = {
-            "rank": extract_rank(
-                my_entry
-            ),
-            "psn_id": extract_psn_id(
-                my_entry
-            ),
-            "driver": extract_driver_name(
-                my_entry
-            ),
-            "score": score,
-            "laptime": format_laptime_from_score(
-                score
-            ),
-            "car_code": extract_car_code(
-                my_entry
-            ),
-            "country": extract_country(
-                my_entry
-            ),
-            "raw_entry": my_entry,
-        }
-
-        result[
-            "driver_result"
-        ] = driver_result
-
-        print("")
-        print("HISTORICAL DRIVER RESULT")
-        print(SUB_SEPARATOR)
-
-        print(
-            f"Found            : YES"
-        )
-        print(
-            f"Rank             : {driver_result['rank']}"
-        )
-        print(
-            f"PSN ID           : {driver_result['psn_id']}"
-        )
-        print(
-            f"Driver           : {driver_result['driver']}"
-        )
-        print(
-            f"Lap time         : {driver_result['laptime']}"
-        )
-        print(
-            f"Score            : {driver_result['score']}"
-        )
-        print(
-            f"Car code         : {driver_result['car_code']}"
-        )
-        print(
-            f"Country          : {driver_result['country']}"
-        )
-
-    else:
-        print("")
-        print("HISTORICAL DRIVER RESULT")
-        print(SUB_SEPARATOR)
-
-        print("Found            : NO")
-
-        if psn_present:
-            print(
-                "Note             : PSN text exists in the page, "
-                "but the script could not identify the ranking structure."
-            )
-        else:
-            print(
-                "Note             : PSN was not visible in the HTML/JSON "
-                "returned by this request."
-            )
-
-    OUTPUT_JSON.write_text(
-        json.dumps(
-            result,
-            indent=2,
-            ensure_ascii=False,
-        ),
-        encoding="utf-8",
+    update_url = build_update_url(
+        HISTORICAL_URL
     )
 
     print("")
-    print(SEPARATOR)
     print(
-        f"Saved result     : {OUTPUT_JSON}"
+        "FULL LEADERBOARD REQUEST"
     )
-    print(SEPARATOR)
+
+    print(
+        SUB_SEPARATOR
+    )
+
+    print(
+        f"Update URL       : "
+        f"{update_url}"
+    )
+
+    update_response = session.get(
+        update_url,
+        timeout=120
+    )
+
+    print(
+        f"HTTP status      : "
+        f"{update_response.status_code}"
+    )
+
+    print(
+        f"Content-Type     : "
+        f"{update_response.headers.get('Content-Type')}"
+    )
+
+    print(
+        f"Response bytes   : "
+        f"{len(update_response.content):,}"
+    )
+
+    update_response.raise_for_status()
+
+    ranking: List[
+        Dict[str, Any]
+    ] = []
+
+    update_json = None
+
+    try:
+
+        update_json = (
+            update_response.json()
+        )
+
+        ranking = (
+            extract_ranking_from_json(
+                update_json
+            )
+        )
+
+    except Exception as exc:
+
+        print(
+            f"JSON parse       : FAILED "
+            f"({type(exc).__name__})"
+        )
+
+    print(
+        f"Update entries   : "
+        f"{len(ranking):,}"
+    )
+
+    # ==================================================================================
+    # FALLBACK
+    # ==================================================================================
+
+    if not ranking:
+
+        print("")
+        print(
+            "Update endpoint did not return a ranking."
+        )
+
+        print(
+            "Falling back to initialRanking."
+        )
+
+        ranking = (
+            initial_ranking
+        )
+
+    ranking = normalize_ranking(
+        ranking
+    )
+
+    print(
+        f"Usable entries   : "
+        f"{len(ranking):,}"
+    )
+
+    if not ranking:
+
+        raise RuntimeError(
+            "No usable historical leaderboard entries found."
+        )
+
+    # ==================================================================================
+    # WORLD RECORD
+    # ==================================================================================
+
+    winner = ranking[0]
+
+    wr_score = winner.get(
+        "score"
+    )
+
+    if not isinstance(
+        wr_score,
+        (int, float)
+    ):
+
+        raise RuntimeError(
+            "Historical WR score unavailable."
+        )
+
+    wr_score = int(
+        wr_score
+    )
+
+    print("")
+    print(
+        "WORLD RECORD"
+    )
+
+    print(
+        SUB_SEPARATOR
+    )
+
+    print(
+        f"Time             : "
+        f"{score_to_laptime(wr_score)}"
+    )
+
+    print(
+        f"Driver           : "
+        f"{get_driver_name(winner)}"
+    )
+
+    print(
+        f"PSN              : "
+        f"{get_online_id(winner) or 'N/A'}"
+    )
+
+    print(
+        f"Car code         : "
+        f"{get_car_code(winner)}"
+    )
+
+    # ==================================================================================
+    # PERSONAL DRIVER
+    # ==================================================================================
+
+    my_driver = find_my_driver(
+        ranking,
+        MY_PSN_ID
+    )
+
+    print("")
+    print(
+        "HISTORICAL DRIVER RESULT"
+    )
+
+    print(
+        SUB_SEPARATOR
+    )
+
+    print(
+        "Found            : "
+        + (
+            "YES"
+            if my_driver
+            else "NO"
+        )
+    )
+
+    my_result = None
+
+    if my_driver:
+
+        my_result = (
+            build_personal_result(
+                ranking,
+                my_driver,
+                wr_score
+            )
+        )
+
+        print(
+            f"Rank             : "
+            f"#{my_result['rank']:,}"
+        )
+
+        print(
+            f"Time             : "
+            f"{my_result['laptime']}"
+        )
+
+        print(
+            f"Score            : "
+            f"{my_result['score']} ms"
+        )
+
+        print(
+            f"Gap to WR        : "
+            f"+{my_result['gap_to_wr_ms']/1000:.3f}s"
+        )
+
+        print(
+            f"Top percentage   : "
+            f"{my_result['top_percent']:.2f}%"
+        )
+
+        print(
+            f"Ahead of         : "
+            f"{my_result['percentile_ahead']:.2f}%"
+        )
+
+        print(
+            f"WR percentage    : "
+            f"{my_result['wr_percentage']:.3f}%"
+        )
+
+        print(
+            f"General rating   : "
+            f"{my_result['position_score']:.2f}"
+        )
+
+        print(
+            f"Elite rating     : "
+            f"{my_result['elite_score']:.2f}"
+        )
+
+        print(
+            f"Composite rating : "
+            f"{my_result['composite_rating']:.2f}"
+        )
+
+        print(
+            f"Pace band        : "
+            f"{my_result['pace_band']}"
+        )
+
+        print(
+            f"Car code         : "
+            f"{my_result['car_code']}"
+        )
+
+    else:
+
+        print(
+            "The PSN was not found even in the "
+            "leaderboard returned by the update endpoint."
+        )
+
+    # ==================================================================================
+    # THRESHOLDS
+    # ==================================================================================
+
+    thresholds = (
+        build_thresholds(
+            ranking
+        )
+    )
+
+    percentiles = (
+        build_percentiles(
+            ranking
+        )
+    )
+
+    print("")
+    print(
+        "FINAL LEADERBOARD BENCHMARKS"
+    )
+
+    print(
+        SUB_SEPARATOR
+    )
+
+    for key in [
+        "1",
+        "10",
+        "100",
+        "500",
+        "1000",
+        "2500",
+        "5000",
+        "10000",
+    ]:
+
+        item = thresholds.get(
+            key
+        )
+
+        if not item:
+            continue
+
+        print(
+            f"Top {key:<5}       : "
+            f"{item['laptime']}"
+        )
+
+    print("")
+    print(
+        f"Top 10%          : "
+        f"{percentiles['10']['laptime']} "
+        f"(#{percentiles['10']['rank']:,})"
+    )
+
+    print(
+        f"Top 5%           : "
+        f"{percentiles['5']['laptime']} "
+        f"(#{percentiles['5']['rank']:,})"
+    )
+
+    print(
+        f"Top 2%           : "
+        f"{percentiles['2']['laptime']} "
+        f"(#{percentiles['2']['rank']:,})"
+    )
+
+    # ==================================================================================
+    # META
+    # ==================================================================================
+
+    meta = build_car_meta(
+        ranking
+    )
+
+    # ==================================================================================
+    # SAVE RECOVERY
+    # ==================================================================================
+
+    recovery = {
+        "recovery_version":
+            VERSION,
+
+        "recovered_at":
+            datetime.now()
+            .astimezone()
+            .isoformat(),
+
+        "race_week": {
+            "start":
+                HISTORICAL_WEEK_START,
+
+            "end":
+                HISTORICAL_WEEK_END,
+        },
+
+        "leaderboard_url":
+            HISTORICAL_URL,
+
+        "update_url":
+            update_url,
+
+        "source": {
+            "initial_ranking_entries":
+                len(
+                    initial_ranking
+                ),
+
+            "update_endpoint_entries":
+                len(
+                    extract_ranking_from_json(
+                        update_json
+                    )
+                    if update_json
+                    is not None
+                    else []
+                ),
+
+            "final_entries":
+                len(
+                    ranking
+                ),
+
+            "used_update_endpoint":
+                bool(
+                    update_json
+                    is not None
+                ),
+        },
+
+        "total_drivers":
+            len(
+                ranking
+            ),
+
+        "world_record": {
+            "rank":
+                1,
+
+            "score":
+                wr_score,
+
+            "laptime":
+                score_to_laptime(
+                    wr_score
+                ),
+
+            "driver":
+                get_driver_name(
+                    winner
+                ),
+
+            "psn_id":
+                get_online_id(
+                    winner
+                ),
+
+            "car_code":
+                get_car_code(
+                    winner
+                ),
+        },
+
+        "thresholds":
+            thresholds,
+
+        "percentile_thresholds":
+            percentiles,
+
+        "my_result":
+            my_result,
+
+        "car_meta":
+            meta,
+
+        "health": {
+            "my_driver_found":
+                my_driver
+                is not None,
+
+            "leaderboard_entries":
+                len(
+                    ranking
+                ),
+
+            "initial_ranking_only":
+                len(ranking)
+                == len(
+                    initial_ranking
+                ),
+        },
+    }
+
+    OUTPUT_FILE.write_text(
+        json.dumps(
+            recovery,
+            ensure_ascii=False,
+            indent=2
+        ),
+        encoding="utf-8"
+    )
+
+    print("")
+    print(
+        SEPARATOR
+    )
+
+    print(
+        f"Saved result     : "
+        f"{OUTPUT_FILE}"
+    )
+
+    # ==================================================================================
+    # ADD TO LONG-TERM WEEKLY HISTORY
+    # ==================================================================================
+
+    if my_result:
+
+        weekly_record = (
+            build_weekly_record(
+                recovery
+            )
+        )
+
+        if weekly_record:
+
+            upsert_weekly_history(
+                weekly_record
+            )
+
+            print(
+                f"Weekly history   : "
+                f"UPDATED"
+            )
+
+            print(
+                f"History file     : "
+                f"{WEEKLY_HISTORY_FILE}"
+            )
+
+    else:
+
+        print(
+            "Weekly history   : NOT UPDATED "
+            "(personal result not recovered)"
+        )
+
+    print(
+        SEPARATOR
+    )
 
 
 if __name__ == "__main__":
-    try:
-        main()
 
-    except Exception as exc:
-        print("")
-        print(SEPARATOR)
-        print("RECOVERY FAILED")
-        print(SEPARATOR)
-        print(
-            f"{type(exc).__name__}: {exc}"
-        )
-        sys.exit(1)
+    main()
