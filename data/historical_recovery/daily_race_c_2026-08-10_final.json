@@ -1,114 +1,155 @@
 {
-  "recovery_version": "2.0",
-  "recovered_at": "2026-08-17T09:39:25.823758+00:00",
-  "race_week": {
-    "start": "2026-08-10",
-    "end": "2026-08-17"
-  },
+  "version": "3.0",
+  "race_week_start": "2026-08-10",
+  "race_week_end": "2026-08-17",
   "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
-  "update_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN&update=1",
-  "source": {
-    "initial_ranking_entries": 100,
-    "update_endpoint_entries": 0,
-    "final_entries": 100,
-    "used_update_endpoint": true
-  },
-  "total_drivers": 100,
+  "extraction_mode": "server_paged_page_data",
+  "complete_leaderboard": true,
+  "total_drivers": 31126,
+  "loaded_drivers": 31126,
   "world_record": {
-    "rank": 1,
     "score": 114532,
     "laptime": "1:54.532",
     "driver": "S.Spallanzani",
     "psn_id": "somi__01",
     "car_code": 3248
   },
+  "personal_result": {
+    "psn_id": "crazy_rooster74",
+    "rank": 4852,
+    "score": 117248,
+    "laptime": "1:57.248",
+    "car_code": 3501,
+    "country": "BR",
+    "driver_rating": 4,
+    "gap_to_wr_ms": 2716,
+    "wr_percentage": 102.37138965529284,
+    "general_score": 8.441445783132531,
+    "elite_score": 1.7965287499792193,
+    "composite_rating": 5.783478969871206,
+    "top_percent": 15.58825419263638,
+    "percentile_ahead": 84.4144578313253,
+    "same_car_rank": 705,
+    "same_car_total": 2401,
+    "country_rank": 222,
+    "country_total": 1628,
+    "dr_rank": 2262,
+    "dr_total": 8461
+  },
   "thresholds": {
-    "1": {
-      "rank": 1,
-      "score": 114532,
-      "laptime": "1:54.532"
-    },
-    "10": {
-      "rank": 10,
-      "score": 114754,
-      "laptime": "1:54.754"
-    },
-    "50": {
-      "rank": 50,
-      "score": 115122,
-      "laptime": "1:55.122"
-    },
-    "100": {
-      "rank": 100,
-      "score": 115273,
-      "laptime": "1:55.273"
-    }
-  },
-  "percentile_thresholds": {
-    "10": {
-      "percent": 10,
-      "rank": 10,
-      "score": 114754,
-      "laptime": "1:54.754"
-    },
-    "5": {
-      "percent": 5,
-      "rank": 5,
-      "score": 114662,
-      "laptime": "1:54.662"
-    },
-    "2": {
-      "percent": 2,
-      "rank": 2,
-      "score": 114533,
-      "laptime": "1:54.533"
-    },
-    "1": {
-      "percent": 1,
-      "rank": 1,
-      "score": 114532,
-      "laptime": "1:54.532"
-    }
-  },
-  "my_result": null,
-  "car_meta": {
-    "top5_used_cars": [
-      {
-        "car_code": 3248,
-        "count": 65,
-        "percentage": 65.0,
-        "all_entries": 65
+    "fixed": {
+      "1": {
+        "rank": 1,
+        "score": 114532,
+        "laptime": "1:54.532",
+        "psn_id": "somi__01",
+        "driver": "S.Spallanzani",
+        "car_code": 3248
       },
-      {
-        "car_code": 2161,
-        "count": 14,
-        "percentage": 14.000000000000002,
-        "all_entries": 14
+      "10": {
+        "rank": 10,
+        "score": 114754,
+        "laptime": "1:54.754",
+        "psn_id": "N2_HyperzWC",
+        "driver": "ッ",
+        "car_code": 3263
       },
-      {
-        "car_code": 3251,
-        "count": 6,
-        "percentage": 6.0,
-        "all_entries": 6
+      "50": {
+        "rank": 50,
+        "score": 115122,
+        "laptime": "1:55.122",
+        "psn_id": "Gerumpelkrieger",
+        "driver": "IMS_Krieger",
+        "car_code": 3248
       },
-      {
-        "car_code": 3263,
-        "count": 3,
-        "percentage": 3.0,
-        "all_entries": 3
+      "100": {
+        "rank": 100,
+        "score": 115273,
+        "laptime": "1:55.273",
+        "psn_id": "wdsq",
+        "driver": "wdsq",
+        "car_code": 3256
       },
-      {
-        "car_code": 3310,
-        "count": 3,
-        "percentage": 3.0,
-        "all_entries": 3
+      "250": {
+        "rank": 250,
+        "score": 115582,
+        "laptime": "1:55.582",
+        "psn_id": "ana_bohueles94",
+        "driver": "-",
+        "car_code": 3248
+      },
+      "500": {
+        "rank": 500,
+        "score": 115793,
+        "laptime": "1:55.793",
+        "psn_id": "Pro_DGaming",
+        "driver": "D. Sych",
+        "car_code": 3248
+      },
+      "1000": {
+        "rank": 1000,
+        "score": 116051,
+        "laptime": "1:56.051",
+        "psn_id": "Carl-C30T5",
+        "driver": "GRSY_Carl-C30T5",
+        "car_code": 3480
+      },
+      "2500": {
+        "rank": 2500,
+        "score": 116624,
+        "laptime": "1:56.624",
+        "psn_id": "Troglodette",
+        "driver": "Pesselles",
+        "car_code": 3248
+      },
+      "5000": {
+        "rank": 5000,
+        "score": 117282,
+        "laptime": "1:57.282",
+        "psn_id": "danyxixon",
+        "driver": "D.lopez",
+        "car_code": 3537
+      },
+      "10000": {
+        "rank": 10000,
+        "score": 118314,
+        "laptime": "1:58.314",
+        "psn_id": "SerHutor",
+        "driver": "SRJ_GT",
+        "car_code": 3480
       }
-    ],
-    "unique_car_codes": 12
-  },
-  "health": {
-    "my_driver_found": false,
-    "leaderboard_entries": 100,
-    "initial_ranking_only": true
+    },
+    "percentiles": {
+      "10": {
+        "percent": 10,
+        "rank": 3113,
+        "score": 116794,
+        "laptime": "1:56.794"
+      },
+      "5": {
+        "percent": 5,
+        "rank": 1557,
+        "score": 116298,
+        "laptime": "1:56.298"
+      },
+      "2": {
+        "percent": 2,
+        "rank": 623,
+        "score": 115863,
+        "laptime": "1:55.863"
+      },
+      "1": {
+        "percent": 1,
+        "rank": 312,
+        "score": 115644,
+        "laptime": "1:55.644"
+      },
+      "0.5": {
+        "percent": 0.5,
+        "rank": 156,
+        "score": 115430,
+        "laptime": "1:55.430"
+      }
+    }
   }
 }
