@@ -4,13 +4,14 @@ on:
   workflow_dispatch:
 
   schedule:
-    # Daily report every day at 05:15 Sao Paulo
+    # Daily report every day at 05:15 Sao Paulo local time
     - cron: "15 5 * * *"
       timezone: "America/Sao_Paulo"
 
-    # Final weekly snapshot Sunday at 23:45 Sao Paulo
-    - cron: "45 23 * * 0"
-      timezone: "America/Sao_Paulo"
+    # Final weekly snapshot Sunday at 06:50 UTC
+    # 10 minutes before the official 07:00 UTC Daily Race C change
+    - cron: "50 6 * * 0"
+      timezone: "UTC"
 
 permissions:
   contents: write
@@ -39,7 +40,7 @@ jobs:
         env:
           EVENT_SCHEDULE: ${{ github.event.schedule }}
         run: |
-          if [ "$EVENT_SCHEDULE" = "45 23 * * 0" ]; then
+          if [ "$EVENT_SCHEDULE" = "50 6 * * 0" ]; then
             echo "Final Sunday snapshot detected."
             export FINAL_WEEKLY_SNAPSHOT=1
           else
