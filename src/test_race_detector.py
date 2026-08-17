@@ -14,7 +14,9 @@ from collections import Counter
 from car_database import (
     load_car_database,
     update_car_database_from_html,
-    get_car_name as database_get_car_name
+    get_car_name as database_get_car_name,
+    load_car_technical_database,
+    get_car_layout
 )
 
 
@@ -47,45 +49,9 @@ SAO_PAULO = ZoneInfo("America/Sao_Paulo")
 
 CAR_DATABASE = load_car_database()
 
-
-# ============================================================
-# VALIDATED DRIVETRAIN DATABASE
-# ============================================================
-
-CAR_TECHNICAL_INFO = {
-    1563: {"layout": "MR"},
-    2157: {"layout": "FR"},
-    2161: {"layout": "4WD"},
-    2163: {"layout": "FR"},
-    2164: {"layout": "FR"},
-    2166: {"layout": "MR"},
-    3192: {"layout": "FR"},
-    3231: {"layout": "FF"},
-    3245: {"layout": "FR"},
-    3246: {"layout": "4WD"},
-    3247: {"layout": "FR"},
-    3248: {"layout": "MR"},
-    3249: {"layout": "FR"},
-    3251: {"layout": "MR"},
-    3252: {"layout": "FR"},
-    3253: {"layout": "4WD"},
-    3254: {"layout": "FR"},
-    3256: {"layout": "4WD"},
-    3257: {"layout": "MR"},
-    3258: {"layout": "4WD"},
-    3259: {"layout": "FF"},
-    3260: {"layout": "FF"},
-    3261: {"layout": "4WD"},
-    3262: {"layout": "FR"},
-    3263: {"layout": "MR"},
-    3298: {"layout": "FF"},
-    3310: {"layout": "MR"},
-    3399: {"layout": "FR"},
-    3477: {"layout": "FR"},
-    3480: {"layout": "FF"},
-    3501: {"layout": "4WD"},
-    3537: {"layout": "FF"}
-}
+CAR_TECHNICAL_DATABASE = (
+    load_car_technical_database()
+)
 
 
 # ============================================================
@@ -1036,13 +1002,12 @@ def brake_bias_recommendation(
     tyre_multiplier
 ):
 
-    technical = (
-        CAR_TECHNICAL_INFO.get(
-            car_code
-        )
+    layout = get_car_layout(
+        car_code,
+        CAR_TECHNICAL_DATABASE
     )
 
-    if not technical:
+    if not layout:
 
         return {
             "layout":
@@ -1066,16 +1031,12 @@ def brake_bias_recommendation(
             "reason":
                 (
                     "Car is identified, but drivetrain metadata "
-                    "has not yet been validated."
+                    "has not yet been validated in the central database."
                 ),
 
             "wear_adjustment":
                 "No recommendation generated."
         }
-
-    layout = technical[
-        "layout"
-    ]
 
     baseline = (
         BRAKE_BIAS_BASELINES.get(
@@ -1550,10 +1511,6 @@ def forecast_threshold_score(
     return None
 
 
-# ============================================================
-# NEW: DIRECT PERCENTILE SNAPSHOT METRICS
-# ============================================================
-
 def forecast_percentile_threshold_score(
     snapshot,
     percent
@@ -1955,10 +1912,6 @@ def forecast_current_percentile_score(
     }
 
 
-# ============================================================
-# FALLBACK PERCENTILE FORECAST
-# ============================================================
-
 def forecast_projected_percentile_score(
     ranking,
     top500_forecast,
@@ -2068,10 +2021,6 @@ def forecast_projected_percentile_score(
     }
 
 
-# ============================================================
-# NEW: DIRECT PERCENTILE FORECAST WITH FALLBACK
-# ============================================================
-
 def build_percentile_forecast(
     snapshots,
     ranking,
@@ -2169,10 +2118,6 @@ def build_percentile_forecast(
 
     return None
 
-
-# ============================================================
-# PERSONAL RANK FORECAST
-# ============================================================
 
 def forecast_rank_if_no_improvement(
     snapshots,
@@ -2400,10 +2345,6 @@ def forecast_overall_confidence(
     return "LOW"
 
 
-# ============================================================
-# FORECAST V2 MAIN
-# ============================================================
-
 def build_forecast_v2(
     history,
     current_snapshot,
@@ -2470,12 +2411,6 @@ def build_forecast_v2(
             ),
         direction="down"
     )
-
-    # ========================================================
-    # NEW:
-    # Prefer directly observed percentile histories.
-    # Falls back automatically until >= 3 direct observations.
-    # ========================================================
 
     top10 = build_percentile_forecast(
         snapshots,
@@ -2741,10 +2676,6 @@ def build_forecast_v2(
             targets
     }
 
-
-# ============================================================
-# FORECAST REPORT
-# ============================================================
 
 def forecast_report_lines(
     forecast
@@ -3510,6 +3441,7 @@ def anomaly_warnings(
 def main():
 
     global CAR_DATABASE
+    global CAR_TECHNICAL_DATABASE
 
     REPORT_DIR.mkdir(
         parents=True,
@@ -3614,6 +3546,10 @@ def main():
             "database"
         ]
 
+        CAR_TECHNICAL_DATABASE = (
+            load_car_technical_database()
+        )
+
         cars_discovered_this_run = car_update[
             "discovered"
         ]
@@ -3629,6 +3565,10 @@ def main():
     except Exception:
 
         CAR_DATABASE = load_car_database()
+
+        CAR_TECHNICAL_DATABASE = (
+            load_car_technical_database()
+        )
 
         cars_discovered_this_run = 0
         cars_added_this_run = 0
@@ -3812,12 +3752,6 @@ def main():
                         score
                     )
             }
-
-    # ========================================================
-    # NEW: DIRECT PERCENTILE THRESHOLDS
-    #
-    # These are stored in every snapshot from now on.
-    # ========================================================
 
     percentile_thresholds = {}
 
@@ -4483,7 +4417,6 @@ def main():
         "thresholds":
             thresholds,
 
-        # NEW
         "percentile_thresholds":
             percentile_thresholds,
 
@@ -4520,6 +4453,11 @@ def main():
             "total_known_cars":
                 len(
                     CAR_DATABASE
+                ),
+
+            "technical_records":
+                len(
+                    CAR_TECHNICAL_DATABASE
                 ),
 
             "discovered_this_run":
@@ -5884,6 +5822,11 @@ def main():
     lines.append(
         f"Car database   : "
         f"{len(CAR_DATABASE):,} known cars"
+    )
+
+    lines.append(
+        f"Technical DB   : "
+        f"{len(CAR_TECHNICAL_DATABASE):,} validated/known records"
     )
 
     lines.append(
