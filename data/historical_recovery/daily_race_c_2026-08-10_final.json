@@ -1,12 +1,114 @@
 {
-  "race_week": "2026-08-10",
-  "historical_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
-  "http_status": 200,
-  "response_bytes": 227062,
-  "psn_id": "crazy_rooster74",
-  "psn_visible_in_raw_page": false,
-  "ranking_arrays_found": 1,
-  "largest_ranking_size": 100,
-  "driver_found": false,
-  "driver_result": null
+  "recovery_version": "2.0",
+  "recovered_at": "2026-08-17T09:29:29.406017+00:00",
+  "race_week": {
+    "start": "2026-08-10",
+    "end": "2026-08-17"
+  },
+  "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+  "update_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN&update=1",
+  "source": {
+    "initial_ranking_entries": 100,
+    "update_endpoint_entries": 0,
+    "final_entries": 100,
+    "used_update_endpoint": true
+  },
+  "total_drivers": 100,
+  "world_record": {
+    "rank": 1,
+    "score": 114532,
+    "laptime": "1:54.532",
+    "driver": "S.Spallanzani",
+    "psn_id": "somi__01",
+    "car_code": 3248
+  },
+  "thresholds": {
+    "1": {
+      "rank": 1,
+      "score": 114532,
+      "laptime": "1:54.532"
+    },
+    "10": {
+      "rank": 10,
+      "score": 114754,
+      "laptime": "1:54.754"
+    },
+    "50": {
+      "rank": 50,
+      "score": 115122,
+      "laptime": "1:55.122"
+    },
+    "100": {
+      "rank": 100,
+      "score": 115273,
+      "laptime": "1:55.273"
+    }
+  },
+  "percentile_thresholds": {
+    "10": {
+      "percent": 10,
+      "rank": 10,
+      "score": 114754,
+      "laptime": "1:54.754"
+    },
+    "5": {
+      "percent": 5,
+      "rank": 5,
+      "score": 114662,
+      "laptime": "1:54.662"
+    },
+    "2": {
+      "percent": 2,
+      "rank": 2,
+      "score": 114533,
+      "laptime": "1:54.533"
+    },
+    "1": {
+      "percent": 1,
+      "rank": 1,
+      "score": 114532,
+      "laptime": "1:54.532"
+    }
+  },
+  "my_result": null,
+  "car_meta": {
+    "top5_used_cars": [
+      {
+        "car_code": 3248,
+        "count": 65,
+        "percentage": 65.0,
+        "all_entries": 65
+      },
+      {
+        "car_code": 2161,
+        "count": 14,
+        "percentage": 14.000000000000002,
+        "all_entries": 14
+      },
+      {
+        "car_code": 3251,
+        "count": 6,
+        "percentage": 6.0,
+        "all_entries": 6
+      },
+      {
+        "car_code": 3263,
+        "count": 3,
+        "percentage": 3.0,
+        "all_entries": 3
+      },
+      {
+        "car_code": 3310,
+        "count": 3,
+        "percentage": 3.0,
+        "all_entries": 3
+      }
+    ],
+    "unique_car_codes": 12
+  },
+  "health": {
+    "my_driver_found": false,
+    "leaderboard_entries": 100,
+    "initial_ranking_only": true
+  }
 }
