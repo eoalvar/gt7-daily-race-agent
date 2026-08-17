@@ -1,32 +1,15 @@
 ====================================================================================================
 GT7 DAILY RACE C - COMMUNITY INTELLIGENCE V7.1
 ====================================================================================================
-Race             : Grand Valley - Highway 1 | Gr.4
-Regulations      : Fuel x2 | Tyres x4 | RM, RS
+Race             : Yas Marina Circuit | Gr.3
+Regulations      : Fuel x3 | Tyres x4 | RM, RS
 
 EXECUTIVE SUMMARY
 ----------------------------------------------------------------------------------------------------
 Strategy         : OVERCUT / EXTEND FIRST STINT
 Tyre sequence    : RM -> RS
 Tyre saving      : YES
-Meta car         : GT by Citroën Gr.4 (56.7% of Top 1000)
-My current pace  : 1:57.248 | Rank 4551 | Top 15.82%
-Same-car best    : 1:55.161
-Meta-car best    : 1:54.623
-Car benchmark    : 538 ms between best same-car and meta-car laps
-
-NEXT TARGETS
-----------------------------------------------------------------------------------------------------
-- Top 10% | 1:56.786 | gain 462 ms
-- Top 5% | 1:56.288 | gain 960 ms
-- Top 1000 | 1:56.090 | gain 1158 ms
-- Top 2% | 1:55.870 | gain 1378 ms
-
-BRAKE BIAS - CURRENT CAR
-----------------------------------------------------------------------------------------------------
-Qualifying start : 2
-Race start       : 3
-Confidence       : HEURISTIC
+Meta car         : Porsche 911 GT3 R (992) '22 (65.3% of Top 1000)
 
 RACE PLAN
 ----------------------------------------------------------------------------------------------------
@@ -35,8 +18,7 @@ RACE PLAN
 3. Protect the tyres in the opening stint: minimise sliding, excess steering angle and unnecessary front-axle load.
 4. Use RM -> RS: start on Racing Medium, preserve the tyre, then switch to Racing Soft for the second stint.
 5. Digit supports the GT by Citroen Gr.4; compare it with the current live leaderboard before selecting the car.
-6. The best Citroen lap is 538 ms faster than the best lap in your current car in this snapshot. Treat this as a car benchmark delta, not a guaranteed personal gain.
-7. For qualifying, use only the GnC Racing guide for braking, gears, line, throttle references and track limits.
+6. For qualifying, use only the GnC Racing guide for braking, gears, line, throttle references and track limits.
 
 QUALIFYING - GNC BRAKING EVENTS
 ----------------------------------------------------------------------------------------------------
@@ -55,15 +37,17 @@ Order is transcript sequence; official corner numbers are not invented.
 
 TOP-1000 CAR META
 ----------------------------------------------------------------------------------------------------
-1. GT by Citroën Gr.4 | 567 drivers | 56.7%
-2. Genesis G70 GR4 | 146 drivers | 14.6%
-3. Nissan GT-R Gr.4 | 82 drivers | 8.2%
-4. Suzuki Swift Sport KATANA Edition Gr.4 | 43 drivers | 4.3%
-5. Honda NSX Gr.4 | 30 drivers | 3.0%
+1. Porsche 911 GT3 R (992) '22 | 653 drivers | 65.3%
+2. Audi R8 LMS Evo '19 | 135 drivers | 13.5%
+3. Ferrari 296 GT3 '23 | 30 drivers | 3.0%
+4. Lamborghini Huracán GT3 '15 | 24 drivers | 2.4%
+5. Ferrari 458 Italia GT3 '13 | 22 drivers | 2.2%
 
 HEALTH
 ----------------------------------------------------------------------------------------------------
-Status           : OK
+Status           : WARNING
 Strategy conf.   : HIGH
 Lap guide conf.  : HIGH
 GnC events       : 11 braking events from 39 useful steps
+
+WARNING          : Personal leaderboard result unavailable.

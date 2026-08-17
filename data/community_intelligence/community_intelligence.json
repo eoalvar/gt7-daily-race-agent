@@ -1,17 +1,17 @@
 {
   "version": "7.1",
   "live_configuration": {
-    "week": "2026-08-10T00:00:00-03:00",
-    "track": "Grand Valley - Highway 1",
-    "class": "Gr.4",
+    "week": "2026-08-17T00:00:00-03:00",
+    "track": "Yas Marina Circuit",
+    "class": "Gr.3",
     "direction": "NORMAL",
-    "fuel_multiplier": 2,
+    "fuel_multiplier": 3,
     "tyre_multiplier": 4,
     "compounds": [
       "RM",
       "RS"
     ],
-    "description": "C Gr.4 Running 10 Aug 2026 Daily Race C i 16:48 Grand Valley - Highway 1 M. Estevez - GT by Citroën Gr.4 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom"
+    "description": "C Gr.3 Running 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit L. Burton - GT by Citroën Race Car (Gr.3) RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom"
   },
   "validation": {
     "warnings": []
@@ -27,36 +27,21 @@
     "gnc_transcript": "data/community_transcripts/qHfm2RjbRjI_gnc_racing.json"
   },
   "executive_summary": {
-    "race": "Grand Valley - Highway 1 | Gr.4",
-    "regulations": "Fuel x2 | Tyres x4 | RM, RS",
+    "race": "Yas Marina Circuit | Gr.3",
+    "regulations": "Fuel x3 | Tyres x4 | RM, RS",
     "recommended_strategy": "OVERCUT / EXTEND FIRST STINT",
     "compound_sequence": "RM -> RS",
     "tyre_saving": true,
-    "meta_car": "GT by Citroën Gr.4",
-    "meta_car_share": 56.699999999999996,
-    "my_current_laptime": "1:57.248",
-    "my_current_rank": 4551,
-    "my_top_percent": 15.816361993466325,
-    "my_current_car": "Genesis G70 GR4",
-    "same_car_best": "1:55.161",
-    "meta_car_best": "1:54.623",
-    "theoretical_car_gap_ms": 538,
-    "brake_bias": {
-      "layout": "4WD",
-      "qualifying_range": [
-        1,
-        2
-      ],
-      "race_range": [
-        2,
-        3
-      ],
-      "qualifying_start": 2,
-      "race_start": 3,
-      "confidence": "HEURISTIC",
-      "reason": "4WD cars generally tolerate a modest rearward bias, helping rotation while retaining strong braking stability.",
-      "wear_adjustment": "Meaningful tyre wear: start toward the rearward end of the race range to reduce front-axle load."
-    }
+    "meta_car": "Porsche 911 GT3 R (992) '22",
+    "meta_car_share": 65.3,
+    "my_current_laptime": null,
+    "my_current_rank": null,
+    "my_top_percent": null,
+    "my_current_car": null,
+    "same_car_best": null,
+    "meta_car_best": null,
+    "theoretical_car_gap_ms": null,
+    "brake_bias": {}
   },
   "race_strategy": {
     "confidence": "HIGH",
@@ -750,138 +735,57 @@
   },
   "live_car_meta": [
     {
-      "car": "GT by Citroën Gr.4",
-      "car_code": 3248,
-      "count": 567,
-      "percentage": 56.699999999999996,
-      "layout": "MR"
+      "car": "Porsche 911 GT3 R (992) '22",
+      "car_code": 3600,
+      "count": 653,
+      "percentage": 65.3,
+      "layout": "Unknown"
     },
     {
-      "car": "Genesis G70 GR4",
-      "car_code": 3501,
-      "count": 146,
-      "percentage": 14.6,
-      "layout": "4WD"
+      "car": "Audi R8 LMS Evo '19",
+      "car_code": 3405,
+      "count": 135,
+      "percentage": 13.5,
+      "layout": "Unknown"
     },
     {
-      "car": "Nissan GT-R Gr.4",
-      "car_code": 2161,
-      "count": 82,
-      "percentage": 8.200000000000001,
-      "layout": "4WD"
-    },
-    {
-      "car": "Suzuki Swift Sport KATANA Edition Gr.4",
-      "car_code": 3480,
-      "count": 43,
-      "percentage": 4.3,
-      "layout": "FF"
-    },
-    {
-      "car": "Honda NSX Gr.4",
-      "car_code": 3251,
+      "car": "Ferrari 296 GT3 '23",
+      "car_code": 3588,
       "count": 30,
       "percentage": 3.0,
-      "layout": "MR"
+      "layout": "Unknown"
+    },
+    {
+      "car": "Lamborghini Huracán GT3 '15",
+      "car_code": 2177,
+      "count": 24,
+      "percentage": 2.4,
+      "layout": "Unknown"
+    },
+    {
+      "car": "Ferrari 458 Italia GT3 '13",
+      "car_code": 2158,
+      "count": 22,
+      "percentage": 2.1999999999999997,
+      "layout": "Unknown"
     }
   ],
   "personal_context": {
-    "my_result": {
-      "psn_id": "crazy_rooster74",
-      "rank": 4551,
-      "score": 117248,
-      "laptime": "1:57.248",
-      "car_code": 3501,
-      "car": "Genesis G70 GR4",
-      "country": "BR",
-      "driver_rating": 4,
-      "gap_to_wr_ms": 2625,
-      "wr_percentage": 102.29011629428648,
-      "position_score": 8.41865637924443,
-      "elite_score": 1.7961277434101541,
-      "composite_rating": 5.769644924910719,
-      "percentile_ahead": 84.1865637924443,
-      "top_percent": 15.816361993466325,
-      "pace_band": "VERY FAST"
-    },
+    "my_result": {},
     "world_record": {
-      "score": 114623,
-      "laptime": "1:54.623",
-      "driver": "M. Estevez",
-      "psn_id": "MateoEstevez",
-      "car_code": 3248,
-      "car": "GT by Citroën Gr.4"
+      "score": 112165,
+      "laptime": "1:52.165",
+      "driver": "L. Burton",
+      "psn_id": "SFE_Lewis10",
+      "car_code": 2190,
+      "car": "GT by Citroën Race Car (Gr.3)"
     },
-    "next_targets": [
-      {
-        "label": "Top 10%",
-        "rank": 2878,
-        "score": 116786,
-        "laptime": "1:56.786",
-        "gain_needed_ms": 462
-      },
-      {
-        "label": "Top 5%",
-        "rank": 1439,
-        "score": 116288,
-        "laptime": "1:56.288",
-        "gain_needed_ms": 960
-      },
-      {
-        "label": "Top 1000",
-        "rank": 1000,
-        "score": 116090,
-        "laptime": "1:56.090",
-        "gain_needed_ms": 1158
-      },
-      {
-        "label": "Top 2%",
-        "rank": 576,
-        "score": 115870,
-        "laptime": "1:55.870",
-        "gain_needed_ms": 1378
-      }
-    ],
-    "car_comparison": {
-      "my_car": "Genesis G70 GR4",
-      "my_car_best_score": 115161,
-      "my_car_best_laptime": "1:55.161",
-      "gap_to_best_same_car_ms": 2087,
-      "meta_car": "GT by Citroën Gr.4",
-      "meta_car_best_score": 114623,
-      "meta_car_best_laptime": "1:54.623",
-      "theoretical_car_gap_ms": 538
-    },
-    "brake_bias": {
-      "layout": "4WD",
-      "qualifying_range": [
-        1,
-        2
-      ],
-      "race_range": [
-        2,
-        3
-      ],
-      "qualifying_start": 2,
-      "race_start": 3,
-      "confidence": "HEURISTIC",
-      "reason": "4WD cars generally tolerate a modest rearward bias, helping rotation while retaining strong braking stability.",
-      "wear_adjustment": "Meaningful tyre wear: start toward the rearward end of the race range to reduce front-axle load."
-    },
-    "same_car_stats": {
-      "rank": 688,
-      "total": 2327
-    },
-    "country_stats": {
-      "rank": 203,
-      "total": 1427,
-      "country": "BR"
-    },
-    "dr_stats": {
-      "rank": 2094,
-      "total": 8004,
-      "dr": 4
-    }
+    "next_targets": [],
+    "car_comparison": {},
+    "brake_bias": {},
+    "same_car_stats": {},
+    "country_stats": {},
+    "dr_stats": {}
   },
   "practical_race_plan": [
     "Use the live GT7/GTSH race configuration as the regulatory baseline.",
@@ -889,12 +793,13 @@
     "Protect the tyres in the opening stint: minimise sliding, excess steering angle and unnecessary front-axle load.",
     "Use RM -> RS: start on Racing Medium, preserve the tyre, then switch to Racing Soft for the second stint.",
     "Digit supports the GT by Citroen Gr.4; compare it with the current live leaderboard before selecting the car.",
-    "The best Citroen lap is 538 ms faster than the best lap in your current car in this snapshot. Treat this as a car benchmark delta, not a guaranteed personal gain.",
     "For qualifying, use only the GnC Racing guide for braking, gears, line, throttle references and track limits."
   ],
   "health": {
-    "status": "OK",
-    "issues": [],
+    "status": "WARNING",
+    "issues": [
+      "Personal leaderboard result unavailable."
+    ],
     "strategy_confidence": "HIGH",
     "lap_guide_confidence": "HIGH",
     "gnc_useful_steps": 39,
