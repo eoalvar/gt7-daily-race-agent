@@ -1,5 +1,5 @@
 ====================================================================================================
-GT7 DAILY RACE C â COMMUNITY INTELLIGENCE V7.0
+GT7 DAILY RACE C - COMMUNITY INTELLIGENCE V7.1
 ====================================================================================================
 Race             : Grand Valley - Highway 1 | Gr.4
 Regulations      : Fuel x2 | Tyres x4 | RM, RS
@@ -7,7 +7,7 @@ Regulations      : Fuel x2 | Tyres x4 | RM, RS
 EXECUTIVE SUMMARY
 ----------------------------------------------------------------------------------------------------
 Strategy         : OVERCUT / EXTEND FIRST STINT
-Tyre sequence    : RM â RS
+Tyre sequence    : RM -> RS
 Tyre saving      : YES
 Meta car         : GT by Citroën Gr.4 (56.7% of Top 1000)
 My current pace  : 1:57.248 | Rank 4551 | Top 15.82%
@@ -22,7 +22,7 @@ NEXT TARGETS
 - Top 1000 | 1:56.090 | gain 1158 ms
 - Top 2% | 1:55.870 | gain 1378 ms
 
-BRAKE BIAS â CURRENT CAR
+BRAKE BIAS - CURRENT CAR
 ----------------------------------------------------------------------------------------------------
 Qualifying start : 2
 Race start       : 3
@@ -33,17 +33,17 @@ RACE PLAN
 1. Use the live GT7/GTSH race configuration as the regulatory baseline.
 2. Treat Lap 4-5 only as the initial reference. If tyre condition and traffic remain favourable, extend the first stint and exploit the overcut.
 3. Protect the tyres in the opening stint: minimise sliding, excess steering angle and unnecessary front-axle load.
-4. Use RM â RS: start on Racing Medium, preserve the tyre, then switch to Racing Soft for the second stint.
-5. Use the GT by CitroÃ«n Gr.4 as the reference meta car: Digit's race-tested assessment and live Top-1000 usage agree.
-6. The best CitroÃ«n lap is 538 ms faster than the best lap in your current car in this snapshot. Treat this as a car benchmark delta, not a guaranteed personal gain.
+4. Use RM -> RS: start on Racing Medium, preserve the tyre, then switch to Racing Soft for the second stint.
+5. Digit supports the GT by Citroen Gr.4; compare it with the current live leaderboard before selecting the car.
+6. The best Citroen lap is 538 ms faster than the best lap in your current car in this snapshot. Treat this as a car benchmark delta, not a guaranteed personal gain.
 7. For qualifying, use only the GnC Racing guide for braking, gears, line, throttle references and track limits.
 
-QUALIFYING â GNC BRAKING EVENTS
+QUALIFYING - GNC BRAKING EVENTS
 ----------------------------------------------------------------------------------------------------
 Order is transcript sequence; official corner numbers are not invented.
  1. Brake: 200 board | Gear: gear not explicit
- 2. Brake: around 350 m | Gear: 2nd
- 3. Brake: 100 board | Gear: gear not explicit
+ 2. Brake: 100 board | Gear: gear not explicit
+ 3. Brake: 100 board | Gear: 2nd
  4. Brake: around 50 m | Gear: gear not explicit
  5. Brake: after the bridge | Gear: 2nd
  6. Brake: marker not explicit | Gear: 2nd
@@ -51,6 +51,7 @@ Order is transcript sequence; official corner numbers are not invented.
  8. Brake: dark mark in the sand | Gear: gear not explicit
  9. Brake: 100 board | Gear: gear not explicit
 10. Brake: tunnel exit | Gear: gear not explicit
+11. Brake: 200 board | Gear: gear not explicit
 
 TOP-1000 CAR META
 ----------------------------------------------------------------------------------------------------
@@ -65,4 +66,4 @@ HEALTH
 Status           : OK
 Strategy conf.   : HIGH
 Lap guide conf.  : HIGH
-GnC events       : 10 braking events from 39 useful steps
+GnC events       : 11 braking events from 39 useful steps

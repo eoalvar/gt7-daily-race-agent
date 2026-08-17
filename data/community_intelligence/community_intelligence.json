@@ -1,5 +1,5 @@
 {
-  "version": "7.0",
+  "version": "7.1",
   "live_configuration": {
     "week": "2026-08-10T00:00:00-03:00",
     "track": "Grand Valley - Highway 1",
@@ -13,15 +13,8 @@
     ],
     "description": "C Gr.4 Running 10 Aug 2026 Daily Race C i 16:48 Grand Valley - Highway 1 M. Estevez - GT by Citroën Gr.4 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom"
   },
-  "health": {
-    "status": "OK",
-    "warnings": [],
-    "digit_characters": 19748,
-    "gnc_characters": 7274,
-    "strategy_confidence": "HIGH",
-    "lap_guide_confidence": "HIGH",
-    "gnc_step_count": 39,
-    "gnc_braking_event_count": 10
+  "validation": {
+    "warnings": []
   },
   "source_policy": {
     "race_strategy": "Digit Racing only",
@@ -31,29 +24,39 @@
   },
   "sources": {
     "digit_transcript": "data/community_transcripts/O-AfZNXuGBg_digit_racing.json",
-    "digit_metadata": {
-      "week": "unknown",
-      "track": "unknown",
-      "class": "unknown"
-    },
-    "gnc_transcript": "data/community_transcripts/qHfm2RjbRjI_gnc_racing.json",
-    "gnc_metadata": {
-      "week": "2026-08-10",
-      "track": "unknown",
-      "class": "unknown"
-    }
+    "gnc_transcript": "data/community_transcripts/qHfm2RjbRjI_gnc_racing.json"
   },
   "executive_summary": {
-    "race": "Grand Valley - Highway 1 | Gr.4 | Fuel x2 | Tyres x4 | RM, RS",
+    "race": "Grand Valley - Highway 1 | Gr.4",
+    "regulations": "Fuel x2 | Tyres x4 | RM, RS",
     "recommended_strategy": "OVERCUT / EXTEND FIRST STINT",
-    "compound_sequence": "RM â RS",
+    "compound_sequence": "RM -> RS",
     "tyre_saving": true,
-    "recommended_car": "GT by Citroën Gr.4",
-    "recommended_car_top1000_share": 56.699999999999996,
-    "my_current_car": "Genesis G70 GR4",
+    "meta_car": "GT by Citroën Gr.4",
+    "meta_car_share": 56.699999999999996,
     "my_current_laptime": "1:57.248",
     "my_current_rank": 4551,
-    "my_top_percent": 15.816361993466325
+    "my_top_percent": 15.816361993466325,
+    "my_current_car": "Genesis G70 GR4",
+    "same_car_best": "1:55.161",
+    "meta_car_best": "1:54.623",
+    "theoretical_car_gap_ms": 538,
+    "brake_bias": {
+      "layout": "4WD",
+      "qualifying_range": [
+        1,
+        2
+      ],
+      "race_range": [
+        2,
+        3
+      ],
+      "qualifying_start": 2,
+      "race_start": 3,
+      "confidence": "HEURISTIC",
+      "reason": "4WD cars generally tolerate a modest rearward bias, helping rotation while retaining strong braking stability.",
+      "wear_adjustment": "Meaningful tyre wear: start toward the rearward end of the race range to reduce front-axle load."
+    }
   },
   "race_strategy": {
     "confidence": "HIGH",
@@ -70,19 +73,19 @@
       "established": true,
       "start_compound": "RM",
       "finish_compound": "RS",
-      "sequence": "RM â RS",
+      "sequence": "RM -> RS",
       "confidence": "HIGH",
-      "reason": "Digit explicitly supports starting on Racing Medium, changing tyres and using RM/RS; the live configuration confirms both compounds."
+      "reason": "Digit explicitly discusses starting on Racing Medium, changing tyres and using the RM/RS combination. The live race configuration also confirms RM and RS."
     },
     "tyre_saving_supported": true,
     "tyre_change_supported": true,
     "citroen_supported": true,
     "recommendations": [
       "Later race-tested evidence favours the overcut: staying out longer performed better than stopping early.",
-      "Tyre preservation is strategically important: minimise unnecessary steering input, sliding and front-tyre overload.",
-      "The tyre-change requirement must be satisfied.",
-      "Use RM â RS: start on Racing Medium and switch to Racing Soft.",
-      "Digit supports the GT by CitroÃ«n Gr.4 as particularly strong, including tyre-life performance."
+      "Tyre preservation is strategically important. Minimise unnecessary steering input, sliding and front-tyre overload.",
+      "The race requires the tyre-change rule to be satisfied.",
+      "Usable Digit evidence supports RM -> RS: start on Racing Medium and switch to Racing Soft.",
+      "Digit identifies the GT by Citroen Gr.4 as particularly strong, including tyre-life performance."
     ],
     "evidence": {
       "overcut": [
@@ -119,12 +122,12 @@
       ],
       "tyre_change": [
         {
-          "timestamp": "25:10",
-          "text": "Uh, pit stop is required in this race. There is a required tire change. So, it's not like a mandatory stop, but at the same time, we just need to change the tires."
-        },
-        {
           "timestamp": "29:37",
           "text": "Not the best exit, but let's see. 1.5. If I can get into the slip in the next lap, that'll be amazing. Even now, I think I'm picking up a little bit of it. Oh, yeah. The strategy is to change the tires roughly about lap four, lap five, mediums and soft. Typically starting on the mediums. Gentle. I can rotate the back end, but I really"
+        },
+        {
+          "timestamp": "25:10",
+          "text": "Uh, pit stop is required in this race. There is a required tire change. So, it's not like a mandatory stop, but at the same time, we just need to change the tires."
         }
       ],
       "compounds": [
@@ -167,47 +170,48 @@
       {
         "sequence": 1,
         "tags": [
-          "REFERENCE"
+          "BRAKING"
         ],
-        "brake_reference": null,
+        "instruction": "On the way down to turn one, we're looking for the 200 board.",
         "gear": null,
-        "instruction": "On the way down to turn one, we're looking for the 200 board."
+        "brake_marker": "200 board"
       },
       {
         "sequence": 2,
         "tags": [
           "BRAKING"
         ],
-        "brake_reference": "200 board",
+        "instruction": "We're going to break just before we reach this.",
         "gear": null,
-        "instruction": "We're going to break just before we reach this."
+        "brake_marker": null
       },
       {
         "sequence": 3,
         "tags": [
+          "BRAKING",
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "And we're going to start to turn in as we are around midway between the 200 and the 100 board.",
         "gear": null,
-        "instruction": "And we're going to start to turn in as we are around midway between the 200 and the 100 board."
+        "brake_marker": "100 board"
       },
       {
         "sequence": 4,
         "tags": [
           "GEAR"
         ],
-        "brake_reference": null,
+        "instruction": "Shifting down to second gear.",
         "gear": "2nd",
-        "instruction": "Shifting down to second gear."
+        "brake_marker": null
       },
       {
         "sequence": 5,
         "tags": [
           "THROTTLE"
         ],
-        "brake_reference": null,
+        "instruction": "We're going to start to accelerate just as we reach the one before last.",
         "gear": null,
-        "instruction": "We're going to start to accelerate just as we reach the one before last."
+        "brake_marker": null
       },
       {
         "sequence": 6,
@@ -215,18 +219,18 @@
           "THROTTLE",
           "TRACK_LIMIT"
         ],
-        "brake_reference": null,
+        "instruction": "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.",
         "gear": null,
-        "instruction": "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill."
+        "brake_marker": null
       },
       {
         "sequence": 7,
         "tags": [
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "Then allow the car to drift over to the left side, turning in so we hug the next bend.",
         "gear": null,
-        "instruction": "Then allow the car to drift over to the left side, turning in so we hug the next bend."
+        "brake_marker": null
       },
       {
         "sequence": 8,
@@ -234,28 +238,29 @@
           "BRAKING",
           "LINE"
         ],
-        "brake_reference": "around 350 m",
+        "instruction": "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.",
         "gear": null,
-        "instruction": "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines."
+        "brake_marker": "around 350 m"
       },
       {
         "sequence": 9,
         "tags": [
+          "BRAKING",
           "GEAR",
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
         "gear": "2nd",
-        "instruction": "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear."
+        "brake_marker": "100 board"
       },
       {
         "sequence": 10,
         "tags": [
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex.",
         "gear": null,
-        "instruction": "And as we get deeper into this corner, we can see that there are 1 2 3 four rocks patrolling the apex."
+        "brake_marker": null
       },
       {
         "sequence": 11,
@@ -263,18 +268,18 @@
           "THROTTLE",
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right.",
         "gear": null,
-        "instruction": "Just before we reach the third rock, we're going to accelerate out using the space on the left side before bringing the car straight back over to the right."
+        "brake_marker": null
       },
       {
         "sequence": 12,
         "tags": [
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "We're going to make sure we're turning in for the next corner.",
         "gear": null,
-        "instruction": "We're going to make sure we're turning in for the next corner."
+        "brake_marker": null
       },
       {
         "sequence": 13,
@@ -282,9 +287,9 @@
           "BRAKING",
           "LINE"
         ],
-        "brake_reference": "100 board",
+        "instruction": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.",
         "gear": null,
-        "instruction": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take."
+        "brake_marker": "100 board"
       },
       {
         "sequence": 14,
@@ -292,27 +297,27 @@
           "THROTTLE",
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner.",
         "gear": null,
-        "instruction": "Slightly before we reach the last Gran Turismo logo on the right side, we can get on the power and as we have passed under this power line, chuck the car back into the right for the next corner."
+        "brake_marker": null
       },
       {
         "sequence": 15,
         "tags": [
           "THROTTLE"
         ],
-        "brake_reference": null,
+        "instruction": "Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available.",
         "gear": null,
-        "instruction": "Keeping full throttle, dipping our wheels into the sand, being brave up against the wall on the left as we use all the space that's available."
+        "brake_marker": null
       },
       {
         "sequence": 16,
         "tags": [
           "BRAKING"
         ],
-        "brake_reference": "around 50 m",
+        "instruction": "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.",
         "gear": null,
-        "instruction": "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry."
+        "brake_marker": "around 50 m"
       },
       {
         "sequence": 17,
@@ -321,9 +326,9 @@
           "THROTTLE",
           "LINE"
         ],
-        "brake_reference": "after the bridge",
+        "instruction": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
         "gear": null,
-        "instruction": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge."
+        "brake_marker": "after the bridge"
       },
       {
         "sequence": 18,
@@ -332,9 +337,9 @@
           "GEAR",
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.",
         "gear": "2nd",
-        "instruction": "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker."
+        "brake_marker": null
       },
       {
         "sequence": 19,
@@ -342,18 +347,18 @@
           "LINE",
           "TRACK_LIMIT"
         ],
-        "brake_reference": null,
+        "instruction": "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit.",
         "gear": null,
-        "instruction": "Either when we are around a half a car's length ahead of this reflective post that sits furthest out on the apex or when the yellow signs on the right leave our screen, making sure to keep our left wheels track side of the white line on exit."
+        "brake_marker": null
       },
       {
         "sequence": 20,
         "tags": [
-          "REFERENCE"
+          "BRAKING"
         ],
-        "brake_reference": null,
+        "instruction": "Going through the short tunnel and looking to the right for the 100 board.",
         "gear": null,
-        "instruction": "Going through the short tunnel and looking to the right for the 100 board."
+        "brake_marker": "100 board"
       },
       {
         "sequence": 21,
@@ -362,45 +367,45 @@
           "GEAR",
           "LINE"
         ],
-        "brake_reference": "100 board",
+        "instruction": "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner.",
         "gear": "2nd",
-        "instruction": "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner."
+        "brake_marker": null
       },
       {
         "sequence": 22,
         "tags": [
           "THROTTLE"
         ],
-        "brake_reference": null,
+        "instruction": "As we pass under the banner above the track, we'll get on the power, but another good acceleration marker.",
         "gear": null,
-        "instruction": "As we pass under the banner above the track, we'll get on the power, but another good acceleration marker."
+        "brake_marker": null
       },
       {
         "sequence": 23,
         "tags": [
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "A little bit further around the corner, there are these posts on the left side.",
         "gear": null,
-        "instruction": "A little bit further around the corner, there are these posts on the left side."
+        "brake_marker": null
       },
       {
         "sequence": 24,
         "tags": [
           "THROTTLE"
         ],
-        "brake_reference": null,
+        "instruction": "As they start to become visible, we can hit the throttle.",
         "gear": null,
-        "instruction": "As they start to become visible, we can hit the throttle."
+        "brake_marker": null
       },
       {
         "sequence": 25,
         "tags": [
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "Keep the car to the left side.",
         "gear": null,
-        "instruction": "Keep the car to the left side."
+        "brake_marker": null
       },
       {
         "sequence": 26,
@@ -409,18 +414,18 @@
           "THROTTLE",
           "LINE"
         ],
-        "brake_reference": "dark mark in the sand",
+        "instruction": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.",
         "gear": null,
-        "instruction": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up."
+        "brake_marker": "dark mark in the sand"
       },
       {
         "sequence": 27,
         "tags": [
           "THROTTLE"
         ],
-        "brake_reference": null,
+        "instruction": "And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge.",
         "gear": null,
-        "instruction": "And then as our left headlight passes the hut ahead of us, we can fully accelerate and make our way over the bridge."
+        "brake_marker": null
       },
       {
         "sequence": 28,
@@ -428,36 +433,36 @@
           "BRAKING",
           "LINE"
         ],
-        "brake_reference": "100 board",
+        "instruction": "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel.",
         "gear": null,
-        "instruction": "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel."
+        "brake_marker": "100 board"
       },
       {
         "sequence": 29,
         "tags": [
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "Again, we want to take a tight line around this corner.",
         "gear": null,
-        "instruction": "Again, we want to take a tight line around this corner."
+        "brake_marker": null
       },
       {
         "sequence": 30,
         "tags": [
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "And it's important to keep the car to the right side for the chicane that follows.",
         "gear": null,
-        "instruction": "And it's important to keep the car to the right side for the chicane that follows."
+        "brake_marker": null
       },
       {
         "sequence": 31,
         "tags": [
           "THROTTLE"
         ],
-        "brake_reference": null,
+        "instruction": "When we have entered the darker part of the tunnel, we'll start to accelerate.",
         "gear": null,
-        "instruction": "When we have entered the darker part of the tunnel, we'll start to accelerate."
+        "brake_marker": null
       },
       {
         "sequence": 32,
@@ -465,9 +470,9 @@
           "BRAKING",
           "LINE"
         ],
-        "brake_reference": "tunnel exit",
+        "instruction": "And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left.",
         "gear": null,
-        "instruction": "And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left."
+        "brake_marker": "tunnel exit"
       },
       {
         "sequence": 33,
@@ -476,27 +481,27 @@
           "LINE",
           "TRACK_LIMIT"
         ],
-        "brake_reference": null,
+        "instruction": "As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards.",
         "gear": null,
-        "instruction": "As we do that, and just as the car approaches the yellow line, we can accelerate, aiming to clip the first part of the chicane, avoiding the bolards."
+        "brake_marker": null
       },
       {
         "sequence": 34,
         "tags": [
           "TRACK_LIMIT"
         ],
-        "brake_reference": null,
+        "instruction": "Then, as soon as we are over the first curb, turn immediately back to the right for the second.",
         "gear": null,
-        "instruction": "Then, as soon as we are over the first curb, turn immediately back to the right for the second."
+        "brake_marker": null
       },
       {
         "sequence": 35,
         "tags": [
           "TRACK_LIMIT"
         ],
-        "brake_reference": null,
+        "instruction": "Again, aiming to clip the curb and just brush in those bolards as we go through.",
         "gear": null,
-        "instruction": "Again, aiming to clip the curb and just brush in those bolards as we go through."
+        "brake_marker": null
       },
       {
         "sequence": 36,
@@ -504,27 +509,27 @@
           "LINE",
           "TRACK_LIMIT"
         ],
-        "brake_reference": null,
+        "instruction": "Just being careful not to run over the white line with all four wheels.",
         "gear": null,
-        "instruction": "Just being careful not to run over the white line with all four wheels."
+        "brake_marker": null
       },
       {
         "sequence": 37,
         "tags": [
           "LINE"
         ],
-        "brake_reference": null,
+        "instruction": "Approaching the tunnel, keep the car to the left side.",
         "gear": null,
-        "instruction": "Approaching the tunnel, keep the car to the left side."
+        "brake_marker": null
       },
       {
         "sequence": 38,
         "tags": [
-          "REFERENCE"
+          "BRAKING"
         ],
-        "brake_reference": null,
+        "instruction": "And as we pass the 200 board, start to bring the car over to the right.",
         "gear": null,
-        "instruction": "And as we pass the 200 board, start to bring the car over to the right."
+        "brake_marker": "200 board"
       },
       {
         "sequence": 39,
@@ -532,72 +537,166 @@
           "LINE",
           "TRACK_LIMIT"
         ],
-        "brake_reference": null,
+        "instruction": "We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight.",
         "gear": null,
-        "instruction": "We want to make sure we make contact with this inside curb as we go through before exiting the tunnel, allowing our eyes to adjust to the bright sunlight."
+        "brake_marker": null
       }
     ],
     "braking_events": [
       {
         "event": 1,
-        "brake_reference": "200 board",
-        "gear": null,
-        "instruction": "We're going to break just before we reach this."
+        "marker": "200 board",
+        "gear": "gear not explicit",
+        "source_steps": [
+          1,
+          2
+        ],
+        "evidence": [
+          "On the way down to turn one, we're looking for the 200 board.",
+          "We're going to break just before we reach this."
+        ]
       },
       {
         "event": 2,
-        "brake_reference": "around 350 m",
-        "gear": "2nd",
-        "instruction": "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines."
+        "marker": "100 board",
+        "gear": "gear not explicit",
+        "source_steps": [
+          3,
+          8
+        ],
+        "evidence": [
+          "And we're going to start to turn in as we are around midway between the 200 and the 100 board.",
+          "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines."
+        ]
       },
       {
         "event": 3,
-        "brake_reference": "100 board",
-        "gear": null,
-        "instruction": "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take."
+        "marker": "100 board",
+        "gear": "2nd",
+        "source_steps": [
+          9,
+          13
+        ],
+        "evidence": [
+          "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
+          "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take."
+        ]
       },
       {
         "event": 4,
-        "brake_reference": "around 50 m",
-        "gear": null,
-        "instruction": "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry."
+        "marker": "around 50 m",
+        "gear": "gear not explicit",
+        "source_steps": [
+          16
+        ],
+        "evidence": [
+          "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry."
+        ]
       },
       {
         "event": 5,
-        "brake_reference": "after the bridge",
+        "marker": "after the bridge",
         "gear": "2nd",
-        "instruction": "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge."
+        "source_steps": [
+          17,
+          18
+        ],
+        "evidence": [
+          "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
+          "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker."
+        ]
       },
       {
         "event": 6,
-        "brake_reference": null,
+        "marker": "marker not explicit",
         "gear": "2nd",
-        "instruction": "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker."
+        "source_steps": [
+          18
+        ],
+        "evidence": [
+          "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker."
+        ]
       },
       {
         "event": 7,
-        "brake_reference": "100 board",
+        "marker": "100 board",
         "gear": "2nd",
-        "instruction": "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner."
+        "source_steps": [
+          20,
+          21
+        ],
+        "evidence": [
+          "Going through the short tunnel and looking to the right for the 100 board.",
+          "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner."
+        ]
       },
       {
         "event": 8,
-        "brake_reference": "dark mark in the sand",
-        "gear": null,
-        "instruction": "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up."
+        "marker": "dark mark in the sand",
+        "gear": "gear not explicit",
+        "source_steps": [
+          26
+        ],
+        "evidence": [
+          "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up."
+        ]
       },
       {
         "event": 9,
-        "brake_reference": "100 board",
-        "gear": null,
-        "instruction": "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel."
+        "marker": "100 board",
+        "gear": "gear not explicit",
+        "source_steps": [
+          28
+        ],
+        "evidence": [
+          "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel."
+        ]
       },
       {
         "event": 10,
-        "brake_reference": "tunnel exit",
-        "gear": null,
-        "instruction": "And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left."
+        "marker": "tunnel exit",
+        "gear": "gear not explicit",
+        "source_steps": [
+          32
+        ],
+        "evidence": [
+          "And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left."
+        ]
+      },
+      {
+        "event": 11,
+        "marker": "200 board",
+        "gear": "gear not explicit",
+        "source_steps": [
+          38
+        ],
+        "evidence": [
+          "And as we pass the 200 board, start to bring the car over to the right."
+        ]
       }
+    ],
+    "braking_references": [
+      "On the way down to turn one, we're looking for the 200 board.",
+      "We're going to break just before we reach this.",
+      "And we're going to start to turn in as we are around midway between the 200 and the 100 board.",
+      "And we're going to hit the brakes at around 350 m, making sure we aim the car to the left of the yellow lines.",
+      "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
+      "As we reach the 100 board, and this is a tricky little corner to pick out a brake marker, but when we're about midway around the corner, we're going to break just hard enough to keep the car to the left side, managing the brake as we go through, aiming the car so our left wheels dip in the sand, we can use these tire marks as a good guide for the line we want to take.",
+      "Then, as we are around 50 m ahead of this arrow sign, we'll hit the brakes again, aiming to take an early entry.",
+      "Once we have left the corner, we can accelerate before keeping the car to the right side and hitting the brakes just after we pass under this bridge.",
+      "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.",
+      "Going through the short tunnel and looking to the right for the 100 board.",
+      "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner.",
+      "And as we pass this dark mark in the sand on the left, we'll turn into the next corner, getting on the brakes when the car is to the right of the yellow lines and a couple of car lengths ahead of the barrels on the right, hugging the inside line, maintaining a little throttle input to keep our speed up.",
+      "And as we pass the 100 board on the left, we'll get on the brakes, starting to turn in as we enter the tunnel.",
+      "And as we exit the tunnel, just after we pass the section of track where the tarmac changes shade, we'll get on the brakes, turning into the left.",
+      "And as we pass the 200 board, start to bring the car over to the right."
+    ],
+    "gears": [
+      "Shifting down to second gear.",
+      "As we do that, we'll be turning in as we reach the 100 board a little further down, shifting down to second gear.",
+      "Turning in pretty much immediately after we break, shifting down to second gear, we have a couple of options for our acceleration marker.",
+      "As we reach this, we're going to break and turn in, shifting down to second gear and keeping a really tight line to the inside of the corner."
     ],
     "track_limits": [
       "Making sure we use all the space on the bridge, hopping up onto the curb as we power down the hill.",
@@ -652,90 +751,65 @@
   "live_car_meta": [
     {
       "car": "GT by Citroën Gr.4",
+      "car_code": 3248,
       "count": 567,
       "percentage": 56.699999999999996,
-      "layout": "MR",
-      "qualifying_range": [
-        -1,
-        0
-      ],
-      "race_range": [
-        -1,
-        0
-      ]
+      "layout": "MR"
     },
     {
       "car": "Genesis G70 GR4",
+      "car_code": 3501,
       "count": 146,
       "percentage": 14.6,
-      "layout": "4WD",
-      "qualifying_range": [
-        1,
-        2
-      ],
-      "race_range": [
-        2,
-        3
-      ]
+      "layout": "4WD"
     },
     {
       "car": "Nissan GT-R Gr.4",
+      "car_code": 2161,
       "count": 82,
       "percentage": 8.200000000000001,
-      "layout": "4WD",
-      "qualifying_range": [
-        1,
-        2
-      ],
-      "race_range": [
-        2,
-        3
-      ]
+      "layout": "4WD"
     },
     {
       "car": "Suzuki Swift Sport KATANA Edition Gr.4",
+      "car_code": 3480,
       "count": 43,
       "percentage": 4.3,
-      "layout": "FF",
-      "qualifying_range": [
-        1,
-        2
-      ],
-      "race_range": [
-        2,
-        3
-      ]
+      "layout": "FF"
     },
     {
       "car": "Honda NSX Gr.4",
+      "car_code": 3251,
       "count": 30,
       "percentage": 3.0,
-      "layout": "MR",
-      "qualifying_range": [
-        -1,
-        0
-      ],
-      "race_range": [
-        -1,
-        0
-      ]
+      "layout": "MR"
     }
   ],
   "personal_context": {
     "my_result": {
       "psn_id": "crazy_rooster74",
       "rank": 4551,
+      "score": 117248,
       "laptime": "1:57.248",
+      "car_code": 3501,
       "car": "Genesis G70 GR4",
-      "top_percent": 15.816361993466325,
-      "percentile_ahead": 84.1865637924443,
-      "pace_band": "VERY FAST",
+      "country": "BR",
+      "driver_rating": 4,
       "gap_to_wr_ms": 2625,
-      "wr_percentage": 102.29011629428648
+      "wr_percentage": 102.29011629428648,
+      "position_score": 8.41865637924443,
+      "elite_score": 1.7961277434101541,
+      "composite_rating": 5.769644924910719,
+      "percentile_ahead": 84.1865637924443,
+      "top_percent": 15.816361993466325,
+      "pace_band": "VERY FAST"
     },
     "world_record": {
+      "score": 114623,
       "laptime": "1:54.623",
       "driver": "M. Estevez",
+      "psn_id": "MateoEstevez",
+      "car_code": 3248,
       "car": "GT by Citroën Gr.4"
     },
     "next_targets": [
@@ -794,98 +868,6 @@
       "reason": "4WD cars generally tolerate a modest rearward bias, helping rotation while retaining strong braking stability.",
       "wear_adjustment": "Meaningful tyre wear: start toward the rearward end of the race range to reduce front-axle load."
     },
-    "forecast": {
-      "available": true,
-      "model": "CURRENT_WEEK_HYBRID_V2",
-      "historical_training": "INSUFFICIENT",
-      "samples": 19,
-      "span_hours": 30.612727369444446,
-      "confidence": "MEDIUM",
-      "world_record": {
-        "predicted": 114623.0,
-        "current": 114623.0,
-        "slope_per_hour": 0.0,
-        "rmse": 0.0,
-        "samples": 19,
-        "span_hours": 30.61272736944443,
-        "confidence": "MEDIUM"
-      },
-      "top100": {
-        "predicted": 115293.68523492638,
-        "current": 115304.0,
-        "slope_per_hour": -1.2738952610661585,
-        "rmse": 4.776955924184045,
-        "samples": 16,
-        "span_hours": 30.61272736944443,
-        "confidence": "MEDIUM"
-      },
-      "top500": {
-        "predicted": 115802.31908519423,
-        "current": 115821.0,
-        "slope_per_hour": -1.005267033446098,
-        "rmse": 1.5500673781245697,
-        "samples": 16,
-        "span_hours": 30.61272736944443,
-        "confidence": "MEDIUM"
-      },
-      "top1000": {
-        "predicted": 116055.63438983829,
-        "current": 116090.0,
-        "slope_per_hour": -1.5915501150136862,
-        "rmse": 1.929797341417721,
-        "samples": 16,
-        "span_hours": 30.61272736944443,
-        "confidence": "MEDIUM"
-      },
-      "top10_percent": {
-        "current_rank": 2878,
-        "current_score": 116786,
-        "predicted_score": 116712,
-        "estimated_change_ms": -74,
-        "mode": "DIRECT",
-        "confidence": "LOW",
-        "samples": 3,
-        "span_hours": 8.293440770833314,
-        "rmse": 0.06775153709820471
-      },
-      "top5_percent": {
-        "current_rank": 1439,
-        "current_score": 116288,
-        "predicted_score": 116251,
-        "estimated_change_ms": -37,
-        "mode": "DIRECT",
-        "confidence": "LOW",
-        "samples": 3,
-        "span_hours": 8.293440770833314,
-        "rmse": 0.033875768551885975
-      },
-      "total_drivers": {
-        "current": 28774,
-        "predicted": 31206,
-        "confidence": "MEDIUM",
-        "samples": 19
-      },
-      "personal": {
-        "score": 117248,
-        "current_rank": 4551,
-        "current_top_percent": 15.816361993466325,
-        "projected_rank": 4870,
-        "projected_top_percent": 15.605973210280075,
-        "rank_forecast_confidence": "MEDIUM"
-      },
-      "targets": {
-        "top10": {
-          "score": 116712,
-          "gain_needed_ms": 536,
-          "mode": "DIRECT"
-        },
-        "top5": {
-          "score": 116251,
-          "gain_needed_ms": 997,
-          "mode": "DIRECT"
-        }
-      }
-    },
     "same_car_stats": {
       "rank": 688,
       "total": 2327
@@ -905,9 +887,17 @@
     "Use the live GT7/GTSH race configuration as the regulatory baseline.",
     "Treat Lap 4-5 only as the initial reference. If tyre condition and traffic remain favourable, extend the first stint and exploit the overcut.",
     "Protect the tyres in the opening stint: minimise sliding, excess steering angle and unnecessary front-axle load.",
-    "Use RM â RS: start on Racing Medium, preserve the tyre, then switch to Racing Soft for the second stint.",
-    "Use the GT by CitroÃ«n Gr.4 as the reference meta car: Digit's race-tested assessment and live Top-1000 usage agree.",
-    "The best CitroÃ«n lap is 538 ms faster than the best lap in your current car in this snapshot. Treat this as a car benchmark delta, not a guaranteed personal gain.",
+    "Use RM -> RS: start on Racing Medium, preserve the tyre, then switch to Racing Soft for the second stint.",
+    "Digit supports the GT by Citroen Gr.4; compare it with the current live leaderboard before selecting the car.",
+    "The best Citroen lap is 538 ms faster than the best lap in your current car in this snapshot. Treat this as a car benchmark delta, not a guaranteed personal gain.",
     "For qualifying, use only the GnC Racing guide for braking, gears, line, throttle references and track limits."
-  ]
+  ],
+  "health": {
+    "status": "OK",
+    "issues": [],
+    "strategy_confidence": "HIGH",
+    "lap_guide_confidence": "HIGH",
+    "gnc_useful_steps": 39,
+    "gnc_braking_events": 11
+  }
 }
