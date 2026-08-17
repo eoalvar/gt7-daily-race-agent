@@ -1,0 +1,207 @@
+name: GT7 Community Full Pipeline
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gt7-community-full-pipeline
+  cancel-in-progress: false
+
+jobs:
+  full-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install yt-dlp requests
+
+      # ============================================================
+      # STEP 1 - COMMUNITY COLLECTOR
+      # ============================================================
+
+      - name: 1 - Run Community Collector
+        run: |
+          echo "===================================================================================================="
+          echo "STEP 1/3 - COMMUNITY COLLECTOR"
+          echo "===================================================================================================="
+
+          python community_collector.py
+
+          echo
+          echo "Community Collector completed."
+
+      - name: Verify Community Collector output
+        run: |
+          if [ ! -f data/community_sources.json ]; then
+            echo "ERROR: data/community_sources.json was not created."
+            exit 1
+          fi
+
+          echo "Collector output found:"
+          ls -lh data/community_sources.json
+
+      # ============================================================
+      # STEP 2 - COMMUNITY TRANSCRIPTS
+      # ============================================================
+
+      - name: 2 - Run Community Transcripts
+        env:
+          SUPADATA_API_KEY: ${{ secrets.SUPADATA_API_KEY }}
+        run: |
+          echo "===================================================================================================="
+          echo "STEP 2/3 - COMMUNITY TRANSCRIPTS"
+          echo "===================================================================================================="
+
+          python community_transcripts.py
+
+          echo
+          echo "Community Transcripts completed."
+
+      - name: Verify Community Transcripts output
+        run: |
+          if [ ! -f data/community_transcripts.json ]; then
+            echo "ERROR: data/community_transcripts.json was not created."
+            exit 1
+          fi
+
+          echo "Transcript database found:"
+          ls -lh data/community_transcripts.json
+
+          if [ -d data/community_transcripts ]; then
+            echo
+            echo "Processed transcripts:"
+            find data/community_transcripts -maxdepth 1 -type f -print
+          fi
+
+          if [ -d data/community_transcripts_raw ]; then
+            echo
+            echo "Raw transcripts:"
+            find data/community_transcripts_raw -maxdepth 1 -type f -print
+          fi
+
+      # ============================================================
+      # STEP 3 - COMMUNITY ANALYZER
+      # ============================================================
+
+      - name: 3 - Run Community Analyzer
+        run: |
+          echo "===================================================================================================="
+          echo "STEP 3/3 - COMMUNITY ANALYZER"
+          echo "===================================================================================================="
+
+          python community_analyzer.py
+
+          echo
+          echo "Community Analyzer completed."
+
+      - name: Verify Community Analyzer output
+        run: |
+          if [ ! -f data/community_intelligence/community_intelligence.txt ]; then
+            echo "ERROR: community_intelligence.txt was not created."
+            exit 1
+          fi
+
+          if [ ! -f data/community_intelligence/community_intelligence.json ]; then
+            echo "ERROR: community_intelligence.json was not created."
+            exit 1
+          fi
+
+          echo "Analyzer outputs found:"
+          ls -lh data/community_intelligence/
+
+      # ============================================================
+      # SHOW FINAL REPORT
+      # ============================================================
+
+      - name: Show final Community Intelligence report
+        run: |
+          echo "===================================================================================================="
+          echo "FINAL GT7 COMMUNITY INTELLIGENCE REPORT"
+          echo "===================================================================================================="
+          echo
+
+          cat data/community_intelligence/community_intelligence.txt
+
+          echo
+          echo "===================================================================================================="
+
+      # ============================================================
+      # COMMIT EVERYTHING ONCE
+      # ============================================================
+
+      - name: Commit pipeline results
+        shell: bash
+        run: |
+          set -e
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/community_sources.json
+
+          if [ -f data/community_transcripts.json ]; then
+            git add data/community_transcripts.json
+          fi
+
+          if [ -d data/community_transcripts ]; then
+            git add data/community_transcripts/
+          fi
+
+          if [ -d data/community_transcripts_raw ]; then
+            git add data/community_transcripts_raw/
+          fi
+
+          if [ -d data/community_intelligence ]; then
+            git add data/community_intelligence/
+          fi
+
+          if git diff --cached --quiet; then
+            echo "No Community Pipeline changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update GT7 community full pipeline"
+
+          echo "Synchronizing with remote main before push..."
+          git pull --rebase origin main
+
+          git push origin HEAD:main
+
+      # ============================================================
+      # FINAL STATUS
+      # ============================================================
+
+      - name: Final status
+        if: always()
+        run: |
+          echo
+          echo "===================================================================================================="
+          echo "GT7 COMMUNITY FULL PIPELINE COMPLETE"
+          echo "===================================================================================================="
+          echo
+          echo "Sequence:"
+          echo "1. Community Collector"
+          echo "2. Community Transcripts"
+          echo "3. Community Analyzer"
+          echo
+          echo "Final report:"
+          echo "data/community_intelligence/community_intelligence.txt"
+          echo
+          echo "JSON:"
+          echo "data/community_intelligence/community_intelligence.json"
+          echo "===================================================================================================="
