@@ -245,6 +245,26 @@
           "role": null
         },
         {
+          "video_id": "PMOBozIDRSk",
+          "title": "Gran Turismo 7 Daily Race C Grand Valley Highway 8-16-26",
+          "channel": "MotoSeventeenX",
+          "url": "https://www.youtube.com/watch?v=PMOBozIDRSk",
+          "duration": 1326,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 53,
+          "date_confidence": "CONFIRMED",
+          "detected_date": "2026-08-16",
+          "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_FROM_TITLE"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
           "video_id": "fjlHea-GYB0",
           "title": "Gran Turismo 7 Daily Race C Grand Valley Highway 8-12-26",
           "channel": "MotoSeventeenX",
@@ -427,6 +447,26 @@
           "channel": "ApexBonesGT",
           "url": "https://www.youtube.com/watch?v=zZh2CT0flEc",
           "duration": 125,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "QUALIFYING",
+          "priority_score": 30,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "YTylksoSXqI",
+          "title": "GT7 Daily Race C | NEW PB 1:58.3! | Grand Valley Highway 1 | Genesis G70",
+          "channel": "ApexBonesGT",
+          "url": "https://www.youtube.com/watch?v=YTylksoSXqI",
+          "duration": 121,
           "timestamp": null,
           "upload_date": null,
           "content_type": "QUALIFYING",
@@ -706,6 +746,69 @@
           "role": null
         },
         {
+          "video_id": "LVVzSTvOdrU",
+          "title": "Gran Turismo 7 | Daily Race | Grand Valley - Highway 1 | BMW M3 GT",
+          "channel": "PureGameplay Motorsport",
+          "url": "https://www.youtube.com/watch?v=LVVzSTvOdrU",
+          "duration": 1266,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 17,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "kbq1dvBnbYU",
+          "title": "Gran Turismo 7 | Daily Race | Grand Valley - Highway 1 | BMW M3 GT | DNF",
+          "channel": "PureGameplay Motorsport",
+          "url": "https://www.youtube.com/watch?v=kbq1dvBnbYU",
+          "duration": 173,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 17,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "OXl0BVf7sLY",
+          "title": "Gran Turismo 7 | Daily Race | Grand Valley - Highway 1 | Nissan Skyline Super Silhouette",
+          "channel": "PureGameplay Motorsport",
+          "url": "https://www.youtube.com/watch?v=OXl0BVf7sLY",
+          "duration": 1139,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "RACE",
+          "priority_score": 17,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
           "video_id": "15qkKCu3xbM",
           "title": "Gran Turismo 7 Guide: Beat the Meta Car at Grand Valley Highway 1!",
           "channel": "TyrannoCyrusRex",
@@ -746,9 +849,51 @@
           "rejection_reasons": [],
           "accepted": true,
           "role": null
+        },
+        {
+          "video_id": "vhnPiKIMDWU",
+          "title": "Gran Turismo 7 Guide: Beat EVERYONE at Grand Valley - Highway 1!",
+          "channel": "TyrannoCyrusRex",
+          "url": "https://www.youtube.com/watch?v=vhnPiKIMDWU",
+          "duration": 1156,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "OTHER",
+          "priority_score": 12,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
+        },
+        {
+          "video_id": "swWqGldcw_U",
+          "title": "Gran Turismo 7 - Grand Valley Highway 1 Gold Circuit Experience Guide",
+          "channel": "Mistah_MCA",
+          "url": "https://www.youtube.com/watch?v=swWqGldcw_U",
+          "duration": 445,
+          "timestamp": null,
+          "upload_date": null,
+          "content_type": "OTHER",
+          "priority_score": 12,
+          "date_confidence": "UNVERIFIED",
+          "detected_date": null,
+          "notes": [
+            "RACE_LETTER_UNVERIFIED",
+            "CLASS_UNVERIFIED",
+            "DATE_UNVERIFIED"
+          ],
+          "rejection_reasons": [],
+          "accepted": true,
+          "role": null
         }
       ]
     }
   },
-  "updated_at": "2026-08-17T02:47:32.182109+00:00"
+  "updated_at": "2026-08-17T03:25:48.247259+00:00"
 }
