@@ -8,9 +8,9 @@ on:
     - cron: "15 5 * * *"
       timezone: "America/Sao_Paulo"
 
-    # Final weekly snapshot Sunday at 06:50 UTC
+    # Final weekly snapshot Monday at 06:50 UTC
     # 10 minutes before the official 07:00 UTC Daily Race C change
-    - cron: "50 6 * * 0"
+    - cron: "50 6 * * 1"
       timezone: "UTC"
 
 permissions:
@@ -40,8 +40,8 @@ jobs:
         env:
           EVENT_SCHEDULE: ${{ github.event.schedule }}
         run: |
-          if [ "$EVENT_SCHEDULE" = "50 6 * * 0" ]; then
-            echo "Final Sunday snapshot detected."
+          if [ "$EVENT_SCHEDULE" = "50 6 * * 1" ]; then
+            echo "Final Monday snapshot detected."
             export FINAL_WEEKLY_SNAPSHOT=1
           else
             export FINAL_WEEKLY_SNAPSHOT=0
