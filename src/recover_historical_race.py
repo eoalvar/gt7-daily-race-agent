@@ -4,11 +4,14 @@ from __future__ import annotations
 
 import json
 import math
-import re
-from collections import Counter
-from datetime import datetime
+import time
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from urllib.parse import (
+    parse_qs,
+    urlencode,
+    urlparse,
+    urlunparse,
+)
 
 import requests
 
@@ -17,17 +20,26 @@ import requests
 # CONFIGURATION
 # ======================================================================================
 
-VERSION = "2.0"
+VERSION = "3.0"
 
 MY_PSN_ID = "crazy_rooster74"
 
-HISTORICAL_WEEK_START = "2026-08-10"
-HISTORICAL_WEEK_END = "2026-08-17"
-
-HISTORICAL_URL = (
+HISTORICAL_LEADERBOARD_URL = (
     "https://gtsh-rank.com/daily/leaderboard?"
     "event=HFYfEk1IVkJvQ0M4RUNBW0dGAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN"
 )
+
+RACE_WEEK_START = "2026-08-10"
+RACE_WEEK_END = "2026-08-17"
+
+PAGE_SIZE = 100
+MAX_LEADERBOARD_PAGES = 1000
+REQUEST_DELAY_SECONDS = 0.08
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (GT7 Historical Race Recovery V3.0)",
+    "Accept": "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
+}
 
 DATA_DIR = Path("data")
 RECOVERY_DIR = DATA_DIR / "historical_recovery"
@@ -42,41 +54,23 @@ WEEKLY_HISTORY_FILE = (
     / "weekly_rating_history.json"
 )
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (GT7 Daily Race Agent)"
-}
-
 SEPARATOR = "=" * 100
 SUB_SEPARATOR = "-" * 100
 
 
 # ======================================================================================
-# GENERIC HELPERS
+# BASIC HELPERS
 # ======================================================================================
 
-def score_to_laptime(
-    score: Optional[int]
-) -> str:
-
+def score_to_laptime(score):
     if score is None:
         return "N/A"
 
-    score = int(
-        round(score)
-    )
+    score = int(round(score))
 
-    minutes = (
-        score // 60000
-    )
-
-    seconds = (
-        (score % 60000)
-        // 1000
-    )
-
-    milliseconds = (
-        score % 1000
-    )
+    minutes = score // 60000
+    seconds = (score % 60000) // 1000
+    milliseconds = score % 1000
 
     return (
         f"{minutes}:"
@@ -85,37 +79,57 @@ def score_to_laptime(
     )
 
 
-def get_user(
-    driver: Dict[str, Any]
-) -> Dict[str, Any]:
+def get_user(driver):
+    if not isinstance(driver, dict):
+        return {}
 
-    user = driver.get(
-        "user",
-        {}
+    user = driver.get("user")
+
+    return (
+        user
+        if isinstance(user, dict)
+        else {}
     )
 
-    if isinstance(
-        user,
-        dict
-    ):
-        return user
 
-    return {}
+def get_online_id(driver):
+    value = (
+        get_user(driver)
+        .get(
+            "np_online_id",
+            ""
+        )
+    )
+
+    if not isinstance(value, str):
+        return ""
+
+    return value.strip()
 
 
-def get_car_code(
-    driver: Dict[str, Any]
-) -> Optional[int]:
+def get_nickname(driver):
+    value = (
+        get_user(driver)
+        .get(
+            "nick_name"
+        )
+    )
+
+    if isinstance(value, str) and value.strip():
+        return value.strip()
+
+    return None
+
+
+def get_car_code(driver):
+    if not isinstance(driver, dict):
+        return None
 
     stats = driver.get(
-        "ranking_stats",
-        {}
+        "ranking_stats"
     )
 
-    if not isinstance(
-        stats,
-        dict
-    ):
+    if not isinstance(stats, dict):
         return None
 
     return stats.get(
@@ -123,99 +137,26 @@ def get_car_code(
     )
 
 
-def get_rank(
-    driver: Dict[str, Any],
-    fallback: Optional[int] = None
-) -> Optional[int]:
+def normalize_psn(value):
+    if not isinstance(value, str):
+        return ""
 
-    rank = driver.get(
-        "display_rank"
-    )
-
-    if isinstance(
-        rank,
-        (int, float)
-    ):
-        return int(rank)
-
-    rank = driver.get(
-        "rank"
-    )
-
-    if isinstance(
-        rank,
-        (int, float)
-    ):
-        return int(rank)
-
-    return fallback
-
-
-def get_online_id(
-    driver: Dict[str, Any]
-) -> str:
-
-    value = get_user(
-        driver
-    ).get(
-        "np_online_id",
-        ""
-    )
-
-    if isinstance(
-        value,
-        str
-    ):
-        return value.strip()
-
-    return ""
-
-
-def get_driver_name(
-    driver: Dict[str, Any]
-) -> str:
-
-    user = get_user(
-        driver
-    )
-
-    for key in [
-        "nick_name",
-        "nickname",
-        "name",
-        "np_online_id",
-    ]:
-
-        value = user.get(
-            key
-        )
-
-        if isinstance(
-            value,
-            str
-        ) and value.strip():
-
-            return value.strip()
-
-    return "Unknown"
+    return value.strip().lower()
 
 
 def find_my_driver(
-    ranking: List[Dict[str, Any]],
-    psn_id: str
-) -> Optional[Dict[str, Any]]:
-
-    target = (
+    ranking,
+    psn_id,
+):
+    target = normalize_psn(
         psn_id
-        .strip()
-        .lower()
     )
 
     for driver in ranking:
-
         if (
-            get_online_id(driver)
-            .lower()
+            normalize_psn(
+                get_online_id(driver)
+            )
             == target
         ):
             return driver
@@ -224,28 +165,25 @@ def find_my_driver(
 
 
 # ======================================================================================
-# RATING HELPERS
+# RATINGS
 # ======================================================================================
 
-def position_score(
-    rank: Optional[int],
-    total: int
-) -> Optional[float]:
-
+def general_rating(
+    rank,
+    total,
+):
     if (
         rank is None
+        or total is None
         or total <= 1
     ):
         return None
 
-    result = (
-        10
-        * (
-            1
-            - (
-                (rank - 1)
-                / (total - 1)
-            )
+    result = 10 * (
+        1
+        - (
+            (rank - 1)
+            / (total - 1)
         )
     )
 
@@ -258,28 +196,25 @@ def position_score(
     )
 
 
-def elite_score(
-    rank: Optional[int],
-    total: int
-) -> Optional[float]:
-
+def elite_rating(
+    rank,
+    total,
+):
     if (
         rank is None
-        or rank < 1
+        or total is None
         or total <= 1
+        or rank < 1
     ):
         return None
 
     if rank == 1:
         return 10.0
 
-    result = (
-        10
-        * (
-            1
-            - math.log(rank)
-            / math.log(total)
-        )
+    result = 10 * (
+        1
+        - math.log(rank)
+        / math.log(total)
     )
 
     return max(
@@ -292,10 +227,9 @@ def elite_score(
 
 
 def composite_rating(
-    general: Optional[float],
-    elite: Optional[float]
-) -> Optional[float]:
-
+    general,
+    elite,
+):
     if (
         general is None
         or elite is None
@@ -303,18 +237,18 @@ def composite_rating(
         return None
 
     return (
-        0.60 * general
-        + 0.40 * elite
+        general * 0.60
+        + elite * 0.40
     )
 
 
 def percentile_ahead(
-    rank: Optional[int],
-    total: int
-) -> Optional[float]:
-
+    rank,
+    total,
+):
     if (
         rank is None
+        or total is None
         or total <= 1
     ):
         return None
@@ -326,267 +260,709 @@ def percentile_ahead(
     )
 
 
-def pace_band(
-    wr_percentage: float
-) -> str:
-
-    if wr_percentage <= 101:
-        return "ALIEN"
-
-    if wr_percentage <= 102:
-        return "ELITE"
-
-    if wr_percentage <= 103:
-        return "VERY FAST"
-
-    if wr_percentage <= 105:
-        return "COMPETITIVE"
-
-    if wr_percentage <= 108:
-        return "MID-PACK"
-
-    return "DEVELOPING"
-
-
 # ======================================================================================
-# INITIAL RANKING EXTRACTION
+# JSON VARIABLE EXTRACTION
 # ======================================================================================
 
-def extract_initial_ranking(
-    html: str
-) -> List[Dict[str, Any]]:
+def extract_json_variable(
+    html,
+    variable_name,
+):
+    markers = [
+        f"const {variable_name} = ",
+        f"let {variable_name} = ",
+        f"var {variable_name} = ",
+    ]
 
-    marker = (
-        "const initialRanking = "
-    )
+    for marker in markers:
 
-    start = html.find(
-        marker
-    )
+        start = html.find(
+            marker
+        )
 
-    if start == -1:
-        return []
+        if start == -1:
+            continue
 
-    start += len(
-        marker
-    )
+        start += len(
+            marker
+        )
 
-    try:
-
-        decoder = json.JSONDecoder()
-
-        ranking, _ = (
-            decoder.raw_decode(
-                html[start:].lstrip()
+        try:
+            decoder = (
+                json.JSONDecoder()
             )
-        )
 
-        if isinstance(
-            ranking,
-            list
-        ):
-            return ranking
+            value, _ = (
+                decoder.raw_decode(
+                    html[start:].lstrip()
+                )
+            )
 
-    except Exception:
-        pass
+            return value
 
-    return []
+        except Exception:
+            continue
+
+    return None
 
 
 # ======================================================================================
-# UPDATE-ENDPOINT EXTRACTION
+# URL HELPERS
 # ======================================================================================
 
-def build_update_url(
-    leaderboard_url: str
-) -> str:
-
-    if "update=1" in leaderboard_url:
-        return leaderboard_url
-
-    if "?" in leaderboard_url:
-        return (
-            leaderboard_url
-            + "&update=1"
-        )
-
-    return (
-        leaderboard_url
-        + "?update=1"
+def canonical_leaderboard_url(
+    event_url,
+):
+    parsed = urlparse(
+        event_url
     )
 
+    path = (
+        parsed.path
+        .rstrip("/")
+    )
 
-def extract_ranking_from_json(
-    data: Any
-) -> List[Dict[str, Any]]:
-
-    if isinstance(
-        data,
-        list
+    if path.endswith(
+        "/daily/leaderboard"
     ):
-        return [
-            item
-            for item in data
-            if isinstance(
-                item,
-                dict
-            )
-        ]
+        path += "/"
+
+    return urlunparse(
+        (
+            parsed.scheme,
+            parsed.netloc,
+            path,
+            parsed.params,
+            parsed.query,
+            parsed.fragment,
+        )
+    )
+
+
+def build_page_url(
+    event_url,
+    offset,
+    limit=PAGE_SIZE,
+):
+    parsed = urlparse(
+        canonical_leaderboard_url(
+            event_url
+        )
+    )
+
+    query = parse_qs(
+        parsed.query,
+        keep_blank_values=True,
+    )
+
+    query["page_data"] = [
+        "1"
+    ]
+
+    query["offset"] = [
+        str(offset)
+    ]
+
+    query["limit"] = [
+        str(limit)
+    ]
+
+    query_string = urlencode(
+        query,
+        doseq=True,
+    )
+
+    return urlunparse(
+        (
+            parsed.scheme,
+            parsed.netloc,
+            parsed.path,
+            parsed.params,
+            query_string,
+            parsed.fragment,
+        )
+    )
+
+
+# ======================================================================================
+# PAGED FETCH
+# ======================================================================================
+
+def fetch_page(
+    session,
+    event_url,
+    offset,
+):
+    url = build_page_url(
+        event_url,
+        offset,
+        PAGE_SIZE,
+    )
+
+    response = session.get(
+        url,
+        headers={
+            "User-Agent":
+                HEADERS["User-Agent"],
+
+            "Accept":
+                "application/json",
+        },
+        timeout=60,
+    )
+
+    response.raise_for_status()
+
+    content_type = (
+        response.headers
+        .get(
+            "Content-Type",
+            ""
+        )
+    )
+
+    if (
+        "application/json"
+        not in content_type.lower()
+    ):
+        raise RuntimeError(
+            "Paged historical response was not JSON. "
+            f"Content-Type: {content_type}"
+        )
+
+    data = response.json()
 
     if not isinstance(
         data,
-        dict
+        dict,
     ):
-        return []
-
-    possible_keys = [
-        "board",
-        "ranking",
-        "rankings",
-        "leaderboard",
-        "drivers",
-        "results",
-        "data",
-    ]
-
-    for key in possible_keys:
-
-        value = data.get(
-            key
+        raise RuntimeError(
+            "Paged historical response is not a JSON object."
         )
 
-        if isinstance(
-            value,
-            list
-        ):
-
-            return [
-                item
-                for item in value
-                if isinstance(
-                    item,
-                    dict
-                )
-            ]
-
-        if isinstance(
-            value,
-            dict
-        ):
-
-            nested = (
-                extract_ranking_from_json(
-                    value
-                )
-            )
-
-            if nested:
-                return nested
-
-    for value in data.values():
-
-        if isinstance(
-            value,
-            (dict, list)
-        ):
-
-            nested = (
-                extract_ranking_from_json(
-                    value
-                )
-            )
-
-            if nested:
-                return nested
-
-    return []
-
-
-# ======================================================================================
-# RANKING NORMALIZATION
-# ======================================================================================
-
-def normalize_ranking(
-    ranking: List[Dict[str, Any]]
-) -> List[Dict[str, Any]]:
-
-    usable = []
-
-    for driver in ranking:
-
-        if not isinstance(
-            driver,
-            dict
-        ):
-            continue
-
-        score = driver.get(
-            "score"
-        )
-
-        if not isinstance(
-            score,
-            (int, float)
-        ):
-            continue
-
-        usable.append(
-            driver
-        )
-
-    # Prefer display_rank when present.
-    #
-    # If the archived endpoint has no rank,
-    # score ascending determines leaderboard order.
-
-    has_display_rank = any(
-        isinstance(
-            driver.get(
-                "display_rank"
-            ),
-            (int, float)
-        )
-        for driver in usable
+    board = data.get(
+        "board"
     )
 
-    if has_display_rank:
-
-        usable.sort(
-            key=lambda driver:
-                (
-                    driver.get(
-                        "display_rank",
-                        999999999
-                    ),
-                    driver.get(
-                        "score",
-                        999999999
-                    ),
-                )
+    if not isinstance(
+        board,
+        list,
+    ):
+        raise RuntimeError(
+            "Paged historical response has no board array."
         )
 
-    else:
+    actual_offset = int(
+        data.get(
+            "offset",
+            0,
+        )
+    )
 
-        usable.sort(
+    limit = int(
+        data.get(
+            "limit",
+            PAGE_SIZE,
+        )
+    )
+
+    total = int(
+        data.get(
+            "total",
+            0,
+        )
+    )
+
+    return {
+        "board":
+            board,
+
+        "offset":
+            actual_offset,
+
+        "limit":
+            limit,
+
+        "total":
+            total,
+
+        "has_more":
+            bool(
+                data.get(
+                    "has_more",
+                    False,
+                )
+            ),
+
+        "leader_time":
+            data.get(
+                "leader_time"
+            ),
+
+        "url":
+            url,
+    }
+
+
+# ======================================================================================
+# FULL HISTORICAL LEADERBOARD
+# ======================================================================================
+
+def get_full_event_ranking(
+    session,
+    event_url,
+):
+    canonical_url = (
+        canonical_leaderboard_url(
+            event_url
+        )
+    )
+
+    print(
+        f"Canonical URL    : "
+        f"{canonical_url}"
+    )
+
+    response = session.get(
+        canonical_url,
+        timeout=60,
+    )
+
+    response.raise_for_status()
+
+    html = response.text
+
+    print(
+        f"HTTP status      : "
+        f"{response.status_code}"
+    )
+
+    print(
+        "Content-Type     : "
+        f"{response.headers.get('Content-Type')}"
+    )
+
+    print(
+        f"Response bytes   : "
+        f"{len(response.content):,}"
+    )
+
+    initial_server_page = (
+        extract_json_variable(
+            html,
+            "initialServerPage",
+        )
+    )
+
+    # ------------------------------------------------------------------
+    # Preferred mode:
+    # archived server page + page_data pagination
+    # ------------------------------------------------------------------
+
+    if (
+        isinstance(
+            initial_server_page,
+            dict,
+        )
+        and isinstance(
+            initial_server_page.get(
+                "board"
+            ),
+            list,
+        )
+    ):
+        first_board = (
+            initial_server_page[
+                "board"
+            ]
+        )
+
+        total_records = int(
+            initial_server_page.get(
+                "total",
+                len(first_board),
+            )
+        )
+
+        server_offset = int(
+            initial_server_page.get(
+                "offset",
+                0,
+            )
+        )
+
+        server_limit = int(
+            initial_server_page.get(
+                "limit",
+                PAGE_SIZE,
+            )
+        )
+
+        has_more = bool(
+            initial_server_page.get(
+                "has_more",
+                total_records
+                > len(first_board),
+            )
+        )
+
+        print("")
+        print(
+            "HISTORICAL SERVER PAGE"
+        )
+        print(
+            SUB_SEPARATOR
+        )
+
+        print(
+            f"First page       : "
+            f"{len(first_board)} drivers"
+        )
+
+        print(
+            f"Total records    : "
+            f"{total_records:,}"
+        )
+
+        print(
+            f"Offset           : "
+            f"{server_offset}"
+        )
+
+        print(
+            f"Limit            : "
+            f"{server_limit}"
+        )
+
+        print(
+            f"Has more         : "
+            f"{has_more}"
+        )
+
+        all_drivers = list(
+            first_board
+        )
+
+        seen_keys = set()
+
+        for driver in first_board:
+
+            rank = driver.get(
+                "display_rank"
+            )
+
+            psn = normalize_psn(
+                get_online_id(driver)
+            )
+
+            key = (
+                rank,
+                psn,
+                driver.get(
+                    "score"
+                ),
+            )
+
+            seen_keys.add(
+                key
+            )
+
+        offset = (
+            server_offset
+            + server_limit
+        )
+
+        page_number = 2
+
+        while (
+            offset < total_records
+            and page_number
+            <= MAX_LEADERBOARD_PAGES
+        ):
+            page = fetch_page(
+                session,
+                canonical_url,
+                offset,
+            )
+
+            if (
+                page["offset"]
+                != offset
+            ):
+                raise RuntimeError(
+                    "Pagination mismatch: "
+                    f"requested offset "
+                    f"{offset}, "
+                    f"received "
+                    f"{page['offset']}."
+                )
+
+            board = page[
+                "board"
+            ]
+
+            if not board:
+                break
+
+            added = 0
+
+            for driver in board:
+
+                rank = driver.get(
+                    "display_rank"
+                )
+
+                psn = normalize_psn(
+                    get_online_id(driver)
+                )
+
+                key = (
+                    rank,
+                    psn,
+                    driver.get(
+                        "score"
+                    ),
+                )
+
+                if key in seen_keys:
+                    continue
+
+                seen_keys.add(
+                    key
+                )
+
+                all_drivers.append(
+                    driver
+                )
+
+                added += 1
+
+            if (
+                page_number <= 5
+                or page_number % 25 == 0
+                or not page[
+                    "has_more"
+                ]
+            ):
+                first_rank = (
+                    board[0]
+                    .get(
+                        "display_rank"
+                    )
+                    if board
+                    else None
+                )
+
+                last_rank = (
+                    board[-1]
+                    .get(
+                        "display_rank"
+                    )
+                    if board
+                    else None
+                )
+
+                print(
+                    f"Page {page_number:<4}      : "
+                    f"ranks "
+                    f"{first_rank}-"
+                    f"{last_rank} | "
+                    f"+{added} | "
+                    f"{len(all_drivers):,}/"
+                    f"{total_records:,}"
+                )
+
+            if not page[
+                "has_more"
+            ]:
+                break
+
+            next_limit = page.get(
+                "limit",
+                PAGE_SIZE,
+            )
+
+            if (
+                not isinstance(
+                    next_limit,
+                    int,
+                )
+                or next_limit <= 0
+            ):
+                next_limit = (
+                    PAGE_SIZE
+                )
+
+            offset += next_limit
+            page_number += 1
+
+            time.sleep(
+                REQUEST_DELAY_SECONDS
+            )
+
+        all_drivers.sort(
             key=lambda driver:
                 driver.get(
-                    "score",
-                    999999999
+                    "display_rank",
+                    999999999,
                 )
         )
 
-    return usable
+        print("")
+        print(
+            "PAGINATION RESULT"
+        )
+        print(
+            SUB_SEPARATOR
+        )
+
+        print(
+            f"Loaded drivers   : "
+            f"{len(all_drivers):,}"
+        )
+
+        print(
+            f"Expected total   : "
+            f"{total_records:,}"
+        )
+
+        complete = (
+            len(all_drivers)
+            >= total_records
+        )
+
+        print(
+            f"Complete         : "
+            f"{'YES' if complete else 'NO'}"
+        )
+
+        if not complete:
+            print(
+                "WARNING          : "
+                "Full historical leaderboard was not completely loaded."
+            )
+
+        return {
+            "ranking":
+                all_drivers,
+
+            "total_records":
+                total_records,
+
+            "mode":
+                "server_paged_page_data",
+
+            "complete":
+                complete,
+        }
+
+    # ------------------------------------------------------------------
+    # Fallback:
+    # full initialRanking if available
+    # ------------------------------------------------------------------
+
+    ranking = (
+        extract_json_variable(
+            html,
+            "initialRanking",
+        )
+    )
+
+    if (
+        isinstance(
+            ranking,
+            list,
+        )
+        and ranking
+    ):
+        ranking.sort(
+            key=lambda driver:
+                driver.get(
+                    "display_rank",
+                    999999999,
+                )
+        )
+
+        print("")
+        print(
+            "FULL INITIAL RANKING"
+        )
+        print(
+            SUB_SEPARATOR
+        )
+
+        print(
+            f"Entries          : "
+            f"{len(ranking):,}"
+        )
+
+        return {
+            "ranking":
+                ranking,
+
+            "total_records":
+                len(ranking),
+
+            "mode":
+                "full_initialRanking",
+
+            "complete":
+                True,
+        }
+
+    raise RuntimeError(
+        "Could not extract the archived leaderboard. "
+        "Neither initialServerPage nor a usable initialRanking was found."
+    )
 
 
 # ======================================================================================
 # THRESHOLDS
 # ======================================================================================
 
-def build_thresholds(
-    ranking: List[Dict[str, Any]]
-) -> Dict[str, Any]:
+def get_rank_entry(
+    ranking,
+    rank,
+):
+    if not ranking:
+        return None
 
-    positions = [
+    if rank < 1:
+        return None
+
+    if rank > len(ranking):
+        return None
+
+    return ranking[
+        rank - 1
+    ]
+
+
+def percentile_rank(
+    total,
+    percent,
+):
+    return max(
+        1,
+        min(
+            total,
+            math.ceil(
+                total
+                * percent
+                / 100
+            ),
+        ),
+    )
+
+
+def build_thresholds(
+    ranking,
+):
+    total = len(
+        ranking
+    )
+
+    fixed_ranks = [
         1,
         10,
         50,
@@ -599,26 +975,27 @@ def build_thresholds(
         10000,
     ]
 
-    result = {}
+    fixed = {}
 
-    for position in positions:
+    for rank in fixed_ranks:
 
-        if len(ranking) < position:
+        entry = get_rank_entry(
+            ranking,
+            rank,
+        )
+
+        if not entry:
             continue
 
-        driver = ranking[
-            position - 1
-        ]
-
-        score = driver.get(
+        score = entry.get(
             "score"
         )
 
-        result[
-            str(position)
+        fixed[
+            str(rank)
         ] = {
             "rank":
-                position,
+                rank,
 
             "score":
                 score,
@@ -627,54 +1004,50 @@ def build_thresholds(
                 score_to_laptime(
                     score
                 ),
+
+            "psn_id":
+                get_online_id(
+                    entry
+                ),
+
+            "driver":
+                get_nickname(
+                    entry
+                ),
+
+            "car_code":
+                get_car_code(
+                    entry
+                ),
         }
 
-    return result
-
-
-def percentile_rank(
-    total: int,
-    percent: float
-) -> int:
-
-    return max(
-        1,
-        min(
-            total,
-            math.ceil(
-                total
-                * percent
-                / 100
-            )
-        )
-    )
-
-
-def build_percentiles(
-    ranking: List[Dict[str, Any]]
-) -> Dict[str, Any]:
-
-    result = {}
+    percentiles = {}
 
     for percent in [
         10,
         5,
         2,
         1,
+        0.5,
     ]:
-
         rank = percentile_rank(
-            len(ranking),
-            percent
+            total,
+            percent,
         )
 
-        score = ranking[
-            rank - 1
-        ].get(
+        entry = get_rank_entry(
+            ranking,
+            rank,
+        )
+
+        if not entry:
+            continue
+
+        score = entry.get(
             "score"
         )
 
-        result[
+        percentiles[
             str(percent)
         ] = {
             "percent":
@@ -692,248 +1065,68 @@ def build_percentiles(
                 ),
         }
 
-    return result
-
-
-# ======================================================================================
-# PERSONAL RESULT
-# ======================================================================================
-
-def build_personal_result(
-    ranking: List[Dict[str, Any]],
-    my_driver: Dict[str, Any],
-    wr_score: int
-) -> Dict[str, Any]:
-
-    total = len(
-        ranking
-    )
-
-    # Some archived data may omit display_rank.
-    #
-    # Therefore determine position from the normalized
-    # leaderboard itself if necessary.
-
-    rank = None
-
-    for index, driver in enumerate(
-        ranking,
-        start=1
-    ):
-
-        if driver is my_driver:
-
-            rank = get_rank(
-                driver,
-                index
-            )
-
-            break
-
-    if rank is None:
-
-        rank = get_rank(
-            my_driver
-        )
-
-    score = my_driver.get(
-        "score"
-    )
-
-    user = get_user(
-        my_driver
-    )
-
-    car_code = get_car_code(
-        my_driver
-    )
-
-    if (
-        score is None
-        or wr_score is None
-    ):
-        raise RuntimeError(
-            "Historical personal score or WR is unavailable."
-        )
-
-    wr_percentage = (
-        score
-        / wr_score
-        * 100
-    )
-
-    general = position_score(
-        rank,
-        total
-    )
-
-    elite = elite_score(
-        rank,
-        total
-    )
-
-    ahead = percentile_ahead(
-        rank,
-        total
-    )
-
     return {
-        "psn_id":
-            MY_PSN_ID,
+        "fixed":
+            fixed,
 
-        "rank":
-            rank,
-
-        "score":
-            score,
-
-        "laptime":
-            score_to_laptime(
-                score
-            ),
-
-        "car_code":
-            car_code,
-
-        "country":
-            user.get(
-                "country_code"
-            ),
-
-        "driver_rating":
-            user.get(
-                "driver_rating"
-            ),
-
-        "gap_to_wr_ms":
-            score
-            - wr_score,
-
-        "wr_percentage":
-            wr_percentage,
-
-        "position_score":
-            general,
-
-        "elite_score":
-            elite,
-
-        "composite_rating":
-            composite_rating(
-                general,
-                elite
-            ),
-
-        "percentile_ahead":
-            ahead,
-
-        "top_percent":
-            (
-                rank
-                / total
-                * 100
-            )
-            if rank
-            else None,
-
-        "pace_band":
-            pace_band(
-                wr_percentage
-            ),
+        "percentiles":
+            percentiles,
     }
 
 
 # ======================================================================================
-# CAR META
+# GROUP STATS
 # ======================================================================================
 
-def build_car_meta(
-    ranking: List[Dict[str, Any]]
-) -> Dict[str, Any]:
-
-    all_counter = Counter(
-        get_car_code(driver)
+def group_rank(
+    ranking,
+    my_driver,
+    predicate,
+):
+    group = [
+        driver
         for driver in ranking
-        if get_car_code(driver)
-        is not None
-    )
-
-    top1000 = ranking[
-        :min(
-            1000,
-            len(ranking)
+        if predicate(
+            driver
         )
     ]
 
-    top1000_counter = Counter(
-        get_car_code(driver)
-        for driver in top1000
-        if get_car_code(driver)
-        is not None
+    target = normalize_psn(
+        get_online_id(
+            my_driver
+        )
     )
 
-    top5 = []
-
-    denominator = len(
-        top1000
-    )
-
-    for (
-        car_code,
-        count
-    ) in top1000_counter.most_common(
-        5
+    for index, driver in enumerate(
+        group,
+        start=1,
     ):
+        if (
+            normalize_psn(
+                get_online_id(driver)
+            )
+            == target
+        ):
+            return (
+                index,
+                len(group),
+            )
 
-        percentage = (
-            count
-            / denominator
-            * 100
-            if denominator
-            else 0
-        )
-
-        top5.append(
-            {
-                "car_code":
-                    car_code,
-
-                "count":
-                    count,
-
-                "percentage":
-                    percentage,
-
-                "all_entries":
-                    all_counter.get(
-                        car_code,
-                        0
-                    ),
-            }
-        )
-
-    return {
-        "top5_used_cars":
-            top5,
-
-        "unique_car_codes":
-            len(
-                all_counter
-            ),
-    }
+    return (
+        None,
+        len(group),
+    )
 
 
 # ======================================================================================
 # WEEKLY HISTORY
 # ======================================================================================
 
-def load_weekly_history() -> List[Dict[str, Any]]:
-
+def load_weekly_history():
     if not WEEKLY_HISTORY_FILE.exists():
         return []
 
     try:
-
         data = json.loads(
             WEEKLY_HISTORY_FILE.read_text(
                 encoding="utf-8"
@@ -942,7 +1135,7 @@ def load_weekly_history() -> List[Dict[str, Any]]:
 
         if isinstance(
             data,
-            list
+            list,
         ):
             return data
 
@@ -953,9 +1146,8 @@ def load_weekly_history() -> List[Dict[str, Any]]:
 
 
 def save_weekly_history(
-    history: List[Dict[str, Any]]
-) -> None:
-
+    history,
+):
     history.sort(
         key=lambda item:
             item.get(
@@ -964,165 +1156,60 @@ def save_weekly_history(
             )
     )
 
-    WEEKLY_HISTORY_FILE.parent.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
     WEEKLY_HISTORY_FILE.write_text(
         json.dumps(
             history,
             ensure_ascii=False,
-            indent=2
+            indent=2,
         ),
-        encoding="utf-8"
+        encoding="utf-8",
     )
 
 
-def build_weekly_record(
-    recovery: Dict[str, Any]
-) -> Optional[Dict[str, Any]]:
-
-    my = recovery.get(
-        "my_result"
+def upsert_weekly_record(
+    history,
+    record,
+):
+    target_week = record.get(
+        "week_start"
     )
 
-    if not isinstance(
-        my,
-        dict
-    ):
-        return None
-
-    return {
-        "participated":
-            True,
-
-        "week_start":
-            HISTORICAL_WEEK_START,
-
-        "final_snapshot":
-            recovery.get(
-                "recovered_at"
-            ),
-
-        "finalization_mode":
-            "historical_recovery",
-
-        "race":
-            (
-                "Daily Race C "
-                "Grand Valley - Highway 1"
-            ),
-
-        "leaderboard_url":
-            HISTORICAL_URL,
-
-        "general_score":
-            my.get(
-                "position_score"
-            ),
-
-        "elite_score":
-            my.get(
-                "elite_score"
-            ),
-
-        "composite_rating":
-            my.get(
-                "composite_rating"
-            ),
-
-        "position":
-            my.get(
-                "rank"
-            ),
-
-        "total_drivers":
-            recovery.get(
-                "total_drivers"
-            ),
-
-        "top_percent":
-            my.get(
-                "top_percent"
-            ),
-
-        "percentile_ahead":
-            my.get(
-                "percentile_ahead"
-            ),
-
-        "wr_percentage":
-            my.get(
-                "wr_percentage"
-            ),
-
-        "laptime":
-            my.get(
-                "laptime"
-            ),
-
-        "score_ms":
-            my.get(
-                "score"
-            ),
-
-        "car_code":
-            my.get(
-                "car_code"
-            ),
-
-        "country":
-            my.get(
-                "country"
-            ),
-
-        "driver_rating":
-            my.get(
-                "driver_rating"
-            ),
-    }
-
-
-def upsert_weekly_history(
-    record: Dict[str, Any]
-) -> None:
-
-    history = load_weekly_history()
+    target_url = record.get(
+        "leaderboard_url"
+    )
 
     replaced = False
 
     for index, existing in enumerate(
         history
     ):
+        same_url = (
+            existing.get(
+                "leaderboard_url"
+            )
+            == target_url
+        )
 
         same_week = (
             existing.get(
                 "week_start"
             )
-            == HISTORICAL_WEEK_START
-        )
-
-        same_url = (
-            existing.get(
-                "leaderboard_url"
-            )
-            == HISTORICAL_URL
+            == target_week
         )
 
         if (
-            same_week
-            or same_url
+            same_url
+            or same_week
         ):
-
-            history[index] = record
+            history[
+                index
+            ] = record
 
             replaced = True
 
             break
 
     if not replaced:
-
         history.append(
             record
         )
@@ -1133,14 +1220,208 @@ def upsert_weekly_history(
 
 
 # ======================================================================================
+# BUILD PERSONAL RECORD
+# ======================================================================================
+
+def build_personal_record(
+    ranking,
+    total_records,
+    my_driver,
+):
+    winner = ranking[0]
+
+    wr_score = winner.get(
+        "score"
+    )
+
+    my_score = my_driver.get(
+        "score"
+    )
+
+    my_rank = my_driver.get(
+        "display_rank"
+    )
+
+    if (
+        wr_score is None
+        or my_score is None
+        or my_rank is None
+    ):
+        raise RuntimeError(
+            "Historical driver record is missing rank or score."
+        )
+
+    my_rank = int(
+        my_rank
+    )
+
+    my_user = get_user(
+        my_driver
+    )
+
+    my_car_code = get_car_code(
+        my_driver
+    )
+
+    my_country = my_user.get(
+        "country_code"
+    )
+
+    my_dr = my_user.get(
+        "driver_rating"
+    )
+
+    general = general_rating(
+        my_rank,
+        total_records,
+    )
+
+    elite = elite_rating(
+        my_rank,
+        total_records,
+    )
+
+    composite = composite_rating(
+        general,
+        elite,
+    )
+
+    ahead = percentile_ahead(
+        my_rank,
+        total_records,
+    )
+
+    top_percent = (
+        my_rank
+        / total_records
+        * 100
+    )
+
+    wr_percentage = (
+        my_score
+        / wr_score
+        * 100
+    )
+
+    same_car_rank, same_car_total = (
+        group_rank(
+            ranking,
+            my_driver,
+            lambda driver:
+                get_car_code(
+                    driver
+                )
+                == my_car_code,
+        )
+    )
+
+    country_rank, country_total = (
+        group_rank(
+            ranking,
+            my_driver,
+            lambda driver:
+                get_user(
+                    driver
+                ).get(
+                    "country_code"
+                )
+                == my_country,
+        )
+    )
+
+    dr_rank, dr_total = (
+        group_rank(
+            ranking,
+            my_driver,
+            lambda driver:
+                get_user(
+                    driver
+                ).get(
+                    "driver_rating"
+                )
+                == my_dr,
+        )
+    )
+
+    return {
+        "psn_id":
+            MY_PSN_ID,
+
+        "rank":
+            my_rank,
+
+        "score":
+            my_score,
+
+        "laptime":
+            score_to_laptime(
+                my_score
+            ),
+
+        "car_code":
+            my_car_code,
+
+        "country":
+            my_country,
+
+        "driver_rating":
+            my_dr,
+
+        "gap_to_wr_ms":
+            my_score
+            - wr_score,
+
+        "wr_percentage":
+            wr_percentage,
+
+        "general_score":
+            general,
+
+        "elite_score":
+            elite,
+
+        "composite_rating":
+            composite,
+
+        "top_percent":
+            top_percent,
+
+        "percentile_ahead":
+            ahead,
+
+        "same_car_rank":
+            same_car_rank,
+
+        "same_car_total":
+            same_car_total,
+
+        "country_rank":
+            country_rank,
+
+        "country_total":
+            country_total,
+
+        "dr_rank":
+            dr_rank,
+
+        "dr_total":
+            dr_total,
+    }
+
+
+# ======================================================================================
 # MAIN
 # ======================================================================================
 
-def main() -> None:
-
+def main():
     RECOVERY_DIR.mkdir(
         parents=True,
-        exist_ok=True
+        exist_ok=True,
+    )
+
+    DATA_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
     )
 
     print(
@@ -1157,8 +1438,8 @@ def main() -> None:
 
     print(
         f"Race week        : "
-        f"{HISTORICAL_WEEK_START} -> "
-        f"{HISTORICAL_WEEK_END}"
+        f"{RACE_WEEK_START} -> "
+        f"{RACE_WEEK_END}"
     )
 
     print(
@@ -1168,195 +1449,60 @@ def main() -> None:
 
     print(
         f"Historical URL   : "
-        f"{HISTORICAL_URL}"
+        f"{HISTORICAL_LEADERBOARD_URL}"
     )
 
-    session = requests.Session()
+    print("")
+
+    session = (
+        requests.Session()
+    )
 
     session.headers.update(
         HEADERS
     )
 
-    # ==================================================================================
-    # PAGE
-    # ==================================================================================
+    # ------------------------------------------------------------------
+    # Load complete archived leaderboard
+    # ------------------------------------------------------------------
 
-    response = session.get(
-        HISTORICAL_URL,
-        timeout=60
+    result = get_full_event_ranking(
+        session,
+        HISTORICAL_LEADERBOARD_URL,
     )
 
-    response.raise_for_status()
+    ranking = result[
+        "ranking"
+    ]
 
-    html = response.text
+    total_records = result[
+        "total_records"
+    ]
 
-    print("")
-    print(
-        f"HTTP status      : "
-        f"{response.status_code}"
-    )
+    extraction_mode = result[
+        "mode"
+    ]
 
-    print(
-        f"Content-Type     : "
-        f"{response.headers.get('Content-Type')}"
-    )
-
-    print(
-        f"Response bytes   : "
-        f"{len(response.content):,}"
-    )
-
-    # ==================================================================================
-    # INITIAL RANKING
-    # ==================================================================================
-
-    initial_ranking = (
-        extract_initial_ranking(
-            html
-        )
-    )
-
-    print("")
-    print(
-        "INITIAL RANKING"
-    )
-
-    print(
-        SUB_SEPARATOR
-    )
-
-    print(
-        f"Entries          : "
-        f"{len(initial_ranking):,}"
-    )
-
-    initial_my_driver = (
-        find_my_driver(
-            initial_ranking,
-            MY_PSN_ID
-        )
-    )
-
-    print(
-        "My PSN present   : "
-        + (
-            "YES"
-            if initial_my_driver
-            else "NO"
-        )
-    )
-
-    # ==================================================================================
-    # FULL UPDATE ENDPOINT
-    # ==================================================================================
-
-    update_url = build_update_url(
-        HISTORICAL_URL
-    )
-
-    print("")
-    print(
-        "FULL LEADERBOARD REQUEST"
-    )
-
-    print(
-        SUB_SEPARATOR
-    )
-
-    print(
-        f"Update URL       : "
-        f"{update_url}"
-    )
-
-    update_response = session.get(
-        update_url,
-        timeout=120
-    )
-
-    print(
-        f"HTTP status      : "
-        f"{update_response.status_code}"
-    )
-
-    print(
-        f"Content-Type     : "
-        f"{update_response.headers.get('Content-Type')}"
-    )
-
-    print(
-        f"Response bytes   : "
-        f"{len(update_response.content):,}"
-    )
-
-    update_response.raise_for_status()
-
-    ranking: List[
-        Dict[str, Any]
-    ] = []
-
-    update_json = None
-
-    try:
-
-        update_json = (
-            update_response.json()
-        )
-
-        ranking = (
-            extract_ranking_from_json(
-                update_json
-            )
-        )
-
-    except Exception as exc:
-
-        print(
-            f"JSON parse       : FAILED "
-            f"({type(exc).__name__})"
-        )
-
-    print(
-        f"Update entries   : "
-        f"{len(ranking):,}"
-    )
-
-    # ==================================================================================
-    # FALLBACK
-    # ==================================================================================
+    complete = result[
+        "complete"
+    ]
 
     if not ranking:
-
-        print("")
-        print(
-            "Update endpoint did not return a ranking."
-        )
-
-        print(
-            "Falling back to initialRanking."
-        )
-
-        ranking = (
-            initial_ranking
-        )
-
-    ranking = normalize_ranking(
-        ranking
-    )
-
-    print(
-        f"Usable entries   : "
-        f"{len(ranking):,}"
-    )
-
-    if not ranking:
-
         raise RuntimeError(
-            "No usable historical leaderboard entries found."
+            "Historical leaderboard is empty."
         )
 
-    # ==================================================================================
-    # WORLD RECORD
-    # ==================================================================================
+    ranking.sort(
+        key=lambda driver:
+            driver.get(
+                "display_rank",
+                999999999,
+            )
+    )
+
+    # ------------------------------------------------------------------
+    # World record
+    # ------------------------------------------------------------------
 
     winner = ranking[0]
 
@@ -1364,24 +1510,10 @@ def main() -> None:
         "score"
     )
 
-    if not isinstance(
-        wr_score,
-        (int, float)
-    ):
-
-        raise RuntimeError(
-            "Historical WR score unavailable."
-        )
-
-    wr_score = int(
-        wr_score
-    )
-
     print("")
     print(
         "WORLD RECORD"
     )
-
     print(
         SUB_SEPARATOR
     )
@@ -1393,12 +1525,12 @@ def main() -> None:
 
     print(
         f"Driver           : "
-        f"{get_driver_name(winner)}"
+        f"{get_nickname(winner)}"
     )
 
     print(
         f"PSN              : "
-        f"{get_online_id(winner) or 'N/A'}"
+        f"{get_online_id(winner)}"
     )
 
     print(
@@ -1406,133 +1538,129 @@ def main() -> None:
         f"{get_car_code(winner)}"
     )
 
-    # ==================================================================================
-    # PERSONAL DRIVER
-    # ==================================================================================
+    # ------------------------------------------------------------------
+    # Personal result
+    # ------------------------------------------------------------------
 
     my_driver = find_my_driver(
         ranking,
-        MY_PSN_ID
+        MY_PSN_ID,
     )
+
+    personal = None
 
     print("")
     print(
         "HISTORICAL DRIVER RESULT"
     )
-
     print(
         SUB_SEPARATOR
     )
 
-    print(
-        "Found            : "
-        + (
-            "YES"
-            if my_driver
-            else "NO"
-        )
-    )
-
-    my_result = None
-
     if my_driver:
 
-        my_result = (
-            build_personal_result(
-                ranking,
-                my_driver,
-                wr_score
-            )
+        personal = build_personal_record(
+            ranking,
+            total_records,
+            my_driver,
+        )
+
+        print(
+            "Found            : YES"
         )
 
         print(
             f"Rank             : "
-            f"#{my_result['rank']:,}"
+            f"#{personal['rank']:,}"
+            f"/{total_records:,}"
         )
 
         print(
             f"Time             : "
-            f"{my_result['laptime']}"
-        )
-
-        print(
-            f"Score            : "
-            f"{my_result['score']} ms"
+            f"{personal['laptime']}"
         )
 
         print(
             f"Gap to WR        : "
-            f"+{my_result['gap_to_wr_ms']/1000:.3f}s"
+            f"+{personal['gap_to_wr_ms']/1000:.3f}s"
         )
 
         print(
             f"Top percentage   : "
-            f"{my_result['top_percent']:.2f}%"
+            f"{personal['top_percent']:.2f}%"
         )
 
         print(
             f"Ahead of         : "
-            f"{my_result['percentile_ahead']:.2f}%"
-        )
-
-        print(
-            f"WR percentage    : "
-            f"{my_result['wr_percentage']:.3f}%"
+            f"{personal['percentile_ahead']:.2f}%"
         )
 
         print(
             f"General rating   : "
-            f"{my_result['position_score']:.2f}"
+            f"{personal['general_score']:.2f}"
         )
 
         print(
             f"Elite rating     : "
-            f"{my_result['elite_score']:.2f}"
+            f"{personal['elite_score']:.2f}"
         )
 
         print(
-            f"Composite rating : "
-            f"{my_result['composite_rating']:.2f}"
-        )
-
-        print(
-            f"Pace band        : "
-            f"{my_result['pace_band']}"
+            f"Composite        : "
+            f"{personal['composite_rating']:.2f}"
         )
 
         print(
             f"Car code         : "
-            f"{my_result['car_code']}"
+            f"{personal['car_code']}"
+        )
+
+        print(
+            f"Country          : "
+            f"{personal['country']}"
+        )
+
+        print(
+            f"Country rank     : "
+            f"{personal['country_rank']}"
+            f"/{personal['country_total']}"
+        )
+
+        print(
+            f"Same-car rank    : "
+            f"{personal['same_car_rank']}"
+            f"/{personal['same_car_total']}"
         )
 
     else:
 
         print(
-            "The PSN was not found even in the "
-            "leaderboard returned by the update endpoint."
+            "Found            : NO"
         )
 
-    # ==================================================================================
-    # THRESHOLDS
-    # ==================================================================================
-
-    thresholds = (
-        build_thresholds(
-            ranking
+        print(
+            f"Searched entries : "
+            f"{len(ranking):,}"
         )
-    )
 
-    percentiles = (
-        build_percentiles(
-            ranking
+        print(
+            "Note             : "
+            "The complete historical ranking was searched, "
+            "but the PSN was not found."
         )
+
+    # ------------------------------------------------------------------
+    # Benchmarks
+    # ------------------------------------------------------------------
+
+    thresholds = build_thresholds(
+        ranking
     )
 
     print("")
     print(
         "FINAL LEADERBOARD BENCHMARKS"
     )
-
     print(
         SUB_SEPARATOR
     )
@@ -1540,117 +1668,87 @@ def main() -> None:
     for key in [
         "1",
         "10",
+        "50",
         "100",
+        "250",
         "500",
         "1000",
         "2500",
         "5000",
-        "10000",
     ]:
-
-        item = thresholds.get(
-            key
+        item = (
+            thresholds[
+                "fixed"
+            ].get(
+                key
+            )
         )
 
         if not item:
             continue
 
         print(
-            f"Top {key:<5}       : "
+            f"Top {key:<12}: "
             f"{item['laptime']}"
         )
 
     print("")
-    print(
-        f"Top 10%          : "
-        f"{percentiles['10']['laptime']} "
-        f"(#{percentiles['10']['rank']:,})"
-    )
 
-    print(
-        f"Top 5%           : "
-        f"{percentiles['5']['laptime']} "
-        f"(#{percentiles['5']['rank']:,})"
-    )
+    for key in [
+        "10",
+        "5",
+        "2",
+        "1",
+        "0.5",
+    ]:
+        item = (
+            thresholds[
+                "percentiles"
+            ].get(
+                key
+            )
+        )
 
-    print(
-        f"Top 2%           : "
-        f"{percentiles['2']['laptime']} "
-        f"(#{percentiles['2']['rank']:,})"
-    )
+        if not item:
+            continue
 
-    # ==================================================================================
-    # META
-    # ==================================================================================
+        print(
+            f"Top {key}%"
+            f"{' ' * max(0, 9 - len(key))}: "
+            f"{item['laptime']} "
+            f"(#{item['rank']:,})"
+        )
 
-    meta = build_car_meta(
-        ranking
-    )
-
-    # ==================================================================================
-    # SAVE RECOVERY
-    # ==================================================================================
+    # ------------------------------------------------------------------
+    # Save recovery JSON
+    # ------------------------------------------------------------------
 
     recovery = {
-        "recovery_version":
+        "version":
             VERSION,
 
-        "recovered_at":
-            datetime.now()
-            .astimezone()
-            .isoformat(),
+        "race_week_start":
+            RACE_WEEK_START,
 
-        "race_week": {
-            "start":
-                HISTORICAL_WEEK_START,
-
-            "end":
-                HISTORICAL_WEEK_END,
-        },
+        "race_week_end":
+            RACE_WEEK_END,
 
         "leaderboard_url":
-            HISTORICAL_URL,
+            HISTORICAL_LEADERBOARD_URL,
 
-        "update_url":
-            update_url,
+        "extraction_mode":
+            extraction_mode,
 
-        "source": {
-            "initial_ranking_entries":
-                len(
-                    initial_ranking
-                ),
-
-            "update_endpoint_entries":
-                len(
-                    extract_ranking_from_json(
-                        update_json
-                    )
-                    if update_json
-                    is not None
-                    else []
-                ),
-
-            "final_entries":
-                len(
-                    ranking
-                ),
-
-            "used_update_endpoint":
-                bool(
-                    update_json
-                    is not None
-                ),
-        },
+        "complete_leaderboard":
+            complete,
 
         "total_drivers":
-            len(
-                ranking
-            ),
+            total_records,
+
+        "loaded_drivers":
+            len(ranking),
 
         "world_record": {
-            "rank":
-                1,
-
             "score":
                 wr_score,
 
@@ -1660,7 +1758,7 @@ def main() -> None:
                 ),
 
             "driver":
-                get_driver_name(
+                get_nickname(
                     winner
                 ),
 
@@ -1675,44 +1773,163 @@ def main() -> None:
                 ),
         },
 
+        "personal_result":
+            personal,
+
         "thresholds":
             thresholds,
-
-        "percentile_thresholds":
-            percentiles,
-
-        "my_result":
-            my_result,
-
-        "car_meta":
-            meta,
-
-        "health": {
-            "my_driver_found":
-                my_driver
-                is not None,
-
-            "leaderboard_entries":
-                len(
-                    ranking
-                ),
-
-            "initial_ranking_only":
-                len(ranking)
-                == len(
-                    initial_ranking
-                ),
-        },
     }
 
     OUTPUT_FILE.write_text(
         json.dumps(
             recovery,
             ensure_ascii=False,
-            indent=2
+            indent=2,
         ),
-        encoding="utf-8"
+        encoding="utf-8",
     )
+
+    # ------------------------------------------------------------------
+    # Update weekly history
+    # ------------------------------------------------------------------
+
+    weekly_updated = False
+
+    if personal:
+
+        weekly_record = {
+            "participated":
+                True,
+
+            "week_start":
+                RACE_WEEK_START,
+
+            "final_snapshot":
+                "archived_leaderboard",
+
+            "finalization_mode":
+                "historical_recovery_v3",
+
+            "extraction_mode":
+                extraction_mode,
+
+            "race":
+                "Daily Race C historical recovery",
+
+            "leaderboard_url":
+                HISTORICAL_LEADERBOARD_URL,
+
+            "general_score":
+                personal[
+                    "general_score"
+                ],
+
+            "elite_score":
+                personal[
+                    "elite_score"
+                ],
+
+            "composite_rating":
+                personal[
+                    "composite_rating"
+                ],
+
+            "position":
+                personal[
+                    "rank"
+                ],
+
+            "total_drivers":
+                total_records,
+
+            "top_percent":
+                personal[
+                    "top_percent"
+                ],
+
+            "percentile_ahead":
+                personal[
+                    "percentile_ahead"
+                ],
+
+            "wr_percentage":
+                personal[
+                    "wr_percentage"
+                ],
+
+            "laptime":
+                personal[
+                    "laptime"
+                ],
+
+            "score_ms":
+                personal[
+                    "score"
+                ],
+
+            "world_record":
+                score_to_laptime(
+                    wr_score
+                ),
+
+            "world_record_ms":
+                wr_score,
+
+            "gap_to_wr_ms":
+                personal[
+                    "gap_to_wr_ms"
+                ],
+
+            "car_code":
+                personal[
+                    "car_code"
+                ],
+
+            "country":
+                personal[
+                    "country"
+                ],
+
+            "driver_rating":
+                personal[
+                    "driver_rating"
+                ],
+
+            "country_rank":
+                personal[
+                    "country_rank"
+                ],
+
+            "country_total":
+                personal[
+                    "country_total"
+                ],
+
+            "same_car_rank":
+                personal[
+                    "same_car_rank"
+                ],
+
+            "same_car_total":
+                personal[
+                    "same_car_total"
+                ],
+        }
+
+        history = (
+            load_weekly_history()
+        )
+
+        upsert_weekly_record(
+            history,
+            weekly_record,
+        )
+
+        weekly_updated = True
+
+    # ------------------------------------------------------------------
+    # Final output
+    # ------------------------------------------------------------------
 
     print("")
     print(
@@ -1724,40 +1941,28 @@ def main() -> None:
         f"{OUTPUT_FILE}"
     )
 
-    # ==================================================================================
-    # ADD TO LONG-TERM WEEKLY HISTORY
-    # ==================================================================================
-
-    if my_result:
-
-        weekly_record = (
-            build_weekly_record(
-                recovery
+    print(
+        "Weekly history   : "
+        + (
+            "UPDATED"
+            if weekly_updated
+            else (
+                "NOT UPDATED "
+                "(personal result not recovered)"
             )
         )
+    )
 
-        if weekly_record:
+    print(
+        f"Extraction mode  : "
+        f"{extraction_mode}"
+    )
 
-            upsert_weekly_history(
-                weekly_record
-            )
-
-            print(
-                f"Weekly history   : "
-                f"UPDATED"
-            )
-
-            print(
-                f"History file     : "
-                f"{WEEKLY_HISTORY_FILE}"
-            )
-
-    else:
-
-        print(
-            "Weekly history   : NOT UPDATED "
-            "(personal result not recovered)"
-        )
+    print(
+        f"Loaded drivers   : "
+        f"{len(ranking):,}/"
+        f"{total_records:,}"
+    )
 
     print(
         SEPARATOR
@@ -1765,5 +1970,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-
     main()
