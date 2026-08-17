@@ -14,9 +14,14 @@ CAR_DATABASE_FILE = (
     / "car_names.json"
 )
 
+CAR_TECHNICAL_FILE = (
+    DATA_DIR
+    / "car_technical.json"
+)
+
 
 # ============================================================
-# FALLBACK DATABASE
+# FALLBACK NAME DATABASE
 # ============================================================
 
 FALLBACK_CARS = {
@@ -57,7 +62,240 @@ FALLBACK_CARS = {
 
 
 # ============================================================
-# LOAD DATABASE
+# FALLBACK VALIDATED TECHNICAL DATABASE
+#
+# layout:
+#   FF  = Front-engine / Front-wheel drive
+#   FR  = Front-engine / Rear-wheel drive
+#   MR  = Mid-engine / Rear-wheel drive
+#   RR  = Rear-engine / Rear-wheel drive
+#   4WD = Four-wheel drive
+#
+# Only validated entries belong here.
+# ============================================================
+
+FALLBACK_TECHNICAL = {
+
+    # --------------------------------------------------------
+    # Existing validated cars from the previous
+    # CAR_TECHNICAL_INFO table
+    # --------------------------------------------------------
+
+    1563: {
+        "layout": "MR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    2157: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    2161: {
+        "layout": "4WD",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    2163: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    2164: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    2166: {
+        "layout": "MR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3192: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3231: {
+        "layout": "FF",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3245: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3246: {
+        "layout": "4WD",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3247: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3248: {
+        "layout": "MR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3249: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3251: {
+        "layout": "MR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3252: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3253: {
+        "layout": "4WD",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3254: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3256: {
+        "layout": "4WD",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3257: {
+        "layout": "MR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3258: {
+        "layout": "4WD",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3259: {
+        "layout": "FF",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3260: {
+        "layout": "FF",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3261: {
+        "layout": "4WD",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3262: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3263: {
+        "layout": "MR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3298: {
+        "layout": "FF",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3310: {
+        "layout": "MR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3399: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3477: {
+        "layout": "FR",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3480: {
+        "layout": "FF",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3501: {
+        "layout": "4WD",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    3537: {
+        "layout": "FF",
+        "validated": True,
+        "source": "existing_validated_database"
+    },
+
+    # --------------------------------------------------------
+    # Current Gr.3 additions
+    # --------------------------------------------------------
+
+    3405: {
+        "layout": "MR",
+        "validated": True,
+        "source": "gran_turismo_official_car_list"
+    }
+}
+
+
+VALID_LAYOUTS = {
+    "FF",
+    "FR",
+    "MR",
+    "RR",
+    "4WD"
+}
+
+
+# ============================================================
+# LOAD NAME DATABASE
 # ============================================================
 
 def load_car_database():
@@ -111,7 +349,7 @@ def load_car_database():
 
 
 # ============================================================
-# SAVE DATABASE
+# SAVE NAME DATABASE
 # ============================================================
 
 def save_car_database(
@@ -170,6 +408,363 @@ def save_car_database(
 
 
 # ============================================================
+# LOAD TECHNICAL DATABASE
+# ============================================================
+
+def load_car_technical_database():
+
+    database = {
+        int(car_code): dict(info)
+        for car_code, info
+        in FALLBACK_TECHNICAL.items()
+    }
+
+
+    if not CAR_TECHNICAL_FILE.exists():
+        return database
+
+
+    try:
+
+        saved = json.loads(
+            CAR_TECHNICAL_FILE.read_text(
+                encoding="utf-8"
+            )
+        )
+
+
+        if isinstance(
+            saved,
+            dict
+        ):
+
+            for raw_code, raw_info in saved.items():
+
+                try:
+                    car_code = int(
+                        raw_code
+                    )
+
+                except Exception:
+                    continue
+
+
+                if not isinstance(
+                    raw_info,
+                    dict
+                ):
+                    continue
+
+
+                layout = raw_info.get(
+                    "layout"
+                )
+
+
+                if isinstance(
+                    layout,
+                    str
+                ):
+                    layout = (
+                        layout
+                        .strip()
+                        .upper()
+                    )
+
+
+                if layout not in VALID_LAYOUTS:
+                    continue
+
+
+                database[
+                    car_code
+                ] = {
+                    "layout":
+                        layout,
+
+                    "validated":
+                        bool(
+                            raw_info.get(
+                                "validated",
+                                True
+                            )
+                        ),
+
+                    "source":
+                        str(
+                            raw_info.get(
+                                "source",
+                                "car_technical.json"
+                            )
+                        )
+                }
+
+
+    except Exception:
+        pass
+
+
+    return database
+
+
+# ============================================================
+# SAVE TECHNICAL DATABASE
+# ============================================================
+
+def save_car_technical_database(
+    database
+):
+
+    DATA_DIR.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+
+    clean = {}
+
+
+    for car_code, info in database.items():
+
+        try:
+            car_code = int(
+                car_code
+            )
+
+        except Exception:
+            continue
+
+
+        if not isinstance(
+            info,
+            dict
+        ):
+            continue
+
+
+        layout = info.get(
+            "layout"
+        )
+
+
+        if isinstance(
+            layout,
+            str
+        ):
+            layout = (
+                layout
+                .strip()
+                .upper()
+            )
+
+
+        if layout not in VALID_LAYOUTS:
+            continue
+
+
+        clean[
+            str(car_code)
+        ] = {
+            "layout":
+                layout,
+
+            "validated":
+                bool(
+                    info.get(
+                        "validated",
+                        True
+                    )
+                ),
+
+            "source":
+                str(
+                    info.get(
+                        "source",
+                        "manual"
+                    )
+                )
+        }
+
+
+    ordered = dict(
+        sorted(
+            clean.items(),
+            key=lambda item:
+                int(item[0])
+        )
+    )
+
+
+    CAR_TECHNICAL_FILE.write_text(
+        json.dumps(
+            ordered,
+            ensure_ascii=False,
+            indent=2
+        ),
+        encoding="utf-8"
+    )
+
+
+# ============================================================
+# TECHNICAL LOOKUPS
+# ============================================================
+
+def get_car_technical_info(
+    car_code,
+    database=None
+):
+
+    if car_code is None:
+        return None
+
+
+    try:
+
+        car_code = int(
+            car_code
+        )
+
+    except Exception:
+
+        return None
+
+
+    if database is None:
+
+        database = (
+            load_car_technical_database()
+        )
+
+
+    info = database.get(
+        car_code
+    )
+
+
+    if not isinstance(
+        info,
+        dict
+    ):
+        return None
+
+
+    return dict(
+        info
+    )
+
+
+def get_car_layout(
+    car_code,
+    database=None
+):
+
+    info = get_car_technical_info(
+        car_code,
+        database
+    )
+
+
+    if not info:
+        return None
+
+
+    if not info.get(
+        "validated",
+        False
+    ):
+        return None
+
+
+    layout = info.get(
+        "layout"
+    )
+
+
+    if layout not in VALID_LAYOUTS:
+        return None
+
+
+    return layout
+
+
+def set_car_technical_info(
+    car_code,
+    layout,
+    source="manual",
+    validated=True
+):
+
+    try:
+
+        car_code = int(
+            car_code
+        )
+
+    except Exception:
+
+        raise ValueError(
+            "Invalid car code."
+        )
+
+
+    if not isinstance(
+        layout,
+        str
+    ):
+
+        raise ValueError(
+            "Layout must be a string."
+        )
+
+
+    layout = (
+        layout
+        .strip()
+        .upper()
+    )
+
+
+    if layout not in VALID_LAYOUTS:
+
+        raise ValueError(
+            f"Invalid layout: {layout}"
+        )
+
+
+    database = (
+        load_car_technical_database()
+    )
+
+
+    database[
+        car_code
+    ] = {
+        "layout":
+            layout,
+
+        "validated":
+            bool(
+                validated
+            ),
+
+        "source":
+            str(
+                source
+            )
+    }
+
+
+    save_car_technical_database(
+        database
+    )
+
+
+    return database[
+        car_code
+    ]
+
+
+# ============================================================
 # FIND JAVASCRIPT OBJECT
 # ============================================================
 
@@ -201,7 +796,6 @@ def extract_javascript_object(
     start = match.end()
 
 
-    # Skip whitespace
     while (
         start < len(html)
         and html[start].isspace()
@@ -226,13 +820,14 @@ def extract_javascript_object(
 
         return value
 
+
     except Exception:
 
         return None
 
 
 # ============================================================
-# EXTRACT GTSH CAR DATABASE
+# EXTRACT GTSH CAR NAME DATABASE
 # ============================================================
 
 def extract_car_database_from_html(
@@ -274,11 +869,6 @@ def extract_car_database_from_html(
             continue
 
 
-        # Examples accepted:
-        # #CAR3248
-        # CAR3248
-        # 3248
-
         code_match = re.search(
             r"(\d+)$",
             raw_code.strip()
@@ -311,7 +901,7 @@ def extract_car_database_from_html(
 
 
 # ============================================================
-# UPDATE DATABASE FROM HTML
+# UPDATE NAME DATABASE FROM HTML
 # ============================================================
 
 def update_car_database_from_html(
@@ -354,9 +944,6 @@ def update_car_database_from_html(
         ] = name
 
 
-    # Always create/update the JSON file,
-    # even if GTSH extraction found zero cars.
-
     save_car_database(
         current
     )
@@ -391,9 +978,11 @@ def get_car_name(
 
 
     try:
+
         car_code = int(
             car_code
         )
+
 
     except Exception:
 
@@ -421,16 +1010,53 @@ def get_car_name(
 
 def database_stats():
 
-    database = load_car_database()
+    names = (
+        load_car_database()
+    )
+
+    technical = (
+        load_car_technical_database()
+    )
+
+
+    validated_technical = sum(
+        1
+        for info
+        in technical.values()
+        if (
+            isinstance(
+                info,
+                dict
+            )
+            and info.get(
+                "validated"
+            )
+            and info.get(
+                "layout"
+            )
+            in VALID_LAYOUTS
+        )
+    )
 
 
     return {
         "cars":
-            len(database),
+            len(names),
 
-        "file":
+        "technical_records":
+            len(technical),
+
+        "validated_technical_records":
+            validated_technical,
+
+        "name_file":
             str(
                 CAR_DATABASE_FILE
+            ),
+
+        "technical_file":
+            str(
+                CAR_TECHNICAL_FILE
             )
     }
 
@@ -441,15 +1067,25 @@ def database_stats():
 
 def main():
 
-    database = load_car_database()
+    name_database = (
+        load_car_database()
+    )
 
+    technical_database = (
+        load_car_technical_database()
+    )
 
-    # Ensure file exists when module
-    # is executed standalone.
 
     save_car_database(
-        database
+        name_database
     )
+
+    save_car_technical_database(
+        technical_database
+    )
+
+
+    stats = database_stats()
 
 
     print(
@@ -461,13 +1097,28 @@ def main():
     )
 
     print(
-        f"Cars currently stored: "
-        f"{len(database)}"
+        f"Cars currently stored     : "
+        f"{stats['cars']}"
     )
 
     print(
-        f"Database file: "
-        f"{CAR_DATABASE_FILE}"
+        f"Technical records         : "
+        f"{stats['technical_records']}"
+    )
+
+    print(
+        f"Validated technical       : "
+        f"{stats['validated_technical_records']}"
+    )
+
+    print(
+        f"Name database file        : "
+        f"{stats['name_file']}"
+    )
+
+    print(
+        f"Technical database file   : "
+        f"{stats['technical_file']}"
     )
 
 
