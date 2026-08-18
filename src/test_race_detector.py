@@ -249,6 +249,151 @@ def parse_race_date_from_text(text):
         return None
 
 
+def race_letters_in_text(text):
+
+    if not isinstance(text, str):
+        return set()
+
+    matches = re.findall(
+        r"\bDaily\s+Race\s+([ABC])\b",
+        text,
+        flags=re.IGNORECASE
+    )
+
+    return {
+        item.upper()
+        for item in matches
+    }
+
+
+def extract_local_race_block(link):
+
+    """
+    Find the smallest local DOM block around a leaderboard link
+    that clearly refers to exactly ONE Daily Race.
+
+    This prevents a parent/container containing Race A + B + C
+    from being misclassified as Race C.
+    """
+
+    node = link
+
+    best = None
+
+    for depth in range(8):
+
+        if node is None:
+            break
+
+        try:
+
+            text = node.get_text(
+                " ",
+                strip=True
+            )
+
+        except Exception:
+
+            text = ""
+
+        text = re.sub(
+            r"\s+",
+            " ",
+            text
+        ).strip()
+
+        if text:
+
+            letters = race_letters_in_text(
+                text
+            )
+
+            if len(letters) == 1:
+
+                letter = next(
+                    iter(letters)
+                )
+
+                candidate = {
+                    "text": text,
+                    "letter": letter,
+                    "depth": depth
+                }
+
+                if best is None:
+
+                    best = candidate
+
+                else:
+
+                    # Prefer the smaller/closer block.
+                    if (
+                        len(text)
+                        < len(best["text"])
+                    ):
+
+                        best = candidate
+
+        node = node.parent
+
+    return best
+
+
+def validate_selected_race_c(
+    candidate
+):
+
+    if not isinstance(
+        candidate,
+        dict
+    ):
+
+        raise RuntimeError(
+            "Race C safety validation failed: invalid candidate."
+        )
+
+    text = candidate.get(
+        "text",
+        ""
+    )
+
+    letters = race_letters_in_text(
+        text
+    )
+
+    if letters != {"C"}:
+
+        raise RuntimeError(
+            "Race C safety validation failed. "
+            f"Detected Daily Race letters: {sorted(letters)}. "
+            "Expected only Daily Race C."
+        )
+
+    if not re.search(
+        r"\bDaily\s+Race\s+C\b",
+        text,
+        flags=re.IGNORECASE
+    ):
+
+        raise RuntimeError(
+            "Race C safety validation failed: "
+            "the selected block does not explicitly contain Daily Race C."
+        )
+
+    if re.search(
+        r"\bDaily\s+Race\s+[AB]\b",
+        text,
+        flags=re.IGNORECASE
+    ):
+
+        raise RuntimeError(
+            "Race C safety validation failed: "
+            "the selected block also contains Race A or Race B."
+        )
+
+    return True
+
+
 def find_current_race_c(
     soup,
     now
@@ -256,23 +401,14 @@ def find_current_race_c(
 
     candidates = []
 
-    for link in soup.select(
+    seen_urls = set()
+
+    links = soup.select(
         'a[href*="/daily/leaderboard?event="], '
         'a[href*="/daily/leaderboard/?event="]'
-    ):
+    )
 
-        parent = link.parent
-
-        if parent is None:
-            continue
-
-        parent_text = parent.get_text(
-            " ",
-            strip=True
-        )
-
-        if "Daily Race C" not in parent_text:
-            continue
+    for link in links:
 
         href = link.get(
             "href"
@@ -281,58 +417,151 @@ def find_current_race_c(
         if not href:
             continue
 
-        candidates.append({
-            "url":
-                urljoin(
-                    GTSH_URL,
-                    href
-                ),
+        full_url = urljoin(
+            GTSH_URL,
+            href
+        )
 
-            "text":
-                parent_text,
+        if full_url in seen_urls:
+            continue
 
-            "date":
-                parse_race_date_from_text(
-                    parent_text
-                ),
+        local_block = extract_local_race_block(
+            link
+        )
 
-            "running":
-                "Running" in parent_text,
+        if not local_block:
+            continue
 
-            "next_week":
-                "Next Week" in parent_text
-        })
+        if local_block[
+            "letter"
+        ] != "C":
+            continue
+
+        block_text = local_block[
+            "text"
+        ]
+
+        # Important additional safety rule:
+        # local block must contain only Race C.
+
+        letters = race_letters_in_text(
+            block_text
+        )
+
+        if letters != {"C"}:
+            continue
+
+        race_date = (
+            parse_race_date_from_text(
+                block_text
+            )
+        )
+
+        running = bool(
+            re.search(
+                r"\bRunning\b",
+                block_text,
+                flags=re.IGNORECASE
+            )
+        )
+
+        next_week = bool(
+            re.search(
+                r"\bNext\s+Week\b",
+                block_text,
+                flags=re.IGNORECASE
+            )
+        )
+
+        candidates.append(
+            {
+                "url":
+                    full_url,
+
+                "text":
+                    block_text,
+
+                "date":
+                    race_date,
+
+                "running":
+                    running,
+
+                "next_week":
+                    next_week,
+
+                "local_depth":
+                    local_block[
+                        "depth"
+                    ]
+            }
+        )
+
+        seen_urls.add(
+            full_url
+        )
 
     if not candidates:
 
         raise RuntimeError(
-            "No Daily Race C candidates were found."
+            "No unambiguous Daily Race C candidates were found."
         )
+
+    # ========================================================
+    # 1. Prefer explicit RUNNING Race C
+    # ========================================================
 
     running_candidates = [
         candidate
         for candidate in candidates
-        if candidate["running"]
+        if (
+            candidate[
+                "running"
+            ]
+            and not candidate[
+                "next_week"
+            ]
+        )
     ]
 
     if running_candidates:
 
         running_candidates.sort(
             key=lambda candidate:
-                candidate["date"]
-                or datetime.min.replace(
-                    tzinfo=SAO_PAULO
+                (
+                    candidate[
+                        "date"
+                    ]
+                    or datetime.min.replace(
+                        tzinfo=SAO_PAULO
+                    ),
+                    -candidate.get(
+                        "local_depth",
+                        999
+                    )
                 ),
             reverse=True
         )
 
-        selected = running_candidates[0]
+        selected = (
+            running_candidates[
+                0
+            ]
+        )
 
         selected[
             "detection_mode"
-        ] = "explicit_running"
+        ] = "explicit_running_local_block"
+
+        validate_selected_race_c(
+            selected
+        )
 
         return selected
+
+    # ========================================================
+    # 2. Current week date
+    # ========================================================
 
     current_monday = monday_of_week(
         now
@@ -342,29 +571,62 @@ def find_current_race_c(
         candidate
         for candidate in candidates
         if (
-            candidate["date"]
-            and candidate["date"].date()
+            candidate[
+                "date"
+            ]
+            and candidate[
+                "date"
+            ].date()
             == current_monday.date()
+            and not candidate[
+                "next_week"
+            ]
         )
     ]
 
     if current_week_candidates:
 
-        selected = current_week_candidates[0]
+        current_week_candidates.sort(
+            key=lambda candidate:
+                candidate.get(
+                    "local_depth",
+                    999
+                )
+        )
+
+        selected = (
+            current_week_candidates[
+                0
+            ]
+        )
 
         selected[
             "detection_mode"
-        ] = "current_week_date"
+        ] = "current_week_local_block"
+
+        validate_selected_race_c(
+            selected
+        )
 
         return selected
+
+    # ========================================================
+    # 3. Latest non-future Race C
+    # ========================================================
 
     valid_past = [
         candidate
         for candidate in candidates
         if (
-            candidate["date"]
-            and candidate["date"] <= now
-            and not candidate["next_week"]
+            candidate[
+                "date"
+            ]
+            and candidate[
+                "date"
+            ] <= now
+            and not candidate[
+                "next_week"
+            ]
         )
     ]
 
@@ -372,20 +634,30 @@ def find_current_race_c(
 
         valid_past.sort(
             key=lambda candidate:
-                candidate["date"],
+                candidate[
+                    "date"
+                ],
             reverse=True
         )
 
-        selected = valid_past[0]
+        selected = (
+            valid_past[
+                0
+            ]
+        )
 
         selected[
             "detection_mode"
-        ] = "latest_non_future"
+        ] = "latest_non_future_local_block"
+
+        validate_selected_race_c(
+            selected
+        )
 
         return selected
 
     raise RuntimeError(
-        "Could not safely determine current Daily Race C."
+        "Could not safely determine the current Daily Race C."
     )
 
 
@@ -962,7 +1234,7 @@ def extract_start_date(
 
 
 # ============================================================
-# BRAKE BIAS V2
+# BRAKE BIAS
 # ============================================================
 
 def format_bb_value(value):
@@ -1374,7 +1646,7 @@ def snapshot_metric_score(
 
 
 # ============================================================
-# FORECAST V2 HELPERS
+# FORECAST HELPERS
 # ============================================================
 
 def forecast_parse_datetime(value):
@@ -1760,14 +2032,12 @@ def forecast_metric_v2(
     ]
 
     if direction == "down":
-
         slope = min(
             slope,
             0
         )
 
     elif direction == "up":
-
         slope = max(
             slope,
             0
@@ -1965,6 +2235,7 @@ def forecast_projected_percentile_score(
     confidence_values = []
 
     if top500_forecast:
+
         confidence_values.append(
             top500_forecast.get(
                 "confidence",
@@ -1973,6 +2244,7 @@ def forecast_projected_percentile_score(
         )
 
     if top1000_forecast:
+
         confidence_values.append(
             top1000_forecast.get(
                 "confidence",
@@ -2455,22 +2727,16 @@ def build_forecast_v2(
 
     if current_result:
 
-        current_score = (
-            current_result.get(
-                "score"
-            )
+        current_score = current_result.get(
+            "score"
         )
 
-        current_rank = (
-            current_result.get(
-                "rank"
-            )
+        current_rank = current_result.get(
+            "rank"
         )
 
-        current_top_percent = (
-            current_result.get(
-                "top_percent"
-            )
+        current_top_percent = current_result.get(
+            "top_percent"
         )
 
         projected_rank = None
@@ -2676,6 +2942,10 @@ def build_forecast_v2(
             targets
     }
 
+
+# ============================================================
+# FORECAST REPORT
+# ============================================================
 
 def forecast_report_lines(
     forecast
@@ -3507,6 +3777,12 @@ def main():
         now
     )
 
+    # Final hard stop before any leaderboard request.
+
+    validate_selected_race_c(
+        race_c
+    )
+
     race_c_link = race_c[
         "url"
     ]
@@ -3518,6 +3794,59 @@ def main():
     race_detection_mode = race_c[
         "detection_mode"
     ]
+
+    print(
+        "=" * 78
+    )
+
+    print(
+        "RACE C SAFETY CHECK"
+    )
+
+    print(
+        "=" * 78
+    )
+
+    print(
+        "Expected         : Daily Race C"
+    )
+
+    print(
+        "Detected         : Daily Race C"
+    )
+
+    print(
+        f"Status           : "
+        f"{'Running' if race_c.get('running') else 'Current week'}"
+    )
+
+    print(
+        f"Detection mode   : "
+        f"{race_detection_mode}"
+    )
+
+    print(
+        f"Race date        : "
+        f"{race_c.get('date')}"
+    )
+
+    print(
+        f"Description      : "
+        f"{race_c_text}"
+    )
+
+    print(
+        f"Leaderboard URL  : "
+        f"{race_c_link}"
+    )
+
+    print(
+        "Validation       : PASSED"
+    )
+
+    print(
+        "=" * 78
+    )
 
     # ========================================================
     # LEADERBOARD PAGE
@@ -3752,6 +4081,10 @@ def main():
                         score
                     )
             }
+
+    # ========================================================
+    # DIRECT PERCENTILES
+    # ========================================================
 
     percentile_thresholds = {}
 
@@ -4014,7 +4347,6 @@ def main():
     )
 
     top100 = ranking[:100]
-    top500 = ranking[:500]
     top1000 = ranking[:1000]
 
     top100_counter = Counter(
@@ -4022,16 +4354,6 @@ def main():
             driver
         )
         for driver in top100
-        if get_car_code(
-            driver
-        ) is not None
-    )
-
-    top500_counter = Counter(
-        get_car_code(
-            driver
-        )
-        for driver in top500
         if get_car_code(
             driver
         ) is not None
@@ -4340,6 +4662,9 @@ def main():
             "detection_mode":
                 race_detection_mode,
 
+            "safety_validation":
+                "PASSED",
+
             "source_mode":
                 source_mode,
 
@@ -4486,6 +4811,9 @@ def main():
             "race_detection_mode":
                 race_detection_mode,
 
+            "race_safety_validation":
+                "PASSED",
+
             "leaderboard_entries":
                 len(ranking),
 
@@ -4577,7 +4905,7 @@ def main():
         )
 
     # ========================================================
-    # FORECAST V2
+    # FORECAST
     # ========================================================
 
     history = load_history_for_race(
@@ -4672,6 +5000,10 @@ def main():
     lines.append(
         f"Race detection: "
         f"{race_detection_mode}"
+    )
+
+    lines.append(
+        "Race validation: PASSED - Daily Race C only"
     )
 
     lines.append(
@@ -5402,16 +5734,19 @@ def main():
                 assessment_score -= 1
 
             if assessment_score >= 2:
+
                 current_assessment = (
                     "ABOVE LAST WEEK"
                 )
 
             elif assessment_score <= -2:
+
                 current_assessment = (
                     "BELOW LAST WEEK"
                 )
 
             else:
+
                 current_assessment = (
                     "SIMILAR TO LAST WEEK"
                 )
@@ -5807,6 +6142,10 @@ def main():
     lines.append(
         f"Race detector  : "
         f"{race_detection_mode}"
+    )
+
+    lines.append(
+        "Race validation: PASSED"
     )
 
     lines.append(
