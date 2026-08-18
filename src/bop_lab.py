@@ -14,7 +14,11 @@ from bop_database import (
     normalize_group,
 )
 
-VERSION = "1.1"
+# ============================================================
+# CONFIG
+# ============================================================
+
+VERSION = "1.2"
 
 DG_EDGE_BOP_URL = "https://www.dg-edge.com/database/bop"
 
@@ -25,6 +29,12 @@ RAW_DIR = DATA_DIR / "raw"
 REPORT_FILE = REPORT_DIR / "bop_lab.txt"
 
 GROUP = "GR.3"
+
+SPEED_CLASSES = {
+    "HIGH": "High",
+    "LOW": "Low",
+    "MID": "Mid",
+}
 
 REQUEST_TIMEOUT = 60
 REQUEST_DELAY_SECONDS = 0.20
@@ -43,6 +53,10 @@ SEP = "=" * 100
 SUB = "-" * 100
 
 
+# ============================================================
+# BASIC HELPERS
+# ============================================================
+
 def now_iso():
     return datetime.now().astimezone().isoformat()
 
@@ -50,26 +64,74 @@ def now_iso():
 def clean_text(value):
     if value is None:
         return ""
+
     text = str(value).replace("\xa0", " ")
     return re.sub(r"\s+", " ", text).strip()
 
 
+def safe_float(value):
+    if value is None:
+        return None
+
+    if isinstance(value, (int, float)):
+        return float(value)
+
+    text = clean_text(value)
+
+    if not text or text in {"-", "N", "U"}:
+        return None
+
+    text = text.replace(",", "")
+
+    match = re.search(
+        r"[-+]?\d+(?:\.\d+)?",
+        text
+    )
+
+    if not match:
+        return None
+
+    try:
+        return float(match.group(0))
+    except Exception:
+        return None
+
+
 def version_key(version):
     try:
-        return tuple(int(x) for x in str(version).split("."))
+        return tuple(
+            int(part)
+            for part in str(version).split(".")
+        )
     except Exception:
         return (0,)
 
 
-def fetch_html(session, url, raise_for_status=True):
-    response = session.get(url, timeout=REQUEST_TIMEOUT)
+# ============================================================
+# HTTP
+# ============================================================
+
+def fetch_html(
+    session,
+    url,
+    params=None,
+    raise_for_status=True,
+):
+    response = session.get(
+        url,
+        params=params,
+        timeout=REQUEST_TIMEOUT,
+    )
 
     result = {
         "url": response.url,
         "status": response.status_code,
         "html": response.text,
         "bytes": len(response.content),
-        "content_type": response.headers.get("Content-Type", ""),
+        "content_type": response.headers.get(
+            "Content-Type",
+            ""
+        ),
     }
 
     if raise_for_status:
@@ -78,40 +140,70 @@ def fetch_html(session, url, raise_for_status=True):
     return result
 
 
+# ============================================================
+# VERSION DISCOVERY
+# ============================================================
+
 def build_group_url(group, version):
     group = normalize_group(group)
 
     if not group:
-        raise ValueError(f"Invalid group: {group}")
+        raise ValueError(
+            f"Invalid group: {group}"
+        )
 
-    return f"{DG_EDGE_BOP_URL}/{group}/{version}"
+    return (
+        f"{DG_EDGE_BOP_URL}/"
+        f"{group}/"
+        f"{version}"
+    )
 
 
 def extract_versions(html):
-    soup = BeautifulSoup(html, "html.parser")
+    soup = BeautifulSoup(
+        html,
+        "html.parser"
+    )
+
     versions = set()
 
-    for link in soup.find_all("a", href=True):
-        href = link.get("href", "")
+    for link in soup.find_all(
+        "a",
+        href=True
+    ):
+        href = link.get(
+            "href",
+            ""
+        )
 
         match = re.search(
-            r"/database/bop/(?:GR\.[1234]|GR\.B)/(\d+\.\d+)",
+            r"/database/bop/"
+            r"(?:GR\.[1234]|GR\.B)"
+            r"/(\d+\.\d+)",
             href,
             flags=re.IGNORECASE,
         )
 
         if match:
-            versions.add(match.group(1))
+            versions.add(
+                match.group(1)
+            )
 
     if not versions:
-        text = soup.get_text(" ", strip=True)
+        text = soup.get_text(
+            " ",
+            strip=True
+        )
 
         for match in re.finditer(
-            r"\b(?:Update|Version)\s+(\d+\.\d+)\b",
+            r"\b(?:Update|Version)\s+"
+            r"(\d+\.\d+)\b",
             text,
             flags=re.IGNORECASE,
         ):
-            versions.add(match.group(1))
+            versions.add(
+                match.group(1)
+            )
 
     return sorted(
         versions,
@@ -120,26 +212,39 @@ def extract_versions(html):
     )
 
 
-def looks_like_valid_bop_page(html, group):
+def looks_like_valid_bop_page(
+    html,
+    group,
+):
     if not html:
         return False
 
-    soup = BeautifulSoup(html, "html.parser")
+    soup = BeautifulSoup(
+        html,
+        "html.parser"
+    )
+
     text = clean_text(
-        soup.get_text(" ", strip=True)
+        soup.get_text(
+            " ",
+            strip=True
+        )
     ).lower()
 
-    group_text = normalize_group(group).lower()
+    group_text = (
+        normalize_group(group)
+        or ""
+    ).lower()
 
     signals = [
-        "full bop table",
         "max power",
         "max torque",
         "power/weight",
         "weight balance",
+        "drivetrain",
     ]
 
-    count = sum(
+    signal_count = sum(
         1
         for signal in signals
         if signal in text
@@ -147,11 +252,15 @@ def looks_like_valid_bop_page(html, group):
 
     return (
         group_text in text
-        and count >= 2
+        and signal_count >= 3
     )
 
 
-def probe_versions(session, group, versions):
+def probe_versions(
+    session,
+    group,
+    versions,
+):
     probes = []
 
     for version in versions:
@@ -201,59 +310,75 @@ def probe_versions(session, group, versions):
     return None, None, probes
 
 
+# ============================================================
+# SPEED CONTROLS
+# ============================================================
+
 def detect_speed_controls(html):
-    soup = BeautifulSoup(html, "html.parser")
+    soup = BeautifulSoup(
+        html,
+        "html.parser"
+    )
+
     controls = []
 
-    for tag in soup.find_all(
-        ["input", "button", "option", "label", "a"]
+    for input_tag in soup.find_all(
+        "input",
+        attrs={
+            "name": "speed"
+        }
     ):
-        text = clean_text(
-            tag.get_text(" ", strip=True)
+        controls.append(
+            {
+                "value": clean_text(
+                    input_tag.get(
+                        "value",
+                        ""
+                    )
+                ),
+                "id": clean_text(
+                    input_tag.get(
+                        "id",
+                        ""
+                    )
+                ),
+                "checked": (
+                    input_tag.has_attr(
+                        "checked"
+                    )
+                ),
+            }
         )
-
-        value = clean_text(
-            tag.get("value", "")
-        )
-
-        name = clean_text(
-            tag.get("name", "")
-        )
-
-        identifier = clean_text(
-            tag.get("id", "")
-        )
-
-        combined = (
-            f"{text} {value} {name} {identifier}"
-        ).lower()
-
-        if any(
-            token in combined
-            for token in [
-                "high",
-                "mid",
-                "medium",
-                "low",
-            ]
-        ):
-            controls.append(
-                {
-                    "tag": tag.name,
-                    "text": text,
-                    "value": value,
-                    "name": name,
-                    "id": identifier,
-                    "type": tag.get("type"),
-                }
-            )
 
     return controls
 
 
+def selected_speed_from_html(html):
+    controls = detect_speed_controls(
+        html
+    )
+
+    for control in controls:
+        if control["checked"]:
+            return (
+                control["value"]
+                .strip()
+                .upper()
+            )
+
+    return None
+
+
+# ============================================================
+# TABLE DISCOVERY
+# ============================================================
+
 def score_table(table):
     text = clean_text(
-        table.get_text(" ", strip=True)
+        table.get_text(
+            " ",
+            strip=True
+        )
     ).lower()
 
     signals = [
@@ -277,22 +402,34 @@ def score_table(table):
 
 
 def find_bop_table(html):
-    soup = BeautifulSoup(html, "html.parser")
-    tables = soup.find_all("table")
+    soup = BeautifulSoup(
+        html,
+        "html.parser"
+    )
+
+    tables = soup.find_all(
+        "table"
+    )
 
     if not tables:
         return None
 
     scored = sorted(
         (
-            (score_table(table), table)
+            (
+                score_table(table),
+                table,
+            )
             for table in tables
         ),
         key=lambda item: item[0],
         reverse=True,
     )
 
-    if not scored or scored[0][0] < 10:
+    if (
+        not scored
+        or scored[0][0] < 10
+    ):
         return None
 
     return scored[0][1]
@@ -301,24 +438,67 @@ def find_bop_table(html):
 def extract_rows(table):
     rows = []
 
-    for tr in table.find_all("tr"):
+    if table is None:
+        return rows
+
+    for tr in table.find_all(
+        "tr"
+    ):
         cells = [
             clean_text(
-                cell.get_text(" ", strip=True)
+                cell.get_text(
+                    " ",
+                    strip=True
+                )
             )
             for cell in tr.find_all(
-                ["th", "td"]
+                [
+                    "th",
+                    "td",
+                ]
             )
         ]
 
         if cells:
-            rows.append(cells)
+            rows.append(
+                cells
+            )
 
     return rows
 
 
+# ============================================================
+# CAR PARSER
+#
+# V1.1 discovery:
+# [00] blank
+# [01] car name
+# [03] current PP
+# [06] current power HP
+# [09] current torque Nm
+# [12] current weight KG
+# [15] current HP/T
+# [18] current KG/HP
+# [21] current weight balance
+# [23] current 0-400
+# [26] current 0-1000
+# [29] current 100-150
+# [32] current low-speed stability
+# [35] current high-speed stability
+# [37] current Rot G 60
+# [40] current Rot G 120
+# [42] current Rot G 240
+# [50] powertrain
+# [51] aspiration
+# [52] drivetrain
+# [53] displacement
+# [54] engine model
+# ============================================================
+
 def looks_like_car_name(value):
-    text = clean_text(value)
+    text = clean_text(
+        value
+    )
 
     if not text:
         return False
@@ -326,70 +506,131 @@ def looks_like_car_name(value):
     lowered = text.lower()
 
     exclusions = [
+        "car",
         "prev.",
         "curr.",
         "max power",
         "max torque",
         "weight",
         "power/weight",
-        "acc.",
+        "weight balance",
         "stability",
         "rot. g",
         "powertrain",
         "aspiration",
         "drivetrain",
         "engine model",
-        "full bop table",
-        "bop ranking",
     ]
 
     if any(
-        term in lowered
+        lowered == term
+        or term in lowered
         for term in exclusions
     ):
         return False
 
-    if text in {"Car", "PP", "Î"}:
-        return False
-
     return bool(
-        re.search(r"[A-Za-z]", text)
+        re.search(
+            r"[A-Za-z]",
+            text
+        )
     )
 
 
-def candidate_car_rows(rows):
-    output = []
+def parse_current_car_row(row):
+    if len(row) < 55:
+        return None
 
-    for index, row in enumerate(rows):
-        if len(row) < 10:
-            continue
+    car = clean_text(
+        row[1]
+    )
 
-        first = clean_text(row[0])
+    if not looks_like_car_name(
+        car
+    ):
+        return None
 
-        if looks_like_car_name(first):
-            output.append(
-                {
-                    "row_index": index,
-                    "car": first,
-                    "cells": row,
-                }
+    return {
+        "car": car,
+        "pp": safe_float(row[3]),
+        "power_hp": safe_float(row[6]),
+        "torque_nm": safe_float(row[9]),
+        "weight_kg": safe_float(row[12]),
+        "power_weight_hp_t": safe_float(row[15]),
+        "weight_power_kg_hp": safe_float(row[18]),
+        "weight_balance": clean_text(row[21]),
+        "acceleration_0_400": safe_float(row[23]),
+        "acceleration_0_1000": safe_float(row[26]),
+        "acceleration_100_150": safe_float(row[29]),
+        "stability_low": clean_text(row[32]),
+        "stability_high": clean_text(row[35]),
+        "rotational_g_60": safe_float(row[37]),
+        "rotational_g_120": safe_float(row[40]),
+        "rotational_g_240": safe_float(row[42]),
+        "powertrain": clean_text(row[50]),
+        "aspiration": clean_text(row[51]),
+        "drivetrain": clean_text(row[52]),
+        "displacement": clean_text(row[53]),
+        "engine_model": clean_text(row[54]),
+    }
+
+
+def parse_current_cars(rows):
+    cars = []
+
+    for row in rows:
+        parsed = parse_current_car_row(
+            row
+        )
+
+        if parsed:
+            cars.append(
+                parsed
             )
 
-    return output
+    return cars
 
 
-def save_raw_html(group, version, html):
+def build_signature(cars):
+    return [
+        (
+            car["car"],
+            car["pp"],
+            car["power_hp"],
+            car["weight_kg"],
+        )
+        for car in cars[:5]
+    ]
+
+
+# ============================================================
+# RAW HTML
+# ============================================================
+
+def save_raw_html(
+    group,
+    version,
+    speed,
+    html,
+):
     RAW_DIR.mkdir(
         parents=True,
         exist_ok=True,
     )
 
     group_safe = (
-        group.replace(".", "").lower()
+        group
+        .replace(".", "")
+        .lower()
     )
 
-    path = RAW_DIR / (
-        f"{group_safe}_{version}.html"
+    path = (
+        RAW_DIR
+        / (
+            f"{group_safe}_"
+            f"{version}_"
+            f"{speed.lower()}.html"
+        )
     )
 
     path.write_text(
@@ -399,6 +640,81 @@ def save_raw_html(group, version, html):
 
     return path
 
+
+# ============================================================
+# HIGH / LOW / MID TEST
+# ============================================================
+
+def collect_speed_variant(
+    session,
+    base_url,
+    version,
+    speed_key,
+    speed_value,
+):
+    result = fetch_html(
+        session,
+        base_url,
+        params={
+            "speed": speed_value
+        },
+        raise_for_status=False,
+    )
+
+    selected_speed = None
+    rows = []
+    cars = []
+    raw_path = None
+
+    if result["status"] == 200:
+        selected_speed = (
+            selected_speed_from_html(
+                result["html"]
+            )
+        )
+
+        table = find_bop_table(
+            result["html"]
+        )
+
+        if table is not None:
+            rows = extract_rows(
+                table
+            )
+
+            cars = parse_current_cars(
+                rows
+            )
+
+        raw_path = save_raw_html(
+            GROUP,
+            version,
+            speed_key,
+            result["html"],
+        )
+
+    return {
+        "requested_speed": speed_key,
+        "requested_value": speed_value,
+        "selected_speed": selected_speed,
+        "status": result["status"],
+        "url": result["url"],
+        "bytes": result["bytes"],
+        "rows": len(rows),
+        "cars": cars,
+        "car_count": len(cars),
+        "signature": build_signature(cars),
+        "raw_path": (
+            str(raw_path)
+            if raw_path
+            else None
+        ),
+    }
+
+
+# ============================================================
+# MAIN
+# ============================================================
 
 def main():
     DATA_DIR.mkdir(
@@ -417,9 +733,13 @@ def main():
     )
 
     print()
-    print(f"GT7 BOP LAB V{VERSION}")
+    print(
+        f"GT7 BOP LAB V{VERSION}"
+    )
     print(SEP)
-    print("Experimental pipeline.")
+    print(
+        "Experimental pipeline."
+    )
     print(
         "The production Daily Race C agent "
         "is NOT modified."
@@ -427,9 +747,17 @@ def main():
     print()
 
     session = requests.Session()
-    session.headers.update(HEADERS)
+    session.headers.update(
+        HEADERS
+    )
 
-    print("READING DG EDGE BOP INDEX")
+    # ========================================================
+    # INDEX
+    # ========================================================
+
+    print(
+        "READING DG EDGE BOP INDEX"
+    )
     print(SUB)
 
     index_result = fetch_html(
@@ -447,7 +775,9 @@ def main():
     )
 
     versions = extract_versions(
-        index_result["html"]
+        index_result[
+            "html"
+        ]
     )
 
     print(
@@ -460,16 +790,24 @@ def main():
             "No BoP versions discovered."
         )
 
+    # ========================================================
+    # VERSION PROBE
+    # ========================================================
+
     print()
-    print("PROBING GR.3 VERSIONS")
+    print(
+        "PROBING GR.3 VERSIONS"
+    )
     print(SUB)
 
-    selected_version, source, probes = (
-        probe_versions(
-            session,
-            GROUP,
-            versions,
-        )
+    (
+        selected_version,
+        source,
+        probes,
+    ) = probe_versions(
+        session,
+        GROUP,
+        versions,
     )
 
     if not selected_version:
@@ -478,8 +816,15 @@ def main():
             "BoP page was found."
         )
 
+    base_url = build_group_url(
+        GROUP,
+        selected_version
+    )
+
     print()
-    print("SELECTED BOP PAGE")
+    print(
+        "SELECTED BOP VERSION"
+    )
     print(SUB)
     print(
         f"Group             : {GROUP}"
@@ -489,67 +834,72 @@ def main():
         f"{selected_version}"
     )
     print(
-        f"URL               : "
-        f"{source['url']}"
+        f"Base URL          : "
+        f"{base_url}"
     )
+
+    # ========================================================
+    # SPEED VARIANTS
+    # ========================================================
+
+    variants = []
+
+    print()
     print(
-        f"HTTP status       : "
-        f"{source['status']}"
+        "TESTING SPEED VARIANTS"
     )
-    print(
-        f"Response bytes    : "
-        f"{source['bytes']:,}"
-    )
+    print(SUB)
 
-    raw_path = save_raw_html(
-        GROUP,
-        selected_version,
-        source["html"],
-    )
+    for (
+        speed_key,
+        speed_value,
+    ) in SPEED_CLASSES.items():
 
-    print(
-        f"Saved raw HTML    : "
-        f"{raw_path}"
-    )
-
-    controls = detect_speed_controls(
-        source["html"]
-    )
-
-    table = find_bop_table(
-        source["html"]
-    )
-
-    if table is None:
-        raise RuntimeError(
-            "Could not identify the "
-            "Full BoP table."
+        variant = collect_speed_variant(
+            session=session,
+            base_url=base_url,
+            version=selected_version,
+            speed_key=speed_key,
+            speed_value=speed_value,
         )
 
-    rows = extract_rows(table)
-    cars = candidate_car_rows(rows)
+        variants.append(
+            variant
+        )
 
-    print(
-        f"Table rows        : {len(rows)}"
-    )
-    print(
-        f"Candidate cars    : {len(cars)}"
-    )
-    print(
-        f"Speed controls    : "
-        f"{len(controls)}"
-    )
+        print(
+            f"{speed_key:<4} | "
+            f"HTTP {variant['status']} | "
+            f"selected={variant['selected_speed']} | "
+            f"rows={variant['rows']} | "
+            f"cars={variant['car_count']} | "
+            f"{variant['url']}"
+        )
+
+        time.sleep(
+            REQUEST_DELAY_SECONDS
+        )
+
+    # ========================================================
+    # DATABASE STILL READ-ONLY
+    # ========================================================
 
     database = load_database()
-    save_database(database)
+    save_database(
+        database
+    )
 
     stats = database_stats()
     validation = validate_database()
 
+    # ========================================================
+    # REPORT
+    # ========================================================
+
     lines = []
 
     lines.append(
-        "GT7 BOP LAB - STRUCTURE DIAGNOSTIC"
+        "GT7 BOP LAB V1.2 - SPEED CLASS DIAGNOSTIC"
     )
     lines.append(SEP)
     lines.append(
@@ -563,12 +913,13 @@ def main():
         f"{selected_version}"
     )
     lines.append(
-        "Selection rule     : "
-        "newest working GR.3 page"
+        "Production modified: NO"
     )
-    lines.append("")
 
-    lines.append("VERSION PROBES")
+    lines.append("")
+    lines.append(
+        "VERSION PROBES"
+    )
     lines.append(SUB)
 
     for probe in probes:
@@ -580,76 +931,140 @@ def main():
         )
 
     lines.append("")
-    lines.append("SPEED CONTROLS FOUND")
-    lines.append(SUB)
     lines.append(
-        f"Controls           : "
-        f"{len(controls)}"
+        "SPEED VARIANT TEST"
     )
-
-    for control in controls[:30]:
-        lines.append(str(control))
-
-    lines.append("")
-    lines.append("TABLE STRUCTURE")
-    lines.append(SUB)
-    lines.append(
-        f"Rows               : {len(rows)}"
-    )
-    lines.append(
-        f"Candidate cars     : {len(cars)}"
-    )
-
-    lines.append("")
-    lines.append("FIRST 8 RAW ROWS")
     lines.append(SUB)
 
-    for index, row in enumerate(rows[:8]):
+    for variant in variants:
         lines.append(
-            f"ROW {index:02d} "
-            f"({len(row)} cells)"
+            f"{variant['requested_speed']:<4} | "
+            f"HTTP {variant['status']:<3} | "
+            f"selected={variant['selected_speed']} | "
+            f"rows={variant['rows']} | "
+            f"cars={variant['car_count']}"
+        )
+        lines.append(
+            f"URL: {variant['url']}"
+        )
+        lines.append(
+            f"Raw: {variant['raw_path']}"
+        )
+        lines.append(
+            "Signature:"
         )
 
-        for cell_index, value in enumerate(row):
+        for item in variant[
+            "signature"
+        ]:
             lines.append(
-                f"  [{cell_index:02d}] {value}"
+                f"  {item[0]} | "
+                f"PP {item[1]} | "
+                f"HP {item[2]} | "
+                f"KG {item[3]}"
             )
 
-    lines.append("")
-    lines.append("FIRST 5 CAR CANDIDATES")
+        lines.append("")
+
+    lines.append(
+        "FIRST 5 PARSED CARS BY SPEED"
+    )
     lines.append(SUB)
 
-    for candidate in cars[:5]:
+    for variant in variants:
         lines.append(
-            f"ROW {candidate['row_index']} | "
-            f"{candidate['car']} | "
-            f"{len(candidate['cells'])} cells"
+            f"[{variant['requested_speed']}]"
         )
 
-        for cell_index, value in enumerate(
-            candidate["cells"]
-        ):
+        for car in variant[
+            "cars"
+        ][:5]:
             lines.append(
-                f"  [{cell_index:02d}] {value}"
+                f"{car['car']} | "
+                f"PP {car['pp']} | "
+                f"HP {car['power_hp']} | "
+                f"Torque {car['torque_nm']} | "
+                f"KG {car['weight_kg']} | "
+                f"Balance {car['weight_balance']} | "
+                f"{car['drivetrain']} | "
+                f"{car['aspiration']}"
             )
 
-    lines.append("")
-    lines.append("IMPORTANT")
+        lines.append("")
+
+    signatures = [
+        tuple(
+            variant[
+                "signature"
+            ]
+        )
+        for variant in variants
+    ]
+
+    unique_signatures = len(
+        set(
+            signatures
+        )
+    )
+
+    lines.append(
+        "SPEED-SWITCH VALIDATION"
+    )
     lines.append(SUB)
     lines.append(
-        "V1.1 still does NOT insert "
-        "BoP car records."
+        f"Distinct signatures: "
+        f"{unique_signatures} / "
+        f"{len(variants)}"
+    )
+
+    if unique_signatures == 3:
+        lines.append(
+            "Result             : PASSED - "
+            "HIGH/LOW/MID returned distinct tables."
+        )
+    elif unique_signatures > 1:
+        lines.append(
+            "Result             : PARTIAL - "
+            "some speed variants differ."
+        )
+    else:
+        lines.append(
+            "Result             : FAILED/INCONCLUSIVE - "
+            "all speed requests returned the same table."
+        )
+
+    lines.append("")
+    lines.append(
+        "DATABASE"
+    )
+    lines.append(SUB)
+    lines.append(
+        f"Records            : "
+        f"{stats['records']}"
     )
     lines.append(
-        "It resolves the newest working "
-        "GR.3 version first."
+        f"Validation         : "
+        f"{'PASSED' if validation['valid'] else 'FAILED'}"
+    )
+
+    lines.append("")
+    lines.append(
+        "IMPORTANT"
+    )
+    lines.append(SUB)
+    lines.append(
+        "V1.2 intentionally does not write "
+        "BoP car records yet."
     )
     lines.append(
-        "Production Daily Race C remains untouched."
+        "Once HIGH/LOW/MID switching is proven, "
+        "V1.3 will persist all three tables."
     )
     lines.append(SEP)
 
-    report = "\n".join(lines)
+    report = "\n".join(
+        lines
+    )
 
     REPORT_FILE.write_text(
         report,
@@ -658,21 +1073,13 @@ def main():
 
     print()
     print(report)
-
     print()
-    print("DATABASE")
-    print(SUB)
     print(
-        f"Records            : "
-        f"{stats['records']}"
-    )
-    print(
-        f"Validation         : "
-        f"{'PASSED' if validation['valid'] else 'FAILED'}"
+        f"Saved report      : "
+        f"{REPORT_FILE}"
     )
     print(SEP)
 
 
 if __name__ == "__main__":
     main()
-    
