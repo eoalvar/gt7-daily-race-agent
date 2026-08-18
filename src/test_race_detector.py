@@ -6523,30 +6523,159 @@ def main():
     # EMAIL SUBJECT
     # ========================================================
 
-    if weekly_finalized_now:
+    # Date the current Daily Race C started, e.g. 17Aug26.
+    if start_date:
 
-        subject = (
-            "GT7 Race C FINAL"
+        subject_date = start_date.strftime(
+            "%d%b%y"
         )
 
     else:
 
-        subject = (
-            "GT7 Race C"
+        subject_date = "N/A"
+
+    # Car group, e.g. Gr.3 / Gr.4.
+    group_match = re.search(
+        r"\bGr\.\s*(\d+)\b",
+        race_c_text,
+        flags=re.IGNORECASE
+    )
+
+    if group_match:
+
+        subject_group = (
+            f"Gr.{group_match.group(1)}"
         )
+
+    else:
+
+        subject_group = "N/A"
+
+    # Extract the circuit from the GTSH race description.
+    # Typical format after "Daily Race C":
+    #   i 17:29 Yas Marina Circuit Alfaq16 - Hyundai Genesis Gr.3 ...
+    # The token immediately before " - <car>" is normally the
+    # current leaderboard leader. We already know that leader from
+    # the ranking, so remove its displayed name/PSN from the suffix.
+    subject_circuit = "N/A"
+
+    circuit_tail_match = re.search(
+        r"Daily\s+Race\s+C\s+"
+        r"(?:i\s+\d{1,2}:\d{2}\s+)?"
+        r"(.+?)\s+-\s+",
+        race_c_text,
+        flags=re.IGNORECASE
+    )
+
+    if circuit_tail_match:
+
+        circuit_with_driver = (
+            circuit_tail_match
+            .group(1)
+            .strip()
+        )
+
+        leader_identifiers = [
+            wr_user.get(
+                "nick_name"
+            ),
+            wr_user.get(
+                "np_online_id"
+            )
+        ]
+
+        for identifier in leader_identifiers:
+
+            if not isinstance(
+                identifier,
+                str
+            ):
+                continue
+
+            identifier = identifier.strip()
+
+            if not identifier:
+                continue
+
+            if circuit_with_driver.lower().endswith(
+                identifier.lower()
+            ):
+
+                subject_circuit = (
+                    circuit_with_driver[
+                        :-len(identifier)
+                    ]
+                    .strip()
+                )
+
+                break
+
+        # Fallback: if the leader name in the page text does not
+        # exactly match the ranking object, remove the final token.
+        # This is preferable to including the driver in the circuit.
+        if subject_circuit == "N/A":
+
+            parts = circuit_with_driver.rsplit(
+                " ",
+                1
+            )
+
+            if len(parts) == 2:
+
+                subject_circuit = parts[0].strip()
+
+            elif circuit_with_driver:
+
+                subject_circuit = circuit_with_driver
 
     if my_result:
 
-        subject += (
-            f" | #{my_result['rank']:,}"
-            f" | G {my_result['position_score']:.2f}"
-            f" | E {my_result['elite_score']:.2f}"
-            f" | Top {my_result['top_percent']:.1f}%"
+        subject_rank = (
+            f"#{my_result['rank']:,}"
         )
+
+        # my_result['wr_percentage'] is the user's lap as a
+        # percentage of the world-record lap, e.g. 103.405.
+        # The email should show only how much slower it is: +3.405%.
+        subject_wr_delta = (
+            my_result[
+                "wr_percentage"
+            ]
+            - 100.0
+        )
+
+        subject_wr = (
+            f"WR +{subject_wr_delta:.3f}%"
+        )
+
+        # Percentage of all ranked drivers ahead of the user.
+        subject_percentile = (
+            f"Top {my_result['top_percent']:.2f}%"
+        )
+
+    else:
+
+        subject_rank = "Ranking N/A"
+        subject_wr = "WR N/A"
+        subject_percentile = "Top N/A"
+
+    subject = (
+        f"Daily C"
+        f" | {subject_date}"
+        f" | {subject_circuit}"
+        f" | {subject_group}"
+        f" | {subject_rank}"
+        f" | {subject_wr}"
+        f" | {subject_percentile}"
+    )
 
     EMAIL_SUBJECT_FILE.write_text(
         subject,
         encoding="utf-8"
+    )
+
+    print(
+        f"Email subject    : {subject}"
     )
 
     # ========================================================
