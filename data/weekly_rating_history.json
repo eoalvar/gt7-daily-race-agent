@@ -762,5 +762,27 @@
     "car_code": 3405,
     "country": "BR",
     "driver_rating": 4
+  },
+  {
+    "participated": true,
+    "week_start": "2026-08-17",
+    "final_snapshot": "2026-08-18T14:07:51.876292-03:00",
+    "finalization_mode": "backfill_last_available_snapshot",
+    "race": "C Gr.3 Running Race Control 4 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit Alfaq16 - Hyundai Genesis Gr.3 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dAAG8BB1VWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "general_score": 7.084468664850137,
+    "elite_score": 1.4544842918801237,
+    "composite_rating": 4.832474915662132,
+    "position": 1392,
+    "total_drivers": 4772,
+    "top_percent": 29.170159262363786,
+    "percentile_ahead": 70.84468664850137,
+    "wr_percentage": 103.40415625811418,
+    "laptime": "1:55.489",
+    "score_ms": 115489,
+    "car": "Audi R8 LMS Evo '19",
+    "car_code": 3405,
+    "country": "BR",
+    "driver_rating": 4
   }
 ]
