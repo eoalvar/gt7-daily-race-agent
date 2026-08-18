@@ -3904,85 +3904,354 @@ def main():
         cars_updated_this_run = 0
 
     # ========================================================
-    # EXTRACT RANKING
+    # EXTRACT RANKING - LIVE PAGE_DATA FIRST
     # ========================================================
 
-    marker = "const initialRanking = "
-
-    start = html.find(
-        marker
-    )
+    # GTSH may embed a stale initialRanking in the leaderboard HTML.
+    # The page_data endpoint is the live source used by the site itself,
+    # so it is now the PRIMARY source. initialRanking and update=1 are
+    # retained only as fallbacks.
 
     ranking = None
-    source_mode = "initialRanking"
+    source_mode = None
+    live_total_drivers = None
 
-    if start != -1:
+    def extract_page_data_payload(payload):
 
-        start += len(
-            marker
+        entries = None
+        total = None
+        returned_offset = None
+        returned_limit = None
+        has_more = None
+
+        if isinstance(payload, list):
+            entries = payload
+
+        elif isinstance(payload, dict):
+
+            # Known/likely list keys used by leaderboard APIs.
+            for key in (
+                "board",
+                "ranking",
+                "data",
+                "entries",
+                "results",
+                "drivers"
+            ):
+                value = payload.get(key)
+                if isinstance(value, list):
+                    entries = value
+                    break
+
+            # Some responses wrap the useful object one level deeper.
+            if entries is None:
+                for wrapper_key in (
+                    "page",
+                    "result",
+                    "payload"
+                ):
+                    wrapper = payload.get(wrapper_key)
+                    if not isinstance(wrapper, dict):
+                        continue
+
+                    for key in (
+                        "board",
+                        "ranking",
+                        "data",
+                        "entries",
+                        "results",
+                        "drivers"
+                    ):
+                        value = wrapper.get(key)
+                        if isinstance(value, list):
+                            entries = value
+                            payload = wrapper
+                            break
+
+                    if entries is not None:
+                        break
+
+            for key in (
+                "total",
+                "total_drivers",
+                "totalDrivers",
+                "count",
+                "recordsTotal"
+            ):
+                value = payload.get(key)
+                if isinstance(value, (int, float)):
+                    total = int(value)
+                    break
+
+            for key in ("offset", "start"):
+                value = payload.get(key)
+                if isinstance(value, (int, float)):
+                    returned_offset = int(value)
+                    break
+
+            for key in ("limit", "page_size", "pageSize"):
+                value = payload.get(key)
+                if isinstance(value, (int, float)):
+                    returned_limit = int(value)
+                    break
+
+            for key in ("has_more", "hasMore", "more"):
+                value = payload.get(key)
+                if isinstance(value, bool):
+                    has_more = value
+                    break
+
+        return (
+            entries,
+            total,
+            returned_offset,
+            returned_limit,
+            has_more
         )
 
-        decoder = json.JSONDecoder()
+    # --------------------------------------------------------
+    # 1. PRIMARY SOURCE: LIVE page_data=1
+    # --------------------------------------------------------
 
-        ranking, _ = decoder.raw_decode(
-            html[
-                start:
-            ].lstrip()
+    try:
+
+        live_ranking = []
+        seen_ranks = set()
+        offset = 0
+
+        # Ask for a large page. If GTSH caps the page size, the loop
+        # advances by the number of entries actually returned.
+        requested_limit = 1000
+        max_pages = 1000
+
+        for page_number in range(max_pages):
+
+            separator = (
+                "&"
+                if "?" in race_c_link
+                else "?"
+            )
+
+            page_url = (
+                race_c_link
+                + separator
+                + "page_data=1"
+                + f"&offset={offset}"
+                + f"&limit={requested_limit}"
+            )
+
+            page_response = session.get(
+                page_url,
+                timeout=60
+            )
+
+            page_response.raise_for_status()
+
+            page_payload = page_response.json()
+
+            (
+                page_entries,
+                page_total,
+                returned_offset,
+                returned_limit,
+                has_more
+            ) = extract_page_data_payload(
+                page_payload
+            )
+
+            if page_total is not None:
+                live_total_drivers = page_total
+
+            if not isinstance(page_entries, list):
+                raise RuntimeError(
+                    "page_data response did not contain a ranking list."
+                )
+
+            if not page_entries:
+                break
+
+            added_this_page = 0
+
+            for driver in page_entries:
+
+                if not isinstance(driver, dict):
+                    continue
+
+                rank = driver.get(
+                    "display_rank"
+                )
+
+                # Prefer rank as a stable deduplication key.
+                if isinstance(rank, (int, float)):
+                    rank_key = int(rank)
+
+                    if rank_key in seen_ranks:
+                        continue
+
+                    seen_ranks.add(rank_key)
+
+                live_ranking.append(driver)
+                added_this_page += 1
+
+            if added_this_page == 0:
+                break
+
+            # Stop when the server tells us that the complete live
+            # leaderboard has been collected.
+            if (
+                live_total_drivers is not None
+                and len(live_ranking) >= live_total_drivers
+            ):
+                break
+
+            if has_more is False:
+                break
+
+            # Advance using the number of records actually returned.
+            # This remains correct even if GTSH ignores/caps limit=1000.
+            next_offset = offset + len(page_entries)
+
+            if next_offset <= offset:
+                break
+
+            offset = next_offset
+
+        if live_ranking:
+
+            ranking = live_ranking
+            source_mode = "live_page_data"
+
+            print(
+                f"Leaderboard source: LIVE page_data | "
+                f"entries={len(ranking):,} | "
+                f"server_total={live_total_drivers}"
+            )
+
+    except Exception as exc:
+
+        print(
+            "WARNING: live page_data leaderboard failed: "
+            f"{exc}"
         )
+
+        ranking = None
+
+    # --------------------------------------------------------
+    # 2. FALLBACK: initialRanking embedded in HTML
+    # --------------------------------------------------------
 
     if not ranking:
 
-        source_mode = "update_endpoint"
+        marker = "const initialRanking = "
 
-        update_url = (
-            race_c_link
-            + (
-                "&update=1"
-                if "?" in race_c_link
-                else "?update=1"
-            )
+        start = html.find(
+            marker
         )
 
-        update_response = session.get(
-            update_url,
-            timeout=60
-        )
+        if start != -1:
 
-        update_response.raise_for_status()
+            try:
 
-        update_data = update_response.json()
-
-        if isinstance(
-            update_data,
-            list
-        ):
-
-            ranking = update_data
-
-        elif isinstance(
-            update_data,
-            dict
-        ):
-
-            candidate = (
-                update_data.get(
-                    "board"
+                start += len(
+                    marker
                 )
-                or update_data.get(
-                    "ranking"
+
+                decoder = json.JSONDecoder()
+
+                candidate_ranking, _ = decoder.raw_decode(
+                    html[
+                        start:
+                    ].lstrip()
+                )
+
+                if isinstance(candidate_ranking, list) and candidate_ranking:
+
+                    ranking = candidate_ranking
+                    source_mode = "initialRanking_fallback"
+
+                    print(
+                        "WARNING: using HTML initialRanking fallback | "
+                        f"entries={len(ranking):,}"
+                    )
+
+            except Exception as exc:
+
+                print(
+                    "WARNING: initialRanking fallback failed: "
+                    f"{exc}"
+                )
+
+    # --------------------------------------------------------
+    # 3. LAST FALLBACK: update=1 endpoint
+    # --------------------------------------------------------
+
+    if not ranking:
+
+        try:
+
+            update_url = (
+                race_c_link
+                + (
+                    "&update=1"
+                    if "?" in race_c_link
+                    else "?update=1"
                 )
             )
 
-            if isinstance(
-                candidate,
-                list
-            ):
-                ranking = candidate
+            update_response = session.get(
+                update_url,
+                timeout=60
+            )
+
+            update_response.raise_for_status()
+
+            update_data = update_response.json()
+
+            if isinstance(update_data, list):
+
+                ranking = update_data
+
+            elif isinstance(update_data, dict):
+
+                candidate = (
+                    update_data.get(
+                        "board"
+                    )
+                    or update_data.get(
+                        "ranking"
+                    )
+                    or update_data.get(
+                        "data"
+                    )
+                    or update_data.get(
+                        "entries"
+                    )
+                )
+
+                if isinstance(candidate, list):
+                    ranking = candidate
+
+            if ranking:
+
+                source_mode = "update_endpoint_fallback"
+
+                print(
+                    "WARNING: using update=1 fallback | "
+                    f"entries={len(ranking):,}"
+                )
+
+        except Exception as exc:
+
+            print(
+                "WARNING: update=1 fallback failed: "
+                f"{exc}"
+            )
 
     if not ranking:
 
         raise RuntimeError(
-            "Leaderboard contains no drivers."
+            "Leaderboard contains no drivers from live page_data, "
+            "initialRanking, or update=1."
         )
 
     ranking.sort(
