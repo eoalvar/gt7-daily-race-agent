@@ -8,7 +8,7 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse, parse_qs, urlencode, urlunparse
 from collections import Counter
 
 from car_database import (
@@ -394,9 +394,326 @@ def validate_selected_race_c(
     return True
 
 
+def build_page_data_probe_url(
+    event_url,
+    offset=0,
+    limit=1
+):
+
+    parsed = urlparse(
+        event_url
+    )
+
+    path = parsed.path.rstrip(
+        "/"
+    )
+
+    if path.endswith(
+        "/daily/leaderboard"
+    ):
+        path += "/"
+
+    query = parse_qs(
+        parsed.query,
+        keep_blank_values=True
+    )
+
+    query["page_data"] = ["1"]
+    query["offset"] = [str(offset)]
+    query["limit"] = [str(limit)]
+
+    return urlunparse(
+        (
+            parsed.scheme,
+            parsed.netloc,
+            path,
+            parsed.params,
+            urlencode(
+                query,
+                doseq=True
+            ),
+            parsed.fragment
+        )
+    )
+
+
+def probe_race_c_candidate(
+    session,
+    candidate
+):
+
+    result = {
+        "ok": False,
+        "total": 0,
+        "leader_score": None,
+        "leader_psn": None,
+        "error": None
+    }
+
+    try:
+
+        probe_url = build_page_data_probe_url(
+            candidate["url"],
+            offset=0,
+            limit=1
+        )
+
+        response = session.get(
+            probe_url,
+            timeout=30,
+            headers={
+                **HEADERS,
+                "Accept": "application/json"
+            }
+        )
+
+        response.raise_for_status()
+
+        payload = response.json()
+
+        if not isinstance(
+            payload,
+            dict
+        ):
+
+            result["error"] = (
+                "page_data response is not a JSON object"
+            )
+
+            return result
+
+        board = payload.get(
+            "board"
+        )
+
+        if not isinstance(
+            board,
+            list
+        ):
+
+            result["error"] = (
+                "page_data response has no board array"
+            )
+
+            return result
+
+        total = payload.get(
+            "total"
+        )
+
+        try:
+            total = int(total)
+        except Exception:
+            total = len(board)
+
+        result["ok"] = True
+        result["total"] = total
+
+        if board:
+
+            leader = board[0]
+
+            result["leader_score"] = (
+                leader.get(
+                    "score"
+                )
+            )
+
+            result["leader_psn"] = (
+                leader
+                .get(
+                    "user",
+                    {}
+                )
+                .get(
+                    "np_online_id"
+                )
+            )
+
+        return result
+
+    except Exception as error:
+
+        result["error"] = str(
+            error
+        )
+
+        return result
+
+
+def select_largest_live_race_c_candidate(
+    session,
+    candidates,
+    detection_mode
+):
+
+    if not candidates:
+        return None
+
+    print(
+        "=" * 78
+    )
+
+    print(
+        "RACE C CANDIDATE PROBE"
+    )
+
+    print(
+        "=" * 78
+    )
+
+    probed = []
+
+    for index, candidate in enumerate(
+        candidates,
+        start=1
+    ):
+
+        probe = probe_race_c_candidate(
+            session,
+            candidate
+        )
+
+        candidate = dict(
+            candidate
+        )
+
+        candidate["probe"] = probe
+
+        probed.append(
+            candidate
+        )
+
+        if probe[
+            "leader_score"
+        ] is not None:
+
+            leader_text = score_to_laptime(
+                probe[
+                    "leader_score"
+                ]
+            )
+
+        else:
+            leader_text = "N/A"
+
+        status_text = (
+            "OK"
+            if probe["ok"]
+            else "FAILED"
+        )
+
+        print(
+            f"Candidate {index:<3}    : "
+            f"drivers={probe['total']:,} | "
+            f"leader={leader_text} | "
+            f"{status_text}"
+        )
+
+        print(
+            f"Description      : "
+            f"{candidate['text']}"
+        )
+
+        print(
+            f"URL              : "
+            f"{candidate['url']}"
+        )
+
+        if probe.get(
+            "error"
+        ):
+
+            print(
+                f"Probe error      : "
+                f"{probe['error']}"
+            )
+
+        print()
+
+    valid = [
+        candidate
+        for candidate in probed
+        if (
+            candidate[
+                "probe"
+            ][
+                "ok"
+            ]
+            and candidate[
+                "probe"
+            ][
+                "total"
+            ] > 0
+        )
+    ]
+
+    if not valid:
+
+        print(
+            "No candidate returned a valid live leaderboard."
+        )
+
+        print(
+            "=" * 78
+        )
+
+        return None
+
+    valid.sort(
+        key=lambda candidate:
+            (
+                candidate[
+                    "probe"
+                ][
+                    "total"
+                ],
+                candidate[
+                    "date"
+                ]
+                or datetime.min.replace(
+                    tzinfo=SAO_PAULO
+                )
+            ),
+        reverse=True
+    )
+
+    selected = dict(
+        valid[0]
+    )
+
+    selected[
+        "detection_mode"
+    ] = detection_mode
+
+    selected[
+        "candidate_probe_total"
+    ] = selected[
+        "probe"
+    ][
+        "total"
+    ]
+
+    print(
+        f"SELECTED         : "
+        f"{selected['candidate_probe_total']:,} drivers"
+    )
+
+    print(
+        "Selection rule   : largest valid live Daily Race C leaderboard"
+    )
+
+    print(
+        "=" * 78
+    )
+
+    return selected
+
+
 def find_current_race_c(
     soup,
-    now
+    now,
+    session=None
 ):
 
     candidates = []
@@ -440,9 +757,6 @@ def find_current_race_c(
         block_text = local_block[
             "text"
         ]
-
-        # Important additional safety rule:
-        # local block must contain only Race C.
 
         letters = race_letters_in_text(
             block_text
@@ -507,10 +821,6 @@ def find_current_race_c(
             "No unambiguous Daily Race C candidates were found."
         )
 
-    # ========================================================
-    # 1. Prefer explicit RUNNING Race C
-    # ========================================================
-
     running_candidates = [
         candidate
         for candidate in candidates
@@ -525,6 +835,22 @@ def find_current_race_c(
     ]
 
     if running_candidates:
+
+        if session is not None:
+
+            selected = select_largest_live_race_c_candidate(
+                session,
+                running_candidates,
+                "explicit_running_largest_live_board"
+            )
+
+            if selected:
+
+                validate_selected_race_c(
+                    selected
+                )
+
+                return selected
 
         running_candidates.sort(
             key=lambda candidate:
@@ -551,17 +877,13 @@ def find_current_race_c(
 
         selected[
             "detection_mode"
-        ] = "explicit_running_local_block"
+        ] = "explicit_running_local_block_fallback"
 
         validate_selected_race_c(
             selected
         )
 
         return selected
-
-    # ========================================================
-    # 2. Current week date
-    # ========================================================
 
     current_monday = monday_of_week(
         now
@@ -586,6 +908,22 @@ def find_current_race_c(
 
     if current_week_candidates:
 
+        if session is not None:
+
+            selected = select_largest_live_race_c_candidate(
+                session,
+                current_week_candidates,
+                "current_week_largest_live_board"
+            )
+
+            if selected:
+
+                validate_selected_race_c(
+                    selected
+                )
+
+                return selected
+
         current_week_candidates.sort(
             key=lambda candidate:
                 candidate.get(
@@ -602,17 +940,13 @@ def find_current_race_c(
 
         selected[
             "detection_mode"
-        ] = "current_week_local_block"
+        ] = "current_week_local_block_fallback"
 
         validate_selected_race_c(
             selected
         )
 
         return selected
-
-    # ========================================================
-    # 3. Latest non-future Race C
-    # ========================================================
 
     valid_past = [
         candidate
@@ -632,6 +966,22 @@ def find_current_race_c(
 
     if valid_past:
 
+        if session is not None:
+
+            selected = select_largest_live_race_c_candidate(
+                session,
+                valid_past,
+                "latest_non_future_largest_live_board"
+            )
+
+            if selected:
+
+                validate_selected_race_c(
+                    selected
+                )
+
+                return selected
+
         valid_past.sort(
             key=lambda candidate:
                 candidate[
@@ -648,7 +998,7 @@ def find_current_race_c(
 
         selected[
             "detection_mode"
-        ] = "latest_non_future_local_block"
+        ] = "latest_non_future_local_block_fallback"
 
         validate_selected_race_c(
             selected
@@ -3774,7 +4124,8 @@ def main():
 
     race_c = find_current_race_c(
         soup,
-        now
+        now,
+        session=session
     )
 
     # Final hard stop before any leaderboard request.
@@ -5580,107 +5931,6 @@ def main():
             f"OI {car['overperformance_index']:.2f} | "
             f"Top100 {car['top100']} | "
             f"Top1000 {car['top1000']} | "
-            f"{car['confidence']}"
-        )
-
-    # ========================================================
-    # BRAKE BIAS
-    # ========================================================
-
-    lines.append("")
-    lines.append(
-        "YOUR BRAKE BIAS STARTING POINT"
-    )
-
-    lines.append(
-        "Convention: negative = more front, "
-        "positive = more rear."
-    )
-
-    if (
-        my_result
-        and my_brake_bias
-    ):
-
-        lines.append(
-            f"Car             : "
-            f"{my_result['car']}"
-        )
-
-        lines.append(
-            f"Drivetrain      : "
-            f"{my_brake_bias['layout']}"
-        )
-
-        lines.append(
-            f"Qualifying range: "
-            f"{format_bb_range(my_brake_bias['qualifying_range'])}"
-        )
-
-        lines.append(
-            f"Qualifying start: "
-            f"{format_bb_value(my_brake_bias['qualifying_start'])}"
-        )
-
-        lines.append(
-            f"Race range      : "
-            f"{format_bb_range(my_brake_bias['race_range'])}"
-        )
-
-        lines.append(
-            f"Race start      : "
-            f"{format_bb_value(my_brake_bias['race_start'])}"
-        )
-
-        lines.append(
-            f"Confidence      : "
-            f"{my_brake_bias['confidence']}"
-        )
-
-        lines.append(
-            f"Wear adjustment : "
-            f"{my_brake_bias['wear_adjustment']}"
-        )
-
-        lines.append(
-            f"Rationale       : "
-            f"{my_brake_bias['reason']}"
-        )
-
-    else:
-
-        lines.append(
-            "No personal Brake Bias recommendation available."
-        )
-
-    lines.append("")
-    lines.append(
-        "BRAKE BIAS - TOP 5 USED CARS"
-    )
-
-    lines.append(
-        "Conservative heuristic starting ranges, "
-        "not telemetry-proven optimum settings."
-    )
-
-    for (
-        index,
-        car
-    ) in enumerate(
-        top5_used_cars,
-        start=1
-    ):
-
-        lines.append(
-            f"{index}. "
-            f"{car['car']} | "
-            f"{car['layout']} | "
-            f"Quali "
-            f"{format_bb_range(car['qualifying_range'])} "
-            f"(start {format_bb_value(car['qualifying_start'])}) | "
-            f"Race "
-            f"{format_bb_range(car['race_range'])} "
-            f"(start {format_bb_value(car['race_start'])}) | "
             f"{car['confidence']}"
         )
 
