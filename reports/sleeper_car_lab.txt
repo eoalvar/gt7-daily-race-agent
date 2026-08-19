@@ -1,18 +1,18 @@
 GT7 SLEEPER CAR LAB V0.3
 ====================================================================================================
-Generated            : 2026-08-19T17:27:12.911046+00:00
+Generated            : 2026-08-19T17:57:51.311006+00:00
 Track                : Yas Marina Circuit
 Group                : GR.3
 Active BoP           : MID
 Model key            : GR.3|MID
-Total drivers        : 17,928
+Total drivers        : 18,159
 Cars observed        : 53
 Cars eligible (n>=20) : 42
 Eligible with BoP    : 42
 Eligible without BoP : 0
 WR                   : 1:51.868
-Top 500              : 1:53.583
-Elapsed              : 78.8s
+Top 500              : 1:53.575
+Elapsed              : 64.2s
 Production modified  : NO
 
 METHOD
@@ -25,35 +25,35 @@ matching group + speed-class model has enough independent race weeks.
 
 TOP SLEEPER CANDIDATES
 ----------------------------------------------------------------------------------------------------
- 1. Jaguar F-type Gr.3 | SCI 78.4 | STRONG SLEEPER | n=277 (1.55%) | Eff 1.43x | T100 3 / T500 13 / T1000 24 | Best #5 1:52.005 | Conf MEDIUM
+ 1. Jaguar F-type Gr.3 | SCI 78.9 | STRONG SLEEPER | n=274 (1.51%) | Eff 1.46x | T100 3 / T500 13 / T1000 24 | Best #5 1:52.005 | Conf MEDIUM
     Active GR.3 MID BoP: 469 HP / 1265 kg / PP 695.6 / FR
- 2. Porsche 911 GT3 R (992) '22 | SCI 66.5 | META / PROVEN | n=10303 (57.47%) | Eff 1.37x | T100 78 / T500 404 / T1000 784 | Best #1 1:51.868 | Conf HIGH
+ 2. Porsche 911 GT3 R (992) '22 | SCI 66.5 | META / PROVEN | n=10447 (57.53%) | Eff 1.37x | T100 78 / T500 406 / T1000 783 | Best #1 1:51.868 | Conf HIGH
     Active GR.3 MID BoP: 446 HP / 1320 kg / PP 693.04 / RR
- 3. Volkswagen Beetle Gr.3 | SCI 63.0 | SLEEPER CANDIDATE | n=172 (0.96%) | Eff 0.98x | T100 3 / T500 4 / T1000 5 | Best #17 1:52.182 | Conf MEDIUM
+ 3. Volkswagen Beetle Gr.3 | SCI 62.8 | SLEEPER CANDIDATE | n=179 (0.99%) | Eff 0.96x | T100 3 / T500 4 / T1000 5 | Best #17 1:52.182 | Conf MEDIUM
     Active GR.3 MID BoP: 479 HP / 1295 kg / PP 693.5 / FR
- 4. Hyundai Genesis Gr.3 | SCI 62.1 | SLEEPER CANDIDATE | n=38 (0.21%) | Eff 1.63x | T100 2 / T500 5 / T1000 5 | Best #13 1:52.165 | Conf LOW
+ 4. Hyundai Genesis Gr.3 | SCI 62.3 | SLEEPER CANDIDATE | n=39 (0.21%) | Eff 1.63x | T100 2 / T500 5 / T1000 5 | Best #13 1:52.165 | Conf LOW
     Active GR.3 MID BoP: 483 HP / 1269 kg / PP 693.53 / FR
- 5. Audi R8 LMS Evo '19 | SCI 58.5 | WATCHLIST | n=1319 (7.36%) | Eff 0.86x | T100 5 / T500 26 / T1000 75 | Best #15 1:52.174 | Conf HIGH
+ 5. Audi R8 LMS Evo '19 | SCI 58.4 | WATCHLIST | n=1329 (7.32%) | Eff 0.86x | T100 5 / T500 26 / T1000 74 | Best #15 1:52.174 | Conf HIGH
     Active GR.3 MID BoP: 444 HP / 1310 kg / PP 691.74 / MR
- 6. Toyota GR Supra Racing Concept '18 | SCI 57.6 | WATCHLIST | n=97 (0.54%) | Eff 1.06x | T100 1 / T500 3 / T1000 5 | Best #92 1:52.804 | Conf LOW-MEDIUM
+ 6. Toyota GR Supra Racing Concept '18 | SCI 58.2 | WATCHLIST | n=102 (0.56%) | Eff 1.08x | T100 1 / T500 3 / T1000 6 | Best #92 1:52.804 | Conf LOW-MEDIUM
     Active GR.3 MID BoP: 462 HP / 1245 kg / PP 694.95 / FR
- 7. Subaru WRX Gr.3 | SCI 57.5 | WATCHLIST | n=55 (0.31%) | Eff 1.17x | T100 2 / T500 2 / T1000 2 | Best #79 1:52.762 | Conf LOW-MEDIUM
+ 7. Subaru WRX Gr.3 | SCI 57.5 | WATCHLIST | n=56 (0.31%) | Eff 1.17x | T100 2 / T500 2 / T1000 2 | Best #79 1:52.762 | Conf LOW-MEDIUM
     Active GR.3 MID BoP: 497 HP / 1305 kg / PP 700.75 / FR
- 8. Peugeot RCZ Gr.3 | SCI 57.1 | WATCHLIST | n=136 (0.76%) | Eff 0.98x | T100 1 / T500 4 / T1000 6 | Best #94 1:52.812 | Conf LOW-MEDIUM
+ 8. Peugeot RCZ Gr.3 | SCI 56.3 | WATCHLIST | n=138 (0.76%) | Eff 0.94x | T100 1 / T500 3 / T1000 6 | Best #94 1:52.812 | Conf LOW-MEDIUM
     Active GR.3 MID BoP: 484 HP / 1275 kg / PP 691.91 / MR
- 9. Mitsubishi Lancer Evolution Final Edition Gr.3 | SCI 54.9 | WATCHLIST | n=47 (0.26%) | Eff 1.01x | T100 1 / T500 1 / T1000 1 | Best #84 1:52.783 | Conf LOW
+ 9. Mitsubishi Lancer Evolution Final Edition Gr.3 | SCI 54.9 | WATCHLIST | n=50 (0.28%) | Eff 0.99x | T100 1 / T500 1 / T1000 1 | Best #84 1:52.783 | Conf LOW-MEDIUM
     Active GR.3 MID BoP: 507 HP / 1310 kg / PP 701.43 / FR
-10. Toyota Supra GT500 '97 | SCI 53.4 | NO SLEEPER SIGNAL | n=31 (0.17%) | Eff 1.04x | T100 0 / T500 2 / T1000 2 | Best #200 1:53.135 | Conf LOW
+10. Toyota Supra GT500 '97 | SCI 53.4 | NO SLEEPER SIGNAL | n=32 (0.18%) | Eff 1.03x | T100 0 / T500 2 / T1000 2 | Best #201 1:53.135 | Conf LOW
     Active GR.3 MID BoP: 448 HP / 1175 kg / PP 689.97 / FR
-11. BMW Z4 GT3 '11 | SCI 52.9 | NO SLEEPER SIGNAL | n=55 (0.31%) | Eff 0.91x | T100 0 / T500 1 / T1000 3 | Best #152 1:53.023 | Conf LOW-MEDIUM
+11. BMW Z4 GT3 '11 | SCI 53.0 | NO SLEEPER SIGNAL | n=55 (0.30%) | Eff 0.91x | T100 0 / T500 1 / T1000 3 | Best #152 1:53.023 | Conf LOW-MEDIUM
     Active GR.3 MID BoP: 460 HP / 1250 kg / PP 687.84 / FR
-12. Renault Sport R.S.01 GT3 '16 | SCI 52.0 | NO SLEEPER SIGNAL | n=69 (0.38%) | Eff 0.86x | T100 0 / T500 2 / T1000 2 | Best #187 1:53.107 | Conf LOW-MEDIUM
+12. Renault Sport R.S.01 GT3 '16 | SCI 51.9 | NO SLEEPER SIGNAL | n=71 (0.39%) | Eff 0.85x | T100 0 / T500 2 / T1000 2 | Best #188 1:53.107 | Conf LOW-MEDIUM
     Active GR.3 MID BoP: 466 HP / 1320 kg / PP 689.38 / MR
-13. MAZDA RX-VISION GT3 CONCEPT Stealth Model | SCI 50.6 | NO SLEEPER SIGNAL | n=25 (0.14%) | Eff 0.91x | T100 0 / T500 0 / T1000 1 | Best #751 1:53.789 | Conf LOW
+13. MAZDA RX-VISION GT3 CONCEPT Stealth Model | SCI 50.6 | NO SLEEPER SIGNAL | n=25 (0.14%) | Eff 0.91x | T100 0 / T500 0 / T1000 1 | Best #761 1:53.789 | Conf LOW
     Active GR.3 MID BoP: 433 HP / 1269 kg / PP 694.26 / FR
-14. Lexus RC F GT3 '17 | SCI 50.0 | NO SLEEPER SIGNAL | n=49 (0.27%) | Eff 0.84x | T100 0 / T500 0 / T1000 2 | Best #571 1:53.656 | Conf LOW
+14. Lexus RC F GT3 '17 | SCI 49.8 | NO SLEEPER SIGNAL | n=52 (0.29%) | Eff 0.83x | T100 0 / T500 0 / T1000 2 | Best #580 1:53.656 | Conf LOW-MEDIUM
     Active GR.3 MID BoP: 455 HP / 1310 kg / PP 697.59 / FR
-15. Subaru BRZ GT300 '21 | SCI 49.8 | NO SLEEPER SIGNAL | n=90 (0.50%) | Eff 0.71x | T100 0 / T500 1 / T1000 1 | Best #110 1:52.904 | Conf LOW-MEDIUM
+15. Subaru BRZ GT300 '21 | SCI 49.7 | NO SLEEPER SIGNAL | n=91 (0.50%) | Eff 0.70x | T100 0 / T500 1 / T1000 1 | Best #110 1:52.904 | Conf LOW-MEDIUM
     Active GR.3 MID BoP: 435 HP / 1311 kg / PP 699.34 / FR
 
 MULTI-GROUP MODEL POLICY
@@ -74,17 +74,51 @@ Technical SCI weight : 0.0
 Policy               : group + speed-class models are completely separate.
 
 Observed correlations (diagnostic only):
-  power_weight_hp_t        +0.125
-  weight_kg                -0.055
-  front_weight_pct         +0.230
-  acceleration_0_400       +0.180
-  acceleration_100_150     -0.025
-  rotational_g_60          -0.007
-  rotational_g_120         +0.079
-  rotational_g_240         +0.136
+  power_weight_hp_t        +0.132
+  weight_kg                -0.059
+  front_weight_pct         +0.235
+  acceleration_0_400       +0.181
+  acceleration_100_150     -0.035
+  rotational_g_60          -0.014
+  rotational_g_120         +0.070
+  rotational_g_240         +0.126
 
 MODEL COVERAGE
   GR.3|MID       3 independent race(s) | ACTIVE
 
 Repeated snapshots from one Daily Race week never increase the independent-race count.
 A future GR.4/MID race, for example, trains GR.4|MID only and cannot alter GR.3|MID.
+
+STRUCTURAL SLEEPER MODEL V0.1
+----------------------------------------------------------------------------------------------------
+Model key            : GR.3|MID
+Status               : READY
+Independent races    : 3 / 3 minimum
+Independent weeks    : 2026-01-26, 2026-05-25, 2026-08-17
+Method               : performance percentile minus usage percentile across independent races.
+Neutral score        : 50.0
+Technical weight     : 0.0
+
+TOP STRUCTURAL SLEEPER SIGNALS
+----------------------------------------------------------------------------------------------------
+ 1. SUZUKI Vision Gran Turismo (Gr.3 Version) | SSI 92.3 | STRUCTURAL SLEEPER | races 2/3 | PerfPct 0.942 | UsePct 0.096 | Diff +0.846 | Positive 100% | Conf LOW-MEDIUM
+ 2. PEUGEOT Vision Gran Turismo (Gr.3) | SSI 91.3 | STRUCTURAL SLEEPER | races 2/3 | PerfPct 0.865 | UsePct 0.038 | Diff +0.827 | Positive 100% | Conf LOW-MEDIUM
+ 3. Ford GT LM Spec II Test Car | SSI 88.9 | STRUCTURAL SLEEPER | races 2/3 | PerfPct 0.798 | UsePct 0.019 | Diff +0.779 | Positive 100% | Conf LOW-MEDIUM
+ 4. Lexus RC F GT3 prototype '16 | SSI 88.9 | STRUCTURAL SLEEPER | races 2/3 | PerfPct 0.808 | UsePct 0.029 | Diff +0.779 | Positive 100% | Conf LOW-MEDIUM
+ 5. Hyundai Genesis Gr.3 | SSI 85.9 | STRUCTURAL SLEEPER | races 3/3 | PerfPct 0.950 | UsePct 0.232 | Diff +0.717 | Positive 100% | Conf LOW-MEDIUM
+ 6. Mercedes-Benz SLS AMG GT3 '11 | SSI 85.6 | STRUCTURAL SLEEPER | races 2/3 | PerfPct 0.779 | UsePct 0.067 | Diff +0.712 | Positive 100% | Conf LOW-MEDIUM
+ 7. Mazda Atenza Gr.3 | SSI 83.2 | STRUCTURAL SLEEPER | races 2/3 | PerfPct 0.779 | UsePct 0.115 | Diff +0.663 | Positive 100% | Conf LOW-MEDIUM
+ 8. MAZDA RX-VISION GT3 CONCEPT Stealth Model | SSI 76.9 | STRUCTURAL SLEEPER | races 3/3 | PerfPct 0.745 | UsePct 0.207 | Diff +0.538 | Positive 100% | Conf LOW-MEDIUM
+ 9. Volkswagen GTI Vision Gran Turismo (Gr.3) | SSI 74.0 | STRUCTURAL SLEEPER CANDIDATE | races 2/3 | PerfPct 0.625 | UsePct 0.144 | Diff +0.481 | Positive 100% | Conf LOW-MEDIUM
+10. Nissan GT-R GT500 '99 | SSI 72.1 | STRUCTURAL SLEEPER CANDIDATE | races 2/3 | PerfPct 0.587 | UsePct 0.144 | Diff +0.442 | Positive 100% | Conf LOW-MEDIUM
+11. Nissan Skyline Super Silhouette Group 5 '84 | SSI 71.6 | STRUCTURAL SLEEPER CANDIDATE | races 2/3 | PerfPct 0.596 | UsePct 0.163 | Diff +0.433 | Positive 100% | Conf LOW-MEDIUM
+12. Mitsubishi Lancer Evolution Final Edition Gr.3 | SSI 70.3 | STRUCTURAL SLEEPER | races 3/3 | PerfPct 0.735 | UsePct 0.328 | Diff +0.407 | Positive 100% | Conf LOW-MEDIUM
+13. Ford GT LM Race Car Spec II | SSI 69.7 | WATCHLIST | races 2/3 | PerfPct 0.558 | UsePct 0.163 | Diff +0.394 | Positive 100% | Conf LOW-MEDIUM
+14. Aston Martin DBR9 GT1 '10 | SSI 69.6 | WATCHLIST | races 3/3 | PerfPct 0.517 | UsePct 0.126 | Diff +0.391 | Positive 100% | Conf LOW-MEDIUM
+15. Genesis X GR3 | SSI 64.3 | STRUCTURAL SLEEPER CANDIDATE | races 3/3 | PerfPct 0.590 | UsePct 0.305 | Diff +0.286 | Positive 100% | Conf LOW-MEDIUM
+
+INTERPRETATION
+----------------------------------------------------------------------------------------------------
+SSI above 50 means the car repeatedly ranks better in performance than in adoption.
+SSI below 50 means adoption tends to exceed the car's relative performance rank.
+With only three independent races, labels remain provisional and confidence is intentionally limited.

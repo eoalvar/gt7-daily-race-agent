@@ -3,17 +3,15 @@ GT7 SLEEPER HISTORY BACKFILL V0.6
 Target model          : GR.3|MID
 Current live week     : 2026-08-17
 Removed invalid/duplicate observations : 0
-Existing independent observations      : 1
+Existing independent observations      : 3
 Target observations   : 3
-Eligible historical weeks : 39
+Eligible historical weeks : 37
 Unresolved track rows : 23
 Other speed-class rows: 34
 Speed resolution      : explicit=0, group-map=26, default-map=20
 
-ADDED 2026-05-25 | Watkins Glen Long Course | GR.3|MID | TRACK_DEFAULT_MAP | drivers 68,785 | cars 52
-ADDED 2026-01-26 | Yas Marina Circuit | GR.3|MID | GROUP_SPECIFIC_MAP | drivers 67,393 | cars 52
 
-Added this run        : 2
+Added this run        : 0
 Final independent observations : 3
 Independent weeks     : 2026-01-26, 2026-05-25, 2026-08-17
 STATUS                : READY
