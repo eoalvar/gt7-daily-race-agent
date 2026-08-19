@@ -44,7 +44,7 @@ jobs:
         id: run_sleeper_lab
         continue-on-error: true
         run: |
-          python src/sleeper_car_lab.py
+          python src/sleeper_car_lab_live.py
 
       - name: Run multi-group technical learning layer
         id: run_technical_learning
