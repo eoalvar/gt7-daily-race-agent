@@ -1,0 +1,3905 @@
+{
+  "generated_at": "2026-08-19T13:07:59.543108+00:00",
+  "lab_version": "2.0",
+  "group": "GR.4",
+  "selected_version": "1.67",
+  "source_url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "raw_counts": {
+      "HIGH": 34,
+      "MID": 34,
+      "LOW": 34
+    },
+    "decoded_counts": {
+      "HIGH": 34,
+      "MID": 34,
+      "LOW": 34
+    },
+    "rejected": {
+      "HIGH": 0,
+      "MID": 0,
+      "LOW": 0
+    },
+    "unique_cars": 34
+  },
+  "records": [
+    {
+      "car": "Bugatti Veyron Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 596.79,
+      "power_hp": 355.0,
+      "torque_nm": 450.1,
+      "weight_kg": 1661.0,
+      "power_weight_hp_t": 213.72667068031305,
+      "weight_power_kg_hp": 4.67887323943662,
+      "weight_balance": "45:55",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "7993",
+      "engine_model": "W16-Veyron-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.25,
+        "0_1000m": 24.03,
+        "100_150_kmh": 4.61
+      },
+      "rotational_g": {
+        "60_kmh": 1.15,
+        "120_kmh": 1.33,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "0.43 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.540944+00:00"
+    },
+    {
+      "car": "Alfa Romeo 155 2.5 V6 TI '93",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 600.12,
+      "power_hp": 298.0,
+      "torque_nm": 210.8,
+      "weight_kg": 1200.0,
+      "power_weight_hp_t": 248.33333333333334,
+      "weight_power_kg_hp": 4.026845637583893,
+      "weight_balance": "58:42",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": "2498",
+      "engine_model": "V6-155-V6Ti",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.0,
+        "0_1000m": 23.74,
+        "100_150_kmh": 4.14
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.33,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.540998+00:00"
+    },
+    {
+      "car": "Subaru WRX Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 597.77,
+      "power_hp": 318.0,
+      "torque_nm": 403.1,
+      "weight_kg": 1366.0,
+      "power_weight_hp_t": 232.79648609077597,
+      "weight_power_kg_hp": 4.29559748427673,
+      "weight_balance": "60:40",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1994",
+      "engine_model": "F4-WRX-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.55,
+        "0_1000m": 23.29,
+        "100_150_kmh": 4.46
+      },
+      "rotational_g": {
+        "60_kmh": 1.17,
+        "120_kmh": 1.35,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541021+00:00"
+    },
+    {
+      "car": "Toyota GR Supra Race Car '19",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 606.64,
+      "power_hp": 316.0,
+      "torque_nm": 469.7,
+      "weight_kg": 1400.0,
+      "power_weight_hp_t": 225.71428571428572,
+      "weight_power_kg_hp": 4.430379746835443,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "GR-Supra-Race",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.31,
+        "0_1000m": 24.06,
+        "100_150_kmh": 4.54
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.37,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541042+00:00"
+    },
+    {
+      "car": "Lamborghini Huracán Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 606.44,
+      "power_hp": 295.0,
+      "torque_nm": 274.6,
+      "weight_kg": 1433.0,
+      "power_weight_hp_t": 205.86182833217026,
+      "weight_power_kg_hp": 4.857627118644068,
+      "weight_balance": "42:58",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": "5204",
+      "engine_model": "V10-Huracan-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.85,
+        "0_1000m": 24.62,
+        "100_150_kmh": 4.49
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.36,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "0.05 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541065+00:00"
+    },
+    {
+      "car": "Audi TT Cup '16",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 611.74,
+      "power_hp": 305.0,
+      "torque_nm": 363.8,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 269.9115044247788,
+      "weight_power_kg_hp": 3.7049180327868854,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1984",
+      "engine_model": "DNU-TT-Cup",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.29,
+        "0_1000m": 23.95,
+        "100_150_kmh": 4.18
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541089+00:00"
+    },
+    {
+      "car": "McLaren 650S Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 599.59,
+      "power_hp": 320.0,
+      "torque_nm": 338.3,
+      "weight_kg": 1370.0,
+      "power_weight_hp_t": 233.5766423357664,
+      "weight_power_kg_hp": 4.28125,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "V8-650S-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.55,
+        "0_1000m": 24.4,
+        "100_150_kmh": 4.69
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.35,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541110+00:00"
+    },
+    {
+      "car": "Honda NSX Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 608.0,
+      "power_hp": 320.0,
+      "torque_nm": 351.1,
+      "weight_kg": 1425.0,
+      "power_weight_hp_t": 224.56140350877192,
+      "weight_power_kg_hp": 4.453125,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3493",
+      "engine_model": "V6-NSX-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.42,
+        "0_1000m": 24.19,
+        "100_150_kmh": 4.51
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.48
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541130+00:00"
+    },
+    {
+      "car": "BMW M4 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 595.73,
+      "power_hp": 324.0,
+      "torque_nm": 418.7,
+      "weight_kg": 1380.0,
+      "power_weight_hp_t": 234.7826086956522,
+      "weight_power_kg_hp": 4.2592592592592595,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2979",
+      "engine_model": "L6-M4-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.85,
+        "0_1000m": 23.9,
+        "100_150_kmh": 4.87
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.36,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541150+00:00"
+    },
+    {
+      "car": "Mazda Atenza Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 598.72,
+      "power_hp": 346.0,
+      "torque_nm": 377.6,
+      "weight_kg": 1406.0,
+      "power_weight_hp_t": 246.08819345661453,
+      "weight_power_kg_hp": 4.063583815028902,
+      "weight_balance": "60:40",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2188",
+      "engine_model": "L4-Atenza-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.93,
+        "0_1000m": 23.75,
+        "100_150_kmh": 4.43
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.35,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-0.95 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541171+00:00"
+    },
+    {
+      "car": "Nissan Silvia spec-R Aero (S15) Touring Car",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 602.43,
+      "power_hp": 302.0,
+      "torque_nm": 298.1,
+      "weight_kg": 1185.0,
+      "power_weight_hp_t": 254.85232067510546,
+      "weight_power_kg_hp": 3.923841059602649,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "SR20DET-Silvia-TC",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.2,
+        "0_1000m": 23.99,
+        "100_150_kmh": 4.62
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.36,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541191+00:00"
+    },
+    {
+      "car": "Nissan GT-R Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 600.21,
+      "power_hp": 334.0,
+      "torque_nm": 389.3,
+      "weight_kg": 1460.0,
+      "power_weight_hp_t": 228.76712328767124,
+      "weight_power_kg_hp": 4.37125748502994,
+      "weight_balance": "54:46",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "V6-GT-R-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.91,
+        "0_1000m": 23.67,
+        "100_150_kmh": 4.5
+      },
+      "rotational_g": {
+        "60_kmh": 1.18,
+        "120_kmh": 1.36,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.22 | N",
+        "high_speed": "-0.98 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541211+00:00"
+    },
+    {
+      "car": "Volkswagen Scirocco Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 612.88,
+      "power_hp": 294.0,
+      "torque_nm": 324.6,
+      "weight_kg": 1090.0,
+      "power_weight_hp_t": 269.7247706422018,
+      "weight_power_kg_hp": 3.707482993197279,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1984",
+      "engine_model": "L4-Scirocco-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.22,
+        "0_1000m": 23.87,
+        "100_150_kmh": 4.36
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.39,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541234+00:00"
+    },
+    {
+      "car": "Mitsubishi Lancer Evolution Final Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 596.95,
+      "power_hp": 324.0,
+      "torque_nm": 383.4,
+      "weight_kg": 1345.0,
+      "power_weight_hp_t": 240.8921933085502,
+      "weight_power_kg_hp": 4.151234567901234,
+      "weight_balance": "60:40",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "L4-Evo-Final-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.04,
+        "0_1000m": 23.84,
+        "100_150_kmh": 4.46
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.35,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541254+00:00"
+    },
+    {
+      "car": "Genesis G70 GR4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 606.08,
+      "power_hp": 327.0,
+      "torque_nm": 415.8,
+      "weight_kg": 1411.0,
+      "power_weight_hp_t": 231.75053153791637,
+      "weight_power_kg_hp": 4.314984709480123,
+      "weight_balance": "52:48",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3342",
+      "engine_model": "V6-G70-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.67,
+        "0_1000m": 23.41,
+        "100_150_kmh": 4.38
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.37,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541274+00:00"
+    },
+    {
+      "car": "Aston Martin V8 Vantage Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 603.06,
+      "power_hp": 312.0,
+      "torque_nm": 381.5,
+      "weight_kg": 1355.0,
+      "power_weight_hp_t": 230.25830258302582,
+      "weight_power_kg_hp": 4.342948717948718,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Vantage-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.47,
+        "0_1000m": 24.17,
+        "100_150_kmh": 4.32
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.34,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541297+00:00"
+    },
+    {
+      "car": "Ferrari 458 Italia Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 606.83,
+      "power_hp": 315.0,
+      "torque_nm": 302.0,
+      "weight_kg": 1410.0,
+      "power_weight_hp_t": 223.40425531914894,
+      "weight_power_kg_hp": 4.476190476190476,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "4499",
+      "engine_model": "V8-458-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.69,
+        "0_1000m": 24.42,
+        "100_150_kmh": 4.41
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.36,
+        "240_kmh": 1.46
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541318+00:00"
+    },
+    {
+      "car": "Mazda MAZDA3 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 615.14,
+      "power_hp": 327.0,
+      "torque_nm": 372.7,
+      "weight_kg": 1200.0,
+      "power_weight_hp_t": 272.5,
+      "weight_power_kg_hp": 3.669724770642202,
+      "weight_balance": "64:36",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-Mazda-3-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.11,
+        "0_1000m": 23.71,
+        "100_150_kmh": 4.23
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.38,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541337+00:00"
+    },
+    {
+      "car": "Alfa Romeo 4C Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 609.5,
+      "power_hp": 275.0,
+      "torque_nm": 331.5,
+      "weight_kg": 1105.0,
+      "power_weight_hp_t": 248.86877828054298,
+      "weight_power_kg_hp": 4.0181818181818185,
+      "weight_balance": "41:59",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Alfa-4C-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.9,
+        "0_1000m": 23.73,
+        "100_150_kmh": 4.8
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.5
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-0.99 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541369+00:00"
+    },
+    {
+      "car": "Renault Mégane Trophy '11",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 605.43,
+      "power_hp": 292.0,
+      "torque_nm": 315.8,
+      "weight_kg": 1155.0,
+      "power_weight_hp_t": 252.8138528138528,
+      "weight_power_kg_hp": 3.9554794520547945,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3498",
+      "engine_model": "V4Y-Megane",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.57,
+        "0_1000m": 23.37,
+        "100_150_kmh": 4.41
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.36,
+        "240_kmh": 1.46
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541390+00:00"
+    },
+    {
+      "car": "Porsche Cayman GT4 Clubsport '16",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 606.02,
+      "power_hp": 304.0,
+      "torque_nm": 336.4,
+      "weight_kg": 1370.0,
+      "power_weight_hp_t": 221.8978102189781,
+      "weight_power_kg_hp": 4.506578947368421,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3800",
+      "engine_model": "MDB.XA-Cayman-CS",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.71,
+        "0_1000m": 23.42,
+        "100_150_kmh": 4.48
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.36,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.2 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541413+00:00"
+    },
+    {
+      "car": "Citroën GT by Citroën Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 610.16,
+      "power_hp": 312.0,
+      "torque_nm": 303.0,
+      "weight_kg": 1410.0,
+      "power_weight_hp_t": 221.27659574468086,
+      "weight_power_kg_hp": 4.519230769230769,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "GT-by-Citroen-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.28,
+        "0_1000m": 24.0,
+        "100_150_kmh": 4.36
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.37,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-0.94 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541433+00:00"
+    },
+    {
+      "car": "AMG SLS AMG Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 604.18,
+      "power_hp": 330.0,
+      "torque_nm": 377.6,
+      "weight_kg": 1426.0,
+      "power_weight_hp_t": 231.41654978962134,
+      "weight_power_kg_hp": 4.321212121212121,
+      "weight_balance": "47:53",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "SLS-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.76,
+        "0_1000m": 23.49,
+        "100_150_kmh": 4.46
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.35,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.26 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541453+00:00"
+    },
+    {
+      "car": "Lexus RC F Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 605.28,
+      "power_hp": 339.0,
+      "torque_nm": 382.5,
+      "weight_kg": 1411.0,
+      "power_weight_hp_t": 240.25513819985824,
+      "weight_power_kg_hp": 4.162241887905605,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4968",
+      "engine_model": "V8-RC-F-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.16,
+        "0_1000m": 23.82,
+        "100_150_kmh": 4.28
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.34,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541473+00:00"
+    },
+    {
+      "car": "Peugeot RCZ Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 610.0,
+      "power_hp": 318.0,
+      "torque_nm": 360.9,
+      "weight_kg": 1225.0,
+      "power_weight_hp_t": 259.59183673469386,
+      "weight_power_kg_hp": 3.852201257861635,
+      "weight_balance": "62:38",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1598",
+      "engine_model": "L4-RCZ-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.25,
+        "0_1000m": 23.93,
+        "100_150_kmh": 4.24
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.38,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541495+00:00"
+    },
+    {
+      "car": "Chevrolet Corvette C7 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 605.18,
+      "power_hp": 311.0,
+      "torque_nm": 426.6,
+      "weight_kg": 1360.0,
+      "power_weight_hp_t": 228.67647058823528,
+      "weight_power_kg_hp": 4.372990353697749,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Corvette-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.56,
+        "0_1000m": 23.21,
+        "100_150_kmh": 4.41
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.35,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541520+00:00"
+    },
+    {
+      "car": "Ford Mustang Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 607.4,
+      "power_hp": 332.0,
+      "torque_nm": 420.7,
+      "weight_kg": 1411.0,
+      "power_weight_hp_t": 235.2941176470588,
+      "weight_power_kg_hp": 4.25,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Mustang-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.52,
+        "0_1000m": 23.17,
+        "100_150_kmh": 4.3
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.36,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541541+00:00"
+    },
+    {
+      "car": "Hyundai Genesis Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 604.41,
+      "power_hp": 326.0,
+      "torque_nm": 349.1,
+      "weight_kg": 1350.0,
+      "power_weight_hp_t": 241.48148148148147,
+      "weight_power_kg_hp": 4.141104294478527,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Genesis-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.94,
+        "0_1000m": 23.65,
+        "100_150_kmh": 4.39
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.36,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541561+00:00"
+    },
+    {
+      "car": "Suzuki Swift Sport Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 610.94,
+      "power_hp": 283.0,
+      "torque_nm": 360.9,
+      "weight_kg": 1000.0,
+      "power_weight_hp_t": 283.0,
+      "weight_power_kg_hp": 3.5335689045936394,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Swift-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.21,
+        "0_1000m": 23.97,
+        "100_150_kmh": 4.18
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.39,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "-0.44 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541582+00:00"
+    },
+    {
+      "car": "Jaguar F-type Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 604.54,
+      "power_hp": 327.0,
+      "torque_nm": 410.9,
+      "weight_kg": 1401.0,
+      "power_weight_hp_t": 233.40471092077087,
+      "weight_power_kg_hp": 4.284403669724771,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "SC",
+      "displacement": "4999",
+      "engine_model": "V8-F-type-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.0,
+        "0_1000m": 23.67,
+        "100_150_kmh": 4.31
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.35,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.21 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541603+00:00"
+    },
+    {
+      "car": "Renault Mégane Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 611.35,
+      "power_hp": 297.0,
+      "torque_nm": 384.4,
+      "weight_kg": 1165.0,
+      "power_weight_hp_t": 254.93562231759657,
+      "weight_power_kg_hp": 3.9225589225589226,
+      "weight_balance": "65:35",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "L4-Megane-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.09,
+        "0_1000m": 23.72,
+        "100_150_kmh": 4.24
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.37,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.37 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541623+00:00"
+    },
+    {
+      "car": "Dodge Viper Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 601.53,
+      "power_hp": 322.0,
+      "torque_nm": 408.9,
+      "weight_kg": 1405.0,
+      "power_weight_hp_t": 229.1814946619217,
+      "weight_power_kg_hp": 4.363354037267081,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V10-Viper-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.86,
+        "0_1000m": 24.63,
+        "100_150_kmh": 4.44
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.35,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541643+00:00"
+    },
+    {
+      "car": "Toyota 86 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 604.66,
+      "power_hp": 313.0,
+      "torque_nm": 322.6,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 237.1212121212121,
+      "weight_power_kg_hp": 4.217252396166134,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "1998",
+      "engine_model": "B4-86-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.69,
+        "0_1000m": 24.45,
+        "100_150_kmh": 4.45
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.36,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541663+00:00"
+    },
+    {
+      "car": "Hyundai ELANTRA N TC '24",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 612.54,
+      "power_hp": 332.0,
+      "torque_nm": 427.6,
+      "weight_kg": 1265.0,
+      "power_weight_hp_t": 262.4505928853755,
+      "weight_power_kg_hp": 3.8102409638554215,
+      "weight_balance": "59:41",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "Theta-lI-T-GDI-Elantra-TC",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.47,
+        "0_1000m": 24.1,
+        "100_150_kmh": 4.21
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.39,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541683+00:00"
+    },
+    {
+      "car": "Bugatti Veyron Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 599.07,
+      "power_hp": 360.0,
+      "torque_nm": 456.0,
+      "weight_kg": 1656.0,
+      "power_weight_hp_t": 217.3913043478261,
+      "weight_power_kg_hp": 4.6,
+      "weight_balance": "45:55",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "7993",
+      "engine_model": "W16-Veyron-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.17,
+        "0_1000m": 23.89,
+        "100_150_kmh": 4.53
+      },
+      "rotational_g": {
+        "60_kmh": 1.15,
+        "120_kmh": 1.33,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "0.43 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541706+00:00"
+    },
+    {
+      "car": "Alfa Romeo 155 2.5 V6 TI '93",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 599.56,
+      "power_hp": 298.0,
+      "torque_nm": 210.8,
+      "weight_kg": 1205.0,
+      "power_weight_hp_t": 247.30290456431533,
+      "weight_power_kg_hp": 4.043624161073826,
+      "weight_balance": "58:42",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": "2498",
+      "engine_model": "V6-155-V6Ti",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.01,
+        "0_1000m": 23.77,
+        "100_150_kmh": 4.15
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.33,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541726+00:00"
+    },
+    {
+      "car": "Subaru WRX Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 597.42,
+      "power_hp": 318.0,
+      "torque_nm": 403.1,
+      "weight_kg": 1370.0,
+      "power_weight_hp_t": 232.11678832116786,
+      "weight_power_kg_hp": 4.3081761006289305,
+      "weight_balance": "60:40",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1994",
+      "engine_model": "F4-WRX-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.56,
+        "0_1000m": 23.31,
+        "100_150_kmh": 4.47
+      },
+      "rotational_g": {
+        "60_kmh": 1.17,
+        "120_kmh": 1.35,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541748+00:00"
+    },
+    {
+      "car": "Toyota GR Supra Race Car '19",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 605.65,
+      "power_hp": 312.0,
+      "torque_nm": 463.9,
+      "weight_kg": 1391.0,
+      "power_weight_hp_t": 224.29906542056074,
+      "weight_power_kg_hp": 4.458333333333333,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "GR-Supra-Race",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.35,
+        "0_1000m": 24.13,
+        "100_150_kmh": 4.58
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.37,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541769+00:00"
+    },
+    {
+      "car": "Lamborghini Huracán Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 605.37,
+      "power_hp": 291.0,
+      "torque_nm": 270.7,
+      "weight_kg": 1422.0,
+      "power_weight_hp_t": 204.64135021097047,
+      "weight_power_kg_hp": 4.88659793814433,
+      "weight_balance": "42:58",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": "5204",
+      "engine_model": "V10-Huracan-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.9,
+        "0_1000m": 24.71,
+        "100_150_kmh": 4.53
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.36,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "0.05 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541789+00:00"
+    },
+    {
+      "car": "Audi TT Cup '16",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 611.74,
+      "power_hp": 305.0,
+      "torque_nm": 363.8,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 269.9115044247788,
+      "weight_power_kg_hp": 3.7049180327868854,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1984",
+      "engine_model": "DNU-TT-Cup",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.29,
+        "0_1000m": 23.95,
+        "100_150_kmh": 4.18
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541808+00:00"
+    },
+    {
+      "car": "McLaren 650S Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 600.27,
+      "power_hp": 320.0,
+      "torque_nm": 338.3,
+      "weight_kg": 1361.0,
+      "power_weight_hp_t": 235.12123438648052,
+      "weight_power_kg_hp": 4.253125,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "V8-650S-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.52,
+        "0_1000m": 24.36,
+        "100_150_kmh": 4.66
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.35,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541829+00:00"
+    },
+    {
+      "car": "Honda NSX Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 608.0,
+      "power_hp": 320.0,
+      "torque_nm": 351.1,
+      "weight_kg": 1425.0,
+      "power_weight_hp_t": 224.56140350877192,
+      "weight_power_kg_hp": 4.453125,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3493",
+      "engine_model": "V6-NSX-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.42,
+        "0_1000m": 24.19,
+        "100_150_kmh": 4.51
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.48
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541848+00:00"
+    },
+    {
+      "car": "BMW M4 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 594.77,
+      "power_hp": 320.0,
+      "torque_nm": 412.9,
+      "weight_kg": 1370.0,
+      "power_weight_hp_t": 233.5766423357664,
+      "weight_power_kg_hp": 4.28125,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2979",
+      "engine_model": "L6-M4-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.87,
+        "0_1000m": 23.96,
+        "100_150_kmh": 4.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.36,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541868+00:00"
+    },
+    {
+      "car": "Mazda Atenza Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 599.47,
+      "power_hp": 346.0,
+      "torque_nm": 377.6,
+      "weight_kg": 1395.0,
+      "power_weight_hp_t": 248.02867383512543,
+      "weight_power_kg_hp": 4.031791907514451,
+      "weight_balance": "60:40",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2188",
+      "engine_model": "L4-Atenza-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.85,
+        "0_1000m": 23.65,
+        "100_150_kmh": 4.4
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.35,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-0.95 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541890+00:00"
+    },
+    {
+      "car": "Nissan Silvia spec-R Aero (S15) Touring Car",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 602.43,
+      "power_hp": 302.0,
+      "torque_nm": 298.1,
+      "weight_kg": 1185.0,
+      "power_weight_hp_t": 254.85232067510546,
+      "weight_power_kg_hp": 3.923841059602649,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "SR20DET-Silvia-TC",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.2,
+        "0_1000m": 23.99,
+        "100_150_kmh": 4.62
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.36,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541911+00:00"
+    },
+    {
+      "car": "Nissan GT-R Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 600.21,
+      "power_hp": 334.0,
+      "torque_nm": 389.3,
+      "weight_kg": 1460.0,
+      "power_weight_hp_t": 228.76712328767124,
+      "weight_power_kg_hp": 4.37125748502994,
+      "weight_balance": "54:46",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "V6-GT-R-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.91,
+        "0_1000m": 23.67,
+        "100_150_kmh": 4.5
+      },
+      "rotational_g": {
+        "60_kmh": 1.18,
+        "120_kmh": 1.36,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.22 | N",
+        "high_speed": "-0.98 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541931+00:00"
+    },
+    {
+      "car": "Volkswagen Scirocco Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 612.88,
+      "power_hp": 294.0,
+      "torque_nm": 324.6,
+      "weight_kg": 1090.0,
+      "power_weight_hp_t": 269.7247706422018,
+      "weight_power_kg_hp": 3.707482993197279,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1984",
+      "engine_model": "L4-Scirocco-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.22,
+        "0_1000m": 23.87,
+        "100_150_kmh": 4.36
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.39,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541950+00:00"
+    },
+    {
+      "car": "Mitsubishi Lancer Evolution Final Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 596.56,
+      "power_hp": 324.0,
+      "torque_nm": 383.4,
+      "weight_kg": 1351.0,
+      "power_weight_hp_t": 239.82235381199112,
+      "weight_power_kg_hp": 4.169753086419753,
+      "weight_balance": "60:40",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "L4-Evo-Final-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.05,
+        "0_1000m": 23.86,
+        "100_150_kmh": 4.48
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.35,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541972+00:00"
+    },
+    {
+      "car": "Genesis G70 GR4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 606.08,
+      "power_hp": 327.0,
+      "torque_nm": 415.8,
+      "weight_kg": 1411.0,
+      "power_weight_hp_t": 231.75053153791637,
+      "weight_power_kg_hp": 4.314984709480123,
+      "weight_balance": "52:48",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3342",
+      "engine_model": "V6-G70-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.67,
+        "0_1000m": 23.41,
+        "100_150_kmh": 4.38
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.37,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.541991+00:00"
+    },
+    {
+      "car": "Aston Martin V8 Vantage Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 603.06,
+      "power_hp": 312.0,
+      "torque_nm": 381.5,
+      "weight_kg": 1355.0,
+      "power_weight_hp_t": 230.25830258302582,
+      "weight_power_kg_hp": 4.342948717948718,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Vantage-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.47,
+        "0_1000m": 24.17,
+        "100_150_kmh": 4.32
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.34,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542010+00:00"
+    },
+    {
+      "car": "Ferrari 458 Italia Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 606.83,
+      "power_hp": 315.0,
+      "torque_nm": 302.0,
+      "weight_kg": 1410.0,
+      "power_weight_hp_t": 223.40425531914894,
+      "weight_power_kg_hp": 4.476190476190476,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "4499",
+      "engine_model": "V8-458-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.69,
+        "0_1000m": 24.42,
+        "100_150_kmh": 4.41
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.36,
+        "240_kmh": 1.46
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542030+00:00"
+    },
+    {
+      "car": "Mazda MAZDA3 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 615.14,
+      "power_hp": 327.0,
+      "torque_nm": 372.7,
+      "weight_kg": 1200.0,
+      "power_weight_hp_t": 272.5,
+      "weight_power_kg_hp": 3.669724770642202,
+      "weight_balance": "64:36",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-Mazda-3-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.11,
+        "0_1000m": 23.71,
+        "100_150_kmh": 4.23
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.38,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542049+00:00"
+    },
+    {
+      "car": "Alfa Romeo 4C Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 609.5,
+      "power_hp": 275.0,
+      "torque_nm": 331.5,
+      "weight_kg": 1105.0,
+      "power_weight_hp_t": 248.86877828054298,
+      "weight_power_kg_hp": 4.0181818181818185,
+      "weight_balance": "41:59",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Alfa-4C-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.9,
+        "0_1000m": 23.73,
+        "100_150_kmh": 4.8
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.5
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-0.99 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542072+00:00"
+    },
+    {
+      "car": "Renault Mégane Trophy '11",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 605.43,
+      "power_hp": 292.0,
+      "torque_nm": 315.8,
+      "weight_kg": 1155.0,
+      "power_weight_hp_t": 252.8138528138528,
+      "weight_power_kg_hp": 3.9554794520547945,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3498",
+      "engine_model": "V4Y-Megane",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.57,
+        "0_1000m": 23.37,
+        "100_150_kmh": 4.41
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.36,
+        "240_kmh": 1.46
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542092+00:00"
+    },
+    {
+      "car": "Porsche Cayman GT4 Clubsport '16",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 606.02,
+      "power_hp": 304.0,
+      "torque_nm": 336.4,
+      "weight_kg": 1370.0,
+      "power_weight_hp_t": 221.8978102189781,
+      "weight_power_kg_hp": 4.506578947368421,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3800",
+      "engine_model": "MDB.XA-Cayman-CS",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.71,
+        "0_1000m": 23.42,
+        "100_150_kmh": 4.48
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.36,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.2 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542112+00:00"
+    },
+    {
+      "car": "Citroën GT by Citroën Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 610.16,
+      "power_hp": 312.0,
+      "torque_nm": 303.0,
+      "weight_kg": 1410.0,
+      "power_weight_hp_t": 221.27659574468086,
+      "weight_power_kg_hp": 4.519230769230769,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "GT-by-Citroen-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.28,
+        "0_1000m": 24.0,
+        "100_150_kmh": 4.36
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.37,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-0.94 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542133+00:00"
+    },
+    {
+      "car": "AMG SLS AMG Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 604.18,
+      "power_hp": 330.0,
+      "torque_nm": 377.6,
+      "weight_kg": 1426.0,
+      "power_weight_hp_t": 231.41654978962134,
+      "weight_power_kg_hp": 4.321212121212121,
+      "weight_balance": "47:53",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "SLS-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.76,
+        "0_1000m": 23.49,
+        "100_150_kmh": 4.46
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.35,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.26 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542152+00:00"
+    },
+    {
+      "car": "Lexus RC F Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 605.28,
+      "power_hp": 339.0,
+      "torque_nm": 382.5,
+      "weight_kg": 1411.0,
+      "power_weight_hp_t": 240.25513819985824,
+      "weight_power_kg_hp": 4.162241887905605,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4968",
+      "engine_model": "V8-RC-F-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.16,
+        "0_1000m": 23.82,
+        "100_150_kmh": 4.28
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.34,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542174+00:00"
+    },
+    {
+      "car": "Peugeot RCZ Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 610.0,
+      "power_hp": 318.0,
+      "torque_nm": 360.9,
+      "weight_kg": 1225.0,
+      "power_weight_hp_t": 259.59183673469386,
+      "weight_power_kg_hp": 3.852201257861635,
+      "weight_balance": "62:38",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1598",
+      "engine_model": "L4-RCZ-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.25,
+        "0_1000m": 23.93,
+        "100_150_kmh": 4.24
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.38,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542195+00:00"
+    },
+    {
+      "car": "Chevrolet Corvette C7 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 605.18,
+      "power_hp": 311.0,
+      "torque_nm": 426.6,
+      "weight_kg": 1360.0,
+      "power_weight_hp_t": 228.67647058823528,
+      "weight_power_kg_hp": 4.372990353697749,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Corvette-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.56,
+        "0_1000m": 23.21,
+        "100_150_kmh": 4.41
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.35,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542214+00:00"
+    },
+    {
+      "car": "Ford Mustang Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 606.13,
+      "power_hp": 328.0,
+      "torque_nm": 415.8,
+      "weight_kg": 1405.0,
+      "power_weight_hp_t": 233.45195729537366,
+      "weight_power_kg_hp": 4.283536585365853,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Mustang-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.56,
+        "0_1000m": 23.24,
+        "100_150_kmh": 4.34
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.36,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542235+00:00"
+    },
+    {
+      "car": "Hyundai Genesis Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 603.93,
+      "power_hp": 326.0,
+      "torque_nm": 349.1,
+      "weight_kg": 1355.0,
+      "power_weight_hp_t": 240.59040590405905,
+      "weight_power_kg_hp": 4.156441717791411,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Genesis-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.96,
+        "0_1000m": 23.68,
+        "100_150_kmh": 4.4
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.36,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542254+00:00"
+    },
+    {
+      "car": "Suzuki Swift Sport Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 610.94,
+      "power_hp": 283.0,
+      "torque_nm": 360.9,
+      "weight_kg": 1000.0,
+      "power_weight_hp_t": 283.0,
+      "weight_power_kg_hp": 3.5335689045936394,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Swift-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.21,
+        "0_1000m": 23.97,
+        "100_150_kmh": 4.18
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.39,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "-0.44 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542274+00:00"
+    },
+    {
+      "car": "Jaguar F-type Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 603.43,
+      "power_hp": 324.0,
+      "torque_nm": 406.0,
+      "weight_kg": 1390.0,
+      "power_weight_hp_t": 233.09352517985613,
+      "weight_power_kg_hp": 4.290123456790123,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "SC",
+      "displacement": "4999",
+      "engine_model": "V8-F-type-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.03,
+        "0_1000m": 23.73,
+        "100_150_kmh": 4.34
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.35,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.21 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542295+00:00"
+    },
+    {
+      "car": "Renault Mégane Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 611.35,
+      "power_hp": 297.0,
+      "torque_nm": 384.4,
+      "weight_kg": 1165.0,
+      "power_weight_hp_t": 254.93562231759657,
+      "weight_power_kg_hp": 3.9225589225589226,
+      "weight_balance": "65:35",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "L4-Megane-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.09,
+        "0_1000m": 23.72,
+        "100_150_kmh": 4.24
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.37,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.37 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542315+00:00"
+    },
+    {
+      "car": "Dodge Viper Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 601.53,
+      "power_hp": 322.0,
+      "torque_nm": 408.9,
+      "weight_kg": 1405.0,
+      "power_weight_hp_t": 229.1814946619217,
+      "weight_power_kg_hp": 4.363354037267081,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V10-Viper-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.86,
+        "0_1000m": 24.63,
+        "100_150_kmh": 4.44
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.35,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542334+00:00"
+    },
+    {
+      "car": "Toyota 86 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 604.66,
+      "power_hp": 313.0,
+      "torque_nm": 322.6,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 237.1212121212121,
+      "weight_power_kg_hp": 4.217252396166134,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "1998",
+      "engine_model": "B4-86-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.69,
+        "0_1000m": 24.45,
+        "100_150_kmh": 4.45
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.36,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542365+00:00"
+    },
+    {
+      "car": "Hyundai ELANTRA N TC '24",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 612.54,
+      "power_hp": 332.0,
+      "torque_nm": 427.6,
+      "weight_kg": 1265.0,
+      "power_weight_hp_t": 262.4505928853755,
+      "weight_power_kg_hp": 3.8102409638554215,
+      "weight_balance": "59:41",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "Theta-lI-T-GDI-Elantra-TC",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.47,
+        "0_1000m": 24.1,
+        "100_150_kmh": 4.21
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.39,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542391+00:00"
+    },
+    {
+      "car": "Bugatti Veyron Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 599.07,
+      "power_hp": 360.0,
+      "torque_nm": 456.0,
+      "weight_kg": 1656.0,
+      "power_weight_hp_t": 217.3913043478261,
+      "weight_power_kg_hp": 4.6,
+      "weight_balance": "45:55",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "7993",
+      "engine_model": "W16-Veyron-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.17,
+        "0_1000m": 23.89,
+        "100_150_kmh": 4.53
+      },
+      "rotational_g": {
+        "60_kmh": 1.15,
+        "120_kmh": 1.33,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "0.43 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542414+00:00"
+    },
+    {
+      "car": "Alfa Romeo 155 2.5 V6 TI '93",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 597.78,
+      "power_hp": 294.0,
+      "torque_nm": 208.9,
+      "weight_kg": 1200.0,
+      "power_weight_hp_t": 245.0,
+      "weight_power_kg_hp": 4.081632653061225,
+      "weight_balance": "58:42",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": "2498",
+      "engine_model": "V6-155-V6Ti",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.07,
+        "0_1000m": 23.87,
+        "100_150_kmh": 4.21
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.33,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542435+00:00"
+    },
+    {
+      "car": "Subaru WRX Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 597.42,
+      "power_hp": 318.0,
+      "torque_nm": 403.1,
+      "weight_kg": 1370.0,
+      "power_weight_hp_t": 232.11678832116786,
+      "weight_power_kg_hp": 4.3081761006289305,
+      "weight_balance": "60:40",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1994",
+      "engine_model": "F4-WRX-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.56,
+        "0_1000m": 23.31,
+        "100_150_kmh": 4.47
+      },
+      "rotational_g": {
+        "60_kmh": 1.17,
+        "120_kmh": 1.35,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542455+00:00"
+    },
+    {
+      "car": "Toyota GR Supra Race Car '19",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 605.65,
+      "power_hp": 312.0,
+      "torque_nm": 463.9,
+      "weight_kg": 1391.0,
+      "power_weight_hp_t": 224.29906542056074,
+      "weight_power_kg_hp": 4.458333333333333,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "GR-Supra-Race",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.35,
+        "0_1000m": 24.13,
+        "100_150_kmh": 4.58
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.37,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542476+00:00"
+    },
+    {
+      "car": "Lamborghini Huracán Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 605.37,
+      "power_hp": 291.0,
+      "torque_nm": 270.7,
+      "weight_kg": 1422.0,
+      "power_weight_hp_t": 204.64135021097047,
+      "weight_power_kg_hp": 4.88659793814433,
+      "weight_balance": "42:58",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": "5204",
+      "engine_model": "V10-Huracan-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.9,
+        "0_1000m": 24.71,
+        "100_150_kmh": 4.53
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.36,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "0.05 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542496+00:00"
+    },
+    {
+      "car": "Audi TT Cup '16",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 611.74,
+      "power_hp": 305.0,
+      "torque_nm": 363.8,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 269.9115044247788,
+      "weight_power_kg_hp": 3.7049180327868854,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1984",
+      "engine_model": "DNU-TT-Cup",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.29,
+        "0_1000m": 23.95,
+        "100_150_kmh": 4.18
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542516+00:00"
+    },
+    {
+      "car": "McLaren 650S Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 600.27,
+      "power_hp": 320.0,
+      "torque_nm": 338.3,
+      "weight_kg": 1361.0,
+      "power_weight_hp_t": 235.12123438648052,
+      "weight_power_kg_hp": 4.253125,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "V8-650S-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.52,
+        "0_1000m": 24.36,
+        "100_150_kmh": 4.66
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.35,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542536+00:00"
+    },
+    {
+      "car": "Honda NSX Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 606.78,
+      "power_hp": 316.0,
+      "torque_nm": 347.2,
+      "weight_kg": 1415.0,
+      "power_weight_hp_t": 223.32155477031802,
+      "weight_power_kg_hp": 4.477848101265823,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3493",
+      "engine_model": "V6-NSX-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.46,
+        "0_1000m": 24.26,
+        "100_150_kmh": 4.54
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.48
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-0.99 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542556+00:00"
+    },
+    {
+      "car": "BMW M4 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 594.77,
+      "power_hp": 320.0,
+      "torque_nm": 412.9,
+      "weight_kg": 1370.0,
+      "power_weight_hp_t": 233.5766423357664,
+      "weight_power_kg_hp": 4.28125,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2979",
+      "engine_model": "L6-M4-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.87,
+        "0_1000m": 23.96,
+        "100_150_kmh": 4.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.36,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542578+00:00"
+    },
+    {
+      "car": "Mazda Atenza Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 598.46,
+      "power_hp": 342.0,
+      "torque_nm": 372.7,
+      "weight_kg": 1385.0,
+      "power_weight_hp_t": 246.93140794223825,
+      "weight_power_kg_hp": 4.049707602339181,
+      "weight_balance": "60:40",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2188",
+      "engine_model": "L4-Atenza-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.91,
+        "0_1000m": 23.74,
+        "100_150_kmh": 4.43
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.35,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-0.94 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542600+00:00"
+    },
+    {
+      "car": "Nissan Silvia spec-R Aero (S15) Touring Car",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 602.43,
+      "power_hp": 302.0,
+      "torque_nm": 298.1,
+      "weight_kg": 1185.0,
+      "power_weight_hp_t": 254.85232067510546,
+      "weight_power_kg_hp": 3.923841059602649,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "SR20DET-Silvia-TC",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.2,
+        "0_1000m": 23.99,
+        "100_150_kmh": 4.62
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.36,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542621+00:00"
+    },
+    {
+      "car": "Nissan GT-R Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 600.21,
+      "power_hp": 334.0,
+      "torque_nm": 389.3,
+      "weight_kg": 1460.0,
+      "power_weight_hp_t": 228.76712328767124,
+      "weight_power_kg_hp": 4.37125748502994,
+      "weight_balance": "54:46",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "V6-GT-R-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.91,
+        "0_1000m": 23.67,
+        "100_150_kmh": 4.5
+      },
+      "rotational_g": {
+        "60_kmh": 1.18,
+        "120_kmh": 1.36,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.22 | N",
+        "high_speed": "-0.98 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542641+00:00"
+    },
+    {
+      "car": "Volkswagen Scirocco Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 612.88,
+      "power_hp": 294.0,
+      "torque_nm": 324.6,
+      "weight_kg": 1090.0,
+      "power_weight_hp_t": 269.7247706422018,
+      "weight_power_kg_hp": 3.707482993197279,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1984",
+      "engine_model": "L4-Scirocco-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.22,
+        "0_1000m": 23.87,
+        "100_150_kmh": 4.36
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.39,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542661+00:00"
+    },
+    {
+      "car": "Mitsubishi Lancer Evolution Final Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 596.56,
+      "power_hp": 324.0,
+      "torque_nm": 383.4,
+      "weight_kg": 1351.0,
+      "power_weight_hp_t": 239.82235381199112,
+      "weight_power_kg_hp": 4.169753086419753,
+      "weight_balance": "60:40",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "L4-Evo-Final-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.05,
+        "0_1000m": 23.86,
+        "100_150_kmh": 4.48
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.35,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542681+00:00"
+    },
+    {
+      "car": "Genesis G70 GR4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 604.8,
+      "power_hp": 323.0,
+      "torque_nm": 410.9,
+      "weight_kg": 1405.0,
+      "power_weight_hp_t": 229.8932384341637,
+      "weight_power_kg_hp": 4.34984520123839,
+      "weight_balance": "52:48",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3342",
+      "engine_model": "V6-G70-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.73,
+        "0_1000m": 23.5,
+        "100_150_kmh": 4.43
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.37,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-0.99 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542701+00:00"
+    },
+    {
+      "car": "Aston Martin V8 Vantage Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 603.06,
+      "power_hp": 312.0,
+      "torque_nm": 381.5,
+      "weight_kg": 1355.0,
+      "power_weight_hp_t": 230.25830258302582,
+      "weight_power_kg_hp": 4.342948717948718,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Vantage-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.47,
+        "0_1000m": 24.17,
+        "100_150_kmh": 4.32
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.34,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542721+00:00"
+    },
+    {
+      "car": "Ferrari 458 Italia Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 606.83,
+      "power_hp": 315.0,
+      "torque_nm": 302.0,
+      "weight_kg": 1410.0,
+      "power_weight_hp_t": 223.40425531914894,
+      "weight_power_kg_hp": 4.476190476190476,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "4499",
+      "engine_model": "V8-458-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.69,
+        "0_1000m": 24.42,
+        "100_150_kmh": 4.41
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.36,
+        "240_kmh": 1.46
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542741+00:00"
+    },
+    {
+      "car": "Mazda MAZDA3 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 615.14,
+      "power_hp": 327.0,
+      "torque_nm": 372.7,
+      "weight_kg": 1200.0,
+      "power_weight_hp_t": 272.5,
+      "weight_power_kg_hp": 3.669724770642202,
+      "weight_balance": "64:36",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-Mazda-3-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.11,
+        "0_1000m": 23.71,
+        "100_150_kmh": 4.23
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.38,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542760+00:00"
+    },
+    {
+      "car": "Alfa Romeo 4C Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 607.91,
+      "power_hp": 272.0,
+      "torque_nm": 327.5,
+      "weight_kg": 1105.0,
+      "power_weight_hp_t": 246.15384615384616,
+      "weight_power_kg_hp": 4.0625,
+      "weight_balance": "41:59",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Alfa-4C-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.95,
+        "0_1000m": 23.82,
+        "100_150_kmh": 4.86
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.5
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-0.98 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542781+00:00"
+    },
+    {
+      "car": "Renault Mégane Trophy '11",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 603.7,
+      "power_hp": 288.0,
+      "torque_nm": 311.9,
+      "weight_kg": 1155.0,
+      "power_weight_hp_t": 249.35064935064935,
+      "weight_power_kg_hp": 4.010416666666667,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3498",
+      "engine_model": "V4Y-Megane",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.63,
+        "0_1000m": 23.47,
+        "100_150_kmh": 4.48
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.36,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542805+00:00"
+    },
+    {
+      "car": "Porsche Cayman GT4 Clubsport '16",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 606.02,
+      "power_hp": 304.0,
+      "torque_nm": 336.4,
+      "weight_kg": 1370.0,
+      "power_weight_hp_t": 221.8978102189781,
+      "weight_power_kg_hp": 4.506578947368421,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3800",
+      "engine_model": "MDB.XA-Cayman-CS",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.71,
+        "0_1000m": 23.42,
+        "100_150_kmh": 4.48
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.36,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.2 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542825+00:00"
+    },
+    {
+      "car": "Citroën GT by Citroën Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 610.16,
+      "power_hp": 312.0,
+      "torque_nm": 303.0,
+      "weight_kg": 1410.0,
+      "power_weight_hp_t": 221.27659574468086,
+      "weight_power_kg_hp": 4.519230769230769,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "GT-by-Citroen-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.28,
+        "0_1000m": 24.0,
+        "100_150_kmh": 4.36
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.37,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-0.94 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542846+00:00"
+    },
+    {
+      "car": "AMG SLS AMG Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 604.18,
+      "power_hp": 330.0,
+      "torque_nm": 377.6,
+      "weight_kg": 1426.0,
+      "power_weight_hp_t": 231.41654978962134,
+      "weight_power_kg_hp": 4.321212121212121,
+      "weight_balance": "47:53",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "SLS-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.76,
+        "0_1000m": 23.49,
+        "100_150_kmh": 4.46
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.35,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.26 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542866+00:00"
+    },
+    {
+      "car": "Lexus RC F Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 605.28,
+      "power_hp": 339.0,
+      "torque_nm": 382.5,
+      "weight_kg": 1411.0,
+      "power_weight_hp_t": 240.25513819985824,
+      "weight_power_kg_hp": 4.162241887905605,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4968",
+      "engine_model": "V8-RC-F-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.16,
+        "0_1000m": 23.82,
+        "100_150_kmh": 4.28
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.34,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542887+00:00"
+    },
+    {
+      "car": "Peugeot RCZ Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 610.0,
+      "power_hp": 318.0,
+      "torque_nm": 360.9,
+      "weight_kg": 1225.0,
+      "power_weight_hp_t": 259.59183673469386,
+      "weight_power_kg_hp": 3.852201257861635,
+      "weight_balance": "62:38",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1598",
+      "engine_model": "L4-RCZ-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.25,
+        "0_1000m": 23.93,
+        "100_150_kmh": 4.24
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.38,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542908+00:00"
+    },
+    {
+      "car": "Chevrolet Corvette C7 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 605.18,
+      "power_hp": 311.0,
+      "torque_nm": 426.6,
+      "weight_kg": 1360.0,
+      "power_weight_hp_t": 228.67647058823528,
+      "weight_power_kg_hp": 4.372990353697749,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Corvette-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.56,
+        "0_1000m": 23.21,
+        "100_150_kmh": 4.41
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.35,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542928+00:00"
+    },
+    {
+      "car": "Ford Mustang Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 606.13,
+      "power_hp": 328.0,
+      "torque_nm": 415.8,
+      "weight_kg": 1405.0,
+      "power_weight_hp_t": 233.45195729537366,
+      "weight_power_kg_hp": 4.283536585365853,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Mustang-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.56,
+        "0_1000m": 23.24,
+        "100_150_kmh": 4.34
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.36,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542947+00:00"
+    },
+    {
+      "car": "Hyundai Genesis Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 603.93,
+      "power_hp": 326.0,
+      "torque_nm": 349.1,
+      "weight_kg": 1355.0,
+      "power_weight_hp_t": 240.59040590405905,
+      "weight_power_kg_hp": 4.156441717791411,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Genesis-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.96,
+        "0_1000m": 23.68,
+        "100_150_kmh": 4.4
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.36,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542967+00:00"
+    },
+    {
+      "car": "Suzuki Swift Sport Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 610.94,
+      "power_hp": 283.0,
+      "torque_nm": 360.9,
+      "weight_kg": 1000.0,
+      "power_weight_hp_t": 283.0,
+      "weight_power_kg_hp": 3.5335689045936394,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Swift-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.21,
+        "0_1000m": 23.97,
+        "100_150_kmh": 4.18
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.39,
+        "240_kmh": 1.47
+      },
+      "stability": {
+        "low_speed": "-0.44 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.542986+00:00"
+    },
+    {
+      "car": "Jaguar F-type Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 603.43,
+      "power_hp": 324.0,
+      "torque_nm": 406.0,
+      "weight_kg": 1390.0,
+      "power_weight_hp_t": 233.09352517985613,
+      "weight_power_kg_hp": 4.290123456790123,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "SC",
+      "displacement": "4999",
+      "engine_model": "V8-F-type-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.03,
+        "0_1000m": 23.73,
+        "100_150_kmh": 4.34
+      },
+      "rotational_g": {
+        "60_kmh": 1.27,
+        "120_kmh": 1.35,
+        "240_kmh": 1.42
+      },
+      "stability": {
+        "low_speed": "-0.21 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.543007+00:00"
+    },
+    {
+      "car": "Renault Mégane Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 611.35,
+      "power_hp": 297.0,
+      "torque_nm": 384.4,
+      "weight_kg": 1165.0,
+      "power_weight_hp_t": 254.93562231759657,
+      "weight_power_kg_hp": 3.9225589225589226,
+      "weight_balance": "65:35",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "L4-Megane-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.09,
+        "0_1000m": 23.72,
+        "100_150_kmh": 4.24
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.37,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.37 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.543028+00:00"
+    },
+    {
+      "car": "Dodge Viper Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 601.53,
+      "power_hp": 322.0,
+      "torque_nm": 408.9,
+      "weight_kg": 1405.0,
+      "power_weight_hp_t": 229.1814946619217,
+      "weight_power_kg_hp": 4.363354037267081,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V10-Viper-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.86,
+        "0_1000m": 24.63,
+        "100_150_kmh": 4.44
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.35,
+        "240_kmh": 1.43
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.543050+00:00"
+    },
+    {
+      "car": "Toyota 86 Gr.4",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 604.66,
+      "power_hp": 313.0,
+      "torque_nm": 322.6,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 237.1212121212121,
+      "weight_power_kg_hp": 4.217252396166134,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "1998",
+      "engine_model": "B4-86-Gr.4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.69,
+        "0_1000m": 24.45,
+        "100_150_kmh": 4.45
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.36,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.543070+00:00"
+    },
+    {
+      "car": "Hyundai ELANTRA N TC '24",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 612.54,
+      "power_hp": 332.0,
+      "torque_nm": 427.6,
+      "weight_kg": 1265.0,
+      "power_weight_hp_t": 262.4505928853755,
+      "weight_power_kg_hp": 3.8102409638554215,
+      "weight_balance": "59:41",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "Theta-lI-T-GDI-Elantra-TC",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.47,
+        "0_1000m": 24.1,
+        "100_150_kmh": 4.21
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.39,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:59.543090+00:00"
+    }
+  ]
+}

@@ -1,0 +1,1397 @@
+{
+  "generated_at": "2026-08-19T13:08:06.499061+00:00",
+  "lab_version": "2.0",
+  "group": "GR.B",
+  "selected_version": "1.60",
+  "source_url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "raw_counts": {
+      "HIGH": 12,
+      "MID": 12,
+      "LOW": 12
+    },
+    "decoded_counts": {
+      "HIGH": 12,
+      "MID": 12,
+      "LOW": 12
+    },
+    "rejected": {
+      "HIGH": 0,
+      "MID": 0,
+      "LOW": 0
+    },
+    "unique_cars": 12
+  },
+  "records": [
+    {
+      "car": "Peugeot 205 Turbo 16 Evolution 2 '86",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 656.98,
+      "power_hp": 449.0,
+      "torque_nm": 490.3,
+      "weight_kg": 980.0,
+      "power_weight_hp_t": 458.16326530612247,
+      "weight_power_kg_hp": 2.1826280623608016,
+      "weight_balance": "45:55",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1775",
+      "engine_model": "PSA-XU8T-205T16",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.53,
+        "0_1000m": 20.93,
+        "100_150_kmh": 2.9
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.37,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498266+00:00"
+    },
+    {
+      "car": "Audi Sport quattro S1 Pikes Peak '87",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 653.81,
+      "power_hp": 500.0,
+      "torque_nm": 501.1,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 442.47787610619474,
+      "weight_power_kg_hp": 2.26,
+      "weight_balance": "52:48",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2110",
+      "engine_model": "R5-20vT-Quattro-Pikes",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.76,
+        "0_1000m": 19.93,
+        "100_150_kmh": 2.51
+      },
+      "rotational_g": {
+        "60_kmh": 1.21,
+        "120_kmh": 1.31,
+        "240_kmh": 1.35
+      },
+      "stability": {
+        "low_speed": "-0.21 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498321+00:00"
+    },
+    {
+      "car": "Ford Mustang Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 652.73,
+      "power_hp": 543.0,
+      "torque_nm": 564.9,
+      "weight_kg": 1380.0,
+      "power_weight_hp_t": 393.47826086956525,
+      "weight_power_kg_hp": 2.541436464088398,
+      "weight_balance": "55:45",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Mustang-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.6,
+        "0_1000m": 19.71,
+        "100_150_kmh": 2.46
+      },
+      "rotational_g": {
+        "60_kmh": 1.15,
+        "120_kmh": 1.3,
+        "240_kmh": 1.36
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498353+00:00"
+    },
+    {
+      "car": "Mitsubishi Lancer Evolution Final Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 654.63,
+      "power_hp": 517.0,
+      "torque_nm": 612.9,
+      "weight_kg": 1290.0,
+      "power_weight_hp_t": 400.7751937984496,
+      "weight_power_kg_hp": 2.495164410058027,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Evo-Final-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.41,
+        "0_1000m": 19.59,
+        "100_150_kmh": 2.44
+      },
+      "rotational_g": {
+        "60_kmh": 1.18,
+        "120_kmh": 1.31,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "0.4 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498379+00:00"
+    },
+    {
+      "car": "Subaru WRX Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 655.59,
+      "power_hp": 517.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1280.0,
+      "power_weight_hp_t": 403.90625,
+      "weight_power_kg_hp": 2.4758220502901356,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "WRX-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.46,
+        "0_1000m": 19.6,
+        "100_150_kmh": 2.48
+      },
+      "rotational_g": {
+        "60_kmh": 1.23,
+        "120_kmh": 1.31,
+        "240_kmh": 1.36
+      },
+      "stability": {
+        "low_speed": "0.4 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498399+00:00"
+    },
+    {
+      "car": "Hyundai Genesis Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 653.07,
+      "power_hp": 495.0,
+      "torque_nm": 459.0,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 396.0,
+      "weight_power_kg_hp": 2.525252525252525,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Genesis-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.75,
+        "0_1000m": 20.0,
+        "100_150_kmh": 2.55
+      },
+      "rotational_g": {
+        "60_kmh": 1.22,
+        "120_kmh": 1.31,
+        "240_kmh": 1.38
+      },
+      "stability": {
+        "low_speed": "-0.2 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498419+00:00"
+    },
+    {
+      "car": "Honda NSX Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 660.93,
+      "power_hp": 524.0,
+      "torque_nm": 538.4,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 403.07692307692304,
+      "weight_power_kg_hp": 2.480916030534351,
+      "weight_balance": "47:53",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "V6-NSX-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.6,
+        "0_1000m": 19.73,
+        "100_150_kmh": 2.62
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.31,
+        "240_kmh": 1.41
+      },
+      "stability": {
+        "low_speed": "0.12 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498439+00:00"
+    },
+    {
+      "car": "Nissan GT-R Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 656.72,
+      "power_hp": 538.0,
+      "torque_nm": 625.7,
+      "weight_kg": 1350.0,
+      "power_weight_hp_t": 398.5185185185185,
+      "weight_power_kg_hp": 2.509293680297398,
+      "weight_balance": "55:45",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "V6-GT-R-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.56,
+        "0_1000m": 19.66,
+        "100_150_kmh": 2.54
+      },
+      "rotational_g": {
+        "60_kmh": 1.2,
+        "120_kmh": 1.32,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "-0.19 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498460+00:00"
+    },
+    {
+      "car": "Peugeot RCZ Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 658.55,
+      "power_hp": 517.0,
+      "torque_nm": 548.2,
+      "weight_kg": 1240.0,
+      "power_weight_hp_t": 416.93548387096774,
+      "weight_power_kg_hp": 2.3984526112185685,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-RCZ-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.73,
+        "0_1000m": 19.95,
+        "100_150_kmh": 2.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.32,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "0.44 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498480+00:00"
+    },
+    {
+      "car": "Ford Focus Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 655.86,
+      "power_hp": 522.0,
+      "torque_nm": 561.9,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 414.2857142857143,
+      "weight_power_kg_hp": 2.413793103448276,
+      "weight_balance": "55:45",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1999",
+      "engine_model": "L4-Focus-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.58,
+        "0_1000m": 19.74,
+        "100_150_kmh": 2.51
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.32,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "-0.26 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498500+00:00"
+    },
+    {
+      "car": "Toyota 86 Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 650.49,
+      "power_hp": 466.0,
+      "torque_nm": 417.8,
+      "weight_kg": 1180.0,
+      "power_weight_hp_t": 394.91525423728814,
+      "weight_power_kg_hp": 2.532188841201717,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": "1998",
+      "engine_model": "B4-86-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.95,
+        "0_1000m": 20.24,
+        "100_150_kmh": 2.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.32,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498521+00:00"
+    },
+    {
+      "car": "Toyota Celica GT-FOUR Rally Car (ST205) '95",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "HIGH",
+      "pp": 582.35,
+      "power_hp": 299.0,
+      "torque_nm": 500.1,
+      "weight_kg": 1200.0,
+      "power_weight_hp_t": 249.16666666666669,
+      "weight_power_kg_hp": 4.013377926421405,
+      "weight_balance": "58:42",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "3S-GTE-661E-Celica",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.9,
+        "0_1000m": 23.73,
+        "100_150_kmh": 4.94
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.3,
+        "240_kmh": 1.34
+      },
+      "stability": {
+        "low_speed": "-0.15 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498545+00:00"
+    },
+    {
+      "car": "Peugeot 205 Turbo 16 Evolution 2 '86",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 656.98,
+      "power_hp": 449.0,
+      "torque_nm": 490.3,
+      "weight_kg": 980.0,
+      "power_weight_hp_t": 458.16326530612247,
+      "weight_power_kg_hp": 2.1826280623608016,
+      "weight_balance": "45:55",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1775",
+      "engine_model": "PSA-XU8T-205T16",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.53,
+        "0_1000m": 20.93,
+        "100_150_kmh": 2.9
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.37,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498568+00:00"
+    },
+    {
+      "car": "Audi Sport quattro S1 Pikes Peak '87",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 653.81,
+      "power_hp": 500.0,
+      "torque_nm": 501.1,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 442.47787610619474,
+      "weight_power_kg_hp": 2.26,
+      "weight_balance": "52:48",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2110",
+      "engine_model": "R5-20vT-Quattro-Pikes",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.76,
+        "0_1000m": 19.93,
+        "100_150_kmh": 2.51
+      },
+      "rotational_g": {
+        "60_kmh": 1.21,
+        "120_kmh": 1.31,
+        "240_kmh": 1.35
+      },
+      "stability": {
+        "low_speed": "-0.21 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498590+00:00"
+    },
+    {
+      "car": "Ford Mustang Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 652.73,
+      "power_hp": 543.0,
+      "torque_nm": 564.9,
+      "weight_kg": 1380.0,
+      "power_weight_hp_t": 393.47826086956525,
+      "weight_power_kg_hp": 2.541436464088398,
+      "weight_balance": "55:45",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Mustang-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.6,
+        "0_1000m": 19.71,
+        "100_150_kmh": 2.46
+      },
+      "rotational_g": {
+        "60_kmh": 1.15,
+        "120_kmh": 1.3,
+        "240_kmh": 1.36
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498610+00:00"
+    },
+    {
+      "car": "Mitsubishi Lancer Evolution Final Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 654.63,
+      "power_hp": 517.0,
+      "torque_nm": 612.9,
+      "weight_kg": 1290.0,
+      "power_weight_hp_t": 400.7751937984496,
+      "weight_power_kg_hp": 2.495164410058027,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Evo-Final-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.41,
+        "0_1000m": 19.59,
+        "100_150_kmh": 2.44
+      },
+      "rotational_g": {
+        "60_kmh": 1.18,
+        "120_kmh": 1.31,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "0.4 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498630+00:00"
+    },
+    {
+      "car": "Subaru WRX Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 655.59,
+      "power_hp": 517.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1280.0,
+      "power_weight_hp_t": 403.90625,
+      "weight_power_kg_hp": 2.4758220502901356,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "WRX-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.46,
+        "0_1000m": 19.6,
+        "100_150_kmh": 2.48
+      },
+      "rotational_g": {
+        "60_kmh": 1.23,
+        "120_kmh": 1.31,
+        "240_kmh": 1.36
+      },
+      "stability": {
+        "low_speed": "0.4 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498649+00:00"
+    },
+    {
+      "car": "Hyundai Genesis Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 653.07,
+      "power_hp": 495.0,
+      "torque_nm": 459.0,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 396.0,
+      "weight_power_kg_hp": 2.525252525252525,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Genesis-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.75,
+        "0_1000m": 20.0,
+        "100_150_kmh": 2.55
+      },
+      "rotational_g": {
+        "60_kmh": 1.22,
+        "120_kmh": 1.31,
+        "240_kmh": 1.38
+      },
+      "stability": {
+        "low_speed": "-0.2 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498668+00:00"
+    },
+    {
+      "car": "Honda NSX Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 660.93,
+      "power_hp": 524.0,
+      "torque_nm": 538.4,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 403.07692307692304,
+      "weight_power_kg_hp": 2.480916030534351,
+      "weight_balance": "47:53",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "V6-NSX-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.6,
+        "0_1000m": 19.73,
+        "100_150_kmh": 2.62
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.31,
+        "240_kmh": 1.41
+      },
+      "stability": {
+        "low_speed": "0.12 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498688+00:00"
+    },
+    {
+      "car": "Nissan GT-R Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 656.72,
+      "power_hp": 538.0,
+      "torque_nm": 625.7,
+      "weight_kg": 1350.0,
+      "power_weight_hp_t": 398.5185185185185,
+      "weight_power_kg_hp": 2.509293680297398,
+      "weight_balance": "55:45",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "V6-GT-R-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.56,
+        "0_1000m": 19.66,
+        "100_150_kmh": 2.54
+      },
+      "rotational_g": {
+        "60_kmh": 1.2,
+        "120_kmh": 1.32,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "-0.19 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498710+00:00"
+    },
+    {
+      "car": "Peugeot RCZ Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 658.55,
+      "power_hp": 517.0,
+      "torque_nm": 548.2,
+      "weight_kg": 1240.0,
+      "power_weight_hp_t": 416.93548387096774,
+      "weight_power_kg_hp": 2.3984526112185685,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-RCZ-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.73,
+        "0_1000m": 19.95,
+        "100_150_kmh": 2.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.32,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "0.44 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498730+00:00"
+    },
+    {
+      "car": "Ford Focus Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 655.86,
+      "power_hp": 522.0,
+      "torque_nm": 561.9,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 414.2857142857143,
+      "weight_power_kg_hp": 2.413793103448276,
+      "weight_balance": "55:45",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1999",
+      "engine_model": "L4-Focus-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.58,
+        "0_1000m": 19.74,
+        "100_150_kmh": 2.51
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.32,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "-0.26 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498750+00:00"
+    },
+    {
+      "car": "Toyota 86 Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 650.49,
+      "power_hp": 466.0,
+      "torque_nm": 417.8,
+      "weight_kg": 1180.0,
+      "power_weight_hp_t": 394.91525423728814,
+      "weight_power_kg_hp": 2.532188841201717,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": "1998",
+      "engine_model": "B4-86-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.95,
+        "0_1000m": 20.24,
+        "100_150_kmh": 2.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.32,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498772+00:00"
+    },
+    {
+      "car": "Toyota Celica GT-FOUR Rally Car (ST205) '95",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "MID",
+      "pp": 582.35,
+      "power_hp": 299.0,
+      "torque_nm": 500.1,
+      "weight_kg": 1200.0,
+      "power_weight_hp_t": 249.16666666666669,
+      "weight_power_kg_hp": 4.013377926421405,
+      "weight_balance": "58:42",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "3S-GTE-661E-Celica",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.9,
+        "0_1000m": 23.73,
+        "100_150_kmh": 4.94
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.3,
+        "240_kmh": 1.34
+      },
+      "stability": {
+        "low_speed": "-0.15 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498794+00:00"
+    },
+    {
+      "car": "Peugeot 205 Turbo 16 Evolution 2 '86",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 656.98,
+      "power_hp": 449.0,
+      "torque_nm": 490.3,
+      "weight_kg": 980.0,
+      "power_weight_hp_t": 458.16326530612247,
+      "weight_power_kg_hp": 2.1826280623608016,
+      "weight_balance": "45:55",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1775",
+      "engine_model": "PSA-XU8T-205T16",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.53,
+        "0_1000m": 20.93,
+        "100_150_kmh": 2.9
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.37,
+        "240_kmh": 1.44
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498816+00:00"
+    },
+    {
+      "car": "Audi Sport quattro S1 Pikes Peak '87",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 653.81,
+      "power_hp": 500.0,
+      "torque_nm": 501.1,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 442.47787610619474,
+      "weight_power_kg_hp": 2.26,
+      "weight_balance": "52:48",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2110",
+      "engine_model": "R5-20vT-Quattro-Pikes",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.76,
+        "0_1000m": 19.93,
+        "100_150_kmh": 2.51
+      },
+      "rotational_g": {
+        "60_kmh": 1.21,
+        "120_kmh": 1.31,
+        "240_kmh": 1.35
+      },
+      "stability": {
+        "low_speed": "-0.21 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498837+00:00"
+    },
+    {
+      "car": "Ford Mustang Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 652.73,
+      "power_hp": 543.0,
+      "torque_nm": 564.9,
+      "weight_kg": 1380.0,
+      "power_weight_hp_t": 393.47826086956525,
+      "weight_power_kg_hp": 2.541436464088398,
+      "weight_balance": "55:45",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Mustang-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.6,
+        "0_1000m": 19.71,
+        "100_150_kmh": 2.46
+      },
+      "rotational_g": {
+        "60_kmh": 1.15,
+        "120_kmh": 1.3,
+        "240_kmh": 1.36
+      },
+      "stability": {
+        "low_speed": "-0.23 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498856+00:00"
+    },
+    {
+      "car": "Mitsubishi Lancer Evolution Final Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 654.63,
+      "power_hp": 517.0,
+      "torque_nm": 612.9,
+      "weight_kg": 1290.0,
+      "power_weight_hp_t": 400.7751937984496,
+      "weight_power_kg_hp": 2.495164410058027,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Evo-Final-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.41,
+        "0_1000m": 19.59,
+        "100_150_kmh": 2.44
+      },
+      "rotational_g": {
+        "60_kmh": 1.18,
+        "120_kmh": 1.31,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "0.4 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498877+00:00"
+    },
+    {
+      "car": "Subaru WRX Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 655.59,
+      "power_hp": 517.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1280.0,
+      "power_weight_hp_t": 403.90625,
+      "weight_power_kg_hp": 2.4758220502901356,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "WRX-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.46,
+        "0_1000m": 19.6,
+        "100_150_kmh": 2.48
+      },
+      "rotational_g": {
+        "60_kmh": 1.23,
+        "120_kmh": 1.31,
+        "240_kmh": 1.36
+      },
+      "stability": {
+        "low_speed": "0.4 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498896+00:00"
+    },
+    {
+      "car": "Hyundai Genesis Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 653.07,
+      "power_hp": 495.0,
+      "torque_nm": 459.0,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 396.0,
+      "weight_power_kg_hp": 2.525252525252525,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Genesis-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.75,
+        "0_1000m": 20.0,
+        "100_150_kmh": 2.55
+      },
+      "rotational_g": {
+        "60_kmh": 1.22,
+        "120_kmh": 1.31,
+        "240_kmh": 1.38
+      },
+      "stability": {
+        "low_speed": "-0.2 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498916+00:00"
+    },
+    {
+      "car": "Honda NSX Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 660.93,
+      "power_hp": 524.0,
+      "torque_nm": 538.4,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 403.07692307692304,
+      "weight_power_kg_hp": 2.480916030534351,
+      "weight_balance": "47:53",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "V6-NSX-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.6,
+        "0_1000m": 19.73,
+        "100_150_kmh": 2.62
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.31,
+        "240_kmh": 1.41
+      },
+      "stability": {
+        "low_speed": "0.12 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498935+00:00"
+    },
+    {
+      "car": "Nissan GT-R Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 656.72,
+      "power_hp": 538.0,
+      "torque_nm": 625.7,
+      "weight_kg": 1350.0,
+      "power_weight_hp_t": 398.5185185185185,
+      "weight_power_kg_hp": 2.509293680297398,
+      "weight_balance": "55:45",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "V6-GT-R-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.56,
+        "0_1000m": 19.66,
+        "100_150_kmh": 2.54
+      },
+      "rotational_g": {
+        "60_kmh": 1.2,
+        "120_kmh": 1.32,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "-0.19 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498957+00:00"
+    },
+    {
+      "car": "Peugeot RCZ Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 658.55,
+      "power_hp": 517.0,
+      "torque_nm": 548.2,
+      "weight_kg": 1240.0,
+      "power_weight_hp_t": 416.93548387096774,
+      "weight_power_kg_hp": 2.3984526112185685,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-RCZ-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.73,
+        "0_1000m": 19.95,
+        "100_150_kmh": 2.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.26,
+        "120_kmh": 1.32,
+        "240_kmh": 1.4
+      },
+      "stability": {
+        "low_speed": "0.44 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.498977+00:00"
+    },
+    {
+      "car": "Ford Focus Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 655.86,
+      "power_hp": 522.0,
+      "torque_nm": 561.9,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 414.2857142857143,
+      "weight_power_kg_hp": 2.413793103448276,
+      "weight_balance": "55:45",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1999",
+      "engine_model": "L4-Focus-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.58,
+        "0_1000m": 19.74,
+        "100_150_kmh": 2.51
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.32,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "-0.26 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.499000+00:00"
+    },
+    {
+      "car": "Toyota 86 Gr.B Rally Car",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 650.49,
+      "power_hp": 466.0,
+      "torque_nm": 417.8,
+      "weight_kg": 1180.0,
+      "power_weight_hp_t": 394.91525423728814,
+      "weight_power_kg_hp": 2.532188841201717,
+      "weight_balance": "53:47",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": "1998",
+      "engine_model": "B4-86-Gr.B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.95,
+        "0_1000m": 20.24,
+        "100_150_kmh": 2.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.25,
+        "120_kmh": 1.32,
+        "240_kmh": 1.37
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.499021+00:00"
+    },
+    {
+      "car": "Toyota Celica GT-FOUR Rally Car (ST205) '95",
+      "group": "GR.B",
+      "bop_version": "1.60",
+      "speed_class": "LOW",
+      "pp": 582.35,
+      "power_hp": 299.0,
+      "torque_nm": 500.1,
+      "weight_kg": 1200.0,
+      "power_weight_hp_t": 249.16666666666669,
+      "weight_power_kg_hp": 4.013377926421405,
+      "weight_balance": "58:42",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "3S-GTE-661E-Celica",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.9,
+        "0_1000m": 23.73,
+        "100_150_kmh": 4.94
+      },
+      "rotational_g": {
+        "60_kmh": 1.19,
+        "120_kmh": 1.3,
+        "240_kmh": 1.34
+      },
+      "stability": {
+        "low_speed": "-0.15 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:08:06.499043+00:00"
+    }
+  ]
+}

@@ -1,0 +1,1169 @@
+{
+  "generated_at": "2026-08-19T13:07:54.816909+00:00",
+  "lab_version": "2.0",
+  "group": "GR.2",
+  "selected_version": "1.61",
+  "source_url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "raw_counts": {
+      "HIGH": 10,
+      "MID": 10,
+      "LOW": 10
+    },
+    "decoded_counts": {
+      "HIGH": 10,
+      "MID": 10,
+      "LOW": 10
+    },
+    "rejected": {
+      "HIGH": 0,
+      "MID": 0,
+      "LOW": 0
+    },
+    "unique_cars": 10
+  },
+  "records": [
+    {
+      "car": "Honda NSX CONCEPT-GT '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "HIGH",
+      "pp": 864.74,
+      "power_hp": 604.0,
+      "torque_nm": 612.9,
+      "weight_kg": 1064.0,
+      "power_weight_hp_t": 567.6691729323308,
+      "weight_power_kg_hp": 1.7615894039735098,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "1995",
+      "engine_model": "HR-414E-NSX",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.73,
+        "0_1000m": 19.1,
+        "100_150_kmh": 1.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.75
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-0.99 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816237+00:00"
+    },
+    {
+      "car": "Lexus SC430 GT500 '08",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "HIGH",
+      "pp": 806.08,
+      "power_hp": 517.0,
+      "torque_nm": 584.5,
+      "weight_kg": 1111.0,
+      "power_weight_hp_t": 465.34653465346537,
+      "weight_power_kg_hp": 2.148936170212766,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4480",
+      "engine_model": "3UZ-FE-SC430",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.68,
+        "0_1000m": 19.47,
+        "100_150_kmh": 2.14
+      },
+      "rotational_g": {
+        "60_kmh": 1.57,
+        "120_kmh": 1.75,
+        "240_kmh": 2.28
+      },
+      "stability": {
+        "low_speed": "-0.4 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816290+00:00"
+    },
+    {
+      "car": "Audi RS 5 Turbo DTM '19",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "HIGH",
+      "pp": 855.93,
+      "power_hp": 604.0,
+      "torque_nm": 650.2,
+      "weight_kg": 986.0,
+      "power_weight_hp_t": 612.5760649087222,
+      "weight_power_kg_hp": 1.6324503311258278,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2000",
+      "engine_model": "RC8-2.0-TFSI-RS5",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.11,
+        "0_1000m": 18.4,
+        "100_150_kmh": 1.66
+      },
+      "rotational_g": {
+        "60_kmh": 1.57,
+        "120_kmh": 1.79,
+        "240_kmh": 2.57
+      },
+      "stability": {
+        "low_speed": "-0.43 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816313+00:00"
+    },
+    {
+      "car": "Lexus RC F GT500 '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "HIGH",
+      "pp": 862.89,
+      "power_hp": 614.0,
+      "torque_nm": 588.4,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 596.1165048543689,
+      "weight_power_kg_hp": 1.6775244299674268,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2000",
+      "engine_model": "RI4AG-RC-F",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.3,
+        "0_1000m": 18.55,
+        "100_150_kmh": 1.8
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.65
+      },
+      "stability": {
+        "low_speed": "-0.37 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816336+00:00"
+    },
+    {
+      "car": "Toyota GT-One (TS020) '99",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "HIGH",
+      "pp": 801.03,
+      "power_hp": 581.0,
+      "torque_nm": 623.7,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 645.5555555555555,
+      "weight_power_kg_hp": 1.549053356282272,
+      "weight_balance": "49:51",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3600",
+      "engine_model": "T836-9-GT-One",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.11,
+        "0_1000m": 19.47,
+        "100_150_kmh": 1.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.42,
+        "120_kmh": 1.57,
+        "240_kmh": 2.18
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816368+00:00"
+    },
+    {
+      "car": "Honda NSX GT500 '08",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "HIGH",
+      "pp": 809.29,
+      "power_hp": 519.0,
+      "torque_nm": 588.4,
+      "weight_kg": 1150.0,
+      "power_weight_hp_t": 451.304347826087,
+      "weight_power_kg_hp": 2.2157996146435455,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3494",
+      "engine_model": "C32B-NSX-GT500-'08",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.86,
+        "0_1000m": 19.63,
+        "100_150_kmh": 2.16
+      },
+      "rotational_g": {
+        "60_kmh": 1.59,
+        "120_kmh": 1.75,
+        "240_kmh": 2.31
+      },
+      "stability": {
+        "low_speed": "-0.47 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816390+00:00"
+    },
+    {
+      "car": "Nissan GT-R GT500 '08",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "HIGH",
+      "pp": 806.67,
+      "power_hp": 528.0,
+      "torque_nm": 550.2,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 467.25663716814165,
+      "weight_power_kg_hp": 2.140151515151515,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4494",
+      "engine_model": "VK45DE-GT-R",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.57,
+        "0_1000m": 19.33,
+        "100_150_kmh": 2.16
+      },
+      "rotational_g": {
+        "60_kmh": 1.58,
+        "120_kmh": 1.75,
+        "240_kmh": 2.27
+      },
+      "stability": {
+        "low_speed": "-0.21 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816410+00:00"
+    },
+    {
+      "car": "Nissan GT-R NISMO GT500 '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "HIGH",
+      "pp": 862.2,
+      "power_hp": 613.0,
+      "torque_nm": 588.4,
+      "weight_kg": 1035.0,
+      "power_weight_hp_t": 592.2705314009662,
+      "weight_power_kg_hp": 1.6884176182707993,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "NR20A-GT-R",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.43,
+        "0_1000m": 18.69,
+        "100_150_kmh": 1.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.65
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816432+00:00"
+    },
+    {
+      "car": "Mercedes-Benz CLK-LM '98",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "HIGH",
+      "pp": 791.45,
+      "power_hp": 582.0,
+      "torque_nm": 522.7,
+      "weight_kg": 940.0,
+      "power_weight_hp_t": 619.1489361702128,
+      "weight_power_kg_hp": 1.6151202749140894,
+      "weight_balance": "49:51",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "M119-GT108B-CLK-LM",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.53,
+        "0_1000m": 18.83,
+        "100_150_kmh": 1.69
+      },
+      "rotational_g": {
+        "60_kmh": 1.4,
+        "120_kmh": 1.54,
+        "240_kmh": 2.04
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816452+00:00"
+    },
+    {
+      "car": "BMW McLaren F1 GTR Race Car '97",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "HIGH",
+      "pp": 786.75,
+      "power_hp": 603.0,
+      "torque_nm": 711.0,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 634.7368421052632,
+      "weight_power_kg_hp": 1.5754560530679933,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "S70/3-F1GTR-'97",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.35,
+        "0_1000m": 18.53,
+        "100_150_kmh": 1.65
+      },
+      "rotational_g": {
+        "60_kmh": 1.41,
+        "120_kmh": 1.54,
+        "240_kmh": 1.94
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816472+00:00"
+    },
+    {
+      "car": "Honda NSX CONCEPT-GT '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "MID",
+      "pp": 864.74,
+      "power_hp": 604.0,
+      "torque_nm": 612.9,
+      "weight_kg": 1064.0,
+      "power_weight_hp_t": 567.6691729323308,
+      "weight_power_kg_hp": 1.7615894039735098,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "1995",
+      "engine_model": "HR-414E-NSX",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.73,
+        "0_1000m": 19.1,
+        "100_150_kmh": 1.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.75
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-0.99 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816494+00:00"
+    },
+    {
+      "car": "Lexus SC430 GT500 '08",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "MID",
+      "pp": 806.08,
+      "power_hp": 517.0,
+      "torque_nm": 584.5,
+      "weight_kg": 1111.0,
+      "power_weight_hp_t": 465.34653465346537,
+      "weight_power_kg_hp": 2.148936170212766,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4480",
+      "engine_model": "3UZ-FE-SC430",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.68,
+        "0_1000m": 19.47,
+        "100_150_kmh": 2.14
+      },
+      "rotational_g": {
+        "60_kmh": 1.57,
+        "120_kmh": 1.75,
+        "240_kmh": 2.28
+      },
+      "stability": {
+        "low_speed": "-0.4 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816514+00:00"
+    },
+    {
+      "car": "Audi RS 5 Turbo DTM '19",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "MID",
+      "pp": 855.93,
+      "power_hp": 604.0,
+      "torque_nm": 650.2,
+      "weight_kg": 986.0,
+      "power_weight_hp_t": 612.5760649087222,
+      "weight_power_kg_hp": 1.6324503311258278,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2000",
+      "engine_model": "RC8-2.0-TFSI-RS5",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.11,
+        "0_1000m": 18.4,
+        "100_150_kmh": 1.66
+      },
+      "rotational_g": {
+        "60_kmh": 1.57,
+        "120_kmh": 1.79,
+        "240_kmh": 2.57
+      },
+      "stability": {
+        "low_speed": "-0.43 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816536+00:00"
+    },
+    {
+      "car": "Lexus RC F GT500 '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "MID",
+      "pp": 862.89,
+      "power_hp": 614.0,
+      "torque_nm": 588.4,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 596.1165048543689,
+      "weight_power_kg_hp": 1.6775244299674268,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2000",
+      "engine_model": "RI4AG-RC-F",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.3,
+        "0_1000m": 18.55,
+        "100_150_kmh": 1.8
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.65
+      },
+      "stability": {
+        "low_speed": "-0.37 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816556+00:00"
+    },
+    {
+      "car": "Toyota GT-One (TS020) '99",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "MID",
+      "pp": 801.03,
+      "power_hp": 581.0,
+      "torque_nm": 623.7,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 645.5555555555555,
+      "weight_power_kg_hp": 1.549053356282272,
+      "weight_balance": "49:51",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3600",
+      "engine_model": "T836-9-GT-One",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.11,
+        "0_1000m": 19.47,
+        "100_150_kmh": 1.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.42,
+        "120_kmh": 1.57,
+        "240_kmh": 2.18
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816576+00:00"
+    },
+    {
+      "car": "Honda NSX GT500 '08",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "MID",
+      "pp": 809.29,
+      "power_hp": 519.0,
+      "torque_nm": 588.4,
+      "weight_kg": 1150.0,
+      "power_weight_hp_t": 451.304347826087,
+      "weight_power_kg_hp": 2.2157996146435455,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3494",
+      "engine_model": "C32B-NSX-GT500-'08",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.86,
+        "0_1000m": 19.63,
+        "100_150_kmh": 2.16
+      },
+      "rotational_g": {
+        "60_kmh": 1.59,
+        "120_kmh": 1.75,
+        "240_kmh": 2.31
+      },
+      "stability": {
+        "low_speed": "-0.47 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816598+00:00"
+    },
+    {
+      "car": "Nissan GT-R GT500 '08",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "MID",
+      "pp": 806.67,
+      "power_hp": 528.0,
+      "torque_nm": 550.2,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 467.25663716814165,
+      "weight_power_kg_hp": 2.140151515151515,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4494",
+      "engine_model": "VK45DE-GT-R",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.57,
+        "0_1000m": 19.33,
+        "100_150_kmh": 2.16
+      },
+      "rotational_g": {
+        "60_kmh": 1.58,
+        "120_kmh": 1.75,
+        "240_kmh": 2.27
+      },
+      "stability": {
+        "low_speed": "-0.21 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816622+00:00"
+    },
+    {
+      "car": "Nissan GT-R NISMO GT500 '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "MID",
+      "pp": 862.2,
+      "power_hp": 613.0,
+      "torque_nm": 588.4,
+      "weight_kg": 1035.0,
+      "power_weight_hp_t": 592.2705314009662,
+      "weight_power_kg_hp": 1.6884176182707993,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "NR20A-GT-R",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.43,
+        "0_1000m": 18.69,
+        "100_150_kmh": 1.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.65
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816642+00:00"
+    },
+    {
+      "car": "Mercedes-Benz CLK-LM '98",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "MID",
+      "pp": 789.65,
+      "power_hp": 582.0,
+      "torque_nm": 522.7,
+      "weight_kg": 955.0,
+      "power_weight_hp_t": 609.4240837696335,
+      "weight_power_kg_hp": 1.640893470790378,
+      "weight_balance": "49:51",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "M119-GT108B-CLK-LM",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.56,
+        "0_1000m": 18.89,
+        "100_150_kmh": 1.71
+      },
+      "rotational_g": {
+        "60_kmh": 1.4,
+        "120_kmh": 1.54,
+        "240_kmh": 2.03
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816661+00:00"
+    },
+    {
+      "car": "BMW McLaren F1 GTR Race Car '97",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "MID",
+      "pp": 786.75,
+      "power_hp": 603.0,
+      "torque_nm": 711.0,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 634.7368421052632,
+      "weight_power_kg_hp": 1.5754560530679933,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "S70/3-F1GTR-'97",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.35,
+        "0_1000m": 18.53,
+        "100_150_kmh": 1.65
+      },
+      "rotational_g": {
+        "60_kmh": 1.41,
+        "120_kmh": 1.54,
+        "240_kmh": 1.94
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816681+00:00"
+    },
+    {
+      "car": "Honda NSX CONCEPT-GT '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "LOW",
+      "pp": 864.74,
+      "power_hp": 604.0,
+      "torque_nm": 612.9,
+      "weight_kg": 1064.0,
+      "power_weight_hp_t": 567.6691729323308,
+      "weight_power_kg_hp": 1.7615894039735098,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "1995",
+      "engine_model": "HR-414E-NSX",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.73,
+        "0_1000m": 19.1,
+        "100_150_kmh": 1.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.75
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-0.99 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816701+00:00"
+    },
+    {
+      "car": "Lexus SC430 GT500 '08",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "LOW",
+      "pp": 806.08,
+      "power_hp": 517.0,
+      "torque_nm": 584.5,
+      "weight_kg": 1111.0,
+      "power_weight_hp_t": 465.34653465346537,
+      "weight_power_kg_hp": 2.148936170212766,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4480",
+      "engine_model": "3UZ-FE-SC430",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.68,
+        "0_1000m": 19.47,
+        "100_150_kmh": 2.14
+      },
+      "rotational_g": {
+        "60_kmh": 1.57,
+        "120_kmh": 1.75,
+        "240_kmh": 2.28
+      },
+      "stability": {
+        "low_speed": "-0.4 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816723+00:00"
+    },
+    {
+      "car": "Audi RS 5 Turbo DTM '19",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "LOW",
+      "pp": 855.93,
+      "power_hp": 604.0,
+      "torque_nm": 650.2,
+      "weight_kg": 986.0,
+      "power_weight_hp_t": 612.5760649087222,
+      "weight_power_kg_hp": 1.6324503311258278,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2000",
+      "engine_model": "RC8-2.0-TFSI-RS5",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.11,
+        "0_1000m": 18.4,
+        "100_150_kmh": 1.66
+      },
+      "rotational_g": {
+        "60_kmh": 1.57,
+        "120_kmh": 1.79,
+        "240_kmh": 2.57
+      },
+      "stability": {
+        "low_speed": "-0.43 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816743+00:00"
+    },
+    {
+      "car": "Lexus RC F GT500 '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "LOW",
+      "pp": 862.89,
+      "power_hp": 614.0,
+      "torque_nm": 588.4,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 596.1165048543689,
+      "weight_power_kg_hp": 1.6775244299674268,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2000",
+      "engine_model": "RI4AG-RC-F",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.3,
+        "0_1000m": 18.55,
+        "100_150_kmh": 1.8
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.65
+      },
+      "stability": {
+        "low_speed": "-0.37 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816764+00:00"
+    },
+    {
+      "car": "Toyota GT-One (TS020) '99",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "LOW",
+      "pp": 801.03,
+      "power_hp": 581.0,
+      "torque_nm": 623.7,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 645.5555555555555,
+      "weight_power_kg_hp": 1.549053356282272,
+      "weight_balance": "49:51",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3600",
+      "engine_model": "T836-9-GT-One",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.11,
+        "0_1000m": 19.47,
+        "100_150_kmh": 1.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.42,
+        "120_kmh": 1.57,
+        "240_kmh": 2.18
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816785+00:00"
+    },
+    {
+      "car": "Honda NSX GT500 '08",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "LOW",
+      "pp": 809.29,
+      "power_hp": 519.0,
+      "torque_nm": 588.4,
+      "weight_kg": 1150.0,
+      "power_weight_hp_t": 451.304347826087,
+      "weight_power_kg_hp": 2.2157996146435455,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3494",
+      "engine_model": "C32B-NSX-GT500-'08",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.86,
+        "0_1000m": 19.63,
+        "100_150_kmh": 2.16
+      },
+      "rotational_g": {
+        "60_kmh": 1.59,
+        "120_kmh": 1.75,
+        "240_kmh": 2.31
+      },
+      "stability": {
+        "low_speed": "-0.47 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816805+00:00"
+    },
+    {
+      "car": "Nissan GT-R GT500 '08",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "LOW",
+      "pp": 806.67,
+      "power_hp": 528.0,
+      "torque_nm": 550.2,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 467.25663716814165,
+      "weight_power_kg_hp": 2.140151515151515,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4494",
+      "engine_model": "VK45DE-GT-R",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.57,
+        "0_1000m": 19.33,
+        "100_150_kmh": 2.16
+      },
+      "rotational_g": {
+        "60_kmh": 1.58,
+        "120_kmh": 1.75,
+        "240_kmh": 2.27
+      },
+      "stability": {
+        "low_speed": "-0.21 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816827+00:00"
+    },
+    {
+      "car": "Nissan GT-R NISMO GT500 '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "LOW",
+      "pp": 862.2,
+      "power_hp": 613.0,
+      "torque_nm": 588.4,
+      "weight_kg": 1035.0,
+      "power_weight_hp_t": 592.2705314009662,
+      "weight_power_kg_hp": 1.6884176182707993,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "NR20A-GT-R",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.43,
+        "0_1000m": 18.69,
+        "100_150_kmh": 1.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.65
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816846+00:00"
+    },
+    {
+      "car": "Mercedes-Benz CLK-LM '98",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "LOW",
+      "pp": 788.36,
+      "power_hp": 576.0,
+      "torque_nm": 517.8,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 606.3157894736843,
+      "weight_power_kg_hp": 1.6493055555555556,
+      "weight_balance": "49:51",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "M119-GT108B-CLK-LM",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.59,
+        "0_1000m": 18.93,
+        "100_150_kmh": 1.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.4,
+        "120_kmh": 1.54,
+        "240_kmh": 2.03
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816868+00:00"
+    },
+    {
+      "car": "BMW McLaren F1 GTR Race Car '97",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "LOW",
+      "pp": 785.89,
+      "power_hp": 597.0,
+      "torque_nm": 704.1,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 628.421052631579,
+      "weight_power_kg_hp": 1.5912897822445562,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "S70/3-F1GTR-'97",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.38,
+        "0_1000m": 18.59,
+        "100_150_kmh": 1.66
+      },
+      "rotational_g": {
+        "60_kmh": 1.41,
+        "120_kmh": 1.54,
+        "240_kmh": 1.94
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:54.816887+00:00"
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "generated_at": "2026-08-19T13:08:06.730755+00:00",
+  "version": "2.0",
+  "groups_requested": [
+    "GR.1",
+    "GR.2",
+    "GR.3",
+    "GR.4",
+    "GR.B"
+  ],
+  "groups": [
+    {
+      "group": "GR.1",
+      "status": "VALID",
+      "version": "1.70",
+      "probes": [
+        {
+          "version": "1.70",
+          "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+          "status": 200,
+          "bytes": 914715,
+          "valid": true
+        }
+      ],
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "raw_counts": {
+          "HIGH": 25,
+          "MID": 25,
+          "LOW": 25
+        },
+        "decoded_counts": {
+          "HIGH": 25,
+          "MID": 25,
+          "LOW": 25
+        },
+        "rejected": {
+          "HIGH": 0,
+          "MID": 0,
+          "LOW": 0
+        },
+        "unique_cars": 25
+      },
+      "records_count": 75,
+      "output_file": "data/bop_lab/extracted_bop_gr1.json"
+    },
+    {
+      "group": "GR.2",
+      "status": "VALID",
+      "version": "1.61",
+      "probes": [
+        {
+          "version": "1.70",
+          "url": "https://www.dg-edge.com/database/bop/GR.2/1.70",
+          "status": 500,
+          "bytes": 588371,
+          "valid": false
+        },
+        {
+          "version": "1.67",
+          "url": "https://www.dg-edge.com/database/bop/GR.2/1.67",
+          "status": 500,
+          "bytes": 588642,
+          "valid": false
+        },
+        {
+          "version": "1.66",
+          "url": "https://www.dg-edge.com/database/bop/GR.2/1.66",
+          "status": 500,
+          "bytes": 588628,
+          "valid": false
+        },
+        {
+          "version": "1.65",
+          "url": "https://www.dg-edge.com/database/bop/GR.2/1.65",
+          "status": 500,
+          "bytes": 588770,
+          "valid": false
+        },
+        {
+          "version": "1.62",
+          "url": "https://www.dg-edge.com/database/bop/GR.2/1.62",
+          "status": 500,
+          "bytes": 588730,
+          "valid": false
+        },
+        {
+          "version": "1.61",
+          "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
+          "status": 200,
+          "bytes": 739803,
+          "valid": true
+        }
+      ],
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "raw_counts": {
+          "HIGH": 10,
+          "MID": 10,
+          "LOW": 10
+        },
+        "decoded_counts": {
+          "HIGH": 10,
+          "MID": 10,
+          "LOW": 10
+        },
+        "rejected": {
+          "HIGH": 0,
+          "MID": 0,
+          "LOW": 0
+        },
+        "unique_cars": 10
+      },
+      "records_count": 30,
+      "output_file": "data/bop_lab/extracted_bop_gr2.json"
+    },
+    {
+      "group": "GR.3",
+      "status": "VALID",
+      "version": "1.67",
+      "probes": [
+        {
+          "version": "1.70",
+          "url": "https://www.dg-edge.com/database/bop/GR.3/1.70",
+          "status": 500,
+          "bytes": 588520,
+          "valid": false
+        },
+        {
+          "version": "1.67",
+          "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+          "status": 200,
+          "bytes": 1236076,
+          "valid": true
+        }
+      ],
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "raw_counts": {
+          "HIGH": 52,
+          "MID": 52,
+          "LOW": 52
+        },
+        "decoded_counts": {
+          "HIGH": 52,
+          "MID": 52,
+          "LOW": 52
+        },
+        "rejected": {
+          "HIGH": 0,
+          "MID": 0,
+          "LOW": 0
+        },
+        "unique_cars": 52
+      },
+      "records_count": 156,
+      "output_file": "data/bop_lab/extracted_bop_gr3.json"
+    },
+    {
+      "group": "GR.4",
+      "status": "VALID",
+      "version": "1.67",
+      "probes": [
+        {
+          "version": "1.70",
+          "url": "https://www.dg-edge.com/database/bop/GR.4/1.70",
+          "status": 500,
+          "bytes": 588609,
+          "valid": false
+        },
+        {
+          "version": "1.67",
+          "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
+          "status": 200,
+          "bytes": 1020395,
+          "valid": true
+        }
+      ],
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "raw_counts": {
+          "HIGH": 34,
+          "MID": 34,
+          "LOW": 34
+        },
+        "decoded_counts": {
+          "HIGH": 34,
+          "MID": 34,
+          "LOW": 34
+        },
+        "rejected": {
+          "HIGH": 0,
+          "MID": 0,
+          "LOW": 0
+        },
+        "unique_cars": 34
+      },
+      "records_count": 102,
+      "output_file": "data/bop_lab/extracted_bop_gr4.json"
+    },
+    {
+      "group": "GR.B",
+      "status": "VALID",
+      "version": "1.60",
+      "probes": [
+        {
+          "version": "1.70",
+          "url": "https://www.dg-edge.com/database/bop/GR.B/1.70",
+          "status": 500,
+          "bytes": 588546,
+          "valid": false
+        },
+        {
+          "version": "1.67",
+          "url": "https://www.dg-edge.com/database/bop/GR.B/1.67",
+          "status": 500,
+          "bytes": 588579,
+          "valid": false
+        },
+        {
+          "version": "1.66",
+          "url": "https://www.dg-edge.com/database/bop/GR.B/1.66",
+          "status": 500,
+          "bytes": 588664,
+          "valid": false
+        },
+        {
+          "version": "1.65",
+          "url": "https://www.dg-edge.com/database/bop/GR.B/1.65",
+          "status": 500,
+          "bytes": 588448,
+          "valid": false
+        },
+        {
+          "version": "1.62",
+          "url": "https://www.dg-edge.com/database/bop/GR.B/1.62",
+          "status": 500,
+          "bytes": 588697,
+          "valid": false
+        },
+        {
+          "version": "1.61",
+          "url": "https://www.dg-edge.com/database/bop/GR.B/1.61",
+          "status": 500,
+          "bytes": 588731,
+          "valid": false
+        },
+        {
+          "version": "1.60",
+          "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
+          "status": 200,
+          "bytes": 762495,
+          "valid": true
+        }
+      ],
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "raw_counts": {
+          "HIGH": 12,
+          "MID": 12,
+          "LOW": 12
+        },
+        "decoded_counts": {
+          "HIGH": 12,
+          "MID": 12,
+          "LOW": 12
+        },
+        "rejected": {
+          "HIGH": 0,
+          "MID": 0,
+          "LOW": 0
+        },
+        "unique_cars": 12
+      },
+      "records_count": 36,
+      "output_file": "data/bop_lab/extracted_bop_grb.json"
+    }
+  ],
+  "records_written_this_run": 399,
+  "database_validation": {
+    "valid": true,
+    "records_checked": 399,
+    "errors": []
+  }
+}

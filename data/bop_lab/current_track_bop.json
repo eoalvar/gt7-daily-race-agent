@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T12:20:17.328391+00:00",
+  "generated_at": "2026-08-19T13:08:06.836586+00:00",
   "classifier_version": "1.1",
   "snapshot_timestamp": "2026-08-19T06:17:29.766163-03:00",
   "race_description": "C Gr.3 Running 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit P. Blazsán - Porsche 911 GT3 R (992) '22 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom",
@@ -9,22 +9,12 @@
   "classification_confidence": "VALIDATED_EXTERNAL",
   "classification_validation": [
     {
-      "source": "GTPlanet Daily Races 2025-12-08",
-      "evidence": "Yas Marina Circuit / Gr.4 / BOP (M)",
-      "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20251208/"
-    },
-    {
       "source": "Lights to Flag Daily Races 2026-06-01",
       "evidence": "Yas Marina Circuit / Gr.3 / BOP (M)",
       "url": "https://lights-to-flag.com/gt7-daily-races-20260601/"
-    },
-    {
-      "source": "Gran Turismo Wiki",
-      "evidence": "Yas Marina Circuit BoP (GT7): Mid-speed",
-      "url": "https://gran-turismo.fandom.com/wiki/Yas_Marina_Circuit"
     }
   ],
-  "database_records": 156,
+  "database_records": 399,
   "my_car": "Porsche 911 GT3 R (992) '22",
   "my_car_fingerprint": {
     "car": "Porsche 911 GT3 R (992) '22",

@@ -1,0 +1,5957 @@
+{
+  "generated_at": "2026-08-19T13:07:57.306954+00:00",
+  "lab_version": "2.0",
+  "group": "GR.3",
+  "selected_version": "1.67",
+  "source_url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "raw_counts": {
+      "HIGH": 52,
+      "MID": 52,
+      "LOW": 52
+    },
+    "decoded_counts": {
+      "HIGH": 52,
+      "MID": 52,
+      "LOW": 52
+    },
+    "rejected": {
+      "HIGH": 0,
+      "MID": 0,
+      "LOW": 0
+    },
+    "unique_cars": 52
+  },
+  "records": [
+    {
+      "car": "Aston Martin V12 Vantage GT3 '12",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 686.16,
+      "power_hp": 485.0,
+      "torque_nm": 562.9,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 388.0,
+      "weight_power_kg_hp": 2.577319587628866,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5935",
+      "engine_model": "AM08-Vantage",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.86,
+        "0_1000m": 21.22,
+        "100_150_kmh": 2.57
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.41,
+        "240_kmh": 1.6
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.303692+00:00"
+    },
+    {
+      "car": "Nissan GT-R NISMO GT3 '18",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 697.0,
+      "power_hp": 491.0,
+      "torque_nm": 561.9,
+      "weight_kg": 1355.0,
+      "power_weight_hp_t": 362.36162361623616,
+      "weight_power_kg_hp": 2.759674134419552,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "VR38DETT-GT-R-GT3-'18",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.8,
+        "0_1000m": 21.27,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.46,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.303751+00:00"
+    },
+    {
+      "car": "Toyota GR Supra Racing Concept '18",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 694.36,
+      "power_hp": 462.0,
+      "torque_nm": 544.3,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 369.6,
+      "weight_power_kg_hp": 2.705627705627706,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "GR-Supra-Racing-Concept",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.45,
+        "0_1000m": 21.91,
+        "100_150_kmh": 3.01
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.303781+00:00"
+    },
+    {
+      "car": "Genesis Genesis X GR3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 699.29,
+      "power_hp": 466.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1290.0,
+      "power_weight_hp_t": 361.2403100775194,
+      "weight_power_kg_hp": 2.7682403433476397,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "3342",
+      "engine_model": "V6-Genesis-X",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.04,
+        "0_1000m": 21.44,
+        "100_150_kmh": 2.79
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.74
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.303819+00:00"
+    },
+    {
+      "car": "Chevrolet Corvette C7 Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 691.82,
+      "power_hp": 480.0,
+      "torque_nm": 600.2,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 369.2307692307692,
+      "weight_power_kg_hp": 2.7083333333333335,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Corvette-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.21,
+        "0_1000m": 20.58,
+        "100_150_kmh": 2.71
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.41,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.303850+00:00"
+    },
+    {
+      "car": "BMW M6 GT3 Sprint Model '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 698.06,
+      "power_hp": 462.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1326.0,
+      "power_weight_hp_t": 348.41628959276017,
+      "weight_power_kg_hp": 2.8701298701298703,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "P63B44-M6-Sprint",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.91,
+        "0_1000m": 21.38,
+        "100_150_kmh": 2.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.36,
+        "120_kmh": 1.46,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.303891+00:00"
+    },
+    {
+      "car": "Audi R8 LMS Evo '19",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 690.95,
+      "power_hp": 444.0,
+      "torque_nm": 442.3,
+      "weight_kg": 1305.0,
+      "power_weight_hp_t": 340.2298850574713,
+      "weight_power_kg_hp": 2.939189189189189,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "5200",
+      "engine_model": "DAR-R8-Evo",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.25,
+        "0_1000m": 21.67,
+        "100_150_kmh": 2.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.67
+      },
+      "stability": {
+        "low_speed": "-0.44 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.303913+00:00"
+    },
+    {
+      "car": "McLaren 650S GT3 '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 691.9,
+      "power_hp": 477.0,
+      "torque_nm": 492.3,
+      "weight_kg": 1315.0,
+      "power_weight_hp_t": 362.7376425855513,
+      "weight_power_kg_hp": 2.756813417190776,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "M838T-650S-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.09,
+        "0_1000m": 21.57,
+        "100_150_kmh": 2.98
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.45,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.64 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.303933+00:00"
+    },
+    {
+      "car": "Honda NSX Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 692.25,
+      "power_hp": 483.0,
+      "torque_nm": 496.2,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 371.53846153846155,
+      "weight_power_kg_hp": 2.691511387163561,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "V6-NSX-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.61,
+        "0_1000m": 21.05,
+        "100_150_kmh": 2.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.45,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.303953+00:00"
+    },
+    {
+      "car": "Renault R.S.01 GT3 '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 689.85,
+      "power_hp": 466.0,
+      "torque_nm": 544.3,
+      "weight_kg": 1315.0,
+      "power_weight_hp_t": 354.3726235741445,
+      "weight_power_kg_hp": 2.8218884120171674,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "VR38DETT-R.S.01-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.71,
+        "0_1000m": 21.21,
+        "100_150_kmh": 2.88
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.71 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.303973+00:00"
+    },
+    {
+      "car": "Lamborghini Huracán GT3 '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 689.34,
+      "power_hp": 450.0,
+      "torque_nm": 452.1,
+      "weight_kg": 1321.0,
+      "power_weight_hp_t": 340.6510219530659,
+      "weight_power_kg_hp": 2.9355555555555557,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "5204",
+      "engine_model": "DGF-Huracan",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.24,
+        "0_1000m": 21.7,
+        "100_150_kmh": 2.85
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.66
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.303993+00:00"
+    },
+    {
+      "car": "Mazda RX-VISION GT3 CONCEPT Stealth Model",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 694.26,
+      "power_hp": 433.0,
+      "torque_nm": 414.8,
+      "weight_kg": 1269.0,
+      "power_weight_hp_t": 341.21355397951146,
+      "weight_power_kg_hp": 2.930715935334873,
+      "weight_balance": "48:52",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "RX-Vision-GT3-Stealth",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.56,
+        "0_1000m": 21.98,
+        "100_150_kmh": 2.81
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304013+00:00"
+    },
+    {
+      "car": "Subaru BRZ GT300 '21",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 700.72,
+      "power_hp": 440.0,
+      "torque_nm": 611.0,
+      "weight_kg": 1315.0,
+      "power_weight_hp_t": 334.6007604562738,
+      "weight_power_kg_hp": 2.9886363636363638,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1994",
+      "engine_model": "EJ20-BRZ",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.7,
+        "0_1000m": 21.29,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.36,
+        "120_kmh": 1.49,
+        "240_kmh": 1.79
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304034+00:00"
+    },
+    {
+      "car": "Ford Ford GT Race Car '18",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 692.29,
+      "power_hp": 443.0,
+      "torque_nm": 513.9,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 354.4,
+      "weight_power_kg_hp": 2.8216704288939054,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3500",
+      "engine_model": "V6-Ford-GT-Race-'18",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.17,
+        "0_1000m": 21.57,
+        "100_150_kmh": 2.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.44,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304059+00:00"
+    },
+    {
+      "car": "Citroën GT by Citroën Race Car (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 691.25,
+      "power_hp": 444.0,
+      "torque_nm": 432.5,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 352.38095238095235,
+      "weight_power_kg_hp": 2.8378378378378377,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "GT-by-Citroen-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.34,
+        "0_1000m": 20.72,
+        "100_150_kmh": 2.67
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.43,
+        "240_kmh": 1.66
+      },
+      "stability": {
+        "low_speed": "-0.54 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304079+00:00"
+    },
+    {
+      "car": "Ford Ford GT LM Race Car Spec II",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 679.86,
+      "power_hp": 449.0,
+      "torque_nm": 527.6,
+      "weight_kg": 1255.0,
+      "power_weight_hp_t": 357.7689243027889,
+      "weight_power_kg_hp": 2.7951002227171493,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "SC",
+      "displacement": "5400",
+      "engine_model": "V8-Ford-GT-LM",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.39,
+        "0_1000m": 20.82,
+        "100_150_kmh": 2.85
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.42,
+        "240_kmh": 1.59
+      },
+      "stability": {
+        "low_speed": "-0.52 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304100+00:00"
+    },
+    {
+      "car": "AMG Mercedes-AMG GT3 '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 694.37,
+      "power_hp": 455.0,
+      "torque_nm": 532.5,
+      "weight_kg": 1325.0,
+      "power_weight_hp_t": 343.39622641509436,
+      "weight_power_kg_hp": 2.912087912087912,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "6208",
+      "engine_model": "M159-AMG-GT3-'16",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.46,
+        "0_1000m": 20.88,
+        "100_150_kmh": 2.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.43,
+        "240_kmh": 1.72
+      },
+      "stability": {
+        "low_speed": "-0.24 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304122+00:00"
+    },
+    {
+      "car": "Ferrari 458 Italia GT3 '13",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 690.8,
+      "power_hp": 450.0,
+      "torque_nm": 456.0,
+      "weight_kg": 1315.0,
+      "power_weight_hp_t": 342.20532319391634,
+      "weight_power_kg_hp": 2.922222222222222,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "4497",
+      "engine_model": "F136-458-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.68,
+        "0_1000m": 21.13,
+        "100_150_kmh": 2.8
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.67
+      },
+      "stability": {
+        "low_speed": "-0.68 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304144+00:00"
+    },
+    {
+      "car": "Audi R8 LMS '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 685.59,
+      "power_hp": 451.0,
+      "torque_nm": 442.3,
+      "weight_kg": 1356.0,
+      "power_weight_hp_t": 332.5958702064897,
+      "weight_power_kg_hp": 3.0066518847006654,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "5200",
+      "engine_model": "DAR-R8",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.49,
+        "0_1000m": 22.01,
+        "100_150_kmh": 2.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.66
+      },
+      "stability": {
+        "low_speed": "-0.46 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304164+00:00"
+    },
+    {
+      "car": "Subaru WRX Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 701.57,
+      "power_hp": 497.0,
+      "torque_nm": 519.8,
+      "weight_kg": 1295.0,
+      "power_weight_hp_t": 383.7837837837838,
+      "weight_power_kg_hp": 2.6056338028169015,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "WRX-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.62,
+        "0_1000m": 21.01,
+        "100_150_kmh": 2.67
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.45,
+        "240_kmh": 1.75
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304183+00:00"
+    },
+    {
+      "car": "Mitsubishi Lancer Evolution Final Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 702.3,
+      "power_hp": 507.0,
+      "torque_nm": 542.3,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 390.0,
+      "weight_power_kg_hp": 2.5641025641025643,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Evo-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.49,
+        "0_1000m": 20.88,
+        "100_150_kmh": 2.67
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.75
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304203+00:00"
+    },
+    {
+      "car": "BMW M6 GT3 Endurance Model '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 698.04,
+      "power_hp": 462.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1326.0,
+      "power_weight_hp_t": 348.41628959276017,
+      "weight_power_kg_hp": 2.8701298701298703,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "P63B44-M6-Endurance",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.91,
+        "0_1000m": 21.39,
+        "100_150_kmh": 2.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.36,
+        "120_kmh": 1.46,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304222+00:00"
+    },
+    {
+      "car": "Dodge Viper SRT GT3-R '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 695.23,
+      "power_hp": 475.0,
+      "torque_nm": 608.0,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 365.38461538461536,
+      "weight_power_kg_hp": 2.736842105263158,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "8383",
+      "engine_model": "VX-I-Viper-GT3R",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.06,
+        "0_1000m": 20.36,
+        "100_150_kmh": 2.6
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.41,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304243+00:00"
+    },
+    {
+      "car": "Peugeot PEUGEOT VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 693.18,
+      "power_hp": 477.0,
+      "torque_nm": 487.4,
+      "weight_kg": 1269.0,
+      "power_weight_hp_t": 375.88652482269504,
+      "weight_power_kg_hp": 2.660377358490566,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3200",
+      "engine_model": "V6-Peugeot-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.25,
+        "0_1000m": 21.57,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.4,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304265+00:00"
+    },
+    {
+      "car": "Nissan GT-R NISMO GT3 '13",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 686.61,
+      "power_hp": 509.0,
+      "torque_nm": 589.4,
+      "weight_kg": 1315.0,
+      "power_weight_hp_t": 387.0722433460076,
+      "weight_power_kg_hp": 2.583497053045187,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "VR38DETT-GT-R-GT3-'13",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.69,
+        "0_1000m": 21.08,
+        "100_150_kmh": 2.74
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.42,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304285+00:00"
+    },
+    {
+      "car": "Nissan GT-R GT500 '99",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 688.93,
+      "power_hp": 454.0,
+      "torque_nm": 642.3,
+      "weight_kg": 1210.0,
+      "power_weight_hp_t": 375.20661157024796,
+      "weight_power_kg_hp": 2.6651982378854626,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2708",
+      "engine_model": "RB26DETT-GT-R-GT500",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.58,
+        "0_1000m": 21.0,
+        "100_150_kmh": 2.71
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.43,
+        "240_kmh": 1.64
+      },
+      "stability": {
+        "low_speed": "-0.39 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304305+00:00"
+    },
+    {
+      "car": "Lexus RC F GT3 '17",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 696.59,
+      "power_hp": 450.0,
+      "torque_nm": 516.8,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 346.15384615384613,
+      "weight_power_kg_hp": 2.888888888888889,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5407",
+      "engine_model": "2UR-GSE-RC-F-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.06,
+        "0_1000m": 21.54,
+        "100_150_kmh": 2.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.74
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304324+00:00"
+    },
+    {
+      "car": "Toyota FT-1 VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 691.17,
+      "power_hp": 473.0,
+      "torque_nm": 408.9,
+      "weight_kg": 1350.0,
+      "power_weight_hp_t": 350.3703703703703,
+      "weight_power_kg_hp": 2.854122621564482,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "FT-1-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.05,
+        "0_1000m": 21.52,
+        "100_150_kmh": 2.88
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.44,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304353+00:00"
+    },
+    {
+      "car": "Volkswagen Volkswagen GTI VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 682.39,
+      "power_hp": 502.0,
+      "torque_nm": 605.1,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 398.41269841269843,
+      "weight_power_kg_hp": 2.50996015936255,
+      "weight_balance": "50:50",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "GTI-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.84,
+        "0_1000m": 21.3,
+        "100_150_kmh": 2.82
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.42,
+        "240_kmh": 1.6
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304375+00:00"
+    },
+    {
+      "car": "BMW Z4 GT3 '11",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 687.84,
+      "power_hp": 460.0,
+      "torque_nm": 453.1,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 368.0,
+      "weight_power_kg_hp": 2.717391304347826,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4361",
+      "engine_model": "P65B44-Z4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.8,
+        "0_1000m": 21.17,
+        "100_150_kmh": 2.65
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.42,
+        "240_kmh": 1.63
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304395+00:00"
+    },
+    {
+      "car": "McLaren McLaren F1 GTR - BMW '95",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 685.32,
+      "power_hp": 438.0,
+      "torque_nm": 474.6,
+      "weight_kg": 1176.0,
+      "power_weight_hp_t": 372.44897959183675,
+      "weight_power_kg_hp": 2.684931506849315,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "6064",
+      "engine_model": "S70/2-F1GTR-'95",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.51,
+        "0_1000m": 20.83,
+        "100_150_kmh": 2.6
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.41,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304416+00:00"
+    },
+    {
+      "car": "Hyundai Genesis Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 694.41,
+      "power_hp": 483.0,
+      "torque_nm": 455.0,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 383.3333333333333,
+      "weight_power_kg_hp": 2.608695652173913,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Genesis-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.4,
+        "0_1000m": 21.83,
+        "100_150_kmh": 2.68
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304435+00:00"
+    },
+    {
+      "car": "Peugeot RCZ Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 692.82,
+      "power_hp": 484.0,
+      "torque_nm": 510.9,
+      "weight_kg": 1265.0,
+      "power_weight_hp_t": 382.60869565217394,
+      "weight_power_kg_hp": 2.6136363636363638,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-RCZ-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.8,
+        "0_1000m": 21.22,
+        "100_150_kmh": 2.9
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304454+00:00"
+    },
+    {
+      "car": "Mazda Atenza Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 694.7,
+      "power_hp": 493.0,
+      "torque_nm": 494.3,
+      "weight_kg": 1326.0,
+      "power_weight_hp_t": 371.79487179487177,
+      "weight_power_kg_hp": 2.689655172413793,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-Atenza-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.23,
+        "0_1000m": 21.72,
+        "100_150_kmh": 2.78
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.45,
+        "240_kmh": 1.72
+      },
+      "stability": {
+        "low_speed": "-0.26 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304475+00:00"
+    },
+    {
+      "car": "Lexus RC F GT3 prototype '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 692.39,
+      "power_hp": 449.0,
+      "torque_nm": 516.8,
+      "weight_kg": 1310.0,
+      "power_weight_hp_t": 342.7480916030534,
+      "weight_power_kg_hp": 2.917594654788419,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5327",
+      "engine_model": "2UR-GSE-RC-F-GT3-proto",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.84,
+        "0_1000m": 21.38,
+        "100_150_kmh": 2.84
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.45,
+        "240_kmh": 1.71
+      },
+      "stability": {
+        "low_speed": "-0.4 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304495+00:00"
+    },
+    {
+      "car": "BMW M3 GT '11",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 686.7,
+      "power_hp": 466.0,
+      "torque_nm": 464.8,
+      "weight_kg": 1296.0,
+      "power_weight_hp_t": 359.5679012345679,
+      "weight_power_kg_hp": 2.781115879828326,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4000",
+      "engine_model": "P65B40-M3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.93,
+        "0_1000m": 21.38,
+        "100_150_kmh": 2.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.43,
+        "240_kmh": 1.64
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304515+00:00"
+    },
+    {
+      "car": "Mazda RX-VISION GT3 CONCEPT",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 694.26,
+      "power_hp": 433.0,
+      "torque_nm": 414.8,
+      "weight_kg": 1269.0,
+      "power_weight_hp_t": 341.21355397951146,
+      "weight_power_kg_hp": 2.930715935334873,
+      "weight_balance": "48:52",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "RX-Vision-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.56,
+        "0_1000m": 21.98,
+        "100_150_kmh": 2.81
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304534+00:00"
+    },
+    {
+      "car": "Jaguar F-type Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 696.74,
+      "power_hp": 469.0,
+      "torque_nm": 577.6,
+      "weight_kg": 1254.0,
+      "power_weight_hp_t": 374.0031897926635,
+      "weight_power_kg_hp": 2.673773987206823,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "SC",
+      "displacement": null,
+      "engine_model": "V8-F-type-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.42,
+        "0_1000m": 20.74,
+        "100_150_kmh": 2.68
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.38 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304554+00:00"
+    },
+    {
+      "car": "Porsche 911 RSR (991) '17",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 691.63,
+      "power_hp": 444.0,
+      "torque_nm": 424.6,
+      "weight_kg": 1310.0,
+      "power_weight_hp_t": 338.9312977099236,
+      "weight_power_kg_hp": 2.9504504504504503,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "4000",
+      "engine_model": "M97/80-911",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.62,
+        "0_1000m": 22.11,
+        "100_150_kmh": 2.86
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.45,
+        "240_kmh": 1.71
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304574+00:00"
+    },
+    {
+      "car": "Alfa Romeo 4C Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 688.8,
+      "power_hp": 455.0,
+      "torque_nm": 455.0,
+      "weight_kg": 1240.0,
+      "power_weight_hp_t": 366.93548387096774,
+      "weight_power_kg_hp": 2.7252747252747254,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Alfa-4C-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.25,
+        "0_1000m": 21.69,
+        "100_150_kmh": 2.85
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.44,
+        "240_kmh": 1.66
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304594+00:00"
+    },
+    {
+      "car": "AMG Mercedes-AMG GT3 '20",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 697.37,
+      "power_hp": 461.0,
+      "torque_nm": 539.4,
+      "weight_kg": 1350.0,
+      "power_weight_hp_t": 341.48148148148147,
+      "weight_power_kg_hp": 2.928416485900217,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "6208",
+      "engine_model": "M159-AMG-GT3-'20",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.44,
+        "0_1000m": 20.86,
+        "100_150_kmh": 2.84
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304614+00:00"
+    },
+    {
+      "car": "Toyota Supra GT500 '97",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 689.97,
+      "power_hp": 448.0,
+      "torque_nm": 584.5,
+      "weight_kg": 1175.0,
+      "power_weight_hp_t": 381.27659574468083,
+      "weight_power_kg_hp": 2.622767857142857,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "3S-GTE-171F-Supra",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.43,
+        "0_1000m": 20.86,
+        "100_150_kmh": 2.76
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.43,
+        "240_kmh": 1.65
+      },
+      "stability": {
+        "low_speed": "-0.44 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304634+00:00"
+    },
+    {
+      "car": "Ford Mustang Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 692.21,
+      "power_hp": 483.0,
+      "torque_nm": 509.9,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 371.53846153846155,
+      "weight_power_kg_hp": 2.691511387163561,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Mustang-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.97,
+        "0_1000m": 21.34,
+        "100_150_kmh": 2.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.43,
+        "240_kmh": 1.67
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304653+00:00"
+    },
+    {
+      "car": "AMG SLS AMG GT3 '11",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 685.78,
+      "power_hp": 485.0,
+      "torque_nm": 568.8,
+      "weight_kg": 1360.0,
+      "power_weight_hp_t": 356.6176470588235,
+      "weight_power_kg_hp": 2.804123711340206,
+      "weight_balance": "48:52",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "M159-SLS-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.12,
+        "0_1000m": 20.46,
+        "100_150_kmh": 2.74
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.41,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304673+00:00"
+    },
+    {
+      "car": "Suzuki SUZUKI VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 677.97,
+      "power_hp": 469.0,
+      "torque_nm": 397.2,
+      "weight_kg": 1220.0,
+      "power_weight_hp_t": 384.42622950819674,
+      "weight_power_kg_hp": 2.601279317697228,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2680",
+      "engine_model": "V8-Suzuki-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.06,
+        "0_1000m": 22.69,
+        "100_150_kmh": 2.97
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.43,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304693+00:00"
+    },
+    {
+      "car": "Volkswagen Beetle Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 693.98,
+      "power_hp": 479.0,
+      "torque_nm": 479.5,
+      "weight_kg": 1289.0,
+      "power_weight_hp_t": 371.60589604344455,
+      "weight_power_kg_hp": 2.6910229645093944,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Beetle-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.91,
+        "0_1000m": 21.35,
+        "100_150_kmh": 2.67
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.45,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304712+00:00"
+    },
+    {
+      "car": "Aston Martin DBR9 GT1 '10",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 676.82,
+      "power_hp": 468.0,
+      "torque_nm": 518.8,
+      "weight_kg": 1175.0,
+      "power_weight_hp_t": 398.2978723404255,
+      "weight_power_kg_hp": 2.5106837606837606,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5935",
+      "engine_model": "AM04-DBR9",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.17,
+        "0_1000m": 20.53,
+        "100_150_kmh": 2.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.55
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304734+00:00"
+    },
+    {
+      "car": "Ford Ford GT LM Spec II Test Car",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 680.08,
+      "power_hp": 443.0,
+      "torque_nm": 542.3,
+      "weight_kg": 1265.0,
+      "power_weight_hp_t": 350.19762845849806,
+      "weight_power_kg_hp": 2.855530474040632,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "SC",
+      "displacement": "5409",
+      "engine_model": "V8-Ford-GT-LM-Test",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.48,
+        "0_1000m": 20.91,
+        "100_150_kmh": 2.82
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.41,
+        "240_kmh": 1.59
+      },
+      "stability": {
+        "low_speed": "-0.55 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304754+00:00"
+    },
+    {
+      "car": "Nissan Skyline Super Silhouette '84",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 686.61,
+      "power_hp": 517.0,
+      "torque_nm": 495.2,
+      "weight_kg": 1005.0,
+      "power_weight_hp_t": 514.4278606965174,
+      "weight_power_kg_hp": 1.943907156673114,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2083",
+      "engine_model": "LZ20B-Skyline",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.14,
+        "0_1000m": 21.61,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.41,
+        "240_kmh": 1.64
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304774+00:00"
+    },
+    {
+      "car": "Honda NSX GT500 '00",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 679.5,
+      "power_hp": 428.0,
+      "torque_nm": 404.0,
+      "weight_kg": 1235.0,
+      "power_weight_hp_t": 346.5587044534413,
+      "weight_power_kg_hp": 2.885514018691589,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3500",
+      "engine_model": "C32B-NSX-GT500-'00",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.45,
+        "0_1000m": 22.0,
+        "100_150_kmh": 2.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.42,
+        "240_kmh": 1.63
+      },
+      "stability": {
+        "low_speed": "-0.24 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304794+00:00"
+    },
+    {
+      "car": "Ferrari 296 GT3 '23",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 694.29,
+      "power_hp": 444.0,
+      "torque_nm": 526.6,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 336.3636363636364,
+      "weight_power_kg_hp": 2.972972972972973,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "2992",
+      "engine_model": "F163CE-296-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.19,
+        "0_1000m": 21.68,
+        "100_150_kmh": 2.85
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.45,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.62 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304813+00:00"
+    },
+    {
+      "car": "Porsche 911 GT3 R (992) '22",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 693.04,
+      "power_hp": 446.0,
+      "torque_nm": 400.1,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 337.8787878787879,
+      "weight_power_kg_hp": 2.9596412556053813,
+      "weight_balance": "43:57",
+      "drivetrain": "RR",
+      "aspiration": "NA",
+      "displacement": "4194",
+      "engine_model": "M97/80-911-992",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.5,
+        "0_1000m": 21.99,
+        "100_150_kmh": 2.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.45,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304833+00:00"
+    },
+    {
+      "car": "Aston Martin V12 Vantage GT3 '12",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 684.89,
+      "power_hp": 485.0,
+      "torque_nm": 562.9,
+      "weight_kg": 1265.0,
+      "power_weight_hp_t": 383.39920948616606,
+      "weight_power_kg_hp": 2.6082474226804124,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5935",
+      "engine_model": "AMO08-Vantage",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.9,
+        "0_1000m": 21.28,
+        "100_150_kmh": 2.6
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.41,
+        "240_kmh": 1.6
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304854+00:00"
+    },
+    {
+      "car": "Nissan GT-R NISMO GT3 '18",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 697.0,
+      "power_hp": 491.0,
+      "torque_nm": 561.9,
+      "weight_kg": 1355.0,
+      "power_weight_hp_t": 362.36162361623616,
+      "weight_power_kg_hp": 2.759674134419552,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "VR38DETT-GT-R-GT3-'18",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.8,
+        "0_1000m": 21.27,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.46,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304874+00:00"
+    },
+    {
+      "car": "Toyota GR Supra Racing Concept '18",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 694.95,
+      "power_hp": 462.0,
+      "torque_nm": 544.3,
+      "weight_kg": 1245.0,
+      "power_weight_hp_t": 371.0843373493976,
+      "weight_power_kg_hp": 2.6948051948051948,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "GR-Supra-Racing-Concept",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.43,
+        "0_1000m": 21.88,
+        "100_150_kmh": 3.0
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304893+00:00"
+    },
+    {
+      "car": "Genesis Genesis X GR3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 699.78,
+      "power_hp": 466.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1285.0,
+      "power_weight_hp_t": 362.6459143968872,
+      "weight_power_kg_hp": 2.757510729613734,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "3342",
+      "engine_model": "V6-Genesis-X",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.02,
+        "0_1000m": 21.42,
+        "100_150_kmh": 2.78
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.74
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304913+00:00"
+    },
+    {
+      "car": "Chevrolet Corvette C7 Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 691.82,
+      "power_hp": 480.0,
+      "torque_nm": 600.2,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 369.2307692307692,
+      "weight_power_kg_hp": 2.7083333333333335,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Corvette-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.21,
+        "0_1000m": 20.58,
+        "100_150_kmh": 2.71
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.41,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304933+00:00"
+    },
+    {
+      "car": "BMW M6 GT3 Sprint Model '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 698.06,
+      "power_hp": 462.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1326.0,
+      "power_weight_hp_t": 348.41628959276017,
+      "weight_power_kg_hp": 2.8701298701298703,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "P63B44-M6-Sprint",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.91,
+        "0_1000m": 21.38,
+        "100_150_kmh": 2.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.36,
+        "120_kmh": 1.46,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304952+00:00"
+    },
+    {
+      "car": "Audi R8 LMS Evo '19",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 691.74,
+      "power_hp": 444.0,
+      "torque_nm": 442.3,
+      "weight_kg": 1310.0,
+      "power_weight_hp_t": 338.9312977099236,
+      "weight_power_kg_hp": 2.9504504504504503,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "5200",
+      "engine_model": "DAR-R8-Evo",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.27,
+        "0_1000m": 21.7,
+        "100_150_kmh": 2.84
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.44 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304972+00:00"
+    },
+    {
+      "car": "McLaren 650S GT3 '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 692.2,
+      "power_hp": 477.0,
+      "torque_nm": 492.3,
+      "weight_kg": 1310.0,
+      "power_weight_hp_t": 364.12213740458014,
+      "weight_power_kg_hp": 2.7463312368972748,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "M838T-650S-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.07,
+        "0_1000m": 21.55,
+        "100_150_kmh": 2.97
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.45,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.64 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.304992+00:00"
+    },
+    {
+      "car": "Honda NSX Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 691.04,
+      "power_hp": 483.0,
+      "torque_nm": 496.2,
+      "weight_kg": 1310.0,
+      "power_weight_hp_t": 368.7022900763359,
+      "weight_power_kg_hp": 2.712215320910973,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "V6-NSX-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.64,
+        "0_1000m": 21.09,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.45,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305011+00:00"
+    },
+    {
+      "car": "Renault R.S.01 GT3 '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 689.38,
+      "power_hp": 466.0,
+      "torque_nm": 544.3,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 353.030303030303,
+      "weight_power_kg_hp": 2.832618025751073,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "VR38DETT-R.S.01-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.73,
+        "0_1000m": 21.23,
+        "100_150_kmh": 2.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.71 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305031+00:00"
+    },
+    {
+      "car": "Lamborghini Huracán GT3 '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 689.81,
+      "power_hp": 450.0,
+      "torque_nm": 452.1,
+      "weight_kg": 1330.0,
+      "power_weight_hp_t": 338.3458646616541,
+      "weight_power_kg_hp": 2.9555555555555557,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "5204",
+      "engine_model": "DGF-Huracan",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.27,
+        "0_1000m": 21.75,
+        "100_150_kmh": 2.86
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.67
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305051+00:00"
+    },
+    {
+      "car": "Mazda RX-VISION GT3 CONCEPT Stealth Model",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 694.26,
+      "power_hp": 433.0,
+      "torque_nm": 414.8,
+      "weight_kg": 1269.0,
+      "power_weight_hp_t": 341.21355397951146,
+      "weight_power_kg_hp": 2.930715935334873,
+      "weight_balance": "48:52",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "RX-Vision-GT3-Stealth",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.56,
+        "0_1000m": 21.98,
+        "100_150_kmh": 2.81
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305070+00:00"
+    },
+    {
+      "car": "Subaru BRZ GT300 '21",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 699.34,
+      "power_hp": 435.0,
+      "torque_nm": 604.1,
+      "weight_kg": 1311.0,
+      "power_weight_hp_t": 331.80778032036613,
+      "weight_power_kg_hp": 3.013793103448276,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1994",
+      "engine_model": "EJ20-BRZ",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.76,
+        "0_1000m": 21.37,
+        "100_150_kmh": 2.95
+      },
+      "rotational_g": {
+        "60_kmh": 1.36,
+        "120_kmh": 1.49,
+        "240_kmh": 1.79
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305090+00:00"
+    },
+    {
+      "car": "Ford Ford GT Race Car '18",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 692.29,
+      "power_hp": 443.0,
+      "torque_nm": 513.9,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 354.4,
+      "weight_power_kg_hp": 2.8216704288939054,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3500",
+      "engine_model": "V6-Ford-GT-Race-'18",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.17,
+        "0_1000m": 21.57,
+        "100_150_kmh": 2.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.44,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305111+00:00"
+    },
+    {
+      "car": "Citroën GT by Citroën Race Car (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 690.26,
+      "power_hp": 444.0,
+      "torque_nm": 432.5,
+      "weight_kg": 1270.0,
+      "power_weight_hp_t": 349.6062992125984,
+      "weight_power_kg_hp": 2.8603603603603602,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "GT-by-Citroen-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.37,
+        "0_1000m": 20.77,
+        "100_150_kmh": 2.69
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.43,
+        "240_kmh": 1.66
+      },
+      "stability": {
+        "low_speed": "-0.54 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305131+00:00"
+    },
+    {
+      "car": "Ford Ford GT LM Race Car Spec II",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 679.86,
+      "power_hp": 449.0,
+      "torque_nm": 527.6,
+      "weight_kg": 1255.0,
+      "power_weight_hp_t": 357.7689243027889,
+      "weight_power_kg_hp": 2.7951002227171493,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "SC",
+      "displacement": "5400",
+      "engine_model": "V8-Ford-GT-LM",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.39,
+        "0_1000m": 20.82,
+        "100_150_kmh": 2.85
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.42,
+        "240_kmh": 1.59
+      },
+      "stability": {
+        "low_speed": "-0.52 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305151+00:00"
+    },
+    {
+      "car": "AMG Mercedes-AMG GT3 '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 694.37,
+      "power_hp": 455.0,
+      "torque_nm": 532.5,
+      "weight_kg": 1325.0,
+      "power_weight_hp_t": 343.39622641509436,
+      "weight_power_kg_hp": 2.912087912087912,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "6208",
+      "engine_model": "M159-AMG-GT3-'16",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.46,
+        "0_1000m": 20.88,
+        "100_150_kmh": 2.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.43,
+        "240_kmh": 1.72
+      },
+      "stability": {
+        "low_speed": "-0.24 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305172+00:00"
+    },
+    {
+      "car": "Ferrari 458 Italia GT3 '13",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 689.87,
+      "power_hp": 450.0,
+      "torque_nm": 456.0,
+      "weight_kg": 1325.0,
+      "power_weight_hp_t": 339.62264150943395,
+      "weight_power_kg_hp": 2.9444444444444446,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "4497",
+      "engine_model": "F136-458-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.71,
+        "0_1000m": 21.17,
+        "100_150_kmh": 2.82
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.67
+      },
+      "stability": {
+        "low_speed": "-0.68 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305191+00:00"
+    },
+    {
+      "car": "Audi R8 LMS '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 685.59,
+      "power_hp": 451.0,
+      "torque_nm": 442.3,
+      "weight_kg": 1356.0,
+      "power_weight_hp_t": 332.5958702064897,
+      "weight_power_kg_hp": 3.0066518847006654,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "5200",
+      "engine_model": "DAR-R8",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.49,
+        "0_1000m": 22.01,
+        "100_150_kmh": 2.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.66
+      },
+      "stability": {
+        "low_speed": "-0.46 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305211+00:00"
+    },
+    {
+      "car": "Subaru WRX Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 700.75,
+      "power_hp": 497.0,
+      "torque_nm": 519.8,
+      "weight_kg": 1305.0,
+      "power_weight_hp_t": 380.84291187739467,
+      "weight_power_kg_hp": 2.625754527162978,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "WRX-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.64,
+        "0_1000m": 21.05,
+        "100_150_kmh": 2.69
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.45,
+        "240_kmh": 1.74
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305230+00:00"
+    },
+    {
+      "car": "Mitsubishi Lancer Evolution Final Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 701.43,
+      "power_hp": 507.0,
+      "torque_nm": 542.3,
+      "weight_kg": 1310.0,
+      "power_weight_hp_t": 387.0229007633588,
+      "weight_power_kg_hp": 2.583826429980276,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Evo-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.51,
+        "0_1000m": 20.91,
+        "100_150_kmh": 2.69
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.75
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305250+00:00"
+    },
+    {
+      "car": "BMW M6 GT3 Endurance Model '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 698.04,
+      "power_hp": 462.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1326.0,
+      "power_weight_hp_t": 348.41628959276017,
+      "weight_power_kg_hp": 2.8701298701298703,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "P63B44-M6-Endurance",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.91,
+        "0_1000m": 21.39,
+        "100_150_kmh": 2.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.36,
+        "120_kmh": 1.46,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305270+00:00"
+    },
+    {
+      "car": "Dodge Viper SRT GT3-R '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 695.23,
+      "power_hp": 475.0,
+      "torque_nm": 608.0,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 365.38461538461536,
+      "weight_power_kg_hp": 2.736842105263158,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "8383",
+      "engine_model": "VX-I-Viper-GT3R",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.06,
+        "0_1000m": 20.36,
+        "100_150_kmh": 2.6
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.41,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305290+00:00"
+    },
+    {
+      "car": "Peugeot PEUGEOT VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 693.18,
+      "power_hp": 477.0,
+      "torque_nm": 487.4,
+      "weight_kg": 1269.0,
+      "power_weight_hp_t": 375.88652482269504,
+      "weight_power_kg_hp": 2.660377358490566,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3200",
+      "engine_model": "V6-Peugeot-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.25,
+        "0_1000m": 21.57,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.4,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305310+00:00"
+    },
+    {
+      "car": "Nissan GT-R NISMO GT3 '13",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 686.61,
+      "power_hp": 509.0,
+      "torque_nm": 589.4,
+      "weight_kg": 1315.0,
+      "power_weight_hp_t": 387.0722433460076,
+      "weight_power_kg_hp": 2.583497053045187,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "VR38DETT-GT-R-GT3-'13",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.69,
+        "0_1000m": 21.08,
+        "100_150_kmh": 2.74
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.42,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305331+00:00"
+    },
+    {
+      "car": "Nissan GT-R GT500 '99",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 688.93,
+      "power_hp": 454.0,
+      "torque_nm": 642.3,
+      "weight_kg": 1210.0,
+      "power_weight_hp_t": 375.20661157024796,
+      "weight_power_kg_hp": 2.6651982378854626,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2708",
+      "engine_model": "RB26DETT-GT-R-GT500",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.58,
+        "0_1000m": 21.0,
+        "100_150_kmh": 2.71
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.43,
+        "240_kmh": 1.64
+      },
+      "stability": {
+        "low_speed": "-0.39 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305360+00:00"
+    },
+    {
+      "car": "Lexus RC F GT3 '17",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 697.59,
+      "power_hp": 455.0,
+      "torque_nm": 522.7,
+      "weight_kg": 1310.0,
+      "power_weight_hp_t": 347.32824427480915,
+      "weight_power_kg_hp": 2.879120879120879,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5407",
+      "engine_model": "2UR-GSE-RC-F-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.04,
+        "0_1000m": 21.49,
+        "100_150_kmh": 2.82
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.74
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305383+00:00"
+    },
+    {
+      "car": "Toyota FT-1 VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 691.17,
+      "power_hp": 473.0,
+      "torque_nm": 408.9,
+      "weight_kg": 1350.0,
+      "power_weight_hp_t": 350.3703703703703,
+      "weight_power_kg_hp": 2.854122621564482,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "FT-1-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.05,
+        "0_1000m": 21.52,
+        "100_150_kmh": 2.88
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.44,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305402+00:00"
+    },
+    {
+      "car": "Volkswagen Volkswagen GTI VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 682.39,
+      "power_hp": 502.0,
+      "torque_nm": 605.1,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 398.41269841269843,
+      "weight_power_kg_hp": 2.50996015936255,
+      "weight_balance": "50:50",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "GTI-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.84,
+        "0_1000m": 21.3,
+        "100_150_kmh": 2.82
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.42,
+        "240_kmh": 1.6
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305422+00:00"
+    },
+    {
+      "car": "BMW Z4 GT3 '11",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 687.84,
+      "power_hp": 460.0,
+      "torque_nm": 453.1,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 368.0,
+      "weight_power_kg_hp": 2.717391304347826,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4361",
+      "engine_model": "P65B44-Z4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.8,
+        "0_1000m": 21.17,
+        "100_150_kmh": 2.65
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.42,
+        "240_kmh": 1.63
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305441+00:00"
+    },
+    {
+      "car": "McLaren McLaren F1 GTR - BMW '95",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 684.92,
+      "power_hp": 438.0,
+      "torque_nm": 474.6,
+      "weight_kg": 1180.0,
+      "power_weight_hp_t": 371.1864406779661,
+      "weight_power_kg_hp": 2.6940639269406392,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "6064",
+      "engine_model": "S70/2-F1GTR-'95",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.52,
+        "0_1000m": 20.85,
+        "100_150_kmh": 2.61
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.41,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305461+00:00"
+    },
+    {
+      "car": "Hyundai Genesis Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 693.53,
+      "power_hp": 483.0,
+      "torque_nm": 455.0,
+      "weight_kg": 1269.0,
+      "power_weight_hp_t": 380.6146572104019,
+      "weight_power_kg_hp": 2.627329192546584,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Genesis-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.43,
+        "0_1000m": 21.87,
+        "100_150_kmh": 2.7
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305480+00:00"
+    },
+    {
+      "car": "Peugeot RCZ Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 691.91,
+      "power_hp": 484.0,
+      "torque_nm": 510.9,
+      "weight_kg": 1275.0,
+      "power_weight_hp_t": 379.6078431372549,
+      "weight_power_kg_hp": 2.634297520661157,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-RCZ-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.83,
+        "0_1000m": 21.26,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305500+00:00"
+    },
+    {
+      "car": "Mazda Atenza Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 694.7,
+      "power_hp": 493.0,
+      "torque_nm": 494.3,
+      "weight_kg": 1326.0,
+      "power_weight_hp_t": 371.79487179487177,
+      "weight_power_kg_hp": 2.689655172413793,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-Atenza-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.23,
+        "0_1000m": 21.72,
+        "100_150_kmh": 2.78
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.45,
+        "240_kmh": 1.72
+      },
+      "stability": {
+        "low_speed": "-0.26 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305519+00:00"
+    },
+    {
+      "car": "Lexus RC F GT3 prototype '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 692.39,
+      "power_hp": 449.0,
+      "torque_nm": 516.8,
+      "weight_kg": 1310.0,
+      "power_weight_hp_t": 342.7480916030534,
+      "weight_power_kg_hp": 2.917594654788419,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5327",
+      "engine_model": "2UR-GSE-RC-F-GT3-proto",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.84,
+        "0_1000m": 21.38,
+        "100_150_kmh": 2.84
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.45,
+        "240_kmh": 1.71
+      },
+      "stability": {
+        "low_speed": "-0.4 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305539+00:00"
+    },
+    {
+      "car": "BMW M3 GT '11",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 686.7,
+      "power_hp": 466.0,
+      "torque_nm": 464.8,
+      "weight_kg": 1296.0,
+      "power_weight_hp_t": 359.5679012345679,
+      "weight_power_kg_hp": 2.781115879828326,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4000",
+      "engine_model": "P65B40-M3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.93,
+        "0_1000m": 21.38,
+        "100_150_kmh": 2.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.43,
+        "240_kmh": 1.64
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305559+00:00"
+    },
+    {
+      "car": "Mazda RX-VISION GT3 CONCEPT",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 694.26,
+      "power_hp": 433.0,
+      "torque_nm": 414.8,
+      "weight_kg": 1269.0,
+      "power_weight_hp_t": 341.21355397951146,
+      "weight_power_kg_hp": 2.930715935334873,
+      "weight_balance": "48:52",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "RX-Vision-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.56,
+        "0_1000m": 21.98,
+        "100_150_kmh": 2.81
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305578+00:00"
+    },
+    {
+      "car": "Jaguar F-type Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 695.6,
+      "power_hp": 469.0,
+      "torque_nm": 577.6,
+      "weight_kg": 1265.0,
+      "power_weight_hp_t": 370.7509881422925,
+      "weight_power_kg_hp": 2.697228144989339,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "SC",
+      "displacement": null,
+      "engine_model": "V8-F-type-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.45,
+        "0_1000m": 20.78,
+        "100_150_kmh": 2.7
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.43,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.38 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305598+00:00"
+    },
+    {
+      "car": "Porsche 911 RSR (991) '17",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 690.62,
+      "power_hp": 444.0,
+      "torque_nm": 424.6,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 336.3636363636364,
+      "weight_power_kg_hp": 2.972972972972973,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "4000",
+      "engine_model": "M97/80-911",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.65,
+        "0_1000m": 22.16,
+        "100_150_kmh": 2.88
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.45,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305618+00:00"
+    },
+    {
+      "car": "Alfa Romeo 4C Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 688.33,
+      "power_hp": 455.0,
+      "torque_nm": 455.0,
+      "weight_kg": 1245.0,
+      "power_weight_hp_t": 365.4618473895582,
+      "weight_power_kg_hp": 2.7362637362637363,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Alfa-4C-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.27,
+        "0_1000m": 21.72,
+        "100_150_kmh": 2.86
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.44,
+        "240_kmh": 1.66
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305637+00:00"
+    },
+    {
+      "car": "AMG Mercedes-AMG GT3 '20",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 697.37,
+      "power_hp": 461.0,
+      "torque_nm": 539.4,
+      "weight_kg": 1350.0,
+      "power_weight_hp_t": 341.48148148148147,
+      "weight_power_kg_hp": 2.928416485900217,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "6208",
+      "engine_model": "M159-AMG-GT3-'20",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.44,
+        "0_1000m": 20.86,
+        "100_150_kmh": 2.84
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305658+00:00"
+    },
+    {
+      "car": "Toyota Supra GT500 '97",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 689.97,
+      "power_hp": 448.0,
+      "torque_nm": 584.5,
+      "weight_kg": 1175.0,
+      "power_weight_hp_t": 381.27659574468083,
+      "weight_power_kg_hp": 2.622767857142857,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "3S-GTE-171F-Supra",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.43,
+        "0_1000m": 20.86,
+        "100_150_kmh": 2.76
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.43,
+        "240_kmh": 1.65
+      },
+      "stability": {
+        "low_speed": "-0.44 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305678+00:00"
+    },
+    {
+      "car": "Ford Mustang Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 692.21,
+      "power_hp": 483.0,
+      "torque_nm": 509.9,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 371.53846153846155,
+      "weight_power_kg_hp": 2.691511387163561,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Mustang-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.97,
+        "0_1000m": 21.34,
+        "100_150_kmh": 2.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.43,
+        "240_kmh": 1.67
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305697+00:00"
+    },
+    {
+      "car": "AMG SLS AMG GT3 '11",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 685.78,
+      "power_hp": 485.0,
+      "torque_nm": 568.8,
+      "weight_kg": 1360.0,
+      "power_weight_hp_t": 356.6176470588235,
+      "weight_power_kg_hp": 2.804123711340206,
+      "weight_balance": "48:52",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "M159-SLS-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.12,
+        "0_1000m": 20.46,
+        "100_150_kmh": 2.74
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.41,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305717+00:00"
+    },
+    {
+      "car": "Suzuki SUZUKI VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 677.97,
+      "power_hp": 469.0,
+      "torque_nm": 397.2,
+      "weight_kg": 1220.0,
+      "power_weight_hp_t": 384.42622950819674,
+      "weight_power_kg_hp": 2.601279317697228,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2680",
+      "engine_model": "V8-Suzuki-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.06,
+        "0_1000m": 22.69,
+        "100_150_kmh": 2.97
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.43,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305737+00:00"
+    },
+    {
+      "car": "Volkswagen Beetle Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 693.5,
+      "power_hp": 479.0,
+      "torque_nm": 479.5,
+      "weight_kg": 1295.0,
+      "power_weight_hp_t": 369.8841698841699,
+      "weight_power_kg_hp": 2.7035490605427976,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Beetle-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.93,
+        "0_1000m": 21.38,
+        "100_150_kmh": 2.68
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.45,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305756+00:00"
+    },
+    {
+      "car": "Aston Martin DBR9 GT1 '10",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 676.82,
+      "power_hp": 468.0,
+      "torque_nm": 518.8,
+      "weight_kg": 1175.0,
+      "power_weight_hp_t": 398.2978723404255,
+      "weight_power_kg_hp": 2.5106837606837606,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5935",
+      "engine_model": "AM04-DBR9",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.17,
+        "0_1000m": 20.53,
+        "100_150_kmh": 2.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.55
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305775+00:00"
+    },
+    {
+      "car": "Ford Ford GT LM Spec II Test Car",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 680.08,
+      "power_hp": 443.0,
+      "torque_nm": 542.3,
+      "weight_kg": 1265.0,
+      "power_weight_hp_t": 350.19762845849806,
+      "weight_power_kg_hp": 2.855530474040632,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "SC",
+      "displacement": "5409",
+      "engine_model": "V8-Ford-GT-LM-Test",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.48,
+        "0_1000m": 20.91,
+        "100_150_kmh": 2.82
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.41,
+        "240_kmh": 1.59
+      },
+      "stability": {
+        "low_speed": "-0.55 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305796+00:00"
+    },
+    {
+      "car": "Nissan Skyline Super Silhouette '84",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 686.61,
+      "power_hp": 517.0,
+      "torque_nm": 495.2,
+      "weight_kg": 1005.0,
+      "power_weight_hp_t": 514.4278606965174,
+      "weight_power_kg_hp": 1.943907156673114,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2083",
+      "engine_model": "LZ20B-Skyline",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.14,
+        "0_1000m": 21.61,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.41,
+        "240_kmh": 1.64
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305815+00:00"
+    },
+    {
+      "car": "Honda NSX GT500 '00",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 679.5,
+      "power_hp": 428.0,
+      "torque_nm": 404.0,
+      "weight_kg": 1235.0,
+      "power_weight_hp_t": 346.5587044534413,
+      "weight_power_kg_hp": 2.885514018691589,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3500",
+      "engine_model": "C32B-NSX-GT500-'00",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.45,
+        "0_1000m": 22.0,
+        "100_150_kmh": 2.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.42,
+        "240_kmh": 1.63
+      },
+      "stability": {
+        "low_speed": "-0.24 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305836+00:00"
+    },
+    {
+      "car": "Ferrari 296 GT3 '23",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 694.29,
+      "power_hp": 444.0,
+      "torque_nm": 526.6,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 336.3636363636364,
+      "weight_power_kg_hp": 2.972972972972973,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "2992",
+      "engine_model": "F163CE-296-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.19,
+        "0_1000m": 21.68,
+        "100_150_kmh": 2.85
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.45,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.62 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305855+00:00"
+    },
+    {
+      "car": "Porsche 911 GT3 R (992) '22",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 693.04,
+      "power_hp": 446.0,
+      "torque_nm": 400.1,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 337.8787878787879,
+      "weight_power_kg_hp": 2.9596412556053813,
+      "weight_balance": "43:57",
+      "drivetrain": "RR",
+      "aspiration": "NA",
+      "displacement": "4194",
+      "engine_model": "M97/80-911-992",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.5,
+        "0_1000m": 21.99,
+        "100_150_kmh": 2.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.45,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305875+00:00"
+    },
+    {
+      "car": "Aston Martin V12 Vantage GT3 '12",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 684.54,
+      "power_hp": 479.0,
+      "torque_nm": 556.0,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 383.2,
+      "weight_power_kg_hp": 2.6096033402922756,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5935",
+      "engine_model": "AM08-Vantage",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.91,
+        "0_1000m": 21.31,
+        "100_150_kmh": 2.6
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.41,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305895+00:00"
+    },
+    {
+      "car": "Nissan GT-R NISMO GT3 '18",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 697.0,
+      "power_hp": 491.0,
+      "torque_nm": 561.9,
+      "weight_kg": 1355.0,
+      "power_weight_hp_t": 362.36162361623616,
+      "weight_power_kg_hp": 2.759674134419552,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "VR38DETT-GT-R-GT3-'18",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.8,
+        "0_1000m": 21.27,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.46,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305915+00:00"
+    },
+    {
+      "car": "Toyota GR Supra Racing Concept '18",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 693.85,
+      "power_hp": 462.0,
+      "torque_nm": 544.3,
+      "weight_kg": 1255.0,
+      "power_weight_hp_t": 368.12749003984067,
+      "weight_power_kg_hp": 2.7164502164502164,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "GR-Supra-Racing-Concept",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.46,
+        "0_1000m": 21.93,
+        "100_150_kmh": 3.02
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305949+00:00"
+    },
+    {
+      "car": "Genesis Genesis X GR3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 698.84,
+      "power_hp": 466.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1295.0,
+      "power_weight_hp_t": 359.8455598455599,
+      "weight_power_kg_hp": 2.778969957081545,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "3342",
+      "engine_model": "V6-Genesis-X",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.06,
+        "0_1000m": 21.47,
+        "100_150_kmh": 2.8
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.74
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305969+00:00"
+    },
+    {
+      "car": "Chevrolet Corvette C7 Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 690.86,
+      "power_hp": 480.0,
+      "torque_nm": 600.2,
+      "weight_kg": 1310.0,
+      "power_weight_hp_t": 366.412213740458,
+      "weight_power_kg_hp": 2.7291666666666665,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Corvette-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.23,
+        "0_1000m": 20.61,
+        "100_150_kmh": 2.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.41,
+        "240_kmh": 1.67
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.305988+00:00"
+    },
+    {
+      "car": "BMW M6 GT3 Sprint Model '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 698.54,
+      "power_hp": 462.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 350.0,
+      "weight_power_kg_hp": 2.857142857142857,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "P63B44-M6-Sprint",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.89,
+        "0_1000m": 21.36,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.36,
+        "120_kmh": 1.46,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306008+00:00"
+    },
+    {
+      "car": "Audi R8 LMS Evo '19",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 687.96,
+      "power_hp": 439.0,
+      "torque_nm": 436.4,
+      "weight_kg": 1315.0,
+      "power_weight_hp_t": 333.8403041825095,
+      "weight_power_kg_hp": 2.9954441913439633,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "5200",
+      "engine_model": "DAR-R8-Evo",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.36,
+        "0_1000m": 21.84,
+        "100_150_kmh": 2.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.67
+      },
+      "stability": {
+        "low_speed": "-0.44 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306028+00:00"
+    },
+    {
+      "car": "McLaren 650S GT3 '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 691.9,
+      "power_hp": 477.0,
+      "torque_nm": 492.3,
+      "weight_kg": 1315.0,
+      "power_weight_hp_t": 362.7376425855513,
+      "weight_power_kg_hp": 2.756813417190776,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "M838T-650S-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.09,
+        "0_1000m": 21.57,
+        "100_150_kmh": 2.98
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.45,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.64 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306048+00:00"
+    },
+    {
+      "car": "Honda NSX Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 690.28,
+      "power_hp": 483.0,
+      "torque_nm": 496.2,
+      "weight_kg": 1324.0,
+      "power_weight_hp_t": 364.80362537764347,
+      "weight_power_kg_hp": 2.74120082815735,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "V6-NSX-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.68,
+        "0_1000m": 21.15,
+        "100_150_kmh": 2.95
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.45,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306067+00:00"
+    },
+    {
+      "car": "Renault R.S.01 GT3 '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 688.81,
+      "power_hp": 466.0,
+      "torque_nm": 544.3,
+      "weight_kg": 1326.0,
+      "power_weight_hp_t": 351.4328808446455,
+      "weight_power_kg_hp": 2.8454935622317596,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "VR38DETT-R.S.01-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.74,
+        "0_1000m": 21.25,
+        "100_150_kmh": 2.9
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.71 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306087+00:00"
+    },
+    {
+      "car": "Lamborghini Huracán GT3 '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 688.85,
+      "power_hp": 450.0,
+      "torque_nm": 452.1,
+      "weight_kg": 1340.0,
+      "power_weight_hp_t": 335.820895522388,
+      "weight_power_kg_hp": 2.977777777777778,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "5204",
+      "engine_model": "DGF-Huracan",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.31,
+        "0_1000m": 21.8,
+        "100_150_kmh": 2.88
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.67
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306107+00:00"
+    },
+    {
+      "car": "Mazda RX-VISION GT3 CONCEPT Stealth Model",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 693.48,
+      "power_hp": 433.0,
+      "torque_nm": 414.8,
+      "weight_kg": 1280.0,
+      "power_weight_hp_t": 338.28125,
+      "weight_power_kg_hp": 2.956120092378753,
+      "weight_balance": "48:52",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "RX-Vision-GT3-Stealth",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.6,
+        "0_1000m": 22.04,
+        "100_150_kmh": 2.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306126+00:00"
+    },
+    {
+      "car": "Subaru BRZ GT300 '21",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 697.85,
+      "power_hp": 435.0,
+      "torque_nm": 604.1,
+      "weight_kg": 1325.0,
+      "power_weight_hp_t": 328.3018867924528,
+      "weight_power_kg_hp": 3.045977011494253,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1994",
+      "engine_model": "EJ20-BRZ",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.8,
+        "0_1000m": 21.43,
+        "100_150_kmh": 2.97
+      },
+      "rotational_g": {
+        "60_kmh": 1.36,
+        "120_kmh": 1.49,
+        "240_kmh": 1.79
+      },
+      "stability": {
+        "low_speed": "-0.48 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306146+00:00"
+    },
+    {
+      "car": "Ford Ford GT Race Car '18",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 691.28,
+      "power_hp": 443.0,
+      "torque_nm": 513.9,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 351.58730158730157,
+      "weight_power_kg_hp": 2.8442437923250563,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3500",
+      "engine_model": "V6-Ford-GT-Race-'18",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.2,
+        "0_1000m": 21.62,
+        "100_150_kmh": 2.9
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.44,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306166+00:00"
+    },
+    {
+      "car": "Citroën GT by Citroën Race Car (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 690.26,
+      "power_hp": 444.0,
+      "torque_nm": 432.5,
+      "weight_kg": 1270.0,
+      "power_weight_hp_t": 349.6062992125984,
+      "weight_power_kg_hp": 2.8603603603603602,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "GT-by-Citroen-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.37,
+        "0_1000m": 20.77,
+        "100_150_kmh": 2.69
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.43,
+        "240_kmh": 1.66
+      },
+      "stability": {
+        "low_speed": "-0.54 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306186+00:00"
+    },
+    {
+      "car": "Ford Ford GT LM Race Car Spec II",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 678.74,
+      "power_hp": 449.0,
+      "torque_nm": 527.6,
+      "weight_kg": 1265.0,
+      "power_weight_hp_t": 354.9407114624506,
+      "weight_power_kg_hp": 2.8173719376391984,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "SC",
+      "displacement": "5400",
+      "engine_model": "V8-Ford-GT-LM",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.41,
+        "0_1000m": 20.87,
+        "100_150_kmh": 2.87
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.41,
+        "240_kmh": 1.59
+      },
+      "stability": {
+        "low_speed": "-0.52 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306206+00:00"
+    },
+    {
+      "car": "AMG Mercedes-AMG GT3 '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 693.87,
+      "power_hp": 455.0,
+      "torque_nm": 532.5,
+      "weight_kg": 1330.0,
+      "power_weight_hp_t": 342.10526315789474,
+      "weight_power_kg_hp": 2.923076923076923,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "6208",
+      "engine_model": "M159-AMG-GT3-'16",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.47,
+        "0_1000m": 20.9,
+        "100_150_kmh": 2.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.43,
+        "240_kmh": 1.71
+      },
+      "stability": {
+        "low_speed": "-0.24 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306226+00:00"
+    },
+    {
+      "car": "Ferrari 458 Italia GT3 '13",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 688.99,
+      "power_hp": 450.0,
+      "torque_nm": 456.0,
+      "weight_kg": 1335.0,
+      "power_weight_hp_t": 337.07865168539325,
+      "weight_power_kg_hp": 2.966666666666667,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "4497",
+      "engine_model": "F136-458-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.74,
+        "0_1000m": 21.21,
+        "100_150_kmh": 2.84
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.66
+      },
+      "stability": {
+        "low_speed": "-0.68 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306245+00:00"
+    },
+    {
+      "car": "Audi R8 LMS '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 684.79,
+      "power_hp": 451.0,
+      "torque_nm": 442.3,
+      "weight_kg": 1365.0,
+      "power_weight_hp_t": 330.4029304029304,
+      "weight_power_kg_hp": 3.0266075388026605,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "5200",
+      "engine_model": "DAR-R8",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.52,
+        "0_1000m": 22.06,
+        "100_150_kmh": 2.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.66
+      },
+      "stability": {
+        "low_speed": "-0.46 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306266+00:00"
+    },
+    {
+      "car": "Subaru WRX Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 699.67,
+      "power_hp": 497.0,
+      "torque_nm": 519.8,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 376.5151515151515,
+      "weight_power_kg_hp": 2.6559356136820926,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "WRX-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.67,
+        "0_1000m": 21.1,
+        "100_150_kmh": 2.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.74
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306285+00:00"
+    },
+    {
+      "car": "Mitsubishi Lancer Evolution Final Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 700.02,
+      "power_hp": 507.0,
+      "torque_nm": 542.3,
+      "weight_kg": 1326.0,
+      "power_weight_hp_t": 382.35294117647055,
+      "weight_power_kg_hp": 2.6153846153846154,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Evo-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.57,
+        "0_1000m": 20.99,
+        "100_150_kmh": 2.71
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.74
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306304+00:00"
+    },
+    {
+      "car": "BMW M6 GT3 Endurance Model '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 698.52,
+      "power_hp": 462.0,
+      "torque_nm": 592.3,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 350.0,
+      "weight_power_kg_hp": 2.857142857142857,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "P63B44-M6-Endurance",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.89,
+        "0_1000m": 21.36,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.36,
+        "120_kmh": 1.46,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306323+00:00"
+    },
+    {
+      "car": "Dodge Viper SRT GT3-R '15",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 695.94,
+      "power_hp": 475.0,
+      "torque_nm": 608.0,
+      "weight_kg": 1290.0,
+      "power_weight_hp_t": 368.2170542635659,
+      "weight_power_kg_hp": 2.7157894736842105,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "8383",
+      "engine_model": "VX-I-Viper-GT3R",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.0,
+        "0_1000m": 20.29,
+        "100_150_kmh": 2.58
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.41,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306351+00:00"
+    },
+    {
+      "car": "Peugeot PEUGEOT VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 683.84,
+      "power_hp": 477.0,
+      "torque_nm": 487.4,
+      "weight_kg": 1280.0,
+      "power_weight_hp_t": 372.65625,
+      "weight_power_kg_hp": 2.6834381551362685,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3200",
+      "engine_model": "V6-Peugeot-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.28,
+        "0_1000m": 21.62,
+        "100_150_kmh": 2.94
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.4,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306374+00:00"
+    },
+    {
+      "car": "Nissan GT-R NISMO GT3 '13",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 685.91,
+      "power_hp": 509.0,
+      "torque_nm": 589.4,
+      "weight_kg": 1326.0,
+      "power_weight_hp_t": 383.86123680241326,
+      "weight_power_kg_hp": 2.6051080550098233,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "3799",
+      "engine_model": "VR38DETT-GT-R-GT3-'13",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.7,
+        "0_1000m": 21.12,
+        "100_150_kmh": 2.75
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.42,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306393+00:00"
+    },
+    {
+      "car": "Nissan GT-R GT500 '99",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 687.92,
+      "power_hp": 449.0,
+      "torque_nm": 635.5,
+      "weight_kg": 1200.0,
+      "power_weight_hp_t": 374.1666666666667,
+      "weight_power_kg_hp": 2.6726057906458798,
+      "weight_balance": "55:45",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2708",
+      "engine_model": "RB26DETT-GT-R-GT500",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.59,
+        "0_1000m": 21.03,
+        "100_150_kmh": 2.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.43,
+        "240_kmh": 1.63
+      },
+      "stability": {
+        "low_speed": "-0.39 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306414+00:00"
+    },
+    {
+      "car": "Lexus RC F GT3 '17",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 698.11,
+      "power_hp": 455.0,
+      "torque_nm": 522.7,
+      "weight_kg": 1305.0,
+      "power_weight_hp_t": 348.65900383141764,
+      "weight_power_kg_hp": 2.868131868131868,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5407",
+      "engine_model": "2UR-GSE-RC-F-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.02,
+        "0_1000m": 21.47,
+        "100_150_kmh": 2.81
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.74
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306433+00:00"
+    },
+    {
+      "car": "Toyota FT-1 VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 689.37,
+      "power_hp": 468.0,
+      "torque_nm": 404.0,
+      "weight_kg": 1350.0,
+      "power_weight_hp_t": 346.66666666666663,
+      "weight_power_kg_hp": 2.8846153846153846,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "FT-1-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.11,
+        "0_1000m": 21.62,
+        "100_150_kmh": 2.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.44,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306452+00:00"
+    },
+    {
+      "car": "Volkswagen Volkswagen GTI VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 680.73,
+      "power_hp": 496.0,
+      "torque_nm": 598.2,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 393.6507936507937,
+      "weight_power_kg_hp": 2.5403225806451615,
+      "weight_balance": "50:50",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "GTI-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.89,
+        "0_1000m": 21.38,
+        "100_150_kmh": 2.85
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.42,
+        "240_kmh": 1.6
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306472+00:00"
+    },
+    {
+      "car": "BMW Z4 GT3 '11",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 686.65,
+      "power_hp": 460.0,
+      "torque_nm": 453.1,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 365.07936507936506,
+      "weight_power_kg_hp": 2.739130434782609,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4361",
+      "engine_model": "P65B44-Z4",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.83,
+        "0_1000m": 21.21,
+        "100_150_kmh": 2.67
+      },
+      "rotational_g": {
+        "60_kmh": 1.29,
+        "120_kmh": 1.42,
+        "240_kmh": 1.63
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306492+00:00"
+    },
+    {
+      "car": "McLaren McLaren F1 GTR - BMW '95",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 682.63,
+      "power_hp": 438.0,
+      "torque_nm": 474.6,
+      "weight_kg": 1200.0,
+      "power_weight_hp_t": 365.0,
+      "weight_power_kg_hp": 2.73972602739726,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "6064",
+      "engine_model": "S70/2-F1GTR-'95",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.58,
+        "0_1000m": 20.95,
+        "100_150_kmh": 2.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.41,
+        "240_kmh": 1.6
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306511+00:00"
+    },
+    {
+      "car": "Hyundai Genesis Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 692.27,
+      "power_hp": 483.0,
+      "torque_nm": 455.0,
+      "weight_kg": 1285.0,
+      "power_weight_hp_t": 375.87548638132296,
+      "weight_power_kg_hp": 2.660455486542443,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Genesis-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.47,
+        "0_1000m": 21.93,
+        "100_150_kmh": 2.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306531+00:00"
+    },
+    {
+      "car": "Peugeot RCZ Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 691.06,
+      "power_hp": 484.0,
+      "torque_nm": 510.9,
+      "weight_kg": 1285.0,
+      "power_weight_hp_t": 376.6536964980545,
+      "weight_power_kg_hp": 2.6549586776859506,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-RCZ-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.86,
+        "0_1000m": 21.31,
+        "100_150_kmh": 2.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306550+00:00"
+    },
+    {
+      "car": "Mazda Atenza Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 691.42,
+      "power_hp": 487.0,
+      "torque_nm": 489.4,
+      "weight_kg": 1340.0,
+      "power_weight_hp_t": 363.4328358208955,
+      "weight_power_kg_hp": 2.751540041067762,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L4-Atenza-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.33,
+        "0_1000m": 21.87,
+        "100_150_kmh": 2.84
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.45,
+        "240_kmh": 1.71
+      },
+      "stability": {
+        "low_speed": "-0.26 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306569+00:00"
+    },
+    {
+      "car": "Lexus RC F GT3 prototype '16",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 692.39,
+      "power_hp": 449.0,
+      "torque_nm": 516.8,
+      "weight_kg": 1310.0,
+      "power_weight_hp_t": 342.7480916030534,
+      "weight_power_kg_hp": 2.917594654788419,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5327",
+      "engine_model": "2UR-GSE-RC-F-GT3-proto",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.84,
+        "0_1000m": 21.38,
+        "100_150_kmh": 2.84
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.45,
+        "240_kmh": 1.71
+      },
+      "stability": {
+        "low_speed": "-0.4 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306591+00:00"
+    },
+    {
+      "car": "BMW M3 GT '11",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 685.29,
+      "power_hp": 461.0,
+      "torque_nm": 459.9,
+      "weight_kg": 1296.0,
+      "power_weight_hp_t": 355.7098765432099,
+      "weight_power_kg_hp": 2.811279826464208,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "4000",
+      "engine_model": "P65B40-M3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.99,
+        "0_1000m": 21.48,
+        "100_150_kmh": 2.76
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.43,
+        "240_kmh": 1.64
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306612+00:00"
+    },
+    {
+      "car": "Mazda RX-VISION GT3 CONCEPT",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 693.48,
+      "power_hp": 433.0,
+      "torque_nm": 414.8,
+      "weight_kg": 1280.0,
+      "power_weight_hp_t": 338.28125,
+      "weight_power_kg_hp": 2.956120092378753,
+      "weight_balance": "48:52",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "RX-Vision-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.6,
+        "0_1000m": 22.04,
+        "100_150_kmh": 2.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.44,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306631+00:00"
+    },
+    {
+      "car": "Jaguar F-type Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 694.25,
+      "power_hp": 465.0,
+      "torque_nm": 570.7,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 369.04761904761904,
+      "weight_power_kg_hp": 2.7096774193548385,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "SC",
+      "displacement": null,
+      "engine_model": "V8-F-type-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.48,
+        "0_1000m": 20.85,
+        "100_150_kmh": 2.73
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.43,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.38 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306650+00:00"
+    },
+    {
+      "car": "Porsche 911 RSR (991) '17",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 689.62,
+      "power_hp": 444.0,
+      "torque_nm": 424.6,
+      "weight_kg": 1330.0,
+      "power_weight_hp_t": 333.8345864661654,
+      "weight_power_kg_hp": 2.9954954954954953,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "4000",
+      "engine_model": "M97/80-911",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.69,
+        "0_1000m": 22.21,
+        "100_150_kmh": 2.9
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.45,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306671+00:00"
+    },
+    {
+      "car": "Alfa Romeo 4C Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 687.27,
+      "power_hp": 455.0,
+      "torque_nm": 455.0,
+      "weight_kg": 1255.0,
+      "power_weight_hp_t": 362.5498007968128,
+      "weight_power_kg_hp": 2.758241758241758,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Alfa-4C-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.3,
+        "0_1000m": 21.76,
+        "100_150_kmh": 2.88
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.44,
+        "240_kmh": 1.66
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306691+00:00"
+    },
+    {
+      "car": "AMG Mercedes-AMG GT3 '20",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 696.94,
+      "power_hp": 461.0,
+      "torque_nm": 539.4,
+      "weight_kg": 1355.0,
+      "power_weight_hp_t": 340.22140221402213,
+      "weight_power_kg_hp": 2.9392624728850327,
+      "weight_balance": "49:51",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "6208",
+      "engine_model": "M159-AMG-GT3-'20",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.45,
+        "0_1000m": 20.87,
+        "100_150_kmh": 2.85
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.45,
+        "240_kmh": 1.73
+      },
+      "stability": {
+        "low_speed": "-0.25 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306711+00:00"
+    },
+    {
+      "car": "Toyota Supra GT500 '97",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 687.27,
+      "power_hp": 443.0,
+      "torque_nm": 578.6,
+      "weight_kg": 1181.0,
+      "power_weight_hp_t": 375.10584250635054,
+      "weight_power_kg_hp": 2.6659142212189617,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "1998",
+      "engine_model": "3S-GTE-171F-Supra",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.46,
+        "0_1000m": 20.93,
+        "100_150_kmh": 2.8
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.43,
+        "240_kmh": 1.64
+      },
+      "stability": {
+        "low_speed": "-0.44 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306730+00:00"
+    },
+    {
+      "car": "Ford Mustang Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 690.55,
+      "power_hp": 477.0,
+      "torque_nm": 504.1,
+      "weight_kg": 1300.0,
+      "power_weight_hp_t": 366.9230769230769,
+      "weight_power_kg_hp": 2.7253668763102725,
+      "weight_balance": "54:46",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "V8-Mustang-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.03,
+        "0_1000m": 21.44,
+        "100_150_kmh": 2.76
+      },
+      "rotational_g": {
+        "60_kmh": 1.31,
+        "120_kmh": 1.43,
+        "240_kmh": 1.67
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306750+00:00"
+    },
+    {
+      "car": "AMG SLS AMG GT3 '11",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 685.05,
+      "power_hp": 485.0,
+      "torque_nm": 568.8,
+      "weight_kg": 1370.0,
+      "power_weight_hp_t": 354.014598540146,
+      "weight_power_kg_hp": 2.8247422680412373,
+      "weight_balance": "48:52",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "M159-SLS-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.15,
+        "0_1000m": 20.49,
+        "100_150_kmh": 2.75
+      },
+      "rotational_g": {
+        "60_kmh": 1.3,
+        "120_kmh": 1.41,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.3 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306769+00:00"
+    },
+    {
+      "car": "Suzuki SUZUKI VGT (Gr.3)",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 676.31,
+      "power_hp": 463.0,
+      "torque_nm": 391.3,
+      "weight_kg": 1220.0,
+      "power_weight_hp_t": 379.5081967213115,
+      "weight_power_kg_hp": 2.634989200863931,
+      "weight_balance": "50:50",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2680",
+      "engine_model": "V8-Suzuki-VGT-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 13.11,
+        "0_1000m": 22.77,
+        "100_150_kmh": 3.0
+      },
+      "rotational_g": {
+        "60_kmh": 1.33,
+        "120_kmh": 1.43,
+        "240_kmh": 1.61
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306789+00:00"
+    },
+    {
+      "car": "Volkswagen Beetle Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 692.05,
+      "power_hp": 479.0,
+      "torque_nm": 479.5,
+      "weight_kg": 1310.0,
+      "power_weight_hp_t": 365.64885496183206,
+      "weight_power_kg_hp": 2.7348643006263047,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Beetle-Gr.3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.96,
+        "0_1000m": 21.43,
+        "100_150_kmh": 2.7
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.45,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306810+00:00"
+    },
+    {
+      "car": "Aston Martin DBR9 GT1 '10",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 674.94,
+      "power_hp": 468.0,
+      "torque_nm": 518.8,
+      "weight_kg": 1200.0,
+      "power_weight_hp_t": 390.0,
+      "weight_power_kg_hp": 2.5641025641025643,
+      "weight_balance": "51:49",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "displacement": "5935",
+      "engine_model": "AM04-DBR9",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.22,
+        "0_1000m": 20.62,
+        "100_150_kmh": 2.68
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.55
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306831+00:00"
+    },
+    {
+      "car": "Ford Ford GT LM Spec II Test Car",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 679.14,
+      "power_hp": 443.0,
+      "torque_nm": 542.3,
+      "weight_kg": 1275.0,
+      "power_weight_hp_t": 347.4509803921569,
+      "weight_power_kg_hp": 2.8781038374717833,
+      "weight_balance": "43:57",
+      "drivetrain": "MR",
+      "aspiration": "SC",
+      "displacement": "5409",
+      "engine_model": "V8-Ford-GT-LM-Test",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 11.5,
+        "0_1000m": 20.95,
+        "100_150_kmh": 2.84
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.41,
+        "240_kmh": 1.59
+      },
+      "stability": {
+        "low_speed": "-0.55 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306852+00:00"
+    },
+    {
+      "car": "Nissan Skyline Super Silhouette '84",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 686.61,
+      "power_hp": 517.0,
+      "torque_nm": 495.2,
+      "weight_kg": 1005.0,
+      "power_weight_hp_t": 514.4278606965174,
+      "weight_power_kg_hp": 1.943907156673114,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "TC",
+      "displacement": "2083",
+      "engine_model": "LZ20B-Skyline",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.14,
+        "0_1000m": 21.61,
+        "100_150_kmh": 2.92
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.41,
+        "240_kmh": 1.64
+      },
+      "stability": {
+        "low_speed": "-0.28 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306872+00:00"
+    },
+    {
+      "car": "Honda NSX GT500 '00",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 677.02,
+      "power_hp": 423.0,
+      "torque_nm": 399.1,
+      "weight_kg": 1240.0,
+      "power_weight_hp_t": 341.1290322580645,
+      "weight_power_kg_hp": 2.9314420803782504,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3500",
+      "engine_model": "C32B-NSX-GT500-'00",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.54,
+        "0_1000m": 22.14,
+        "100_150_kmh": 2.98
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.42,
+        "240_kmh": 1.63
+      },
+      "stability": {
+        "low_speed": "-0.24 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306893+00:00"
+    },
+    {
+      "car": "Ferrari 296 GT3 '23",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 692.86,
+      "power_hp": 444.0,
+      "torque_nm": 526.6,
+      "weight_kg": 1335.0,
+      "power_weight_hp_t": 332.5842696629214,
+      "weight_power_kg_hp": 3.0067567567567566,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "2992",
+      "engine_model": "F163CE-296-GT3",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.23,
+        "0_1000m": 21.75,
+        "100_150_kmh": 2.88
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.45,
+        "240_kmh": 1.72
+      },
+      "stability": {
+        "low_speed": "-0.62 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306913+00:00"
+    },
+    {
+      "car": "Porsche 911 GT3 R (992) '22",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 693.04,
+      "power_hp": 446.0,
+      "torque_nm": 400.1,
+      "weight_kg": 1320.0,
+      "power_weight_hp_t": 337.8787878787879,
+      "weight_power_kg_hp": 2.9596412556053813,
+      "weight_balance": "43:57",
+      "drivetrain": "RR",
+      "aspiration": "NA",
+      "displacement": "4194",
+      "engine_model": "M97/80-911-992",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 12.5,
+        "0_1000m": 21.99,
+        "100_150_kmh": 2.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.34,
+        "120_kmh": 1.45,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.35 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:57.306933+00:00"
+    }
+  ]
+}

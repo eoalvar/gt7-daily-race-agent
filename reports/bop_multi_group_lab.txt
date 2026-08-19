@@ -1,0 +1,21 @@
+GT7 MULTI-GROUP BOP LAB V2.0
+====================================================================================================
+Generated            : 2026-08-19T13:08:06.730755+00:00
+Groups requested     : GR.1, GR.2, GR.3, GR.4, GR.B
+Records written      : 399
+Database validation  : PASSED
+
+GROUP RESULTS
+----------------------------------------------------------------------------------------------------
+GR.1  | VALID          | version 1.70   | HIGH  25 | MID  25 | LOW  25 | unique  25
+GR.2  | VALID          | version 1.61   | HIGH  10 | MID  10 | LOW  10 | unique  10
+GR.3  | VALID          | version 1.67   | HIGH  52 | MID  52 | LOW  52 | unique  52
+GR.4  | VALID          | version 1.67   | HIGH  34 | MID  34 | LOW  34 | unique  34
+GR.B  | VALID          | version 1.60   | HIGH  12 | MID  12 | LOW  12 | unique  12
+
+POLICY
+----------------------------------------------------------------------------------------------------
+Each group is validated independently.
+A failed group is not written, while valid groups are preserved.
+The shared database keeps group + BoP version + speed class as separate dimensions.
+====================================================================================================

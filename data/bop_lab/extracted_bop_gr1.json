@@ -1,0 +1,2879 @@
+{
+  "generated_at": "2026-08-19T13:07:48.927895+00:00",
+  "lab_version": "2.0",
+  "group": "GR.1",
+  "selected_version": "1.70",
+  "source_url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "raw_counts": {
+      "HIGH": 25,
+      "MID": 25,
+      "LOW": 25
+    },
+    "decoded_counts": {
+      "HIGH": 25,
+      "MID": 25,
+      "LOW": 25
+    },
+    "rejected": {
+      "HIGH": 0,
+      "MID": 0,
+      "LOW": 0
+    },
+    "unique_cars": 25
+  },
+  "records": [
+    {
+      "car": "Jaguar XJR-9 '88",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 840.45,
+      "power_hp": 644.0,
+      "torque_nm": 670.8,
+      "weight_kg": 894.0,
+      "power_weight_hp_t": 720.3579418344519,
+      "weight_power_kg_hp": 1.3881987577639752,
+      "weight_balance": "41:59",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "6995",
+      "engine_model": "V12-XJR-9",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.24,
+        "0_1000m": 18.11,
+        "100_150_kmh": 1.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.43,
+        "120_kmh": 1.6,
+        "240_kmh": 2.35
+      },
+      "stability": {
+        "low_speed": "-0.7 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926311+00:00"
+    },
+    {
+      "car": "Peugeot 908 HDi FAP '10",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 857.1,
+      "power_hp": 546.0,
+      "torque_nm": 936.5,
+      "weight_kg": 930.0,
+      "power_weight_hp_t": 587.0967741935484,
+      "weight_power_kg_hp": 1.7032967032967032,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "5500",
+      "engine_model": "V12-908HDi-FAP",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.58,
+        "0_1000m": 18.79,
+        "100_150_kmh": 1.74
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.75,
+        "240_kmh": 2.62
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926380+00:00"
+    },
+    {
+      "car": "Audi R18 TDI '11",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 863.86,
+      "power_hp": 533.0,
+      "torque_nm": 900.3,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 592.2222222222222,
+      "weight_power_kg_hp": 1.6885553470919326,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3700",
+      "engine_model": "V6-R18-'11",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.61,
+        "0_1000m": 18.9,
+        "100_150_kmh": 1.79
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.81,
+        "240_kmh": 2.72
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926408+00:00"
+    },
+    {
+      "car": "Toyota TS030 Hybrid '12",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 870.06,
+      "power_hp": 530.0,
+      "torque_nm": 414.8,
+      "weight_kg": 955.0,
+      "power_weight_hp_t": 554.9738219895288,
+      "weight_power_kg_hp": 1.8018867924528301,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3400",
+      "engine_model": "V8-TS030",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.59,
+        "0_1000m": 18.76,
+        "100_150_kmh": 1.57
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.8,
+        "240_kmh": 2.7
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926431+00:00"
+    },
+    {
+      "car": "Nissan GT-R LM NISMO '15",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 870.2,
+      "power_hp": 568.0,
+      "torque_nm": 880.6,
+      "weight_kg": 880.0,
+      "power_weight_hp_t": 645.4545454545455,
+      "weight_power_kg_hp": 1.5492957746478873,
+      "weight_balance": "65:35",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3000",
+      "engine_model": "VRX30A-GT-R",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.68,
+        "0_1000m": 18.72,
+        "100_150_kmh": 1.75
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.79,
+        "240_kmh": 2.66
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-0.56 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926453+00:00"
+    },
+    {
+      "car": "Bugatti Bugatti VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 865.41,
+      "power_hp": 641.0,
+      "torque_nm": 722.8,
+      "weight_kg": 1050.0,
+      "power_weight_hp_t": 610.4761904761905,
+      "weight_power_kg_hp": 1.6380655226209049,
+      "weight_balance": "43:57",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Bugatti-VGT-Gr.1",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.09,
+        "0_1000m": 18.37,
+        "100_150_kmh": 1.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.75,
+        "240_kmh": 2.76
+      },
+      "stability": {
+        "low_speed": "-0.73 | U",
+        "high_speed": "-0.89 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926477+00:00"
+    },
+    {
+      "car": "Hyundai HYUNDAI N 2025 VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 853.61,
+      "power_hp": 557.0,
+      "torque_nm": 523.7,
+      "weight_kg": 1072.0,
+      "power_weight_hp_t": 519.5895522388059,
+      "weight_power_kg_hp": 1.9245960502692998,
+      "weight_balance": "45:55",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Hyundai-VGT",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.2,
+        "0_1000m": 18.33,
+        "100_150_kmh": 1.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.71,
+        "240_kmh": 2.55
+      },
+      "stability": {
+        "low_speed": "-0.18 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926497+00:00"
+    },
+    {
+      "car": "Mazda LM55 VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 848.17,
+      "power_hp": 544.0,
+      "torque_nm": 479.5,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 572.6315789473684,
+      "weight_power_kg_hp": 1.7463235294117647,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "LM55-VGT-Gr.1",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.52,
+        "0_1000m": 18.59,
+        "100_150_kmh": 1.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.69,
+        "240_kmh": 2.45
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926516+00:00"
+    },
+    {
+      "car": "Mazda 787B '91",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 831.26,
+      "power_hp": 649.0,
+      "torque_nm": 570.7,
+      "weight_kg": 830.0,
+      "power_weight_hp_t": 781.9277108433736,
+      "weight_power_kg_hp": 1.2788906009244991,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "654",
+      "engine_model": "R26B-787B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.29,
+        "0_1000m": 18.0,
+        "100_150_kmh": 1.75
+      },
+      "rotational_g": {
+        "60_kmh": 1.39,
+        "120_kmh": 1.54,
+        "240_kmh": 2.18
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926537+00:00"
+    },
+    {
+      "car": "Alpine Alpine VGT '17",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 853.03,
+      "power_hp": 577.0,
+      "torque_nm": 538.4,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 607.3684210526316,
+      "weight_power_kg_hp": 1.6464471403812826,
+      "weight_balance": "47:53",
+      "drivetrain": "RR",
+      "aspiration": "NA",
+      "displacement": "4200",
+      "engine_model": "V8-Alpine-VGT-'17",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.18,
+        "0_1000m": 18.17,
+        "100_150_kmh": 1.67
+      },
+      "rotational_g": {
+        "60_kmh": 1.49,
+        "120_kmh": 1.7,
+        "240_kmh": 2.46
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926557+00:00"
+    },
+    {
+      "car": "Dodge SRT Tomahawk VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 859.18,
+      "power_hp": 589.0,
+      "torque_nm": 506.0,
+      "weight_kg": 995.0,
+      "power_weight_hp_t": 591.9597989949749,
+      "weight_power_kg_hp": 1.6893039049235994,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Tomahawk-Gr.1",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.12,
+        "0_1000m": 18.31,
+        "100_150_kmh": 1.79
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.76,
+        "240_kmh": 2.6
+      },
+      "stability": {
+        "low_speed": "0.04 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926577+00:00"
+    },
+    {
+      "car": "Toyota TS050 - Hybrid '16",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 855.88,
+      "power_hp": 493.0,
+      "torque_nm": 504.1,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 518.9473684210526,
+      "weight_power_kg_hp": 1.9269776876267748,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2400",
+      "engine_model": "V6-TS050",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.34,
+        "0_1000m": 18.49,
+        "100_150_kmh": 1.54
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.75,
+        "240_kmh": 2.53
+      },
+      "stability": {
+        "low_speed": "-0.37 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926598+00:00"
+    },
+    {
+      "car": "Porsche 919 Hybrid '16",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 856.99,
+      "power_hp": 500.0,
+      "torque_nm": 517.8,
+      "weight_kg": 975.0,
+      "power_weight_hp_t": 512.8205128205128,
+      "weight_power_kg_hp": 1.95,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2000",
+      "engine_model": "V4-919",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.24,
+        "0_1000m": 18.42,
+        "100_150_kmh": 1.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.54,
+        "120_kmh": 1.75,
+        "240_kmh": 2.58
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926618+00:00"
+    },
+    {
+      "car": "Audi Audi VGT",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 864.51,
+      "power_hp": 706.0,
+      "torque_nm": 671.8,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 564.8,
+      "weight_power_kg_hp": 1.7705382436260624,
+      "weight_balance": "44:56",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3400",
+      "engine_model": "V6-Audi-VGT",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 9.77,
+        "0_1000m": 17.85,
+        "100_150_kmh": 1.49
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.71,
+        "240_kmh": 2.6
+      },
+      "stability": {
+        "low_speed": "-0.78 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926639+00:00"
+    },
+    {
+      "car": "Peugeot L750R HYbrid VGT 2017",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 854.99,
+      "power_hp": 597.0,
+      "torque_nm": 754.1,
+      "weight_kg": 860.0,
+      "power_weight_hp_t": 694.1860465116279,
+      "weight_power_kg_hp": 1.440536013400335,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L750R-VGT",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 9.88,
+        "0_1000m": 17.79,
+        "100_150_kmh": 1.4
+      },
+      "rotational_g": {
+        "60_kmh": 1.47,
+        "120_kmh": 1.66,
+        "240_kmh": 2.44
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-0.94 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926659+00:00"
+    },
+    {
+      "car": "Audi R18 '16",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 858.8,
+      "power_hp": 482.0,
+      "torque_nm": 809.0,
+      "weight_kg": 875.0,
+      "power_weight_hp_t": 550.8571428571429,
+      "weight_power_kg_hp": 1.8153526970954357,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "4000",
+      "engine_model": "V6-R18-'16",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.6,
+        "0_1000m": 18.85,
+        "100_150_kmh": 1.79
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.77,
+        "240_kmh": 2.63
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926680+00:00"
+    },
+    {
+      "car": "McLaren McLaren VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 857.57,
+      "power_hp": 510.0,
+      "torque_nm": 568.8,
+      "weight_kg": 915.0,
+      "power_weight_hp_t": 557.3770491803278,
+      "weight_power_kg_hp": 1.7941176470588236,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3998",
+      "engine_model": "V8-McLaren-VGT-Gr.1",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.01,
+        "0_1000m": 17.94,
+        "100_150_kmh": 1.51
+      },
+      "rotational_g": {
+        "60_kmh": 1.45,
+        "120_kmh": 1.71,
+        "240_kmh": 2.46
+      },
+      "stability": {
+        "low_speed": "-0.18 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926701+00:00"
+    },
+    {
+      "car": "Porsche 962 C '88",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 842.86,
+      "power_hp": 690.0,
+      "torque_nm": 710.0,
+      "weight_kg": 870.0,
+      "power_weight_hp_t": 793.1034482758621,
+      "weight_power_kg_hp": 1.2608695652173914,
+      "weight_balance": "41:59",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "2649",
+      "engine_model": "935/82-962C",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.17,
+        "0_1000m": 18.02,
+        "100_150_kmh": 1.8
+      },
+      "rotational_g": {
+        "60_kmh": 1.42,
+        "120_kmh": 1.59,
+        "240_kmh": 2.36
+      },
+      "stability": {
+        "low_speed": "-0.18 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926722+00:00"
+    },
+    {
+      "car": "Toyota GR010 HYBRID '21",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 850.87,
+      "power_hp": 610.0,
+      "torque_nm": 611.0,
+      "weight_kg": 1040.0,
+      "power_weight_hp_t": 586.5384615384615,
+      "weight_power_kg_hp": 1.7049180327868851,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3500",
+      "engine_model": "V6-GR010",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 11.01,
+        "0_1000m": 19.08,
+        "100_150_kmh": 1.79
+      },
+      "rotational_g": {
+        "60_kmh": 1.53,
+        "120_kmh": 1.74,
+        "240_kmh": 2.45
+      },
+      "stability": {
+        "low_speed": "-0.4 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926742+00:00"
+    },
+    {
+      "car": "Nissan R92CP '92",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 834.98,
+      "power_hp": 726.0,
+      "torque_nm": 721.8,
+      "weight_kg": 905.0,
+      "power_weight_hp_t": 802.2099447513812,
+      "weight_power_kg_hp": 1.2465564738292012,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3496",
+      "engine_model": "VRH35Z-R92CP",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.41,
+        "0_1000m": 18.2,
+        "100_150_kmh": 1.86
+      },
+      "rotational_g": {
+        "60_kmh": 1.41,
+        "120_kmh": 1.56,
+        "240_kmh": 2.26
+      },
+      "stability": {
+        "low_speed": "-0.22 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926762+00:00"
+    },
+    {
+      "car": "Mercedes-Benz Sauber Mercedes C9 '89",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 846.95,
+      "power_hp": 695.0,
+      "torque_nm": 793.4,
+      "weight_kg": 913.0,
+      "power_weight_hp_t": 761.2267250821467,
+      "weight_power_kg_hp": 1.3136690647482014,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "4973",
+      "engine_model": "M119HL-C9",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.45,
+        "0_1000m": 18.36,
+        "100_150_kmh": 1.96
+      },
+      "rotational_g": {
+        "60_kmh": 1.43,
+        "120_kmh": 1.59,
+        "240_kmh": 2.46
+      },
+      "stability": {
+        "low_speed": "-0.42 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926782+00:00"
+    },
+    {
+      "car": "Porsche 963 '24",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 854.11,
+      "power_hp": 610.0,
+      "torque_nm": 611.0,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 592.2330097087379,
+      "weight_power_kg_hp": 1.6885245901639345,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "9RD-963",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.71,
+        "0_1000m": 18.77,
+        "100_150_kmh": 1.81
+      },
+      "rotational_g": {
+        "60_kmh": 1.54,
+        "120_kmh": 1.73,
+        "240_kmh": 2.49
+      },
+      "stability": {
+        "low_speed": "-0.9 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926801+00:00"
+    },
+    {
+      "car": "BMW M Hybrid V8 '25",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 847.34,
+      "power_hp": 609.0,
+      "torque_nm": 585.5,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 591.2621359223301,
+      "weight_power_kg_hp": 1.6912972085385878,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3999",
+      "engine_model": "P66/3-M-Hybrid-V8",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.77,
+        "0_1000m": 18.87,
+        "100_150_kmh": 1.85
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.72,
+        "240_kmh": 2.45
+      },
+      "stability": {
+        "low_speed": "-0.71 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926821+00:00"
+    },
+    {
+      "car": "Ferrari 499P '23",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 851.96,
+      "power_hp": 611.0,
+      "torque_nm": 718.8,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 593.2038834951456,
+      "weight_power_kg_hp": 1.6857610474631752,
+      "weight_balance": "48:52",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2992",
+      "engine_model": "F163CG-499P",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.48,
+        "0_1000m": 18.49,
+        "100_150_kmh": 1.9
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.72,
+        "240_kmh": 2.44
+      },
+      "stability": {
+        "low_speed": "-0.64 | U",
+        "high_speed": "-0.95 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926841+00:00"
+    },
+    {
+      "car": "Peugeot 9X8 '25",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "HIGH",
+      "pp": 845.66,
+      "power_hp": 611.0,
+      "torque_nm": 611.9,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 593.2038834951456,
+      "weight_power_kg_hp": 1.6857610474631752,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "X6H-9X8",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.98,
+        "0_1000m": 18.98,
+        "100_150_kmh": 2.03
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.71,
+        "240_kmh": 2.37
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926861+00:00"
+    },
+    {
+      "car": "Jaguar XJR-9 '88",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 840.45,
+      "power_hp": 644.0,
+      "torque_nm": 670.8,
+      "weight_kg": 894.0,
+      "power_weight_hp_t": 720.3579418344519,
+      "weight_power_kg_hp": 1.3881987577639752,
+      "weight_balance": "41:59",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "6995",
+      "engine_model": "V12-XJR-9",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.24,
+        "0_1000m": 18.11,
+        "100_150_kmh": 1.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.43,
+        "120_kmh": 1.6,
+        "240_kmh": 2.35
+      },
+      "stability": {
+        "low_speed": "-0.7 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926882+00:00"
+    },
+    {
+      "car": "Peugeot 908 HDi FAP '10",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 860.54,
+      "power_hp": 560.0,
+      "torque_nm": 960.1,
+      "weight_kg": 930.0,
+      "power_weight_hp_t": 602.1505376344086,
+      "weight_power_kg_hp": 1.6607142857142858,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "5500",
+      "engine_model": "V12-908HDi-FAP",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.53,
+        "0_1000m": 18.66,
+        "100_150_kmh": 1.7
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.76,
+        "240_kmh": 2.61
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926903+00:00"
+    },
+    {
+      "car": "Audi R18 TDI '11",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 863.86,
+      "power_hp": 533.0,
+      "torque_nm": 900.3,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 592.2222222222222,
+      "weight_power_kg_hp": 1.6885553470919326,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3700",
+      "engine_model": "V6-R18-'11",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.61,
+        "0_1000m": 18.9,
+        "100_150_kmh": 1.79
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.81,
+        "240_kmh": 2.72
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926924+00:00"
+    },
+    {
+      "car": "Toyota TS030 Hybrid '12",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 877.92,
+      "power_hp": 530.0,
+      "torque_nm": 414.8,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 588.8888888888889,
+      "weight_power_kg_hp": 1.6981132075471699,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3400",
+      "engine_model": "V8-TS030",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.48,
+        "0_1000m": 18.57,
+        "100_150_kmh": 1.57
+      },
+      "rotational_g": {
+        "60_kmh": 1.56,
+        "120_kmh": 1.82,
+        "240_kmh": 2.75
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926943+00:00"
+    },
+    {
+      "car": "Nissan GT-R LM NISMO '15",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 876.71,
+      "power_hp": 605.0,
+      "torque_nm": 936.5,
+      "weight_kg": 880.0,
+      "power_weight_hp_t": 687.5,
+      "weight_power_kg_hp": 1.4545454545454546,
+      "weight_balance": "65:35",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3000",
+      "engine_model": "VRX30A-GT-R",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.62,
+        "0_1000m": 18.51,
+        "100_150_kmh": 1.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.79,
+        "240_kmh": 2.66
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-0.56 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926963+00:00"
+    },
+    {
+      "car": "Bugatti Bugatti VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 865.41,
+      "power_hp": 641.0,
+      "torque_nm": 722.8,
+      "weight_kg": 1050.0,
+      "power_weight_hp_t": 610.4761904761905,
+      "weight_power_kg_hp": 1.6380655226209049,
+      "weight_balance": "43:57",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Bugatti-VGT-Gr.1",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.09,
+        "0_1000m": 18.37,
+        "100_150_kmh": 1.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.75,
+        "240_kmh": 2.76
+      },
+      "stability": {
+        "low_speed": "-0.73 | U",
+        "high_speed": "-0.89 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.926983+00:00"
+    },
+    {
+      "car": "Hyundai HYUNDAI N 2025 VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 872.77,
+      "power_hp": 576.0,
+      "torque_nm": 541.3,
+      "weight_kg": 972.0,
+      "power_weight_hp_t": 592.5925925925926,
+      "weight_power_kg_hp": 1.6875,
+      "weight_balance": "45:55",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Hyundai-VGT",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 9.73,
+        "0_1000m": 17.61,
+        "100_150_kmh": 1.57
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.72,
+        "240_kmh": 2.61
+      },
+      "stability": {
+        "low_speed": "0.4 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927002+00:00"
+    },
+    {
+      "car": "Mazda LM55 VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 856.1,
+      "power_hp": 577.0,
+      "torque_nm": 508.0,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 607.3684210526316,
+      "weight_power_kg_hp": 1.6464471403812826,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "LM55-VGT-Gr.1",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.25,
+        "0_1000m": 18.17,
+        "100_150_kmh": 1.63
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.69,
+        "240_kmh": 2.45
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927022+00:00"
+    },
+    {
+      "car": "Mazda 787B '91",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 831.26,
+      "power_hp": 649.0,
+      "torque_nm": 570.7,
+      "weight_kg": 830.0,
+      "power_weight_hp_t": 781.9277108433736,
+      "weight_power_kg_hp": 1.2788906009244991,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "654",
+      "engine_model": "R26B-787B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.29,
+        "0_1000m": 18.0,
+        "100_150_kmh": 1.75
+      },
+      "rotational_g": {
+        "60_kmh": 1.39,
+        "120_kmh": 1.54,
+        "240_kmh": 2.18
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927042+00:00"
+    },
+    {
+      "car": "Alpine Alpine VGT '17",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 857.2,
+      "power_hp": 595.0,
+      "torque_nm": 555.1,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 626.3157894736843,
+      "weight_power_kg_hp": 1.596638655462185,
+      "weight_balance": "47:53",
+      "drivetrain": "RR",
+      "aspiration": "NA",
+      "displacement": "4200",
+      "engine_model": "V8-Alpine-VGT-'17",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.06,
+        "0_1000m": 17.96,
+        "100_150_kmh": 1.62
+      },
+      "rotational_g": {
+        "60_kmh": 1.48,
+        "120_kmh": 1.7,
+        "240_kmh": 2.46
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927062+00:00"
+    },
+    {
+      "car": "Dodge SRT Tomahawk VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 866.16,
+      "power_hp": 589.0,
+      "torque_nm": 506.0,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 620.0,
+      "weight_power_kg_hp": 1.6129032258064515,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Tomahawk-Gr.1",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.0,
+        "0_1000m": 18.13,
+        "100_150_kmh": 1.68
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.77,
+        "240_kmh": 2.63
+      },
+      "stability": {
+        "low_speed": "-0.72 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927081+00:00"
+    },
+    {
+      "car": "Toyota TS050 - Hybrid '16",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 855.88,
+      "power_hp": 493.0,
+      "torque_nm": 504.1,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 518.9473684210526,
+      "weight_power_kg_hp": 1.9269776876267748,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2400",
+      "engine_model": "V6-TS050",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.34,
+        "0_1000m": 18.49,
+        "100_150_kmh": 1.54
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.75,
+        "240_kmh": 2.53
+      },
+      "stability": {
+        "low_speed": "-0.37 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927101+00:00"
+    },
+    {
+      "car": "Porsche 919 Hybrid '16",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 856.99,
+      "power_hp": 500.0,
+      "torque_nm": 517.8,
+      "weight_kg": 975.0,
+      "power_weight_hp_t": 512.8205128205128,
+      "weight_power_kg_hp": 1.95,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2000",
+      "engine_model": "V4-919",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.24,
+        "0_1000m": 18.42,
+        "100_150_kmh": 1.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.54,
+        "120_kmh": 1.75,
+        "240_kmh": 2.58
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927121+00:00"
+    },
+    {
+      "car": "Audi Audi VGT",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 861.88,
+      "power_hp": 699.0,
+      "torque_nm": 664.9,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 559.2,
+      "weight_power_kg_hp": 1.78826895565093,
+      "weight_balance": "44:56",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3400",
+      "engine_model": "V6-Audi-VGT",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 9.78,
+        "0_1000m": 17.89,
+        "100_150_kmh": 1.5
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.72,
+        "240_kmh": 2.58
+      },
+      "stability": {
+        "low_speed": "-0.78 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927141+00:00"
+    },
+    {
+      "car": "Peugeot L750R HYbrid VGT 2017",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 856.24,
+      "power_hp": 597.0,
+      "torque_nm": 754.1,
+      "weight_kg": 850.0,
+      "power_weight_hp_t": 702.3529411764706,
+      "weight_power_kg_hp": 1.423785594639866,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L750R-VGT",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 9.87,
+        "0_1000m": 17.77,
+        "100_150_kmh": 1.4
+      },
+      "rotational_g": {
+        "60_kmh": 1.47,
+        "120_kmh": 1.66,
+        "240_kmh": 2.44
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-0.96 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927161+00:00"
+    },
+    {
+      "car": "Audi R18 '16",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 864.22,
+      "power_hp": 507.0,
+      "torque_nm": 851.2,
+      "weight_kg": 875.0,
+      "power_weight_hp_t": 579.4285714285714,
+      "weight_power_kg_hp": 1.7258382642998027,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "4000",
+      "engine_model": "V6-R18-'16",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.52,
+        "0_1000m": 18.65,
+        "100_150_kmh": 1.81
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.77,
+        "240_kmh": 2.62
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927181+00:00"
+    },
+    {
+      "car": "McLaren McLaren VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 868.29,
+      "power_hp": 544.0,
+      "torque_nm": 614.9,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 604.4444444444445,
+      "weight_power_kg_hp": 1.6544117647058822,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3998",
+      "engine_model": "V8-McLaren-VGT-Gr.1",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 9.79,
+        "0_1000m": 17.53,
+        "100_150_kmh": 1.4
+      },
+      "rotational_g": {
+        "60_kmh": 1.48,
+        "120_kmh": 1.72,
+        "240_kmh": 2.47
+      },
+      "stability": {
+        "low_speed": "-0.17 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927201+00:00"
+    },
+    {
+      "car": "Porsche 962 C '88",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 845.47,
+      "power_hp": 690.0,
+      "torque_nm": 710.0,
+      "weight_kg": 850.0,
+      "power_weight_hp_t": 811.7647058823529,
+      "weight_power_kg_hp": 1.2318840579710144,
+      "weight_balance": "41:59",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "2649",
+      "engine_model": "935/82-962C",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.19,
+        "0_1000m": 18.0,
+        "100_150_kmh": 1.84
+      },
+      "rotational_g": {
+        "60_kmh": 1.42,
+        "120_kmh": 1.59,
+        "240_kmh": 2.37
+      },
+      "stability": {
+        "low_speed": "-0.18 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927221+00:00"
+    },
+    {
+      "car": "Toyota GR010 HYBRID '21",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 861.25,
+      "power_hp": 671.0,
+      "torque_nm": 670.8,
+      "weight_kg": 1040.0,
+      "power_weight_hp_t": 645.1923076923076,
+      "weight_power_kg_hp": 1.5499254843517138,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3500",
+      "engine_model": "V6-GR010",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.7,
+        "0_1000m": 18.56,
+        "100_150_kmh": 1.69
+      },
+      "rotational_g": {
+        "60_kmh": 1.53,
+        "120_kmh": 1.74,
+        "240_kmh": 2.45
+      },
+      "stability": {
+        "low_speed": "-0.4 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927241+00:00"
+    },
+    {
+      "car": "Nissan R92CP '92",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 837.02,
+      "power_hp": 734.0,
+      "torque_nm": 729.6,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 815.5555555555555,
+      "weight_power_kg_hp": 1.2261580381471389,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3496",
+      "engine_model": "VRH35Z-R92CP",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.38,
+        "0_1000m": 18.13,
+        "100_150_kmh": 1.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.41,
+        "120_kmh": 1.56,
+        "240_kmh": 2.26
+      },
+      "stability": {
+        "low_speed": "-0.21 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927261+00:00"
+    },
+    {
+      "car": "Mercedes-Benz Sauber Mercedes C9 '89",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 849.83,
+      "power_hp": 695.0,
+      "torque_nm": 793.4,
+      "weight_kg": 893.0,
+      "power_weight_hp_t": 778.2754759238521,
+      "weight_power_kg_hp": 1.2848920863309352,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "4973",
+      "engine_model": "M119HL-C9",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.43,
+        "0_1000m": 18.31,
+        "100_150_kmh": 1.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.43,
+        "120_kmh": 1.6,
+        "240_kmh": 2.47
+      },
+      "stability": {
+        "low_speed": "-0.42 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927281+00:00"
+    },
+    {
+      "car": "Porsche 963 '24",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 864.68,
+      "power_hp": 671.0,
+      "torque_nm": 671.8,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 651.4563106796116,
+      "weight_power_kg_hp": 1.535022354694486,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "9RD-963",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.4,
+        "0_1000m": 18.24,
+        "100_150_kmh": 1.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.54,
+        "120_kmh": 1.73,
+        "240_kmh": 2.49
+      },
+      "stability": {
+        "low_speed": "-0.9 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927300+00:00"
+    },
+    {
+      "car": "BMW M Hybrid V8 '25",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 857.73,
+      "power_hp": 667.0,
+      "torque_nm": 641.4,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 647.5728155339806,
+      "weight_power_kg_hp": 1.5442278860569716,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3999",
+      "engine_model": "P66/3-M-Hybrid-V8",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.45,
+        "0_1000m": 18.33,
+        "100_150_kmh": 1.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.72,
+        "240_kmh": 2.44
+      },
+      "stability": {
+        "low_speed": "-0.71 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927320+00:00"
+    },
+    {
+      "car": "Ferrari 499P '23",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 861.24,
+      "power_hp": 671.0,
+      "torque_nm": 789.4,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 651.4563106796116,
+      "weight_power_kg_hp": 1.535022354694486,
+      "weight_balance": "48:52",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2992",
+      "engine_model": "F163CG-499P",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.27,
+        "0_1000m": 18.08,
+        "100_150_kmh": 1.8
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.72,
+        "240_kmh": 2.44
+      },
+      "stability": {
+        "low_speed": "-0.64 | U",
+        "high_speed": "-0.94 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927347+00:00"
+    },
+    {
+      "car": "Peugeot 9X8 '25",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "MID",
+      "pp": 855.34,
+      "power_hp": 671.0,
+      "torque_nm": 672.7,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 651.4563106796116,
+      "weight_power_kg_hp": 1.535022354694486,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "X6H-9X8",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.61,
+        "0_1000m": 18.41,
+        "100_150_kmh": 1.88
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.71,
+        "240_kmh": 2.37
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927371+00:00"
+    },
+    {
+      "car": "Jaguar XJR-9 '88",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 840.45,
+      "power_hp": 644.0,
+      "torque_nm": 670.8,
+      "weight_kg": 894.0,
+      "power_weight_hp_t": 720.3579418344519,
+      "weight_power_kg_hp": 1.3881987577639752,
+      "weight_balance": "41:59",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "6995",
+      "engine_model": "V12-XJR-9",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.24,
+        "0_1000m": 18.11,
+        "100_150_kmh": 1.91
+      },
+      "rotational_g": {
+        "60_kmh": 1.43,
+        "120_kmh": 1.6,
+        "240_kmh": 2.35
+      },
+      "stability": {
+        "low_speed": "-0.7 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927391+00:00"
+    },
+    {
+      "car": "Peugeot 908 HDi FAP '10",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 860.54,
+      "power_hp": 560.0,
+      "torque_nm": 960.1,
+      "weight_kg": 930.0,
+      "power_weight_hp_t": 602.1505376344086,
+      "weight_power_kg_hp": 1.6607142857142858,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "5500",
+      "engine_model": "V12-908HDi-FAP",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.53,
+        "0_1000m": 18.66,
+        "100_150_kmh": 1.7
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.76,
+        "240_kmh": 2.61
+      },
+      "stability": {
+        "low_speed": "-0.31 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927412+00:00"
+    },
+    {
+      "car": "Audi R18 TDI '11",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 863.86,
+      "power_hp": 533.0,
+      "torque_nm": 900.3,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 592.2222222222222,
+      "weight_power_kg_hp": 1.6885553470919326,
+      "weight_balance": "46:54",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3700",
+      "engine_model": "V6-R18-'11",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.61,
+        "0_1000m": 18.9,
+        "100_150_kmh": 1.79
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.81,
+        "240_kmh": 2.72
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927432+00:00"
+    },
+    {
+      "car": "Toyota TS030 Hybrid '12",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 877.92,
+      "power_hp": 530.0,
+      "torque_nm": 414.8,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 588.8888888888889,
+      "weight_power_kg_hp": 1.6981132075471699,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "3400",
+      "engine_model": "V8-TS030",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.48,
+        "0_1000m": 18.57,
+        "100_150_kmh": 1.57
+      },
+      "rotational_g": {
+        "60_kmh": 1.56,
+        "120_kmh": 1.82,
+        "240_kmh": 2.75
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927452+00:00"
+    },
+    {
+      "car": "Nissan GT-R LM NISMO '15",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 876.71,
+      "power_hp": 605.0,
+      "torque_nm": 936.5,
+      "weight_kg": 880.0,
+      "power_weight_hp_t": 687.5,
+      "weight_power_kg_hp": 1.4545454545454546,
+      "weight_balance": "65:35",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3000",
+      "engine_model": "VRX30A-GT-R",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.62,
+        "0_1000m": 18.51,
+        "100_150_kmh": 1.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.79,
+        "240_kmh": 2.66
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-0.56 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927472+00:00"
+    },
+    {
+      "car": "Bugatti Bugatti VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 865.41,
+      "power_hp": 641.0,
+      "torque_nm": 722.8,
+      "weight_kg": 1050.0,
+      "power_weight_hp_t": 610.4761904761905,
+      "weight_power_kg_hp": 1.6380655226209049,
+      "weight_balance": "43:57",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "Bugatti-VGT-Gr.1",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.09,
+        "0_1000m": 18.37,
+        "100_150_kmh": 1.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.75,
+        "240_kmh": 2.76
+      },
+      "stability": {
+        "low_speed": "-0.73 | U",
+        "high_speed": "-0.89 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927492+00:00"
+    },
+    {
+      "car": "Hyundai HYUNDAI N 2025 VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 872.77,
+      "power_hp": 576.0,
+      "torque_nm": 541.3,
+      "weight_kg": 972.0,
+      "power_weight_hp_t": 592.5925925925926,
+      "weight_power_kg_hp": 1.6875,
+      "weight_balance": "45:55",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Hyundai-VGT",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 9.73,
+        "0_1000m": 17.61,
+        "100_150_kmh": 1.57
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.72,
+        "240_kmh": 2.61
+      },
+      "stability": {
+        "low_speed": "0.4 | O",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927511+00:00"
+    },
+    {
+      "car": "Mazda LM55 VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 856.1,
+      "power_hp": 577.0,
+      "torque_nm": 508.0,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 607.3684210526316,
+      "weight_power_kg_hp": 1.6464471403812826,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "LM55-VGT-Gr.1",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.25,
+        "0_1000m": 18.17,
+        "100_150_kmh": 1.63
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.69,
+        "240_kmh": 2.45
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927531+00:00"
+    },
+    {
+      "car": "Mazda 787B '91",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 831.26,
+      "power_hp": 649.0,
+      "torque_nm": 570.7,
+      "weight_kg": 830.0,
+      "power_weight_hp_t": 781.9277108433736,
+      "weight_power_kg_hp": 1.2788906009244991,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": "654",
+      "engine_model": "R26B-787B",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.29,
+        "0_1000m": 18.0,
+        "100_150_kmh": 1.75
+      },
+      "rotational_g": {
+        "60_kmh": 1.39,
+        "120_kmh": 1.54,
+        "240_kmh": 2.18
+      },
+      "stability": {
+        "low_speed": "-0.34 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927551+00:00"
+    },
+    {
+      "car": "Alpine Alpine VGT '17",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 857.2,
+      "power_hp": 595.0,
+      "torque_nm": 555.1,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 626.3157894736843,
+      "weight_power_kg_hp": 1.596638655462185,
+      "weight_balance": "47:53",
+      "drivetrain": "RR",
+      "aspiration": "NA",
+      "displacement": "4200",
+      "engine_model": "V8-Alpine-VGT-'17",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.06,
+        "0_1000m": 17.96,
+        "100_150_kmh": 1.62
+      },
+      "rotational_g": {
+        "60_kmh": 1.48,
+        "120_kmh": 1.7,
+        "240_kmh": 2.46
+      },
+      "stability": {
+        "low_speed": "-0.36 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927571+00:00"
+    },
+    {
+      "car": "Dodge SRT Tomahawk VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 866.16,
+      "power_hp": 589.0,
+      "torque_nm": 506.0,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 620.0,
+      "weight_power_kg_hp": 1.6129032258064515,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "NA",
+      "displacement": null,
+      "engine_model": "Tomahawk-Gr.1",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.0,
+        "0_1000m": 18.13,
+        "100_150_kmh": 1.68
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.77,
+        "240_kmh": 2.63
+      },
+      "stability": {
+        "low_speed": "-0.72 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927590+00:00"
+    },
+    {
+      "car": "Toyota TS050 - Hybrid '16",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 855.88,
+      "power_hp": 493.0,
+      "torque_nm": 504.1,
+      "weight_kg": 950.0,
+      "power_weight_hp_t": 518.9473684210526,
+      "weight_power_kg_hp": 1.9269776876267748,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2400",
+      "engine_model": "V6-TS050",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.34,
+        "0_1000m": 18.49,
+        "100_150_kmh": 1.54
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.75,
+        "240_kmh": 2.53
+      },
+      "stability": {
+        "low_speed": "-0.37 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927610+00:00"
+    },
+    {
+      "car": "Porsche 919 Hybrid '16",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 856.99,
+      "power_hp": 500.0,
+      "torque_nm": 517.8,
+      "weight_kg": 975.0,
+      "power_weight_hp_t": 512.8205128205128,
+      "weight_power_kg_hp": 1.95,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2000",
+      "engine_model": "V4-919",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.24,
+        "0_1000m": 18.42,
+        "100_150_kmh": 1.64
+      },
+      "rotational_g": {
+        "60_kmh": 1.54,
+        "120_kmh": 1.75,
+        "240_kmh": 2.58
+      },
+      "stability": {
+        "low_speed": "-0.27 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927636+00:00"
+    },
+    {
+      "car": "Audi Audi VGT",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 861.88,
+      "power_hp": 699.0,
+      "torque_nm": 664.9,
+      "weight_kg": 1250.0,
+      "power_weight_hp_t": 559.2,
+      "weight_power_kg_hp": 1.78826895565093,
+      "weight_balance": "44:56",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3400",
+      "engine_model": "V6-Audi-VGT",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 9.78,
+        "0_1000m": 17.89,
+        "100_150_kmh": 1.5
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.72,
+        "240_kmh": 2.58
+      },
+      "stability": {
+        "low_speed": "-0.78 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927659+00:00"
+    },
+    {
+      "car": "Peugeot L750R HYbrid VGT 2017",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 856.24,
+      "power_hp": 597.0,
+      "torque_nm": 754.1,
+      "weight_kg": 850.0,
+      "power_weight_hp_t": 702.3529411764706,
+      "weight_power_kg_hp": 1.423785594639866,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "L750R-VGT",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 9.87,
+        "0_1000m": 17.77,
+        "100_150_kmh": 1.4
+      },
+      "rotational_g": {
+        "60_kmh": 1.47,
+        "120_kmh": 1.66,
+        "240_kmh": 2.44
+      },
+      "stability": {
+        "low_speed": "-0.32 | N",
+        "high_speed": "-0.96 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927678+00:00"
+    },
+    {
+      "car": "Audi R18 '16",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 864.22,
+      "power_hp": 507.0,
+      "torque_nm": 851.2,
+      "weight_kg": 875.0,
+      "power_weight_hp_t": 579.4285714285714,
+      "weight_power_kg_hp": 1.7258382642998027,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "4000",
+      "engine_model": "V6-R18-'16",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.52,
+        "0_1000m": 18.65,
+        "100_150_kmh": 1.81
+      },
+      "rotational_g": {
+        "60_kmh": 1.55,
+        "120_kmh": 1.77,
+        "240_kmh": 2.62
+      },
+      "stability": {
+        "low_speed": "-0.29 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927699+00:00"
+    },
+    {
+      "car": "McLaren McLaren VGT (Gr.1)",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 868.29,
+      "power_hp": 544.0,
+      "torque_nm": 614.9,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 604.4444444444445,
+      "weight_power_kg_hp": 1.6544117647058822,
+      "weight_balance": "42:58",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3998",
+      "engine_model": "V8-McLaren-VGT-Gr.1",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 9.79,
+        "0_1000m": 17.53,
+        "100_150_kmh": 1.4
+      },
+      "rotational_g": {
+        "60_kmh": 1.48,
+        "120_kmh": 1.72,
+        "240_kmh": 2.47
+      },
+      "stability": {
+        "low_speed": "-0.17 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927719+00:00"
+    },
+    {
+      "car": "Porsche 962 C '88",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 845.47,
+      "power_hp": 690.0,
+      "torque_nm": 710.0,
+      "weight_kg": 850.0,
+      "power_weight_hp_t": 811.7647058823529,
+      "weight_power_kg_hp": 1.2318840579710144,
+      "weight_balance": "41:59",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "2649",
+      "engine_model": "935/82-962C",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.19,
+        "0_1000m": 18.0,
+        "100_150_kmh": 1.84
+      },
+      "rotational_g": {
+        "60_kmh": 1.42,
+        "120_kmh": 1.59,
+        "240_kmh": 2.37
+      },
+      "stability": {
+        "low_speed": "-0.18 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927739+00:00"
+    },
+    {
+      "car": "Toyota GR010 HYBRID '21",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 861.25,
+      "power_hp": 671.0,
+      "torque_nm": 670.8,
+      "weight_kg": 1040.0,
+      "power_weight_hp_t": 645.1923076923076,
+      "weight_power_kg_hp": 1.5499254843517138,
+      "weight_balance": "50:50",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "3500",
+      "engine_model": "V6-GR010",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.7,
+        "0_1000m": 18.56,
+        "100_150_kmh": 1.69
+      },
+      "rotational_g": {
+        "60_kmh": 1.53,
+        "120_kmh": 1.74,
+        "240_kmh": 2.45
+      },
+      "stability": {
+        "low_speed": "-0.4 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927759+00:00"
+    },
+    {
+      "car": "Nissan R92CP '92",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 837.02,
+      "power_hp": 734.0,
+      "torque_nm": 729.6,
+      "weight_kg": 900.0,
+      "power_weight_hp_t": 815.5555555555555,
+      "weight_power_kg_hp": 1.2261580381471389,
+      "weight_balance": "45:55",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3496",
+      "engine_model": "VRH35Z-R92CP",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.38,
+        "0_1000m": 18.13,
+        "100_150_kmh": 1.83
+      },
+      "rotational_g": {
+        "60_kmh": 1.41,
+        "120_kmh": 1.56,
+        "240_kmh": 2.26
+      },
+      "stability": {
+        "low_speed": "-0.21 | N",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927779+00:00"
+    },
+    {
+      "car": "Mercedes-Benz Sauber Mercedes C9 '89",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 849.83,
+      "power_hp": 695.0,
+      "torque_nm": 793.4,
+      "weight_kg": 893.0,
+      "power_weight_hp_t": 778.2754759238521,
+      "weight_power_kg_hp": 1.2848920863309352,
+      "weight_balance": "44:56",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "4973",
+      "engine_model": "M119HL-C9",
+      "powertrain": "ICEV",
+      "acceleration": {
+        "0_400m": 10.43,
+        "0_1000m": 18.31,
+        "100_150_kmh": 1.93
+      },
+      "rotational_g": {
+        "60_kmh": 1.43,
+        "120_kmh": 1.6,
+        "240_kmh": 2.47
+      },
+      "stability": {
+        "low_speed": "-0.42 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927798+00:00"
+    },
+    {
+      "car": "Porsche 963 '24",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 864.68,
+      "power_hp": 671.0,
+      "torque_nm": 671.8,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 651.4563106796116,
+      "weight_power_kg_hp": 1.535022354694486,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "9RD-963",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.4,
+        "0_1000m": 18.24,
+        "100_150_kmh": 1.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.54,
+        "120_kmh": 1.73,
+        "240_kmh": 2.49
+      },
+      "stability": {
+        "low_speed": "-0.9 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927818+00:00"
+    },
+    {
+      "car": "BMW M Hybrid V8 '25",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 857.73,
+      "power_hp": 667.0,
+      "torque_nm": 641.4,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 647.5728155339806,
+      "weight_power_kg_hp": 1.5442278860569716,
+      "weight_balance": "47:53",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "displacement": "3999",
+      "engine_model": "P66/3-M-Hybrid-V8",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.45,
+        "0_1000m": 18.33,
+        "100_150_kmh": 1.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.72,
+        "240_kmh": 2.44
+      },
+      "stability": {
+        "low_speed": "-0.71 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927837+00:00"
+    },
+    {
+      "car": "Ferrari 499P '23",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 861.24,
+      "power_hp": 671.0,
+      "torque_nm": 789.4,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 651.4563106796116,
+      "weight_power_kg_hp": 1.535022354694486,
+      "weight_balance": "48:52",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": "2992",
+      "engine_model": "F163CG-499P",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.27,
+        "0_1000m": 18.08,
+        "100_150_kmh": 1.8
+      },
+      "rotational_g": {
+        "60_kmh": 1.52,
+        "120_kmh": 1.72,
+        "240_kmh": 2.44
+      },
+      "stability": {
+        "low_speed": "-0.64 | U",
+        "high_speed": "-0.94 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927858+00:00"
+    },
+    {
+      "car": "Peugeot 9X8 '25",
+      "group": "GR.1",
+      "bop_version": "1.70",
+      "speed_class": "LOW",
+      "pp": 855.34,
+      "power_hp": 671.0,
+      "torque_nm": 672.7,
+      "weight_kg": 1030.0,
+      "power_weight_hp_t": 651.4563106796116,
+      "weight_power_kg_hp": 1.535022354694486,
+      "weight_balance": "49:51",
+      "drivetrain": "4WD",
+      "aspiration": "TC",
+      "displacement": null,
+      "engine_model": "X6H-9X8",
+      "powertrain": "HEV",
+      "acceleration": {
+        "0_400m": 10.61,
+        "0_1000m": 18.41,
+        "100_150_kmh": 1.88
+      },
+      "rotational_g": {
+        "60_kmh": 1.51,
+        "120_kmh": 1.71,
+        "240_kmh": 2.37
+      },
+      "stability": {
+        "low_speed": "-0.57 | U",
+        "high_speed": "-1 | U"
+      },
+      "source": {
+        "name": "DG EDGE __NUXT_DATA__",
+        "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
+        "confidence": "STRUCTURED_STATE_VALIDATED"
+      },
+      "collected_at": "2026-08-19T13:07:48.927877+00:00"
+    }
+  ]
+}
