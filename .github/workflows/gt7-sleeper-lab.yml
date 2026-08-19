@@ -9,6 +9,7 @@ permissions:
 jobs:
   sleeper-lab:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
 
     steps:
       - name: Checkout repository
@@ -26,11 +27,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Backfill historical Sleeper training data V0.4
-        id: run_history_backfill
+      - name: Build lightweight full Race C archive catalog
+        id: build_archive_catalog
         continue-on-error: true
         run: |
-          python src/sleeper_history_backfill_v04.py
+          python src/build_race_c_archive_catalog.py
+
+      - name: Backfill historical Sleeper training data V0.5
+        id: run_history_backfill
+        if: steps.build_archive_catalog.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python src/sleeper_history_backfill_v05.py
 
       - name: Run Sleeper Car Lab base model
         id: run_sleeper_lab
@@ -49,11 +57,13 @@ jobs:
         if: always()
         run: |
           echo "Generated Sleeper Lab files:"
-          find data/bop_lab reports -maxdepth 2 -type f \
-            \( -name 'sleeper_car_index.json' \
+          find data reports -maxdepth 3 -type f \
+            \( -name 'race_c_archive_catalog.json' \
+            -o -name 'sleeper_car_index.json' \
             -o -name 'sleeper_training_history.json' \
             -o -name 'sleeper_car_lab_error.txt' \
             -o -name 'sleeper_history_backfill_error.txt' \
+            -o -name 'race_c_archive_catalog.txt' \
             -o -name 'sleeper_car_lab.txt' \
             -o -name 'sleeper_history_backfill.txt' \) \
             -print || true
@@ -65,10 +75,12 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           for file in \
+            data/race_c_archive_catalog.json \
             data/bop_lab/sleeper_car_index.json \
             data/bop_lab/sleeper_training_history.json \
             data/bop_lab/sleeper_car_lab_error.txt \
             data/bop_lab/sleeper_history_backfill_error.txt \
+            reports/race_c_archive_catalog.txt \
             reports/sleeper_car_lab.txt \
             reports/sleeper_history_backfill.txt
           do
@@ -80,12 +92,12 @@ jobs:
           if git diff --cached --quiet; then
             echo "No Sleeper Car Lab changes to save."
           else
-            git commit -m "Update GT7 Sleeper Car Lab V0.4 data"
+            git commit -m "Update GT7 Sleeper Car Lab V0.5 data"
             git push
           fi
 
       - name: Report Sleeper Car Lab failure
-        if: steps.run_history_backfill.outcome == 'failure' || steps.run_sleeper_lab.outcome == 'failure' || steps.run_technical_learning.outcome == 'failure'
+        if: steps.build_archive_catalog.outcome == 'failure' || steps.run_history_backfill.outcome == 'failure' || steps.run_sleeper_lab.outcome == 'failure' || steps.run_technical_learning.outcome == 'failure'
         run: |
-          echo "Sleeper Car Lab V0.4 had a failed stage. Diagnostic files were preserved."
+          echo "Sleeper Car Lab V0.5 had a failed stage. Diagnostic files were preserved."
           exit 1
