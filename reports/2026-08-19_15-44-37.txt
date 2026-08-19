@@ -209,17 +209,3 @@ GTSH car scan  : 582 discovered | 0 new | 0 updated
 Status         : OK
 
 ==============================================================================
-
-CARS TO TEST THIS WEEK
-------------------------------------------------------------------------------
-Model: GR.3|MID | Technical evidence: 50%
-SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
-
-1. Hyundai Genesis Gr.3 | PRIORITY TEST | Consensus 89% | SCI 62.1 | SSI 69.3 | Tech 74% | Usage 0.21% | Best #13
-2. Mitsubishi Lancer Evolution Final Edition Gr.3 | PRIORITY TEST | Consensus 82% | SCI 55.0 | SSI 63.1 | Tech 71% | Usage 0.25% | Best #85
-3. Subaru WRX Gr.3 | STRONG ALTERNATIVE | Consensus 80% | SCI 54.8 | SSI 57.2 | Tech 72% | Usage 0.28% | Best #90
-4. Jaguar F-type Gr.3 | STRONG ALTERNATIVE | Consensus 76% | SCI 78.9 | SSI 52.4 | Tech 54% | Usage 1.51% | Best #5
-5. Toyota GR Supra Racing Concept '18 | STRONG ALTERNATIVE | Consensus 76% | SCI 58.3 | SSI 51.1 | Tech 73% | Usage 0.56% | Best #92
-
-Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
-==============================================================================
