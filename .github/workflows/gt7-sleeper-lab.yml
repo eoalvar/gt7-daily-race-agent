@@ -60,6 +60,13 @@ jobs:
         run: |
           python src/structural_sleeper_model.py
 
+      - name: Build weekly car recommendation consensus
+        id: run_weekly_recommender
+        if: steps.run_structural_sleeper.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python src/weekly_car_recommender.py
+
       - name: Inspect generated files
         if: always()
         run: |
@@ -68,12 +75,14 @@ jobs:
             \( -name 'race_c_archive_catalog.json' \
             -o -name 'sleeper_car_index.json' \
             -o -name 'structural_sleeper_index.json' \
+            -o -name 'weekly_car_recommendations.json' \
             -o -name 'sleeper_training_history.json' \
             -o -name 'sleeper_car_lab_error.txt' \
             -o -name 'sleeper_history_backfill_error.txt' \
             -o -name 'race_c_archive_catalog.txt' \
             -o -name 'sleeper_car_lab.txt' \
-            -o -name 'sleeper_history_backfill.txt' \) \
+            -o -name 'sleeper_history_backfill.txt' \
+            -o -name 'weekly_car_recommendations.txt' \) \
             -print || true
 
       - name: Save Sleeper Car Lab results
@@ -86,12 +95,14 @@ jobs:
             data/race_c_archive_catalog.json \
             data/bop_lab/sleeper_car_index.json \
             data/bop_lab/structural_sleeper_index.json \
+            data/bop_lab/weekly_car_recommendations.json \
             data/bop_lab/sleeper_training_history.json \
             data/bop_lab/sleeper_car_lab_error.txt \
             data/bop_lab/sleeper_history_backfill_error.txt \
             reports/race_c_archive_catalog.txt \
             reports/sleeper_car_lab.txt \
-            reports/sleeper_history_backfill.txt
+            reports/sleeper_history_backfill.txt \
+            reports/weekly_car_recommendations.txt
           do
             if [ -f "$file" ]; then
               git add "$file"
@@ -101,12 +112,12 @@ jobs:
           if git diff --cached --quiet; then
             echo "No Sleeper Car Lab changes to save."
           else
-            git commit -m "Update GT7 Sleeper Car Lab structural model data"
+            git commit -m "Update GT7 weekly car recommendation data"
             git push
           fi
 
       - name: Report Sleeper Car Lab failure
-        if: steps.build_archive_catalog.outcome == 'failure' || steps.run_history_backfill.outcome == 'failure' || steps.run_sleeper_lab.outcome == 'failure' || steps.run_technical_learning.outcome == 'failure' || steps.run_structural_sleeper.outcome == 'failure'
+        if: steps.build_archive_catalog.outcome == 'failure' || steps.run_history_backfill.outcome == 'failure' || steps.run_sleeper_lab.outcome == 'failure' || steps.run_technical_learning.outcome == 'failure' || steps.run_structural_sleeper.outcome == 'failure' || steps.run_weekly_recommender.outcome == 'failure'
         run: |
           echo "Sleeper Car Lab had a failed stage. Diagnostic files were preserved."
           exit 1
