@@ -1,7 +1,1026 @@
 {
-  "schema_version": "1.0",
-  "created_at": "2026-08-18T22:20:51.162500+00:00",
-  "updated_at": "2026-08-19T11:28:23.805243+00:00",
+  "generated_at": "2026-08-19T11:28:23.783016+00:00",
+  "lab_version": "1.7",
+  "group": "GR.3",
+  "selected_version": "1.67",
+  "source_url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
+  "speed_map_index": 9,
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "raw_counts": {
+      "HIGH": 52,
+      "MID": 52,
+      "LOW": 52
+    },
+    "decoded_counts": {
+      "HIGH": 52,
+      "MID": 52,
+      "LOW": 52
+    },
+    "rejected": {
+      "HIGH": 0,
+      "MID": 0,
+      "LOW": 0
+    },
+    "unique_cars": 52
+  },
+  "speed_comparison": {
+    "changed": [
+      {
+        "car": "AMG Mercedes-AMG GT3 '16",
+        "HIGH": [
+          455.0,
+          1325.0,
+          694.37
+        ],
+        "MID": [
+          455.0,
+          1325.0,
+          694.37
+        ],
+        "LOW": [
+          455.0,
+          1330.0,
+          693.87
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "AMG Mercedes-AMG GT3 '20",
+        "HIGH": [
+          461.0,
+          1350.0,
+          697.37
+        ],
+        "MID": [
+          461.0,
+          1350.0,
+          697.37
+        ],
+        "LOW": [
+          461.0,
+          1355.0,
+          696.94
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "AMG SLS AMG GT3 '11",
+        "HIGH": [
+          485.0,
+          1360.0,
+          685.78
+        ],
+        "MID": [
+          485.0,
+          1360.0,
+          685.78
+        ],
+        "LOW": [
+          485.0,
+          1370.0,
+          685.05
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Alfa Romeo 4C Gr.3",
+        "HIGH": [
+          455.0,
+          1240.0,
+          688.8
+        ],
+        "MID": [
+          455.0,
+          1245.0,
+          688.33
+        ],
+        "LOW": [
+          455.0,
+          1255.0,
+          687.27
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Aston Martin DBR9 GT1 '10",
+        "HIGH": [
+          468.0,
+          1175.0,
+          676.82
+        ],
+        "MID": [
+          468.0,
+          1175.0,
+          676.82
+        ],
+        "LOW": [
+          468.0,
+          1200.0,
+          674.94
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Aston Martin V12 Vantage GT3 '12",
+        "HIGH": [
+          485.0,
+          1250.0,
+          686.16
+        ],
+        "MID": [
+          485.0,
+          1265.0,
+          684.89
+        ],
+        "LOW": [
+          479.0,
+          1250.0,
+          684.54
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Audi R8 LMS '15",
+        "HIGH": [
+          451.0,
+          1356.0,
+          685.59
+        ],
+        "MID": [
+          451.0,
+          1356.0,
+          685.59
+        ],
+        "LOW": [
+          451.0,
+          1365.0,
+          684.79
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Audi R8 LMS Evo '19",
+        "HIGH": [
+          444.0,
+          1305.0,
+          690.95
+        ],
+        "MID": [
+          444.0,
+          1310.0,
+          691.74
+        ],
+        "LOW": [
+          439.0,
+          1315.0,
+          687.96
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "BMW M3 GT '11",
+        "HIGH": [
+          466.0,
+          1296.0,
+          686.7
+        ],
+        "MID": [
+          466.0,
+          1296.0,
+          686.7
+        ],
+        "LOW": [
+          461.0,
+          1296.0,
+          685.29
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "BMW M6 GT3 Endurance Model '16",
+        "HIGH": [
+          462.0,
+          1326.0,
+          698.04
+        ],
+        "MID": [
+          462.0,
+          1326.0,
+          698.04
+        ],
+        "LOW": [
+          462.0,
+          1320.0,
+          698.52
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "BMW M6 GT3 Sprint Model '16",
+        "HIGH": [
+          462.0,
+          1326.0,
+          698.06
+        ],
+        "MID": [
+          462.0,
+          1326.0,
+          698.06
+        ],
+        "LOW": [
+          462.0,
+          1320.0,
+          698.54
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "BMW Z4 GT3 '11",
+        "HIGH": [
+          460.0,
+          1250.0,
+          687.84
+        ],
+        "MID": [
+          460.0,
+          1250.0,
+          687.84
+        ],
+        "LOW": [
+          460.0,
+          1260.0,
+          686.65
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Chevrolet Corvette C7 Gr.3",
+        "HIGH": [
+          480.0,
+          1300.0,
+          691.82
+        ],
+        "MID": [
+          480.0,
+          1300.0,
+          691.82
+        ],
+        "LOW": [
+          480.0,
+          1310.0,
+          690.86
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Citroën GT by Citroën Race Car (Gr.3)",
+        "HIGH": [
+          444.0,
+          1260.0,
+          691.25
+        ],
+        "MID": [
+          444.0,
+          1270.0,
+          690.26
+        ],
+        "LOW": [
+          444.0,
+          1270.0,
+          690.26
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Dodge Viper SRT GT3-R '15",
+        "HIGH": [
+          475.0,
+          1300.0,
+          695.23
+        ],
+        "MID": [
+          475.0,
+          1300.0,
+          695.23
+        ],
+        "LOW": [
+          475.0,
+          1290.0,
+          695.94
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Ferrari 296 GT3 '23",
+        "HIGH": [
+          444.0,
+          1320.0,
+          694.29
+        ],
+        "MID": [
+          444.0,
+          1320.0,
+          694.29
+        ],
+        "LOW": [
+          444.0,
+          1335.0,
+          692.86
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Ferrari 458 Italia GT3 '13",
+        "HIGH": [
+          450.0,
+          1315.0,
+          690.8
+        ],
+        "MID": [
+          450.0,
+          1325.0,
+          689.87
+        ],
+        "LOW": [
+          450.0,
+          1335.0,
+          688.99
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Ford Ford GT LM Race Car Spec II",
+        "HIGH": [
+          449.0,
+          1255.0,
+          679.86
+        ],
+        "MID": [
+          449.0,
+          1255.0,
+          679.86
+        ],
+        "LOW": [
+          449.0,
+          1265.0,
+          678.74
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Ford Ford GT LM Spec II Test Car",
+        "HIGH": [
+          443.0,
+          1265.0,
+          680.08
+        ],
+        "MID": [
+          443.0,
+          1265.0,
+          680.08
+        ],
+        "LOW": [
+          443.0,
+          1275.0,
+          679.14
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Ford Ford GT Race Car '18",
+        "HIGH": [
+          443.0,
+          1250.0,
+          692.29
+        ],
+        "MID": [
+          443.0,
+          1250.0,
+          692.29
+        ],
+        "LOW": [
+          443.0,
+          1260.0,
+          691.28
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Ford Mustang Gr.3",
+        "HIGH": [
+          483.0,
+          1300.0,
+          692.21
+        ],
+        "MID": [
+          483.0,
+          1300.0,
+          692.21
+        ],
+        "LOW": [
+          477.0,
+          1300.0,
+          690.55
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Genesis Genesis X GR3",
+        "HIGH": [
+          466.0,
+          1290.0,
+          699.29
+        ],
+        "MID": [
+          466.0,
+          1285.0,
+          699.78
+        ],
+        "LOW": [
+          466.0,
+          1295.0,
+          698.84
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Honda NSX GT500 '00",
+        "HIGH": [
+          428.0,
+          1235.0,
+          679.5
+        ],
+        "MID": [
+          428.0,
+          1235.0,
+          679.5
+        ],
+        "LOW": [
+          423.0,
+          1240.0,
+          677.02
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Honda NSX Gr.3",
+        "HIGH": [
+          483.0,
+          1300.0,
+          692.25
+        ],
+        "MID": [
+          483.0,
+          1310.0,
+          691.04
+        ],
+        "LOW": [
+          483.0,
+          1324.0,
+          690.28
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Hyundai Genesis Gr.3",
+        "HIGH": [
+          483.0,
+          1260.0,
+          694.41
+        ],
+        "MID": [
+          483.0,
+          1269.0,
+          693.53
+        ],
+        "LOW": [
+          483.0,
+          1285.0,
+          692.27
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Jaguar F-type Gr.3",
+        "HIGH": [
+          469.0,
+          1254.0,
+          696.74
+        ],
+        "MID": [
+          469.0,
+          1265.0,
+          695.6
+        ],
+        "LOW": [
+          465.0,
+          1260.0,
+          694.25
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Lamborghini Huracán GT3 '15",
+        "HIGH": [
+          450.0,
+          1321.0,
+          689.34
+        ],
+        "MID": [
+          450.0,
+          1330.0,
+          689.81
+        ],
+        "LOW": [
+          450.0,
+          1340.0,
+          688.85
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Lexus RC F GT3 '17",
+        "HIGH": [
+          450.0,
+          1300.0,
+          696.59
+        ],
+        "MID": [
+          455.0,
+          1310.0,
+          697.59
+        ],
+        "LOW": [
+          455.0,
+          1305.0,
+          698.11
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Mazda Atenza Gr.3",
+        "HIGH": [
+          493.0,
+          1326.0,
+          694.7
+        ],
+        "MID": [
+          493.0,
+          1326.0,
+          694.7
+        ],
+        "LOW": [
+          487.0,
+          1340.0,
+          691.42
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Mazda RX-VISION GT3 CONCEPT",
+        "HIGH": [
+          433.0,
+          1269.0,
+          694.26
+        ],
+        "MID": [
+          433.0,
+          1269.0,
+          694.26
+        ],
+        "LOW": [
+          433.0,
+          1280.0,
+          693.48
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Mazda RX-VISION GT3 CONCEPT Stealth Model",
+        "HIGH": [
+          433.0,
+          1269.0,
+          694.26
+        ],
+        "MID": [
+          433.0,
+          1269.0,
+          694.26
+        ],
+        "LOW": [
+          433.0,
+          1280.0,
+          693.48
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "McLaren 650S GT3 '15",
+        "HIGH": [
+          477.0,
+          1315.0,
+          691.9
+        ],
+        "MID": [
+          477.0,
+          1310.0,
+          692.2
+        ],
+        "LOW": [
+          477.0,
+          1315.0,
+          691.9
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "McLaren McLaren F1 GTR - BMW '95",
+        "HIGH": [
+          438.0,
+          1176.0,
+          685.32
+        ],
+        "MID": [
+          438.0,
+          1180.0,
+          684.92
+        ],
+        "LOW": [
+          438.0,
+          1200.0,
+          682.63
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Mitsubishi Lancer Evolution Final Gr.3",
+        "HIGH": [
+          507.0,
+          1300.0,
+          702.3
+        ],
+        "MID": [
+          507.0,
+          1310.0,
+          701.43
+        ],
+        "LOW": [
+          507.0,
+          1326.0,
+          700.02
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Nissan GT-R GT500 '99",
+        "HIGH": [
+          454.0,
+          1210.0,
+          688.93
+        ],
+        "MID": [
+          454.0,
+          1210.0,
+          688.93
+        ],
+        "LOW": [
+          449.0,
+          1200.0,
+          687.92
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Nissan GT-R NISMO GT3 '13",
+        "HIGH": [
+          509.0,
+          1315.0,
+          686.61
+        ],
+        "MID": [
+          509.0,
+          1315.0,
+          686.61
+        ],
+        "LOW": [
+          509.0,
+          1326.0,
+          685.91
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Peugeot PEUGEOT VGT (Gr.3)",
+        "HIGH": [
+          477.0,
+          1269.0,
+          693.18
+        ],
+        "MID": [
+          477.0,
+          1269.0,
+          693.18
+        ],
+        "LOW": [
+          477.0,
+          1280.0,
+          683.84
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Peugeot RCZ Gr.3",
+        "HIGH": [
+          484.0,
+          1265.0,
+          692.82
+        ],
+        "MID": [
+          484.0,
+          1275.0,
+          691.91
+        ],
+        "LOW": [
+          484.0,
+          1285.0,
+          691.06
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Porsche 911 RSR (991) '17",
+        "HIGH": [
+          444.0,
+          1310.0,
+          691.63
+        ],
+        "MID": [
+          444.0,
+          1320.0,
+          690.62
+        ],
+        "LOW": [
+          444.0,
+          1330.0,
+          689.62
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Renault R.S.01 GT3 '16",
+        "HIGH": [
+          466.0,
+          1315.0,
+          689.85
+        ],
+        "MID": [
+          466.0,
+          1320.0,
+          689.38
+        ],
+        "LOW": [
+          466.0,
+          1326.0,
+          688.81
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Subaru BRZ GT300 '21",
+        "HIGH": [
+          440.0,
+          1315.0,
+          700.72
+        ],
+        "MID": [
+          435.0,
+          1311.0,
+          699.34
+        ],
+        "LOW": [
+          435.0,
+          1325.0,
+          697.85
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Subaru WRX Gr.3",
+        "HIGH": [
+          497.0,
+          1295.0,
+          701.57
+        ],
+        "MID": [
+          497.0,
+          1305.0,
+          700.75
+        ],
+        "LOW": [
+          497.0,
+          1320.0,
+          699.67
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "HIGH": [
+          469.0,
+          1220.0,
+          677.97
+        ],
+        "MID": [
+          469.0,
+          1220.0,
+          677.97
+        ],
+        "LOW": [
+          463.0,
+          1220.0,
+          676.31
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Toyota FT-1 VGT (Gr.3)",
+        "HIGH": [
+          473.0,
+          1350.0,
+          691.17
+        ],
+        "MID": [
+          473.0,
+          1350.0,
+          691.17
+        ],
+        "LOW": [
+          468.0,
+          1350.0,
+          689.37
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Toyota GR Supra Racing Concept '18",
+        "HIGH": [
+          462.0,
+          1250.0,
+          694.36
+        ],
+        "MID": [
+          462.0,
+          1245.0,
+          694.95
+        ],
+        "LOW": [
+          462.0,
+          1255.0,
+          693.85
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Toyota Supra GT500 '97",
+        "HIGH": [
+          448.0,
+          1175.0,
+          689.97
+        ],
+        "MID": [
+          448.0,
+          1175.0,
+          689.97
+        ],
+        "LOW": [
+          443.0,
+          1181.0,
+          687.27
+        ],
+        "distinct_signatures": 2
+      },
+      {
+        "car": "Volkswagen Beetle Gr.3",
+        "HIGH": [
+          479.0,
+          1289.0,
+          693.98
+        ],
+        "MID": [
+          479.0,
+          1295.0,
+          693.5
+        ],
+        "LOW": [
+          479.0,
+          1310.0,
+          692.05
+        ],
+        "distinct_signatures": 3
+      },
+      {
+        "car": "Volkswagen Volkswagen GTI VGT (Gr.3)",
+        "HIGH": [
+          502.0,
+          1260.0,
+          682.39
+        ],
+        "MID": [
+          502.0,
+          1260.0,
+          682.39
+        ],
+        "LOW": [
+          496.0,
+          1260.0,
+          680.73
+        ],
+        "distinct_signatures": 2
+      }
+    ],
+    "unchanged": [
+      {
+        "car": "Lexus RC F GT3 prototype '16",
+        "HIGH": [
+          449.0,
+          1310.0,
+          692.39
+        ],
+        "MID": [
+          449.0,
+          1310.0,
+          692.39
+        ],
+        "LOW": [
+          449.0,
+          1310.0,
+          692.39
+        ],
+        "distinct_signatures": 1
+      },
+      {
+        "car": "Nissan GT-R NISMO GT3 '18",
+        "HIGH": [
+          491.0,
+          1355.0,
+          697.0
+        ],
+        "MID": [
+          491.0,
+          1355.0,
+          697.0
+        ],
+        "LOW": [
+          491.0,
+          1355.0,
+          697.0
+        ],
+        "distinct_signatures": 1
+      },
+      {
+        "car": "Nissan Skyline Super Silhouette '84",
+        "HIGH": [
+          517.0,
+          1005.0,
+          686.61
+        ],
+        "MID": [
+          517.0,
+          1005.0,
+          686.61
+        ],
+        "LOW": [
+          517.0,
+          1005.0,
+          686.61
+        ],
+        "distinct_signatures": 1
+      },
+      {
+        "car": "Porsche 911 GT3 R (992) '22",
+        "HIGH": [
+          446.0,
+          1320.0,
+          693.04
+        ],
+        "MID": [
+          446.0,
+          1320.0,
+          693.04
+        ],
+        "LOW": [
+          446.0,
+          1320.0,
+          693.04
+        ],
+        "distinct_signatures": 1
+      }
+    ],
+    "changed_count": 48,
+    "unchanged_count": 4
+  },
   "records": [
     {
       "car": "Aston Martin V12 Vantage GT3 '12",
