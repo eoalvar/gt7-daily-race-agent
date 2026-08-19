@@ -1,19 +1,19 @@
 GT7 BOP LAB V1.7 - DIRECT NUXT BOP EXTRACTION
 ====================================================================================================
-Generated           : 2026-08-19T11:28:23.813457+00:00
+Generated           : 2026-08-19T12:16:06.298215+00:00
 Group               : GR.3
 Selected version    : 1.67
 Production modified : NO
-Elapsed             : 2.69s
+Elapsed             : 3.29s
 
 VERSION PROBES
 ----------------------------------------------------------------------------------------------------
-1.70     | HTTP 500 |  588,522 bytes | UNUSABLE
-1.67     | HTTP 200 | 1,235,792 bytes | VALID
+1.70     | HTTP 500 |  588,666 bytes | UNUSABLE
+1.67     | HTTP 200 | 1,236,038 bytes | VALID
 
 NUXT STRUCTURED EXTRACTION
 ----------------------------------------------------------------------------------------------------
-Flat state entries  : 5,009
+Flat state entries  : 5,005
 Speed map index     : 9
 HIGH               : raw 52 | decoded 52 | rejected 0
 MID                : raw 52 | decoded 52 | rejected 0
@@ -80,7 +80,7 @@ BMW Z4 GT3 '11
 DATABASE WRITE
 ----------------------------------------------------------------------------------------------------
 Written this run    : 156
-Write statuses      : {'ADDED': 156}
+Write statuses      : {'UPDATED': 156}
 Database records    : 156
 Database cars       : 52
 Database speeds     : HIGH, LOW, MID

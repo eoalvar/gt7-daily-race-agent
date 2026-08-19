@@ -1,0 +1,38 @@
+GT7 BOP TRACK CLASSIFIER V1.0
+====================================================================================================
+Snapshot            : 2026-08-19T06:17:29.766163-03:00
+Track               : Yas Marina Circuit
+Group               : GR.3
+BoP speed class     : MID
+Confidence          : VALIDATED_EXTERNAL
+Production modified : NO
+
+CLASSIFICATION EVIDENCE
+----------------------------------------------------------------------------------------------------
+- GTPlanet Daily Races 2025-12-08 | Yas Marina Circuit / Gr.4 / BOP (M)
+- Lights to Flag Daily Races 2026-06-01 | Yas Marina Circuit / Gr.3 / BOP (M)
+- Gran Turismo Wiki | Yas Marina Circuit BoP (GT7): Mid-speed
+
+YOUR CURRENT CAR
+----------------------------------------------------------------------------------------------------
+Car                 : Porsche 911 GT3 R (992) '22
+BoP version         : 1.67
+HIGH                : 446 HP / 1320 kg / PP 693.04
+MID                 : 446 HP / 1320 kg / PP 693.04
+LOW                 : 446 HP / 1320 kg / PP 693.04
+Active (MID)        : 446 HP / 1320 kg / PP 693.04
+Fingerprint useful  : NO - this car has identical/insufficient BoP signatures
+
+TOP 5 USED CARS - ACTIVE BOP
+----------------------------------------------------------------------------------------------------
+1. Porsche 911 GT3 R (992) '22 | usage 76.6% | MID: 446 HP / 1320 kg / PP 693.04 | fingerprint NO
+2. Audi R8 LMS Evo '19 | usage 8.799999999999999% | MID: 444 HP / 1310 kg / PP 691.74 | fingerprint YES
+3. Ferrari 296 GT3 '23 | usage 2.3% | MID: 444 HP / 1320 kg / PP 694.29 | fingerprint YES
+4. Lamborghini Huracán GT3 '15 | usage 2.1% | MID: 450 HP / 1330 kg / PP 689.81 | fingerprint YES
+5. Jaguar F-type Gr.3 | usage 1.9% | MID: 469 HP / 1265 kg / PP 695.6 | fingerprint YES
+
+RESULT
+----------------------------------------------------------------------------------------------------
+Current Daily Race C uses MID-speed BoP for Yas Marina Circuit.
+The active technical comparison for sleeper analysis should therefore use the MID records from bop_database.json.
+====================================================================================================
