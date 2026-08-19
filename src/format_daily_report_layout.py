@@ -18,6 +18,14 @@ CARS_INSERT_BEFORE = "FORECAST TO SUNDAY - V2\n"
 
 CURRENT_WEEK_MARKER = "NEW WEEK - CURRENT DAILY RACE C"
 
+# Some historical circuits legitimately appear in weekly history before they
+# have been added to the BoP-classification database. Keep presentation-layer
+# names here so the email never has to display "Circuit N/A" for known races.
+SUPPLEMENTAL_TRACK_NAMES = [
+    "24 Heures du Mans Racing Circuit",
+    "Tokyo Expressway - East Clockwise",
+]
+
 
 def remove_unwanted_sections(text):
     start = text.find(UNWANTED_START)
@@ -129,39 +137,70 @@ def format_header(text):
 
 
 def load_track_names():
-    """Return canonical circuit names and aliases, longest names first."""
-    if not TRACK_BOP_FILE.exists():
-        return []
+    """Return known circuit names and aliases, longest names first."""
+    names = [(name, name) for name in SUPPLEMENTAL_TRACK_NAMES]
 
-    try:
-        data = json.loads(TRACK_BOP_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        return []
+    if TRACK_BOP_FILE.exists():
+        try:
+            data = json.loads(TRACK_BOP_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            data = {}
 
-    tracks = data.get("tracks") if isinstance(data, dict) else None
-    if not isinstance(tracks, dict):
-        return []
+        tracks = data.get("tracks") if isinstance(data, dict) else None
+        if isinstance(tracks, dict):
+            for canonical, info in tracks.items():
+                if not isinstance(canonical, str) or not canonical.strip():
+                    continue
 
-    names = []
+                canonical = canonical.strip()
+                names.append((canonical, canonical))
 
-    for canonical, info in tracks.items():
-        if not isinstance(canonical, str) or not canonical.strip():
-            continue
+                if isinstance(info, dict):
+                    aliases = info.get("aliases")
+                    if isinstance(aliases, list):
+                        for alias in aliases:
+                            if isinstance(alias, str) and alias.strip():
+                                names.append((alias.strip(), canonical))
 
-        canonical = canonical.strip()
-        names.append((canonical, canonical))
+    # Remove duplicates while preserving the original display spelling.
+    unique = {}
+    for candidate, canonical in names:
+        unique[candidate.casefold()] = (candidate, canonical)
 
-        if isinstance(info, dict):
-            aliases = info.get("aliases")
-            if isinstance(aliases, list):
-                for alias in aliases:
-                    if isinstance(alias, str) and alias.strip():
-                        names.append((alias.strip(), canonical))
+    names = list(unique.values())
 
     # Prefer the longest match so variants such as "... Reverse" are not
     # truncated to their shorter base circuit name.
     names.sort(key=lambda item: len(item[0]), reverse=True)
     return names
+
+
+def fallback_extract_circuit(record, remainder):
+    """Recover a circuit from the historical race line if DB matching fails."""
+    car = str(record.get("car") or "").strip()
+    if not car:
+        return None
+
+    marker = f" - {car}"
+    marker_pos = remainder.rfind(marker)
+    if marker_pos < 0:
+        return None
+
+    before_car = remainder[:marker_pos].strip()
+
+    # Remove common WR-driver forms from the end without touching the circuit.
+    driver_patterns = [
+        r"\s+[A-Z]\.\s+[\wÀ-ÿ'._-]+$",   # D. Chafe, K. Morimoto
+        r"\s+[A-Z]\.[\wÀ-ÿ'._-]+$",      # N.Baglioni
+        r"\s+[\wÀ-ÿ'._-]+$",             # Miumiu, CRV, DTR_DEC
+    ]
+
+    for pattern in driver_patterns:
+        candidate = re.sub(pattern, "", before_car).strip()
+        if candidate != before_car and candidate:
+            return candidate
+
+    return None
 
 
 def extract_group_and_circuit(record, track_names):
@@ -185,14 +224,19 @@ def extract_group_and_circuit(record, track_names):
     remainder = after_time_match.group(1).strip()
     remainder_lower = remainder.casefold()
 
-    # Circuit names come from the validated track database. Matching the
-    # beginning of the post-time text avoids ever consuming WR driver/car/setup.
+    # Prefer exact names/aliases from the track database and the supplemental
+    # historical list. Matching only at the beginning prevents driver/car/setup
+    # text from leaking into the circuit name.
     for candidate, canonical in track_names:
         candidate_lower = candidate.casefold()
         if remainder_lower == candidate_lower or remainder_lower.startswith(candidate_lower + " "):
-            # Preserve the exact variant written in the race string when it is
-            # itself a full known alias; otherwise use the canonical name.
             return group, candidate
+
+    # Last-resort historical parser. It uses the user's recorded car name as a
+    # hard delimiter, then strips only the final WR-driver token(s).
+    fallback = fallback_extract_circuit(record, remainder)
+    if fallback:
+        return group, fallback
 
     return group, "Circuit N/A"
 
@@ -347,6 +391,7 @@ def main():
             "LAST FINALIZED RACES" not in formatted
             or bool(re.search(r"^- \d{4}-\d{2}-\d{2} \| Gr\.", formatted, re.MULTILINE))
         ),
+        "finalized_history_no_na": "| Circuit N/A" not in formatted,
     }
 
     for key, value in checks.items():
