@@ -1,26 +1,24 @@
 import json
+import math
 import re
 import time
 from pathlib import Path
 from datetime import datetime
-from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
 
 from bop_database import (
-    load_database,
-    save_database,
+    build_record,
     database_stats,
-    validate_database,
+    load_database,
     normalize_group,
+    save_database,
+    upsert_record,
+    validate_database,
 )
 
-# ============================================================
-# CONFIG
-# ============================================================
-
-VERSION = "1.4"
+VERSION = "1.5"
 
 DG_EDGE_BASE_URL = "https://www.dg-edge.com"
 DG_EDGE_BOP_URL = f"{DG_EDGE_BASE_URL}/database/bop"
@@ -29,12 +27,16 @@ DATA_DIR = Path("data") / "bop_lab"
 REPORT_DIR = Path("reports")
 RAW_DIR = DATA_DIR / "raw"
 STATE_DIR = RAW_DIR / "state"
-JS_DIR = RAW_DIR / "js"
 
 REPORT_FILE = REPORT_DIR / "bop_lab.txt"
-STATE_ANALYSIS_FILE = DATA_DIR / "nuxt_state_analysis.json"
+EXTRACTED_FILE = DATA_DIR / "extracted_bop.json"
+NUXT_RAW_FILE = STATE_DIR / "09_NUXT_DATA.json"
 
 GROUP = "GR.3"
+
+EXPECTED_SPEED_CLASSES = {"HIGH", "MID", "LOW"}
+EXPECTED_CARS_PER_CLASS = 48
+EXPECTED_TOTAL_RECORDS = EXPECTED_CARS_PER_CLASS * len(EXPECTED_SPEED_CLASSES)
 
 REQUEST_TIMEOUT = 60
 REQUEST_DELAY_SECONDS = 0.20
@@ -52,52 +54,6 @@ HEADERS = {
 SEP = "=" * 100
 SUB = "-" * 100
 
-# Strings that are especially useful for this investigation.
-EXACT_VALUES = {
-    "high",
-    "low",
-    "mid",
-}
-
-KEY_TERMS = (
-    "speed",
-    "bop",
-    "power",
-    "weight",
-    "torque",
-    "pp",
-    "car",
-    "current",
-    "previous",
-    "group",
-)
-
-JS_SEARCH_TERMS = [
-    "speed-0",
-    "speed-1",
-    "speed-2",
-    'name:"speed"',
-    "name:'speed'",
-    'name="speed"',
-    "localStorage",
-    "sessionStorage",
-    "fetch(",
-    "$fetch",
-    "useFetch",
-    "useAsyncData",
-    "watch(",
-    "watchEffect",
-    "addEventListener",
-    "/database/bop",
-    "High",
-    "Low",
-    "Mid",
-]
-
-
-# ============================================================
-# BASIC HELPERS
-# ============================================================
 
 def now_iso():
     return datetime.now().astimezone().isoformat()
@@ -105,170 +61,105 @@ def now_iso():
 
 def clean_text(value):
     if value is None:
-        return ""
+        return None
+    text = re.sub(r"\s+", " ", str(value).replace("\xa0", " ")).strip()
+    return text or None
 
-    text = str(value).replace("\xa0", " ")
-    return re.sub(r"\s+", " ", text).strip()
+
+def safe_float(value):
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        try:
+            number = float(value)
+        except Exception:
+            return None
+        if math.isnan(number):
+            return None
+        return number
+    text = clean_text(value)
+    if not text:
+        return None
+    text = text.replace(",", "")
+    match = re.search(r"[-+]?\d+(?:\.\d+)?", text)
+    if not match:
+        return None
+    try:
+        return float(match.group(0))
+    except Exception:
+        return None
 
 
 def version_key(version):
     try:
-        return tuple(
-            int(part)
-            for part in str(version).split(".")
-        )
+        return tuple(int(part) for part in str(version).split("."))
     except Exception:
         return (0,)
 
 
-def safe_filename(value):
-    text = re.sub(
-        r"[^A-Za-z0-9._-]+",
-        "_",
-        str(value),
-    )
-    return text.strip("_") or "file"
+def normalize_speed(value):
+    text = clean_text(value)
+    if not text:
+        return None
+    aliases = {
+        "HIGH": "HIGH",
+        "MID": "MID",
+        "MEDIUM": "MID",
+        "LOW": "LOW",
+    }
+    return aliases.get(text.upper())
 
 
-# ============================================================
-# HTTP
-# ============================================================
-
-def fetch_text(
-    session,
-    url,
-    params=None,
-    raise_for_status=True,
-):
-    response = session.get(
-        url,
-        params=params,
-        timeout=REQUEST_TIMEOUT,
-    )
-
+def fetch_text(session, url, raise_for_status=True):
+    response = session.get(url, timeout=REQUEST_TIMEOUT)
     result = {
-        "requested_url": url,
         "url": response.url,
         "status": response.status_code,
         "text": response.text,
         "bytes": len(response.content),
-        "content_type": response.headers.get(
-            "Content-Type",
-            ""
-        ),
+        "content_type": response.headers.get("Content-Type", ""),
     }
-
     if raise_for_status:
         response.raise_for_status()
-
     return result
 
 
-# ============================================================
-# VERSION DISCOVERY
-# ============================================================
-
-def build_group_url(
-    group,
-    version,
-):
-    group = normalize_group(
-        group
-    )
-
+def build_group_url(group, version):
+    group = normalize_group(group)
     if not group:
-        raise ValueError(
-            f"Invalid group: {group}"
-        )
-
-    return (
-        f"{DG_EDGE_BOP_URL}/"
-        f"{group}/"
-        f"{version}"
-    )
+        raise ValueError(f"Invalid group: {group}")
+    return f"{DG_EDGE_BOP_URL}/{group}/{version}"
 
 
-def extract_versions(
-    html,
-):
-    soup = BeautifulSoup(
-        html,
-        "html.parser"
-    )
-
+def extract_versions(html):
+    soup = BeautifulSoup(html, "html.parser")
     versions = set()
-
-    for link in soup.find_all(
-        "a",
-        href=True
-    ):
-        href = link.get(
-            "href",
-            ""
-        )
-
+    for link in soup.find_all("a", href=True):
+        href = link.get("href", "")
         match = re.search(
-            r"/database/bop/"
-            r"(?:GR\.[1234]|GR\.B)"
-            r"/(\d+\.\d+)",
+            r"/database/bop/(?:GR\.[1234]|GR\.B)/(\d+\.\d+)",
             href,
             flags=re.IGNORECASE,
         )
-
         if match:
-            versions.add(
-                match.group(1)
-            )
-
+            versions.add(match.group(1))
     if not versions:
-        text = soup.get_text(
-            " ",
-            strip=True
-        )
-
+        text = soup.get_text(" ", strip=True)
         for match in re.finditer(
-            r"\b(?:Update|Version)\s+"
-            r"(\d+\.\d+)\b",
+            r"\b(?:Update|Version)\s+(\d+\.\d+)\b",
             text,
             flags=re.IGNORECASE,
         ):
-            versions.add(
-                match.group(1)
-            )
-
-    return sorted(
-        versions,
-        key=version_key,
-        reverse=True,
-    )
+            versions.add(match.group(1))
+    return sorted(versions, key=version_key, reverse=True)
 
 
-def looks_like_valid_bop_page(
-    html,
-    group,
-):
+def looks_like_valid_bop_page(html, group):
     if not html:
         return False
-
-    soup = BeautifulSoup(
-        html,
-        "html.parser"
-    )
-
-    text = clean_text(
-        soup.get_text(
-            " ",
-            strip=True
-        )
-    ).lower()
-
-    group_text = (
-        normalize_group(
-            group
-        )
-        or ""
-    ).lower()
-
+    soup = BeautifulSoup(html, "html.parser")
+    text = soup.get_text(" ", strip=True).lower()
+    group_text = (normalize_group(group) or "").lower()
     signals = [
         "max power",
         "max torque",
@@ -276,46 +167,19 @@ def looks_like_valid_bop_page(
         "weight balance",
         "drivetrain",
     ]
-
-    signal_count = sum(
-        1
-        for signal in signals
-        if signal in text
-    )
-
-    return (
-        group_text in text
-        and signal_count >= 3
-    )
+    signal_count = sum(1 for signal in signals if signal in text)
+    return group_text in text and signal_count >= 3
 
 
-def probe_versions(
-    session,
-    group,
-    versions,
-):
+def probe_versions(session, group, versions):
     probes = []
-
     for version in versions:
-        url = build_group_url(
-            group,
-            version
-        )
-
-        result = fetch_text(
-            session,
-            url,
-            raise_for_status=False,
-        )
-
+        url = build_group_url(group, version)
+        result = fetch_text(session, url, raise_for_status=False)
         valid = (
             result["status"] == 200
-            and looks_like_valid_bop_page(
-                result["text"],
-                group,
-            )
+            and looks_like_valid_bop_page(result["text"], group)
         )
-
         probes.append(
             {
                 "version": version,
@@ -325,920 +189,389 @@ def probe_versions(
                 "valid": valid,
             }
         )
-
         print(
             f"Probe {group} {version:<6}: "
             f"HTTP {result['status']} | "
             f"{result['bytes']:,} bytes | "
             f"{'VALID' if valid else 'UNUSABLE'}"
         )
-
         if valid:
-            return (
-                version,
-                result,
-                probes,
-            )
-
-        time.sleep(
-            REQUEST_DELAY_SECONDS
-        )
-
-    return (
-        None,
-        None,
-        probes,
-    )
+            return version, result, probes
+        time.sleep(REQUEST_DELAY_SECONDS)
+    return None, None, probes
 
 
-# ============================================================
-# SCRIPT INVENTORY
-# ============================================================
-
-def get_script_text(
-    tag,
-):
+def extract_nuxt_data_text(html):
+    soup = BeautifulSoup(html, "html.parser")
+    tag = soup.find("script", id="__NUXT_DATA__")
+    if tag is None:
+        return None
     if tag.string is not None:
         return tag.string
-
-    return tag.get_text(
-        "\n"
-    ) or ""
+    return tag.get_text("\n")
 
 
-def script_inventory(
-    html,
-    page_url,
-):
-    soup = BeautifulSoup(
-        html,
-        "html.parser"
+def save_nuxt_data(text):
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    NUXT_RAW_FILE.write_text(text, encoding="utf-8")
+
+
+SPECIAL_REFS = {
+    -1: None,
+    -2: float("nan"),
+    -3: float("inf"),
+    -4: float("-inf"),
+    -5: -0.0,
+}
+
+
+class NuxtFlatDecoder:
+    def __init__(self, raw):
+        if not isinstance(raw, list):
+            raise RuntimeError("__NUXT_DATA__ root is not a list.")
+        self.raw = raw
+        self.cache = {}
+        self.resolving = set()
+
+    def decode_ref(self, ref):
+        if isinstance(ref, int):
+            if ref < 0:
+                return SPECIAL_REFS.get(ref)
+            if ref >= len(self.raw):
+                return ref
+            return self.decode_index(ref)
+        return ref
+
+    def decode_index(self, index):
+        if index in self.cache:
+            return self.cache[index]
+        if index in self.resolving:
+            return f"<circular:{index}>"
+        self.resolving.add(index)
+        node = self.raw[index]
+
+        if isinstance(node, dict):
+            decoded = {}
+            self.cache[index] = decoded
+            for key, value_ref in node.items():
+                decoded[key] = self.decode_ref(value_ref)
+        elif isinstance(node, list):
+            decoded = []
+            self.cache[index] = decoded
+            for value_ref in node:
+                decoded.append(self.decode_ref(value_ref))
+        else:
+            decoded = node
+            self.cache[index] = decoded
+
+        self.resolving.discard(index)
+        return decoded
+
+
+REQUIRED_RAW_KEYS = {
+    "car",
+    "carId",
+    "version",
+    "speed",
+    "PP",
+    "ICEmaxPowerHP",
+    "maxTorqueNM",
+    "weightKG",
+    "drivetrain",
+}
+
+
+def is_raw_bop_record(node):
+    return (
+        isinstance(node, dict)
+        and REQUIRED_RAW_KEYS.issubset(set(node.keys()))
     )
 
-    result = []
 
-    for index, tag in enumerate(
-        soup.find_all(
-            "script"
+def decode_bop_candidates(raw_state):
+    decoder = NuxtFlatDecoder(raw_state)
+    candidates = []
+    for index, node in enumerate(raw_state):
+        if not is_raw_bop_record(node):
+            continue
+        decoded = decoder.decode_index(index)
+        if not isinstance(decoded, dict):
+            continue
+        speed = normalize_speed(decoded.get("speed"))
+        car = clean_text(decoded.get("car"))
+        if speed not in EXPECTED_SPEED_CLASSES or not car:
+            continue
+        candidates.append({"raw_index": index, "data": decoded})
+    return candidates
+
+
+def choose_power_hp(data):
+    ice = safe_float(data.get("ICEmaxPowerHP"))
+    hybrid = safe_float(data.get("HYBmaxPowerHP"))
+    if ice is not None and ice > 0:
+        return ice
+    if hybrid is not None and hybrid > 0:
+        return hybrid
+    return None
+
+
+def format_stability(index_value, behaviour):
+    index_text = clean_text(index_value)
+    behaviour_text = clean_text(behaviour)
+    if index_text and behaviour_text:
+        return f"{index_text} | {behaviour_text}"
+    return index_text or behaviour_text
+
+
+def build_database_record(data, selected_version, page_url):
+    car = clean_text(data.get("car"))
+    speed = normalize_speed(data.get("speed"))
+
+    record_version = clean_text(data.get("version"))
+    if (
+        not record_version
+        or not re.fullmatch(r"\d+\.\d+", record_version)
+    ):
+        record_version = selected_version
+
+    front = safe_float(data.get("weightBalanceFront"))
+    rear = safe_float(data.get("weightBalanceRear"))
+
+    weight_balance = None
+    if front is not None and rear is not None:
+        weight_balance = f"{front:g}:{rear:g}"
+
+    return build_record(
+        car=car,
+        group=GROUP,
+        bop_version=record_version,
+        speed_class=speed,
+        power_hp=choose_power_hp(data),
+        torque_nm=safe_float(data.get("maxTorqueNM")),
+        weight_kg=safe_float(data.get("weightKG")),
+        pp=safe_float(data.get("PP")),
+        weight_balance=weight_balance,
+        drivetrain=clean_text(data.get("drivetrain")),
+        aspiration=clean_text(data.get("aspiration")),
+        displacement=clean_text(data.get("displacement")),
+        engine_model=clean_text(data.get("engineModel")),
+        powertrain=clean_text(data.get("powerType")),
+        acceleration_0_400=safe_float(data.get("acc0-400m")),
+        acceleration_0_1000=safe_float(data.get("acc0-1000m")),
+        acceleration_100_150=safe_float(data.get("acc100-150kmh")),
+        rotational_g_60=safe_float(data.get("rotG60kmh")),
+        rotational_g_120=safe_float(data.get("rotG120kmh")),
+        rotational_g_240=safe_float(data.get("rotG240kmh")),
+        stability_low_speed=format_stability(
+            data.get("stabilityLowInd"),
+            data.get("stabilityLowBehaviour"),
         ),
-        start=1,
-    ):
-        src = tag.get(
-            "src"
-        )
-
-        attributes = {
-            key:
-                (
-                    " ".join(
-                        str(item)
-                        for item in value
-                    )
-                    if isinstance(
-                        value,
-                        list
-                    )
-                    else str(
-                        value
-                    )
-                )
-            for key, value
-            in tag.attrs.items()
-        }
-
-        item = {
-            "index":
-                index,
-
-            "id":
-                tag.get(
-                    "id"
-                ),
-
-            "type":
-                tag.get(
-                    "type"
-                ),
-
-            "src":
-                urljoin(
-                    page_url,
-                    src
-                )
-                if src
-                else None,
-
-            "attributes":
-                attributes,
-
-            "text":
-                ""
-                if src
-                else get_script_text(
-                    tag
-                ),
-        }
-
-        result.append(
-            item
-        )
-
-    return result
-
-
-def save_inline_scripts(
-    inventory,
-):
-    STATE_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
+        stability_high_speed=format_stability(
+            data.get("stabilityHighInd"),
+            data.get("stabilityHighBehaviour"),
+        ),
+        source="DG EDGE __NUXT_DATA__",
+        source_url=page_url,
+        source_confidence="STRUCTURED_STATE_VALIDATED",
     )
 
-    saved = []
 
-    for item in inventory:
-        if item[
-            "src"
-        ]:
+def validate_extraction(records):
+    errors = []
+    by_speed = {speed: [] for speed in EXPECTED_SPEED_CLASSES}
+    seen = set()
+
+    for record in records:
+        speed = record.get("speed_class")
+        car = record.get("car")
+
+        if speed not in by_speed:
+            errors.append(f"Unexpected speed class: {speed}")
             continue
 
-        text = item[
-            "text"
-        ]
+        key = (car, speed)
 
-        if not text.strip():
-            continue
+        if key in seen:
+            errors.append(f"Duplicate record: {car} / {speed}")
 
-        identifier = (
-            item.get(
-                "id"
-            )
-            or (
-                f"inline_"
-                f"{item['index']:02d}"
-            )
+        seen.add(key)
+        by_speed[speed].append(record)
+
+        if record.get("power_hp") is None:
+            errors.append(f"Missing power: {car} / {speed}")
+
+        if record.get("weight_kg") is None:
+            errors.append(f"Missing weight: {car} / {speed}")
+
+    counts = {
+        speed: len(items)
+        for speed, items in by_speed.items()
+    }
+
+    if len(records) != EXPECTED_TOTAL_RECORDS:
+        errors.append(
+            f"Expected {EXPECTED_TOTAL_RECORDS} records, "
+            f"found {len(records)}."
         )
 
-        suffix = (
-            ".json"
-            if (
-                item.get(
-                    "type"
-                )
-                == "application/json"
-            )
-            else ".txt"
-        )
-
-        path = (
-            STATE_DIR
-            / (
-                f"{item['index']:02d}_"
-                f"{safe_filename(identifier)}"
-                f"{suffix}"
-            )
-        )
-
-        path.write_text(
-            text,
-            encoding="utf-8",
-        )
-
-        saved.append(
-            {
-                "index":
-                    item[
-                        "index"
-                    ],
-
-                "id":
-                    item.get(
-                        "id"
-                    ),
-
-                "type":
-                    item.get(
-                        "type"
-                    ),
-
-                "path":
-                    str(
-                        path
-                    ),
-
-                "chars":
-                    len(
-                        text
-                    ),
-            }
-        )
-
-    return saved
-
-
-# ============================================================
-# EXTERNAL JS
-# ============================================================
-
-def fetch_external_scripts(
-    session,
-    inventory,
-):
-    JS_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    fetched = []
-
-    for item in inventory:
-        url = item.get(
-            "src"
-        )
-
-        if not url:
-            continue
-
-        response = fetch_text(
-            session,
-            url,
-            raise_for_status=False,
-        )
-
-        path = None
-
-        if (
-            response[
-                "status"
-            ] == 200
-            and response[
-                "text"
-            ]
-        ):
-            basename = (
-                Path(
-                    url.split(
-                        "?",
-                        1
-                    )[0]
-                ).name
-                or (
-                    f"script_"
-                    f"{item['index']:02d}.js"
-                )
+    for speed in sorted(EXPECTED_SPEED_CLASSES):
+        if counts[speed] != EXPECTED_CARS_PER_CLASS:
+            errors.append(
+                f"{speed}: expected {EXPECTED_CARS_PER_CLASS} cars, "
+                f"found {counts[speed]}."
             )
 
-            path = (
-                JS_DIR
-                / (
-                    f"{item['index']:02d}_"
-                    f"{safe_filename(basename)}"
-                )
+    car_sets = {
+        speed: {record["car"] for record in items}
+        for speed, items in by_speed.items()
+    }
+
+    reference = car_sets.get("HIGH", set())
+
+    for speed in ["MID", "LOW"]:
+        if car_sets.get(speed, set()) != reference:
+            missing = sorted(reference - car_sets.get(speed, set()))
+            extra = sorted(car_sets.get(speed, set()) - reference)
+            errors.append(
+                f"Car set differs for {speed}. "
+                f"Missing={missing}; Extra={extra}"
             )
-
-            path.write_text(
-                response[
-                    "text"
-                ],
-                encoding="utf-8",
-            )
-
-        fetched.append(
-            {
-                "index":
-                    item[
-                        "index"
-                    ],
-
-                "url":
-                    url,
-
-                "status":
-                    response[
-                        "status"
-                    ],
-
-                "bytes":
-                    response[
-                        "bytes"
-                    ],
-
-                "path":
-                    str(
-                        path
-                    )
-                    if path
-                    else None,
-
-                "text":
-                    response[
-                        "text"
-                    ]
-                    if response[
-                        "status"
-                    ] == 200
-                    else "",
-            }
-        )
-
-        time.sleep(
-            REQUEST_DELAY_SECONDS
-        )
-
-    return fetched
-
-
-# ============================================================
-# JSON / NUXT STATE ANALYSIS
-# ============================================================
-
-def try_json_loads(
-    text,
-):
-    try:
-        return {
-            "ok":
-                True,
-
-            "value":
-                json.loads(
-                    text
-                ),
-
-            "error":
-                None,
-        }
-
-    except Exception as error:
-        return {
-            "ok":
-                False,
-
-            "value":
-                None,
-
-            "error":
-                str(
-                    error
-                ),
-        }
-
-
-def shorten_value(
-    value,
-    max_chars=250,
-):
-    if isinstance(
-        value,
-        (
-            dict,
-            list,
-        )
-    ):
-        try:
-            text = json.dumps(
-                value,
-                ensure_ascii=False,
-            )
-        except Exception:
-            text = str(
-                value
-            )
-
-    else:
-        text = str(
-            value
-        )
-
-    if len(
-        text
-    ) > max_chars:
-        return (
-            text[
-                :max_chars
-            ]
-            + "..."
-        )
-
-    return text
-
-
-def walk_json(
-    value,
-    path="$",
-    depth=0,
-    max_depth=20,
-):
-    if depth > max_depth:
-        return
-
-    yield (
-        path,
-        value
-    )
-
-    if isinstance(
-        value,
-        dict
-    ):
-        for key, child in value.items():
-            child_path = (
-                f"{path}."
-                f"{key}"
-            )
-
-            yield from walk_json(
-                child,
-                child_path,
-                depth + 1,
-                max_depth,
-            )
-
-    elif isinstance(
-        value,
-        list
-    ):
-        for index, child in enumerate(
-            value
-        ):
-            child_path = (
-                f"{path}[{index}]"
-            )
-
-            yield from walk_json(
-                child,
-                child_path,
-                depth + 1,
-                max_depth,
-            )
-
-
-def json_findings(
-    value,
-):
-    exact_values = []
-    interesting_keys = []
-    interesting_objects = []
-
-    for path, node in walk_json(
-        value
-    ):
-        # ----------------------------------------------------
-        # Exact High / Low / Mid values
-        # ----------------------------------------------------
-
-        if isinstance(
-            node,
-            str
-        ):
-            if (
-                node
-                .strip()
-                .lower()
-                in EXACT_VALUES
-            ):
-                exact_values.append(
-                    {
-                        "path":
-                            path,
-
-                        "value":
-                            node,
-                    }
-                )
-
-        # ----------------------------------------------------
-        # Interesting dictionaries
-        # ----------------------------------------------------
-
-        if isinstance(
-            node,
-            dict
-        ):
-            keys = [
-                str(
-                    key
-                )
-                for key in node.keys()
-            ]
-
-            lower_keys = [
-                key.lower()
-                for key in keys
-            ]
-
-            matched_keys = [
-                key
-                for key in keys
-                if any(
-                    term in key.lower()
-                    for term in KEY_TERMS
-                )
-            ]
-
-            if matched_keys:
-                interesting_keys.append(
-                    {
-                        "path":
-                            path,
-
-                        "matched_keys":
-                            matched_keys,
-
-                        "all_keys":
-                            keys[
-                                :80
-                            ],
-                    }
-                )
-
-            # Candidate object if it looks like BoP/car data.
-            score = 0
-
-            for key in lower_keys:
-                if (
-                    "power"
-                    in key
-                ):
-                    score += 1
-
-                if (
-                    "weight"
-                    in key
-                ):
-                    score += 1
-
-                if (
-                    "torque"
-                    in key
-                ):
-                    score += 1
-
-                if (
-                    "car"
-                    in key
-                    or "name"
-                    == key
-                ):
-                    score += 1
-
-                if (
-                    "speed"
-                    in key
-                    or "bop"
-                    in key
-                ):
-                    score += 1
-
-            if score >= 3:
-                interesting_objects.append(
-                    {
-                        "path":
-                            path,
-
-                        "score":
-                            score,
-
-                        "keys":
-                            keys,
-
-                        "preview":
-                            shorten_value(
-                                node,
-                                max_chars=700,
-                            ),
-                    }
-                )
 
     return {
-        "exact_speed_values":
-            exact_values,
-
-        "interesting_keys":
-            interesting_keys[
-                :500
-            ],
-
-        "interesting_objects":
-            sorted(
-                interesting_objects,
-                key=lambda item:
-                    item[
-                        "score"
-                    ],
-                reverse=True,
-            )[
-                :300
-            ],
+        "valid": not errors,
+        "errors": errors,
+        "counts": counts,
+        "unique_cars": len(reference),
     }
 
 
-def analyze_inline_state(
-    inventory,
-):
-    analyses = []
+def record_signature(record):
+    return (
+        record.get("power_hp"),
+        record.get("weight_kg"),
+        record.get("pp"),
+    )
 
-    for item in inventory:
-        if item[
-            "src"
-        ]:
-            continue
 
-        text = item[
-            "text"
-        ]
+def compare_speed_classes(records):
+    lookup = {
+        (record["car"], record["speed_class"]): record
+        for record in records
+    }
 
-        if not text.strip():
-            continue
+    cars = sorted({record["car"] for record in records})
 
-        parsed = try_json_loads(
-            text
-        )
+    changed = []
+    unchanged = []
 
-        lower_text = text.lower()
-
-        likely_state = (
-            item.get(
-                "id"
-            )
-            in {
-                "__NUXT_DATA__",
-                "__NEXT_DATA__",
-            }
-            or item.get(
-                "type"
-            )
-            == "application/json"
-            or "pinia"
-            in lower_text
-            or "serverrendered"
-            in lower_text
-            or "__nuxt"
-            in lower_text
-        )
-
-        analysis = {
-            "index":
-                item[
-                    "index"
-                ],
-
-            "id":
-                item.get(
-                    "id"
-                ),
-
-            "type":
-                item.get(
-                    "type"
-                ),
-
-            "chars":
-                len(
-                    text
-                ),
-
-            "likely_state":
-                likely_state,
-
-            "json_parse_ok":
-                parsed[
-                    "ok"
-                ],
-
-            "json_error":
-                parsed[
-                    "error"
-                ],
-
-            "findings":
-                None,
+    for car in cars:
+        signatures = {
+            speed: record_signature(lookup[(car, speed)])
+            for speed in EXPECTED_SPEED_CLASSES
+            if (car, speed) in lookup
         }
 
-        if parsed[
-            "ok"
-        ]:
-            analysis[
-                "findings"
-            ] = json_findings(
-                parsed[
-                    "value"
-                ]
-            )
-
-        analyses.append(
-            analysis
-        )
-
-    return analyses
-
-
-# ============================================================
-# RAW TEXT CONTEXT SEARCH
-# ============================================================
-
-def context_snippet(
-    text,
-    match_start,
-    match_end,
-    radius=350,
-):
-    left = max(
-        0,
-        match_start
-        - radius
-    )
-
-    right = min(
-        len(
-            text
-        ),
-        match_end
-        + radius
-    )
-
-    return (
-        text[
-            left:right
-        ]
-        .replace(
-            "\r",
-            " "
-        )
-        .strip()
-    )
-
-
-def search_text(
-    text,
-    source_name,
-    terms,
-    max_per_term=12,
-):
-    findings = []
-
-    if not text:
-        return findings
-
-    for term in terms:
-        pattern = re.compile(
-            re.escape(
-                term
-            ),
-            flags=re.IGNORECASE,
-        )
-
-        matches = list(
-            pattern.finditer(
-                text
-            )
-        )
-
-        for match in matches[
-            :max_per_term
-        ]:
-            findings.append(
-                {
-                    "source":
-                        source_name,
-
-                    "term":
-                        term,
-
-                    "position":
-                        match.start(),
-
-                    "snippet":
-                        context_snippet(
-                            text,
-                            match.start(),
-                            match.end(),
-                        ),
-                }
-            )
-
-    return findings
-
-
-def focused_inline_findings(
-    inventory,
-):
-    findings = []
-
-    for item in inventory:
-        if item[
-            "src"
-        ]:
+        if len(signatures) != 3:
             continue
 
-        source_name = (
-            item.get(
-                "id"
-            )
-            or (
-                f"INLINE_"
-                f"{item['index']:02d}"
-            )
-        )
+        item = {
+            "car": car,
+            "HIGH": signatures["HIGH"],
+            "MID": signatures["MID"],
+            "LOW": signatures["LOW"],
+            "distinct_signatures": len(set(signatures.values())),
+        }
 
-        findings.extend(
-            search_text(
-                item[
-                    "text"
-                ],
-                source_name,
-                [
-                    "speed",
-                    '"High"',
-                    '"Low"',
-                    '"Mid"',
-                    "pinia",
-                    "serverRendered",
-                    "__NUXT",
-                ],
-                max_per_term=20,
-            )
-        )
+        if item["distinct_signatures"] > 1:
+            changed.append(item)
+        else:
+            unchanged.append(item)
 
-    return findings
+    return {
+        "changed": changed,
+        "unchanged": unchanged,
+        "changed_count": len(changed),
+        "unchanged_count": len(unchanged),
+    }
 
 
-def focused_external_findings(
-    fetched_scripts,
+def save_extracted_data(
+    selected_version,
+    page_url,
+    records,
+    validation,
+    comparison,
 ):
-    findings = []
+    payload = {
+        "generated_at": now_iso(),
+        "lab_version": VERSION,
+        "group": GROUP,
+        "selected_version": selected_version,
+        "source_url": page_url,
+        "validation": validation,
+        "speed_comparison": comparison,
+        "records": records,
+    }
 
-    for item in fetched_scripts:
-        source_name = (
-            f"JS_"
-            f"{item['index']:02d}"
-        )
-
-        findings.extend(
-            search_text(
-                item[
-                    "text"
-                ],
-                source_name,
-                JS_SEARCH_TERMS,
-                max_per_term=10,
-            )
-        )
-
-    return findings
+    EXTRACTED_FILE.write_text(
+        json.dumps(
+            payload,
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
 
 
-# ============================================================
-# REPORT
-# ============================================================
+def write_database(records):
+    database = load_database()
+    added = 0
+    updated = 0
+
+    for record in records:
+        result = upsert_record(database, record)
+        if result["status"] == "ADDED":
+            added += 1
+        else:
+            updated += 1
+
+    save_database(database)
+
+    return {
+        "added": added,
+        "updated": updated,
+        "total_written": len(records),
+    }
+
+
+def format_signature(signature):
+    power, weight, pp = signature
+    return f"{power:g} HP / {weight:g} kg / PP {pp:g}"
+
 
 def build_report(
     selected_version,
     probes,
-    inventory,
-    saved_inline,
-    state_analyses,
-    inline_findings,
-    fetched_scripts,
-    external_findings,
-    stats,
-    validation,
+    raw_candidate_count,
+    records,
+    extraction_validation,
+    comparison,
+    write_result,
+    db_stats,
+    db_validation,
 ):
     lines = []
 
-    lines.append(
-        "GT7 BOP LAB V1.4 - NUXT/PINIA STATE ANALYSIS"
-    )
-
-    lines.append(
-        SEP
-    )
-
-    lines.append(
-        f"Generated           : {now_iso()}"
-    )
-
-    lines.append(
-        f"Group               : {GROUP}"
-    )
-
-    lines.append(
-        f"Selected version    : {selected_version}"
-    )
-
-    lines.append(
-        "Production modified : NO"
-    )
+    lines.append("GT7 BOP LAB V1.5 - STRUCTURED BOP EXTRACTION")
+    lines.append(SEP)
+    lines.append(f"Generated           : {now_iso()}")
+    lines.append(f"Group               : {GROUP}")
+    lines.append(f"Selected version    : {selected_version}")
+    lines.append("Production modified : NO")
 
     lines.append("")
-
-    lines.append(
-        "VERSION PROBES"
-    )
-
-    lines.append(
-        SUB
-    )
+    lines.append("VERSION PROBES")
+    lines.append(SUB)
 
     for probe in probes:
         lines.append(
@@ -1249,475 +582,151 @@ def build_report(
         )
 
     lines.append("")
+    lines.append("NUXT STRUCTURED EXTRACTION")
+    lines.append(SUB)
+    lines.append(f"Raw BoP objects     : {raw_candidate_count}")
+    lines.append(f"Decoded records     : {len(records)}")
 
-    lines.append(
-        "INLINE SCRIPT / STATE INVENTORY"
-    )
-
-    lines.append(
-        SUB
-    )
-
-    for item in saved_inline:
+    for speed in ["HIGH", "MID", "LOW"]:
         lines.append(
-            f"#{item['index']:02d} | "
-            f"id={item['id']} | "
-            f"type={item['type']} | "
-            f"{item['chars']:,} chars | "
-            f"{item['path']}"
+            f"{speed:<19}: "
+            f"{extraction_validation['counts'].get(speed, 0)} cars"
+        )
+
+    lines.append(
+        f"Unique cars         : "
+        f"{extraction_validation['unique_cars']}"
+    )
+    lines.append(
+        f"Extraction valid    : "
+        f"{'YES' if extraction_validation['valid'] else 'NO'}"
+    )
+
+    if extraction_validation["errors"]:
+        lines.append("")
+        lines.append("EXTRACTION ERRORS")
+        for error in extraction_validation["errors"]:
+            lines.append(f"- {error}")
+
+    lines.append("")
+    lines.append("HIGH / MID / LOW COMPARISON")
+    lines.append(SUB)
+    lines.append(
+        f"Cars changing BoP   : {comparison['changed_count']}"
+    )
+    lines.append(
+        f"Cars unchanged      : {comparison['unchanged_count']}"
+    )
+
+    lines.append("")
+    lines.append("FIRST 12 CARS WITH DIFFERENT SPEED-CLASS BOP")
+    lines.append(SUB)
+
+    for item in comparison["changed"][:12]:
+        lines.append(item["car"])
+        lines.append(
+            "  HIGH : " + format_signature(item["HIGH"])
+        )
+        lines.append(
+            "  MID  : " + format_signature(item["MID"])
+        )
+        lines.append(
+            "  LOW  : " + format_signature(item["LOW"])
         )
 
     lines.append("")
+    lines.append("DATABASE WRITE")
+    lines.append(SUB)
 
-    lines.append(
-        "STRUCTURED STATE ANALYSIS"
-    )
-
-    lines.append(
-        SUB
-    )
-
-    for analysis in state_analyses:
-        if not (
-            analysis[
-                "likely_state"
-            ]
-            or analysis[
-                "json_parse_ok"
-            ]
-        ):
-            continue
-
+    if write_result:
+        lines.append(f"Added               : {write_result['added']}")
+        lines.append(f"Updated             : {write_result['updated']}")
         lines.append(
-            f"SCRIPT #{analysis['index']:02d}"
+            f"Written this run    : {write_result['total_written']}"
         )
-
-        lines.append(
-            f"  id              : "
-            f"{analysis['id']}"
-        )
-
-        lines.append(
-            f"  type            : "
-            f"{analysis['type']}"
-        )
-
-        lines.append(
-            f"  chars           : "
-            f"{analysis['chars']:,}"
-        )
-
-        lines.append(
-            f"  likely_state    : "
-            f"{analysis['likely_state']}"
-        )
-
-        lines.append(
-            f"  JSON parse      : "
-            f"{'PASSED' if analysis['json_parse_ok'] else 'FAILED'}"
-        )
-
-        if (
-            not analysis[
-                "json_parse_ok"
-            ]
-        ):
-            lines.append(
-                f"  JSON error      : "
-                f"{analysis['json_error']}"
-            )
-
-        findings = analysis.get(
-            "findings"
-        )
-
-        if findings:
-            speed_values = findings[
-                "exact_speed_values"
-            ]
-
-            lines.append(
-                f"  HIGH/LOW/MID    : "
-                f"{len(speed_values)} exact values"
-            )
-
-            for item in speed_values[
-                :80
-            ]:
-                lines.append(
-                    f"    {item['path']} "
-                    f"= {item['value']}"
-                )
-
-            lines.append(
-                f"  Candidate objs  : "
-                f"{len(findings['interesting_objects'])}"
-            )
-
-            for item in findings[
-                "interesting_objects"
-            ][
-                :30
-            ]:
-                lines.append(
-                    f"    PATH  : "
-                    f"{item['path']}"
-                )
-
-                lines.append(
-                    f"    SCORE : "
-                    f"{item['score']}"
-                )
-
-                lines.append(
-                    f"    KEYS  : "
-                    f"{item['keys']}"
-                )
-
-                lines.append(
-                    f"    DATA  : "
-                    f"{item['preview']}"
-                )
-
-                lines.append("")
-
-        lines.append("")
-
-    lines.append(
-        "FOCUSED INLINE FINDINGS"
-    )
-
-    lines.append(
-        SUB
-    )
-
-    lines.append(
-        f"Matches             : "
-        f"{len(inline_findings)}"
-    )
-
-    for finding in inline_findings[
-        :160
-    ]:
-        lines.append(
-            f"[{finding['source']}] "
-            f"[{finding['term']}] "
-            f"pos={finding['position']}"
-        )
-
-        lines.append(
-            finding[
-                "snippet"
-            ]
-        )
-
-        lines.append("")
-
-    lines.append(
-        "EXTERNAL SCRIPT INVENTORY"
-    )
-
-    lines.append(
-        SUB
-    )
-
-    for item in fetched_scripts:
-        lines.append(
-            f"#{item['index']:02d} | "
-            f"HTTP {item['status']} | "
-            f"{item['bytes']:,} bytes | "
-            f"{item['url']} | "
-            f"saved={item['path']}"
-        )
-
-    lines.append("")
-
-    lines.append(
-        "FOCUSED EXTERNAL JS FINDINGS"
-    )
-
-    lines.append(
-        SUB
-    )
-
-    lines.append(
-        f"Matches             : "
-        f"{len(external_findings)}"
-    )
-
-    for finding in external_findings[
-        :180
-    ]:
-        lines.append(
-            f"[{finding['source']}] "
-            f"[{finding['term']}] "
-            f"pos={finding['position']}"
-        )
-
-        lines.append(
-            finding[
-                "snippet"
-            ]
-        )
-
-        lines.append("")
-
-    # --------------------------------------------------------
-    # Summary decision
-    # --------------------------------------------------------
-
-    parsed_states = [
-        item
-        for item in state_analyses
-        if item[
-            "json_parse_ok"
-        ]
-    ]
-
-    exact_speed_count = sum(
-        len(
-            (
-                item.get(
-                    "findings"
-                )
-                or {}
-            ).get(
-                "exact_speed_values",
-                []
-            )
-        )
-        for item in parsed_states
-    )
-
-    candidate_object_count = sum(
-        len(
-            (
-                item.get(
-                    "findings"
-                )
-                or {}
-            ).get(
-                "interesting_objects",
-                []
-            )
-        )
-        for item in parsed_states
-    )
-
-    lines.append(
-        "V1.4 RESULT"
-    )
-
-    lines.append(
-        SUB
-    )
-
-    lines.append(
-        f"JSON state scripts : "
-        f"{len(parsed_states)}"
-    )
-
-    lines.append(
-        f"Exact speed values : "
-        f"{exact_speed_count}"
-    )
-
-    lines.append(
-        f"Candidate objects  : "
-        f"{candidate_object_count}"
-    )
-
-    if (
-        exact_speed_count >= 3
-        and candidate_object_count > 0
-    ):
-        lines.append(
-            "Assessment          : "
-            "PROMISING - structured page state contains "
-            "speed-class and BoP-like data."
-        )
-
-    elif (
-        len(
-            external_findings
-        )
-        > 0
-    ):
-        lines.append(
-            "Assessment          : "
-            "SCRIPT PATH - speed switching is more likely "
-            "implemented in external JavaScript."
-        )
-
     else:
         lines.append(
-            "Assessment          : "
-            "UNRESOLVED - additional browser-level inspection "
-            "may be required."
+            "Write skipped       : extraction validation failed"
         )
 
-    lines.append("")
-
+    lines.append(f"Database records    : {db_stats['records']}")
+    lines.append(f"Database cars       : {db_stats['cars']}")
     lines.append(
-        "DATABASE"
+        f"Database speeds     : "
+        f"{', '.join(db_stats['speed_classes'])}"
     )
-
     lines.append(
-        SUB
-    )
-
-    lines.append(
-        f"Records             : "
-        f"{stats['records']}"
-    )
-
-    lines.append(
-        f"Validation          : "
-        f"{'PASSED' if validation['valid'] else 'FAILED'}"
+        f"Database validation : "
+        f"{'PASSED' if db_validation['valid'] else 'FAILED'}"
     )
 
     lines.append("")
+    lines.append("RESULT")
+    lines.append(SUB)
 
-    lines.append(
-        "IMPORTANT"
-    )
+    if (
+        extraction_validation["valid"]
+        and write_result
+        and db_validation["valid"]
+    ):
+        lines.append(
+            "SUCCESS: DG EDGE __NUXT_DATA__ directly contains "
+            "the three GR.3 BoP speed classes."
+        )
+        lines.append(
+            "HIGH / MID / LOW have been decoded without "
+            "simulating the website radio buttons."
+        )
+        lines.append(
+            "The experimental BoP database is now populated."
+        )
+    else:
+        lines.append(
+            "FAILED: database was not accepted as validated."
+        )
 
-    lines.append(
-        SUB
-    )
+    lines.append(SEP)
+    return "\n".join(lines)
 
-    lines.append(
-        "V1.4 remains diagnostic only."
-    )
-
-    lines.append(
-        "No BoP records are inserted yet."
-    )
-
-    lines.append(
-        SEP
-    )
-
-    return "\n".join(
-        lines
-    )
-
-
-# ============================================================
-# MAIN
-# ============================================================
 
 def main():
-    DATA_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    REPORT_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    RAW_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    STATE_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
-    JS_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
 
     print()
-
-    print(
-        f"GT7 BOP LAB V{VERSION}"
-    )
-
-    print(
-        SEP
-    )
-
-    print(
-        "Experimental pipeline."
-    )
-
-    print(
-        "The production Daily Race C agent "
-        "is NOT modified."
-    )
-
+    print(f"GT7 BOP LAB V{VERSION}")
+    print(SEP)
+    print("Experimental pipeline.")
+    print("Production Daily Race C remains untouched.")
     print()
 
     session = requests.Session()
+    session.headers.update(HEADERS)
 
-    session.headers.update(
-        HEADERS
-    )
-
-    # ========================================================
-    # INDEX + VERSION
-    # ========================================================
-
-    print(
-        "READING DG EDGE BOP INDEX"
-    )
-
-    print(
-        SUB
-    )
+    print("READING DG EDGE BOP INDEX")
+    print(SUB)
 
     index_result = fetch_text(
         session,
         DG_EDGE_BOP_URL,
     )
 
-    print(
-        f"HTTP status        : "
-        f"{index_result['status']}"
-    )
+    print(f"HTTP status        : {index_result['status']}")
+    print(f"Response bytes     : {index_result['bytes']:,}")
 
-    print(
-        f"Response bytes     : "
-        f"{index_result['bytes']:,}"
-    )
+    versions = extract_versions(index_result["text"])
 
-    versions = extract_versions(
-        index_result[
-            "text"
-        ]
-    )
-
-    print(
-        f"Versions detected  : "
-        f"{', '.join(versions)}"
-    )
+    print(f"Versions detected  : {', '.join(versions)}")
 
     if not versions:
-        raise RuntimeError(
-            "No BoP versions discovered."
-        )
+        raise RuntimeError("No BoP versions discovered.")
 
     print()
+    print("PROBING GR.3 VERSIONS")
+    print(SUB)
 
-    print(
-        "PROBING GR.3 VERSIONS"
-    )
-
-    print(
-        SUB
-    )
-
-    (
-        selected_version,
-        source,
-        probes,
-    ) = probe_versions(
+    selected_version, source, probes = probe_versions(
         session,
         GROUP,
         versions,
@@ -1733,284 +742,121 @@ def main():
         selected_version,
     )
 
-    html = source[
-        "text"
-    ]
+    print()
+    print("SELECTED BOP PAGE")
+    print(SUB)
+    print(f"Version            : {selected_version}")
+    print(f"URL                : {page_url}")
+
+    nuxt_text = extract_nuxt_data_text(source["text"])
+
+    if not nuxt_text:
+        raise RuntimeError("__NUXT_DATA__ script not found.")
+
+    save_nuxt_data(nuxt_text)
+
+    try:
+        raw_state = json.loads(nuxt_text)
+    except Exception as error:
+        raise RuntimeError(
+            "Could not parse __NUXT_DATA__ JSON: "
+            f"{error}"
+        ) from error
 
     print()
+    print("DECODING NUXT FLAT STATE")
+    print(SUB)
+    print(f"Flat state entries : {len(raw_state):,}")
 
-    print(
-        "SELECTED BOP PAGE"
-    )
+    candidates = decode_bop_candidates(raw_state)
 
-    print(
-        SUB
-    )
+    print(f"BoP candidates     : {len(candidates)}")
 
-    print(
-        f"Group              : "
-        f"{GROUP}"
-    )
-
-    print(
-        f"Version            : "
-        f"{selected_version}"
-    )
-
-    print(
-        f"URL                : "
-        f"{page_url}"
-    )
-
-    # ========================================================
-    # INVENTORY
-    # ========================================================
-
-    inventory = script_inventory(
-        html,
-        page_url,
-    )
-
-    print()
-
-    print(
-        "INLINE STATE INVENTORY"
-    )
-
-    print(
-        SUB
-    )
-
-    print(
-        f"Scripts total      : "
-        f"{len(inventory)}"
-    )
-
-    saved_inline = save_inline_scripts(
-        inventory
-    )
-
-    print(
-        f"Inline saved       : "
-        f"{len(saved_inline)}"
-    )
-
-    # ========================================================
-    # ANALYZE INLINE STATE
-    # ========================================================
-
-    state_analyses = analyze_inline_state(
-        inventory
-    )
-
-    likely_states = [
-        item
-        for item in state_analyses
-        if item[
-            "likely_state"
-        ]
+    records = [
+        build_database_record(
+            candidate["data"],
+            selected_version,
+            page_url,
+        )
+        for candidate in candidates
     ]
 
-    parsed_states = [
-        item
-        for item in state_analyses
-        if item[
-            "json_parse_ok"
-        ]
-    ]
+    extraction_validation = validate_extraction(records)
+    comparison = compare_speed_classes(records)
 
-    print(
-        f"Likely state       : "
-        f"{len(likely_states)}"
-    )
+    print(f"Decoded records    : {len(records)}")
 
-    print(
-        f"JSON parsed        : "
-        f"{len(parsed_states)}"
-    )
-
-    # ========================================================
-    # FOCUSED INLINE SEARCH
-    # ========================================================
-
-    inline_findings = focused_inline_findings(
-        inventory
-    )
-
-    print(
-        f"Inline findings    : "
-        f"{len(inline_findings)}"
-    )
-
-    # ========================================================
-    # EXTERNAL JS
-    # ========================================================
-
-    print()
-
-    print(
-        "FETCHING EXTERNAL JAVASCRIPT"
-    )
-
-    print(
-        SUB
-    )
-
-    fetched_scripts = fetch_external_scripts(
-        session,
-        inventory,
-    )
-
-    for item in fetched_scripts:
+    for speed in ["HIGH", "MID", "LOW"]:
         print(
-            f"#{item['index']:02d} | "
-            f"HTTP {item['status']} | "
-            f"{item['bytes']:,} bytes | "
-            f"{item['url']}"
+            f"{speed:<18}: "
+            f"{extraction_validation['counts'].get(speed, 0)}"
         )
 
-    external_findings = focused_external_findings(
-        fetched_scripts
-    )
-
     print(
-        f"Focused JS matches : "
-        f"{len(external_findings)}"
+        f"Unique cars        : "
+        f"{extraction_validation['unique_cars']}"
+    )
+    print(
+        f"Changing BoP       : "
+        f"{comparison['changed_count']}"
+    )
+    print(
+        f"Unchanged BoP      : "
+        f"{comparison['unchanged_count']}"
+    )
+    print(
+        f"Extraction valid   : "
+        f"{'YES' if extraction_validation['valid'] else 'NO'}"
     )
 
-    # ========================================================
-    # DATABASE - STILL READ-ONLY
-    # ========================================================
-
-    database = load_database()
-
-    save_database(
-        database
+    save_extracted_data(
+        selected_version,
+        page_url,
+        records,
+        extraction_validation,
+        comparison,
     )
 
-    stats = database_stats()
+    write_result = None
 
-    validation = validate_database()
+    if extraction_validation["valid"]:
+        write_result = write_database(records)
 
-    # ========================================================
-    # SAVE STATE ANALYSIS JSON
-    # ========================================================
-
-    state_payload = {
-        "generated_at":
-            now_iso(),
-
-        "lab_version":
-            VERSION,
-
-        "group":
-            GROUP,
-
-        "selected_version":
-            selected_version,
-
-        "page_url":
-            page_url,
-
-        "saved_inline_scripts":
-            saved_inline,
-
-        "state_analyses":
-            state_analyses,
-
-        "inline_findings":
-            inline_findings,
-
-        "external_script_summary":
-            [
-                {
-                    key:
-                        value
-                    for key, value
-                    in item.items()
-                    if key != "text"
-                }
-                for item
-                in fetched_scripts
-            ],
-
-        "external_findings":
-            external_findings,
-
-        "production_pipeline_modified":
-            False,
-    }
-
-    STATE_ANALYSIS_FILE.write_text(
-        json.dumps(
-            state_payload,
-            ensure_ascii=False,
-            indent=2,
-        ),
-        encoding="utf-8",
-    )
-
-    # ========================================================
-    # REPORT
-    # ========================================================
+    db_stats = database_stats()
+    db_validation = validate_database()
 
     report = build_report(
         selected_version=selected_version,
         probes=probes,
-        inventory=inventory,
-        saved_inline=saved_inline,
-        state_analyses=state_analyses,
-        inline_findings=inline_findings,
-        fetched_scripts=fetched_scripts,
-        external_findings=external_findings,
-        stats=stats,
-        validation=validation,
+        raw_candidate_count=len(candidates),
+        records=records,
+        extraction_validation=extraction_validation,
+        comparison=comparison,
+        write_result=write_result,
+        db_stats=db_stats,
+        db_validation=db_validation,
     )
 
-    REPORT_FILE.write_text(
-        report,
-        encoding="utf-8",
-    )
+    REPORT_FILE.write_text(report, encoding="utf-8")
 
     print()
-
-    print(
-        report
-    )
-
+    print(report)
     print()
+    print(f"Saved report       : {REPORT_FILE}")
+    print(f"Saved extraction   : {EXTRACTED_FILE}")
+    print(f"Saved raw Nuxt     : {NUXT_RAW_FILE}")
+    print(SEP)
 
-    print(
-        "FILES CREATED"
-    )
+    if not extraction_validation["valid"]:
+        raise RuntimeError(
+            "BoP extraction failed strict validation. "
+            "Database was not modified."
+        )
 
-    print(
-        SUB
-    )
-
-    print(
-        f"Report             : "
-        f"{REPORT_FILE}"
-    )
-
-    print(
-        f"State analysis     : "
-        f"{STATE_ANALYSIS_FILE}"
-    )
-
-    print(
-        f"Inline state dir   : "
-        f"{STATE_DIR}"
-    )
-
-    print(
-        f"External JS dir    : "
-        f"{JS_DIR}"
-    )
-
-    print(
-        SEP
-    )
+    if not db_validation["valid"]:
+        raise RuntimeError(
+            "BoP database failed validation."
+        )
 
 
 if __name__ == "__main__":
