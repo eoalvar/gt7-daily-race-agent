@@ -26,7 +26,7 @@ from bop_track_classifier import (
     compact_bop,
 )
 
-VERSION = "0.1"
+VERSION = "0.3"
 
 LATEST_SNAPSHOT_FILE = Path("data/latest_snapshot.json")
 TRACK_CLASSIFICATION_FILE = Path("data/bop_lab/current_track_bop.json")
@@ -38,6 +38,8 @@ ERROR_FILE = Path("data/bop_lab/sleeper_car_lab_error.txt")
 SEP = "=" * 100
 SUB = "-" * 100
 
+VALID_GROUPS = {"GR.1", "GR.2", "GR.3", "GR.4", "GR.B"}
+VALID_SPEEDS = {"HIGH", "MID", "LOW"}
 MIN_CAR_SAMPLE = 20
 PRIOR_STRENGTH = 150.0
 
@@ -83,16 +85,9 @@ def load_complete_leaderboard(event_url):
     session = requests.Session()
     session.headers.update(HEADERS)
 
-    first = fetch_page_data(
-        session,
-        event_url,
-        0,
-        PAGE_SIZE,
-    )
-
+    first = fetch_page_data(session, event_url, 0, PAGE_SIZE)
     total = safe_int(first.get("total")) or len(first["board"])
     ranking = list(first["board"])
-
     offset = len(first["board"])
 
     print(
@@ -104,14 +99,7 @@ def load_complete_leaderboard(event_url):
 
     while offset < total:
         page_number += 1
-
-        page = fetch_page_data(
-            session,
-            event_url,
-            offset,
-            PAGE_SIZE,
-        )
-
+        page = fetch_page_data(session, event_url, offset, PAGE_SIZE)
         board = page["board"]
 
         if not board:
@@ -150,7 +138,6 @@ def bayesian_lift(k, n, tier_size, total):
         return 1.0
 
     base_rate = min(tier_size, total) / total
-
     posterior_rate = (
         k + PRIOR_STRENGTH * base_rate
     ) / (
@@ -196,11 +183,7 @@ def sleeper_label(score, share, sample):
 
 
 def active_bop_for_car(all_bop_records, car, group, speed_class):
-    records, match = records_for_car(
-        all_bop_records,
-        car,
-        group,
-    )
+    records, match = records_for_car(all_bop_records, car, group)
 
     if not records:
         return None, match
@@ -220,7 +203,7 @@ def active_bop_for_car(all_bop_records, car, group, speed_class):
     return compact_bop(selected), match
 
 
-def build_car_statistics(ranking, total, car_database):
+def build_car_statistics(ranking, car_database):
     stats = defaultdict(
         lambda: {
             "car_code": None,
@@ -251,12 +234,9 @@ def build_car_statistics(ranking, total, car_database):
         item["all_count"] += 1
 
         if rank is not None:
-            if rank <= 100:
-                item["top100"] += 1
-            if rank <= 500:
-                item["top500"] += 1
-            if rank <= 1000:
-                item["top1000"] += 1
+            item["top100"] += int(rank <= 100)
+            item["top500"] += int(rank <= 500)
+            item["top1000"] += int(rank <= 1000)
 
             if item["best_rank"] is None or rank < item["best_rank"]:
                 item["best_rank"] = rank
@@ -278,11 +258,7 @@ def calculate_index(
     speed_class,
 ):
     results = []
-
-    elite_scale = max(
-        1.0,
-        float(top500_score - wr_score),
-    )
+    elite_scale = max(1.0, float(top500_score - wr_score))
 
     for item in car_stats:
         n = item["all_count"]
@@ -300,10 +276,8 @@ def calculate_index(
 
         efficiency_lift = math.exp(weighted_log_lift)
         quality = quality_component(efficiency_lift)
-
         share = n / total if total else 0.0
         rarity = 1.0 - math.sqrt(clamp(share))
-
         best_score = item.get("best_score")
 
         if best_score is None:
@@ -313,13 +287,11 @@ def calculate_index(
             elite_proximity = math.exp(-elite_gap / elite_scale)
 
         evidence = min(1.0, math.sqrt(n / 250.0))
-
         raw_score = 100.0 * (
             0.55 * quality
             + 0.25 * elite_proximity
             + 0.20 * rarity
         )
-
         sleeper_score = 50.0 + evidence * (raw_score - 50.0)
         sleeper_score = max(0.0, min(100.0, sleeper_score))
 
@@ -347,6 +319,7 @@ def calculate_index(
             "confidence": confidence_label(n),
             "active_bop": bop,
             "bop_match": match,
+            "bop_available": bop is not None,
         }
 
         results.append(result)
@@ -361,12 +334,6 @@ def calculate_index(
     )
 
     return results
-
-
-def fmt(value, decimals=2):
-    if isinstance(value, (int, float)):
-        return f"{value:.{decimals}f}"
-    return "N/A"
 
 
 def format_bop(record):
@@ -403,10 +370,20 @@ def run_lab():
     track = track_classification.get("track")
     speed_class = str(track_classification.get("speed_class") or "").upper()
 
-    if speed_class not in {"HIGH", "MID", "LOW"}:
+    if group not in VALID_GROUPS:
+        raise RuntimeError(f"Invalid or unsupported active group: {group}")
+
+    if speed_class not in VALID_SPEEDS:
         raise RuntimeError(f"Invalid active BoP speed class: {speed_class}")
 
     all_bop_records = bop_database.get("records") or []
+    group_records = [
+        r for r in all_bop_records
+        if str(r.get("group") or "").upper() == group
+    ]
+
+    if not group_records:
+        raise RuntimeError(f"BoP database has no records for {group}.")
 
     print()
     print(f"GT7 SLEEPER CAR LAB V{VERSION}")
@@ -414,6 +391,7 @@ def run_lab():
     print(f"Track               : {track}")
     print(f"Group               : {group}")
     print(f"Active BoP          : {speed_class}")
+    print(f"Group BoP records   : {len(group_records)}")
     print("Production modified : NO")
     print()
     print("LOADING COMPLETE LIVE LEADERBOARD")
@@ -438,11 +416,7 @@ def run_lab():
         raise RuntimeError("Could not determine Top 500 benchmark.")
 
     car_database = load_car_database()
-    car_stats = build_car_statistics(
-        ranking,
-        total,
-        car_database,
-    )
+    car_stats = build_car_statistics(ranking, car_database)
 
     results = calculate_index(
         car_stats=car_stats,
@@ -460,6 +434,9 @@ def run_lab():
         if item["all_count"] >= MIN_CAR_SAMPLE
     ]
 
+    bop_covered = [item for item in eligible if item.get("bop_available")]
+    bop_missing = [item for item in eligible if not item.get("bop_available")]
+
     payload = {
         "generated_at": now_iso(),
         "version": VERSION,
@@ -467,6 +444,7 @@ def run_lab():
         "track": track,
         "group": group,
         "speed_class": speed_class,
+        "model_key": f"{group}|{speed_class}",
         "total_drivers": total,
         "world_record_score": wr_score,
         "world_record_laptime": score_to_laptime(wr_score),
@@ -484,9 +462,16 @@ def run_lab():
             },
             "evidence_shrinkage": "Score is shrunk toward neutral 50 for small car samples.",
             "bop_role": (
-                "BoP-aware: all technical descriptors use the active speed-class table. "
-                "Technical values are not yet assigned arbitrary performance weights."
+                "BoP-aware and multi-group. The current race group selects an isolated group table, "
+                "and the circuit selects HIGH/MID/LOW. Technical variables are learned separately "
+                "for each group + speed-class model."
             ),
+        },
+        "bop_coverage": {
+            "group_database_records": len(group_records),
+            "eligible_cars_with_bop": len(bop_covered),
+            "eligible_cars_without_bop": len(bop_missing),
+            "unmatched_cars": [item["car"] for item in bop_missing],
         },
         "cars_total": len(results),
         "cars_eligible": len(eligible),
@@ -511,9 +496,12 @@ def run_lab():
         f"Track                : {track}",
         f"Group                : {group}",
         f"Active BoP           : {speed_class}",
+        f"Model key            : {group}|{speed_class}",
         f"Total drivers        : {total:,}",
         f"Cars observed        : {len(results)}",
         f"Cars eligible (n>={MIN_CAR_SAMPLE}) : {len(eligible)}",
+        f"Eligible with BoP    : {len(bop_covered)}",
+        f"Eligible without BoP : {len(bop_missing)}",
         f"WR                   : {score_to_laptime(wr_score)}",
         f"Top 500              : {score_to_laptime(top500_score)}",
         f"Elapsed              : {elapsed:.1f}s",
@@ -521,11 +509,11 @@ def run_lab():
         "",
         "METHOD",
         SUB,
-        "Sleeper Score is NOT simple car popularity or the old overperformance index.",
-        "It combines Bayesian-shrunk representation efficiency in Top 100/500/1000,",
-        "best-car elite proximity, rarity, and sample-size evidence strength.",
-        "Active BoP technical data is attached using the circuit speed class; technical",
-        "fields are intentionally not given arbitrary weights in V0.1.",
+        "The current Daily Race group selects an isolated BoP population (GR.1/2/3/4/B).",
+        "The circuit then selects the HIGH/MID/LOW table inside that group.",
+        "Sleeper Score combines Bayesian-shrunk Top100/500/1000 efficiency, elite proximity,",
+        "rarity and evidence strength. Technical variables remain explanatory only until the",
+        "matching group + speed-class model has enough independent race weeks.",
         "",
         "TOP SLEEPER CANDIDATES",
         SUB,
@@ -541,23 +529,28 @@ def run_lab():
             f"Conf {item['confidence']}"
         )
         lines.append(
-            f"    Active {speed_class} BoP: {format_bop(item.get('active_bop'))}"
+            f"    Active {group} {speed_class} BoP: {format_bop(item.get('active_bop'))}"
         )
+
+    if bop_missing:
+        lines += [
+            "",
+            "BOP MAPPING GAPS",
+            SUB,
+        ]
+        for item in bop_missing:
+            lines.append(
+                f"- {item['car']} | n={item['all_count']} | SCI still calculated, technical model excluded"
+            )
 
     lines += [
         "",
-        "META VS SLEEPER INTERPRETATION",
+        "MULTI-GROUP MODEL POLICY",
         SUB,
-        "A high SCI means the car is producing disproportionately strong leaderboard results",
-        "despite relatively low adoption, with Bayesian shrinkage to reduce small-sample noise.",
-        "A dominant meta car can still be objectively excellent, but its rarity component is low,",
-        "so it will not automatically be called a sleeper simply because elite drivers use it.",
-        "",
-        "NEXT MODEL STEP",
-        SUB,
-        "V0.2 should learn circuit-specific technical weights from multiple finalized races.",
-        "That is where power/weight, weight balance, acceleration, rotational G and stability",
-        "can become explanatory/predictive variables instead of hand-picked assumptions.",
+        "GR.3 observations never train GR.4, GR.2, GR.1 or GR.B models.",
+        "Likewise HIGH/MID/LOW are independent within each group.",
+        "This prevents a technical relationship learned in one vehicle class from being",
+        "incorrectly transferred to another class with different aero, mass and power behavior.",
         SEP,
     ]
 
