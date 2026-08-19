@@ -32,6 +32,13 @@ jobs:
         run: |
           python src/bop_lab.py
 
+      - name: Classify current track BoP
+        id: run_track_classifier
+        if: steps.run_bop_lab.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python src/bop_track_classifier.py
+
       - name: Save BoP Lab results
         if: always()
         run: |
@@ -40,7 +47,8 @@ jobs:
 
           git add \
             data/bop_lab/ \
-            reports/bop_lab.txt
+            reports/bop_lab.txt \
+            reports/bop_track_classifier.txt
 
           if git diff --cached --quiet; then
             echo "No BoP Lab changes to save."
@@ -53,4 +61,10 @@ jobs:
         if: steps.run_bop_lab.outcome == 'failure'
         run: |
           echo "BoP Lab diagnostic failed. Generated diagnostic files were preserved."
+          exit 1
+
+      - name: Report track classifier failure
+        if: steps.run_bop_lab.outcome == 'success' && steps.run_track_classifier.outcome == 'failure'
+        run: |
+          echo "BoP track classifier failed. Generated BoP Lab files were preserved."
           exit 1
