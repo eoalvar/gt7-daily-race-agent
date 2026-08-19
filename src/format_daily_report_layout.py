@@ -4,6 +4,7 @@ from pathlib import Path
 
 REPORT_FILE = Path("reports/latest.txt")
 WEEKLY_HISTORY_FILE = Path("data/weekly_rating_history.json")
+TRACK_BOP_FILE = Path("data/bop_lab/track_bop_classes.json")
 
 UNWANTED_START = "YOUR BRAKE BIAS STARTING POINT\n"
 UNWANTED_END = "FORECAST TO SUNDAY - V2\n"
@@ -127,11 +128,50 @@ def format_header(text):
     return "\n".join(lines) + ("\n" if text.endswith("\n") else "")
 
 
-def extract_group_and_circuit(record):
-    race = str(record.get("race") or "").strip()
-    car = str(record.get("car") or "").strip()
+def load_track_names():
+    """Return canonical circuit names and aliases, longest names first."""
+    if not TRACK_BOP_FILE.exists():
+        return []
 
-    group_match = re.match(r"^C\s+(Gr\.[1234]|Gr\.B)\b", race, flags=re.IGNORECASE)
+    try:
+        data = json.loads(TRACK_BOP_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+
+    tracks = data.get("tracks") if isinstance(data, dict) else None
+    if not isinstance(tracks, dict):
+        return []
+
+    names = []
+
+    for canonical, info in tracks.items():
+        if not isinstance(canonical, str) or not canonical.strip():
+            continue
+
+        canonical = canonical.strip()
+        names.append((canonical, canonical))
+
+        if isinstance(info, dict):
+            aliases = info.get("aliases")
+            if isinstance(aliases, list):
+                for alias in aliases:
+                    if isinstance(alias, str) and alias.strip():
+                        names.append((alias.strip(), canonical))
+
+    # Prefer the longest match so variants such as "... Reverse" are not
+    # truncated to their shorter base circuit name.
+    names.sort(key=lambda item: len(item[0]), reverse=True)
+    return names
+
+
+def extract_group_and_circuit(record, track_names):
+    race = str(record.get("race") or "").strip()
+
+    group_match = re.match(
+        r"^C\s+(Gr\.[1234]|Gr\.B)\b",
+        race,
+        flags=re.IGNORECASE,
+    )
     group = group_match.group(1) if group_match else "Group N/A"
 
     after_time_match = re.search(
@@ -143,29 +183,18 @@ def extract_group_and_circuit(record):
         return group, "Circuit N/A"
 
     remainder = after_time_match.group(1).strip()
+    remainder_lower = remainder.casefold()
 
-    before_driver = None
-    if car:
-        marker = f" - {car}"
-        marker_pos = remainder.rfind(marker)
-        if marker_pos >= 0:
-            before_driver = remainder[:marker_pos].strip()
+    # Circuit names come from the validated track database. Matching the
+    # beginning of the post-time text avoids ever consuming WR driver/car/setup.
+    for candidate, canonical in track_names:
+        candidate_lower = candidate.casefold()
+        if remainder_lower == candidate_lower or remainder_lower.startswith(candidate_lower + " "):
+            # Preserve the exact variant written in the race string when it is
+            # itself a full known alias; otherwise use the canonical name.
+            return group, candidate
 
-    if not before_driver:
-        generic_pos = remainder.rfind(" - ")
-        if generic_pos >= 0:
-            before_driver = remainder[:generic_pos].strip()
-
-    if not before_driver:
-        return group, "Circuit N/A"
-
-    # GTSH appends the WR driver immediately after the circuit.
-    # Common forms are "J. Serrano", "D. Chafe", "N.Baglioni" or a PSN-like token.
-    circuit = re.sub(r"\s+[A-Z]\.?\s+[^\s]+$", "", before_driver).strip()
-    if circuit == before_driver:
-        circuit = re.sub(r"\s+[^\s]+$", "", before_driver).strip()
-
-    return group, circuit or "Circuit N/A"
+    return group, "Circuit N/A"
 
 
 def load_finalized_race_context():
@@ -180,7 +209,9 @@ def load_finalized_race_context():
     if not isinstance(history, list):
         return {}
 
+    track_names = load_track_names()
     context = {}
+
     for record in history:
         if not isinstance(record, dict) or record.get("participated") is not True:
             continue
@@ -189,7 +220,7 @@ def load_finalized_race_context():
         if not week:
             continue
 
-        group, circuit = extract_group_and_circuit(record)
+        group, circuit = extract_group_and_circuit(record, track_names)
         context[week] = {
             "group": group,
             "circuit": circuit,
@@ -199,44 +230,68 @@ def load_finalized_race_context():
 
 
 def enrich_finalized_history(text):
-    """Add group and circuit to each LAST FINALIZED RACES line."""
+    """Render each finalized race as a clean two-line memory aid."""
     context = load_finalized_race_context()
     if not context or "LAST FINALIZED RACES" not in text:
         return text
 
-    lines = text.splitlines()
+    source_lines = text.splitlines()
+    output = []
     in_section = False
+    i = 0
 
-    for i, line in enumerate(lines):
+    while i < len(source_lines):
+        line = source_lines[i]
+
         if line.strip() == "LAST FINALIZED RACES":
             in_section = True
+            output.append(line)
+            i += 1
+            continue
+
+        if in_section and not line.strip():
+            in_section = False
+            output.append(line)
+            i += 1
             continue
 
         if not in_section:
+            output.append(line)
+            i += 1
             continue
 
-        if not line.strip():
-            break
-
-        match = re.match(r"^(\d{4}-\d{2}-\d{2})\s*\|\s*(.+)$", line)
+        match = re.match(r"^-?\s*(\d{4}-\d{2}-\d{2})\s*\|\s*(.+)$", line)
         if not match:
+            output.append(line)
+            i += 1
             continue
 
         week = match.group(1)
-        rest = match.group(2)
+        remainder = match.group(2)
         info = context.get(week)
+
         if not info:
+            output.append(line)
+            i += 1
             continue
 
-        # Idempotent: don't add the context twice.
-        if rest.startswith(f"{info['group']} |"):
-            continue
+        # Accept both the original one-line history and a previously enriched
+        # version. Only the metric payload beginning at "Gen" is retained.
+        metrics_match = re.search(r"\bGen\s+.+$", remainder)
+        if not metrics_match and i + 1 < len(source_lines):
+            metrics_match = re.search(r"\bGen\s+.+$", source_lines[i + 1])
+            if metrics_match:
+                i += 1
 
-        lines[i] = (
-            f"{week} | {info['group']} | {info['circuit']} | {rest}"
+        metrics = metrics_match.group(0).strip() if metrics_match else remainder.strip()
+
+        output.append(
+            f"- {week} | {info['group']} | {info['circuit']}"
         )
+        output.append(metrics)
+        i += 1
 
-    return "\n".join(lines) + ("\n" if text.endswith("\n") else "")
+    return "\n".join(output) + ("\n" if text.endswith("\n") else "")
 
 
 def format_one_report(text):
@@ -288,9 +343,9 @@ def main():
         "header_current_wr": "Current WR:" in formatted,
         "header_current_wr_car": "Current WR Car:" in formatted,
         "header_race_setup": "Race Setup:" in formatted,
-        "finalized_history_context": (
+        "finalized_history_two_line": (
             "LAST FINALIZED RACES" not in formatted
-            or bool(re.search(r"^\d{4}-\d{2}-\d{2} \| Gr\.", formatted, re.MULTILINE))
+            or bool(re.search(r"^- \d{4}-\d{2}-\d{2} \| Gr\.", formatted, re.MULTILINE))
         ),
     }
 
