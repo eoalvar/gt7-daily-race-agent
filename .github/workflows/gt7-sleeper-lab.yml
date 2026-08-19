@@ -26,6 +26,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
+      - name: Backfill historical Sleeper training data
+        id: run_history_backfill
+        continue-on-error: true
+        run: |
+          python src/sleeper_history_backfill.py
+
       - name: Run Sleeper Car Lab base model
         id: run_sleeper_lab
         continue-on-error: true
@@ -47,7 +53,9 @@ jobs:
             \( -name 'sleeper_car_index.json' \
             -o -name 'sleeper_training_history.json' \
             -o -name 'sleeper_car_lab_error.txt' \
-            -o -name 'sleeper_car_lab.txt' \) \
+            -o -name 'sleeper_history_backfill_error.txt' \
+            -o -name 'sleeper_car_lab.txt' \
+            -o -name 'sleeper_history_backfill.txt' \) \
             -print || true
 
       - name: Save Sleeper Car Lab results
@@ -60,7 +68,9 @@ jobs:
             data/bop_lab/sleeper_car_index.json \
             data/bop_lab/sleeper_training_history.json \
             data/bop_lab/sleeper_car_lab_error.txt \
-            reports/sleeper_car_lab.txt
+            data/bop_lab/sleeper_history_backfill_error.txt \
+            reports/sleeper_car_lab.txt \
+            reports/sleeper_history_backfill.txt
           do
             if [ -f "$file" ]; then
               git add "$file"
@@ -75,7 +85,7 @@ jobs:
           fi
 
       - name: Report Sleeper Car Lab failure
-        if: steps.run_sleeper_lab.outcome == 'failure' || steps.run_technical_learning.outcome == 'failure'
+        if: steps.run_history_backfill.outcome == 'failure' || steps.run_sleeper_lab.outcome == 'failure' || steps.run_technical_learning.outcome == 'failure'
         run: |
-          echo "Sleeper Car Lab V0.2 failed. Diagnostic files were preserved."
+          echo "Sleeper Car Lab V0.2 had a failed stage. Diagnostic files were preserved."
           exit 1
