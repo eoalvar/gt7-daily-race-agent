@@ -26,11 +26,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Run GT7 BoP Lab
+      - name: Run GT7 Multi-Group BoP Lab
         id: run_bop_lab
         continue-on-error: true
         run: |
-          python src/bop_lab.py
+          python src/bop_multi_group_lab.py
 
       - name: Classify current track BoP
         id: run_track_classifier
@@ -45,22 +45,27 @@ jobs:
           git config user.name "GT7 BoP Lab"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add \
+          for path in \
             data/bop_lab/ \
-            reports/bop_lab.txt \
+            reports/bop_multi_group_lab.txt \
             reports/bop_track_classifier.txt
+          do
+            if [ -e "$path" ]; then
+              git add "$path"
+            fi
+          done
 
           if git diff --cached --quiet; then
             echo "No BoP Lab changes to save."
           else
-            git commit -m "Update GT7 BoP Lab data"
+            git commit -m "Update GT7 multi-group BoP Lab data"
             git push
           fi
 
       - name: Report BoP Lab failure
         if: steps.run_bop_lab.outcome == 'failure'
         run: |
-          echo "BoP Lab diagnostic failed. Generated diagnostic files were preserved."
+          echo "Multi-group BoP Lab failed. Generated diagnostic files were preserved."
           exit 1
 
       - name: Report track classifier failure
