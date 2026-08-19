@@ -1,18 +1,18 @@
 GT7 SLEEPER CAR LAB V0.3
 ====================================================================================================
-Generated            : 2026-08-19T23:22:51.955300+00:00
+Generated            : 2026-08-19T23:31:11.682150+00:00
 Track                : Yas Marina Circuit
 Group                : GR.3
 Active BoP           : MID
 Model key            : GR.3|MID
-Total drivers        : 20,646
+Total drivers        : 20,650
 Cars observed        : 53
 Cars eligible (n>=20) : 42
 Eligible with BoP    : 42
 Eligible without BoP : 0
 WR                   : 1:51.868
-Top 500              : 1:53.518
-Elapsed              : 99.5s
+Top 500              : 1:53.515
+Elapsed              : 76.1s
 Production modified  : NO
 
 METHOD
@@ -25,9 +25,9 @@ matching group + speed-class model has enough independent race weeks.
 
 TOP SLEEPER CANDIDATES
 ----------------------------------------------------------------------------------------------------
- 1. Jaguar F-type Gr.3 | SCI 76.9 | STRONG SLEEPER | n=319 (1.55%) | Eff 1.36x | T100 3 / T500 13 / T1000 20 | Best #5 1:52.005 | Conf MEDIUM
+ 1. Jaguar F-type Gr.3 | SCI 76.8 | STRONG SLEEPER | n=320 (1.55%) | Eff 1.35x | T100 3 / T500 13 / T1000 20 | Best #5 1:52.005 | Conf MEDIUM
     Active GR.3 MID BoP: 469 HP / 1265 kg / PP 695.6 / FR
- 2. Porsche 911 GT3 R (992) '22 | SCI 66.6 | META / PROVEN | n=11898 (57.63%) | Eff 1.38x | T100 79 / T500 407 / T1000 788 | Best #1 1:51.868 | Conf HIGH
+ 2. Porsche 911 GT3 R (992) '22 | SCI 66.6 | META / PROVEN | n=11902 (57.64%) | Eff 1.38x | T100 79 / T500 407 / T1000 788 | Best #1 1:51.868 | Conf HIGH
     Active GR.3 MID BoP: 446 HP / 1320 kg / PP 693.04 / RR
  3. Hyundai Genesis Gr.3 | SCI 62.5 | SLEEPER CANDIDATE | n=44 (0.21%) | Eff 1.55x | T100 1 / T500 4 / T1000 6 | Best #13 1:52.165 | Conf LOW
     Active GR.3 MID BoP: 483 HP / 1269 kg / PP 693.53 / FR
@@ -45,15 +45,15 @@ TOP SLEEPER CANDIDATES
     Active GR.3 MID BoP: 507 HP / 1310 kg / PP 701.43 / FR
 10. Subaru WRX Gr.3 | SCI 54.9 | WATCHLIST | n=58 (0.28%) | Eff 0.98x | T100 1 / T500 1 / T1000 1 | Best #93 1:52.803 | Conf LOW-MEDIUM
     Active GR.3 MID BoP: 497 HP / 1305 kg / PP 700.75 / FR
-11. BMW Z4 GT3 '11 | SCI 53.8 | NO SLEEPER SIGNAL | n=56 (0.27%) | Eff 0.98x | T100 0 / T500 1 / T1000 4 | Best #166 1:53.023 | Conf LOW-MEDIUM
+11. BMW Z4 GT3 '11 | SCI 53.8 | NO SLEEPER SIGNAL | n=56 (0.27%) | Eff 0.98x | T100 0 / T500 1 / T1000 4 | Best #167 1:53.023 | Conf LOW-MEDIUM
     Active GR.3 MID BoP: 460 HP / 1250 kg / PP 687.84 / FR
-12. Toyota Supra GT500 '97 | SCI 53.5 | NO SLEEPER SIGNAL | n=38 (0.18%) | Eff 1.03x | T100 0 / T500 2 / T1000 2 | Best #225 1:53.135 | Conf LOW
+12. Toyota Supra GT500 '97 | SCI 53.5 | NO SLEEPER SIGNAL | n=38 (0.18%) | Eff 1.03x | T100 0 / T500 2 / T1000 2 | Best #227 1:53.135 | Conf LOW
     Active GR.3 MID BoP: 448 HP / 1175 kg / PP 689.97 / FR
 13. Lamborghini Huracán GT3 '15 | SCI 52.5 | NO SLEEPER SIGNAL | n=495 (2.40%) | Eff 0.78x | T100 1 / T500 11 / T1000 18 | Best #69 1:52.674 | Conf MEDIUM
     Active GR.3 MID BoP: 450 HP / 1330 kg / PP 689.81 / MR
-14. Renault Sport R.S.01 GT3 '16 | SCI 51.2 | NO SLEEPER SIGNAL | n=86 (0.42%) | Eff 0.82x | T100 0 / T500 2 / T1000 2 | Best #205 1:53.107 | Conf LOW-MEDIUM
+14. Renault Sport R.S.01 GT3 '16 | SCI 51.2 | NO SLEEPER SIGNAL | n=86 (0.42%) | Eff 0.82x | T100 0 / T500 2 / T1000 2 | Best #207 1:53.107 | Conf LOW-MEDIUM
     Active GR.3 MID BoP: 466 HP / 1320 kg / PP 689.38 / MR
-15. MAZDA RX-VISION GT3 CONCEPT Stealth Model | SCI 50.4 | NO SLEEPER SIGNAL | n=29 (0.14%) | Eff 0.89x | T100 0 / T500 0 / T1000 1 | Best #849 1:53.789 | Conf LOW
+15. MAZDA RX-VISION GT3 CONCEPT Stealth Model | SCI 50.4 | NO SLEEPER SIGNAL | n=29 (0.14%) | Eff 0.89x | T100 0 / T500 0 / T1000 1 | Best #852 1:53.789 | Conf LOW
     Active GR.3 MID BoP: 433 HP / 1269 kg / PP 694.26 / FR
 
 MULTI-GROUP MODEL POLICY
@@ -81,7 +81,7 @@ Observed correlations (diagnostic only):
   acceleration_100_150     -0.043
   rotational_g_60          -0.021
   rotational_g_120         +0.065
-  rotational_g_240         +0.121
+  rotational_g_240         +0.120
 
 MODEL COVERAGE
   GR.3|MID       3 independent race(s) | ACTIVE
@@ -124,7 +124,7 @@ CURRENT-WEEK PRACTICAL PRIORITIES
  3. Mitsubishi Lancer Evolution Final Edition Gr.3 | SSI 63.3 | Current SCI 55.2 | STRUCTURAL SLEEPER CANDIDATE | TEST THIS WEEK
  4. Genesis X GR3 | SSI 58.8 | Current SCI 48.4 | STRUCTURAL SLEEPER CANDIDATE | TEST THIS WEEK
  5. Lexus RC F GT3 '17 | SSI 58.1 | Current SCI 56.8 | STRUCTURAL SLEEPER CANDIDATE | TEST THIS WEEK
- 6. Jaguar F-type Gr.3 | SSI 52.1 | Current SCI 76.9 | STRUCTURAL META | CURRENT-WEEK SIGNAL ONLY
+ 6. Jaguar F-type Gr.3 | SSI 52.1 | Current SCI 76.8 | STRUCTURAL META | CURRENT-WEEK SIGNAL ONLY
  7. Volkswagen Beetle Gr.3 | SSI 50.3 | Current SCI 62.1 | STRUCTURAL META | CURRENT-WEEK SIGNAL ONLY
  8. Porsche 911 GT3 R (992) '22 | SSI 44.3 | Current SCI 66.6 | STRUCTURAL META | CURRENT-WEEK SIGNAL ONLY
 

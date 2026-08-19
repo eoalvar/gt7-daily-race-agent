@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T23:22:52.122429+00:00",
+  "generated_at": "2026-08-19T23:31:11.826847+00:00",
   "version": "0.2",
   "model_key": "GR.3|MID",
   "group": "GR.3",
@@ -48,9 +48,9 @@
       "raw_structural_score": 85.85927960927961,
       "calibrated_structural_score": 69.52760264650351,
       "structural_sleeper_score": 69.52760264650351,
-      "current_sci": 62.50590851488569,
+      "current_sci": 62.50405396072142,
       "current_label": "SLEEPER CANDIDATE",
-      "current_share_percent": 0.2131163421486002,
+      "current_share_percent": 0.21307506053268765,
       "current_week_present": true,
       "observations": [
         {
@@ -83,8 +83,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Hyundai Genesis Gr.3",
           "sample": 44,
-          "share": 0.002131163421486002,
-          "performance_target": 0.7633147786561592,
+          "share": 0.0021307506053268766,
+          "performance_target": 0.7632465427788241,
           "performance_percentile": 0.9642857142857143,
           "usage_percentile": 0.2261904761904762,
           "sleeper_differential": 0.7380952380952381
@@ -113,9 +113,9 @@
       "raw_structural_score": 75.71733821733821,
       "calibrated_structural_score": 64.20748373484562,
       "structural_sleeper_score": 64.20748373484562,
-      "current_sci": 50.40030164175092,
+      "current_sci": 50.394814682646526,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.14046304368885013,
+      "current_share_percent": 0.1404358353510896,
       "current_week_present": true,
       "observations": [
         {
@@ -148,8 +148,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "MAZDA RX-VISION GT3 CONCEPT Stealth Model",
           "sample": 29,
-          "share": 0.0014046304368885013,
-          "performance_target": 0.3943210604181394,
+          "share": 0.001404358353510896,
+          "performance_target": 0.3940937384281229,
           "performance_percentile": 0.6071428571428571,
           "usage_percentile": 0.08333333333333333,
           "sleeper_differential": 0.5238095238095237
@@ -178,9 +178,9 @@
       "raw_structural_score": 71.13858363858364,
       "calibrated_structural_score": 63.32702452266955,
       "structural_sleeper_score": 63.32702452266955,
-      "current_sci": 55.19174773712369,
+      "current_sci": 55.18599677755126,
       "current_label": "WATCHLIST",
-      "current_share_percent": 0.23733410830185023,
+      "current_share_percent": 0.23728813559322032,
       "current_week_present": true,
       "observations": [
         {
@@ -213,8 +213,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Mitsubishi Lancer Evolution Final Edition Gr.3",
           "sample": 49,
-          "share": 0.0023733410830185024,
-          "performance_target": 0.5359790167962827,
+          "share": 0.0023728813559322033,
+          "performance_target": 0.5357927544791259,
           "performance_percentile": 0.8452380952380952,
           "usage_percentile": 0.25,
           "sleeper_differential": 0.5952380952380952
@@ -561,9 +561,9 @@
       "raw_structural_score": 69.55128205128204,
       "calibrated_structural_score": 59.30503464450861,
       "structural_sleeper_score": 59.30503464450861,
-      "current_sci": 48.639421299659894,
+      "current_sci": 48.63571189531426,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.11624527753560013,
+      "current_share_percent": 0.1162227602905569,
       "current_week_present": true,
       "observations": [
         {
@@ -596,8 +596,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Aston Martin DBR9 GT1 '10",
           "sample": 24,
-          "share": 0.0011624527753560012,
-          "performance_target": 0.3177786541327358,
+          "share": 0.001162227602905569,
+          "performance_target": 0.31761012076960776,
           "performance_percentile": 0.5119047619047619,
           "usage_percentile": 0.011904761904761904,
           "sleeper_differential": 0.49999999999999994
@@ -626,9 +626,9 @@
       "raw_structural_score": 63.888888888888886,
       "calibrated_structural_score": 58.77560934400963,
       "structural_sleeper_score": 58.77560934400963,
-      "current_sci": 48.41016328525346,
+      "current_sci": 48.4034733590367,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.2082727889179502,
+      "current_share_percent": 0.2082324455205811,
       "current_week_present": true,
       "observations": [
         {
@@ -661,8 +661,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Genesis X GR3",
           "sample": 43,
-          "share": 0.002082727889179502,
-          "performance_target": 0.33533227851415737,
+          "share": 0.002082324455205811,
+          "performance_target": 0.33510520902007934,
           "performance_percentile": 0.5357142857142857,
           "usage_percentile": 0.20238095238095238,
           "sleeper_differential": 0.3333333333333333
@@ -744,9 +744,9 @@
       "raw_structural_score": 60.81349206349206,
       "calibrated_structural_score": 58.067086544615506,
       "structural_sleeper_score": 58.067086544615506,
-      "current_sci": 56.828221512758404,
+      "current_sci": 56.822915447723055,
       "current_label": "WATCHLIST",
-      "current_share_percent": 0.31967451322290036,
+      "current_share_percent": 0.3196125907990315,
       "current_week_present": true,
       "observations": [
         {
@@ -779,8 +779,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Lexus RC F GT3 '17",
           "sample": 66,
-          "share": 0.0031967451322290033,
-          "performance_target": 0.5616843968325771,
+          "share": 0.0031961259079903146,
+          "performance_target": 0.5615345974613086,
           "performance_percentile": 0.8690476190476191,
           "usage_percentile": 0.34523809523809523,
           "sleeper_differential": 0.5238095238095238
@@ -968,9 +968,9 @@
       "raw_structural_score": 58.501221001221,
       "calibrated_structural_score": 56.320226476241345,
       "structural_sleeper_score": 56.320226476241345,
-      "current_sci": 54.87950665773474,
+      "current_sci": 54.8731876414259,
       "current_label": "WATCHLIST",
-      "current_share_percent": 0.28092608737770025,
+      "current_share_percent": 0.2808716707021792,
       "current_week_present": true,
       "observations": [
         {
@@ -1003,8 +1003,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Subaru WRX Gr.3",
           "sample": 58,
-          "share": 0.0028092608737770026,
-          "performance_target": 0.5177475234912706,
+          "share": 0.002808716707021792,
+          "performance_target": 0.5175593363449985,
           "performance_percentile": 0.7738095238095238,
           "usage_percentile": 0.32142857142857145,
           "sleeper_differential": 0.4523809523809524
@@ -1033,9 +1033,9 @@
       "raw_structural_score": 57.0970695970696,
       "calibrated_structural_score": 54.698662208761874,
       "structural_sleeper_score": 54.698662208761874,
-      "current_sci": 50.112009112732146,
+      "current_sci": 50.10358386850006,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.36811004552940035,
+      "current_share_percent": 0.36803874092009686,
       "current_week_present": true,
       "observations": [
         {
@@ -1068,8 +1068,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Aston Martin V12 Vantage GT3 '12",
           "sample": 76,
-          "share": 0.0036811004552940035,
-          "performance_target": 0.3972956163719623,
+          "share": 0.0036803874092009685,
+          "performance_target": 0.39707857404099345,
           "performance_percentile": 0.6309523809523809,
           "usage_percentile": 0.4166666666666667,
           "sleeper_differential": 0.21428571428571425
@@ -1098,9 +1098,9 @@
       "raw_structural_score": 56.82234432234432,
       "calibrated_structural_score": 54.4822413730653,
       "structural_sleeper_score": 54.4822413730653,
-      "current_sci": 53.84188934076215,
+      "current_sci": 53.83512165216268,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.27123898091640025,
+      "current_share_percent": 0.2711864406779661,
       "current_week_present": true,
       "observations": [
         {
@@ -1133,8 +1133,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "BMW Z4 GT3 '11",
           "sample": 56,
-          "share": 0.0027123898091640027,
-          "performance_target": 0.4898756572623217,
+          "share": 0.002711864406779661,
+          "performance_target": 0.4896709581385118,
           "performance_percentile": 0.7261904761904762,
           "usage_percentile": 0.2976190476190476,
           "sleeper_differential": 0.42857142857142855
@@ -1163,9 +1163,9 @@
       "raw_structural_score": 57.50152625152625,
       "calibrated_structural_score": 53.959383905444355,
       "structural_sleeper_score": 53.959383905444355,
-      "current_sci": 47.78292767168013,
+      "current_sci": 47.78014317948436,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.13561949045820013,
+      "current_share_percent": 0.13559322033898305,
       "current_week_present": true,
       "observations": [
         {
@@ -1198,8 +1198,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "McLaren F1 GTR - BMW '95",
           "sample": 28,
-          "share": 0.0013561949045820013,
-          "performance_target": 0.2887288428078591,
+          "share": 0.0013559322033898306,
+          "performance_target": 0.28861136040762636,
           "performance_percentile": 0.25,
           "usage_percentile": 0.05952380952380952,
           "sleeper_differential": 0.19047619047619047
@@ -1228,9 +1228,9 @@
       "raw_structural_score": 55.082417582417584,
       "calibrated_structural_score": 53.08882086488273,
       "structural_sleeper_score": 53.08882086488273,
-      "current_sci": 47.95496625480028,
+      "current_sci": 47.952015963067595,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.13077593722755013,
+      "current_share_percent": 0.13075060532687652,
       "current_week_present": true,
       "observations": [
         {
@@ -1263,8 +1263,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "BMW M3 GT '11",
           "sample": 27,
-          "share": 0.0013077593722755014,
-          "performance_target": 0.2938107042053478,
+          "share": 0.0013075060532687652,
+          "performance_target": 0.29368403914160873,
           "performance_percentile": 0.32142857142857145,
           "usage_percentile": 0.03571428571428571,
           "sleeper_differential": 0.28571428571428575
@@ -1280,22 +1280,22 @@
       "appearances": 3,
       "model_independent_races": 3,
       "appearance_rate": 1.0,
-      "total_driver_sample": 1081,
+      "total_driver_sample": 1082,
       "sample_benchmark": 621.5,
-      "sample_reliability": 0.6349486049926578,
-      "evidence_factor": 0.7968366237772068,
+      "sample_reliability": 0.635162899911946,
+      "evidence_factor": 0.7969710784664309,
       "mean_performance_percentile": 0.7557997557997558,
       "mean_usage_percentile": 0.7032967032967034,
       "mean_sleeper_differential": 0.05250305250305248,
-      "calibrated_sleeper_differential": 0.041836355094529765,
+      "calibrated_sleeper_differential": 0.04184341437613738,
       "differential_stdev": 0.047054114254782495,
       "positive_signal_rate": 1.0,
       "raw_structural_score": 52.62515262515262,
-      "calibrated_structural_score": 52.09181775472649,
-      "structural_sleeper_score": 52.09181775472649,
-      "current_sci": 76.90874885755474,
+      "calibrated_structural_score": 52.09217071880687,
+      "structural_sleeper_score": 52.09217071880687,
+      "current_sci": 76.84787778531494,
       "current_label": "STRONG SLEEPER",
-      "current_share_percent": 1.5450934805773515,
+      "current_share_percent": 1.549636803874092,
       "current_week_present": true,
       "observations": [
         {
@@ -1327,9 +1327,9 @@
           "track": "Yas Marina Circuit",
           "status": "LIVE_SNAPSHOT",
           "car": "Jaguar F-type Gr.3",
-          "sample": 319,
-          "share": 0.015450934805773515,
-          "performance_target": 0.7521378144007678,
+          "sample": 320,
+          "share": 0.01549636803874092,
+          "performance_target": 0.7514540020824247,
           "performance_percentile": 0.9404761904761905,
           "usage_percentile": 0.8214285714285714,
           "sleeper_differential": 0.11904761904761907
@@ -1358,9 +1358,9 @@
       "raw_structural_score": 52.79304029304029,
       "calibrated_structural_score": 51.76089926906031,
       "structural_sleeper_score": 51.76089926906031,
-      "current_sci": 47.81069448501648,
+      "current_sci": 47.805288263403405,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.18405502276470018,
+      "current_share_percent": 0.18401937046004843,
       "current_week_present": true,
       "observations": [
         {
@@ -1393,8 +1393,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Ford Mustang Gr.3",
           "sample": 38,
-          "share": 0.0018405502276470018,
-          "performance_target": 0.3080002835295501,
+          "share": 0.0018401937046004842,
+          "performance_target": 0.30780498671709716,
           "performance_percentile": 0.4880952380952381,
           "usage_percentile": 0.16666666666666666,
           "sleeper_differential": 0.3214285714285714
@@ -1423,9 +1423,9 @@
       "raw_structural_score": 51.22863247863248,
       "calibrated_structural_score": 50.78021985796356,
       "structural_sleeper_score": 50.78021985796356,
-      "current_sci": 53.535862528215446,
+      "current_sci": 53.53006337056945,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.18405502276470018,
+      "current_share_percent": 0.18401937046004843,
       "current_week_present": true,
       "observations": [
         {
@@ -1458,8 +1458,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Toyota Supra GT500 '97",
           "sample": 38,
-          "share": 0.0018405502276470018,
-          "performance_target": 0.4971773171137289,
+          "share": 0.0018401937046004842,
+          "performance_target": 0.49696517065031776,
           "performance_percentile": 0.75,
           "usage_percentile": 0.16666666666666666,
           "sleeper_differential": 0.5833333333333334
@@ -1488,9 +1488,9 @@
       "raw_structural_score": 51.0989010989011,
       "calibrated_structural_score": 50.666692716894104,
       "structural_sleeper_score": 50.666692716894104,
-      "current_sci": 47.540664992702894,
+      "current_sci": 47.536379943819085,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.16952436307275015,
+      "current_share_percent": 0.1694915254237288,
       "current_week_present": true,
       "observations": [
         {
@@ -1523,8 +1523,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Honda NSX GT500 '00",
           "sample": 35,
-          "share": 0.0016952436307275016,
-          "performance_target": 0.2931097712327023,
+          "share": 0.001694915254237288,
+          "performance_target": 0.29294832276548316,
           "performance_percentile": 0.27380952380952384,
           "usage_percentile": 0.13095238095238096,
           "sleeper_differential": 0.14285714285714288
@@ -1553,9 +1553,9 @@
       "raw_structural_score": 50.38156288156288,
       "calibrated_structural_score": 50.32033577814781,
       "structural_sleeper_score": 50.32033577814781,
-      "current_sci": 62.08274849036009,
+      "current_sci": 62.07905594218919,
       "current_label": "SLEEPER CANDIDATE",
-      "current_share_percent": 0.997771965513901,
+      "current_share_percent": 0.9975786924939467,
       "current_week_present": true,
       "observations": [
         {
@@ -1588,8 +1588,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Volkswagen Beetle Gr.3",
           "sample": 206,
-          "share": 0.00997771965513901,
-          "performance_target": 0.5805573871782639,
+          "share": 0.009975786924939467,
+          "performance_target": 0.5804913978490258,
           "performance_percentile": 0.9166666666666666,
           "usage_percentile": 0.7976190476190477,
           "sleeper_differential": 0.11904761904761896
@@ -1618,9 +1618,9 @@
       "raw_structural_score": 50.21367521367522,
       "calibrated_structural_score": 50.1714657470508,
       "structural_sleeper_score": 50.1714657470508,
-      "current_sci": 56.80236173987718,
+      "current_sci": 56.794188788901494,
       "current_label": "WATCHLIST",
-      "current_share_percent": 0.5618521747554005,
+      "current_share_percent": 0.5617433414043584,
       "current_week_present": true,
       "observations": [
         {
@@ -1653,8 +1653,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Toyota GR Supra Racing Concept '18",
           "sample": 116,
-          "share": 0.005618521747554005,
-          "performance_target": 0.5212124567794857,
+          "share": 0.005617433414043584,
+          "performance_target": 0.5210369985284712,
           "performance_percentile": 0.7976190476190477,
           "usage_percentile": 0.6309523809523809,
           "sleeper_differential": 0.16666666666666674
@@ -1683,9 +1683,9 @@
       "raw_structural_score": 46.901709401709404,
       "calibrated_structural_score": 48.02416837290827,
       "structural_sleeper_score": 48.02416837290827,
-      "current_sci": 47.74846043299481,
+      "current_sci": 47.74401971099903,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.16468080984210015,
+      "current_share_percent": 0.16464891041162227,
       "current_week_present": true,
       "observations": [
         {
@@ -1718,8 +1718,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Nissan GT-R NISMO GT3 '13",
           "sample": 34,
-          "share": 0.0016468080984210016,
-          "performance_target": 0.2991491627388743,
+          "share": 0.0016464891041162227,
+          "performance_target": 0.29897947981231476,
           "performance_percentile": 0.44047619047619047,
           "usage_percentile": 0.10714285714285714,
           "sleeper_differential": 0.3333333333333333
@@ -1748,9 +1748,9 @@
       "raw_structural_score": 46.5964590964591,
       "calibrated_structural_score": 47.52371652549692,
       "structural_sleeper_score": 47.52371652549692,
-      "current_sci": 51.20385145591626,
+      "current_sci": 51.19516886966816,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.4165455778359004,
+      "current_share_percent": 0.4164648910411622,
       "current_week_present": true,
       "observations": [
         {
@@ -1783,8 +1783,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Renault Sport R.S.01 GT3 '16",
           "sample": 86,
-          "share": 0.004165455778359004,
-          "performance_target": 0.41979988587415634,
+          "share": 0.004164648910411622,
+          "performance_target": 0.4195882703872556,
           "performance_percentile": 0.6785714285714286,
           "usage_percentile": 0.44047619047619047,
           "sleeper_differential": 0.23809523809523814
@@ -1813,9 +1813,9 @@
       "raw_structural_score": 45.28388278388278,
       "calibrated_structural_score": 47.05784888869595,
       "structural_sleeper_score": 47.05784888869595,
-      "current_sci": 46.25355720701165,
+      "current_sci": 46.24798079050766,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.24217766153250023,
+      "current_share_percent": 0.24213075060532688,
       "current_week_present": true,
       "observations": [
         {
@@ -1848,8 +1848,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Toyota FT-1 Vision Gran Turismo (Gr.3)",
           "sample": 50,
-          "share": 0.0024217766153250024,
-          "performance_target": 0.27487464694610636,
+          "share": 0.002421307506053269,
+          "performance_target": 0.2746987428817421,
           "performance_percentile": 0.20238095238095238,
           "usage_percentile": 0.27380952380952384,
           "sleeper_differential": -0.07142857142857145
@@ -1878,9 +1878,9 @@
       "raw_structural_score": 43.383699633699635,
       "calibrated_structural_score": 45.80743320790411,
       "structural_sleeper_score": 45.80743320790411,
-      "current_sci": 44.69629312617225,
+      "current_sci": 44.68925261970203,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.3293616196842003,
+      "current_share_percent": 0.32929782082324455,
       "current_week_present": true,
       "observations": [
         {
@@ -1913,8 +1913,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Audi R8 LMS '15",
           "sample": 68,
-          "share": 0.0032936161968420033,
-          "performance_target": 0.2570694930887086,
+          "share": 0.0032929782082324454,
+          "performance_target": 0.25687894290455854,
           "performance_percentile": 0.15476190476190477,
           "usage_percentile": 0.36904761904761907,
           "sleeper_differential": -0.2142857142857143
@@ -1930,22 +1930,22 @@
       "appearances": 3,
       "model_independent_races": 3,
       "appearance_rate": 1.0,
-      "total_driver_sample": 64651,
+      "total_driver_sample": 64655,
       "sample_benchmark": 621.5,
-      "sample_reliability": 0.9904783791029913,
-      "evidence_factor": 0.9952278026175672,
+      "sample_reliability": 0.9904789625669268,
+      "evidence_factor": 0.99522809574837,
       "mean_performance_percentile": 0.8678266178266179,
       "mean_usage_percentile": 0.9832112332112333,
       "mean_sleeper_differential": -0.11538461538461538,
-      "calibrated_sleeper_differential": -0.1148339772251039,
+      "calibrated_sleeper_differential": -0.11483401104788885,
       "differential_stdev": 0.16317848796612636,
       "positive_signal_rate": 0.0,
       "raw_structural_score": 44.23076923076923,
-      "calibrated_structural_score": 44.258301138744805,
-      "structural_sleeper_score": 44.258301138744805,
-      "current_sci": 66.60825067971118,
+      "calibrated_structural_score": 44.25829944760556,
+      "structural_sleeper_score": 44.25829944760556,
+      "current_sci": 66.6034183240029,
       "current_label": "META / PROVEN",
-      "current_share_percent": 57.628596338273766,
+      "current_share_percent": 57.63680387409201,
       "current_week_present": true,
       "observations": [
         {
@@ -1977,9 +1977,9 @@
           "track": "Yas Marina Circuit",
           "status": "LIVE_SNAPSHOT",
           "car": "Porsche 911 GT3 R (992) '22",
-          "sample": 11898,
-          "share": 0.5762859633827376,
-          "performance_target": 0.784802146756337,
+          "sample": 11902,
+          "share": 0.5763680387409201,
+          "performance_target": 0.7847578141001992,
           "performance_percentile": 0.9880952380952381,
           "usage_percentile": 0.9880952380952381,
           "sleeper_differential": 0.0
@@ -2008,9 +2008,9 @@
       "raw_structural_score": 39.65201465201465,
       "calibrated_structural_score": 42.392431759497185,
       "structural_sleeper_score": 42.392431759497185,
-      "current_sci": 58.11133914319383,
+      "current_sci": 58.10217829043609,
       "current_label": "WATCHLIST",
-      "current_share_percent": 0.7701249636733507,
+      "current_share_percent": 0.7699757869249394,
       "current_week_present": true,
       "observations": [
         {
@@ -2043,8 +2043,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Peugeot RCZ Gr.3",
           "sample": 159,
-          "share": 0.007701249636733507,
-          "performance_target": 0.5262722647487196,
+          "share": 0.0076997578692493945,
+          "performance_target": 0.5261024388745293,
           "performance_percentile": 0.8214285714285714,
           "usage_percentile": 0.75,
           "sleeper_differential": 0.0714285714285714
@@ -2073,9 +2073,9 @@
       "raw_structural_score": 39.1941391941392,
       "calibrated_structural_score": 42.37299650336451,
       "structural_sleeper_score": 42.37299650336451,
-      "current_sci": 43.637862952437345,
+      "current_sci": 43.628235439610485,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.4456068972198004,
+      "current_share_percent": 0.44552058111380144,
       "current_week_present": true,
       "observations": [
         {
@@ -2108,8 +2108,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Alfa Romeo 4C Gr.3",
           "sample": 92,
-          "share": 0.004456068972198004,
-          "performance_target": 0.2608088099558195,
+          "share": 0.004455205811138015,
+          "performance_target": 0.26058481280698637,
           "performance_percentile": 0.17857142857142858,
           "usage_percentile": 0.5,
           "sleeper_differential": -0.3214285714285714
@@ -2138,9 +2138,9 @@
       "raw_structural_score": 41.83455433455433,
       "calibrated_structural_score": 42.19794565828986,
       "structural_sleeper_score": 42.19794565828986,
-      "current_sci": 58.39376174410952,
+      "current_sci": 58.39234400829745,
       "current_label": "WATCHLIST",
-      "current_share_percent": 7.163615228131357,
+      "current_share_percent": 7.162227602905569,
       "current_week_present": true,
       "observations": [
         {
@@ -2173,8 +2173,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Audi R8 LMS Evo '19",
           "sample": 1479,
-          "share": 0.07163615228131358,
-          "performance_target": 0.5623193805054671,
+          "share": 0.07162227602905569,
+          "performance_target": 0.5622811939006482,
           "performance_percentile": 0.8928571428571429,
           "usage_percentile": 0.9404761904761905,
           "sleeper_differential": -0.04761904761904756
@@ -2203,9 +2203,9 @@
       "raw_structural_score": 39.92673992673993,
       "calibrated_structural_score": 42.09391873460737,
       "structural_sleeper_score": 42.09391873460737,
-      "current_sci": 46.17420349720222,
+      "current_sci": 46.16324354431441,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.6296619199845007,
+      "current_share_percent": 0.6295399515738499,
       "current_week_present": true,
       "observations": [
         {
@@ -2238,8 +2238,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Honda NSX Gr.3",
           "sample": 130,
-          "share": 0.006296619199845007,
-          "performance_target": 0.3373122441642711,
+          "share": 0.006295399515738499,
+          "performance_target": 0.3370960922531131,
           "performance_percentile": 0.5595238095238095,
           "usage_percentile": 0.7023809523809523,
           "sleeper_differential": -0.1428571428571428
@@ -2268,9 +2268,9 @@
       "raw_structural_score": 38.782051282051285,
       "calibrated_structural_score": 41.272525909923274,
       "structural_sleeper_score": 41.272525909923274,
-      "current_sci": 42.326078488409905,
+      "current_sci": 42.313518052052714,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.7507507507507507,
+      "current_share_percent": 0.7506053268765133,
       "current_week_present": true,
       "observations": [
         {
@@ -2303,8 +2303,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "MAZDA RX-VISION GT3 CONCEPT",
           "sample": 155,
-          "share": 0.0075075075075075074,
-          "performance_target": 0.2796350694757854,
+          "share": 0.007506053268765133,
+          "performance_target": 0.2794080518109119,
           "performance_percentile": 0.2261904761904762,
           "usage_percentile": 0.7261904761904762,
           "sleeper_differential": -0.5
@@ -2333,9 +2333,9 @@
       "raw_structural_score": 39.66727716727717,
       "calibrated_structural_score": 40.83452528112959,
       "structural_sleeper_score": 40.83452528112959,
-      "current_sci": 48.91558713656673,
+      "current_sci": 48.906235176759985,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.5037295359876005,
+      "current_share_percent": 0.5036319612590799,
       "current_week_present": true,
       "observations": [
         {
@@ -2368,8 +2368,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Subaru BRZ GT300 '21",
           "sample": 104,
-          "share": 0.005037295359876005,
-          "performance_target": 0.38056321817987376,
+          "share": 0.005036319612590799,
+          "performance_target": 0.3803569585837323,
           "performance_percentile": 0.5833333333333334,
           "usage_percentile": 0.6071428571428571,
           "sleeper_differential": -0.023809523809523725
@@ -2398,9 +2398,9 @@
       "raw_structural_score": 35.72954822954823,
       "calibrated_structural_score": 39.89108344632524,
       "structural_sleeper_score": 39.89108344632524,
-      "current_sci": 45.201599443243126,
+      "current_sci": 45.191855907188874,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.4456068972198004,
+      "current_share_percent": 0.44552058111380144,
       "current_week_present": true,
       "observations": [
         {
@@ -2433,8 +2433,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Chevrolet Corvette C7 Gr.3",
           "sample": 92,
-          "share": 0.004456068972198004,
-          "performance_target": 0.2935222353224053,
+          "share": 0.004455205811138015,
+          "performance_target": 0.2932949275147575,
           "performance_percentile": 0.2976190476190476,
           "usage_percentile": 0.5,
           "sleeper_differential": -0.20238095238095238
@@ -2463,9 +2463,9 @@
       "raw_structural_score": 37.362637362637365,
       "calibrated_structural_score": 37.93206177962415,
       "structural_sleeper_score": 37.93206177962415,
-      "current_sci": 45.1585871614372,
+      "current_sci": 45.14840410175069,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.47466821660370045,
+      "current_share_percent": 0.47457627118644063,
       "current_week_present": true,
       "observations": [
         {
@@ -2498,8 +2498,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "BMW M6 GT3 Endurance Model '16",
           "sample": 98,
-          "share": 0.004746682166037005,
-          "performance_target": 0.29791133207578224,
+          "share": 0.0047457627118644066,
+          "performance_target": 0.2976811451744046,
           "performance_percentile": 0.39285714285714285,
           "usage_percentile": 0.5357142857142857,
           "sleeper_differential": -0.14285714285714285
@@ -2528,9 +2528,9 @@
       "raw_structural_score": 33.53174603174603,
       "calibrated_structural_score": 37.912082720757304,
       "structural_sleeper_score": 37.912082720757304,
-      "current_sci": 44.87176062547711,
+      "current_sci": 44.86142455308387,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.4891988762956505,
+      "current_share_percent": 0.48910411622276023,
       "current_week_present": true,
       "observations": [
         {
@@ -2563,8 +2563,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Dodge Viper SRT GT3-R '15",
           "sample": 101,
-          "share": 0.004891988762956505,
-          "performance_target": 0.29413718356947416,
+          "share": 0.0048910411622276025,
+          "performance_target": 0.29390701255899365,
           "performance_percentile": 0.34523809523809523,
           "usage_percentile": 0.5833333333333334,
           "sleeper_differential": -0.23809523809523814
@@ -2593,9 +2593,9 @@
       "raw_structural_score": 36.81318681318681,
       "calibrated_structural_score": 37.0259175223587,
       "structural_sleeper_score": 37.0259175223587,
-      "current_sci": 44.57598398275376,
+      "current_sci": 44.56450805404098,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.6248183667538506,
+      "current_share_percent": 0.6246973365617433,
       "current_week_present": true,
       "observations": [
         {
@@ -2628,8 +2628,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "BMW M6 GT3 Sprint Model '16",
           "sample": 129,
-          "share": 0.006248183667538506,
-          "performance_target": 0.305610709094923,
+          "share": 0.006246973365617433,
+          "performance_target": 0.30538368147690387,
           "performance_percentile": 0.4642857142857143,
           "usage_percentile": 0.6785714285714286,
           "sleeper_differential": -0.2142857142857143
@@ -2658,9 +2658,9 @@
       "raw_structural_score": 36.01953601953602,
       "calibrated_structural_score": 36.68828858550438,
       "structural_sleeper_score": 36.68828858550438,
-      "current_sci": 46.841307172407895,
+      "current_sci": 46.83733845951584,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 3.4389227937615034,
+      "current_share_percent": 3.438256658595642,
       "current_week_present": true,
       "observations": [
         {
@@ -2693,8 +2693,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Mercedes-AMG GT3 '20",
           "sample": 710,
-          "share": 0.034389227937615036,
-          "performance_target": 0.4072472295676792,
+          "share": 0.03438256658595642,
+          "performance_target": 0.4071821088540891,
           "performance_percentile": 0.6547619047619048,
           "usage_percentile": 0.9166666666666666,
           "sleeper_differential": -0.26190476190476186
@@ -2723,9 +2723,9 @@
       "raw_structural_score": 34.47802197802198,
       "calibrated_structural_score": 36.079608421103394,
       "structural_sleeper_score": 36.079608421103394,
-      "current_sci": 39.51430980933365,
+      "current_sci": 39.504819031998075,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.5763828344473506,
+      "current_share_percent": 0.576271186440678,
       "current_week_present": true,
       "observations": [
         {
@@ -2758,8 +2758,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Nissan GT-R NISMO GT3 '18",
           "sample": 119,
-          "share": 0.005763828344473506,
-          "performance_target": 0.20247738347916555,
+          "share": 0.00576271186440678,
+          "performance_target": 0.20228273781204628,
           "performance_percentile": 0.011904761904761904,
           "usage_percentile": 0.6547619047619048,
           "sleeper_differential": -0.6428571428571429
@@ -2788,9 +2788,9 @@
       "raw_structural_score": 30.586080586080588,
       "calibrated_structural_score": 34.5859160711219,
       "structural_sleeper_score": 34.5859160711219,
-      "current_sci": 43.40663081537937,
+      "current_sci": 43.39409770522498,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.7798120701346508,
+      "current_share_percent": 0.7796610169491526,
       "current_week_present": true,
       "observations": [
         {
@@ -2823,8 +2823,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "GT by Citroën Race Car (Gr.3)",
           "sample": 161,
-          "share": 0.007798120701346508,
-          "performance_target": 0.2989024103559317,
+          "share": 0.007796610169491526,
+          "performance_target": 0.29867931046302726,
           "performance_percentile": 0.4166666666666667,
           "usage_percentile": 0.7738095238095238,
           "sleeper_differential": -0.35714285714285715
@@ -2853,9 +2853,9 @@
       "raw_structural_score": 27.686202686202687,
       "calibrated_structural_score": 33.60064040507338,
       "structural_sleeper_score": 33.60064040507338,
-      "current_sci": 44.592779206950524,
+      "current_sci": 44.585685637815395,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.3342051729148503,
+      "current_share_percent": 0.3341404358353511,
       "current_week_present": true,
       "observations": [
         {
@@ -2888,8 +2888,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Mercedes-AMG GT3 '16",
           "sample": 69,
-          "share": 0.0033420517291485033,
-          "performance_target": 0.25571988918409094,
+          "share": 0.003341404358353511,
+          "performance_target": 0.2555292880730666,
           "performance_percentile": 0.13095238095238096,
           "usage_percentile": 0.39285714285714285,
           "sleeper_differential": -0.26190476190476186
@@ -2918,9 +2918,9 @@
       "raw_structural_score": 23.64163614163614,
       "calibrated_structural_score": 30.591702669868667,
       "structural_sleeper_score": 30.591702669868667,
-      "current_sci": 41.68711036901626,
+      "current_sci": 41.678116899239065,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.48435532306500045,
+      "current_share_percent": 0.48426150121065376,
       "current_week_present": true,
       "observations": [
         {
@@ -2953,8 +2953,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Ford GT Race Car '18",
           "sample": 100,
-          "share": 0.004843553230650005,
-          "performance_target": 0.22603663460237167,
+          "share": 0.004842615012106538,
+          "performance_target": 0.2258356682316055,
           "performance_percentile": 0.03571428571428571,
           "usage_percentile": 0.5595238095238095,
           "sleeper_differential": -0.5238095238095238
@@ -2983,9 +2983,9 @@
       "raw_structural_score": 24.824481074481074,
       "calibrated_structural_score": 30.236983847385897,
       "structural_sleeper_score": 30.236983847385897,
-      "current_sci": 42.37663157894424,
+      "current_sci": 42.368544064307656,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.4359197907585004,
+      "current_share_percent": 0.4358353510895884,
       "current_week_present": true,
       "observations": [
         {
@@ -3018,8 +3018,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "McLaren 650S GT3 '15",
           "sample": 90,
-          "share": 0.004359197907585004,
-          "performance_target": 0.22913124838751095,
+          "share": 0.0043583535108958835,
+          "performance_target": 0.22894074913856277,
           "performance_percentile": 0.05952380952380952,
           "usage_percentile": 0.4642857142857143,
           "sleeper_differential": -0.40476190476190477
@@ -3048,9 +3048,9 @@
       "raw_structural_score": 25.824175824175825,
       "calibrated_structural_score": 27.649834623882125,
       "structural_sleeper_score": 27.649834623882125,
-      "current_sci": 52.523460924214014,
+      "current_sci": 52.51392533678945,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 2.3975588491717525,
+      "current_share_percent": 2.397094430992736,
       "current_week_present": true,
       "observations": [
         {
@@ -3083,8 +3083,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Lamborghini Huracán GT3 '15",
           "sample": 495,
-          "share": 0.023975588491717523,
-          "performance_target": 0.4544334981340237,
+          "share": 0.02397094430992736,
+          "performance_target": 0.4542874955420948,
           "performance_percentile": 0.7023809523809523,
           "usage_percentile": 0.8452380952380952,
           "sleeper_differential": -0.1428571428571429
@@ -3113,9 +3113,9 @@
       "raw_structural_score": 23.41269841269841,
       "calibrated_structural_score": 23.984604460659693,
       "structural_sleeper_score": 23.984604460659693,
-      "current_sci": 35.92781038929608,
+      "current_sci": 35.91981127559772,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 7.754528722270658,
+      "current_share_percent": 7.753026634382566,
       "current_week_present": true,
       "observations": [
         {
@@ -3148,8 +3148,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Ferrari 296 GT3 '23",
           "sample": 1601,
-          "share": 0.07754528722270658,
-          "performance_target": 0.2961406895643152,
+          "share": 0.07753026634382566,
+          "performance_target": 0.2960199006531208,
           "performance_percentile": 0.36904761904761907,
           "usage_percentile": 0.9642857142857143,
           "sleeper_differential": -0.5952380952380952
@@ -3178,9 +3178,9 @@
       "raw_structural_score": 20.8028083028083,
       "calibrated_structural_score": 21.95596453295701,
       "structural_sleeper_score": 21.95596453295701,
-      "current_sci": 33.27127494231401,
+      "current_sci": 33.25706120446854,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 3.2645548774581035,
+      "current_share_percent": 3.2639225181598066,
       "current_week_present": true,
       "observations": [
         {
@@ -3213,8 +3213,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Porsche 911 RSR (991) '17",
           "sample": 674,
-          "share": 0.032645548774581035,
-          "performance_target": 0.22948388951177795,
+          "share": 0.032639225181598064,
+          "performance_target": 0.22927907439042666,
           "performance_percentile": 0.08333333333333333,
           "usage_percentile": 0.8928571428571429,
           "sleeper_differential": -0.8095238095238095
@@ -3230,22 +3230,22 @@
       "appearances": 3,
       "model_independent_races": 3,
       "appearance_rate": 1.0,
-      "total_driver_sample": 3595,
+      "total_driver_sample": 3594,
       "sample_benchmark": 621.5,
-      "sample_reliability": 0.8526028696786434,
-      "evidence_factor": 0.923364971004772,
+      "sample_reliability": 0.8525679041632072,
+      "evidence_factor": 0.9233460370647654,
       "mean_performance_percentile": 0.086996336996337,
       "mean_usage_percentile": 0.8537851037851039,
       "mean_sleeper_differential": -0.7667887667887668,
-      "calibrated_sleeper_differential": -0.7080258874126946,
+      "calibrated_sleeper_differential": -0.7080113690801865,
       "differential_stdev": 0.0034535129728280587,
       "positive_signal_rate": 0.0,
       "raw_structural_score": 11.660561660561655,
-      "calibrated_structural_score": 14.59870562936527,
-      "structural_sleeper_score": 14.59870562936527,
-      "current_sci": 35.36132005121275,
+      "calibrated_structural_score": 14.599431545990676,
+      "structural_sleeper_score": 14.599431545990676,
+      "current_sci": 35.511618811373964,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 2.7801995543931026,
+      "current_share_percent": 2.774818401937046,
       "current_week_present": true,
       "observations": [
         {
@@ -3277,9 +3277,9 @@
           "track": "Yas Marina Circuit",
           "status": "LIVE_SNAPSHOT",
           "car": "Ferrari 458 Italia GT3 '13",
-          "sample": 574,
-          "share": 0.027801995543931028,
-          "performance_target": 0.24663368806898767,
+          "sample": 573,
+          "share": 0.02774818401937046,
+          "performance_target": 0.24864988068850893,
           "performance_percentile": 0.10714285714285714,
           "usage_percentile": 0.8690476190476191,
           "sleeper_differential": -0.761904761904762
@@ -3310,9 +3310,9 @@
       "raw_structural_score": 85.85927960927961,
       "calibrated_structural_score": 69.52760264650351,
       "structural_sleeper_score": 69.52760264650351,
-      "current_sci": 62.50590851488569,
+      "current_sci": 62.50405396072142,
       "current_label": "SLEEPER CANDIDATE",
-      "current_share_percent": 0.2131163421486002,
+      "current_share_percent": 0.21307506053268765,
       "current_week_present": true,
       "observations": [
         {
@@ -3345,8 +3345,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Hyundai Genesis Gr.3",
           "sample": 44,
-          "share": 0.002131163421486002,
-          "performance_target": 0.7633147786561592,
+          "share": 0.0021307506053268766,
+          "performance_target": 0.7632465427788241,
           "performance_percentile": 0.9642857142857143,
           "usage_percentile": 0.2261904761904762,
           "sleeper_differential": 0.7380952380952381
@@ -3375,9 +3375,9 @@
       "raw_structural_score": 75.71733821733821,
       "calibrated_structural_score": 64.20748373484562,
       "structural_sleeper_score": 64.20748373484562,
-      "current_sci": 50.40030164175092,
+      "current_sci": 50.394814682646526,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.14046304368885013,
+      "current_share_percent": 0.1404358353510896,
       "current_week_present": true,
       "observations": [
         {
@@ -3410,8 +3410,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "MAZDA RX-VISION GT3 CONCEPT Stealth Model",
           "sample": 29,
-          "share": 0.0014046304368885013,
-          "performance_target": 0.3943210604181394,
+          "share": 0.001404358353510896,
+          "performance_target": 0.3940937384281229,
           "performance_percentile": 0.6071428571428571,
           "usage_percentile": 0.08333333333333333,
           "sleeper_differential": 0.5238095238095237
@@ -3440,9 +3440,9 @@
       "raw_structural_score": 71.13858363858364,
       "calibrated_structural_score": 63.32702452266955,
       "structural_sleeper_score": 63.32702452266955,
-      "current_sci": 55.19174773712369,
+      "current_sci": 55.18599677755126,
       "current_label": "WATCHLIST",
-      "current_share_percent": 0.23733410830185023,
+      "current_share_percent": 0.23728813559322032,
       "current_week_present": true,
       "observations": [
         {
@@ -3475,8 +3475,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Mitsubishi Lancer Evolution Final Edition Gr.3",
           "sample": 49,
-          "share": 0.0023733410830185024,
-          "performance_target": 0.5359790167962827,
+          "share": 0.0023728813559322033,
+          "performance_target": 0.5357927544791259,
           "performance_percentile": 0.8452380952380952,
           "usage_percentile": 0.25,
           "sleeper_differential": 0.5952380952380952
@@ -3505,9 +3505,9 @@
       "raw_structural_score": 63.888888888888886,
       "calibrated_structural_score": 58.77560934400963,
       "structural_sleeper_score": 58.77560934400963,
-      "current_sci": 48.41016328525346,
+      "current_sci": 48.4034733590367,
       "current_label": "NO SLEEPER SIGNAL",
-      "current_share_percent": 0.2082727889179502,
+      "current_share_percent": 0.2082324455205811,
       "current_week_present": true,
       "observations": [
         {
@@ -3540,8 +3540,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Genesis X GR3",
           "sample": 43,
-          "share": 0.002082727889179502,
-          "performance_target": 0.33533227851415737,
+          "share": 0.002082324455205811,
+          "performance_target": 0.33510520902007934,
           "performance_percentile": 0.5357142857142857,
           "usage_percentile": 0.20238095238095238,
           "sleeper_differential": 0.3333333333333333
@@ -3570,9 +3570,9 @@
       "raw_structural_score": 60.81349206349206,
       "calibrated_structural_score": 58.067086544615506,
       "structural_sleeper_score": 58.067086544615506,
-      "current_sci": 56.828221512758404,
+      "current_sci": 56.822915447723055,
       "current_label": "WATCHLIST",
-      "current_share_percent": 0.31967451322290036,
+      "current_share_percent": 0.3196125907990315,
       "current_week_present": true,
       "observations": [
         {
@@ -3605,8 +3605,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Lexus RC F GT3 '17",
           "sample": 66,
-          "share": 0.0031967451322290033,
-          "performance_target": 0.5616843968325771,
+          "share": 0.0031961259079903146,
+          "performance_target": 0.5615345974613086,
           "performance_percentile": 0.8690476190476191,
           "usage_percentile": 0.34523809523809523,
           "sleeper_differential": 0.5238095238095238
@@ -3622,22 +3622,22 @@
       "appearances": 3,
       "model_independent_races": 3,
       "appearance_rate": 1.0,
-      "total_driver_sample": 1081,
+      "total_driver_sample": 1082,
       "sample_benchmark": 621.5,
-      "sample_reliability": 0.6349486049926578,
-      "evidence_factor": 0.7968366237772068,
+      "sample_reliability": 0.635162899911946,
+      "evidence_factor": 0.7969710784664309,
       "mean_performance_percentile": 0.7557997557997558,
       "mean_usage_percentile": 0.7032967032967034,
       "mean_sleeper_differential": 0.05250305250305248,
-      "calibrated_sleeper_differential": 0.041836355094529765,
+      "calibrated_sleeper_differential": 0.04184341437613738,
       "differential_stdev": 0.047054114254782495,
       "positive_signal_rate": 1.0,
       "raw_structural_score": 52.62515262515262,
-      "calibrated_structural_score": 52.09181775472649,
-      "structural_sleeper_score": 52.09181775472649,
-      "current_sci": 76.90874885755474,
+      "calibrated_structural_score": 52.09217071880687,
+      "structural_sleeper_score": 52.09217071880687,
+      "current_sci": 76.84787778531494,
       "current_label": "STRONG SLEEPER",
-      "current_share_percent": 1.5450934805773515,
+      "current_share_percent": 1.549636803874092,
       "current_week_present": true,
       "observations": [
         {
@@ -3669,9 +3669,9 @@
           "track": "Yas Marina Circuit",
           "status": "LIVE_SNAPSHOT",
           "car": "Jaguar F-type Gr.3",
-          "sample": 319,
-          "share": 0.015450934805773515,
-          "performance_target": 0.7521378144007678,
+          "sample": 320,
+          "share": 0.01549636803874092,
+          "performance_target": 0.7514540020824247,
           "performance_percentile": 0.9404761904761905,
           "usage_percentile": 0.8214285714285714,
           "sleeper_differential": 0.11904761904761907
@@ -3700,9 +3700,9 @@
       "raw_structural_score": 50.38156288156288,
       "calibrated_structural_score": 50.32033577814781,
       "structural_sleeper_score": 50.32033577814781,
-      "current_sci": 62.08274849036009,
+      "current_sci": 62.07905594218919,
       "current_label": "SLEEPER CANDIDATE",
-      "current_share_percent": 0.997771965513901,
+      "current_share_percent": 0.9975786924939467,
       "current_week_present": true,
       "observations": [
         {
@@ -3735,8 +3735,8 @@
           "status": "LIVE_SNAPSHOT",
           "car": "Volkswagen Beetle Gr.3",
           "sample": 206,
-          "share": 0.00997771965513901,
-          "performance_target": 0.5805573871782639,
+          "share": 0.009975786924939467,
+          "performance_target": 0.5804913978490258,
           "performance_percentile": 0.9166666666666666,
           "usage_percentile": 0.7976190476190477,
           "sleeper_differential": 0.11904761904761896
@@ -3752,22 +3752,22 @@
       "appearances": 3,
       "model_independent_races": 3,
       "appearance_rate": 1.0,
-      "total_driver_sample": 64651,
+      "total_driver_sample": 64655,
       "sample_benchmark": 621.5,
-      "sample_reliability": 0.9904783791029913,
-      "evidence_factor": 0.9952278026175672,
+      "sample_reliability": 0.9904789625669268,
+      "evidence_factor": 0.99522809574837,
       "mean_performance_percentile": 0.8678266178266179,
       "mean_usage_percentile": 0.9832112332112333,
       "mean_sleeper_differential": -0.11538461538461538,
-      "calibrated_sleeper_differential": -0.1148339772251039,
+      "calibrated_sleeper_differential": -0.11483401104788885,
       "differential_stdev": 0.16317848796612636,
       "positive_signal_rate": 0.0,
       "raw_structural_score": 44.23076923076923,
-      "calibrated_structural_score": 44.258301138744805,
-      "structural_sleeper_score": 44.258301138744805,
-      "current_sci": 66.60825067971118,
+      "calibrated_structural_score": 44.25829944760556,
+      "structural_sleeper_score": 44.25829944760556,
+      "current_sci": 66.6034183240029,
       "current_label": "META / PROVEN",
-      "current_share_percent": 57.628596338273766,
+      "current_share_percent": 57.63680387409201,
       "current_week_present": true,
       "observations": [
         {
@@ -3799,9 +3799,9 @@
           "track": "Yas Marina Circuit",
           "status": "LIVE_SNAPSHOT",
           "car": "Porsche 911 GT3 R (992) '22",
-          "sample": 11898,
-          "share": 0.5762859633827376,
-          "performance_target": 0.784802146756337,
+          "sample": 11902,
+          "share": 0.5763680387409201,
+          "performance_target": 0.7847578141001992,
           "performance_percentile": 0.9880952380952381,
           "usage_percentile": 0.9880952380952381,
           "sleeper_differential": 0.0
