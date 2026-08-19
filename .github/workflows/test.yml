@@ -94,7 +94,7 @@ jobs:
         id: daily_sleeper_index
         continue-on-error: true
         run: |
-          python src/sleeper_car_lab.py
+          python src/sleeper_car_lab_live.py
 
       - name: Refresh technical learning layer
         id: daily_technical_learning
