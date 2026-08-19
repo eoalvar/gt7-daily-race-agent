@@ -1,80 +1,373 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "2.0",
+  "policy": {
+    "priority": [
+      "explicit_event_bop",
+      "group_specific_track_mapping",
+      "track_default_mapping"
+    ],
+    "note": "Historical BoP class can vary by group or event/update. Group-specific evidence overrides track defaults."
+  },
   "tracks": {
     "Yas Marina Circuit": {
-      "speed_class": "MID",
+      "aliases": ["Yas Marina"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.3": "MID"},
       "confidence": "VALIDATED_EXTERNAL",
       "validation": [
         {
-          "source": "Lights to Flag Daily Races 2026-06-01",
+          "source": "GTPlanet Daily Races 2026-06-01",
           "evidence": "Yas Marina Circuit / Gr.3 / BOP (M)",
-          "url": "https://lights-to-flag.com/gt7-daily-races-20260601/"
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-gt-one-in-a-million-20260601/"
         }
       ]
     },
     "WeatherTech Raceway Laguna Seca": {
-      "speed_class": "LOW",
+      "aliases": ["Laguna Seca"],
+      "default_speed_class": "LOW",
+      "group_speed_classes": {"GR.3": "LOW", "GR.4": "LOW", "GR.B": "LOW"},
       "confidence": "VALIDATED_EXTERNAL",
       "validation": [
         {
-          "source": "GTPlanet Daily Races 2026-05-11",
-          "evidence": "WeatherTech Raceway Laguna Seca / Gr.3 / BOP (L)",
-          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-try-to-keep-a-copen-mind-20260511/"
+          "source": "GTPlanet Daily Races 2023-01-23",
+          "evidence": "Laguna Seca / Gr.3 / BOP (L)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20230123/"
+        },
+        {
+          "source": "GTPlanet Daily Races 2025-12-22",
+          "evidence": "Laguna Seca / Gr.B / BOP (L)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20251222/"
         }
       ]
     },
     "Mount Panorama Motor Racing Circuit": {
-      "speed_class": "HIGH",
+      "aliases": ["Mount Panorama", "Bathurst"],
+      "default_speed_class": "HIGH",
+      "group_speed_classes": {"GR.3": "HIGH", "GR.4": "HIGH"},
       "confidence": "VALIDATED_EXTERNAL",
       "validation": [
         {
-          "source": "Traxion Daily Races 2023-01-02",
-          "evidence": "Mount Panorama / Gr.3 / High-speed (H)",
-          "url": "https://traxion.gg/your-guide-to-gran-turismo-7s-daily-races-w-c-2nd-january-2023-customer-racing/"
-        }
-      ]
-    },
-    "Nürburgring Endurance": {
-      "speed_class": "HIGH",
-      "confidence": "VALIDATED_EXTERNAL",
-      "validation": [
+          "source": "GTPlanet Daily Races 2024-09-23",
+          "evidence": "Mount Panorama / Gr.3 / BOP (H)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20240923/"
+        },
         {
-          "source": "Gran Turismo Wiki",
-          "evidence": "Nürburgring Endurance BoP (GT7): High-speed",
-          "url": "https://gran-turismo.fandom.com/wiki/N%C3%BCrburgring_Endurance"
-        }
-      ]
-    },
-    "Nürburgring Endurance II": {
-      "speed_class": "HIGH",
-      "confidence": "INFERRED_FROM_LAYOUT_FAMILY",
-      "validation": [
-        {
-          "source": "Gran Turismo Wiki",
-          "evidence": "Endurance II is the reverse GT7 variant of Nürburgring Endurance, whose GT7 BoP is High-speed",
-          "url": "https://gran-turismo.fandom.com/wiki/N%C3%BCrburgring_Endurance"
+          "source": "GTPlanet Daily Races 2026-06-29",
+          "evidence": "Mount Panorama / Gr.4 / High Speed BoP",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-bombs-away-at-bathurst-20260629/"
         }
       ]
     },
     "Suzuka Circuit": {
-      "speed_class": "MID",
+      "aliases": ["Suzuka"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.3": "MID"},
       "confidence": "VALIDATED_EXTERNAL",
       "validation": [
         {
-          "source": "Lights to Flag Daily Races 2026-07-13",
+          "source": "GTPlanet Daily Races 2023-05-29",
           "evidence": "Suzuka Circuit / Gr.3 / BOP (M)",
-          "url": "https://lights-to-flag.com/gt7-daily-races-20260713/"
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20230529/"
         }
       ]
     },
     "Deep Forest Raceway": {
-      "speed_class": "MID",
+      "aliases": ["Deep Forest Raceway Reverse", "Deep Forest Reverse", "Deep Forest"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.3": "MID", "GR.4": "MID"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-04-13",
+          "evidence": "Deep Forest Raceway / Gr.3 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-expect-delays-on-the-expressway/"
+        },
+        {
+          "source": "GTPlanet Daily Races 2024-12-30",
+          "evidence": "Deep Forest Raceway Reverse / Gr.4 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20241230/"
+        }
+      ]
+    },
+    "Tokyo Expressway - South Counterclockwise": {
+      "aliases": ["Tokyo Expressway South Counterclockwise", "Tokyo Expressway – South Counterclockwise"],
+      "default_speed_class": "HIGH",
+      "group_speed_classes": {"GR.3": "HIGH"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-06-15",
+          "evidence": "Tokyo Expressway South Counterclockwise / Gr.3 / BOP (H)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-payday-on-the-expressway-20260615/"
+        }
+      ]
+    },
+    "Sardegna - Road Track - A": {
+      "aliases": ["Sardegna Road Track A", "Sardegna - Road Track A"],
+      "default_speed_class": "HIGH",
+      "group_speed_classes": {"GR.3": "HIGH", "GR.4": "HIGH"},
       "confidence": "VALIDATED_EXTERNAL",
       "validation": [
         {
-          "source": "GTPlanet Daily Races 2026-06-29",
-          "evidence": "Deep Forest Raceway / Gr.3 / BOP (M)",
-          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-bombs-away-at-bathurst-20260629/"
+          "source": "GTPlanet Daily Races 2025-07-28",
+          "evidence": "Sardegna Road Track A / Gr.3 / BOP (H)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20250728/"
+        },
+        {
+          "source": "GTPlanet Daily Races 2025-09-01",
+          "evidence": "Sardegna Road Track A / Gr.4 / BOP (H)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20250901/"
+        }
+      ]
+    },
+    "Sardegna - Road Track - B": {
+      "aliases": ["Sardegna Road Track B", "Sardegna - Road Track B"],
+      "default_speed_class": "LOW",
+      "group_speed_classes": {"GR.4": "LOW"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-06-15",
+          "evidence": "Sardegna Road Track B / Gr.4 / BOP (L)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-payday-on-the-expressway-20260615/"
+        }
+      ]
+    },
+    "Autodrome Lago Maggiore - Full Course": {
+      "aliases": ["Autodrome Lago Maggiore Full Course", "Autodrome Lago Maggiore Full", "Autodrome Lago Maggiore Full Reverse", "Autodrome Lago Maggiore - Full Course Reverse"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.3": "MID"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2025-12-29",
+          "evidence": "Autodrome Lago Maggiore Full Reverse / Gr.3 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20251229/"
+        }
+      ]
+    },
+    "Red Bull Ring": {
+      "aliases": [],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.4": "MID"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2025-12-29",
+          "evidence": "Red Bull Ring / Gr.4 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20251229/"
+        }
+      ]
+    },
+    "Daytona Road Course": {
+      "aliases": ["Daytona Road"],
+      "default_speed_class": "HIGH",
+      "group_speed_classes": {"GR.1": "HIGH", "GR.3": "HIGH"},
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-01-19",
+          "evidence": "Daytona Road Course / Gr.1 / BOP (H)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20260119/"
+        },
+        {
+          "source": "Traxion Daily Races 2022-09-19",
+          "evidence": "Daytona Road Course / Gr.3 / High-speed BoP",
+          "url": "https://traxion.gg/your-guide-to-gran-turismo-7s-daily-races-w-c-19th-september-combat-vette/"
+        }
+      ]
+    },
+    "Circuit de Barcelona-Catalunya GP": {
+      "aliases": ["Circuit de Barcelona-Catalunya GP NC", "Circuit de Barcelona-Catalunya GP No Chicane", "Circuit de Barcelona-Catalunya GP (No Chicane)"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.3": "MID", "GR.4": "MID"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-01-12",
+          "evidence": "Barcelona GP NC / Gr.3 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20260112/"
+        },
+        {
+          "source": "GTPlanet Daily Races 2026-04-13",
+          "evidence": "Barcelona GP No Chicane / Gr.4 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-expect-delays-on-the-expressway/"
+        }
+      ]
+    },
+    "Circuit Gilles-Villeneuve": {
+      "aliases": ["Circuit Gilles Villeneuve"],
+      "default_speed_class": "LOW",
+      "group_speed_classes": {"GR.4": "LOW"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-01-12",
+          "evidence": "Circuit Gilles-Villeneuve / Gr.4 / BOP (L)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20260112/"
+        }
+      ]
+    },
+    "Willow Springs International Raceway: Big Willow": {
+      "aliases": ["Willow Springs Big Willow", "Big Willow"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.4": "MID"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-01-05",
+          "evidence": "Willow Springs Big Willow / Gr.4 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20260105/"
+        }
+      ]
+    },
+    "Blue Moon Bay Speedway - Infield A": {
+      "aliases": ["Blue Moon Bay Infield A", "Blue Moon Bay Infield A Reverse", "Blue Moon Bay Speedway - Infield A Reverse"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.4": "MID"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-01-19",
+          "evidence": "Blue Moon Bay Infield A Reverse / Gr.4 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20260119/"
+        }
+      ]
+    },
+    "Watkins Glen Long Course": {
+      "aliases": ["Watkins Glen Long"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.4": "MID"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-02-23",
+          "evidence": "Watkins Glen Long Course / Gr.4 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20260223/"
+        }
+      ]
+    },
+    "Grand Valley - Highway 1": {
+      "aliases": ["Grand Valley Highway 1", "Grand Valley Highway-1", "Grand Valley Highway 1 Reverse", "Grand Valley Highway-1 Reverse", "Grand Valley - Highway 1 Reverse"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.3": "MID", "GR.4": "MID"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2025-12-22",
+          "evidence": "Grand Valley Highway-1 Reverse / Gr.3 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20251222/"
+        },
+        {
+          "source": "GTPlanet Daily Races 2025-06-02",
+          "evidence": "Grand Valley Highway 1 Reverse / Gr.4 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20250602/"
+        }
+      ]
+    },
+    "Autopolis International Racing Course": {
+      "aliases": ["Autopolis International", "Autopolis"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.3": "MID", "GR.4": "MID", "GR.2": "MID"},
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2025-07-14",
+          "evidence": "Autopolis International / Gr.4 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20250714/"
+        },
+        {
+          "source": "GTPlanet Daily Races 2024-09-23",
+          "evidence": "Autopolis International / Gr.2 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20240923/"
+        }
+      ]
+    },
+    "Autodromo Nazionale Monza": {
+      "aliases": ["Monza", "Autodromo Nazionale Monza No Chicane", "Monza No Chicane"],
+      "default_speed_class": "HIGH",
+      "group_speed_classes": {"GR.3": "HIGH"},
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2024-12-30",
+          "evidence": "Monza / Gr.3 / BOP (H)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20241230/"
+        }
+      ]
+    },
+    "Brands Hatch Indy Circuit": {
+      "aliases": ["Brands Hatch Indy"],
+      "default_speed_class": "LOW",
+      "group_speed_classes": {"GR.4": "LOW"},
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2024-09-16",
+          "evidence": "Brands Hatch Indy / Gr.4 / BOP (L)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20240916/"
+        }
+      ]
+    },
+    "Circuit de Spa-Francorchamps": {
+      "aliases": ["Spa-Francorchamps", "Spa Francorchamps"],
+      "default_speed_class": "HIGH",
+      "group_speed_classes": {"GR.3": "HIGH", "GR.4": "HIGH", "GR.2": "MID"},
+      "confidence": "GROUP_DEPENDENT_VALIDATED",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2024-11-18",
+          "evidence": "Spa / Gr.3 / BOP (H)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20241118/"
+        },
+        {
+          "source": "GTPlanet Daily Races 2024-10-14",
+          "evidence": "Spa / Gr.2 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20241014/"
+        },
+        {
+          "source": "GTPlanet Daily Races 2023-04-10",
+          "evidence": "Spa / Gr.4 / BOP (H)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20230410/"
+        }
+      ]
+    },
+    "Autódromo de Interlagos": {
+      "aliases": ["Autodromo de Interlagos", "Interlagos"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.3": "MID"},
+      "confidence": "VALIDATED_RECENT",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-06-08",
+          "evidence": "Interlagos / Gr.3 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-where-have-you-bean-20260608/"
+        }
+      ]
+    },
+    "Trial Mountain Circuit": {
+      "aliases": ["Trial Mountain", "Trial Mountain Circuit Reverse"],
+      "default_speed_class": "MID",
+      "group_speed_classes": {"GR.4": "MID"},
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
+        {
+          "source": "Traxion Daily Races 2022-09-19",
+          "evidence": "Trial Mountain / Gr.4 / Mid-speed BoP",
+          "url": "https://traxion.gg/your-guide-to-gran-turismo-7s-daily-races-w-c-19th-september-combat-vette/"
+        }
+      ]
+    },
+    "Nürburgring 24h": {
+      "aliases": ["Nurburgring 24h", "Nürburgring Endurance", "Nurburgring Endurance", "Nürburgring Endurance II", "Nurburgring Endurance II"],
+      "default_speed_class": "HIGH",
+      "group_speed_classes": {"GR.3": "HIGH"},
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2023-05-22",
+          "evidence": "Nurburgring 24h / Gr.3 / BOP (H)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20230522/"
         }
       ]
     }
