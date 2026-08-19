@@ -23,14 +23,6 @@ Country rank    : #207 of 913 (BR)
 DR rank         : #2,733 of 5,972 (DR 4)
 Same-car rank   : #3,619 of 10,795
 
-WHAT CHANGED SINCE PREVIOUS SNAPSHOT
-World Record   : 0.000s
-Top 500        : 0.000s
-My position    : #5,065 -> #5,065 (unchanged)
-My time        : 0.000s
-General rating : 7.30 -> 7.30 (+0.00)
-Elite rating   : 1.33 -> 1.33 (+0.00)
-
 WORLD RECORD & BENCHMARKS
 WR              : 1:51.868 | N.Baglioni | Porsche 911 GT3 R (992) '22
 103% WR         : 1:55.224
@@ -68,6 +60,33 @@ Index > 1.00 = overrepresented among the fastest drivers.
 3. Audi R8 LMS Evo '19 | OI 0.78 | Top100 5 | Top1000 73 | High
 4. Lamborghini Huracán GT3 '15 | OI 0.55 | Top100 1 | Top1000 20 | Medium
 5. Mercedes-AMG GT3 '20 | OI 0.54 | Top100 2 | Top1000 14 | Medium
+
+YOUR BRAKE BIAS STARTING POINT
+Convention: negative = more front, positive = more rear.
+Car             : Porsche 911 GT3 R (992) '22
+Drivetrain      : Unknown
+Qualifying range: N/A
+Qualifying start: N/A
+Race range      : N/A
+Race start      : N/A
+Confidence      : UNVALIDATED
+Wear adjustment : No recommendation generated.
+Rationale       : Car is identified, but drivetrain metadata has not yet been validated in the central database.
+
+BRAKE BIAS - TOP 5 USED CARS
+Conservative heuristic starting ranges, not telemetry-proven optimum settings.
+1. Porsche 911 GT3 R (992) '22 | Unknown | Quali N/A (start N/A) | Race N/A (start N/A) | UNVALIDATED
+2. Audi R8 LMS Evo '19 | MR | Quali -1 to 0 (start 0) | Race -1 to 0 (start -1) | HEURISTIC
+3. Jaguar F-type Gr.3 | Unknown | Quali N/A (start N/A) | Race N/A (start N/A) | UNVALIDATED
+4. Lamborghini Huracán GT3 '15 | Unknown | Quali N/A (start N/A) | Race N/A (start N/A) | UNVALIDATED
+5. Ferrari 296 GT3 '23 | Unknown | Quali N/A (start N/A) | Race N/A (start N/A) | UNVALIDATED
+
+RACE STRATEGY FLAGS
+Fuel multiplier: x3
+Tyre multiplier: x4
+Compounds detected: RM, RS
+Tyre wear is high: prioritize consistency and axle protection.
+Fuel consumption may influence race pace.
 
 FORECAST TO SUNDAY - V2
 Model           : CURRENT_WEEK_HYBRID_V2
@@ -164,6 +183,14 @@ LAST FINALIZED RACES
 2026-08-10 | Gen 8.44 | Elite 1.80 | Comp 5.78 | Top 15.58% | WR 102.371%
 2026-08-17 | Gen 8.49 | Elite 1.92 | Comp 5.87 | Top 15.06% | WR 103.188%
 2026-08-17 | Gen 7.08 | Elite 1.45 | Comp 4.83 | Top 29.17% | WR 103.404%
+
+WHAT CHANGED SINCE PREVIOUS SNAPSHOT
+World Record   : 0.000s
+Top 500        : 0.000s
+My position    : #5,065 -> #5,065 (unchanged)
+My time        : 0.000s
+General rating : 7.30 -> 7.30 (+0.00)
+Elite rating   : 1.33 -> 1.33 (+0.00)
 
 DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
