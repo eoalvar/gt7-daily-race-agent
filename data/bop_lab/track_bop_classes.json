@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "tracks": {
+    "Yas Marina Circuit": {
+      "speed_class": "MID",
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2025-12-08",
+          "evidence": "Yas Marina Circuit / Gr.4 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20251208/"
+        },
+        {
+          "source": "Lights to Flag Daily Races 2026-06-01",
+          "evidence": "Yas Marina Circuit / Gr.3 / BOP (M)",
+          "url": "https://lights-to-flag.com/gt7-daily-races-20260601/"
+        },
+        {
+          "source": "Gran Turismo Wiki",
+          "evidence": "Yas Marina Circuit BoP (GT7): Mid-speed",
+          "url": "https://gran-turismo.fandom.com/wiki/Yas_Marina_Circuit"
+        }
+      ],
+      "notes": "Validated as GT7 mid-speed BoP. Mapping is track-based, not car-based."
+    }
+  }
+}
