@@ -1,12 +1,14 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "races": [
     {
-      "race_key": "2026-08-19T06:17:29.766163-03:00",
-      "captured_at": "2026-08-19T12:59:24.181535+00:00",
+      "race_key": "live:GR.3:MID:2026-08-17",
+      "week_start": "2026-08-17",
+      "captured_at": "2026-08-19T13:16:41.445297+00:00",
       "track": "Yas Marina Circuit",
       "group": "GR.3",
       "speed_class": "MID",
+      "model_key": "GR.3|MID",
       "status": "LIVE_SNAPSHOT",
       "total_drivers": 13155,
       "cars": [
@@ -621,5 +623,5 @@
       ]
     }
   ],
-  "updated_at": "2026-08-19T12:59:24.181556+00:00"
+  "updated_at": "2026-08-19T13:16:41.445320+00:00"
 }

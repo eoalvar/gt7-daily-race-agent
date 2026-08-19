@@ -1,10 +1,11 @@
 {
-  "generated_at": "2026-08-19T12:59:24.103328+00:00",
-  "version": "0.2",
+  "generated_at": "2026-08-19T13:16:41.372517+00:00",
+  "version": "0.3",
   "snapshot_timestamp": "2026-08-19T06:17:29.766163-03:00",
   "track": "Yas Marina Circuit",
   "group": "GR.3",
   "speed_class": "MID",
+  "model_key": "GR.3|MID",
   "total_drivers": 13155,
   "world_record_score": 111945,
   "world_record_laptime": "1:51.945",
@@ -25,7 +26,15 @@
       "rarity": 0.2
     },
     "evidence_shrinkage": "Score is shrunk toward neutral 50 for small car samples.",
-    "bop_role": "BoP-aware: all technical descriptors use the active speed-class table. Technical values are not yet assigned arbitrary performance weights."
+    "bop_role": "BoP-aware and multi-group. The current race group selects an isolated group table, and the circuit selects HIGH/MID/LOW. Technical variables are learned separately for each group + speed-class model."
+  },
+  "bop_coverage": {
+    "group_database_records": 156,
+    "eligible_cars_with_bop": 38,
+    "eligible_cars_without_bop": 1,
+    "unmatched_cars": [
+      "Toyota FT-1 Vision Gran Turismo (Gr.3)"
+    ]
   },
   "cars_total": 53,
   "cars_eligible": 39,
@@ -84,7 +93,8 @@
         "requested_name": "Jaguar F-type Gr.3",
         "matched_name": "Jaguar F-type Gr.3",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3600,
@@ -140,7 +150,8 @@
         "requested_name": "Porsche 911 GT3 R (992) '22",
         "matched_name": "Porsche 911 GT3 R (992) '22",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3405,
@@ -196,7 +207,8 @@
         "requested_name": "Audi R8 LMS Evo '19",
         "matched_name": "Audi R8 LMS Evo '19",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3305,
@@ -252,7 +264,8 @@
         "requested_name": "Volkswagen Beetle Gr.3",
         "matched_name": "Volkswagen Beetle Gr.3",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3352,
@@ -308,7 +321,8 @@
         "requested_name": "Toyota GR Supra Racing Concept '18",
         "matched_name": "Toyota GR Supra Racing Concept '18",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3238,
@@ -364,7 +378,8 @@
         "requested_name": "Peugeot RCZ Gr.3",
         "matched_name": "Peugeot RCZ Gr.3",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2185,
@@ -420,7 +435,8 @@
         "requested_name": "Mitsubishi Lancer Evolution Final Edition Gr.3",
         "matched_name": "Mitsubishi Lancer Evolution Final Gr.3",
         "match_score": 86
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3223,
@@ -476,7 +492,8 @@
         "requested_name": "Dodge Viper SRT GT3-R '15",
         "matched_name": "Dodge Viper SRT GT3-R '15",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3474,
@@ -532,7 +549,8 @@
         "requested_name": "Subaru BRZ GT300 '21",
         "matched_name": "Subaru BRZ GT300 '21",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2160,
@@ -588,7 +606,8 @@
         "requested_name": "Hyundai Genesis Gr.3",
         "matched_name": "Hyundai Genesis Gr.3",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 1470,
@@ -644,7 +663,8 @@
         "requested_name": "Toyota Supra GT500 '97",
         "matched_name": "Toyota Supra GT500 '97",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2188,
@@ -700,7 +720,8 @@
         "requested_name": "Renault Sport R.S.01 GT3 '16",
         "matched_name": "Renault R.S.01 GT3 '16",
         "match_score": 86
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 1902,
@@ -756,7 +777,8 @@
         "requested_name": "BMW Z4 GT3 '11",
         "matched_name": "BMW Z4 GT3 '11",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3340,
@@ -812,7 +834,8 @@
         "requested_name": "Lexus RC F GT3 '17",
         "matched_name": "Lexus RC F GT3 '17",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3502,
@@ -868,7 +891,8 @@
         "requested_name": "Genesis X GR3",
         "matched_name": "Genesis Genesis X GR3",
         "match_score": 90
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3503,
@@ -924,7 +948,8 @@
         "requested_name": "MAZDA RX-VISION GT3 CONCEPT Stealth Model",
         "matched_name": "Mazda RX-VISION GT3 CONCEPT Stealth Model",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3218,
@@ -980,7 +1005,8 @@
         "requested_name": "BMW M6 GT3 Endurance Model '16",
         "matched_name": "BMW M6 GT3 Endurance Model '16",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3235,
@@ -1036,7 +1062,8 @@
         "requested_name": "Honda NSX Gr.3",
         "matched_name": "Honda NSX Gr.3",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2159,
@@ -1092,7 +1119,8 @@
         "requested_name": "Ford Mustang Gr.3",
         "matched_name": "Ford Mustang Gr.3",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 1904,
@@ -1148,7 +1176,8 @@
         "requested_name": "BMW M3 GT '11",
         "matched_name": "BMW M3 GT '11",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 140,
@@ -1204,7 +1233,8 @@
         "requested_name": "Honda NSX GT500 '00",
         "matched_name": "Honda NSX GT500 '00",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2183,
@@ -1260,7 +1290,8 @@
         "requested_name": "Chevrolet Corvette C7 Gr.3",
         "matched_name": "Chevrolet Corvette C7 Gr.3",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2187,
@@ -1285,7 +1316,8 @@
       "sleeper_label": "NO SLEEPER SIGNAL",
       "confidence": "LOW",
       "active_bop": null,
-      "bop_match": null
+      "bop_match": null,
+      "bop_available": false
     },
     {
       "car_code": 2131,
@@ -1341,7 +1373,8 @@
         "requested_name": "Aston Martin V12 Vantage GT3 '12",
         "matched_name": "Aston Martin V12 Vantage GT3 '12",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3419,
@@ -1397,7 +1430,8 @@
         "requested_name": "MAZDA RX-VISION GT3 CONCEPT",
         "matched_name": "Mazda RX-VISION GT3 CONCEPT",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2177,
@@ -1453,7 +1487,8 @@
         "requested_name": "Lamborghini Huracán GT3 '15",
         "matched_name": "Lamborghini Huracán GT3 '15",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3224,
@@ -1509,7 +1544,8 @@
         "requested_name": "Mercedes-AMG GT3 '16",
         "matched_name": "AMG Mercedes-AMG GT3 '16",
         "match_score": 90
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2186,
@@ -1565,7 +1601,8 @@
         "requested_name": "Subaru WRX Gr.3",
         "matched_name": "Subaru WRX Gr.3",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2143,
@@ -1621,7 +1658,8 @@
         "requested_name": "Audi R8 LMS '15",
         "matched_name": "Audi R8 LMS '15",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3185,
@@ -1677,7 +1715,8 @@
         "requested_name": "Alfa Romeo 4C Gr.3",
         "matched_name": "Alfa Romeo 4C Gr.3",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3531,
@@ -1733,7 +1772,8 @@
         "requested_name": "Mercedes-AMG GT3 '20",
         "matched_name": "AMG Mercedes-AMG GT3 '20",
         "match_score": 90
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2190,
@@ -1789,7 +1829,8 @@
         "requested_name": "GT by Citroën Race Car (Gr.3)",
         "matched_name": "Citroën GT by Citroën Race Car (Gr.3)",
         "match_score": 90
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3221,
@@ -1845,7 +1886,8 @@
         "requested_name": "BMW M6 GT3 Sprint Model '16",
         "matched_name": "BMW M6 GT3 Sprint Model '16",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2182,
@@ -1901,7 +1943,8 @@
         "requested_name": "McLaren 650S GT3 '15",
         "matched_name": "McLaren 650S GT3 '15",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3436,
@@ -1957,7 +2000,8 @@
         "requested_name": "Ford GT Race Car '18",
         "matched_name": "Ford Ford GT Race Car '18",
         "match_score": 90
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3450,
@@ -2013,7 +2057,8 @@
         "requested_name": "Nissan GT-R NISMO GT3 '18",
         "matched_name": "Nissan GT-R NISMO GT3 '18",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3311,
@@ -2069,7 +2114,8 @@
         "requested_name": "Porsche 911 RSR (991) '17",
         "matched_name": "Porsche 911 RSR (991) '17",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 2158,
@@ -2125,7 +2171,8 @@
         "requested_name": "Ferrari 458 Italia GT3 '13",
         "matched_name": "Ferrari 458 Italia GT3 '13",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     },
     {
       "car_code": 3588,
@@ -2181,14 +2228,19 @@
         "requested_name": "Ferrari 296 GT3 '23",
         "matched_name": "Ferrari 296 GT3 '23",
         "match_score": 100
-      }
+      },
+      "bop_available": true
     }
   ],
   "production_pipeline_modified": false,
   "technical_learning": {
+    "model_key": "GR.3|MID",
     "status": "BOOTSTRAP",
     "minimum_independent_races": 3,
     "races_available_same_group_speed_class": 1,
+    "independent_weeks": [
+      "2026-08-17"
+    ],
     "features": [
       "power_weight_hp_t",
       "weight_kg",
@@ -2210,6 +2262,12 @@
       "rotational_g_240": 0.09784271269932036
     },
     "technical_weight_in_sleeper_score": 0.0,
-    "policy": "No technical coefficient changes SCI until enough independent race observations exist; no hand-picked technical weights."
+    "multi_group_model_coverage": {
+      "GR.3|MID": {
+        "independent_races": 1,
+        "status": "BOOTSTRAP"
+      }
+    },
+    "policy": "Each group + speed class is learned independently. Multiple snapshots from the same race week count once. No technical coefficient changes SCI until enough independent weeks exist; no hand-picked technical weights."
   }
 }

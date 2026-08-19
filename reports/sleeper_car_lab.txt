@@ -1,78 +1,81 @@
-GT7 SLEEPER CAR LAB V0.2
+GT7 SLEEPER CAR LAB V0.3
 ====================================================================================================
-Generated            : 2026-08-19T12:59:24.103328+00:00
+Generated            : 2026-08-19T13:16:41.372517+00:00
 Track                : Yas Marina Circuit
 Group                : GR.3
 Active BoP           : MID
+Model key            : GR.3|MID
 Total drivers        : 13,155
 Cars observed        : 53
 Cars eligible (n>=20) : 39
+Eligible with BoP    : 38
+Eligible without BoP : 1
 WR                   : 1:51.945
 Top 500              : 1:53.737
-Elapsed              : 42.8s
+Elapsed              : 49.2s
 Production modified  : NO
 
 METHOD
 ----------------------------------------------------------------------------------------------------
-Sleeper Score is NOT simple car popularity or the old overperformance index.
-It combines Bayesian-shrunk representation efficiency in Top 100/500/1000,
-best-car elite proximity, rarity, and sample-size evidence strength.
-Active BoP technical data is attached using the circuit speed class; technical
-fields are intentionally not given arbitrary weights in V0.1.
+The current Daily Race group selects an isolated BoP population (GR.1/2/3/4/B).
+The circuit then selects the HIGH/MID/LOW table inside that group.
+Sleeper Score combines Bayesian-shrunk Top100/500/1000 efficiency, elite proximity,
+rarity and evidence strength. Technical variables remain explanatory only until the
+matching group + speed-class model has enough independent race weeks.
 
 TOP SLEEPER CANDIDATES
 ----------------------------------------------------------------------------------------------------
  1. Jaguar F-type Gr.3 | SCI 71.6 | STRONG SLEEPER | n=201 (1.53%) | Eff 1.28x | T100 4 / T500 10 / T1000 19 | Best #8 1:52.190 | Conf MEDIUM
-    Active MID BoP: 469 HP / 1265 kg / PP 695.6 / FR
+    Active GR.3 MID BoP: 469 HP / 1265 kg / PP 695.6 / FR
  2. Porsche 911 GT3 R (992) '22 | SCI 66.0 | META / PROVEN | n=7541 (57.32%) | Eff 1.35x | T100 77 / T500 398 / T1000 766 | Best #1 1:51.945 | Conf HIGH
-    Active MID BoP: 446 HP / 1320 kg / PP 693.04 / RR
+    Active GR.3 MID BoP: 446 HP / 1320 kg / PP 693.04 / RR
  3. Audi R8 LMS Evo '19 | SCI 62.7 | SLEEPER CANDIDATE | n=1008 (7.66%) | Eff 1.03x | T100 7 / T500 36 / T1000 88 | Best #19 1:52.357 | Conf HIGH
-    Active MID BoP: 444 HP / 1310 kg / PP 691.74 / MR
+    Active GR.3 MID BoP: 444 HP / 1310 kg / PP 691.74 / MR
  4. Volkswagen Beetle Gr.3 | SCI 57.3 | WATCHLIST | n=118 (0.90%) | Eff 0.90x | T100 2 / T500 3 / T1000 4 | Best #33 1:52.535 | Conf LOW-MEDIUM
-    Active MID BoP: 479 HP / 1295 kg / PP 693.5 / FR
+    Active GR.3 MID BoP: 479 HP / 1295 kg / PP 693.5 / FR
  5. Toyota GR Supra Racing Concept '18 | SCI 56.1 | WATCHLIST | n=78 (0.59%) | Eff 0.98x | T100 1 / T500 3 / T1000 4 | Best #70 1:52.804 | Conf LOW-MEDIUM
-    Active MID BoP: 462 HP / 1245 kg / PP 694.95 / FR
+    Active GR.3 MID BoP: 462 HP / 1245 kg / PP 694.95 / FR
  6. Peugeot RCZ Gr.3 | SCI 55.4 | WATCHLIST | n=103 (0.78%) | Eff 0.92x | T100 1 / T500 3 / T1000 5 | Best #72 1:52.812 | Conf LOW-MEDIUM
-    Active MID BoP: 484 HP / 1275 kg / PP 691.91 / MR
+    Active GR.3 MID BoP: 484 HP / 1275 kg / PP 691.91 / MR
  7. Mitsubishi Lancer Evolution Final Edition Gr.3 | SCI 54.6 | WATCHLIST | n=42 (0.32%) | Eff 0.97x | T100 1 / T500 1 / T1000 1 | Best #66 1:52.783 | Conf LOW
-    Active MID BoP: 507 HP / 1310 kg / PP 701.43 / FR
+    Active GR.3 MID BoP: 507 HP / 1310 kg / PP 701.43 / FR
  8. Dodge Viper SRT GT3-R '15 | SCI 53.7 | NO SLEEPER SIGNAL | n=71 (0.54%) | Eff 0.84x | T100 1 / T500 1 / T1000 1 | Best #60 1:52.744 | Conf LOW-MEDIUM
-    Active MID BoP: 475 HP / 1300 kg / PP 695.23 / FR
+    Active GR.3 MID BoP: 475 HP / 1300 kg / PP 695.23 / FR
  9. Subaru BRZ GT300 '21 | SCI 53.5 | NO SLEEPER SIGNAL | n=61 (0.46%) | Eff 0.88x | T100 1 / T500 1 / T1000 1 | Best #87 1:52.904 | Conf LOW-MEDIUM
-    Active MID BoP: 435 HP / 1311 kg / PP 699.34 / FR
+    Active GR.3 MID BoP: 435 HP / 1311 kg / PP 699.34 / FR
 10. Hyundai Genesis Gr.3 | SCI 53.3 | NO SLEEPER SIGNAL | n=24 (0.18%) | Eff 1.02x | T100 0 / T500 2 / T1000 2 | Best #141 1:53.091 | Conf LOW
-    Active MID BoP: 483 HP / 1269 kg / PP 693.53 / FR
+    Active GR.3 MID BoP: 483 HP / 1269 kg / PP 693.53 / FR
 11. Toyota Supra GT500 '97 | SCI 53.1 | NO SLEEPER SIGNAL | n=22 (0.17%) | Eff 1.03x | T100 0 / T500 2 / T1000 2 | Best #154 1:53.135 | Conf LOW
-    Active MID BoP: 448 HP / 1175 kg / PP 689.97 / FR
+    Active GR.3 MID BoP: 448 HP / 1175 kg / PP 689.97 / FR
 12. Renault Sport R.S.01 GT3 '16 | SCI 52.6 | NO SLEEPER SIGNAL | n=50 (0.38%) | Eff 0.89x | T100 0 / T500 2 / T1000 2 | Best #145 1:53.107 | Conf LOW-MEDIUM
-    Active MID BoP: 466 HP / 1320 kg / PP 689.38 / MR
+    Active GR.3 MID BoP: 466 HP / 1320 kg / PP 689.38 / MR
 13. BMW Z4 GT3 '11 | SCI 52.3 | NO SLEEPER SIGNAL | n=38 (0.29%) | Eff 0.91x | T100 0 / T500 1 / T1000 2 | Best #169 1:53.191 | Conf LOW
-    Active MID BoP: 460 HP / 1250 kg / PP 687.84 / FR
+    Active GR.3 MID BoP: 460 HP / 1250 kg / PP 687.84 / FR
 14. Lexus RC F GT3 '17 | SCI 51.3 | NO SLEEPER SIGNAL | n=37 (0.28%) | Eff 0.91x | T100 0 / T500 1 / T1000 2 | Best #427 1:53.656 | Conf LOW
-    Active MID BoP: 455 HP / 1310 kg / PP 697.59 / FR
+    Active GR.3 MID BoP: 455 HP / 1310 kg / PP 697.59 / FR
 15. Genesis X GR3 | SCI 50.7 | NO SLEEPER SIGNAL | n=27 (0.21%) | Eff 0.92x | T100 0 / T500 0 / T1000 2 | Best #738 1:53.965 | Conf LOW
-    Active MID BoP: 466 HP / 1285 kg / PP 699.78 / FR
+    Active GR.3 MID BoP: 466 HP / 1285 kg / PP 699.78 / FR
 
-META VS SLEEPER INTERPRETATION
+BOP MAPPING GAPS
 ----------------------------------------------------------------------------------------------------
-A high SCI means the car is producing disproportionately strong leaderboard results
-despite relatively low adoption, with Bayesian shrinkage to reduce small-sample noise.
-A dominant meta car can still be objectively excellent, but its rarity component is low,
-so it will not automatically be called a sleeper simply because elite drivers use it.
+- Toyota FT-1 Vision Gran Turismo (Gr.3) | n=30 | SCI still calculated, technical model excluded
 
-NEXT MODEL STEP
+MULTI-GROUP MODEL POLICY
 ----------------------------------------------------------------------------------------------------
-V0.2 should learn circuit-specific technical weights from multiple finalized races.
-That is where power/weight, weight balance, acceleration, rotational G and stability
-can become explanatory/predictive variables instead of hand-picked assumptions.
+GR.3 observations never train GR.4, GR.2, GR.1 or GR.B models.
+Likewise HIGH/MID/LOW are independent within each group.
+This prevents a technical relationship learned in one vehicle class from being
+incorrectly transferred to another class with different aero, mass and power behavior.
 ====================================================================================================
 
-V0.2 TECHNICAL LEARNING
+V0.3 MULTI-GROUP TECHNICAL LEARNING
 ----------------------------------------------------------------------------------------------------
+Model key            : GR.3|MID
 Model status         : BOOTSTRAP
 Independent races    : 1 / 3 minimum
+Independent weeks    : 2026-08-17
 Technical SCI weight : 0.0
-Policy               : empirical learning only; no arbitrary technical weights.
+Policy               : group + speed-class models are completely separate.
 
 Observed correlations (diagnostic only):
   power_weight_hp_t        +0.136
@@ -84,5 +87,8 @@ Observed correlations (diagnostic only):
   rotational_g_120         +0.006
   rotational_g_240         +0.098
 
-The history file is persistent. Repeated observations accumulate evidence for future
-circuit/speed-class technical modelling without changing the production Daily Race C agent.
+MODEL COVERAGE
+  GR.3|MID       1 independent race(s) | BOOTSTRAP
+
+Repeated snapshots from one Daily Race week never increase the independent-race count.
+A future GR.4/MID race, for example, trains GR.4|MID only and cannot alter GR.3|MID.

@@ -1,10 +1,11 @@
-GT7 SLEEPER HISTORY BACKFILL V0.2
+GT7 SLEEPER HISTORY BACKFILL V0.3
 ====================================================================================================
+Target model          : GR.3|MID
 Target group          : GR.3
 Target speed class    : MID
 Current live week     : 2026-08-17
-Removed false/duplicate observations : 2
-Existing independent observations    : 1
+Removed invalid/duplicate observations : 0
+Existing independent observations      : 1
 Target observations   : 3
 Eligible historical weeks : 0
 
@@ -13,3 +14,6 @@ Added this run        : 0
 Final independent observations : 1
 Independent weeks     : 2026-08-17
 STATUS                : BOOTSTRAP
+
+ALL MODEL COVERAGE
+GR.3|MID       | 1 independent race(s) | BOOTSTRAP
