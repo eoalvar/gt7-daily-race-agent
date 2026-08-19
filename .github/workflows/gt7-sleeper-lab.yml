@@ -26,11 +26,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Run Sleeper Car Lab
+      - name: Run Sleeper Car Lab base model
         id: run_sleeper_lab
         continue-on-error: true
         run: |
           python src/sleeper_car_lab.py
+
+      - name: Run V0.2 technical learning layer
+        id: run_technical_learning
+        if: steps.run_sleeper_lab.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python src/sleeper_technical_learning.py
 
       - name: Inspect generated files
         if: always()
@@ -38,6 +45,7 @@ jobs:
           echo "Generated Sleeper Lab files:"
           find data/bop_lab reports -maxdepth 2 -type f \
             \( -name 'sleeper_car_index.json' \
+            -o -name 'sleeper_training_history.json' \
             -o -name 'sleeper_car_lab_error.txt' \
             -o -name 'sleeper_car_lab.txt' \) \
             -print || true
@@ -48,27 +56,26 @@ jobs:
           git config user.name "GT7 Sleeper Car Lab"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          if [ -f data/bop_lab/sleeper_car_index.json ]; then
-            git add data/bop_lab/sleeper_car_index.json
-          fi
-
-          if [ -f data/bop_lab/sleeper_car_lab_error.txt ]; then
-            git add data/bop_lab/sleeper_car_lab_error.txt
-          fi
-
-          if [ -f reports/sleeper_car_lab.txt ]; then
-            git add reports/sleeper_car_lab.txt
-          fi
+          for file in \
+            data/bop_lab/sleeper_car_index.json \
+            data/bop_lab/sleeper_training_history.json \
+            data/bop_lab/sleeper_car_lab_error.txt \
+            reports/sleeper_car_lab.txt
+          do
+            if [ -f "$file" ]; then
+              git add "$file"
+            fi
+          done
 
           if git diff --cached --quiet; then
             echo "No Sleeper Car Lab changes to save."
           else
-            git commit -m "Update GT7 Sleeper Car Lab data"
+            git commit -m "Update GT7 Sleeper Car Lab V0.2 data"
             git push
           fi
 
       - name: Report Sleeper Car Lab failure
-        if: steps.run_sleeper_lab.outcome == 'failure'
+        if: steps.run_sleeper_lab.outcome == 'failure' || steps.run_technical_learning.outcome == 'failure'
         run: |
-          echo "Sleeper Car Lab failed. Diagnostic files were preserved."
+          echo "Sleeper Car Lab V0.2 failed. Diagnostic files were preserved."
           exit 1
