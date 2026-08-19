@@ -1,7 +1,9 @@
+import json
 import re
 from pathlib import Path
 
 REPORT_FILE = Path("reports/latest.txt")
+WEEKLY_HISTORY_FILE = Path("data/weekly_rating_history.json")
 
 UNWANTED_START = "YOUR BRAKE BIAS STARTING POINT\n"
 UNWANTED_END = "FORECAST TO SUNDAY - V2\n"
@@ -76,13 +78,9 @@ def format_header(text):
     race_index = snapshot_index + 1
     race_line = lines[race_index].strip()
 
-    # Already formatted: make the function idempotent.
     if race_line.startswith("C ") and race_line.endswith("Daily Race C"):
         return text
 
-    # Expected source example:
-    # C Gr.3 Running 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit
-    # N.Baglioni - Porsche ... RM RS BoP On ...
     race_match = re.match(
         r"^(C\s+.+?\s+Daily Race C)\s+i\s+\d{1,2}:\d{2}\s+(.+)$",
         race_line,
@@ -93,7 +91,6 @@ def format_header(text):
     race_title = race_match.group(1).strip()
     remainder = race_match.group(2).strip()
 
-    # Use the WR section as the authoritative source for driver, time and car.
     wr_match = re.search(
         r"^WR\s*:\s*([^|\n]+?)\s*\|\s*([^|\n]+?)\s*\|\s*(.+?)\s*$",
         text,
@@ -106,7 +103,6 @@ def format_header(text):
     wr_driver = wr_match.group(2).strip()
     wr_car = wr_match.group(3).strip()
 
-    # The compact line is: TRACK + WR DRIVER + " - " + WR CAR + RACE SETUP.
     driver_marker = f" {wr_driver} - "
     if driver_marker not in remainder:
         return text
@@ -131,11 +127,124 @@ def format_header(text):
     return "\n".join(lines) + ("\n" if text.endswith("\n") else "")
 
 
+def extract_group_and_circuit(record):
+    race = str(record.get("race") or "").strip()
+    car = str(record.get("car") or "").strip()
+
+    group_match = re.match(r"^C\s+(Gr\.[1234]|Gr\.B)\b", race, flags=re.IGNORECASE)
+    group = group_match.group(1) if group_match else "Group N/A"
+
+    after_time_match = re.search(
+        r"Daily Race C\s+i\s+\d{1,2}:\d{2}\s+(.+)$",
+        race,
+        flags=re.IGNORECASE,
+    )
+    if not after_time_match:
+        return group, "Circuit N/A"
+
+    remainder = after_time_match.group(1).strip()
+
+    before_driver = None
+    if car:
+        marker = f" - {car}"
+        marker_pos = remainder.rfind(marker)
+        if marker_pos >= 0:
+            before_driver = remainder[:marker_pos].strip()
+
+    if not before_driver:
+        generic_pos = remainder.rfind(" - ")
+        if generic_pos >= 0:
+            before_driver = remainder[:generic_pos].strip()
+
+    if not before_driver:
+        return group, "Circuit N/A"
+
+    # GTSH appends the WR driver immediately after the circuit.
+    # Common forms are "J. Serrano", "D. Chafe", "N.Baglioni" or a PSN-like token.
+    circuit = re.sub(r"\s+[A-Z]\.?\s+[^\s]+$", "", before_driver).strip()
+    if circuit == before_driver:
+        circuit = re.sub(r"\s+[^\s]+$", "", before_driver).strip()
+
+    return group, circuit or "Circuit N/A"
+
+
+def load_finalized_race_context():
+    if not WEEKLY_HISTORY_FILE.exists():
+        return {}
+
+    try:
+        history = json.loads(WEEKLY_HISTORY_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+    if not isinstance(history, list):
+        return {}
+
+    context = {}
+    for record in history:
+        if not isinstance(record, dict) or record.get("participated") is not True:
+            continue
+
+        week = str(record.get("week_start") or "").strip()
+        if not week:
+            continue
+
+        group, circuit = extract_group_and_circuit(record)
+        context[week] = {
+            "group": group,
+            "circuit": circuit,
+        }
+
+    return context
+
+
+def enrich_finalized_history(text):
+    """Add group and circuit to each LAST FINALIZED RACES line."""
+    context = load_finalized_race_context()
+    if not context or "LAST FINALIZED RACES" not in text:
+        return text
+
+    lines = text.splitlines()
+    in_section = False
+
+    for i, line in enumerate(lines):
+        if line.strip() == "LAST FINALIZED RACES":
+            in_section = True
+            continue
+
+        if not in_section:
+            continue
+
+        if not line.strip():
+            break
+
+        match = re.match(r"^(\d{4}-\d{2}-\d{2})\s*\|\s*(.+)$", line)
+        if not match:
+            continue
+
+        week = match.group(1)
+        rest = match.group(2)
+        info = context.get(week)
+        if not info:
+            continue
+
+        # Idempotent: don't add the context twice.
+        if rest.startswith(f"{info['group']} |"):
+            continue
+
+        lines[i] = (
+            f"{week} | {info['group']} | {info['circuit']} | {rest}"
+        )
+
+    return "\n".join(lines) + ("\n" if text.endswith("\n") else "")
+
+
 def format_one_report(text):
     text = remove_unwanted_sections(text)
     text = move_changed_section(text)
     text = move_cars_section(text)
     text = format_header(text)
+    text = enrich_finalized_history(text)
 
     while "\n\n\n" in text:
         text = text.replace("\n\n\n", "\n\n")
@@ -179,6 +288,10 @@ def main():
         "header_current_wr": "Current WR:" in formatted,
         "header_current_wr_car": "Current WR Car:" in formatted,
         "header_race_setup": "Race Setup:" in formatted,
+        "finalized_history_context": (
+            "LAST FINALIZED RACES" not in formatted
+            or bool(re.search(r"^\d{4}-\d{2}-\d{2} \| Gr\.", formatted, re.MULTILINE))
+        ),
     }
 
     for key, value in checks.items():
