@@ -37,9 +37,6 @@ jobs:
       # MONDAY ONLY
       # Recover the race that has just finished from the archived,
       # fully paginated historical leaderboard.
-      #
-      # If GTSH has not made the archive available yet, this step does
-      # NOT prevent the normal new-week email from being generated.
       # ============================================================
 
       - name: Finalize previous Daily Race C
@@ -52,7 +49,6 @@ jobs:
           echo "Sao Paulo weekday: $DAY_OF_WEEK"
 
           if [ "$DAY_OF_WEEK" = "1" ]; then
-
             echo "Monday detected."
             echo "Recovering previous Daily Race C final leaderboard..."
 
@@ -71,15 +67,11 @@ jobs:
               echo "is_monday=true" >> "$GITHUB_OUTPUT"
               echo "recovery_status=pending" >> "$GITHUB_OUTPUT"
             fi
-
           else
-
             echo "Not Monday."
             echo "Skipping previous-week recovery."
-
             echo "is_monday=false" >> "$GITHUB_OUTPUT"
             echo "recovery_status=not_required" >> "$GITHUB_OUTPUT"
-
           fi
 
       # ============================================================
@@ -94,11 +86,8 @@ jobs:
 
       # ============================================================
       # WEEKLY CAR RECOMMENDATION LAYER
-      #
-      # Production-safe integration: these experimental stages are
-      # allowed to fail without blocking the normal Daily C email.
-      # They use the already-built historical database and do NOT run
-      # the expensive full archive catalog/backfill here.
+      # Production-safe: experimental stages may fail without blocking
+      # the normal Daily C email.
       # ============================================================
 
       - name: Refresh current Sleeper Car Index
@@ -136,10 +125,6 @@ jobs:
 
       # ============================================================
       # MONDAY EMAIL
-      #
-      # reports/latest.txt now already contains the compact current-
-      # week car recommendation block when available. On Monday we
-      # prepend the previous week's FINAL result.
       # ============================================================
 
       - name: Build Monday combined report
@@ -147,7 +132,6 @@ jobs:
         shell: bash
         run: |
           if [ -f reports/previous_week_final.txt ]; then
-
             cp reports/latest.txt reports/current_week_report.tmp
 
             {
@@ -161,26 +145,17 @@ jobs:
             } > reports/latest.txt
 
             rm -f reports/current_week_report.tmp
-
             echo "Monday combined email report created."
-
           else
-
             echo "Previous-week report not found."
             echo "Keeping normal current-week report."
-
           fi
-
-      # ============================================================
-      # MONDAY EMAIL SUBJECT
-      # ============================================================
 
       - name: Update Monday email subject
         if: ${{ steps.previous_week.outputs.is_monday == 'true' }}
         shell: bash
         run: |
           if [ -f reports/email_subject.txt ]; then
-
             CURRENT_SUBJECT=$(cat reports/email_subject.txt)
 
             if [ "${{ steps.previous_week.outputs.recovery_status }}" = "success" ]; then
@@ -188,8 +163,18 @@ jobs:
             else
               echo "GT7 NEW WEEK | Previous Final Pending | ${CURRENT_SUBJECT}" > reports/email_subject.txt
             fi
-
           fi
+
+      # ============================================================
+      # FINAL EMAIL LAYOUT
+      # Remove legacy Brake Bias / Race Strategy sections and place
+      # snapshot changes and weekly car recommendations where requested.
+      # Runs after Monday merge so both report portions are cleaned.
+      # ============================================================
+
+      - name: Format final Daily C report layout
+        run: |
+          python src/format_daily_report_layout.py
 
       # ============================================================
       # SAVE EVERYTHING
