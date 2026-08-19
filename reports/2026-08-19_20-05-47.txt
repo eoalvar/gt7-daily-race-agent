@@ -1,11 +1,7 @@
 GT7 DAILY RACE C
 ==============================================================================
 Snapshot: 19/08/2026 20:05:47 - Sao Paulo
-C Gr.3 Running 17 Aug 2026 Daily Race C
-Yas Marina Circuit
-Current WR: N.Baglioni (1:51.868)
-Current WR Car: Porsche 911 GT3 R (992) '22
-Race Setup: RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom
+C Gr.3 Running 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit N.Baglioni - Porsche 911 GT3 R (992) '22 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
 Total drivers: 20,445
@@ -26,14 +22,6 @@ Ahead of        : 77.83% of participants
 Country rank    : #182 of 1,031 (BR)
 DR rank         : #2,376 of 6,470 (DR 4)
 Same-car rank   : #101 of 314
-
-WHAT CHANGED SINCE PREVIOUS SNAPSHOT
-World Record   : 0.000s
-Top 500        : 0.000s
-My position    : #4,534 -> #4,534 (unchanged)
-My time        : 0.000s
-General rating : 7.78 -> 7.78 (+0.00)
-Elite rating   : 1.52 -> 1.52 (+0.00)
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:51.868 | N.Baglioni | Porsche 911 GT3 R (992) '22
@@ -73,19 +61,32 @@ Index > 1.00 = overrepresented among the fastest drivers.
 4. Mercedes-AMG GT3 '20 | OI 0.54 | Top100 2 | Top1000 16 | Medium
 5. Lamborghini Huracán GT3 '15 | OI 0.52 | Top100 1 | Top1000 18 | Medium
 
-CARS TO TEST THIS WEEK
-------------------------------------------------------------------------------
-Model: GR.3|MID | Technical evidence: 50%
-SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
+YOUR BRAKE BIAS STARTING POINT
+Convention: negative = more front, positive = more rear.
+Car             : Jaguar F-type Gr.3
+Drivetrain      : Unknown
+Qualifying range: N/A
+Qualifying start: N/A
+Race range      : N/A
+Race start      : N/A
+Confidence      : UNVALIDATED
+Wear adjustment : No recommendation generated.
+Rationale       : Car is identified, but drivetrain metadata has not yet been validated in the central database.
 
-1. Hyundai Genesis Gr.3 | PRIORITY TEST | Consensus 89% | SCI 62.5 | SSI 69.5 | Tech 74% | Usage 0.22% | Best #13
-2. Mitsubishi Lancer Evolution Final Edition Gr.3 | PRIORITY TEST | Consensus 82% | SCI 55.2 | SSI 63.3 | Tech 71% | Usage 0.23% | Best #88
-3. Lexus RC F GT3 '17 | PRIORITY TEST | Consensus 80% | SCI 56.8 | SSI 58.4 | Tech 70% | Usage 0.31% | Best #46
-4. Subaru WRX Gr.3 | STRONG ALTERNATIVE | Consensus 78% | SCI 54.9 | SSI 56.3 | Tech 72% | Usage 0.28% | Best #93
-5. Jaguar F-type Gr.3 | STRONG ALTERNATIVE | Consensus 75% | SCI 77.0 | SSI 52.1 | Tech 54% | Usage 1.54% | Best #5
+BRAKE BIAS - TOP 5 USED CARS
+Conservative heuristic starting ranges, not telemetry-proven optimum settings.
+1. Porsche 911 GT3 R (992) '22 | Unknown | Quali N/A (start N/A) | Race N/A (start N/A) | UNVALIDATED
+2. Audi R8 LMS Evo '19 | MR | Quali -1 to 0 (start 0) | Race -1 to 0 (start -1) | HEURISTIC
+3. Jaguar F-type Gr.3 | Unknown | Quali N/A (start N/A) | Race N/A (start N/A) | UNVALIDATED
+4. Lamborghini Huracán GT3 '15 | Unknown | Quali N/A (start N/A) | Race N/A (start N/A) | UNVALIDATED
+5. Mercedes-AMG GT3 '20 | Unknown | Quali N/A (start N/A) | Race N/A (start N/A) | UNVALIDATED
 
-Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
-==============================================================================
+RACE STRATEGY FLAGS
+Fuel multiplier: x3
+Tyre multiplier: x4
+Compounds detected: RM, RS
+Tyre wear is high: prioritize consistency and axle protection.
+Fuel consumption may influence race pace.
 
 FORECAST TO SUNDAY - V2
 Model           : CURRENT_WEEK_HYBRID_V2
@@ -182,6 +183,14 @@ LAST FINALIZED RACES
 2026-07-27 | Gen 8.65 | Elite 1.87 | Comp 5.94 | Top 13.50% | WR 103.850%
 2026-08-03 | Gen 8.82 | Elite 1.97 | Comp 6.08 | Top 11.82% | WR 102.165%
 2026-08-10 | Gen 8.44 | Elite 1.80 | Comp 5.78 | Top 15.58% | WR 102.371%
+
+WHAT CHANGED SINCE PREVIOUS SNAPSHOT
+World Record   : 0.000s
+Top 500        : 0.000s
+My position    : #4,534 -> #4,534 (unchanged)
+My time        : 0.000s
+General rating : 7.78 -> 7.78 (+0.00)
+Elite rating   : 1.52 -> 1.52 (+0.00)
 
 DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block

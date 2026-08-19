@@ -1,12 +1,13 @@
 GT7 CURRENT-WEEK HISTORY CLEANUP
 ========================================================================
-Current week       : 2026-08-10
-Records before     : 25
-Records removed    : 1
-Records remaining  : 24
+Current week       : 2026-08-17
+Records before     : 27
+Records removed    : 2
+Records remaining  : 25
 
 REMOVED RECORDS
 ------------------------------------------------------------------------
-2026-08-10 | #4367 / 27259 | Genesis G70 GR4 | historical_backfill
+2026-08-17 | #2843 / 18875 | Audi R8 LMS Evo '19 | backfill_last_available_snapshot
+2026-08-17 | #1392 / 4772 | Audi R8 LMS Evo '19 | backfill_last_available_snapshot
 
 ========================================================================
