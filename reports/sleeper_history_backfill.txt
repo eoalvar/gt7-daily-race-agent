@@ -1,14 +1,15 @@
-GT7 SLEEPER HISTORY BACKFILL V0.1
+GT7 SLEEPER HISTORY BACKFILL V0.2
 ====================================================================================================
 Target group          : GR.3
 Target speed class    : MID
-Existing observations : 1
+Current live week     : 2026-08-17
+Removed false/duplicate observations : 2
+Existing independent observations    : 1
 Target observations   : 3
-Eligible candidates   : 5
+Eligible historical weeks : 0
 
-ADDED 2026-08-17 | Yas Marina Circuit | MID | drivers 19,959 | cars 41
-ADDED 2026-08-17 | Yas Marina Circuit | MID | drivers 4,775 | cars 22
 
-Added this run        : 2
-Final observations    : 3
-STATUS                : READY FOR TECHNICAL MODEL ACTIVATION
+Added this run        : 0
+Final independent observations : 1
+Independent weeks     : 2026-08-17
+STATUS                : BOOTSTRAP

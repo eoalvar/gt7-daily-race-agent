@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T12:53:48.743398+00:00",
+  "generated_at": "2026-08-19T12:59:24.103328+00:00",
   "version": "0.2",
   "snapshot_timestamp": "2026-08-19T06:17:29.766163-03:00",
   "track": "Yas Marina Circuit",
@@ -2186,9 +2186,9 @@
   ],
   "production_pipeline_modified": false,
   "technical_learning": {
-    "status": "ACTIVE",
+    "status": "BOOTSTRAP",
     "minimum_independent_races": 3,
-    "races_available_same_group_speed_class": 3,
+    "races_available_same_group_speed_class": 1,
     "features": [
       "power_weight_hp_t",
       "weight_kg",
@@ -2200,14 +2200,14 @@
       "rotational_g_240"
     ],
     "observed_feature_correlations": {
-      "power_weight_hp_t": 0.26449871244703027,
-      "weight_kg": -0.20727081681981316,
-      "front_weight_pct": -0.0439914183451301,
-      "acceleration_0_400": 0.12727602064054305,
-      "acceleration_100_150": -0.22317073913310004,
-      "rotational_g_60": -0.12118556892851096,
-      "rotational_g_120": -0.16038907710058445,
-      "rotational_g_240": -0.12010029335798073
+      "power_weight_hp_t": 0.13566299524276462,
+      "weight_kg": -0.1746132426878068,
+      "front_weight_pct": 0.06734270049159279,
+      "acceleration_0_400": -0.018542975117715226,
+      "acceleration_100_150": -0.13588870145894127,
+      "rotational_g_60": -0.015121006236056427,
+      "rotational_g_120": 0.006098777467189464,
+      "rotational_g_240": 0.09784271269932036
     },
     "technical_weight_in_sleeper_score": 0.0,
     "policy": "No technical coefficient changes SCI until enough independent race observations exist; no hand-picked technical weights."
