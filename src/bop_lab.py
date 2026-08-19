@@ -3,7 +3,7 @@ import re
 import time
 from pathlib import Path
 from datetime import datetime
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
@@ -16,7 +16,11 @@ from bop_database import (
     normalize_group,
 )
 
-VERSION = "1.3"
+# ============================================================
+# CONFIG
+# ============================================================
+
+VERSION = "1.4"
 
 DG_EDGE_BASE_URL = "https://www.dg-edge.com"
 DG_EDGE_BOP_URL = f"{DG_EDGE_BASE_URL}/database/bop"
@@ -24,10 +28,11 @@ DG_EDGE_BOP_URL = f"{DG_EDGE_BASE_URL}/database/bop"
 DATA_DIR = Path("data") / "bop_lab"
 REPORT_DIR = Path("reports")
 RAW_DIR = DATA_DIR / "raw"
+STATE_DIR = RAW_DIR / "state"
 JS_DIR = RAW_DIR / "js"
 
 REPORT_FILE = REPORT_DIR / "bop_lab.txt"
-MECHANISM_FILE = DATA_DIR / "speed_switch_mechanism.json"
+STATE_ANALYSIS_FILE = DATA_DIR / "nuxt_state_analysis.json"
 
 GROUP = "GR.3"
 
@@ -47,32 +52,52 @@ HEADERS = {
 SEP = "=" * 100
 SUB = "-" * 100
 
-SEARCH_TERMS = [
+# Strings that are especially useful for this investigation.
+EXACT_VALUES = {
+    "high",
+    "low",
+    "mid",
+}
+
+KEY_TERMS = (
+    "speed",
+    "bop",
+    "power",
+    "weight",
+    "torque",
+    "pp",
+    "car",
+    "current",
+    "previous",
+    "group",
+)
+
+JS_SEARCH_TERMS = [
     "speed-0",
     "speed-1",
     "speed-2",
+    'name:"speed"',
+    "name:'speed'",
     'name="speed"',
+    "localStorage",
+    "sessionStorage",
+    "fetch(",
+    "$fetch",
+    "useFetch",
+    "useAsyncData",
+    "watch(",
+    "watchEffect",
+    "addEventListener",
+    "/database/bop",
     "High",
     "Low",
     "Mid",
-    "localStorage",
-    "sessionStorage",
-    "document.cookie",
-    "cookie",
-    "fetch(",
-    "XMLHttpRequest",
-    "axios",
-    "htmx",
-    "location.href",
-    "window.location",
-    "URLSearchParams",
-    "FormData",
-    "change",
-    "onclick",
-    "onchange",
-    "/database/bop",
 ]
 
+
+# ============================================================
+# BASIC HELPERS
+# ============================================================
 
 def now_iso():
     return datetime.now().astimezone().isoformat()
@@ -81,22 +106,40 @@ def now_iso():
 def clean_text(value):
     if value is None:
         return ""
-    return re.sub(r"\s+", " ", str(value).replace("\xa0", " ")).strip()
 
-
-def safe_filename(value):
-    text = re.sub(r"[^A-Za-z0-9._-]+", "_", str(value))
-    return text.strip("_") or "script.js"
+    text = str(value).replace("\xa0", " ")
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def version_key(version):
     try:
-        return tuple(int(part) for part in str(version).split("."))
+        return tuple(
+            int(part)
+            for part in str(version).split(".")
+        )
     except Exception:
         return (0,)
 
 
-def fetch_text(session, url, params=None, raise_for_status=True):
+def safe_filename(value):
+    text = re.sub(
+        r"[^A-Za-z0-9._-]+",
+        "_",
+        str(value),
+    )
+    return text.strip("_") or "file"
+
+
+# ============================================================
+# HTTP
+# ============================================================
+
+def fetch_text(
+    session,
+    url,
+    params=None,
+    raise_for_status=True,
+):
     response = session.get(
         url,
         params=params,
@@ -109,8 +152,10 @@ def fetch_text(session, url, params=None, raise_for_status=True):
         "status": response.status_code,
         "text": response.text,
         "bytes": len(response.content),
-        "content_type": response.headers.get("Content-Type", ""),
-        "headers": dict(response.headers),
+        "content_type": response.headers.get(
+            "Content-Type",
+            ""
+        ),
     }
 
     if raise_for_status:
@@ -119,46 +164,110 @@ def fetch_text(session, url, params=None, raise_for_status=True):
     return result
 
 
-def build_group_url(group, version):
-    group = normalize_group(group)
+# ============================================================
+# VERSION DISCOVERY
+# ============================================================
+
+def build_group_url(
+    group,
+    version,
+):
+    group = normalize_group(
+        group
+    )
+
     if not group:
-        raise ValueError(f"Invalid group: {group}")
-    return f"{DG_EDGE_BOP_URL}/{group}/{version}"
+        raise ValueError(
+            f"Invalid group: {group}"
+        )
+
+    return (
+        f"{DG_EDGE_BOP_URL}/"
+        f"{group}/"
+        f"{version}"
+    )
 
 
-def extract_versions(html):
-    soup = BeautifulSoup(html, "html.parser")
+def extract_versions(
+    html,
+):
+    soup = BeautifulSoup(
+        html,
+        "html.parser"
+    )
+
     versions = set()
 
-    for link in soup.find_all("a", href=True):
-        href = link.get("href", "")
+    for link in soup.find_all(
+        "a",
+        href=True
+    ):
+        href = link.get(
+            "href",
+            ""
+        )
+
         match = re.search(
-            r"/database/bop/(?:GR\.[1234]|GR\.B)/(\d+\.\d+)",
+            r"/database/bop/"
+            r"(?:GR\.[1234]|GR\.B)"
+            r"/(\d+\.\d+)",
             href,
             flags=re.IGNORECASE,
         )
+
         if match:
-            versions.add(match.group(1))
+            versions.add(
+                match.group(1)
+            )
 
     if not versions:
-        text = soup.get_text(" ", strip=True)
+        text = soup.get_text(
+            " ",
+            strip=True
+        )
+
         for match in re.finditer(
-            r"\b(?:Update|Version)\s+(\d+\.\d+)\b",
+            r"\b(?:Update|Version)\s+"
+            r"(\d+\.\d+)\b",
             text,
             flags=re.IGNORECASE,
         ):
-            versions.add(match.group(1))
+            versions.add(
+                match.group(1)
+            )
 
-    return sorted(versions, key=version_key, reverse=True)
+    return sorted(
+        versions,
+        key=version_key,
+        reverse=True,
+    )
 
 
-def looks_like_valid_bop_page(html, group):
+def looks_like_valid_bop_page(
+    html,
+    group,
+):
     if not html:
         return False
 
-    soup = BeautifulSoup(html, "html.parser")
-    text = clean_text(soup.get_text(" ", strip=True)).lower()
-    group_text = (normalize_group(group) or "").lower()
+    soup = BeautifulSoup(
+        html,
+        "html.parser"
+    )
+
+    text = clean_text(
+        soup.get_text(
+            " ",
+            strip=True
+        )
+    ).lower()
+
+    group_text = (
+        normalize_group(
+            group
+        )
+        or ""
+    ).lower()
 
     signals = [
         "max power",
@@ -168,16 +277,31 @@ def looks_like_valid_bop_page(html, group):
         "drivetrain",
     ]
 
-    signal_count = sum(1 for signal in signals if signal in text)
+    signal_count = sum(
+        1
+        for signal in signals
+        if signal in text
+    )
 
-    return group_text in text and signal_count >= 3
+    return (
+        group_text in text
+        and signal_count >= 3
+    )
 
 
-def probe_versions(session, group, versions):
+def probe_versions(
+    session,
+    group,
+    versions,
+):
     probes = []
 
     for version in versions:
-        url = build_group_url(group, version)
+        url = build_group_url(
+            group,
+            version
+        )
+
         result = fetch_text(
             session,
             url,
@@ -186,7 +310,10 @@ def probe_versions(session, group, versions):
 
         valid = (
             result["status"] == 200
-            and looks_like_valid_bop_page(result["text"], group)
+            and looks_like_valid_bop_page(
+                result["text"],
+                group,
+            )
         )
 
         probes.append(
@@ -207,418 +334,911 @@ def probe_versions(session, group, versions):
         )
 
         if valid:
-            return version, result, probes
+            return (
+                version,
+                result,
+                probes,
+            )
 
-        time.sleep(REQUEST_DELAY_SECONDS)
+        time.sleep(
+            REQUEST_DELAY_SECONDS
+        )
 
-    return None, None, probes
-
-
-def save_raw_page(group, version, html):
-    RAW_DIR.mkdir(parents=True, exist_ok=True)
-
-    group_safe = group.replace(".", "").lower()
-
-    path = RAW_DIR / (
-        f"{group_safe}_{version}_mechanism.html"
+    return (
+        None,
+        None,
+        probes,
     )
 
-    path.write_text(html, encoding="utf-8")
-    return path
+
+# ============================================================
+# SCRIPT INVENTORY
+# ============================================================
+
+def get_script_text(
+    tag,
+):
+    if tag.string is not None:
+        return tag.string
+
+    return tag.get_text(
+        "\n"
+    ) or ""
 
 
-def save_script(index, source_url, text):
-    JS_DIR.mkdir(parents=True, exist_ok=True)
+def script_inventory(
+    html,
+    page_url,
+):
+    soup = BeautifulSoup(
+        html,
+        "html.parser"
+    )
 
-    parsed = urlparse(source_url)
-    basename = Path(parsed.path).name or f"script_{index:02d}.js"
+    result = []
 
-    filename = f"{index:02d}_{safe_filename(basename)}"
-    path = JS_DIR / filename
-    path.write_text(text, encoding="utf-8")
-    return path
-
-
-def element_attributes(tag):
-    output = {}
-
-    for key, value in tag.attrs.items():
-        if isinstance(value, list):
-            value = " ".join(str(item) for item in value)
-        output[key] = str(value)
-
-    return output
-
-
-def inspect_speed_controls(html):
-    soup = BeautifulSoup(html, "html.parser")
-    controls = []
-
-    for input_tag in soup.find_all(
-        "input",
-        attrs={"name": "speed"},
+    for index, tag in enumerate(
+        soup.find_all(
+            "script"
+        ),
+        start=1,
     ):
-        identifier = input_tag.get("id")
-        label = None
+        src = tag.get(
+            "src"
+        )
 
-        if identifier:
-            label_tag = soup.find(
-                "label",
-                attrs={"for": identifier},
-            )
-            if label_tag:
-                label = clean_text(
-                    label_tag.get_text(" ", strip=True)
+        attributes = {
+            key:
+                (
+                    " ".join(
+                        str(item)
+                        for item in value
+                    )
+                    if isinstance(
+                        value,
+                        list
+                    )
+                    else str(
+                        value
+                    )
                 )
+            for key, value
+            in tag.attrs.items()
+        }
 
-        parent = input_tag.parent
+        item = {
+            "index":
+                index,
 
-        parent_info = None
-        if parent:
-            parent_info = {
-                "tag": parent.name,
-                "attributes": element_attributes(parent),
-                "text": clean_text(
-                    parent.get_text(" ", strip=True)
-                )[:500],
-            }
+            "id":
+                tag.get(
+                    "id"
+                ),
 
-        form = input_tag.find_parent("form")
+            "type":
+                tag.get(
+                    "type"
+                ),
 
-        form_info = None
-        if form:
-            form_info = {
-                "attributes": element_attributes(form),
-                "text": clean_text(
-                    form.get_text(" ", strip=True)
-                )[:1000],
-            }
+            "src":
+                urljoin(
+                    page_url,
+                    src
+                )
+                if src
+                else None,
 
-        controls.append(
+            "attributes":
+                attributes,
+
+            "text":
+                ""
+                if src
+                else get_script_text(
+                    tag
+                ),
+        }
+
+        result.append(
+            item
+        )
+
+    return result
+
+
+def save_inline_scripts(
+    inventory,
+):
+    STATE_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    saved = []
+
+    for item in inventory:
+        if item[
+            "src"
+        ]:
+            continue
+
+        text = item[
+            "text"
+        ]
+
+        if not text.strip():
+            continue
+
+        identifier = (
+            item.get(
+                "id"
+            )
+            or (
+                f"inline_"
+                f"{item['index']:02d}"
+            )
+        )
+
+        suffix = (
+            ".json"
+            if (
+                item.get(
+                    "type"
+                )
+                == "application/json"
+            )
+            else ".txt"
+        )
+
+        path = (
+            STATE_DIR
+            / (
+                f"{item['index']:02d}_"
+                f"{safe_filename(identifier)}"
+                f"{suffix}"
+            )
+        )
+
+        path.write_text(
+            text,
+            encoding="utf-8",
+        )
+
+        saved.append(
             {
-                "label": label,
-                "attributes": element_attributes(input_tag),
-                "parent": parent_info,
-                "form": form_info,
+                "index":
+                    item[
+                        "index"
+                    ],
+
+                "id":
+                    item.get(
+                        "id"
+                    ),
+
+                "type":
+                    item.get(
+                        "type"
+                    ),
+
+                "path":
+                    str(
+                        path
+                    ),
+
+                "chars":
+                    len(
+                        text
+                    ),
             }
         )
 
-    return controls
+    return saved
 
 
-def extract_script_inventory(html, page_url):
-    soup = BeautifulSoup(html, "html.parser")
-    scripts = []
+# ============================================================
+# EXTERNAL JS
+# ============================================================
 
-    for index, tag in enumerate(
-        soup.find_all("script"),
-        start=1,
+def fetch_external_scripts(
+    session,
+    inventory,
+):
+    JS_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    fetched = []
+
+    for item in inventory:
+        url = item.get(
+            "src"
+        )
+
+        if not url:
+            continue
+
+        response = fetch_text(
+            session,
+            url,
+            raise_for_status=False,
+        )
+
+        path = None
+
+        if (
+            response[
+                "status"
+            ] == 200
+            and response[
+                "text"
+            ]
+        ):
+            basename = (
+                Path(
+                    url.split(
+                        "?",
+                        1
+                    )[0]
+                ).name
+                or (
+                    f"script_"
+                    f"{item['index']:02d}.js"
+                )
+            )
+
+            path = (
+                JS_DIR
+                / (
+                    f"{item['index']:02d}_"
+                    f"{safe_filename(basename)}"
+                )
+            )
+
+            path.write_text(
+                response[
+                    "text"
+                ],
+                encoding="utf-8",
+            )
+
+        fetched.append(
+            {
+                "index":
+                    item[
+                        "index"
+                    ],
+
+                "url":
+                    url,
+
+                "status":
+                    response[
+                        "status"
+                    ],
+
+                "bytes":
+                    response[
+                        "bytes"
+                    ],
+
+                "path":
+                    str(
+                        path
+                    )
+                    if path
+                    else None,
+
+                "text":
+                    response[
+                        "text"
+                    ]
+                    if response[
+                        "status"
+                    ] == 200
+                    else "",
+            }
+        )
+
+        time.sleep(
+            REQUEST_DELAY_SECONDS
+        )
+
+    return fetched
+
+
+# ============================================================
+# JSON / NUXT STATE ANALYSIS
+# ============================================================
+
+def try_json_loads(
+    text,
+):
+    try:
+        return {
+            "ok":
+                True,
+
+            "value":
+                json.loads(
+                    text
+                ),
+
+            "error":
+                None,
+        }
+
+    except Exception as error:
+        return {
+            "ok":
+                False,
+
+            "value":
+                None,
+
+            "error":
+                str(
+                    error
+                ),
+        }
+
+
+def shorten_value(
+    value,
+    max_chars=250,
+):
+    if isinstance(
+        value,
+        (
+            dict,
+            list,
+        )
     ):
-        src = tag.get("src")
-
-        if src:
-            scripts.append(
-                {
-                    "index": index,
-                    "kind": "external",
-                    "src": urljoin(page_url, src),
-                    "attributes": element_attributes(tag),
-                    "inline_text": "",
-                }
+        try:
+            text = json.dumps(
+                value,
+                ensure_ascii=False,
             )
-        else:
-            text = tag.string
-            if text is None:
-                text = tag.get_text("\n")
-
-            scripts.append(
-                {
-                    "index": index,
-                    "kind": "inline",
-                    "src": None,
-                    "attributes": element_attributes(tag),
-                    "inline_text": text or "",
-                }
+        except Exception:
+            text = str(
+                value
             )
 
-    return scripts
+    else:
+        text = str(
+            value
+        )
+
+    if len(
+        text
+    ) > max_chars:
+        return (
+            text[
+                :max_chars
+            ]
+            + "..."
+        )
+
+    return text
 
 
-def context_snippet(text, start, end, radius=240):
-    left = max(0, start - radius)
-    right = min(len(text), end + radius)
-    return text[left:right].replace("\r", " ").strip()
+def walk_json(
+    value,
+    path="$",
+    depth=0,
+    max_depth=20,
+):
+    if depth > max_depth:
+        return
+
+    yield (
+        path,
+        value
+    )
+
+    if isinstance(
+        value,
+        dict
+    ):
+        for key, child in value.items():
+            child_path = (
+                f"{path}."
+                f"{key}"
+            )
+
+            yield from walk_json(
+                child,
+                child_path,
+                depth + 1,
+                max_depth,
+            )
+
+    elif isinstance(
+        value,
+        list
+    ):
+        for index, child in enumerate(
+            value
+        ):
+            child_path = (
+                f"{path}[{index}]"
+            )
+
+            yield from walk_json(
+                child,
+                child_path,
+                depth + 1,
+                max_depth,
+            )
 
 
-def find_terms(text, source_name):
+def json_findings(
+    value,
+):
+    exact_values = []
+    interesting_keys = []
+    interesting_objects = []
+
+    for path, node in walk_json(
+        value
+    ):
+        # ----------------------------------------------------
+        # Exact High / Low / Mid values
+        # ----------------------------------------------------
+
+        if isinstance(
+            node,
+            str
+        ):
+            if (
+                node
+                .strip()
+                .lower()
+                in EXACT_VALUES
+            ):
+                exact_values.append(
+                    {
+                        "path":
+                            path,
+
+                        "value":
+                            node,
+                    }
+                )
+
+        # ----------------------------------------------------
+        # Interesting dictionaries
+        # ----------------------------------------------------
+
+        if isinstance(
+            node,
+            dict
+        ):
+            keys = [
+                str(
+                    key
+                )
+                for key in node.keys()
+            ]
+
+            lower_keys = [
+                key.lower()
+                for key in keys
+            ]
+
+            matched_keys = [
+                key
+                for key in keys
+                if any(
+                    term in key.lower()
+                    for term in KEY_TERMS
+                )
+            ]
+
+            if matched_keys:
+                interesting_keys.append(
+                    {
+                        "path":
+                            path,
+
+                        "matched_keys":
+                            matched_keys,
+
+                        "all_keys":
+                            keys[
+                                :80
+                            ],
+                    }
+                )
+
+            # Candidate object if it looks like BoP/car data.
+            score = 0
+
+            for key in lower_keys:
+                if (
+                    "power"
+                    in key
+                ):
+                    score += 1
+
+                if (
+                    "weight"
+                    in key
+                ):
+                    score += 1
+
+                if (
+                    "torque"
+                    in key
+                ):
+                    score += 1
+
+                if (
+                    "car"
+                    in key
+                    or "name"
+                    == key
+                ):
+                    score += 1
+
+                if (
+                    "speed"
+                    in key
+                    or "bop"
+                    in key
+                ):
+                    score += 1
+
+            if score >= 3:
+                interesting_objects.append(
+                    {
+                        "path":
+                            path,
+
+                        "score":
+                            score,
+
+                        "keys":
+                            keys,
+
+                        "preview":
+                            shorten_value(
+                                node,
+                                max_chars=700,
+                            ),
+                    }
+                )
+
+    return {
+        "exact_speed_values":
+            exact_values,
+
+        "interesting_keys":
+            interesting_keys[
+                :500
+            ],
+
+        "interesting_objects":
+            sorted(
+                interesting_objects,
+                key=lambda item:
+                    item[
+                        "score"
+                    ],
+                reverse=True,
+            )[
+                :300
+            ],
+    }
+
+
+def analyze_inline_state(
+    inventory,
+):
+    analyses = []
+
+    for item in inventory:
+        if item[
+            "src"
+        ]:
+            continue
+
+        text = item[
+            "text"
+        ]
+
+        if not text.strip():
+            continue
+
+        parsed = try_json_loads(
+            text
+        )
+
+        lower_text = text.lower()
+
+        likely_state = (
+            item.get(
+                "id"
+            )
+            in {
+                "__NUXT_DATA__",
+                "__NEXT_DATA__",
+            }
+            or item.get(
+                "type"
+            )
+            == "application/json"
+            or "pinia"
+            in lower_text
+            or "serverrendered"
+            in lower_text
+            or "__nuxt"
+            in lower_text
+        )
+
+        analysis = {
+            "index":
+                item[
+                    "index"
+                ],
+
+            "id":
+                item.get(
+                    "id"
+                ),
+
+            "type":
+                item.get(
+                    "type"
+                ),
+
+            "chars":
+                len(
+                    text
+                ),
+
+            "likely_state":
+                likely_state,
+
+            "json_parse_ok":
+                parsed[
+                    "ok"
+                ],
+
+            "json_error":
+                parsed[
+                    "error"
+                ],
+
+            "findings":
+                None,
+        }
+
+        if parsed[
+            "ok"
+        ]:
+            analysis[
+                "findings"
+            ] = json_findings(
+                parsed[
+                    "value"
+                ]
+            )
+
+        analyses.append(
+            analysis
+        )
+
+    return analyses
+
+
+# ============================================================
+# RAW TEXT CONTEXT SEARCH
+# ============================================================
+
+def context_snippet(
+    text,
+    match_start,
+    match_end,
+    radius=350,
+):
+    left = max(
+        0,
+        match_start
+        - radius
+    )
+
+    right = min(
+        len(
+            text
+        ),
+        match_end
+        + radius
+    )
+
+    return (
+        text[
+            left:right
+        ]
+        .replace(
+            "\r",
+            " "
+        )
+        .strip()
+    )
+
+
+def search_text(
+    text,
+    source_name,
+    terms,
+    max_per_term=12,
+):
     findings = []
 
     if not text:
         return findings
 
-    for term in SEARCH_TERMS:
+    for term in terms:
         pattern = re.compile(
-            re.escape(term),
+            re.escape(
+                term
+            ),
             flags=re.IGNORECASE,
         )
 
-        for match in list(pattern.finditer(text))[:20]:
+        matches = list(
+            pattern.finditer(
+                text
+            )
+        )
+
+        for match in matches[
+            :max_per_term
+        ]:
             findings.append(
                 {
-                    "source": source_name,
-                    "term": term,
-                    "position": match.start(),
-                    "snippet": context_snippet(
-                        text,
+                    "source":
+                        source_name,
+
+                    "term":
+                        term,
+
+                    "position":
                         match.start(),
-                        match.end(),
-                    ),
+
+                    "snippet":
+                        context_snippet(
+                            text,
+                            match.start(),
+                            match.end(),
+                        ),
                 }
             )
 
     return findings
 
 
-def inspect_interactive_attributes(html):
-    soup = BeautifulSoup(html, "html.parser")
-    results = []
-
-    interesting_prefixes = (
-        "on",
-        "hx-",
-        "data-",
-        "x-",
-        "wire:",
-        "@",
-        "v-",
-    )
-
-    for tag in soup.find_all(True):
-        attrs = element_attributes(tag)
-        interesting = {}
-
-        for key, value in attrs.items():
-            lowered = key.lower()
-
-            if (
-                lowered.startswith(interesting_prefixes)
-                or "speed" in lowered
-                or "bop" in lowered
-                or "ajax" in lowered
-            ):
-                interesting[key] = value
-
-        if not interesting:
-            continue
-
-        combined = (
-            clean_text(tag.get_text(" ", strip=True))
-            + " "
-            + " ".join(
-                f"{key}={value}"
-                for key, value in interesting.items()
-            )
-        ).lower()
-
-        if any(
-            token in combined
-            for token in [
-                "speed",
-                "bop",
-                "high",
-                "low",
-                "mid",
-            ]
-        ):
-            results.append(
-                {
-                    "tag": tag.name,
-                    "attributes": interesting,
-                    "text": clean_text(
-                        tag.get_text(" ", strip=True)
-                    )[:400],
-                }
-            )
-
-    return results[:200]
-
-
-def fetch_external_scripts(session, inventory):
-    fetched = []
+def focused_inline_findings(
+    inventory,
+):
+    findings = []
 
     for item in inventory:
-        if item["kind"] != "external":
+        if item[
+            "src"
+        ]:
             continue
 
-        url = item["src"]
-        result = fetch_text(
-            session,
-            url,
-            raise_for_status=False,
-        )
-
-        text = (
-            result["text"]
-            if result["status"] == 200
-            else ""
-        )
-
-        path = None
-        if text:
-            path = save_script(
-                item["index"],
-                url,
-                text,
+        source_name = (
+            item.get(
+                "id"
             )
-
-        fetched.append(
-            {
-                "index": item["index"],
-                "url": url,
-                "status": result["status"],
-                "bytes": result["bytes"],
-                "content_type": result["content_type"],
-                "saved_path": str(path) if path else None,
-                "text": text,
-            }
+            or (
+                f"INLINE_"
+                f"{item['index']:02d}"
+            )
         )
 
-        time.sleep(REQUEST_DELAY_SECONDS)
+        findings.extend(
+            search_text(
+                item[
+                    "text"
+                ],
+                source_name,
+                [
+                    "speed",
+                    '"High"',
+                    '"Low"',
+                    '"Mid"',
+                    "pinia",
+                    "serverRendered",
+                    "__NUXT",
+                ],
+                max_per_term=20,
+            )
+        )
 
-    return fetched
+    return findings
 
 
-def classify_mechanism(
-    html_findings,
-    script_findings,
-    controls,
-    interactive,
+def focused_external_findings(
+    fetched_scripts,
 ):
-    all_findings = html_findings + script_findings
-    combined = "\n".join(
-        finding["snippet"]
-        for finding in all_findings
-    ).lower()
+    findings = []
 
-    evidence = []
+    for item in fetched_scripts:
+        source_name = (
+            f"JS_"
+            f"{item['index']:02d}"
+        )
 
-    if "localstorage" in combined:
-        evidence.append("localStorage")
-
-    if "sessionstorage" in combined:
-        evidence.append("sessionStorage")
-
-    if (
-        "document.cookie" in combined
-        or re.search(r"\bcookie\b", combined)
-    ):
-        evidence.append("cookie")
-
-    if (
-        "fetch(" in combined
-        or "xmlhttprequest" in combined
-        or "axios" in combined
-    ):
-        evidence.append("ajax")
-
-    if (
-        "urlsearchparams" in combined
-        or "location.href" in combined
-        or "window.location" in combined
-    ):
-        evidence.append("url_navigation")
-
-    form_actions = []
-
-    for control in controls:
-        form = control.get("form")
-
-        if not form:
-            continue
-
-        attrs = form.get("attributes", {})
-
-        action = attrs.get("action")
-        method = attrs.get("method")
-
-        if action or method:
-            form_actions.append(
-                {
-                    "action": action,
-                    "method": method,
-                }
+        findings.extend(
+            search_text(
+                item[
+                    "text"
+                ],
+                source_name,
+                JS_SEARCH_TERMS,
+                max_per_term=10,
             )
+        )
 
-    if form_actions:
-        evidence.append("form_submission")
+    return findings
 
-    if interactive:
-        evidence.append("interactive_attributes")
 
-    if not evidence:
-        mode = "UNRESOLVED"
-    elif "ajax" in evidence:
-        mode = "CLIENT_AJAX_OR_SCRIPT"
-    elif (
-        "localStorage" in evidence
-        or "sessionStorage" in evidence
-    ):
-        mode = "CLIENT_STORAGE"
-    elif "cookie" in evidence:
-        mode = "COOKIE_OR_CLIENT_STATE"
-    elif "form_submission" in evidence:
-        mode = "FORM_SUBMISSION"
-    elif "url_navigation" in evidence:
-        mode = "URL_NAVIGATION"
-    else:
-        mode = "CLIENT_SIDE_UNKNOWN"
-
-    return {
-        "mode": mode,
-        "evidence": evidence,
-        "form_actions": form_actions,
-    }
-
+# ============================================================
+# REPORT
+# ============================================================
 
 def build_report(
     selected_version,
     probes,
-    raw_path,
-    controls,
     inventory,
+    saved_inline,
+    state_analyses,
+    inline_findings,
     fetched_scripts,
-    html_findings,
-    script_findings,
-    interactive,
-    classification,
+    external_findings,
     stats,
     validation,
 ):
     lines = []
 
     lines.append(
-        "GT7 BOP LAB V1.3 - SPEED SWITCH MECHANISM DIAGNOSTIC"
+        "GT7 BOP LAB V1.4 - NUXT/PINIA STATE ANALYSIS"
     )
-    lines.append(SEP)
+
+    lines.append(
+        SEP
+    )
+
     lines.append(
         f"Generated           : {now_iso()}"
     )
+
     lines.append(
         f"Group               : {GROUP}"
     )
+
     lines.append(
         f"Selected version    : {selected_version}"
     )
+
     lines.append(
         "Production modified : NO"
     )
-    lines.append(
-        f"Raw HTML            : {raw_path}"
-    )
 
     lines.append("")
-    lines.append("VERSION PROBES")
-    lines.append(SUB)
+
+    lines.append(
+        "VERSION PROBES"
+    )
+
+    lines.append(
+        SUB
+    )
 
     for probe in probes:
         lines.append(
@@ -629,56 +1249,177 @@ def build_report(
         )
 
     lines.append("")
-    lines.append("SPEED CONTROLS")
-    lines.append(SUB)
+
     lines.append(
-        f"Controls found      : {len(controls)}"
+        "INLINE SCRIPT / STATE INVENTORY"
     )
 
-    for index, control in enumerate(
-        controls,
-        start=1,
-    ):
-        lines.append(f"Control {index}")
+    lines.append(
+        SUB
+    )
+
+    for item in saved_inline:
         lines.append(
-            f"  Label             : "
-            f"{control.get('label')}"
-        )
-        lines.append(
-            f"  Attributes        : "
-            f"{control.get('attributes')}"
-        )
-        lines.append(
-            f"  Parent            : "
-            f"{control.get('parent')}"
-        )
-        lines.append(
-            f"  Form              : "
-            f"{control.get('form')}"
+            f"#{item['index']:02d} | "
+            f"id={item['id']} | "
+            f"type={item['type']} | "
+            f"{item['chars']:,} chars | "
+            f"{item['path']}"
         )
 
     lines.append("")
-    lines.append("SCRIPT INVENTORY")
-    lines.append(SUB)
+
     lines.append(
-        f"Scripts found       : {len(inventory)}"
+        "STRUCTURED STATE ANALYSIS"
     )
 
-    for item in inventory:
-        if item["kind"] == "external":
+    lines.append(
+        SUB
+    )
+
+    for analysis in state_analyses:
+        if not (
+            analysis[
+                "likely_state"
+            ]
+            or analysis[
+                "json_parse_ok"
+            ]
+        ):
+            continue
+
+        lines.append(
+            f"SCRIPT #{analysis['index']:02d}"
+        )
+
+        lines.append(
+            f"  id              : "
+            f"{analysis['id']}"
+        )
+
+        lines.append(
+            f"  type            : "
+            f"{analysis['type']}"
+        )
+
+        lines.append(
+            f"  chars           : "
+            f"{analysis['chars']:,}"
+        )
+
+        lines.append(
+            f"  likely_state    : "
+            f"{analysis['likely_state']}"
+        )
+
+        lines.append(
+            f"  JSON parse      : "
+            f"{'PASSED' if analysis['json_parse_ok'] else 'FAILED'}"
+        )
+
+        if (
+            not analysis[
+                "json_parse_ok"
+            ]
+        ):
             lines.append(
-                f"#{item['index']:02d} EXTERNAL | "
-                f"{item['src']}"
-            )
-        else:
-            lines.append(
-                f"#{item['index']:02d} INLINE   | "
-                f"{len(item['inline_text']):,} chars"
+                f"  JSON error      : "
+                f"{analysis['json_error']}"
             )
 
-    lines.append("")
-    lines.append("EXTERNAL SCRIPT FETCH")
-    lines.append(SUB)
+        findings = analysis.get(
+            "findings"
+        )
+
+        if findings:
+            speed_values = findings[
+                "exact_speed_values"
+            ]
+
+            lines.append(
+                f"  HIGH/LOW/MID    : "
+                f"{len(speed_values)} exact values"
+            )
+
+            for item in speed_values[
+                :80
+            ]:
+                lines.append(
+                    f"    {item['path']} "
+                    f"= {item['value']}"
+                )
+
+            lines.append(
+                f"  Candidate objs  : "
+                f"{len(findings['interesting_objects'])}"
+            )
+
+            for item in findings[
+                "interesting_objects"
+            ][
+                :30
+            ]:
+                lines.append(
+                    f"    PATH  : "
+                    f"{item['path']}"
+                )
+
+                lines.append(
+                    f"    SCORE : "
+                    f"{item['score']}"
+                )
+
+                lines.append(
+                    f"    KEYS  : "
+                    f"{item['keys']}"
+                )
+
+                lines.append(
+                    f"    DATA  : "
+                    f"{item['preview']}"
+                )
+
+                lines.append("")
+
+        lines.append("")
+
+    lines.append(
+        "FOCUSED INLINE FINDINGS"
+    )
+
+    lines.append(
+        SUB
+    )
+
+    lines.append(
+        f"Matches             : "
+        f"{len(inline_findings)}"
+    )
+
+    for finding in inline_findings[
+        :160
+    ]:
+        lines.append(
+            f"[{finding['source']}] "
+            f"[{finding['term']}] "
+            f"pos={finding['position']}"
+        )
+
+        lines.append(
+            finding[
+                "snippet"
+            ]
+        )
+
+        lines.append("")
+
+    lines.append(
+        "EXTERNAL SCRIPT INVENTORY"
+    )
+
+    lines.append(
+        SUB
+    )
 
     for item in fetched_scripts:
         lines.append(
@@ -686,132 +1427,250 @@ def build_report(
             f"HTTP {item['status']} | "
             f"{item['bytes']:,} bytes | "
             f"{item['url']} | "
-            f"saved={item['saved_path']}"
+            f"saved={item['path']}"
         )
 
     lines.append("")
-    lines.append("INTERACTIVE ATTRIBUTES")
-    lines.append(SUB)
+
     lines.append(
-        f"Relevant elements   : {len(interactive)}"
+        "FOCUSED EXTERNAL JS FINDINGS"
     )
 
-    for item in interactive[:80]:
-        lines.append(str(item))
-
-    lines.append("")
-    lines.append("HTML FINDINGS")
-    lines.append(SUB)
     lines.append(
-        f"Matches             : {len(html_findings)}"
+        SUB
     )
 
-    for finding in html_findings[:120]:
-        lines.append(
-            f"[{finding['term']}] "
-            f"pos={finding['position']}"
-        )
-        lines.append(
-            finding["snippet"]
-        )
-        lines.append("")
-
-    lines.append("SCRIPT FINDINGS")
-    lines.append(SUB)
     lines.append(
-        f"Matches             : {len(script_findings)}"
+        f"Matches             : "
+        f"{len(external_findings)}"
     )
 
-    for finding in script_findings[:180]:
+    for finding in external_findings[
+        :180
+    ]:
         lines.append(
             f"[{finding['source']}] "
             f"[{finding['term']}] "
             f"pos={finding['position']}"
         )
+
         lines.append(
-            finding["snippet"]
+            finding[
+                "snippet"
+            ]
         )
+
         lines.append("")
 
-    lines.append("MECHANISM CLASSIFICATION")
-    lines.append(SUB)
-    lines.append(
-        f"Mode                : "
-        f"{classification['mode']}"
-    )
-    lines.append(
-        f"Evidence            : "
-        f"{', '.join(classification['evidence']) or 'none'}"
-    )
-    lines.append(
-        f"Form actions        : "
-        f"{classification['form_actions']}"
+    # --------------------------------------------------------
+    # Summary decision
+    # --------------------------------------------------------
+
+    parsed_states = [
+        item
+        for item in state_analyses
+        if item[
+            "json_parse_ok"
+        ]
+    ]
+
+    exact_speed_count = sum(
+        len(
+            (
+                item.get(
+                    "findings"
+                )
+                or {}
+            ).get(
+                "exact_speed_values",
+                []
+            )
+        )
+        for item in parsed_states
     )
 
-    lines.append("")
-    lines.append("DATABASE")
-    lines.append(SUB)
-    lines.append(
-        f"Records             : {stats['records']}"
+    candidate_object_count = sum(
+        len(
+            (
+                item.get(
+                    "findings"
+                )
+                or {}
+            ).get(
+                "interesting_objects",
+                []
+            )
+        )
+        for item in parsed_states
     )
+
+    lines.append(
+        "V1.4 RESULT"
+    )
+
+    lines.append(
+        SUB
+    )
+
+    lines.append(
+        f"JSON state scripts : "
+        f"{len(parsed_states)}"
+    )
+
+    lines.append(
+        f"Exact speed values : "
+        f"{exact_speed_count}"
+    )
+
+    lines.append(
+        f"Candidate objects  : "
+        f"{candidate_object_count}"
+    )
+
+    if (
+        exact_speed_count >= 3
+        and candidate_object_count > 0
+    ):
+        lines.append(
+            "Assessment          : "
+            "PROMISING - structured page state contains "
+            "speed-class and BoP-like data."
+        )
+
+    elif (
+        len(
+            external_findings
+        )
+        > 0
+    ):
+        lines.append(
+            "Assessment          : "
+            "SCRIPT PATH - speed switching is more likely "
+            "implemented in external JavaScript."
+        )
+
+    else:
+        lines.append(
+            "Assessment          : "
+            "UNRESOLVED - additional browser-level inspection "
+            "may be required."
+        )
+
+    lines.append("")
+
+    lines.append(
+        "DATABASE"
+    )
+
+    lines.append(
+        SUB
+    )
+
+    lines.append(
+        f"Records             : "
+        f"{stats['records']}"
+    )
+
     lines.append(
         f"Validation          : "
         f"{'PASSED' if validation['valid'] else 'FAILED'}"
     )
 
     lines.append("")
-    lines.append("IMPORTANT")
-    lines.append(SUB)
-    lines.append(
-        "V1.3 does NOT write BoP car records."
-    )
-    lines.append(
-        "Its purpose is to discover how DG EDGE switches "
-        "between HIGH / LOW / MID."
-    )
-    lines.append(
-        "After the mechanism is identified, the next version "
-        "will fetch the three real tables and validate that "
-        "their car fingerprints differ."
-    )
-    lines.append(SEP)
 
-    return "\n".join(lines)
+    lines.append(
+        "IMPORTANT"
+    )
 
+    lines.append(
+        SUB
+    )
+
+    lines.append(
+        "V1.4 remains diagnostic only."
+    )
+
+    lines.append(
+        "No BoP records are inserted yet."
+    )
+
+    lines.append(
+        SEP
+    )
+
+    return "\n".join(
+        lines
+    )
+
+
+# ============================================================
+# MAIN
+# ============================================================
 
 def main():
     DATA_DIR.mkdir(
         parents=True,
         exist_ok=True,
     )
+
     REPORT_DIR.mkdir(
         parents=True,
         exist_ok=True,
     )
+
     RAW_DIR.mkdir(
         parents=True,
         exist_ok=True,
     )
+
+    STATE_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
     JS_DIR.mkdir(
         parents=True,
         exist_ok=True,
     )
 
     print()
-    print(f"GT7 BOP LAB V{VERSION}")
-    print(SEP)
-    print("Experimental pipeline.")
+
+    print(
+        f"GT7 BOP LAB V{VERSION}"
+    )
+
+    print(
+        SEP
+    )
+
+    print(
+        "Experimental pipeline."
+    )
+
     print(
         "The production Daily Race C agent "
         "is NOT modified."
     )
+
     print()
 
     session = requests.Session()
-    session.headers.update(HEADERS)
 
-    print("READING DG EDGE BOP INDEX")
-    print(SUB)
+    session.headers.update(
+        HEADERS
+    )
+
+    # ========================================================
+    # INDEX + VERSION
+    # ========================================================
+
+    print(
+        "READING DG EDGE BOP INDEX"
+    )
+
+    print(
+        SUB
+    )
 
     index_result = fetch_text(
         session,
@@ -822,13 +1681,16 @@ def main():
         f"HTTP status        : "
         f"{index_result['status']}"
     )
+
     print(
         f"Response bytes     : "
         f"{index_result['bytes']:,}"
     )
 
     versions = extract_versions(
-        index_result["text"]
+        index_result[
+            "text"
+        ]
     )
 
     print(
@@ -842,8 +1704,14 @@ def main():
         )
 
     print()
-    print("PROBING GR.3 VERSIONS")
-    print(SUB)
+
+    print(
+        "PROBING GR.3 VERSIONS"
+    )
+
+    print(
+        SUB
+    )
 
     (
         selected_version,
@@ -865,81 +1733,128 @@ def main():
         selected_version,
     )
 
-    html = source["text"]
-
-    raw_path = save_raw_page(
-        GROUP,
-        selected_version,
-        html,
-    )
+    html = source[
+        "text"
+    ]
 
     print()
-    print("SELECTED BOP PAGE")
-    print(SUB)
-    print(
-        f"Group              : {GROUP}"
-    )
-    print(
-        f"Version            : {selected_version}"
-    )
-    print(
-        f"URL                : {page_url}"
-    )
-    print(
-        f"Raw HTML           : {raw_path}"
-    )
 
-    print()
-    print("INSPECTING SPEED CONTROLS")
-    print(SUB)
-
-    controls = inspect_speed_controls(
-        html
+    print(
+        "SELECTED BOP PAGE"
     )
 
     print(
-        f"Controls found     : {len(controls)}"
+        SUB
     )
 
-    for control in controls:
-        print(
-            f"{control.get('label')} | "
-            f"{control.get('attributes')}"
-        )
+    print(
+        f"Group              : "
+        f"{GROUP}"
+    )
 
-    print()
-    print("DISCOVERING SCRIPTS")
-    print(SUB)
+    print(
+        f"Version            : "
+        f"{selected_version}"
+    )
 
-    inventory = extract_script_inventory(
+    print(
+        f"URL                : "
+        f"{page_url}"
+    )
+
+    # ========================================================
+    # INVENTORY
+    # ========================================================
+
+    inventory = script_inventory(
         html,
         page_url,
     )
 
-    external_count = sum(
-        1
-        for item in inventory
-        if item["kind"] == "external"
-    )
-    inline_count = sum(
-        1
-        for item in inventory
-        if item["kind"] == "inline"
+    print()
+
+    print(
+        "INLINE STATE INVENTORY"
     )
 
     print(
-        f"Scripts total      : {len(inventory)}"
+        SUB
     )
+
     print(
-        f"External           : {external_count}"
+        f"Scripts total      : "
+        f"{len(inventory)}"
     )
+
+    saved_inline = save_inline_scripts(
+        inventory
+    )
+
     print(
-        f"Inline             : {inline_count}"
+        f"Inline saved       : "
+        f"{len(saved_inline)}"
     )
+
+    # ========================================================
+    # ANALYZE INLINE STATE
+    # ========================================================
+
+    state_analyses = analyze_inline_state(
+        inventory
+    )
+
+    likely_states = [
+        item
+        for item in state_analyses
+        if item[
+            "likely_state"
+        ]
+    ]
+
+    parsed_states = [
+        item
+        for item in state_analyses
+        if item[
+            "json_parse_ok"
+        ]
+    ]
+
+    print(
+        f"Likely state       : "
+        f"{len(likely_states)}"
+    )
+
+    print(
+        f"JSON parsed        : "
+        f"{len(parsed_states)}"
+    )
+
+    # ========================================================
+    # FOCUSED INLINE SEARCH
+    # ========================================================
+
+    inline_findings = focused_inline_findings(
+        inventory
+    )
+
+    print(
+        f"Inline findings    : "
+        f"{len(inline_findings)}"
+    )
+
+    # ========================================================
+    # EXTERNAL JS
+    # ========================================================
 
     print()
-    print("FETCHING EXTERNAL SCRIPTS")
-    print(SUB)
+
+    print(
+        "FETCHING EXTERNAL JAVASCRIPT"
+    )
+
+    print(
+        SUB
+    )
 
     fetched_scripts = fetch_external_scripts(
         session,
@@ -954,111 +1869,100 @@ def main():
             f"{item['url']}"
         )
 
-    html_findings = find_terms(
-        html,
-        "PAGE_HTML",
+    external_findings = focused_external_findings(
+        fetched_scripts
     )
 
-    script_findings = []
-
-    for item in inventory:
-        if item["kind"] != "inline":
-            continue
-
-        script_findings.extend(
-            find_terms(
-                item["inline_text"],
-                f"INLINE_SCRIPT_{item['index']:02d}",
-            )
-        )
-
-    for item in fetched_scripts:
-        script_findings.extend(
-            find_terms(
-                item["text"],
-                f"EXTERNAL_SCRIPT_{item['index']:02d}",
-            )
-        )
-
-    interactive = inspect_interactive_attributes(
-        html
-    )
-
-    classification = classify_mechanism(
-        html_findings,
-        script_findings,
-        controls,
-        interactive,
-    )
-
-    print()
-    print("MECHANISM CLASSIFICATION")
-    print(SUB)
     print(
-        f"Mode               : "
-        f"{classification['mode']}"
+        f"Focused JS matches : "
+        f"{len(external_findings)}"
     )
-    print(
-        f"Evidence           : "
-        f"{', '.join(classification['evidence']) or 'none'}"
-    )
+
+    # ========================================================
+    # DATABASE - STILL READ-ONLY
+    # ========================================================
 
     database = load_database()
-    save_database(database)
+
+    save_database(
+        database
+    )
 
     stats = database_stats()
+
     validation = validate_database()
 
-    payload = {
-        "generated_at": now_iso(),
-        "lab_version": VERSION,
-        "group": GROUP,
-        "selected_version": selected_version,
-        "page_url": page_url,
-        "controls": controls,
-        "scripts": [
-            {
-                key: value
-                for key, value in item.items()
-                if key != "inline_text"
-            }
-            for item in inventory
-        ],
-        "external_scripts": [
-            {
-                key: value
-                for key, value in item.items()
-                if key != "text"
-            }
-            for item in fetched_scripts
-        ],
-        "interactive_attributes": interactive,
-        "html_findings": html_findings,
-        "script_findings": script_findings,
-        "classification": classification,
-        "production_pipeline_modified": False,
+    # ========================================================
+    # SAVE STATE ANALYSIS JSON
+    # ========================================================
+
+    state_payload = {
+        "generated_at":
+            now_iso(),
+
+        "lab_version":
+            VERSION,
+
+        "group":
+            GROUP,
+
+        "selected_version":
+            selected_version,
+
+        "page_url":
+            page_url,
+
+        "saved_inline_scripts":
+            saved_inline,
+
+        "state_analyses":
+            state_analyses,
+
+        "inline_findings":
+            inline_findings,
+
+        "external_script_summary":
+            [
+                {
+                    key:
+                        value
+                    for key, value
+                    in item.items()
+                    if key != "text"
+                }
+                for item
+                in fetched_scripts
+            ],
+
+        "external_findings":
+            external_findings,
+
+        "production_pipeline_modified":
+            False,
     }
 
-    MECHANISM_FILE.write_text(
+    STATE_ANALYSIS_FILE.write_text(
         json.dumps(
-            payload,
+            state_payload,
             ensure_ascii=False,
             indent=2,
         ),
         encoding="utf-8",
     )
 
+    # ========================================================
+    # REPORT
+    # ========================================================
+
     report = build_report(
         selected_version=selected_version,
         probes=probes,
-        raw_path=raw_path,
-        controls=controls,
         inventory=inventory,
+        saved_inline=saved_inline,
+        state_analyses=state_analyses,
+        inline_findings=inline_findings,
         fetched_scripts=fetched_scripts,
-        html_findings=html_findings,
-        script_findings=script_findings,
-        interactive=interactive,
-        classification=classification,
+        external_findings=external_findings,
         stats=stats,
         validation=validation,
     )
@@ -1069,24 +1973,44 @@ def main():
     )
 
     print()
-    print(report)
+
+    print(
+        report
+    )
 
     print()
-    print("FILES CREATED")
-    print(SUB)
+
     print(
-        f"Report             : {REPORT_FILE}"
+        "FILES CREATED"
     )
+
     print(
-        f"Mechanism JSON     : {MECHANISM_FILE}"
+        SUB
     )
+
     print(
-        f"Raw HTML           : {raw_path}"
+        f"Report             : "
+        f"{REPORT_FILE}"
     )
+
     print(
-        f"Saved JS directory : {JS_DIR}"
+        f"State analysis     : "
+        f"{STATE_ANALYSIS_FILE}"
     )
-    print(SEP)
+
+    print(
+        f"Inline state dir   : "
+        f"{STATE_DIR}"
+    )
+
+    print(
+        f"External JS dir    : "
+        f"{JS_DIR}"
+    )
+
+    print(
+        SEP
+    )
 
 
 if __name__ == "__main__":
