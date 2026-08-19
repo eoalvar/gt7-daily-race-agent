@@ -1,0 +1,2188 @@
+{
+  "generated_at": "2026-08-19T12:32:17.189996+00:00",
+  "version": "0.1",
+  "snapshot_timestamp": "2026-08-19T06:17:29.766163-03:00",
+  "track": "Yas Marina Circuit",
+  "group": "GR.3",
+  "speed_class": "MID",
+  "total_drivers": 13155,
+  "world_record_score": 111945,
+  "world_record_laptime": "1:51.945",
+  "top500_score": 113737,
+  "top500_laptime": "1:53.737",
+  "method": {
+    "name": "Bayesian representation efficiency + elite proximity + rarity",
+    "prior_strength": 150.0,
+    "tier_weights": {
+      "100": 0.2,
+      "500": 0.3,
+      "1000": 0.5
+    },
+    "minimum_car_sample": 20,
+    "score_weights": {
+      "representation_quality": 0.55,
+      "elite_proximity": 0.25,
+      "rarity": 0.2
+    },
+    "evidence_shrinkage": "Score is shrunk toward neutral 50 for small car samples.",
+    "bop_role": "BoP-aware: all technical descriptors use the active speed-class table. Technical values are not yet assigned arbitrary performance weights."
+  },
+  "cars_total": 53,
+  "cars_eligible": 39,
+  "ranking": [
+    {
+      "car_code": 2184,
+      "car": "Jaguar F-type Gr.3",
+      "all_count": 201,
+      "top100": 4,
+      "top500": 10,
+      "top1000": 19,
+      "best_rank": 8,
+      "best_score": 112190,
+      "share": 0.015279361459521095,
+      "share_percent": 1.5279361459521095,
+      "lift_top100": 1.9264957264957265,
+      "lift_top500": 1.176923076923077,
+      "lift_top1000": 1.1394444444444443,
+      "efficiency_lift": 1.2779816298806053,
+      "quality_component": 0.6317240993361899,
+      "rarity_component": 0.8763902857396673,
+      "elite_proximity": 0.8722155022485462,
+      "evidence_factor": 0.8966604708583958,
+      "sleeper_score": 71.58980761581176,
+      "sleeper_label": "STRONG SLEEPER",
+      "confidence": "MEDIUM",
+      "active_bop": {
+        "car": "Jaguar F-type Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 695.6,
+        "power_hp": 469.0,
+        "torque_nm": 577.6,
+        "weight_kg": 1265.0,
+        "power_weight_hp_t": 370.7509881422925,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "SC",
+        "acceleration": {
+          "0_400m": 11.45,
+          "0_1000m": 20.78,
+          "100_150_kmh": 2.7
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.43,
+          "240_kmh": 1.68
+        },
+        "stability": {
+          "low_speed": "-0.38 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Jaguar F-type Gr.3",
+        "matched_name": "Jaguar F-type Gr.3",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3600,
+      "car": "Porsche 911 GT3 R (992) '22",
+      "all_count": 7541,
+      "top100": 77,
+      "top500": 398,
+      "top1000": 766,
+      "best_rank": 1,
+      "best_score": 111945,
+      "share": 0.5732421132649183,
+      "share_percent": 57.32421132649183,
+      "lift_top100": 1.3365427122610845,
+      "lift_top500": 1.3810141724093097,
+      "lift_top1000": 1.3297009491613574,
+      "efficiency_lift": 1.3462725738075583,
+      "quality_component": 0.6579444552855677,
+      "rarity_component": 0.24287245905004995,
+      "elite_proximity": 1.0,
+      "evidence_factor": 1.0,
+      "sleeper_score": 66.04439422170722,
+      "sleeper_label": "META / PROVEN",
+      "confidence": "HIGH",
+      "active_bop": {
+        "car": "Porsche 911 GT3 R (992) '22",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 693.04,
+        "power_hp": 446.0,
+        "torque_nm": 400.1,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 337.8787878787879,
+        "weight_balance": "43:57",
+        "drivetrain": "RR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.5,
+          "0_1000m": 21.99,
+          "100_150_kmh": 2.89
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.45,
+          "240_kmh": 1.7
+        },
+        "stability": {
+          "low_speed": "-0.35 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Porsche 911 GT3 R (992) '22",
+        "matched_name": "Porsche 911 GT3 R (992) '22",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3405,
+      "car": "Audi R8 LMS Evo '19",
+      "all_count": 1008,
+      "top100": 7,
+      "top500": 36,
+      "top1000": 88,
+      "best_rank": 19,
+      "best_score": 112357,
+      "share": 0.0766248574686431,
+      "share_percent": 7.66248574686431,
+      "lift_top100": 0.924740932642487,
+      "lift_top500": 0.947461139896373,
+      "lift_top1000": 1.1292227979274612,
+      "efficiency_lift": 1.0293480758325868,
+      "quality_component": 0.5159037495497726,
+      "rarity_component": 0.7231880467381455,
+      "elite_proximity": 0.7946045461706384,
+      "evidence_factor": 1.0,
+      "sleeper_score": 62.70358081426637,
+      "sleeper_label": "SLEEPER CANDIDATE",
+      "confidence": "HIGH",
+      "active_bop": {
+        "car": "Audi R8 LMS Evo '19",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 691.74,
+        "power_hp": 444.0,
+        "torque_nm": 442.3,
+        "weight_kg": 1310.0,
+        "power_weight_hp_t": 338.9312977099236,
+        "weight_balance": "42:58",
+        "drivetrain": "MR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.27,
+          "0_1000m": 21.7,
+          "100_150_kmh": 2.84
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.44,
+          "240_kmh": 1.68
+        },
+        "stability": {
+          "low_speed": "-0.44 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Audi R8 LMS Evo '19",
+        "matched_name": "Audi R8 LMS Evo '19",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3305,
+      "car": "Volkswagen Beetle Gr.3",
+      "all_count": 118,
+      "top100": 2,
+      "top500": 3,
+      "top1000": 4,
+      "best_rank": 33,
+      "best_score": 112535,
+      "share": 0.008969973394146713,
+      "share_percent": 0.8969973394146713,
+      "lift_top100": 1.5414179104477614,
+      "lift_top500": 0.8542164179104477,
+      "lift_top1000": 0.756044776119403,
+      "efficiency_lift": 0.9043326543281653,
+      "quality_component": 0.4449175658927244,
+      "rarity_component": 0.9052900565191452,
+      "elite_proximity": 0.7194695522864695,
+      "evidence_factor": 0.6870225614927067,
+      "sleeper_score": 57.257023481533984,
+      "sleeper_label": "WATCHLIST",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Volkswagen Beetle Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 693.5,
+        "power_hp": 479.0,
+        "torque_nm": 479.5,
+        "weight_kg": 1295.0,
+        "power_weight_hp_t": 369.8841698841699,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.93,
+          "0_1000m": 21.38,
+          "100_150_kmh": 2.68
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.45,
+          "240_kmh": 1.69
+        },
+        "stability": {
+          "low_speed": "-0.35 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Volkswagen Beetle Gr.3",
+        "matched_name": "Volkswagen Beetle Gr.3",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3352,
+      "car": "Toyota GR Supra Racing Concept '18",
+      "all_count": 78,
+      "top100": 1,
+      "top500": 3,
+      "top1000": 4,
+      "best_rank": 70,
+      "best_score": 112804,
+      "share": 0.005929304446978335,
+      "share_percent": 0.5929304446978335,
+      "lift_top100": 1.234868421052632,
+      "lift_top500": 1.004078947368421,
+      "lift_top1000": 0.8886842105263157,
+      "efficiency_lift": 0.9845283521301137,
+      "quality_component": 0.49142492032611956,
+      "rarity_component": 0.9229980230969468,
+      "elite_proximity": 0.6191840732261444,
+      "evidence_factor": 0.5585696017507576,
+      "sleeper_score": 56.12635391786328,
+      "sleeper_label": "WATCHLIST",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Toyota GR Supra Racing Concept '18",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 694.95,
+        "power_hp": 462.0,
+        "torque_nm": 544.3,
+        "weight_kg": 1245.0,
+        "power_weight_hp_t": 371.0843373493976,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.43,
+          "0_1000m": 21.88,
+          "100_150_kmh": 3.0
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Toyota GR Supra Racing Concept '18",
+        "matched_name": "Toyota GR Supra Racing Concept '18",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3238,
+      "car": "Peugeot RCZ Gr.3",
+      "all_count": 103,
+      "top100": 1,
+      "top500": 3,
+      "top1000": 5,
+      "best_rank": 72,
+      "best_score": 112812,
+      "share": 0.007829722538958571,
+      "share_percent": 0.7829722538958571,
+      "lift_top100": 1.1128458498023717,
+      "lift_top500": 0.9048616600790513,
+      "lift_top1000": 0.8528656126482212,
+      "efficiency_lift": 0.9155919386903031,
+      "quality_component": 0.45165008317845706,
+      "rarity_component": 0.9115142805930891,
+      "elite_proximity": 0.6164260195639402,
+      "evidence_factor": 0.6418722614352484,
+      "sleeper_score": 55.44416197485424,
+      "sleeper_label": "WATCHLIST",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Peugeot RCZ Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 691.91,
+        "power_hp": 484.0,
+        "torque_nm": 510.9,
+        "weight_kg": 1275.0,
+        "power_weight_hp_t": 379.6078431372549,
+        "weight_balance": "44:56",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.83,
+          "0_1000m": 21.26,
+          "100_150_kmh": 2.92
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.68
+        },
+        "stability": {
+          "low_speed": "-0.35 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Peugeot RCZ Gr.3",
+        "matched_name": "Peugeot RCZ Gr.3",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 2185,
+      "car": "Mitsubishi Lancer Evolution Final Edition Gr.3",
+      "all_count": 42,
+      "top100": 1,
+      "top500": 1,
+      "top1000": 1,
+      "best_rank": 66,
+      "best_score": 112783,
+      "share": 0.0031927023945267957,
+      "share_percent": 0.31927023945267957,
+      "lift_top100": 1.4664062500000004,
+      "lift_top500": 0.9182812499999999,
+      "lift_top1000": 0.849765625,
+      "efficiency_lift": 0.9700478446759767,
+      "quality_component": 0.4832807992176716,
+      "rarity_component": 0.9434959966504426,
+      "elite_proximity": 0.6264828191463121,
+      "evidence_factor": 0.40987803063838396,
+      "sleeper_score": 54.55474271461588,
+      "sleeper_label": "WATCHLIST",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Mitsubishi Lancer Evolution Final Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 701.43,
+        "power_hp": 507.0,
+        "torque_nm": 542.3,
+        "weight_kg": 1310.0,
+        "power_weight_hp_t": 387.0229007633588,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.51,
+          "0_1000m": 20.91,
+          "100_150_kmh": 2.69
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.75
+        },
+        "stability": {
+          "low_speed": "-0.29 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Mitsubishi Lancer Evolution Final Edition Gr.3",
+        "matched_name": "Mitsubishi Lancer Evolution Final Gr.3",
+        "match_score": 86
+      }
+    },
+    {
+      "car_code": 3223,
+      "car": "Dodge Viper SRT GT3-R '15",
+      "all_count": 71,
+      "top100": 1,
+      "top500": 1,
+      "top1000": 1,
+      "best_rank": 60,
+      "best_score": 112744,
+      "share": 0.00539718738122387,
+      "share_percent": 0.5397187381223869,
+      "lift_top100": 1.2739819004524888,
+      "lift_top500": 0.7977828054298642,
+      "lift_top1000": 0.7382579185520362,
+      "efficiency_lift": 0.842756498542025,
+      "quality_component": 0.40700273770347417,
+      "rarity_component": 0.9265344476558988,
+      "elite_proximity": 0.640266658361715,
+      "evidence_factor": 0.532916503778969,
+      "sleeper_score": 53.6891176873692,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Dodge Viper SRT GT3-R '15",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 695.23,
+        "power_hp": 475.0,
+        "torque_nm": 608.0,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 365.38461538461536,
+        "weight_balance": "49:51",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.06,
+          "0_1000m": 20.36,
+          "100_150_kmh": 2.6
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
+        },
+        "stability": {
+          "low_speed": "-0.25 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Dodge Viper SRT GT3-R '15",
+        "matched_name": "Dodge Viper SRT GT3-R '15",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3474,
+      "car": "Subaru BRZ GT300 '21",
+      "all_count": 61,
+      "top100": 1,
+      "top500": 1,
+      "top1000": 1,
+      "best_rank": 87,
+      "best_score": 112904,
+      "share": 0.004637020144431775,
+      "share_percent": 0.4637020144431775,
+      "lift_top100": 1.3343601895734598,
+      "lift_top500": 0.8355924170616112,
+      "lift_top1000": 0.7732464454976303,
+      "efficiency_lift": 0.8826975648236376,
+      "quality_component": 0.43180273090767196,
+      "rarity_component": 0.9319043309421827,
+      "elite_proximity": 0.5855777864671197,
+      "evidence_factor": 0.4939635614091388,
+      "sleeper_score": 53.470924608967564,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Subaru BRZ GT300 '21",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 699.34,
+        "power_hp": 435.0,
+        "torque_nm": 604.1,
+        "weight_kg": 1311.0,
+        "power_weight_hp_t": 331.80778032036613,
+        "weight_balance": "51:49",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.76,
+          "0_1000m": 21.37,
+          "100_150_kmh": 2.95
+        },
+        "rotational_g": {
+          "60_kmh": 1.36,
+          "120_kmh": 1.49,
+          "240_kmh": 1.79
+        },
+        "stability": {
+          "low_speed": "-0.48 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Subaru BRZ GT300 '21",
+        "matched_name": "Subaru BRZ GT300 '21",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 2160,
+      "car": "Hyundai Genesis Gr.3",
+      "all_count": 24,
+      "top100": 0,
+      "top500": 2,
+      "top1000": 2,
+      "best_rank": 141,
+      "best_score": 113091,
+      "share": 0.0018244013683010262,
+      "share_percent": 0.18244013683010263,
+      "lift_top100": 0.8620689655172414,
+      "lift_top500": 1.1644827586206896,
+      "lift_top1000": 1.0132758620689655,
+      "efficiency_lift": 1.0228505182639895,
+      "quality_component": 0.5124237876649399,
+      "rarity_component": 0.9572869883021459,
+      "elite_proximity": 0.5275514258759935,
+      "evidence_factor": 0.30983866769659335,
+      "sleeper_score": 53.25883159135624,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Hyundai Genesis Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 693.53,
+        "power_hp": 483.0,
+        "torque_nm": 455.0,
+        "weight_kg": 1269.0,
+        "power_weight_hp_t": 380.6146572104019,
+        "weight_balance": "53:47",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.43,
+          "0_1000m": 21.87,
+          "100_150_kmh": 2.7
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.7
+        },
+        "stability": {
+          "low_speed": "-0.33 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Hyundai Genesis Gr.3",
+        "matched_name": "Hyundai Genesis Gr.3",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 1470,
+      "car": "Toyota Supra GT500 '97",
+      "all_count": 22,
+      "top100": 0,
+      "top500": 2,
+      "top1000": 2,
+      "best_rank": 154,
+      "best_score": 113135,
+      "share": 0.0016723679209426075,
+      "share_percent": 0.16723679209426073,
+      "lift_top100": 0.872093023255814,
+      "lift_top500": 1.1780232558139536,
+      "lift_top1000": 1.0250581395348837,
+      "efficiency_lift": 1.0347441289414778,
+      "quality_component": 0.5187759646562125,
+      "rarity_component": 0.9591054047465608,
+      "elite_proximity": 0.514755885208607,
+      "evidence_factor": 0.2966479394838265,
+      "sleeper_score": 53.1396278375287,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Toyota Supra GT500 '97",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 689.97,
+        "power_hp": 448.0,
+        "torque_nm": 584.5,
+        "weight_kg": 1175.0,
+        "power_weight_hp_t": 381.27659574468083,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.43,
+          "0_1000m": 20.86,
+          "100_150_kmh": 2.76
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.43,
+          "240_kmh": 1.65
+        },
+        "stability": {
+          "low_speed": "-0.44 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Toyota Supra GT500 '97",
+        "matched_name": "Toyota Supra GT500 '97",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 2188,
+      "car": "Renault Sport R.S.01 GT3 '16",
+      "all_count": 50,
+      "top100": 0,
+      "top500": 2,
+      "top1000": 2,
+      "best_rank": 145,
+      "best_score": 113107,
+      "share": 0.003800836183960471,
+      "share_percent": 0.3800836183960471,
+      "lift_top100": 0.7500000000000001,
+      "lift_top500": 1.0131000000000001,
+      "lift_top1000": 0.88155,
+      "efficiency_lift": 0.889879950889671,
+      "quality_component": 0.4361821845820137,
+      "rarity_component": 0.9383490779958606,
+      "elite_proximity": 0.5228621108821537,
+      "evidence_factor": 0.4472135954999579,
+      "sleeper_score": 52.60660880734891,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Renault R.S.01 GT3 '16",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 689.38,
+        "power_hp": 466.0,
+        "torque_nm": 544.3,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 353.030303030303,
+        "weight_balance": "44:56",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.73,
+          "0_1000m": 21.23,
+          "100_150_kmh": 2.89
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.69
+        },
+        "stability": {
+          "low_speed": "-0.71 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Renault Sport R.S.01 GT3 '16",
+        "matched_name": "Renault R.S.01 GT3 '16",
+        "match_score": 86
+      }
+    },
+    {
+      "car_code": 1902,
+      "car": "BMW Z4 GT3 '11",
+      "all_count": 38,
+      "top100": 0,
+      "top500": 1,
+      "top1000": 2,
+      "best_rank": 169,
+      "best_score": 113191,
+      "share": 0.0028886354998099583,
+      "share_percent": 0.28886354998099584,
+      "lift_top100": 0.797872340425532,
+      "lift_top500": 0.9378191489361702,
+      "lift_top1000": 0.9378191489361702,
+      "efficiency_lift": 0.9079918678107037,
+      "quality_component": 0.4471126532047427,
+      "rarity_component": 0.9462539722415697,
+      "elite_proximity": 0.49891851158647194,
+      "evidence_factor": 0.38987177379235854,
+      "sleeper_score": 52.33503490539806,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "BMW Z4 GT3 '11",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 687.84,
+        "power_hp": 460.0,
+        "torque_nm": 453.1,
+        "weight_kg": 1250.0,
+        "power_weight_hp_t": 368.0,
+        "weight_balance": "51:49",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.8,
+          "0_1000m": 21.17,
+          "100_150_kmh": 2.65
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.42,
+          "240_kmh": 1.63
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "BMW Z4 GT3 '11",
+        "matched_name": "BMW Z4 GT3 '11",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3340,
+      "car": "Lexus RC F GT3 '17",
+      "all_count": 37,
+      "top100": 0,
+      "top500": 1,
+      "top1000": 2,
+      "best_rank": 427,
+      "best_score": 113656,
+      "share": 0.002812618776130749,
+      "share_percent": 0.28126187761307486,
+      "lift_top100": 0.8021390374331551,
+      "lift_top500": 0.9428342245989305,
+      "lift_top1000": 0.9428342245989305,
+      "efficiency_lift": 0.9128474392963224,
+      "quality_component": 0.4500149421496286,
+      "rarity_component": 0.9469658715907318,
+      "elite_proximity": 0.3848894583297938,
+      "evidence_factor": 0.3847076812334269,
+      "sleeper_score": 51.27429637810982,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Lexus RC F GT3 '17",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 697.59,
+        "power_hp": 455.0,
+        "torque_nm": 522.7,
+        "weight_kg": 1310.0,
+        "power_weight_hp_t": 347.32824427480915,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.04,
+          "0_1000m": 21.49,
+          "100_150_kmh": 2.82
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.45,
+          "240_kmh": 1.74
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Lexus RC F GT3 '17",
+        "matched_name": "Lexus RC F GT3 '17",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3502,
+      "car": "Genesis X GR3",
+      "all_count": 27,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 2,
+      "best_rank": 738,
+      "best_score": 113965,
+      "share": 0.0020524515393386543,
+      "share_percent": 0.20524515393386544,
+      "lift_top100": 0.8474576271186441,
+      "lift_top500": 0.8474576271186441,
+      "lift_top1000": 0.9961016949152542,
+      "efficiency_lift": 0.9187785254030162,
+      "quality_component": 0.45354377845105665,
+      "rarity_component": 0.9546960096753205,
+      "elite_proximity": 0.3239286048550915,
+      "evidence_factor": 0.3286335345030997,
+      "sleeper_score": 50.70230403709619,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Genesis Genesis X GR3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 699.78,
+        "power_hp": 466.0,
+        "torque_nm": 592.3,
+        "weight_kg": 1285.0,
+        "power_weight_hp_t": 362.6459143968872,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.02,
+          "0_1000m": 21.42,
+          "100_150_kmh": 2.78
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.44,
+          "240_kmh": 1.74
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Genesis X GR3",
+        "matched_name": "Genesis Genesis X GR3",
+        "match_score": 90
+      }
+    },
+    {
+      "car_code": 3503,
+      "car": "MAZDA RX-VISION GT3 CONCEPT Stealth Model",
+      "all_count": 21,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 1,
+      "best_rank": 721,
+      "best_score": 113948,
+      "share": 0.0015963511972633979,
+      "share_percent": 0.15963511972633979,
+      "lift_top100": 0.8771929824561403,
+      "lift_top500": 0.8771929824561403,
+      "lift_top1000": 0.9541228070175438,
+      "efficiency_lift": 0.9148496219145219,
+      "quality_component": 0.45120819905083953,
+      "rarity_component": 0.9600456360673406,
+      "elite_proximity": 0.32701621056698027,
+      "evidence_factor": 0.28982753492378877,
+      "sleeper_score": 50.63552481460088,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Mazda RX-VISION GT3 CONCEPT Stealth Model",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 694.26,
+        "power_hp": 433.0,
+        "torque_nm": 414.8,
+        "weight_kg": 1269.0,
+        "power_weight_hp_t": 341.21355397951146,
+        "weight_balance": "48:52",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.56,
+          "0_1000m": 21.98,
+          "100_150_kmh": 2.81
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.44,
+          "240_kmh": 1.7
+        },
+        "stability": {
+          "low_speed": "-0.29 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "MAZDA RX-VISION GT3 CONCEPT Stealth Model",
+        "matched_name": "Mazda RX-VISION GT3 CONCEPT Stealth Model",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3218,
+      "car": "BMW M6 GT3 Endurance Model '16",
+      "all_count": 53,
+      "top100": 0,
+      "top500": 1,
+      "top1000": 1,
+      "best_rank": 426,
+      "best_score": 113655,
+      "share": 0.004028886354998099,
+      "share_percent": 0.4028886354998099,
+      "lift_top100": 0.7389162561576355,
+      "lift_top500": 0.8685221674876848,
+      "lift_top1000": 0.80371921182266,
+      "efficiency_lift": 0.8089198475194157,
+      "quality_component": 0.38543977532548473,
+      "rarity_component": 0.9365264909194544,
+      "elite_proximity": 0.385104300332774,
+      "evidence_factor": 0.4604345773288535,
+      "sleeper_score": 49.79617710948838,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "BMW M6 GT3 Endurance Model '16",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 698.04,
+        "power_hp": 462.0,
+        "torque_nm": 592.3,
+        "weight_kg": 1326.0,
+        "power_weight_hp_t": 348.41628959276017,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.91,
+          "0_1000m": 21.39,
+          "100_150_kmh": 2.93
+        },
+        "rotational_g": {
+          "60_kmh": 1.36,
+          "120_kmh": 1.46,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.27 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "BMW M6 GT3 Endurance Model '16",
+        "matched_name": "BMW M6 GT3 Endurance Model '16",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3235,
+      "car": "Honda NSX Gr.3",
+      "all_count": 90,
+      "top100": 0,
+      "top500": 1,
+      "top1000": 2,
+      "best_rank": 128,
+      "best_score": 113046,
+      "share": 0.0068415051311288486,
+      "share_percent": 0.6841505131128849,
+      "lift_top100": 0.6250000000000001,
+      "lift_top500": 0.734625,
+      "lift_top1000": 0.734625,
+      "efficiency_lift": 0.7112602964517178,
+      "quality_component": 0.3209134779160264,
+      "rarity_component": 0.9172866085139242,
+      "elite_proximity": 0.5409668261976731,
+      "evidence_factor": 0.6,
+      "sleeper_score": 49.71208646636106,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Honda NSX Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 691.04,
+        "power_hp": 483.0,
+        "torque_nm": 496.2,
+        "weight_kg": 1310.0,
+        "power_weight_hp_t": 368.7022900763359,
+        "weight_balance": "42:58",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.64,
+          "0_1000m": 21.09,
+          "100_150_kmh": 2.92
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.45,
+          "240_kmh": 1.68
+        },
+        "stability": {
+          "low_speed": "-0.48 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Honda NSX Gr.3",
+        "matched_name": "Honda NSX Gr.3",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 2159,
+      "car": "Ford Mustang Gr.3",
+      "all_count": 26,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1834,
+      "best_score": 114721,
+      "share": 0.001976434815659445,
+      "share_percent": 0.1976434815659445,
+      "lift_top100": 0.8522727272727273,
+      "lift_top500": 0.8522727272727272,
+      "lift_top1000": 0.8522727272727272,
+      "efficiency_lift": 0.8522727272727272,
+      "quality_component": 0.4129782019374432,
+      "rarity_component": 0.9555428879068889,
+      "elite_proximity": 0.21243756557280846,
+      "evidence_factor": 0.322490309931942,
+      "sleeper_score": 49.07625811254589,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Ford Mustang Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 692.21,
+        "power_hp": 483.0,
+        "torque_nm": 509.9,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 371.53846153846155,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.97,
+          "0_1000m": 21.34,
+          "100_150_kmh": 2.72
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.43,
+          "240_kmh": 1.67
+        },
+        "stability": {
+          "low_speed": "-0.28 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Ford Mustang Gr.3",
+        "matched_name": "Ford Mustang Gr.3",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 1904,
+      "car": "BMW M3 GT '11",
+      "all_count": 20,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 4830,
+      "best_score": 116075,
+      "share": 0.0015203344735841885,
+      "share_percent": 0.15203344735841884,
+      "lift_top100": 0.8823529411764706,
+      "lift_top500": 0.8823529411764705,
+      "lift_top1000": 0.8823529411764705,
+      "efficiency_lift": 0.8823529411764705,
+      "quality_component": 0.43159196533364386,
+      "rarity_component": 0.9610085333235054,
+      "elite_proximity": 0.09978998015036553,
+      "evidence_factor": 0.282842712474619,
+      "sleeper_score": 48.71376661703358,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "BMW M3 GT '11",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 686.7,
+        "power_hp": 466.0,
+        "torque_nm": 464.8,
+        "weight_kg": 1296.0,
+        "power_weight_hp_t": 359.5679012345679,
+        "weight_balance": "49:51",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.93,
+          "0_1000m": 21.38,
+          "100_150_kmh": 2.72
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.64
+        },
+        "stability": {
+          "low_speed": "-0.29 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "BMW M3 GT '11",
+        "matched_name": "BMW M3 GT '11",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 140,
+      "car": "Honda NSX GT500 '00",
+      "all_count": 22,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 3955,
+      "best_score": 115695,
+      "share": 0.0016723679209426075,
+      "share_percent": 0.16723679209426073,
+      "lift_top100": 0.872093023255814,
+      "lift_top500": 0.8720930232558141,
+      "lift_top1000": 0.8720930232558141,
+      "efficiency_lift": 0.8720930232558141,
+      "quality_component": 0.4252909959072414,
+      "rarity_component": 0.9591054047465608,
+      "elite_proximity": 0.12336178140474648,
+      "evidence_factor": 0.2966479394838265,
+      "sleeper_score": 48.711704692675276,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Honda NSX GT500 '00",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 679.5,
+        "power_hp": 428.0,
+        "torque_nm": 404.0,
+        "weight_kg": 1235.0,
+        "power_weight_hp_t": 346.5587044534413,
+        "weight_balance": "44:56",
+        "drivetrain": "MR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.45,
+          "0_1000m": 22.0,
+          "100_150_kmh": 2.93
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.42,
+          "240_kmh": 1.63
+        },
+        "stability": {
+          "low_speed": "-0.24 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Honda NSX GT500 '00",
+        "matched_name": "Honda NSX GT500 '00",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 2183,
+      "car": "Chevrolet Corvette C7 Gr.3",
+      "all_count": 62,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 2,
+      "best_rank": 581,
+      "best_score": 113823,
+      "share": 0.0047130368681109844,
+      "share_percent": 0.47130368681109847,
+      "lift_top100": 0.7075471698113208,
+      "lift_top500": 0.7075471698113208,
+      "lift_top1000": 0.8316509433962265,
+      "efficiency_lift": 0.767093391492141,
+      "quality_component": 0.35816837852250655,
+      "rarity_component": 0.931348438705948,
+      "elite_proximity": 0.35064145566499927,
+      "evidence_factor": 0.4979959839195493,
+      "sleeper_score": 48.55196013796567,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Chevrolet Corvette C7 Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 691.82,
+        "power_hp": 480.0,
+        "torque_nm": 600.2,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 369.2307692307692,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.21,
+          "0_1000m": 20.58,
+          "100_150_kmh": 2.71
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Chevrolet Corvette C7 Gr.3",
+        "matched_name": "Chevrolet Corvette C7 Gr.3",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 2187,
+      "car": "Toyota FT-1 Vision Gran Turismo (Gr.3)",
+      "all_count": 30,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 2616,
+      "best_score": 115098,
+      "share": 0.002280501710376283,
+      "share_percent": 0.22805017103762829,
+      "lift_top100": 0.8333333333333334,
+      "lift_top500": 0.8333333333333334,
+      "lift_top1000": 0.8333333333333334,
+      "efficiency_lift": 0.8333333333333334,
+      "quality_component": 0.40104629824666216,
+      "rarity_component": 0.9522454011599272,
+      "elite_proximity": 0.1721332131042498,
+      "evidence_factor": 0.34641016151377546,
+      "sleeper_score": 48.408517154732685,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": null,
+      "bop_match": null
+    },
+    {
+      "car_code": 2131,
+      "car": "Aston Martin V12 Vantage GT3 '12",
+      "all_count": 40,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1194,
+      "best_score": 114340,
+      "share": 0.003040668947168377,
+      "share_percent": 0.3040668947168377,
+      "lift_top100": 0.7894736842105263,
+      "lift_top500": 0.7894736842105262,
+      "lift_top1000": 0.7894736842105262,
+      "efficiency_lift": 0.7894736842105262,
+      "quality_component": 0.37283930004271926,
+      "rarity_component": 0.9448577390092827,
+      "elite_proximity": 0.2627649071528238,
+      "evidence_factor": 0.4,
+      "sleeper_score": 48.38897558454232,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Aston Martin V12 Vantage GT3 '12",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 684.89,
+        "power_hp": 485.0,
+        "torque_nm": 562.9,
+        "weight_kg": 1265.0,
+        "power_weight_hp_t": 383.39920948616606,
+        "weight_balance": "51:49",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.9,
+          "0_1000m": 21.28,
+          "100_150_kmh": 2.6
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.41,
+          "240_kmh": 1.6
+        },
+        "stability": {
+          "low_speed": "-0.29 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Aston Martin V12 Vantage GT3 '12",
+        "matched_name": "Aston Martin V12 Vantage GT3 '12",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3419,
+      "car": "MAZDA RX-VISION GT3 CONCEPT",
+      "all_count": 106,
+      "top100": 0,
+      "top500": 2,
+      "top1000": 4,
+      "best_rank": 344,
+      "best_score": 113541,
+      "share": 0.008057772709996198,
+      "share_percent": 0.8057772709996198,
+      "lift_top100": 0.5859375,
+      "lift_top500": 0.791484375,
+      "lift_top1000": 0.791484375,
+      "efficiency_lift": 0.7452880114500015,
+      "quality_component": 0.3437186827761751,
+      "rarity_component": 0.9102349026068807,
+      "elite_proximity": 0.41039917309637,
+      "evidence_factor": 0.6511528238439882,
+      "sleeper_score": 48.28695036267096,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Mazda RX-VISION GT3 CONCEPT",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 694.26,
+        "power_hp": 433.0,
+        "torque_nm": 414.8,
+        "weight_kg": 1269.0,
+        "power_weight_hp_t": 341.21355397951146,
+        "weight_balance": "48:52",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.56,
+          "0_1000m": 21.98,
+          "100_150_kmh": 2.81
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.44,
+          "240_kmh": 1.7
+        },
+        "stability": {
+          "low_speed": "-0.29 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "MAZDA RX-VISION GT3 CONCEPT",
+        "matched_name": "Mazda RX-VISION GT3 CONCEPT",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 2177,
+      "car": "Lamborghini Huracán GT3 '15",
+      "all_count": 334,
+      "top100": 0,
+      "top500": 10,
+      "top1000": 21,
+      "best_rank": 117,
+      "best_score": 113016,
+      "share": 0.02538958570885595,
+      "share_percent": 2.538958570885595,
+      "lift_top100": 0.30991735537190085,
+      "lift_top500": 0.853512396694215,
+      "lift_top1000": 0.8806921487603305,
+      "efficiency_lift": 0.7079852207101595,
+      "quality_component": 0.31870477338907344,
+      "rarity_component": 0.8406589013817969,
+      "elite_proximity": 0.5500994219006123,
+      "evidence_factor": 1.0,
+      "sleeper_score": 48.094426111550284,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "MEDIUM",
+      "active_bop": {
+        "car": "Lamborghini Huracán GT3 '15",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 689.81,
+        "power_hp": 450.0,
+        "torque_nm": 452.1,
+        "weight_kg": 1330.0,
+        "power_weight_hp_t": 338.3458646616541,
+        "weight_balance": "42:58",
+        "drivetrain": "MR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.27,
+          "0_1000m": 21.75,
+          "100_150_kmh": 2.86
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.45,
+          "240_kmh": 1.67
+        },
+        "stability": {
+          "low_speed": "-0.57 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Lamborghini Huracán GT3 '15",
+        "matched_name": "Lamborghini Huracán GT3 '15",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3224,
+      "car": "Mercedes-AMG GT3 '16",
+      "all_count": 32,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 2973,
+      "best_score": 115282,
+      "share": 0.0024325351577347016,
+      "share_percent": 0.24325351577347015,
+      "lift_top100": 0.8241758241758242,
+      "lift_top500": 0.8241758241758242,
+      "lift_top1000": 0.8241758241758242,
+      "efficiency_lift": 0.8241758241758242,
+      "quality_component": 0.39522122357326617,
+      "rarity_component": 0.9506792623966885,
+      "elite_proximity": 0.1553359359578628,
+      "evidence_factor": 0.35777087639996635,
+      "sleeper_score": 48.08025548039386,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "AMG Mercedes-AMG GT3 '16",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 694.37,
+        "power_hp": 455.0,
+        "torque_nm": 532.5,
+        "weight_kg": 1325.0,
+        "power_weight_hp_t": 343.39622641509436,
+        "weight_balance": "49:51",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.46,
+          "0_1000m": 20.88,
+          "100_150_kmh": 2.83
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.43,
+          "240_kmh": 1.72
+        },
+        "stability": {
+          "low_speed": "-0.24 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Mercedes-AMG GT3 '16",
+        "matched_name": "AMG Mercedes-AMG GT3 '16",
+        "match_score": 90
+      }
+    },
+    {
+      "car_code": 2186,
+      "car": "Subaru WRX Gr.3",
+      "all_count": 36,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 2179,
+      "best_score": 114896,
+      "share": 0.0027366020524515395,
+      "share_percent": 0.27366020524515394,
+      "lift_top100": 0.8064516129032259,
+      "lift_top500": 0.8064516129032258,
+      "lift_top1000": 0.8064516129032258,
+      "efficiency_lift": 0.8064516129032258,
+      "quality_component": 0.3838484754518542,
+      "rarity_component": 0.9476874579813641,
+      "elite_proximity": 0.19267250573440595,
+      "evidence_factor": 0.3794733192202055,
+      "sleeper_score": 48.05794205425158,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Subaru WRX Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 700.75,
+        "power_hp": 497.0,
+        "torque_nm": 519.8,
+        "weight_kg": 1305.0,
+        "power_weight_hp_t": 380.84291187739467,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.64,
+          "0_1000m": 21.05,
+          "100_150_kmh": 2.69
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.45,
+          "240_kmh": 1.74
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Subaru WRX Gr.3",
+        "matched_name": "Subaru WRX Gr.3",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 2143,
+      "car": "Audi R8 LMS '15",
+      "all_count": 37,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 2017,
+      "best_score": 114815,
+      "share": 0.002812618776130749,
+      "share_percent": 0.28126187761307486,
+      "lift_top100": 0.8021390374331551,
+      "lift_top500": 0.8021390374331551,
+      "lift_top1000": 0.8021390374331551,
+      "efficiency_lift": 0.8021390374331551,
+      "quality_component": 0.38106240201337227,
+      "rarity_component": 0.9469658715907318,
+      "elite_proximity": 0.20158130101268698,
+      "evidence_factor": 0.3847076812334269,
+      "sleeper_score": 48.052333523590335,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Audi R8 LMS '15",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 685.59,
+        "power_hp": 451.0,
+        "torque_nm": 442.3,
+        "weight_kg": 1356.0,
+        "power_weight_hp_t": 332.5958702064897,
+        "weight_balance": "42:58",
+        "drivetrain": "MR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.49,
+          "0_1000m": 22.01,
+          "100_150_kmh": 2.91
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.44,
+          "240_kmh": 1.66
+        },
+        "stability": {
+          "low_speed": "-0.46 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Audi R8 LMS '15",
+        "matched_name": "Audi R8 LMS '15",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3185,
+      "car": "Alfa Romeo 4C Gr.3",
+      "all_count": 56,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 1,
+      "best_rank": 820,
+      "best_score": 114062,
+      "share": 0.004256936526035728,
+      "share_percent": 0.42569365260357284,
+      "lift_top100": 0.7281553398058254,
+      "lift_top500": 0.7281553398058251,
+      "lift_top1000": 0.7920145631067962,
+      "efficiency_lift": 0.7594140065406955,
+      "quality_component": 0.3530959817347553,
+      "rarity_component": 0.9347547969116831,
+      "elite_proximity": 0.30686063038996403,
+      "evidence_factor": 0.4732863826479693,
+      "sleeper_score": 48.0059927365761,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Alfa Romeo 4C Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 688.33,
+        "power_hp": 455.0,
+        "torque_nm": 455.0,
+        "weight_kg": 1245.0,
+        "power_weight_hp_t": 365.4618473895582,
+        "weight_balance": "44:56",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.27,
+          "0_1000m": 21.72,
+          "100_150_kmh": 2.86
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.44,
+          "240_kmh": 1.66
+        },
+        "stability": {
+          "low_speed": "-0.3 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Alfa Romeo 4C Gr.3",
+        "matched_name": "Alfa Romeo 4C Gr.3",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3531,
+      "car": "Mercedes-AMG GT3 '20",
+      "all_count": 435,
+      "top100": 1,
+      "top500": 4,
+      "top1000": 12,
+      "best_rank": 9,
+      "best_score": 112211,
+      "share": 0.0330672748004561,
+      "share_percent": 3.30672748004561,
+      "lift_top100": 0.48128205128205137,
+      "lift_top500": 0.4363076923076923,
+      "lift_top1000": 0.5262564102564102,
+      "efficiency_lift": 0.48867091764678683,
+      "quality_component": 0.17145573010815493,
+      "rarity_component": 0.8181559052362268,
+      "elite_proximity": 0.8620538838545757,
+      "evidence_factor": 1.0,
+      "sleeper_score": 47.34453035703745,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "MEDIUM",
+      "active_bop": {
+        "car": "AMG Mercedes-AMG GT3 '20",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 697.37,
+        "power_hp": 461.0,
+        "torque_nm": 539.4,
+        "weight_kg": 1350.0,
+        "power_weight_hp_t": 341.48148148148147,
+        "weight_balance": "49:51",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.44,
+          "0_1000m": 20.86,
+          "100_150_kmh": 2.84
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.45,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.25 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Mercedes-AMG GT3 '20",
+        "matched_name": "AMG Mercedes-AMG GT3 '20",
+        "match_score": 90
+      }
+    },
+    {
+      "car_code": 2190,
+      "car": "GT by Citroën Race Car (Gr.3)",
+      "all_count": 112,
+      "top100": 0,
+      "top500": 1,
+      "top1000": 5,
+      "best_rank": 450,
+      "best_score": 113680,
+      "share": 0.008513873052071456,
+      "share_percent": 0.8513873052071457,
+      "lift_top100": 0.5725190839694657,
+      "lift_top500": 0.6729389312977099,
+      "lift_top1000": 0.8235687022900763,
+      "efficiency_lift": 0.7207764803819126,
+      "quality_component": 0.32731863513365256,
+      "rarity_component": 0.9077293489127152,
+      "elite_proximity": 0.37976905375849046,
+      "evidence_factor": 0.6693280212272604,
+      "sleeper_score": 47.08931883894295,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Citroën GT by Citroën Race Car (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 690.26,
+        "power_hp": 444.0,
+        "torque_nm": 432.5,
+        "weight_kg": 1270.0,
+        "power_weight_hp_t": 349.6062992125984,
+        "weight_balance": "43:57",
+        "drivetrain": "MR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.37,
+          "0_1000m": 20.77,
+          "100_150_kmh": 2.69
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.43,
+          "240_kmh": 1.66
+        },
+        "stability": {
+          "low_speed": "-0.54 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "GT by Citroën Race Car (Gr.3)",
+        "matched_name": "Citroën GT by Citroën Race Car (Gr.3)",
+        "match_score": 90
+      }
+    },
+    {
+      "car_code": 3221,
+      "car": "BMW M6 GT3 Sprint Model '16",
+      "all_count": 72,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 1,
+      "best_rank": 960,
+      "best_score": 114174,
+      "share": 0.005473204104903079,
+      "share_percent": 0.5473204104903079,
+      "lift_top100": 0.6756756756756758,
+      "lift_top500": 0.6756756756756757,
+      "lift_top1000": 0.7349324324324324,
+      "efficiency_lift": 0.7046814655287534,
+      "quality_component": 0.3164746326780149,
+      "rarity_component": 0.9260188935950328,
+      "elite_proximity": 0.28826888465151,
+      "evidence_factor": 0.5366563145999496,
+      "sleeper_score": 46.31489098706271,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "BMW M6 GT3 Sprint Model '16",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 698.06,
+        "power_hp": 462.0,
+        "torque_nm": 592.3,
+        "weight_kg": 1326.0,
+        "power_weight_hp_t": 348.41628959276017,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.91,
+          "0_1000m": 21.38,
+          "100_150_kmh": 2.93
+        },
+        "rotational_g": {
+          "60_kmh": 1.36,
+          "120_kmh": 1.46,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.27 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "BMW M6 GT3 Sprint Model '16",
+        "matched_name": "BMW M6 GT3 Sprint Model '16",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 2182,
+      "car": "McLaren 650S GT3 '15",
+      "all_count": 59,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 2097,
+      "best_score": 114847,
+      "share": 0.004484986697073356,
+      "share_percent": 0.44849866970733565,
+      "lift_top100": 0.7177033492822966,
+      "lift_top500": 0.7177033492822966,
+      "lift_top1000": 0.7177033492822966,
+      "efficiency_lift": 0.7177033492822966,
+      "quality_component": 0.32525228838173,
+      "rarity_component": 0.9330299567188929,
+      "elite_proximity": 0.19801358434120533,
+      "evidence_factor": 0.48579831205964474,
+      "sleeper_score": 45.8706242823821,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "McLaren 650S GT3 '15",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 692.2,
+        "power_hp": 477.0,
+        "torque_nm": 492.3,
+        "weight_kg": 1310.0,
+        "power_weight_hp_t": 364.12213740458014,
+        "weight_balance": "44:56",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.07,
+          "0_1000m": 21.55,
+          "100_150_kmh": 2.97
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.45,
+          "240_kmh": 1.7
+        },
+        "stability": {
+          "low_speed": "-0.64 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "McLaren 650S GT3 '15",
+        "matched_name": "McLaren 650S GT3 '15",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3436,
+      "car": "Ford GT Race Car '18",
+      "all_count": 64,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1635,
+      "best_score": 114606,
+      "share": 0.004865070315469403,
+      "share_percent": 0.4865070315469403,
+      "lift_top100": 0.7009345794392524,
+      "lift_top500": 0.7009345794392523,
+      "lift_top1000": 0.7009345794392523,
+      "efficiency_lift": 0.7009345794392523,
+      "quality_component": 0.3139429327681053,
+      "rarity_component": 0.9302499439751523,
+      "elite_proximity": 0.22651750875177876,
+      "evidence_factor": 0.5059644256269407,
+      "sleeper_score": 45.716908881932426,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Ford Ford GT Race Car '18",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 692.29,
+        "power_hp": 443.0,
+        "torque_nm": 513.9,
+        "weight_kg": 1250.0,
+        "power_weight_hp_t": 354.4,
+        "weight_balance": "46:54",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.17,
+          "0_1000m": 21.57,
+          "100_150_kmh": 2.89
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.44,
+          "240_kmh": 1.68
+        },
+        "stability": {
+          "low_speed": "-0.57 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Ford GT Race Car '18",
+        "matched_name": "Ford Ford GT Race Car '18",
+        "match_score": 90
+      }
+    },
+    {
+      "car_code": 3450,
+      "car": "Nissan GT-R NISMO GT3 '18",
+      "all_count": 75,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1309,
+      "best_score": 114414,
+      "share": 0.005701254275940707,
+      "share_percent": 0.5701254275940707,
+      "lift_top100": 0.6666666666666667,
+      "lift_top500": 0.6666666666666666,
+      "lift_top1000": 0.6666666666666666,
+      "efficiency_lift": 0.6666666666666666,
+      "quality_component": 0.29069247869660286,
+      "rarity_component": 0.9244933494588675,
+      "elite_proximity": 0.25213511145812717,
+      "evidence_factor": 0.5477225575051661,
+      "sleeper_score": 44.95072709545871,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Nissan GT-R NISMO GT3 '18",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 697.0,
+        "power_hp": 491.0,
+        "torque_nm": 561.9,
+        "weight_kg": 1355.0,
+        "power_weight_hp_t": 362.36162361623616,
+        "weight_balance": "53:47",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.8,
+          "0_1000m": 21.27,
+          "100_150_kmh": 2.92
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.46,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Nissan GT-R NISMO GT3 '18",
+        "matched_name": "Nissan GT-R NISMO GT3 '18",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3311,
+      "car": "Porsche 911 RSR (991) '17",
+      "all_count": 392,
+      "top100": 1,
+      "top500": 3,
+      "top1000": 6,
+      "best_rank": 21,
+      "best_score": 112411,
+      "share": 0.029798555682250094,
+      "share_percent": 2.9798555682250094,
+      "lift_top100": 0.5194649446494466,
+      "lift_top500": 0.42238007380073794,
+      "lift_top1000": 0.42238007380073794,
+      "efficiency_lift": 0.4402242745148585,
+      "quality_component": 0.141239125439962,
+      "rarity_component": 0.8273774183884098,
+      "elite_proximity": 0.771017164626107,
+      "evidence_factor": 1.0,
+      "sleeper_score": 43.59112938261879,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "MEDIUM",
+      "active_bop": {
+        "car": "Porsche 911 RSR (991) '17",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 690.62,
+        "power_hp": 444.0,
+        "torque_nm": 424.6,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 336.3636363636364,
+        "weight_balance": "46:54",
+        "drivetrain": "MR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.65,
+          "0_1000m": 22.16,
+          "100_150_kmh": 2.88
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.45,
+          "240_kmh": 1.7
+        },
+        "stability": {
+          "low_speed": "-0.28 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Porsche 911 RSR (991) '17",
+        "matched_name": "Porsche 911 RSR (991) '17",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 2158,
+      "car": "Ferrari 458 Italia GT3 '13",
+      "all_count": 381,
+      "top100": 0,
+      "top500": 5,
+      "top1000": 18,
+      "best_rank": 148,
+      "best_score": 113111,
+      "share": 0.02896237172177879,
+      "share_percent": 2.8962371721778792,
+      "lift_top100": 0.2824858757062147,
+      "lift_top500": 0.5302259887005649,
+      "lift_top1000": 0.7284180790960452,
+      "efficiency_lift": 0.5479336961030046,
+      "quality_component": 0.21023289102818904,
+      "rarity_component": 0.8298166526308206,
+      "elite_proximity": 0.5216963095576738,
+      "evidence_factor": 1.0,
+      "sleeper_score": 41.20154979810866,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "MEDIUM",
+      "active_bop": {
+        "car": "Ferrari 458 Italia GT3 '13",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 689.87,
+        "power_hp": 450.0,
+        "torque_nm": 456.0,
+        "weight_kg": 1325.0,
+        "power_weight_hp_t": 339.62264150943395,
+        "weight_balance": "42:58",
+        "drivetrain": "MR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.71,
+          "0_1000m": 21.17,
+          "100_150_kmh": 2.82
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.45,
+          "240_kmh": 1.67
+        },
+        "stability": {
+          "low_speed": "-0.68 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Ferrari 458 Italia GT3 '13",
+        "matched_name": "Ferrari 458 Italia GT3 '13",
+        "match_score": 100
+      }
+    },
+    {
+      "car_code": 3588,
+      "car": "Ferrari 296 GT3 '23",
+      "all_count": 1061,
+      "top100": 2,
+      "top500": 8,
+      "top1000": 23,
+      "best_rank": 13,
+      "best_score": 112296,
+      "share": 0.0806537438236412,
+      "share_percent": 8.06537438236412,
+      "lift_top100": 0.34112303881090017,
+      "lift_top500": 0.2976713459950454,
+      "lift_top1000": 0.37371180842279106,
+      "efficiency_lift": 0.342745475211861,
+      "quality_component": 0.08661473981513951,
+      "rarity_component": 0.7160039721692552,
+      "elite_proximity": 0.8221186627941689,
+      "evidence_factor": 1.0,
+      "sleeper_score": 39.636856703072,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "HIGH",
+      "active_bop": {
+        "car": "Ferrari 296 GT3 '23",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 694.29,
+        "power_hp": 444.0,
+        "torque_nm": 526.6,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 336.3636363636364,
+        "weight_balance": "47:53",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.19,
+          "0_1000m": 21.68,
+          "100_150_kmh": 2.85
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.45,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.62 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Ferrari 296 GT3 '23",
+        "matched_name": "Ferrari 296 GT3 '23",
+        "match_score": 100
+      }
+    }
+  ],
+  "production_pipeline_modified": false
+}
