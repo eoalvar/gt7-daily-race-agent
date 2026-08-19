@@ -1,0 +1,35 @@
+
+window.gtag_enable_tcf_support = true;
+window.dataLayer = window.dataLayer || [];
+function gtag() {
+    dataLayer.push(arguments);
+}
+// EU-specific settings
+gtag('consent', 'default', {
+    'ad_personalization': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'denied',
+    'personalization_storage': 'denied',
+    'region': [
+        'GB','AT','BE','BG','CH','CY','DE','DK','EE','ES','FI',
+        'FR','GG','GR','HR','HU','IE','IM','IT','JE','LT','LU',
+        'LV','MT','NL','PL','PT','RO','SE','SI','SK'
+    ],
+    'wait_for_update': 500
+});
+// Default settings
+gtag('consent', 'default', {
+    'ad_personalization': 'granted',
+    'ad_storage': 'granted',
+    'ad_user_data': 'granted',
+    'analytics_storage': 'granted',
+    'functionality_storage': 'granted',
+    'personalization_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500,
+});
+gtag('set', 'ads_data_redaction', true);
+gtag('set', 'url_passthrough', false);
+            
