@@ -1,17 +1,19 @@
 {
-  "generated_at": "2026-08-19T13:08:06.836586+00:00",
-  "classifier_version": "1.1",
+  "generated_at": "2026-08-19T13:29:34.398228+00:00",
+  "classifier_version": "2.0",
   "snapshot_timestamp": "2026-08-19T06:17:29.766163-03:00",
   "race_description": "C Gr.3 Running 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit P. Blazsán - Porsche 911 GT3 R (992) '22 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom",
   "track": "Yas Marina Circuit",
   "group": "GR.3",
+  "model_key": "GR.3|MID",
   "speed_class": "MID",
+  "speed_selection_mode": "GROUP_SPECIFIC_MAP",
   "classification_confidence": "VALIDATED_EXTERNAL",
   "classification_validation": [
     {
-      "source": "Lights to Flag Daily Races 2026-06-01",
+      "source": "GTPlanet Daily Races 2026-06-01",
       "evidence": "Yas Marina Circuit / Gr.3 / BOP (M)",
-      "url": "https://lights-to-flag.com/gt7-daily-races-20260601/"
+      "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-gt-one-in-a-million-20260601/"
     }
   ],
   "database_records": 399,

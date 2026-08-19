@@ -1,17 +1,19 @@
-GT7 BOP TRACK CLASSIFIER V1.1
+GT7 BOP TRACK CLASSIFIER V2.0
 ====================================================================================================
-Generated            : 2026-08-19T13:08:06.836586+00:00
+Generated            : 2026-08-19T13:29:34.398228+00:00
 Snapshot             : 2026-08-19T06:17:29.766163-03:00
 Track                : Yas Marina Circuit
 Group                : GR.3
+Model key            : GR.3|MID
 BoP speed class      : MID
+Selection mode       : GROUP_SPECIFIC_MAP
 Confidence           : VALIDATED_EXTERNAL
 BoP DB records       : 399
 Production modified  : NO
 
 CLASSIFICATION EVIDENCE
 ----------------------------------------------------------------------------------------------------
-- Lights to Flag Daily Races 2026-06-01 | Yas Marina Circuit / Gr.3 / BOP (M)
+- GTPlanet Daily Races 2026-06-01 | Yas Marina Circuit / Gr.3 / BOP (M)
 
 YOUR CURRENT CAR
 ----------------------------------------------------------------------------------------------------
@@ -22,19 +24,21 @@ BoP version          : 1.67
 HIGH                 : 446 HP / 1320 kg / PP 693.04
 MID                  : 446 HP / 1320 kg / PP 693.04
 LOW                  : 446 HP / 1320 kg / PP 693.04
-Active (MID)         : 446 HP / 1320 kg / PP 693.04
-Fingerprint useful   : NO
+ACTIVE MID         : 446 HP / 1320 kg / PP 693.04
+Fingerprint usable   : NO
 
-TOP 5 USED CARS - ACTIVE BOP
+TOP 5 USED CARS
 ----------------------------------------------------------------------------------------------------
-1. Porsche 911 GT3 R (992) '22 | usage 76.6% | MID: 446 HP / 1320 kg / PP 693.04 | fingerprint NO
-2. Audi R8 LMS Evo '19 | usage 8.799999999999999% | MID: 444 HP / 1310 kg / PP 691.74 | fingerprint YES
-3. Ferrari 296 GT3 '23 | usage 2.3% | MID: 444 HP / 1320 kg / PP 694.29 | fingerprint YES
-4. Lamborghini Huracán GT3 '15 | usage 2.1% | MID: 450 HP / 1330 kg / PP 689.81 | fingerprint YES
-5. Jaguar F-type Gr.3 | usage 1.9% | MID: 469 HP / 1265 kg / PP 695.6 | fingerprint YES
+1. Porsche 911 GT3 R (992) '22 | DB=Porsche 911 GT3 R (992) '22 | score=100 | active=446 HP / 1320 kg / PP 693.04 | fingerprint=NO
+2. Audi R8 LMS Evo '19 | DB=Audi R8 LMS Evo '19 | score=100 | active=444 HP / 1310 kg / PP 691.74 | fingerprint=YES
+3. Ferrari 296 GT3 '23 | DB=Ferrari 296 GT3 '23 | score=100 | active=444 HP / 1320 kg / PP 694.29 | fingerprint=YES
+4. Lamborghini Huracán GT3 '15 | DB=Lamborghini Huracán GT3 '15 | score=100 | active=450 HP / 1330 kg / PP 689.81 | fingerprint=YES
+5. Jaguar F-type Gr.3 | DB=Jaguar F-type Gr.3 | score=100 | active=469 HP / 1265 kg / PP 695.6 | fingerprint=YES
 
-RESULT
+CLASSIFIER POLICY
 ----------------------------------------------------------------------------------------------------
-Current Daily Race C classified as MID-speed BoP at Yas Marina Circuit.
-Sleeper analysis should use MID records from bop_database.json.
+Priority 1: explicit BOP (H/M/L) in event text when available.
+Priority 2: group-specific track mapping.
+Priority 3: validated track default mapping.
+This avoids assuming that one historical track classification must apply to every group/event forever.
 ====================================================================================================

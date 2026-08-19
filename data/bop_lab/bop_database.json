@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "created_at": "2026-08-18T22:20:51.162500+00:00",
-  "updated_at": "2026-08-19T13:08:06.715484+00:00",
+  "updated_at": "2026-08-19T13:29:34.213771+00:00",
   "records": [
     {
       "car": "Aston Martin V12 Vantage GT3 '12",
@@ -39,7 +39,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.303692+00:00"
+      "collected_at": "2026-08-19T13:29:24.220518+00:00"
     },
     {
       "car": "Nissan GT-R NISMO GT3 '18",
@@ -77,7 +77,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.303751+00:00"
+      "collected_at": "2026-08-19T13:29:24.220576+00:00"
     },
     {
       "car": "Toyota GR Supra Racing Concept '18",
@@ -115,7 +115,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.303781+00:00"
+      "collected_at": "2026-08-19T13:29:24.220611+00:00"
     },
     {
       "car": "Genesis Genesis X GR3",
@@ -153,7 +153,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.303819+00:00"
+      "collected_at": "2026-08-19T13:29:24.220651+00:00"
     },
     {
       "car": "Chevrolet Corvette C7 Gr.3",
@@ -191,7 +191,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.303850+00:00"
+      "collected_at": "2026-08-19T13:29:24.220679+00:00"
     },
     {
       "car": "BMW M6 GT3 Sprint Model '16",
@@ -229,7 +229,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.303891+00:00"
+      "collected_at": "2026-08-19T13:29:24.220709+00:00"
     },
     {
       "car": "Audi R8 LMS Evo '19",
@@ -267,7 +267,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.303913+00:00"
+      "collected_at": "2026-08-19T13:29:24.220739+00:00"
     },
     {
       "car": "McLaren 650S GT3 '15",
@@ -305,7 +305,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.303933+00:00"
+      "collected_at": "2026-08-19T13:29:24.220769+00:00"
     },
     {
       "car": "Honda NSX Gr.3",
@@ -343,7 +343,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.303953+00:00"
+      "collected_at": "2026-08-19T13:29:24.220794+00:00"
     },
     {
       "car": "Renault R.S.01 GT3 '16",
@@ -381,7 +381,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.303973+00:00"
+      "collected_at": "2026-08-19T13:29:24.220839+00:00"
     },
     {
       "car": "Lamborghini Huracán GT3 '15",
@@ -419,7 +419,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.303993+00:00"
+      "collected_at": "2026-08-19T13:29:24.220869+00:00"
     },
     {
       "car": "Mazda RX-VISION GT3 CONCEPT Stealth Model",
@@ -457,7 +457,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304013+00:00"
+      "collected_at": "2026-08-19T13:29:24.220903+00:00"
     },
     {
       "car": "Subaru BRZ GT300 '21",
@@ -495,7 +495,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304034+00:00"
+      "collected_at": "2026-08-19T13:29:24.220933+00:00"
     },
     {
       "car": "Ford Ford GT Race Car '18",
@@ -533,7 +533,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304059+00:00"
+      "collected_at": "2026-08-19T13:29:24.220959+00:00"
     },
     {
       "car": "Citroën GT by Citroën Race Car (Gr.3)",
@@ -571,7 +571,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304079+00:00"
+      "collected_at": "2026-08-19T13:29:24.220991+00:00"
     },
     {
       "car": "Ford Ford GT LM Race Car Spec II",
@@ -609,7 +609,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304100+00:00"
+      "collected_at": "2026-08-19T13:29:24.221018+00:00"
     },
     {
       "car": "AMG Mercedes-AMG GT3 '16",
@@ -647,7 +647,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304122+00:00"
+      "collected_at": "2026-08-19T13:29:24.221048+00:00"
     },
     {
       "car": "Ferrari 458 Italia GT3 '13",
@@ -685,7 +685,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304144+00:00"
+      "collected_at": "2026-08-19T13:29:24.221077+00:00"
     },
     {
       "car": "Audi R8 LMS '15",
@@ -723,7 +723,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304164+00:00"
+      "collected_at": "2026-08-19T13:29:24.221103+00:00"
     },
     {
       "car": "Subaru WRX Gr.3",
@@ -761,7 +761,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304183+00:00"
+      "collected_at": "2026-08-19T13:29:24.221130+00:00"
     },
     {
       "car": "Mitsubishi Lancer Evolution Final Gr.3",
@@ -799,7 +799,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304203+00:00"
+      "collected_at": "2026-08-19T13:29:24.221161+00:00"
     },
     {
       "car": "BMW M6 GT3 Endurance Model '16",
@@ -837,7 +837,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304222+00:00"
+      "collected_at": "2026-08-19T13:29:24.221187+00:00"
     },
     {
       "car": "Dodge Viper SRT GT3-R '15",
@@ -875,7 +875,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304243+00:00"
+      "collected_at": "2026-08-19T13:29:24.221213+00:00"
     },
     {
       "car": "Peugeot PEUGEOT VGT (Gr.3)",
@@ -913,7 +913,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304265+00:00"
+      "collected_at": "2026-08-19T13:29:24.221241+00:00"
     },
     {
       "car": "Nissan GT-R NISMO GT3 '13",
@@ -951,7 +951,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304285+00:00"
+      "collected_at": "2026-08-19T13:29:24.221269+00:00"
     },
     {
       "car": "Nissan GT-R GT500 '99",
@@ -989,7 +989,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304305+00:00"
+      "collected_at": "2026-08-19T13:29:24.221295+00:00"
     },
     {
       "car": "Lexus RC F GT3 '17",
@@ -1027,7 +1027,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304324+00:00"
+      "collected_at": "2026-08-19T13:29:24.221322+00:00"
     },
     {
       "car": "Toyota FT-1 VGT (Gr.3)",
@@ -1065,7 +1065,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304353+00:00"
+      "collected_at": "2026-08-19T13:29:24.221349+00:00"
     },
     {
       "car": "Volkswagen Volkswagen GTI VGT (Gr.3)",
@@ -1103,7 +1103,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304375+00:00"
+      "collected_at": "2026-08-19T13:29:24.221373+00:00"
     },
     {
       "car": "BMW Z4 GT3 '11",
@@ -1141,7 +1141,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304395+00:00"
+      "collected_at": "2026-08-19T13:29:24.221398+00:00"
     },
     {
       "car": "McLaren McLaren F1 GTR - BMW '95",
@@ -1179,7 +1179,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304416+00:00"
+      "collected_at": "2026-08-19T13:29:24.221423+00:00"
     },
     {
       "car": "Hyundai Genesis Gr.3",
@@ -1217,7 +1217,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304435+00:00"
+      "collected_at": "2026-08-19T13:29:24.221451+00:00"
     },
     {
       "car": "Peugeot RCZ Gr.3",
@@ -1255,7 +1255,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304454+00:00"
+      "collected_at": "2026-08-19T13:29:24.221481+00:00"
     },
     {
       "car": "Mazda Atenza Gr.3",
@@ -1293,7 +1293,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304475+00:00"
+      "collected_at": "2026-08-19T13:29:24.221506+00:00"
     },
     {
       "car": "Lexus RC F GT3 prototype '16",
@@ -1331,7 +1331,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304495+00:00"
+      "collected_at": "2026-08-19T13:29:24.221531+00:00"
     },
     {
       "car": "BMW M3 GT '11",
@@ -1369,7 +1369,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304515+00:00"
+      "collected_at": "2026-08-19T13:29:24.221561+00:00"
     },
     {
       "car": "Mazda RX-VISION GT3 CONCEPT",
@@ -1407,7 +1407,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304534+00:00"
+      "collected_at": "2026-08-19T13:29:24.221585+00:00"
     },
     {
       "car": "Jaguar F-type Gr.3",
@@ -1445,7 +1445,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304554+00:00"
+      "collected_at": "2026-08-19T13:29:24.221609+00:00"
     },
     {
       "car": "Porsche 911 RSR (991) '17",
@@ -1483,7 +1483,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304574+00:00"
+      "collected_at": "2026-08-19T13:29:24.221634+00:00"
     },
     {
       "car": "Alfa Romeo 4C Gr.3",
@@ -1521,7 +1521,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304594+00:00"
+      "collected_at": "2026-08-19T13:29:24.221658+00:00"
     },
     {
       "car": "AMG Mercedes-AMG GT3 '20",
@@ -1559,7 +1559,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304614+00:00"
+      "collected_at": "2026-08-19T13:29:24.221684+00:00"
     },
     {
       "car": "Toyota Supra GT500 '97",
@@ -1597,7 +1597,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304634+00:00"
+      "collected_at": "2026-08-19T13:29:24.221714+00:00"
     },
     {
       "car": "Ford Mustang Gr.3",
@@ -1635,7 +1635,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304653+00:00"
+      "collected_at": "2026-08-19T13:29:24.221741+00:00"
     },
     {
       "car": "AMG SLS AMG GT3 '11",
@@ -1673,7 +1673,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304673+00:00"
+      "collected_at": "2026-08-19T13:29:24.221771+00:00"
     },
     {
       "car": "Suzuki SUZUKI VGT (Gr.3)",
@@ -1711,7 +1711,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304693+00:00"
+      "collected_at": "2026-08-19T13:29:24.221797+00:00"
     },
     {
       "car": "Volkswagen Beetle Gr.3",
@@ -1749,7 +1749,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304712+00:00"
+      "collected_at": "2026-08-19T13:29:24.221840+00:00"
     },
     {
       "car": "Aston Martin DBR9 GT1 '10",
@@ -1787,7 +1787,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304734+00:00"
+      "collected_at": "2026-08-19T13:29:24.221873+00:00"
     },
     {
       "car": "Ford Ford GT LM Spec II Test Car",
@@ -1825,7 +1825,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304754+00:00"
+      "collected_at": "2026-08-19T13:29:24.221899+00:00"
     },
     {
       "car": "Nissan Skyline Super Silhouette '84",
@@ -1863,7 +1863,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304774+00:00"
+      "collected_at": "2026-08-19T13:29:24.221925+00:00"
     },
     {
       "car": "Honda NSX GT500 '00",
@@ -1901,7 +1901,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304794+00:00"
+      "collected_at": "2026-08-19T13:29:24.221950+00:00"
     },
     {
       "car": "Ferrari 296 GT3 '23",
@@ -1939,7 +1939,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304813+00:00"
+      "collected_at": "2026-08-19T13:29:24.221974+00:00"
     },
     {
       "car": "Porsche 911 GT3 R (992) '22",
@@ -1977,7 +1977,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304833+00:00"
+      "collected_at": "2026-08-19T13:29:24.222008+00:00"
     },
     {
       "car": "Aston Martin V12 Vantage GT3 '12",
@@ -2015,7 +2015,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304854+00:00"
+      "collected_at": "2026-08-19T13:29:24.222038+00:00"
     },
     {
       "car": "Nissan GT-R NISMO GT3 '18",
@@ -2053,7 +2053,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304874+00:00"
+      "collected_at": "2026-08-19T13:29:24.222067+00:00"
     },
     {
       "car": "Toyota GR Supra Racing Concept '18",
@@ -2091,7 +2091,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304893+00:00"
+      "collected_at": "2026-08-19T13:29:24.222092+00:00"
     },
     {
       "car": "Genesis Genesis X GR3",
@@ -2129,7 +2129,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304913+00:00"
+      "collected_at": "2026-08-19T13:29:24.222117+00:00"
     },
     {
       "car": "Chevrolet Corvette C7 Gr.3",
@@ -2167,7 +2167,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304933+00:00"
+      "collected_at": "2026-08-19T13:29:24.222141+00:00"
     },
     {
       "car": "BMW M6 GT3 Sprint Model '16",
@@ -2205,7 +2205,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304952+00:00"
+      "collected_at": "2026-08-19T13:29:24.222165+00:00"
     },
     {
       "car": "Audi R8 LMS Evo '19",
@@ -2243,7 +2243,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304972+00:00"
+      "collected_at": "2026-08-19T13:29:24.222189+00:00"
     },
     {
       "car": "McLaren 650S GT3 '15",
@@ -2281,7 +2281,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.304992+00:00"
+      "collected_at": "2026-08-19T13:29:24.222219+00:00"
     },
     {
       "car": "Honda NSX Gr.3",
@@ -2319,7 +2319,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305011+00:00"
+      "collected_at": "2026-08-19T13:29:24.222246+00:00"
     },
     {
       "car": "Renault R.S.01 GT3 '16",
@@ -2357,7 +2357,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305031+00:00"
+      "collected_at": "2026-08-19T13:29:24.222271+00:00"
     },
     {
       "car": "Lamborghini Huracán GT3 '15",
@@ -2395,7 +2395,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305051+00:00"
+      "collected_at": "2026-08-19T13:29:24.222301+00:00"
     },
     {
       "car": "Mazda RX-VISION GT3 CONCEPT Stealth Model",
@@ -2433,7 +2433,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305070+00:00"
+      "collected_at": "2026-08-19T13:29:24.222328+00:00"
     },
     {
       "car": "Subaru BRZ GT300 '21",
@@ -2471,7 +2471,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305090+00:00"
+      "collected_at": "2026-08-19T13:29:24.222353+00:00"
     },
     {
       "car": "Ford Ford GT Race Car '18",
@@ -2509,7 +2509,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305111+00:00"
+      "collected_at": "2026-08-19T13:29:24.222379+00:00"
     },
     {
       "car": "Citroën GT by Citroën Race Car (Gr.3)",
@@ -2547,7 +2547,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305131+00:00"
+      "collected_at": "2026-08-19T13:29:24.222403+00:00"
     },
     {
       "car": "Ford Ford GT LM Race Car Spec II",
@@ -2585,7 +2585,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305151+00:00"
+      "collected_at": "2026-08-19T13:29:24.222430+00:00"
     },
     {
       "car": "AMG Mercedes-AMG GT3 '16",
@@ -2623,7 +2623,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305172+00:00"
+      "collected_at": "2026-08-19T13:29:24.222456+00:00"
     },
     {
       "car": "Ferrari 458 Italia GT3 '13",
@@ -2661,7 +2661,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305191+00:00"
+      "collected_at": "2026-08-19T13:29:24.222480+00:00"
     },
     {
       "car": "Audi R8 LMS '15",
@@ -2699,7 +2699,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305211+00:00"
+      "collected_at": "2026-08-19T13:29:24.222505+00:00"
     },
     {
       "car": "Subaru WRX Gr.3",
@@ -2737,7 +2737,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305230+00:00"
+      "collected_at": "2026-08-19T13:29:24.222530+00:00"
     },
     {
       "car": "Mitsubishi Lancer Evolution Final Gr.3",
@@ -2775,7 +2775,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305250+00:00"
+      "collected_at": "2026-08-19T13:29:24.222554+00:00"
     },
     {
       "car": "BMW M6 GT3 Endurance Model '16",
@@ -2813,7 +2813,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305270+00:00"
+      "collected_at": "2026-08-19T13:29:24.222580+00:00"
     },
     {
       "car": "Dodge Viper SRT GT3-R '15",
@@ -2851,7 +2851,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305290+00:00"
+      "collected_at": "2026-08-19T13:29:24.222607+00:00"
     },
     {
       "car": "Peugeot PEUGEOT VGT (Gr.3)",
@@ -2889,7 +2889,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305310+00:00"
+      "collected_at": "2026-08-19T13:29:24.222635+00:00"
     },
     {
       "car": "Nissan GT-R NISMO GT3 '13",
@@ -2927,7 +2927,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305331+00:00"
+      "collected_at": "2026-08-19T13:29:24.222660+00:00"
     },
     {
       "car": "Nissan GT-R GT500 '99",
@@ -2965,7 +2965,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305360+00:00"
+      "collected_at": "2026-08-19T13:29:24.222688+00:00"
     },
     {
       "car": "Lexus RC F GT3 '17",
@@ -3003,7 +3003,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305383+00:00"
+      "collected_at": "2026-08-19T13:29:24.222713+00:00"
     },
     {
       "car": "Toyota FT-1 VGT (Gr.3)",
@@ -3041,7 +3041,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305402+00:00"
+      "collected_at": "2026-08-19T13:29:24.222737+00:00"
     },
     {
       "car": "Volkswagen Volkswagen GTI VGT (Gr.3)",
@@ -3079,7 +3079,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305422+00:00"
+      "collected_at": "2026-08-19T13:29:24.222761+00:00"
     },
     {
       "car": "BMW Z4 GT3 '11",
@@ -3117,7 +3117,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305441+00:00"
+      "collected_at": "2026-08-19T13:29:24.222788+00:00"
     },
     {
       "car": "McLaren McLaren F1 GTR - BMW '95",
@@ -3155,7 +3155,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305461+00:00"
+      "collected_at": "2026-08-19T13:29:24.222831+00:00"
     },
     {
       "car": "Hyundai Genesis Gr.3",
@@ -3193,7 +3193,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305480+00:00"
+      "collected_at": "2026-08-19T13:29:24.222859+00:00"
     },
     {
       "car": "Peugeot RCZ Gr.3",
@@ -3231,7 +3231,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305500+00:00"
+      "collected_at": "2026-08-19T13:29:24.222884+00:00"
     },
     {
       "car": "Mazda Atenza Gr.3",
@@ -3269,7 +3269,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305519+00:00"
+      "collected_at": "2026-08-19T13:29:24.222907+00:00"
     },
     {
       "car": "Lexus RC F GT3 prototype '16",
@@ -3307,7 +3307,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305539+00:00"
+      "collected_at": "2026-08-19T13:29:24.222933+00:00"
     },
     {
       "car": "BMW M3 GT '11",
@@ -3345,7 +3345,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305559+00:00"
+      "collected_at": "2026-08-19T13:29:24.222961+00:00"
     },
     {
       "car": "Mazda RX-VISION GT3 CONCEPT",
@@ -3383,7 +3383,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305578+00:00"
+      "collected_at": "2026-08-19T13:29:24.222986+00:00"
     },
     {
       "car": "Jaguar F-type Gr.3",
@@ -3421,7 +3421,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305598+00:00"
+      "collected_at": "2026-08-19T13:29:24.223010+00:00"
     },
     {
       "car": "Porsche 911 RSR (991) '17",
@@ -3459,7 +3459,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305618+00:00"
+      "collected_at": "2026-08-19T13:29:24.223035+00:00"
     },
     {
       "car": "Alfa Romeo 4C Gr.3",
@@ -3497,7 +3497,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305637+00:00"
+      "collected_at": "2026-08-19T13:29:24.223059+00:00"
     },
     {
       "car": "AMG Mercedes-AMG GT3 '20",
@@ -3535,7 +3535,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305658+00:00"
+      "collected_at": "2026-08-19T13:29:24.223084+00:00"
     },
     {
       "car": "Toyota Supra GT500 '97",
@@ -3573,7 +3573,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305678+00:00"
+      "collected_at": "2026-08-19T13:29:24.223109+00:00"
     },
     {
       "car": "Ford Mustang Gr.3",
@@ -3611,7 +3611,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305697+00:00"
+      "collected_at": "2026-08-19T13:29:24.223132+00:00"
     },
     {
       "car": "AMG SLS AMG GT3 '11",
@@ -3649,7 +3649,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305717+00:00"
+      "collected_at": "2026-08-19T13:29:24.223157+00:00"
     },
     {
       "car": "Suzuki SUZUKI VGT (Gr.3)",
@@ -3687,7 +3687,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305737+00:00"
+      "collected_at": "2026-08-19T13:29:24.223182+00:00"
     },
     {
       "car": "Volkswagen Beetle Gr.3",
@@ -3725,7 +3725,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305756+00:00"
+      "collected_at": "2026-08-19T13:29:24.223205+00:00"
     },
     {
       "car": "Aston Martin DBR9 GT1 '10",
@@ -3763,7 +3763,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305775+00:00"
+      "collected_at": "2026-08-19T13:29:24.223230+00:00"
     },
     {
       "car": "Ford Ford GT LM Spec II Test Car",
@@ -3801,7 +3801,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305796+00:00"
+      "collected_at": "2026-08-19T13:29:24.223255+00:00"
     },
     {
       "car": "Nissan Skyline Super Silhouette '84",
@@ -3839,7 +3839,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305815+00:00"
+      "collected_at": "2026-08-19T13:29:24.223280+00:00"
     },
     {
       "car": "Honda NSX GT500 '00",
@@ -3877,7 +3877,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305836+00:00"
+      "collected_at": "2026-08-19T13:29:24.223304+00:00"
     },
     {
       "car": "Ferrari 296 GT3 '23",
@@ -3915,7 +3915,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305855+00:00"
+      "collected_at": "2026-08-19T13:29:24.223329+00:00"
     },
     {
       "car": "Porsche 911 GT3 R (992) '22",
@@ -3953,7 +3953,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305875+00:00"
+      "collected_at": "2026-08-19T13:29:24.223353+00:00"
     },
     {
       "car": "Aston Martin V12 Vantage GT3 '12",
@@ -3991,7 +3991,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305895+00:00"
+      "collected_at": "2026-08-19T13:29:24.223378+00:00"
     },
     {
       "car": "Nissan GT-R NISMO GT3 '18",
@@ -4029,7 +4029,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305915+00:00"
+      "collected_at": "2026-08-19T13:29:24.223403+00:00"
     },
     {
       "car": "Toyota GR Supra Racing Concept '18",
@@ -4067,7 +4067,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305949+00:00"
+      "collected_at": "2026-08-19T13:29:24.223448+00:00"
     },
     {
       "car": "Genesis Genesis X GR3",
@@ -4105,7 +4105,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305969+00:00"
+      "collected_at": "2026-08-19T13:29:24.223479+00:00"
     },
     {
       "car": "Chevrolet Corvette C7 Gr.3",
@@ -4143,7 +4143,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.305988+00:00"
+      "collected_at": "2026-08-19T13:29:24.223504+00:00"
     },
     {
       "car": "BMW M6 GT3 Sprint Model '16",
@@ -4181,7 +4181,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306008+00:00"
+      "collected_at": "2026-08-19T13:29:24.223528+00:00"
     },
     {
       "car": "Audi R8 LMS Evo '19",
@@ -4219,7 +4219,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306028+00:00"
+      "collected_at": "2026-08-19T13:29:24.223553+00:00"
     },
     {
       "car": "McLaren 650S GT3 '15",
@@ -4257,7 +4257,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306048+00:00"
+      "collected_at": "2026-08-19T13:29:24.223578+00:00"
     },
     {
       "car": "Honda NSX Gr.3",
@@ -4295,7 +4295,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306067+00:00"
+      "collected_at": "2026-08-19T13:29:24.223601+00:00"
     },
     {
       "car": "Renault R.S.01 GT3 '16",
@@ -4333,7 +4333,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306087+00:00"
+      "collected_at": "2026-08-19T13:29:24.223629+00:00"
     },
     {
       "car": "Lamborghini Huracán GT3 '15",
@@ -4371,7 +4371,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306107+00:00"
+      "collected_at": "2026-08-19T13:29:24.223654+00:00"
     },
     {
       "car": "Mazda RX-VISION GT3 CONCEPT Stealth Model",
@@ -4409,7 +4409,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306126+00:00"
+      "collected_at": "2026-08-19T13:29:24.223678+00:00"
     },
     {
       "car": "Subaru BRZ GT300 '21",
@@ -4447,7 +4447,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306146+00:00"
+      "collected_at": "2026-08-19T13:29:24.223703+00:00"
     },
     {
       "car": "Ford Ford GT Race Car '18",
@@ -4485,7 +4485,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306166+00:00"
+      "collected_at": "2026-08-19T13:29:24.223728+00:00"
     },
     {
       "car": "Citroën GT by Citroën Race Car (Gr.3)",
@@ -4523,7 +4523,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306186+00:00"
+      "collected_at": "2026-08-19T13:29:24.223752+00:00"
     },
     {
       "car": "Ford Ford GT LM Race Car Spec II",
@@ -4561,7 +4561,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306206+00:00"
+      "collected_at": "2026-08-19T13:29:24.223776+00:00"
     },
     {
       "car": "AMG Mercedes-AMG GT3 '16",
@@ -4599,7 +4599,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306226+00:00"
+      "collected_at": "2026-08-19T13:29:24.223816+00:00"
     },
     {
       "car": "Ferrari 458 Italia GT3 '13",
@@ -4637,7 +4637,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306245+00:00"
+      "collected_at": "2026-08-19T13:29:24.223845+00:00"
     },
     {
       "car": "Audi R8 LMS '15",
@@ -4675,7 +4675,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306266+00:00"
+      "collected_at": "2026-08-19T13:29:24.223871+00:00"
     },
     {
       "car": "Subaru WRX Gr.3",
@@ -4713,7 +4713,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306285+00:00"
+      "collected_at": "2026-08-19T13:29:24.223895+00:00"
     },
     {
       "car": "Mitsubishi Lancer Evolution Final Gr.3",
@@ -4751,7 +4751,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306304+00:00"
+      "collected_at": "2026-08-19T13:29:24.223918+00:00"
     },
     {
       "car": "BMW M6 GT3 Endurance Model '16",
@@ -4789,7 +4789,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306323+00:00"
+      "collected_at": "2026-08-19T13:29:24.223943+00:00"
     },
     {
       "car": "Dodge Viper SRT GT3-R '15",
@@ -4827,7 +4827,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306351+00:00"
+      "collected_at": "2026-08-19T13:29:24.223968+00:00"
     },
     {
       "car": "Peugeot PEUGEOT VGT (Gr.3)",
@@ -4865,7 +4865,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306374+00:00"
+      "collected_at": "2026-08-19T13:29:24.223993+00:00"
     },
     {
       "car": "Nissan GT-R NISMO GT3 '13",
@@ -4903,7 +4903,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306393+00:00"
+      "collected_at": "2026-08-19T13:29:24.224019+00:00"
     },
     {
       "car": "Nissan GT-R GT500 '99",
@@ -4941,7 +4941,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306414+00:00"
+      "collected_at": "2026-08-19T13:29:24.224045+00:00"
     },
     {
       "car": "Lexus RC F GT3 '17",
@@ -4979,7 +4979,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306433+00:00"
+      "collected_at": "2026-08-19T13:29:24.224069+00:00"
     },
     {
       "car": "Toyota FT-1 VGT (Gr.3)",
@@ -5017,7 +5017,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306452+00:00"
+      "collected_at": "2026-08-19T13:29:24.224093+00:00"
     },
     {
       "car": "Volkswagen Volkswagen GTI VGT (Gr.3)",
@@ -5055,7 +5055,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306472+00:00"
+      "collected_at": "2026-08-19T13:29:24.224117+00:00"
     },
     {
       "car": "BMW Z4 GT3 '11",
@@ -5093,7 +5093,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306492+00:00"
+      "collected_at": "2026-08-19T13:29:24.224141+00:00"
     },
     {
       "car": "McLaren McLaren F1 GTR - BMW '95",
@@ -5131,7 +5131,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306511+00:00"
+      "collected_at": "2026-08-19T13:29:24.224166+00:00"
     },
     {
       "car": "Hyundai Genesis Gr.3",
@@ -5169,7 +5169,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306531+00:00"
+      "collected_at": "2026-08-19T13:29:24.224190+00:00"
     },
     {
       "car": "Peugeot RCZ Gr.3",
@@ -5207,7 +5207,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306550+00:00"
+      "collected_at": "2026-08-19T13:29:24.224214+00:00"
     },
     {
       "car": "Mazda Atenza Gr.3",
@@ -5245,7 +5245,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306569+00:00"
+      "collected_at": "2026-08-19T13:29:24.224237+00:00"
     },
     {
       "car": "Lexus RC F GT3 prototype '16",
@@ -5283,7 +5283,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306591+00:00"
+      "collected_at": "2026-08-19T13:29:24.224264+00:00"
     },
     {
       "car": "BMW M3 GT '11",
@@ -5321,7 +5321,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306612+00:00"
+      "collected_at": "2026-08-19T13:29:24.224289+00:00"
     },
     {
       "car": "Mazda RX-VISION GT3 CONCEPT",
@@ -5359,7 +5359,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306631+00:00"
+      "collected_at": "2026-08-19T13:29:24.224313+00:00"
     },
     {
       "car": "Jaguar F-type Gr.3",
@@ -5397,7 +5397,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306650+00:00"
+      "collected_at": "2026-08-19T13:29:24.224336+00:00"
     },
     {
       "car": "Porsche 911 RSR (991) '17",
@@ -5435,7 +5435,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306671+00:00"
+      "collected_at": "2026-08-19T13:29:24.224362+00:00"
     },
     {
       "car": "Alfa Romeo 4C Gr.3",
@@ -5473,7 +5473,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306691+00:00"
+      "collected_at": "2026-08-19T13:29:24.224386+00:00"
     },
     {
       "car": "AMG Mercedes-AMG GT3 '20",
@@ -5511,7 +5511,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306711+00:00"
+      "collected_at": "2026-08-19T13:29:24.224412+00:00"
     },
     {
       "car": "Toyota Supra GT500 '97",
@@ -5549,7 +5549,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306730+00:00"
+      "collected_at": "2026-08-19T13:29:24.224437+00:00"
     },
     {
       "car": "Ford Mustang Gr.3",
@@ -5587,7 +5587,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306750+00:00"
+      "collected_at": "2026-08-19T13:29:24.224461+00:00"
     },
     {
       "car": "AMG SLS AMG GT3 '11",
@@ -5625,7 +5625,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306769+00:00"
+      "collected_at": "2026-08-19T13:29:24.224485+00:00"
     },
     {
       "car": "Suzuki SUZUKI VGT (Gr.3)",
@@ -5663,7 +5663,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306789+00:00"
+      "collected_at": "2026-08-19T13:29:24.224510+00:00"
     },
     {
       "car": "Volkswagen Beetle Gr.3",
@@ -5701,7 +5701,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306810+00:00"
+      "collected_at": "2026-08-19T13:29:24.224534+00:00"
     },
     {
       "car": "Aston Martin DBR9 GT1 '10",
@@ -5739,7 +5739,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306831+00:00"
+      "collected_at": "2026-08-19T13:29:24.224559+00:00"
     },
     {
       "car": "Ford Ford GT LM Spec II Test Car",
@@ -5777,7 +5777,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306852+00:00"
+      "collected_at": "2026-08-19T13:29:24.224587+00:00"
     },
     {
       "car": "Nissan Skyline Super Silhouette '84",
@@ -5815,7 +5815,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306872+00:00"
+      "collected_at": "2026-08-19T13:29:24.224612+00:00"
     },
     {
       "car": "Honda NSX GT500 '00",
@@ -5853,7 +5853,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306893+00:00"
+      "collected_at": "2026-08-19T13:29:24.224637+00:00"
     },
     {
       "car": "Ferrari 296 GT3 '23",
@@ -5891,7 +5891,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306913+00:00"
+      "collected_at": "2026-08-19T13:29:24.224662+00:00"
     },
     {
       "car": "Porsche 911 GT3 R (992) '22",
@@ -5929,7 +5929,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:57.306933+00:00"
+      "collected_at": "2026-08-19T13:29:24.224688+00:00"
     },
     {
       "car": "Jaguar XJR-9 '88",
@@ -5967,7 +5967,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926311+00:00"
+      "collected_at": "2026-08-19T13:29:15.942586+00:00"
     },
     {
       "car": "Peugeot 908 HDi FAP '10",
@@ -6005,7 +6005,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926380+00:00"
+      "collected_at": "2026-08-19T13:29:15.942652+00:00"
     },
     {
       "car": "Audi R18 TDI '11",
@@ -6043,7 +6043,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926408+00:00"
+      "collected_at": "2026-08-19T13:29:15.942687+00:00"
     },
     {
       "car": "Toyota TS030 Hybrid '12",
@@ -6081,7 +6081,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926431+00:00"
+      "collected_at": "2026-08-19T13:29:15.942716+00:00"
     },
     {
       "car": "Nissan GT-R LM NISMO '15",
@@ -6119,7 +6119,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926453+00:00"
+      "collected_at": "2026-08-19T13:29:15.942757+00:00"
     },
     {
       "car": "Bugatti Bugatti VGT (Gr.1)",
@@ -6157,7 +6157,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926477+00:00"
+      "collected_at": "2026-08-19T13:29:15.942785+00:00"
     },
     {
       "car": "Hyundai HYUNDAI N 2025 VGT (Gr.1)",
@@ -6195,7 +6195,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926497+00:00"
+      "collected_at": "2026-08-19T13:29:15.942831+00:00"
     },
     {
       "car": "Mazda LM55 VGT (Gr.1)",
@@ -6233,7 +6233,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926516+00:00"
+      "collected_at": "2026-08-19T13:29:15.942859+00:00"
     },
     {
       "car": "Mazda 787B '91",
@@ -6271,7 +6271,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926537+00:00"
+      "collected_at": "2026-08-19T13:29:15.942886+00:00"
     },
     {
       "car": "Alpine Alpine VGT '17",
@@ -6309,7 +6309,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926557+00:00"
+      "collected_at": "2026-08-19T13:29:15.942912+00:00"
     },
     {
       "car": "Dodge SRT Tomahawk VGT (Gr.1)",
@@ -6347,7 +6347,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926577+00:00"
+      "collected_at": "2026-08-19T13:29:15.942937+00:00"
     },
     {
       "car": "Toyota TS050 - Hybrid '16",
@@ -6385,7 +6385,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926598+00:00"
+      "collected_at": "2026-08-19T13:29:15.942963+00:00"
     },
     {
       "car": "Porsche 919 Hybrid '16",
@@ -6423,7 +6423,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926618+00:00"
+      "collected_at": "2026-08-19T13:29:15.942989+00:00"
     },
     {
       "car": "Audi Audi VGT",
@@ -6461,7 +6461,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926639+00:00"
+      "collected_at": "2026-08-19T13:29:15.943015+00:00"
     },
     {
       "car": "Peugeot L750R HYbrid VGT 2017",
@@ -6499,7 +6499,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926659+00:00"
+      "collected_at": "2026-08-19T13:29:15.943043+00:00"
     },
     {
       "car": "Audi R18 '16",
@@ -6537,7 +6537,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926680+00:00"
+      "collected_at": "2026-08-19T13:29:15.943070+00:00"
     },
     {
       "car": "McLaren McLaren VGT (Gr.1)",
@@ -6575,7 +6575,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926701+00:00"
+      "collected_at": "2026-08-19T13:29:15.943097+00:00"
     },
     {
       "car": "Porsche 962 C '88",
@@ -6613,7 +6613,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926722+00:00"
+      "collected_at": "2026-08-19T13:29:15.943124+00:00"
     },
     {
       "car": "Toyota GR010 HYBRID '21",
@@ -6651,7 +6651,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926742+00:00"
+      "collected_at": "2026-08-19T13:29:15.943149+00:00"
     },
     {
       "car": "Nissan R92CP '92",
@@ -6689,7 +6689,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926762+00:00"
+      "collected_at": "2026-08-19T13:29:15.943175+00:00"
     },
     {
       "car": "Mercedes-Benz Sauber Mercedes C9 '89",
@@ -6727,7 +6727,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926782+00:00"
+      "collected_at": "2026-08-19T13:29:15.943204+00:00"
     },
     {
       "car": "Porsche 963 '24",
@@ -6765,7 +6765,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926801+00:00"
+      "collected_at": "2026-08-19T13:29:15.943229+00:00"
     },
     {
       "car": "BMW M Hybrid V8 '25",
@@ -6803,7 +6803,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926821+00:00"
+      "collected_at": "2026-08-19T13:29:15.943254+00:00"
     },
     {
       "car": "Ferrari 499P '23",
@@ -6841,7 +6841,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926841+00:00"
+      "collected_at": "2026-08-19T13:29:15.943280+00:00"
     },
     {
       "car": "Peugeot 9X8 '25",
@@ -6879,7 +6879,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926861+00:00"
+      "collected_at": "2026-08-19T13:29:15.943305+00:00"
     },
     {
       "car": "Jaguar XJR-9 '88",
@@ -6917,7 +6917,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926882+00:00"
+      "collected_at": "2026-08-19T13:29:15.943332+00:00"
     },
     {
       "car": "Peugeot 908 HDi FAP '10",
@@ -6955,7 +6955,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926903+00:00"
+      "collected_at": "2026-08-19T13:29:15.943359+00:00"
     },
     {
       "car": "Audi R18 TDI '11",
@@ -6993,7 +6993,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926924+00:00"
+      "collected_at": "2026-08-19T13:29:15.943384+00:00"
     },
     {
       "car": "Toyota TS030 Hybrid '12",
@@ -7031,7 +7031,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926943+00:00"
+      "collected_at": "2026-08-19T13:29:15.943410+00:00"
     },
     {
       "car": "Nissan GT-R LM NISMO '15",
@@ -7069,7 +7069,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926963+00:00"
+      "collected_at": "2026-08-19T13:29:15.943435+00:00"
     },
     {
       "car": "Bugatti Bugatti VGT (Gr.1)",
@@ -7107,7 +7107,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.926983+00:00"
+      "collected_at": "2026-08-19T13:29:15.943460+00:00"
     },
     {
       "car": "Hyundai HYUNDAI N 2025 VGT (Gr.1)",
@@ -7145,7 +7145,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927002+00:00"
+      "collected_at": "2026-08-19T13:29:15.943485+00:00"
     },
     {
       "car": "Mazda LM55 VGT (Gr.1)",
@@ -7183,7 +7183,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927022+00:00"
+      "collected_at": "2026-08-19T13:29:15.943510+00:00"
     },
     {
       "car": "Mazda 787B '91",
@@ -7221,7 +7221,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927042+00:00"
+      "collected_at": "2026-08-19T13:29:15.943537+00:00"
     },
     {
       "car": "Alpine Alpine VGT '17",
@@ -7259,7 +7259,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927062+00:00"
+      "collected_at": "2026-08-19T13:29:15.943563+00:00"
     },
     {
       "car": "Dodge SRT Tomahawk VGT (Gr.1)",
@@ -7297,7 +7297,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927081+00:00"
+      "collected_at": "2026-08-19T13:29:15.943587+00:00"
     },
     {
       "car": "Toyota TS050 - Hybrid '16",
@@ -7335,7 +7335,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927101+00:00"
+      "collected_at": "2026-08-19T13:29:15.943612+00:00"
     },
     {
       "car": "Porsche 919 Hybrid '16",
@@ -7373,7 +7373,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927121+00:00"
+      "collected_at": "2026-08-19T13:29:15.943637+00:00"
     },
     {
       "car": "Audi Audi VGT",
@@ -7411,7 +7411,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927141+00:00"
+      "collected_at": "2026-08-19T13:29:15.943662+00:00"
     },
     {
       "car": "Peugeot L750R HYbrid VGT 2017",
@@ -7449,7 +7449,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927161+00:00"
+      "collected_at": "2026-08-19T13:29:15.943686+00:00"
     },
     {
       "car": "Audi R18 '16",
@@ -7487,7 +7487,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927181+00:00"
+      "collected_at": "2026-08-19T13:29:15.943711+00:00"
     },
     {
       "car": "McLaren McLaren VGT (Gr.1)",
@@ -7525,7 +7525,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927201+00:00"
+      "collected_at": "2026-08-19T13:29:15.943736+00:00"
     },
     {
       "car": "Porsche 962 C '88",
@@ -7563,7 +7563,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927221+00:00"
+      "collected_at": "2026-08-19T13:29:15.943762+00:00"
     },
     {
       "car": "Toyota GR010 HYBRID '21",
@@ -7601,7 +7601,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927241+00:00"
+      "collected_at": "2026-08-19T13:29:15.943788+00:00"
     },
     {
       "car": "Nissan R92CP '92",
@@ -7639,7 +7639,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927261+00:00"
+      "collected_at": "2026-08-19T13:29:15.943831+00:00"
     },
     {
       "car": "Mercedes-Benz Sauber Mercedes C9 '89",
@@ -7677,7 +7677,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927281+00:00"
+      "collected_at": "2026-08-19T13:29:15.943858+00:00"
     },
     {
       "car": "Porsche 963 '24",
@@ -7715,7 +7715,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927300+00:00"
+      "collected_at": "2026-08-19T13:29:15.943883+00:00"
     },
     {
       "car": "BMW M Hybrid V8 '25",
@@ -7753,7 +7753,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927320+00:00"
+      "collected_at": "2026-08-19T13:29:15.943908+00:00"
     },
     {
       "car": "Ferrari 499P '23",
@@ -7791,7 +7791,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927347+00:00"
+      "collected_at": "2026-08-19T13:29:15.943934+00:00"
     },
     {
       "car": "Peugeot 9X8 '25",
@@ -7829,7 +7829,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927371+00:00"
+      "collected_at": "2026-08-19T13:29:15.943959+00:00"
     },
     {
       "car": "Jaguar XJR-9 '88",
@@ -7867,7 +7867,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927391+00:00"
+      "collected_at": "2026-08-19T13:29:15.943984+00:00"
     },
     {
       "car": "Peugeot 908 HDi FAP '10",
@@ -7905,7 +7905,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927412+00:00"
+      "collected_at": "2026-08-19T13:29:15.944009+00:00"
     },
     {
       "car": "Audi R18 TDI '11",
@@ -7943,7 +7943,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927432+00:00"
+      "collected_at": "2026-08-19T13:29:15.944035+00:00"
     },
     {
       "car": "Toyota TS030 Hybrid '12",
@@ -7981,7 +7981,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927452+00:00"
+      "collected_at": "2026-08-19T13:29:15.944061+00:00"
     },
     {
       "car": "Nissan GT-R LM NISMO '15",
@@ -8019,7 +8019,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927472+00:00"
+      "collected_at": "2026-08-19T13:29:15.944087+00:00"
     },
     {
       "car": "Bugatti Bugatti VGT (Gr.1)",
@@ -8057,7 +8057,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927492+00:00"
+      "collected_at": "2026-08-19T13:29:15.944112+00:00"
     },
     {
       "car": "Hyundai HYUNDAI N 2025 VGT (Gr.1)",
@@ -8095,7 +8095,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927511+00:00"
+      "collected_at": "2026-08-19T13:29:15.944138+00:00"
     },
     {
       "car": "Mazda LM55 VGT (Gr.1)",
@@ -8133,7 +8133,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927531+00:00"
+      "collected_at": "2026-08-19T13:29:15.944164+00:00"
     },
     {
       "car": "Mazda 787B '91",
@@ -8171,7 +8171,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927551+00:00"
+      "collected_at": "2026-08-19T13:29:15.944190+00:00"
     },
     {
       "car": "Alpine Alpine VGT '17",
@@ -8209,7 +8209,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927571+00:00"
+      "collected_at": "2026-08-19T13:29:15.944216+00:00"
     },
     {
       "car": "Dodge SRT Tomahawk VGT (Gr.1)",
@@ -8247,7 +8247,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927590+00:00"
+      "collected_at": "2026-08-19T13:29:15.944242+00:00"
     },
     {
       "car": "Toyota TS050 - Hybrid '16",
@@ -8285,7 +8285,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927610+00:00"
+      "collected_at": "2026-08-19T13:29:15.944267+00:00"
     },
     {
       "car": "Porsche 919 Hybrid '16",
@@ -8323,7 +8323,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927636+00:00"
+      "collected_at": "2026-08-19T13:29:15.944292+00:00"
     },
     {
       "car": "Audi Audi VGT",
@@ -8361,7 +8361,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927659+00:00"
+      "collected_at": "2026-08-19T13:29:15.944318+00:00"
     },
     {
       "car": "Peugeot L750R HYbrid VGT 2017",
@@ -8399,7 +8399,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927678+00:00"
+      "collected_at": "2026-08-19T13:29:15.944344+00:00"
     },
     {
       "car": "Audi R18 '16",
@@ -8437,7 +8437,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927699+00:00"
+      "collected_at": "2026-08-19T13:29:15.944369+00:00"
     },
     {
       "car": "McLaren McLaren VGT (Gr.1)",
@@ -8475,7 +8475,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927719+00:00"
+      "collected_at": "2026-08-19T13:29:15.944395+00:00"
     },
     {
       "car": "Porsche 962 C '88",
@@ -8513,7 +8513,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927739+00:00"
+      "collected_at": "2026-08-19T13:29:15.944420+00:00"
     },
     {
       "car": "Toyota GR010 HYBRID '21",
@@ -8551,7 +8551,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927759+00:00"
+      "collected_at": "2026-08-19T13:29:15.944445+00:00"
     },
     {
       "car": "Nissan R92CP '92",
@@ -8589,7 +8589,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927779+00:00"
+      "collected_at": "2026-08-19T13:29:15.944471+00:00"
     },
     {
       "car": "Mercedes-Benz Sauber Mercedes C9 '89",
@@ -8627,7 +8627,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927798+00:00"
+      "collected_at": "2026-08-19T13:29:15.944496+00:00"
     },
     {
       "car": "Porsche 963 '24",
@@ -8665,7 +8665,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927818+00:00"
+      "collected_at": "2026-08-19T13:29:15.944520+00:00"
     },
     {
       "car": "BMW M Hybrid V8 '25",
@@ -8703,7 +8703,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927837+00:00"
+      "collected_at": "2026-08-19T13:29:15.944545+00:00"
     },
     {
       "car": "Ferrari 499P '23",
@@ -8741,7 +8741,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927858+00:00"
+      "collected_at": "2026-08-19T13:29:15.944570+00:00"
     },
     {
       "car": "Peugeot 9X8 '25",
@@ -8779,7 +8779,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:48.927877+00:00"
+      "collected_at": "2026-08-19T13:29:15.944594+00:00"
     },
     {
       "car": "Honda NSX CONCEPT-GT '16",
@@ -8817,7 +8817,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816237+00:00"
+      "collected_at": "2026-08-19T13:29:21.750475+00:00"
     },
     {
       "car": "Lexus SC430 GT500 '08",
@@ -8855,7 +8855,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816290+00:00"
+      "collected_at": "2026-08-19T13:29:21.750536+00:00"
     },
     {
       "car": "Audi RS 5 Turbo DTM '19",
@@ -8893,7 +8893,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816313+00:00"
+      "collected_at": "2026-08-19T13:29:21.750566+00:00"
     },
     {
       "car": "Lexus RC F GT500 '16",
@@ -8931,7 +8931,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816336+00:00"
+      "collected_at": "2026-08-19T13:29:21.750593+00:00"
     },
     {
       "car": "Toyota GT-One (TS020) '99",
@@ -8969,7 +8969,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816368+00:00"
+      "collected_at": "2026-08-19T13:29:21.750620+00:00"
     },
     {
       "car": "Honda NSX GT500 '08",
@@ -9007,7 +9007,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816390+00:00"
+      "collected_at": "2026-08-19T13:29:21.750650+00:00"
     },
     {
       "car": "Nissan GT-R GT500 '08",
@@ -9045,7 +9045,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816410+00:00"
+      "collected_at": "2026-08-19T13:29:21.750681+00:00"
     },
     {
       "car": "Nissan GT-R NISMO GT500 '16",
@@ -9083,7 +9083,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816432+00:00"
+      "collected_at": "2026-08-19T13:29:21.750707+00:00"
     },
     {
       "car": "Mercedes-Benz CLK-LM '98",
@@ -9121,7 +9121,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816452+00:00"
+      "collected_at": "2026-08-19T13:29:21.750733+00:00"
     },
     {
       "car": "BMW McLaren F1 GTR Race Car '97",
@@ -9159,7 +9159,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816472+00:00"
+      "collected_at": "2026-08-19T13:29:21.750758+00:00"
     },
     {
       "car": "Honda NSX CONCEPT-GT '16",
@@ -9197,7 +9197,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816494+00:00"
+      "collected_at": "2026-08-19T13:29:21.750786+00:00"
     },
     {
       "car": "Lexus SC430 GT500 '08",
@@ -9235,7 +9235,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816514+00:00"
+      "collected_at": "2026-08-19T13:29:21.750832+00:00"
     },
     {
       "car": "Audi RS 5 Turbo DTM '19",
@@ -9273,7 +9273,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816536+00:00"
+      "collected_at": "2026-08-19T13:29:21.750863+00:00"
     },
     {
       "car": "Lexus RC F GT500 '16",
@@ -9311,7 +9311,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816556+00:00"
+      "collected_at": "2026-08-19T13:29:21.750892+00:00"
     },
     {
       "car": "Toyota GT-One (TS020) '99",
@@ -9349,7 +9349,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816576+00:00"
+      "collected_at": "2026-08-19T13:29:21.750921+00:00"
     },
     {
       "car": "Honda NSX GT500 '08",
@@ -9387,7 +9387,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816598+00:00"
+      "collected_at": "2026-08-19T13:29:21.750948+00:00"
     },
     {
       "car": "Nissan GT-R GT500 '08",
@@ -9425,7 +9425,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816622+00:00"
+      "collected_at": "2026-08-19T13:29:21.750973+00:00"
     },
     {
       "car": "Nissan GT-R NISMO GT500 '16",
@@ -9463,7 +9463,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816642+00:00"
+      "collected_at": "2026-08-19T13:29:21.750999+00:00"
     },
     {
       "car": "Mercedes-Benz CLK-LM '98",
@@ -9501,7 +9501,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816661+00:00"
+      "collected_at": "2026-08-19T13:29:21.751024+00:00"
     },
     {
       "car": "BMW McLaren F1 GTR Race Car '97",
@@ -9539,7 +9539,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816681+00:00"
+      "collected_at": "2026-08-19T13:29:21.751050+00:00"
     },
     {
       "car": "Honda NSX CONCEPT-GT '16",
@@ -9577,7 +9577,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816701+00:00"
+      "collected_at": "2026-08-19T13:29:21.751076+00:00"
     },
     {
       "car": "Lexus SC430 GT500 '08",
@@ -9615,7 +9615,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816723+00:00"
+      "collected_at": "2026-08-19T13:29:21.751101+00:00"
     },
     {
       "car": "Audi RS 5 Turbo DTM '19",
@@ -9653,7 +9653,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816743+00:00"
+      "collected_at": "2026-08-19T13:29:21.751130+00:00"
     },
     {
       "car": "Lexus RC F GT500 '16",
@@ -9691,7 +9691,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816764+00:00"
+      "collected_at": "2026-08-19T13:29:21.751161+00:00"
     },
     {
       "car": "Toyota GT-One (TS020) '99",
@@ -9729,7 +9729,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816785+00:00"
+      "collected_at": "2026-08-19T13:29:21.751187+00:00"
     },
     {
       "car": "Honda NSX GT500 '08",
@@ -9767,7 +9767,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816805+00:00"
+      "collected_at": "2026-08-19T13:29:21.751212+00:00"
     },
     {
       "car": "Nissan GT-R GT500 '08",
@@ -9805,7 +9805,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816827+00:00"
+      "collected_at": "2026-08-19T13:29:21.751238+00:00"
     },
     {
       "car": "Nissan GT-R NISMO GT500 '16",
@@ -9843,7 +9843,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816846+00:00"
+      "collected_at": "2026-08-19T13:29:21.751263+00:00"
     },
     {
       "car": "Mercedes-Benz CLK-LM '98",
@@ -9881,7 +9881,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816868+00:00"
+      "collected_at": "2026-08-19T13:29:21.751287+00:00"
     },
     {
       "car": "BMW McLaren F1 GTR Race Car '97",
@@ -9919,7 +9919,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:54.816887+00:00"
+      "collected_at": "2026-08-19T13:29:21.751312+00:00"
     },
     {
       "car": "Bugatti Veyron Gr.4",
@@ -9957,7 +9957,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.540944+00:00"
+      "collected_at": "2026-08-19T13:29:27.195275+00:00"
     },
     {
       "car": "Alfa Romeo 155 2.5 V6 TI '93",
@@ -9995,7 +9995,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.540998+00:00"
+      "collected_at": "2026-08-19T13:29:27.195339+00:00"
     },
     {
       "car": "Subaru WRX Gr.4",
@@ -10033,7 +10033,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541021+00:00"
+      "collected_at": "2026-08-19T13:29:27.195373+00:00"
     },
     {
       "car": "Toyota GR Supra Race Car '19",
@@ -10071,7 +10071,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541042+00:00"
+      "collected_at": "2026-08-19T13:29:27.195404+00:00"
     },
     {
       "car": "Lamborghini Huracán Gr.4",
@@ -10109,7 +10109,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541065+00:00"
+      "collected_at": "2026-08-19T13:29:27.195433+00:00"
     },
     {
       "car": "Audi TT Cup '16",
@@ -10147,7 +10147,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541089+00:00"
+      "collected_at": "2026-08-19T13:29:27.195460+00:00"
     },
     {
       "car": "McLaren 650S Gr.4",
@@ -10185,7 +10185,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541110+00:00"
+      "collected_at": "2026-08-19T13:29:27.195486+00:00"
     },
     {
       "car": "Honda NSX Gr.4",
@@ -10223,7 +10223,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541130+00:00"
+      "collected_at": "2026-08-19T13:29:27.195512+00:00"
     },
     {
       "car": "BMW M4 Gr.4",
@@ -10261,7 +10261,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541150+00:00"
+      "collected_at": "2026-08-19T13:29:27.195540+00:00"
     },
     {
       "car": "Mazda Atenza Gr.4",
@@ -10299,7 +10299,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541171+00:00"
+      "collected_at": "2026-08-19T13:29:27.195567+00:00"
     },
     {
       "car": "Nissan Silvia spec-R Aero (S15) Touring Car",
@@ -10337,7 +10337,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541191+00:00"
+      "collected_at": "2026-08-19T13:29:27.195592+00:00"
     },
     {
       "car": "Nissan GT-R Gr.4",
@@ -10375,7 +10375,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541211+00:00"
+      "collected_at": "2026-08-19T13:29:27.195618+00:00"
     },
     {
       "car": "Volkswagen Scirocco Gr.4",
@@ -10413,7 +10413,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541234+00:00"
+      "collected_at": "2026-08-19T13:29:27.195646+00:00"
     },
     {
       "car": "Mitsubishi Lancer Evolution Final Gr.4",
@@ -10451,7 +10451,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541254+00:00"
+      "collected_at": "2026-08-19T13:29:27.195673+00:00"
     },
     {
       "car": "Genesis G70 GR4",
@@ -10489,7 +10489,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541274+00:00"
+      "collected_at": "2026-08-19T13:29:27.195700+00:00"
     },
     {
       "car": "Aston Martin V8 Vantage Gr.4",
@@ -10527,7 +10527,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541297+00:00"
+      "collected_at": "2026-08-19T13:29:27.195724+00:00"
     },
     {
       "car": "Ferrari 458 Italia Gr.4",
@@ -10565,7 +10565,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541318+00:00"
+      "collected_at": "2026-08-19T13:29:27.195753+00:00"
     },
     {
       "car": "Mazda MAZDA3 Gr.4",
@@ -10603,7 +10603,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541337+00:00"
+      "collected_at": "2026-08-19T13:29:27.195779+00:00"
     },
     {
       "car": "Alfa Romeo 4C Gr.4",
@@ -10641,7 +10641,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541369+00:00"
+      "collected_at": "2026-08-19T13:29:27.195823+00:00"
     },
     {
       "car": "Renault Mégane Trophy '11",
@@ -10679,7 +10679,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541390+00:00"
+      "collected_at": "2026-08-19T13:29:27.195854+00:00"
     },
     {
       "car": "Porsche Cayman GT4 Clubsport '16",
@@ -10717,7 +10717,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541413+00:00"
+      "collected_at": "2026-08-19T13:29:27.195881+00:00"
     },
     {
       "car": "Citroën GT by Citroën Gr.4",
@@ -10755,7 +10755,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541433+00:00"
+      "collected_at": "2026-08-19T13:29:27.195906+00:00"
     },
     {
       "car": "AMG SLS AMG Gr.4",
@@ -10793,7 +10793,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541453+00:00"
+      "collected_at": "2026-08-19T13:29:27.195935+00:00"
     },
     {
       "car": "Lexus RC F Gr.4",
@@ -10831,7 +10831,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541473+00:00"
+      "collected_at": "2026-08-19T13:29:27.195962+00:00"
     },
     {
       "car": "Peugeot RCZ Gr.4",
@@ -10869,7 +10869,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541495+00:00"
+      "collected_at": "2026-08-19T13:29:27.195993+00:00"
     },
     {
       "car": "Chevrolet Corvette C7 Gr.4",
@@ -10907,7 +10907,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541520+00:00"
+      "collected_at": "2026-08-19T13:29:27.196023+00:00"
     },
     {
       "car": "Ford Mustang Gr.4",
@@ -10945,7 +10945,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541541+00:00"
+      "collected_at": "2026-08-19T13:29:27.196048+00:00"
     },
     {
       "car": "Hyundai Genesis Gr.4",
@@ -10983,7 +10983,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541561+00:00"
+      "collected_at": "2026-08-19T13:29:27.196073+00:00"
     },
     {
       "car": "Suzuki Swift Sport Gr.4",
@@ -11021,7 +11021,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541582+00:00"
+      "collected_at": "2026-08-19T13:29:27.196098+00:00"
     },
     {
       "car": "Jaguar F-type Gr.4",
@@ -11059,7 +11059,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541603+00:00"
+      "collected_at": "2026-08-19T13:29:27.196123+00:00"
     },
     {
       "car": "Renault Mégane Gr.4",
@@ -11097,7 +11097,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541623+00:00"
+      "collected_at": "2026-08-19T13:29:27.196149+00:00"
     },
     {
       "car": "Dodge Viper Gr.4",
@@ -11135,7 +11135,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541643+00:00"
+      "collected_at": "2026-08-19T13:29:27.196173+00:00"
     },
     {
       "car": "Toyota 86 Gr.4",
@@ -11173,7 +11173,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541663+00:00"
+      "collected_at": "2026-08-19T13:29:27.196205+00:00"
     },
     {
       "car": "Hyundai ELANTRA N TC '24",
@@ -11211,7 +11211,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541683+00:00"
+      "collected_at": "2026-08-19T13:29:27.196232+00:00"
     },
     {
       "car": "Bugatti Veyron Gr.4",
@@ -11249,7 +11249,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541706+00:00"
+      "collected_at": "2026-08-19T13:29:27.196260+00:00"
     },
     {
       "car": "Alfa Romeo 155 2.5 V6 TI '93",
@@ -11287,7 +11287,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541726+00:00"
+      "collected_at": "2026-08-19T13:29:27.196285+00:00"
     },
     {
       "car": "Subaru WRX Gr.4",
@@ -11325,7 +11325,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541748+00:00"
+      "collected_at": "2026-08-19T13:29:27.196314+00:00"
     },
     {
       "car": "Toyota GR Supra Race Car '19",
@@ -11363,7 +11363,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541769+00:00"
+      "collected_at": "2026-08-19T13:29:27.196342+00:00"
     },
     {
       "car": "Lamborghini Huracán Gr.4",
@@ -11401,7 +11401,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541789+00:00"
+      "collected_at": "2026-08-19T13:29:27.196368+00:00"
     },
     {
       "car": "Audi TT Cup '16",
@@ -11439,7 +11439,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541808+00:00"
+      "collected_at": "2026-08-19T13:29:27.196394+00:00"
     },
     {
       "car": "McLaren 650S Gr.4",
@@ -11477,7 +11477,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541829+00:00"
+      "collected_at": "2026-08-19T13:29:27.196423+00:00"
     },
     {
       "car": "Honda NSX Gr.4",
@@ -11515,7 +11515,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541848+00:00"
+      "collected_at": "2026-08-19T13:29:27.196451+00:00"
     },
     {
       "car": "BMW M4 Gr.4",
@@ -11553,7 +11553,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541868+00:00"
+      "collected_at": "2026-08-19T13:29:27.196477+00:00"
     },
     {
       "car": "Mazda Atenza Gr.4",
@@ -11591,7 +11591,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541890+00:00"
+      "collected_at": "2026-08-19T13:29:27.196503+00:00"
     },
     {
       "car": "Nissan Silvia spec-R Aero (S15) Touring Car",
@@ -11629,7 +11629,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541911+00:00"
+      "collected_at": "2026-08-19T13:29:27.196528+00:00"
     },
     {
       "car": "Nissan GT-R Gr.4",
@@ -11667,7 +11667,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541931+00:00"
+      "collected_at": "2026-08-19T13:29:27.196553+00:00"
     },
     {
       "car": "Volkswagen Scirocco Gr.4",
@@ -11705,7 +11705,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541950+00:00"
+      "collected_at": "2026-08-19T13:29:27.196578+00:00"
     },
     {
       "car": "Mitsubishi Lancer Evolution Final Gr.4",
@@ -11743,7 +11743,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541972+00:00"
+      "collected_at": "2026-08-19T13:29:27.196603+00:00"
     },
     {
       "car": "Genesis G70 GR4",
@@ -11781,7 +11781,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.541991+00:00"
+      "collected_at": "2026-08-19T13:29:27.196631+00:00"
     },
     {
       "car": "Aston Martin V8 Vantage Gr.4",
@@ -11819,7 +11819,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542010+00:00"
+      "collected_at": "2026-08-19T13:29:27.196655+00:00"
     },
     {
       "car": "Ferrari 458 Italia Gr.4",
@@ -11857,7 +11857,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542030+00:00"
+      "collected_at": "2026-08-19T13:29:27.196683+00:00"
     },
     {
       "car": "Mazda MAZDA3 Gr.4",
@@ -11895,7 +11895,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542049+00:00"
+      "collected_at": "2026-08-19T13:29:27.196708+00:00"
     },
     {
       "car": "Alfa Romeo 4C Gr.4",
@@ -11933,7 +11933,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542072+00:00"
+      "collected_at": "2026-08-19T13:29:27.196734+00:00"
     },
     {
       "car": "Renault Mégane Trophy '11",
@@ -11971,7 +11971,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542092+00:00"
+      "collected_at": "2026-08-19T13:29:27.196760+00:00"
     },
     {
       "car": "Porsche Cayman GT4 Clubsport '16",
@@ -12009,7 +12009,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542112+00:00"
+      "collected_at": "2026-08-19T13:29:27.196785+00:00"
     },
     {
       "car": "Citroën GT by Citroën Gr.4",
@@ -12047,7 +12047,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542133+00:00"
+      "collected_at": "2026-08-19T13:29:27.196832+00:00"
     },
     {
       "car": "AMG SLS AMG Gr.4",
@@ -12085,7 +12085,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542152+00:00"
+      "collected_at": "2026-08-19T13:29:27.196863+00:00"
     },
     {
       "car": "Lexus RC F Gr.4",
@@ -12123,7 +12123,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542174+00:00"
+      "collected_at": "2026-08-19T13:29:27.196889+00:00"
     },
     {
       "car": "Peugeot RCZ Gr.4",
@@ -12161,7 +12161,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542195+00:00"
+      "collected_at": "2026-08-19T13:29:27.196921+00:00"
     },
     {
       "car": "Chevrolet Corvette C7 Gr.4",
@@ -12199,7 +12199,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542214+00:00"
+      "collected_at": "2026-08-19T13:29:27.196946+00:00"
     },
     {
       "car": "Ford Mustang Gr.4",
@@ -12237,7 +12237,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542235+00:00"
+      "collected_at": "2026-08-19T13:29:27.196973+00:00"
     },
     {
       "car": "Hyundai Genesis Gr.4",
@@ -12275,7 +12275,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542254+00:00"
+      "collected_at": "2026-08-19T13:29:27.196998+00:00"
     },
     {
       "car": "Suzuki Swift Sport Gr.4",
@@ -12313,7 +12313,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542274+00:00"
+      "collected_at": "2026-08-19T13:29:27.197023+00:00"
     },
     {
       "car": "Jaguar F-type Gr.4",
@@ -12351,7 +12351,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542295+00:00"
+      "collected_at": "2026-08-19T13:29:27.197049+00:00"
     },
     {
       "car": "Renault Mégane Gr.4",
@@ -12389,7 +12389,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542315+00:00"
+      "collected_at": "2026-08-19T13:29:27.197077+00:00"
     },
     {
       "car": "Dodge Viper Gr.4",
@@ -12427,7 +12427,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542334+00:00"
+      "collected_at": "2026-08-19T13:29:27.197103+00:00"
     },
     {
       "car": "Toyota 86 Gr.4",
@@ -12465,7 +12465,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542365+00:00"
+      "collected_at": "2026-08-19T13:29:27.197130+00:00"
     },
     {
       "car": "Hyundai ELANTRA N TC '24",
@@ -12503,7 +12503,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542391+00:00"
+      "collected_at": "2026-08-19T13:29:27.197156+00:00"
     },
     {
       "car": "Bugatti Veyron Gr.4",
@@ -12541,7 +12541,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542414+00:00"
+      "collected_at": "2026-08-19T13:29:27.197184+00:00"
     },
     {
       "car": "Alfa Romeo 155 2.5 V6 TI '93",
@@ -12579,7 +12579,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542435+00:00"
+      "collected_at": "2026-08-19T13:29:27.197211+00:00"
     },
     {
       "car": "Subaru WRX Gr.4",
@@ -12617,7 +12617,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542455+00:00"
+      "collected_at": "2026-08-19T13:29:27.197241+00:00"
     },
     {
       "car": "Toyota GR Supra Race Car '19",
@@ -12655,7 +12655,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542476+00:00"
+      "collected_at": "2026-08-19T13:29:27.197267+00:00"
     },
     {
       "car": "Lamborghini Huracán Gr.4",
@@ -12693,7 +12693,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542496+00:00"
+      "collected_at": "2026-08-19T13:29:27.197301+00:00"
     },
     {
       "car": "Audi TT Cup '16",
@@ -12731,7 +12731,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542516+00:00"
+      "collected_at": "2026-08-19T13:29:27.197327+00:00"
     },
     {
       "car": "McLaren 650S Gr.4",
@@ -12769,7 +12769,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542536+00:00"
+      "collected_at": "2026-08-19T13:29:27.197352+00:00"
     },
     {
       "car": "Honda NSX Gr.4",
@@ -12807,7 +12807,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542556+00:00"
+      "collected_at": "2026-08-19T13:29:27.197378+00:00"
     },
     {
       "car": "BMW M4 Gr.4",
@@ -12845,7 +12845,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542578+00:00"
+      "collected_at": "2026-08-19T13:29:27.197403+00:00"
     },
     {
       "car": "Mazda Atenza Gr.4",
@@ -12883,7 +12883,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542600+00:00"
+      "collected_at": "2026-08-19T13:29:27.197429+00:00"
     },
     {
       "car": "Nissan Silvia spec-R Aero (S15) Touring Car",
@@ -12921,7 +12921,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542621+00:00"
+      "collected_at": "2026-08-19T13:29:27.197454+00:00"
     },
     {
       "car": "Nissan GT-R Gr.4",
@@ -12959,7 +12959,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542641+00:00"
+      "collected_at": "2026-08-19T13:29:27.197479+00:00"
     },
     {
       "car": "Volkswagen Scirocco Gr.4",
@@ -12997,7 +12997,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542661+00:00"
+      "collected_at": "2026-08-19T13:29:27.197509+00:00"
     },
     {
       "car": "Mitsubishi Lancer Evolution Final Gr.4",
@@ -13035,7 +13035,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542681+00:00"
+      "collected_at": "2026-08-19T13:29:27.197534+00:00"
     },
     {
       "car": "Genesis G70 GR4",
@@ -13073,7 +13073,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542701+00:00"
+      "collected_at": "2026-08-19T13:29:27.197559+00:00"
     },
     {
       "car": "Aston Martin V8 Vantage Gr.4",
@@ -13111,7 +13111,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542721+00:00"
+      "collected_at": "2026-08-19T13:29:27.197583+00:00"
     },
     {
       "car": "Ferrari 458 Italia Gr.4",
@@ -13149,7 +13149,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542741+00:00"
+      "collected_at": "2026-08-19T13:29:27.197608+00:00"
     },
     {
       "car": "Mazda MAZDA3 Gr.4",
@@ -13187,7 +13187,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542760+00:00"
+      "collected_at": "2026-08-19T13:29:27.197632+00:00"
     },
     {
       "car": "Alfa Romeo 4C Gr.4",
@@ -13225,7 +13225,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542781+00:00"
+      "collected_at": "2026-08-19T13:29:27.197660+00:00"
     },
     {
       "car": "Renault Mégane Trophy '11",
@@ -13263,7 +13263,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542805+00:00"
+      "collected_at": "2026-08-19T13:29:27.197686+00:00"
     },
     {
       "car": "Porsche Cayman GT4 Clubsport '16",
@@ -13301,7 +13301,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542825+00:00"
+      "collected_at": "2026-08-19T13:29:27.197716+00:00"
     },
     {
       "car": "Citroën GT by Citroën Gr.4",
@@ -13339,7 +13339,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542846+00:00"
+      "collected_at": "2026-08-19T13:29:27.197743+00:00"
     },
     {
       "car": "AMG SLS AMG Gr.4",
@@ -13377,7 +13377,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542866+00:00"
+      "collected_at": "2026-08-19T13:29:27.197768+00:00"
     },
     {
       "car": "Lexus RC F Gr.4",
@@ -13415,7 +13415,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542887+00:00"
+      "collected_at": "2026-08-19T13:29:27.197794+00:00"
     },
     {
       "car": "Peugeot RCZ Gr.4",
@@ -13453,7 +13453,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542908+00:00"
+      "collected_at": "2026-08-19T13:29:27.197837+00:00"
     },
     {
       "car": "Chevrolet Corvette C7 Gr.4",
@@ -13491,7 +13491,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542928+00:00"
+      "collected_at": "2026-08-19T13:29:27.197868+00:00"
     },
     {
       "car": "Ford Mustang Gr.4",
@@ -13529,7 +13529,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542947+00:00"
+      "collected_at": "2026-08-19T13:29:27.197894+00:00"
     },
     {
       "car": "Hyundai Genesis Gr.4",
@@ -13567,7 +13567,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542967+00:00"
+      "collected_at": "2026-08-19T13:29:27.197919+00:00"
     },
     {
       "car": "Suzuki Swift Sport Gr.4",
@@ -13605,7 +13605,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.542986+00:00"
+      "collected_at": "2026-08-19T13:29:27.197949+00:00"
     },
     {
       "car": "Jaguar F-type Gr.4",
@@ -13643,7 +13643,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.543007+00:00"
+      "collected_at": "2026-08-19T13:29:27.197976+00:00"
     },
     {
       "car": "Renault Mégane Gr.4",
@@ -13681,7 +13681,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.543028+00:00"
+      "collected_at": "2026-08-19T13:29:27.198004+00:00"
     },
     {
       "car": "Dodge Viper Gr.4",
@@ -13719,7 +13719,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.543050+00:00"
+      "collected_at": "2026-08-19T13:29:27.198029+00:00"
     },
     {
       "car": "Toyota 86 Gr.4",
@@ -13757,7 +13757,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.543070+00:00"
+      "collected_at": "2026-08-19T13:29:27.198054+00:00"
     },
     {
       "car": "Hyundai ELANTRA N TC '24",
@@ -13795,7 +13795,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:07:59.543090+00:00"
+      "collected_at": "2026-08-19T13:29:27.198079+00:00"
     },
     {
       "car": "Peugeot 205 Turbo 16 Evolution 2 '86",
@@ -13833,7 +13833,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498266+00:00"
+      "collected_at": "2026-08-19T13:29:33.992953+00:00"
     },
     {
       "car": "Audi Sport quattro S1 Pikes Peak '87",
@@ -13871,7 +13871,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498321+00:00"
+      "collected_at": "2026-08-19T13:29:33.993019+00:00"
     },
     {
       "car": "Ford Mustang Gr.B Rally Car",
@@ -13909,7 +13909,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498353+00:00"
+      "collected_at": "2026-08-19T13:29:33.993050+00:00"
     },
     {
       "car": "Mitsubishi Lancer Evolution Final Gr.B Rally Car",
@@ -13947,7 +13947,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498379+00:00"
+      "collected_at": "2026-08-19T13:29:33.993078+00:00"
     },
     {
       "car": "Subaru WRX Gr.B Rally Car",
@@ -13985,7 +13985,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498399+00:00"
+      "collected_at": "2026-08-19T13:29:33.993104+00:00"
     },
     {
       "car": "Hyundai Genesis Gr.B Rally Car",
@@ -14023,7 +14023,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498419+00:00"
+      "collected_at": "2026-08-19T13:29:33.993130+00:00"
     },
     {
       "car": "Honda NSX Gr.B Rally Car",
@@ -14061,7 +14061,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498439+00:00"
+      "collected_at": "2026-08-19T13:29:33.993156+00:00"
     },
     {
       "car": "Nissan GT-R Gr.B Rally Car",
@@ -14099,7 +14099,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498460+00:00"
+      "collected_at": "2026-08-19T13:29:33.993185+00:00"
     },
     {
       "car": "Peugeot RCZ Gr.B Rally Car",
@@ -14137,7 +14137,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498480+00:00"
+      "collected_at": "2026-08-19T13:29:33.993211+00:00"
     },
     {
       "car": "Ford Focus Gr.B Rally Car",
@@ -14175,7 +14175,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498500+00:00"
+      "collected_at": "2026-08-19T13:29:33.993241+00:00"
     },
     {
       "car": "Toyota 86 Gr.B Rally Car",
@@ -14213,7 +14213,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498521+00:00"
+      "collected_at": "2026-08-19T13:29:33.993268+00:00"
     },
     {
       "car": "Toyota Celica GT-FOUR Rally Car (ST205) '95",
@@ -14251,7 +14251,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498545+00:00"
+      "collected_at": "2026-08-19T13:29:33.993295+00:00"
     },
     {
       "car": "Peugeot 205 Turbo 16 Evolution 2 '86",
@@ -14289,7 +14289,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498568+00:00"
+      "collected_at": "2026-08-19T13:29:33.993321+00:00"
     },
     {
       "car": "Audi Sport quattro S1 Pikes Peak '87",
@@ -14327,7 +14327,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498590+00:00"
+      "collected_at": "2026-08-19T13:29:33.993350+00:00"
     },
     {
       "car": "Ford Mustang Gr.B Rally Car",
@@ -14365,7 +14365,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498610+00:00"
+      "collected_at": "2026-08-19T13:29:33.993376+00:00"
     },
     {
       "car": "Mitsubishi Lancer Evolution Final Gr.B Rally Car",
@@ -14403,7 +14403,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498630+00:00"
+      "collected_at": "2026-08-19T13:29:33.993402+00:00"
     },
     {
       "car": "Subaru WRX Gr.B Rally Car",
@@ -14441,7 +14441,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498649+00:00"
+      "collected_at": "2026-08-19T13:29:33.993427+00:00"
     },
     {
       "car": "Hyundai Genesis Gr.B Rally Car",
@@ -14479,7 +14479,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498668+00:00"
+      "collected_at": "2026-08-19T13:29:33.993455+00:00"
     },
     {
       "car": "Honda NSX Gr.B Rally Car",
@@ -14517,7 +14517,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498688+00:00"
+      "collected_at": "2026-08-19T13:29:33.993481+00:00"
     },
     {
       "car": "Nissan GT-R Gr.B Rally Car",
@@ -14555,7 +14555,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498710+00:00"
+      "collected_at": "2026-08-19T13:29:33.993509+00:00"
     },
     {
       "car": "Peugeot RCZ Gr.B Rally Car",
@@ -14593,7 +14593,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498730+00:00"
+      "collected_at": "2026-08-19T13:29:33.993538+00:00"
     },
     {
       "car": "Ford Focus Gr.B Rally Car",
@@ -14631,7 +14631,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498750+00:00"
+      "collected_at": "2026-08-19T13:29:33.993563+00:00"
     },
     {
       "car": "Toyota 86 Gr.B Rally Car",
@@ -14669,7 +14669,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498772+00:00"
+      "collected_at": "2026-08-19T13:29:33.993589+00:00"
     },
     {
       "car": "Toyota Celica GT-FOUR Rally Car (ST205) '95",
@@ -14707,7 +14707,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498794+00:00"
+      "collected_at": "2026-08-19T13:29:33.993614+00:00"
     },
     {
       "car": "Peugeot 205 Turbo 16 Evolution 2 '86",
@@ -14745,7 +14745,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498816+00:00"
+      "collected_at": "2026-08-19T13:29:33.993639+00:00"
     },
     {
       "car": "Audi Sport quattro S1 Pikes Peak '87",
@@ -14783,7 +14783,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498837+00:00"
+      "collected_at": "2026-08-19T13:29:33.993667+00:00"
     },
     {
       "car": "Ford Mustang Gr.B Rally Car",
@@ -14821,7 +14821,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498856+00:00"
+      "collected_at": "2026-08-19T13:29:33.993692+00:00"
     },
     {
       "car": "Mitsubishi Lancer Evolution Final Gr.B Rally Car",
@@ -14859,7 +14859,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498877+00:00"
+      "collected_at": "2026-08-19T13:29:33.993716+00:00"
     },
     {
       "car": "Subaru WRX Gr.B Rally Car",
@@ -14897,7 +14897,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498896+00:00"
+      "collected_at": "2026-08-19T13:29:33.993740+00:00"
     },
     {
       "car": "Hyundai Genesis Gr.B Rally Car",
@@ -14935,7 +14935,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498916+00:00"
+      "collected_at": "2026-08-19T13:29:33.993764+00:00"
     },
     {
       "car": "Honda NSX Gr.B Rally Car",
@@ -14973,7 +14973,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498935+00:00"
+      "collected_at": "2026-08-19T13:29:33.993793+00:00"
     },
     {
       "car": "Nissan GT-R Gr.B Rally Car",
@@ -15011,7 +15011,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498957+00:00"
+      "collected_at": "2026-08-19T13:29:33.993869+00:00"
     },
     {
       "car": "Peugeot RCZ Gr.B Rally Car",
@@ -15049,7 +15049,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.498977+00:00"
+      "collected_at": "2026-08-19T13:29:33.993899+00:00"
     },
     {
       "car": "Ford Focus Gr.B Rally Car",
@@ -15087,7 +15087,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.499000+00:00"
+      "collected_at": "2026-08-19T13:29:33.993932+00:00"
     },
     {
       "car": "Toyota 86 Gr.B Rally Car",
@@ -15125,7 +15125,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.499021+00:00"
+      "collected_at": "2026-08-19T13:29:33.993959+00:00"
     },
     {
       "car": "Toyota Celica GT-FOUR Rally Car (ST205) '95",
@@ -15163,7 +15163,7 @@
         "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
         "confidence": "STRUCTURED_STATE_VALIDATED"
       },
-      "collected_at": "2026-08-19T13:08:06.499043+00:00"
+      "collected_at": "2026-08-19T13:29:33.993986+00:00"
     }
   ]
 }

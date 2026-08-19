@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T13:08:06.730755+00:00",
+  "generated_at": "2026-08-19T13:29:34.232354+00:00",
   "version": "2.0",
   "groups_requested": [
     "GR.1",
@@ -18,7 +18,7 @@
           "version": "1.70",
           "url": "https://www.dg-edge.com/database/bop/GR.1/1.70",
           "status": 200,
-          "bytes": 914715,
+          "bytes": 914975,
           "valid": true
         }
       ],
@@ -54,42 +54,42 @@
           "version": "1.70",
           "url": "https://www.dg-edge.com/database/bop/GR.2/1.70",
           "status": 500,
-          "bytes": 588371,
+          "bytes": 588399,
           "valid": false
         },
         {
           "version": "1.67",
           "url": "https://www.dg-edge.com/database/bop/GR.2/1.67",
           "status": 500,
-          "bytes": 588642,
+          "bytes": 588553,
           "valid": false
         },
         {
           "version": "1.66",
           "url": "https://www.dg-edge.com/database/bop/GR.2/1.66",
           "status": 500,
-          "bytes": 588628,
+          "bytes": 588652,
           "valid": false
         },
         {
           "version": "1.65",
           "url": "https://www.dg-edge.com/database/bop/GR.2/1.65",
           "status": 500,
-          "bytes": 588770,
+          "bytes": 588713,
           "valid": false
         },
         {
           "version": "1.62",
           "url": "https://www.dg-edge.com/database/bop/GR.2/1.62",
           "status": 500,
-          "bytes": 588730,
+          "bytes": 588677,
           "valid": false
         },
         {
           "version": "1.61",
           "url": "https://www.dg-edge.com/database/bop/GR.2/1.61",
           "status": 200,
-          "bytes": 739803,
+          "bytes": 740012,
           "valid": true
         }
       ],
@@ -125,14 +125,14 @@
           "version": "1.70",
           "url": "https://www.dg-edge.com/database/bop/GR.3/1.70",
           "status": 500,
-          "bytes": 588520,
+          "bytes": 588771,
           "valid": false
         },
         {
           "version": "1.67",
           "url": "https://www.dg-edge.com/database/bop/GR.3/1.67",
           "status": 200,
-          "bytes": 1236076,
+          "bytes": 1235982,
           "valid": true
         }
       ],
@@ -168,14 +168,14 @@
           "version": "1.70",
           "url": "https://www.dg-edge.com/database/bop/GR.4/1.70",
           "status": 500,
-          "bytes": 588609,
+          "bytes": 588509,
           "valid": false
         },
         {
           "version": "1.67",
           "url": "https://www.dg-edge.com/database/bop/GR.4/1.67",
           "status": 200,
-          "bytes": 1020395,
+          "bytes": 1020173,
           "valid": true
         }
       ],
@@ -211,49 +211,49 @@
           "version": "1.70",
           "url": "https://www.dg-edge.com/database/bop/GR.B/1.70",
           "status": 500,
-          "bytes": 588546,
+          "bytes": 588751,
           "valid": false
         },
         {
           "version": "1.67",
           "url": "https://www.dg-edge.com/database/bop/GR.B/1.67",
           "status": 500,
-          "bytes": 588579,
+          "bytes": 588331,
           "valid": false
         },
         {
           "version": "1.66",
           "url": "https://www.dg-edge.com/database/bop/GR.B/1.66",
           "status": 500,
-          "bytes": 588664,
+          "bytes": 588763,
           "valid": false
         },
         {
           "version": "1.65",
           "url": "https://www.dg-edge.com/database/bop/GR.B/1.65",
           "status": 500,
-          "bytes": 588448,
+          "bytes": 588484,
           "valid": false
         },
         {
           "version": "1.62",
           "url": "https://www.dg-edge.com/database/bop/GR.B/1.62",
           "status": 500,
-          "bytes": 588697,
+          "bytes": 588939,
           "valid": false
         },
         {
           "version": "1.61",
           "url": "https://www.dg-edge.com/database/bop/GR.B/1.61",
           "status": 500,
-          "bytes": 588731,
+          "bytes": 588705,
           "valid": false
         },
         {
           "version": "1.60",
           "url": "https://www.dg-edge.com/database/bop/GR.B/1.60",
           "status": 200,
-          "bytes": 762495,
+          "bytes": 762119,
           "valid": true
         }
       ],
