@@ -75,6 +75,17 @@ jobs:
           fi
 
       # ============================================================
+      # FINALIZED HISTORY GUARD
+      # The current running week must never be treated as finalized.
+      # This also removes accidental duplicate records for the current
+      # Monday before long-term trends and comparisons are calculated.
+      # ============================================================
+
+      - name: Remove current week from finalized rating history
+        run: |
+          python src/remove_current_week_from_final_history.py
+
+      # ============================================================
       # CURRENT DAILY RACE C
       # ============================================================
 
