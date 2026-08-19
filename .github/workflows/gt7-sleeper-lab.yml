@@ -79,6 +79,7 @@ jobs:
             -o -name 'sleeper_training_history.json' \
             -o -name 'sleeper_car_lab_error.txt' \
             -o -name 'sleeper_history_backfill_error.txt' \
+            -o -name 'weekly_car_recommender_error.txt' \
             -o -name 'race_c_archive_catalog.txt' \
             -o -name 'sleeper_car_lab.txt' \
             -o -name 'sleeper_history_backfill.txt' \
@@ -99,6 +100,7 @@ jobs:
             data/bop_lab/sleeper_training_history.json \
             data/bop_lab/sleeper_car_lab_error.txt \
             data/bop_lab/sleeper_history_backfill_error.txt \
+            data/bop_lab/weekly_car_recommender_error.txt \
             reports/race_c_archive_catalog.txt \
             reports/sleeper_car_lab.txt \
             reports/sleeper_history_backfill.txt \
