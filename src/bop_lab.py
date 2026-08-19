@@ -18,25 +18,27 @@ from bop_database import (
     validate_database,
 )
 
-VERSION = "1.5"
+# ============================================================
+# CONFIG
+# ============================================================
+
+VERSION = "1.6"
 
 DG_EDGE_BASE_URL = "https://www.dg-edge.com"
 DG_EDGE_BOP_URL = f"{DG_EDGE_BASE_URL}/database/bop"
 
 DATA_DIR = Path("data") / "bop_lab"
 REPORT_DIR = Path("reports")
-RAW_DIR = DATA_DIR / "raw"
-STATE_DIR = RAW_DIR / "state"
+STATE_DIR = DATA_DIR / "raw" / "state"
 
 REPORT_FILE = REPORT_DIR / "bop_lab.txt"
 EXTRACTED_FILE = DATA_DIR / "extracted_bop.json"
 NUXT_RAW_FILE = STATE_DIR / "09_NUXT_DATA.json"
 
 GROUP = "GR.3"
-
 EXPECTED_SPEED_CLASSES = {"HIGH", "MID", "LOW"}
 EXPECTED_CARS_PER_CLASS = 48
-EXPECTED_TOTAL_RECORDS = EXPECTED_CARS_PER_CLASS * len(EXPECTED_SPEED_CLASSES)
+EXPECTED_TOTAL_RECORDS = 144
 
 REQUEST_TIMEOUT = 60
 REQUEST_DELAY_SECONDS = 0.20
@@ -54,220 +56,6 @@ HEADERS = {
 SEP = "=" * 100
 SUB = "-" * 100
 
-
-def now_iso():
-    return datetime.now().astimezone().isoformat()
-
-
-def clean_text(value):
-    if value is None:
-        return None
-    text = re.sub(r"\s+", " ", str(value).replace("\xa0", " ")).strip()
-    return text or None
-
-
-def safe_float(value):
-    if value is None:
-        return None
-    if isinstance(value, (int, float)):
-        try:
-            number = float(value)
-        except Exception:
-            return None
-        if math.isnan(number):
-            return None
-        return number
-    text = clean_text(value)
-    if not text:
-        return None
-    text = text.replace(",", "")
-    match = re.search(r"[-+]?\d+(?:\.\d+)?", text)
-    if not match:
-        return None
-    try:
-        return float(match.group(0))
-    except Exception:
-        return None
-
-
-def version_key(version):
-    try:
-        return tuple(int(part) for part in str(version).split("."))
-    except Exception:
-        return (0,)
-
-
-def normalize_speed(value):
-    text = clean_text(value)
-    if not text:
-        return None
-    aliases = {
-        "HIGH": "HIGH",
-        "MID": "MID",
-        "MEDIUM": "MID",
-        "LOW": "LOW",
-    }
-    return aliases.get(text.upper())
-
-
-def fetch_text(session, url, raise_for_status=True):
-    response = session.get(url, timeout=REQUEST_TIMEOUT)
-    result = {
-        "url": response.url,
-        "status": response.status_code,
-        "text": response.text,
-        "bytes": len(response.content),
-        "content_type": response.headers.get("Content-Type", ""),
-    }
-    if raise_for_status:
-        response.raise_for_status()
-    return result
-
-
-def build_group_url(group, version):
-    group = normalize_group(group)
-    if not group:
-        raise ValueError(f"Invalid group: {group}")
-    return f"{DG_EDGE_BOP_URL}/{group}/{version}"
-
-
-def extract_versions(html):
-    soup = BeautifulSoup(html, "html.parser")
-    versions = set()
-    for link in soup.find_all("a", href=True):
-        href = link.get("href", "")
-        match = re.search(
-            r"/database/bop/(?:GR\.[1234]|GR\.B)/(\d+\.\d+)",
-            href,
-            flags=re.IGNORECASE,
-        )
-        if match:
-            versions.add(match.group(1))
-    if not versions:
-        text = soup.get_text(" ", strip=True)
-        for match in re.finditer(
-            r"\b(?:Update|Version)\s+(\d+\.\d+)\b",
-            text,
-            flags=re.IGNORECASE,
-        ):
-            versions.add(match.group(1))
-    return sorted(versions, key=version_key, reverse=True)
-
-
-def looks_like_valid_bop_page(html, group):
-    if not html:
-        return False
-    soup = BeautifulSoup(html, "html.parser")
-    text = soup.get_text(" ", strip=True).lower()
-    group_text = (normalize_group(group) or "").lower()
-    signals = [
-        "max power",
-        "max torque",
-        "power/weight",
-        "weight balance",
-        "drivetrain",
-    ]
-    signal_count = sum(1 for signal in signals if signal in text)
-    return group_text in text and signal_count >= 3
-
-
-def probe_versions(session, group, versions):
-    probes = []
-    for version in versions:
-        url = build_group_url(group, version)
-        result = fetch_text(session, url, raise_for_status=False)
-        valid = (
-            result["status"] == 200
-            and looks_like_valid_bop_page(result["text"], group)
-        )
-        probes.append(
-            {
-                "version": version,
-                "url": url,
-                "status": result["status"],
-                "bytes": result["bytes"],
-                "valid": valid,
-            }
-        )
-        print(
-            f"Probe {group} {version:<6}: "
-            f"HTTP {result['status']} | "
-            f"{result['bytes']:,} bytes | "
-            f"{'VALID' if valid else 'UNUSABLE'}"
-        )
-        if valid:
-            return version, result, probes
-        time.sleep(REQUEST_DELAY_SECONDS)
-    return None, None, probes
-
-
-def extract_nuxt_data_text(html):
-    soup = BeautifulSoup(html, "html.parser")
-    tag = soup.find("script", id="__NUXT_DATA__")
-    if tag is None:
-        return None
-    if tag.string is not None:
-        return tag.string
-    return tag.get_text("\n")
-
-
-def save_nuxt_data(text):
-    STATE_DIR.mkdir(parents=True, exist_ok=True)
-    NUXT_RAW_FILE.write_text(text, encoding="utf-8")
-
-
-SPECIAL_REFS = {
-    -1: None,
-    -2: float("nan"),
-    -3: float("inf"),
-    -4: float("-inf"),
-    -5: -0.0,
-}
-
-
-class NuxtFlatDecoder:
-    def __init__(self, raw):
-        if not isinstance(raw, list):
-            raise RuntimeError("__NUXT_DATA__ root is not a list.")
-        self.raw = raw
-        self.cache = {}
-        self.resolving = set()
-
-    def decode_ref(self, ref):
-        if isinstance(ref, int):
-            if ref < 0:
-                return SPECIAL_REFS.get(ref)
-            if ref >= len(self.raw):
-                return ref
-            return self.decode_index(ref)
-        return ref
-
-    def decode_index(self, index):
-        if index in self.cache:
-            return self.cache[index]
-        if index in self.resolving:
-            return f"<circular:{index}>"
-        self.resolving.add(index)
-        node = self.raw[index]
-
-        if isinstance(node, dict):
-            decoded = {}
-            self.cache[index] = decoded
-            for key, value_ref in node.items():
-                decoded[key] = self.decode_ref(value_ref)
-        elif isinstance(node, list):
-            decoded = []
-            self.cache[index] = decoded
-            for value_ref in node:
-                decoded.append(self.decode_ref(value_ref))
-        else:
-            decoded = node
-            self.cache[index] = decoded
-
-        self.resolving.discard(index)
-        return decoded
-
-
 REQUIRED_RAW_KEYS = {
     "car",
     "carId",
@@ -280,66 +68,498 @@ REQUIRED_RAW_KEYS = {
     "drivetrain",
 }
 
+SPECIAL_REFS = {
+    -1: None,
+    -2: float("nan"),
+    -3: float("inf"),
+    -4: float("-inf"),
+    -5: -0.0,
+}
+
+
+# ============================================================
+# BASIC HELPERS
+# ============================================================
+
+def now_iso():
+    return datetime.now().astimezone().isoformat()
+
+
+def clean_text(value):
+    if value is None:
+        return None
+
+    text = re.sub(
+        r"\s+",
+        " ",
+        str(value).replace("\xa0", " "),
+    ).strip()
+
+    return text or None
+
+
+def safe_float(value):
+    if value is None:
+        return None
+
+    if isinstance(value, (int, float)):
+        try:
+            number = float(value)
+        except Exception:
+            return None
+
+        if math.isnan(number):
+            return None
+
+        return number
+
+    text = clean_text(value)
+
+    if not text:
+        return None
+
+    text = text.replace(",", "")
+
+    match = re.search(
+        r"[-+]?\d+(?:\.\d+)?",
+        text,
+    )
+
+    if not match:
+        return None
+
+    try:
+        return float(match.group(0))
+    except Exception:
+        return None
+
+
+def version_key(version):
+    try:
+        return tuple(
+            int(part)
+            for part in str(version).split(".")
+        )
+    except Exception:
+        return (0,)
+
+
+def normalize_speed(value):
+    text = clean_text(value)
+
+    if not text:
+        return None
+
+    aliases = {
+        "HIGH": "HIGH",
+        "MID": "MID",
+        "MEDIUM": "MID",
+        "LOW": "LOW",
+    }
+
+    return aliases.get(text.upper())
+
+
+# ============================================================
+# HTTP / VERSION DISCOVERY
+# ============================================================
+
+def fetch_text(session, url, raise_for_status=True):
+    response = session.get(
+        url,
+        timeout=REQUEST_TIMEOUT,
+    )
+
+    result = {
+        "url": response.url,
+        "status": response.status_code,
+        "text": response.text,
+        "bytes": len(response.content),
+        "content_type": response.headers.get(
+            "Content-Type",
+            "",
+        ),
+    }
+
+    if raise_for_status:
+        response.raise_for_status()
+
+    return result
+
+
+def build_group_url(group, version):
+    group = normalize_group(group)
+
+    if not group:
+        raise ValueError(
+            f"Invalid group: {group}"
+        )
+
+    return (
+        f"{DG_EDGE_BOP_URL}/"
+        f"{group}/"
+        f"{version}"
+    )
+
+
+def extract_versions(html):
+    soup = BeautifulSoup(
+        html,
+        "html.parser",
+    )
+
+    versions = set()
+
+    for link in soup.find_all(
+        "a",
+        href=True,
+    ):
+        href = link.get(
+            "href",
+            "",
+        )
+
+        match = re.search(
+            r"/database/bop/"
+            r"(?:GR\.[1234]|GR\.B)"
+            r"/(\d+\.\d+)",
+            href,
+            flags=re.IGNORECASE,
+        )
+
+        if match:
+            versions.add(
+                match.group(1)
+            )
+
+    if not versions:
+        text = soup.get_text(
+            " ",
+            strip=True,
+        )
+
+        for match in re.finditer(
+            r"\b(?:Update|Version)\s+"
+            r"(\d+\.\d+)\b",
+            text,
+            flags=re.IGNORECASE,
+        ):
+            versions.add(
+                match.group(1)
+            )
+
+    return sorted(
+        versions,
+        key=version_key,
+        reverse=True,
+    )
+
+
+def looks_like_valid_bop_page(html, group):
+    if not html:
+        return False
+
+    soup = BeautifulSoup(
+        html,
+        "html.parser",
+    )
+
+    text = soup.get_text(
+        " ",
+        strip=True,
+    ).lower()
+
+    group_text = (
+        normalize_group(group)
+        or ""
+    ).lower()
+
+    signals = [
+        "max power",
+        "max torque",
+        "power/weight",
+        "weight balance",
+        "drivetrain",
+    ]
+
+    signal_count = sum(
+        1
+        for signal in signals
+        if signal in text
+    )
+
+    return (
+        group_text in text
+        and signal_count >= 3
+    )
+
+
+def probe_versions(session, group, versions):
+    probes = []
+
+    for version in versions:
+        url = build_group_url(
+            group,
+            version,
+        )
+
+        result = fetch_text(
+            session,
+            url,
+            raise_for_status=False,
+        )
+
+        valid = (
+            result["status"] == 200
+            and looks_like_valid_bop_page(
+                result["text"],
+                group,
+            )
+        )
+
+        probes.append(
+            {
+                "version": version,
+                "url": url,
+                "status": result["status"],
+                "bytes": result["bytes"],
+                "valid": valid,
+            }
+        )
+
+        print(
+            f"Probe {group} {version:<6}: "
+            f"HTTP {result['status']} | "
+            f"{result['bytes']:,} bytes | "
+            f"{'VALID' if valid else 'UNUSABLE'}"
+        )
+
+        if valid:
+            return version, result, probes
+
+        time.sleep(
+            REQUEST_DELAY_SECONDS
+        )
+
+    return None, None, probes
+
+
+# ============================================================
+# NUXT DATA
+# ============================================================
+
+def extract_nuxt_data_text(html):
+    soup = BeautifulSoup(
+        html,
+        "html.parser",
+    )
+
+    tag = soup.find(
+        "script",
+        id="__NUXT_DATA__",
+    )
+
+    if tag is None:
+        return None
+
+    if tag.string is not None:
+        return tag.string
+
+    return tag.get_text("\n")
+
+
+def save_nuxt_data(text):
+    STATE_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    NUXT_RAW_FILE.write_text(
+        text,
+        encoding="utf-8",
+    )
+
+
+# ============================================================
+# FAST FLAT-STATE DECODER
+# ============================================================
+
+def resolve_field(raw_state, ref):
+    """
+    Resolve exactly ONE Nuxt/devalue reference.
+
+    The key performance fix versus V1.5 is deliberate:
+    values inside a record dictionary are references to slots in
+    the top-level flat array. Once that slot is read, a primitive
+    integer is DATA, not another reference to recursively expand.
+
+    Therefore this function never walks the whole Nuxt graph.
+    """
+
+    if not isinstance(ref, int):
+        return ref
+
+    if ref < 0:
+        return SPECIAL_REFS.get(ref)
+
+    if ref >= len(raw_state):
+        return None
+
+    return raw_state[ref]
+
 
 def is_raw_bop_record(node):
     return (
         isinstance(node, dict)
-        and REQUIRED_RAW_KEYS.issubset(set(node.keys()))
+        and REQUIRED_RAW_KEYS.issubset(
+            set(node.keys())
+        )
     )
 
 
+def decode_candidate_record(raw_state, node):
+    decoded = {}
+
+    for key, ref in node.items():
+        value = resolve_field(
+            raw_state,
+            ref,
+        )
+
+        # BoP fields should be scalar. Keep scalar values only;
+        # there is no reason to expand nested Nuxt state here.
+        if isinstance(value, (dict, list)):
+            continue
+
+        decoded[key] = value
+
+    return decoded
+
+
 def decode_bop_candidates(raw_state):
-    decoder = NuxtFlatDecoder(raw_state)
     candidates = []
-    for index, node in enumerate(raw_state):
+
+    for index, node in enumerate(
+        raw_state
+    ):
         if not is_raw_bop_record(node):
             continue
-        decoded = decoder.decode_index(index)
-        if not isinstance(decoded, dict):
+
+        decoded = decode_candidate_record(
+            raw_state,
+            node,
+        )
+
+        speed = normalize_speed(
+            decoded.get("speed")
+        )
+
+        car = clean_text(
+            decoded.get("car")
+        )
+
+        if (
+            speed not in EXPECTED_SPEED_CLASSES
+            or not car
+        ):
             continue
-        speed = normalize_speed(decoded.get("speed"))
-        car = clean_text(decoded.get("car"))
-        if speed not in EXPECTED_SPEED_CLASSES or not car:
-            continue
-        candidates.append({"raw_index": index, "data": decoded})
+
+        candidates.append(
+            {
+                "raw_index": index,
+                "data": decoded,
+            }
+        )
+
     return candidates
 
 
+# ============================================================
+# DATABASE RECORD BUILDING
+# ============================================================
+
 def choose_power_hp(data):
-    ice = safe_float(data.get("ICEmaxPowerHP"))
-    hybrid = safe_float(data.get("HYBmaxPowerHP"))
+    ice = safe_float(
+        data.get("ICEmaxPowerHP")
+    )
+
+    hybrid = safe_float(
+        data.get("HYBmaxPowerHP")
+    )
+
     if ice is not None and ice > 0:
         return ice
+
     if hybrid is not None and hybrid > 0:
         return hybrid
+
     return None
 
 
 def format_stability(index_value, behaviour):
-    index_text = clean_text(index_value)
-    behaviour_text = clean_text(behaviour)
+    index_text = clean_text(
+        index_value
+    )
+
+    behaviour_text = clean_text(
+        behaviour
+    )
+
     if index_text and behaviour_text:
-        return f"{index_text} | {behaviour_text}"
-    return index_text or behaviour_text
+        return (
+            f"{index_text} | "
+            f"{behaviour_text}"
+        )
+
+    return (
+        index_text
+        or behaviour_text
+    )
 
 
-def build_database_record(data, selected_version, page_url):
-    car = clean_text(data.get("car"))
-    speed = normalize_speed(data.get("speed"))
+def build_database_record(
+    data,
+    selected_version,
+    page_url,
+):
+    car = clean_text(
+        data.get("car")
+    )
 
-    record_version = clean_text(data.get("version"))
+    speed = normalize_speed(
+        data.get("speed")
+    )
+
+    record_version = clean_text(
+        data.get("version")
+    )
+
     if (
         not record_version
-        or not re.fullmatch(r"\d+\.\d+", record_version)
+        or not re.fullmatch(
+            r"\d+\.\d+",
+            record_version,
+        )
     ):
         record_version = selected_version
 
-    front = safe_float(data.get("weightBalanceFront"))
-    rear = safe_float(data.get("weightBalanceRear"))
+    front = safe_float(
+        data.get("weightBalanceFront")
+    )
+
+    rear = safe_float(
+        data.get("weightBalanceRear")
+    )
 
     weight_balance = None
-    if front is not None and rear is not None:
-        weight_balance = f"{front:g}:{rear:g}"
+
+    if (
+        front is not None
+        and rear is not None
+    ):
+        weight_balance = (
+            f"{front:g}:{rear:g}"
+        )
 
     return build_record(
         car=car,
@@ -347,21 +567,49 @@ def build_database_record(data, selected_version, page_url):
         bop_version=record_version,
         speed_class=speed,
         power_hp=choose_power_hp(data),
-        torque_nm=safe_float(data.get("maxTorqueNM")),
-        weight_kg=safe_float(data.get("weightKG")),
-        pp=safe_float(data.get("PP")),
+        torque_nm=safe_float(
+            data.get("maxTorqueNM")
+        ),
+        weight_kg=safe_float(
+            data.get("weightKG")
+        ),
+        pp=safe_float(
+            data.get("PP")
+        ),
         weight_balance=weight_balance,
-        drivetrain=clean_text(data.get("drivetrain")),
-        aspiration=clean_text(data.get("aspiration")),
-        displacement=clean_text(data.get("displacement")),
-        engine_model=clean_text(data.get("engineModel")),
-        powertrain=clean_text(data.get("powerType")),
-        acceleration_0_400=safe_float(data.get("acc0-400m")),
-        acceleration_0_1000=safe_float(data.get("acc0-1000m")),
-        acceleration_100_150=safe_float(data.get("acc100-150kmh")),
-        rotational_g_60=safe_float(data.get("rotG60kmh")),
-        rotational_g_120=safe_float(data.get("rotG120kmh")),
-        rotational_g_240=safe_float(data.get("rotG240kmh")),
+        drivetrain=clean_text(
+            data.get("drivetrain")
+        ),
+        aspiration=clean_text(
+            data.get("aspiration")
+        ),
+        displacement=clean_text(
+            data.get("displacement")
+        ),
+        engine_model=clean_text(
+            data.get("engineModel")
+        ),
+        powertrain=clean_text(
+            data.get("powerType")
+        ),
+        acceleration_0_400=safe_float(
+            data.get("acc0-400m")
+        ),
+        acceleration_0_1000=safe_float(
+            data.get("acc0-1000m")
+        ),
+        acceleration_100_150=safe_float(
+            data.get("acc100-150kmh")
+        ),
+        rotational_g_60=safe_float(
+            data.get("rotG60kmh")
+        ),
+        rotational_g_120=safe_float(
+            data.get("rotG120kmh")
+        ),
+        rotational_g_240=safe_float(
+            data.get("rotG240kmh")
+        ),
         stability_low_speed=format_stability(
             data.get("stabilityLowInd"),
             data.get("stabilityLowBehaviour"),
@@ -376,32 +624,57 @@ def build_database_record(data, selected_version, page_url):
     )
 
 
+# ============================================================
+# VALIDATION / COMPARISON
+# ============================================================
+
 def validate_extraction(records):
     errors = []
-    by_speed = {speed: [] for speed in EXPECTED_SPEED_CLASSES}
+
+    by_speed = {
+        speed: []
+        for speed in EXPECTED_SPEED_CLASSES
+    }
+
     seen = set()
 
     for record in records:
-        speed = record.get("speed_class")
-        car = record.get("car")
+        speed = record.get(
+            "speed_class"
+        )
+
+        car = record.get(
+            "car"
+        )
 
         if speed not in by_speed:
-            errors.append(f"Unexpected speed class: {speed}")
+            errors.append(
+                f"Unexpected speed class: {speed}"
+            )
             continue
 
-        key = (car, speed)
+        key = (
+            car,
+            speed,
+        )
 
         if key in seen:
-            errors.append(f"Duplicate record: {car} / {speed}")
+            errors.append(
+                f"Duplicate record: {car} / {speed}"
+            )
 
         seen.add(key)
         by_speed[speed].append(record)
 
         if record.get("power_hp") is None:
-            errors.append(f"Missing power: {car} / {speed}")
+            errors.append(
+                f"Missing power: {car} / {speed}"
+            )
 
         if record.get("weight_kg") is None:
-            errors.append(f"Missing weight: {car} / {speed}")
+            errors.append(
+                f"Missing weight: {car} / {speed}"
+            )
 
     counts = {
         speed: len(items)
@@ -414,24 +687,50 @@ def validate_extraction(records):
             f"found {len(records)}."
         )
 
-    for speed in sorted(EXPECTED_SPEED_CLASSES):
-        if counts[speed] != EXPECTED_CARS_PER_CLASS:
+    for speed in sorted(
+        EXPECTED_SPEED_CLASSES
+    ):
+        if (
+            counts[speed]
+            != EXPECTED_CARS_PER_CLASS
+        ):
             errors.append(
-                f"{speed}: expected {EXPECTED_CARS_PER_CLASS} cars, "
+                f"{speed}: expected "
+                f"{EXPECTED_CARS_PER_CLASS} cars, "
                 f"found {counts[speed]}."
             )
 
     car_sets = {
-        speed: {record["car"] for record in items}
+        speed: {
+            record["car"]
+            for record in items
+        }
         for speed, items in by_speed.items()
     }
 
-    reference = car_sets.get("HIGH", set())
+    reference = car_sets.get(
+        "HIGH",
+        set(),
+    )
 
-    for speed in ["MID", "LOW"]:
-        if car_sets.get(speed, set()) != reference:
-            missing = sorted(reference - car_sets.get(speed, set()))
-            extra = sorted(car_sets.get(speed, set()) - reference)
+    for speed in [
+        "MID",
+        "LOW",
+    ]:
+        if (
+            car_sets.get(speed, set())
+            != reference
+        ):
+            missing = sorted(
+                reference
+                - car_sets.get(speed, set())
+            )
+
+            extra = sorted(
+                car_sets.get(speed, set())
+                - reference
+            )
+
             errors.append(
                 f"Car set differs for {speed}. "
                 f"Missing={missing}; Extra={extra}"
@@ -455,21 +754,42 @@ def record_signature(record):
 
 def compare_speed_classes(records):
     lookup = {
-        (record["car"], record["speed_class"]): record
+        (
+            record["car"],
+            record["speed_class"],
+        ): record
         for record in records
     }
 
-    cars = sorted({record["car"] for record in records})
+    cars = sorted(
+        {
+            record["car"]
+            for record in records
+        }
+    )
 
     changed = []
     unchanged = []
 
     for car in cars:
-        signatures = {
-            speed: record_signature(lookup[(car, speed)])
-            for speed in EXPECTED_SPEED_CLASSES
-            if (car, speed) in lookup
-        }
+        signatures = {}
+
+        for speed in [
+            "HIGH",
+            "MID",
+            "LOW",
+        ]:
+            record = lookup.get(
+                (
+                    car,
+                    speed,
+                )
+            )
+
+            if record:
+                signatures[speed] = (
+                    record_signature(record)
+                )
 
         if len(signatures) != 3:
             continue
@@ -479,7 +799,9 @@ def compare_speed_classes(records):
             "HIGH": signatures["HIGH"],
             "MID": signatures["MID"],
             "LOW": signatures["LOW"],
-            "distinct_signatures": len(set(signatures.values())),
+            "distinct_signatures": len(
+                set(signatures.values())
+            ),
         }
 
         if item["distinct_signatures"] > 1:
@@ -494,6 +816,10 @@ def compare_speed_classes(records):
         "unchanged_count": len(unchanged),
     }
 
+
+# ============================================================
+# SAVE / DATABASE WRITE
+# ============================================================
 
 def save_extracted_data(
     selected_version,
@@ -525,11 +851,16 @@ def save_extracted_data(
 
 def write_database(records):
     database = load_database()
+
     added = 0
     updated = 0
 
     for record in records:
-        result = upsert_record(database, record)
+        result = upsert_record(
+            database,
+            record,
+        )
+
         if result["status"] == "ADDED":
             added += 1
         else:
@@ -546,12 +877,40 @@ def write_database(records):
 
 def format_signature(signature):
     power, weight, pp = signature
-    return f"{power:g} HP / {weight:g} kg / PP {pp:g}"
 
+    power_text = (
+        f"{power:g}"
+        if power is not None
+        else "N/A"
+    )
+
+    weight_text = (
+        f"{weight:g}"
+        if weight is not None
+        else "N/A"
+    )
+
+    pp_text = (
+        f"{pp:g}"
+        if pp is not None
+        else "N/A"
+    )
+
+    return (
+        f"{power_text} HP / "
+        f"{weight_text} kg / "
+        f"PP {pp_text}"
+    )
+
+
+# ============================================================
+# REPORT
+# ============================================================
 
 def build_report(
     selected_version,
     probes,
+    raw_state_size,
     raw_candidate_count,
     records,
     extraction_validation,
@@ -559,15 +918,29 @@ def build_report(
     write_result,
     db_stats,
     db_validation,
+    elapsed_seconds,
 ):
     lines = []
 
-    lines.append("GT7 BOP LAB V1.5 - STRUCTURED BOP EXTRACTION")
+    lines.append(
+        "GT7 BOP LAB V1.6 - FAST STRUCTURED BOP EXTRACTION"
+    )
     lines.append(SEP)
-    lines.append(f"Generated           : {now_iso()}")
-    lines.append(f"Group               : {GROUP}")
-    lines.append(f"Selected version    : {selected_version}")
-    lines.append("Production modified : NO")
+    lines.append(
+        f"Generated           : {now_iso()}"
+    )
+    lines.append(
+        f"Group               : {GROUP}"
+    )
+    lines.append(
+        f"Selected version    : {selected_version}"
+    )
+    lines.append(
+        "Production modified : NO"
+    )
+    lines.append(
+        f"Elapsed             : {elapsed_seconds:.2f}s"
+    )
 
     lines.append("")
     lines.append("VERSION PROBES")
@@ -584,10 +957,21 @@ def build_report(
     lines.append("")
     lines.append("NUXT STRUCTURED EXTRACTION")
     lines.append(SUB)
-    lines.append(f"Raw BoP objects     : {raw_candidate_count}")
-    lines.append(f"Decoded records     : {len(records)}")
+    lines.append(
+        f"Flat state entries  : {raw_state_size:,}"
+    )
+    lines.append(
+        f"Raw BoP objects     : {raw_candidate_count}"
+    )
+    lines.append(
+        f"Decoded records     : {len(records)}"
+    )
 
-    for speed in ["HIGH", "MID", "LOW"]:
+    for speed in [
+        "HIGH",
+        "MID",
+        "LOW",
+    ]:
         lines.append(
             f"{speed:<19}: "
             f"{extraction_validation['counts'].get(speed, 0)} cars"
@@ -605,8 +989,11 @@ def build_report(
     if extraction_validation["errors"]:
         lines.append("")
         lines.append("EXTRACTION ERRORS")
+
         for error in extraction_validation["errors"]:
-            lines.append(f"- {error}")
+            lines.append(
+                f"- {error}"
+            )
 
     lines.append("")
     lines.append("HIGH / MID / LOW COMPARISON")
@@ -619,19 +1006,26 @@ def build_report(
     )
 
     lines.append("")
-    lines.append("FIRST 12 CARS WITH DIFFERENT SPEED-CLASS BOP")
+    lines.append(
+        "FIRST 12 CARS WITH DIFFERENT SPEED-CLASS BOP"
+    )
     lines.append(SUB)
 
     for item in comparison["changed"][:12]:
-        lines.append(item["car"])
         lines.append(
-            "  HIGH : " + format_signature(item["HIGH"])
+            item["car"]
         )
         lines.append(
-            "  MID  : " + format_signature(item["MID"])
+            "  HIGH : "
+            + format_signature(item["HIGH"])
         )
         lines.append(
-            "  LOW  : " + format_signature(item["LOW"])
+            "  MID  : "
+            + format_signature(item["MID"])
+        )
+        lines.append(
+            "  LOW  : "
+            + format_signature(item["LOW"])
         )
 
     lines.append("")
@@ -639,8 +1033,12 @@ def build_report(
     lines.append(SUB)
 
     if write_result:
-        lines.append(f"Added               : {write_result['added']}")
-        lines.append(f"Updated             : {write_result['updated']}")
+        lines.append(
+            f"Added               : {write_result['added']}"
+        )
+        lines.append(
+            f"Updated             : {write_result['updated']}"
+        )
         lines.append(
             f"Written this run    : {write_result['total_written']}"
         )
@@ -649,8 +1047,12 @@ def build_report(
             "Write skipped       : extraction validation failed"
         )
 
-    lines.append(f"Database records    : {db_stats['records']}")
-    lines.append(f"Database cars       : {db_stats['cars']}")
+    lines.append(
+        f"Database records    : {db_stats['records']}"
+    )
+    lines.append(
+        f"Database cars       : {db_stats['cars']}"
+    )
     lines.append(
         f"Database speeds     : "
         f"{', '.join(db_stats['speed_classes'])}"
@@ -670,15 +1072,11 @@ def build_report(
         and db_validation["valid"]
     ):
         lines.append(
-            "SUCCESS: DG EDGE __NUXT_DATA__ directly contains "
-            "the three GR.3 BoP speed classes."
+            "SUCCESS: HIGH / MID / LOW were decoded directly "
+            "from DG EDGE __NUXT_DATA__."
         )
         lines.append(
-            "HIGH / MID / LOW have been decoded without "
-            "simulating the website radio buttons."
-        )
-        lines.append(
-            "The experimental BoP database is now populated."
+            "The experimental GR.3 BoP database is populated."
         )
     else:
         lines.append(
@@ -686,25 +1084,51 @@ def build_report(
         )
 
     lines.append(SEP)
+
     return "\n".join(lines)
 
 
+# ============================================================
+# MAIN
+# ============================================================
+
 def main():
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    started = time.perf_counter()
+
+    DATA_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+    REPORT_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+    STATE_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
     print()
-    print(f"GT7 BOP LAB V{VERSION}")
+    print(
+        f"GT7 BOP LAB V{VERSION}"
+    )
     print(SEP)
-    print("Experimental pipeline.")
-    print("Production Daily Race C remains untouched.")
+    print(
+        "Fast flat-state extraction."
+    )
+    print(
+        "Production Daily Race C remains untouched."
+    )
     print()
 
     session = requests.Session()
-    session.headers.update(HEADERS)
+    session.headers.update(
+        HEADERS
+    )
 
-    print("READING DG EDGE BOP INDEX")
+    print(
+        "READING DG EDGE BOP INDEX"
+    )
     print(SUB)
 
     index_result = fetch_text(
@@ -712,21 +1136,37 @@ def main():
         DG_EDGE_BOP_URL,
     )
 
-    print(f"HTTP status        : {index_result['status']}")
-    print(f"Response bytes     : {index_result['bytes']:,}")
+    print(
+        f"HTTP status        : {index_result['status']}"
+    )
+    print(
+        f"Response bytes     : {index_result['bytes']:,}"
+    )
 
-    versions = extract_versions(index_result["text"])
+    versions = extract_versions(
+        index_result["text"]
+    )
 
-    print(f"Versions detected  : {', '.join(versions)}")
+    print(
+        f"Versions detected  : {', '.join(versions)}"
+    )
 
     if not versions:
-        raise RuntimeError("No BoP versions discovered.")
+        raise RuntimeError(
+            "No BoP versions discovered."
+        )
 
     print()
-    print("PROBING GR.3 VERSIONS")
+    print(
+        "PROBING GR.3 VERSIONS"
+    )
     print(SUB)
 
-    selected_version, source, probes = probe_versions(
+    (
+        selected_version,
+        source,
+        probes,
+    ) = probe_versions(
         session,
         GROUP,
         versions,
@@ -743,50 +1183,92 @@ def main():
     )
 
     print()
-    print("SELECTED BOP PAGE")
+    print(
+        "SELECTED BOP PAGE"
+    )
     print(SUB)
-    print(f"Version            : {selected_version}")
-    print(f"URL                : {page_url}")
+    print(
+        f"Version            : {selected_version}"
+    )
+    print(
+        f"URL                : {page_url}"
+    )
 
-    nuxt_text = extract_nuxt_data_text(source["text"])
+    nuxt_text = extract_nuxt_data_text(
+        source["text"]
+    )
 
     if not nuxt_text:
-        raise RuntimeError("__NUXT_DATA__ script not found.")
+        raise RuntimeError(
+            "__NUXT_DATA__ script not found."
+        )
 
-    save_nuxt_data(nuxt_text)
+    save_nuxt_data(
+        nuxt_text
+    )
 
     try:
-        raw_state = json.loads(nuxt_text)
+        raw_state = json.loads(
+            nuxt_text
+        )
     except Exception as error:
         raise RuntimeError(
             "Could not parse __NUXT_DATA__ JSON: "
             f"{error}"
         ) from error
 
-    print()
-    print("DECODING NUXT FLAT STATE")
-    print(SUB)
-    print(f"Flat state entries : {len(raw_state):,}")
-
-    candidates = decode_bop_candidates(raw_state)
-
-    print(f"BoP candidates     : {len(candidates)}")
-
-    records = [
-        build_database_record(
-            candidate["data"],
-            selected_version,
-            page_url,
+    if not isinstance(raw_state, list):
+        raise RuntimeError(
+            "__NUXT_DATA__ root is not a flat list."
         )
-        for candidate in candidates
-    ]
 
-    extraction_validation = validate_extraction(records)
-    comparison = compare_speed_classes(records)
+    print()
+    print(
+        "FAST NUXT BOP EXTRACTION"
+    )
+    print(SUB)
+    print(
+        f"Flat state entries : {len(raw_state):,}"
+    )
 
-    print(f"Decoded records    : {len(records)}")
+    candidates = decode_bop_candidates(
+        raw_state
+    )
 
-    for speed in ["HIGH", "MID", "LOW"]:
+    print(
+        f"BoP candidates     : {len(candidates)}"
+    )
+
+    records = []
+
+    for candidate in candidates:
+        records.append(
+            build_database_record(
+                candidate["data"],
+                selected_version,
+                page_url,
+            )
+        )
+
+    extraction_validation = (
+        validate_extraction(
+            records
+        )
+    )
+
+    comparison = compare_speed_classes(
+        records
+    )
+
+    print(
+        f"Decoded records    : {len(records)}"
+    )
+
+    for speed in [
+        "HIGH",
+        "MID",
+        "LOW",
+    ]:
         print(
             f"{speed:<18}: "
             f"{extraction_validation['counts'].get(speed, 0)}"
@@ -820,14 +1302,22 @@ def main():
     write_result = None
 
     if extraction_validation["valid"]:
-        write_result = write_database(records)
+        write_result = write_database(
+            records
+        )
 
     db_stats = database_stats()
     db_validation = validate_database()
 
+    elapsed_seconds = (
+        time.perf_counter()
+        - started
+    )
+
     report = build_report(
         selected_version=selected_version,
         probes=probes,
+        raw_state_size=len(raw_state),
         raw_candidate_count=len(candidates),
         records=records,
         extraction_validation=extraction_validation,
@@ -835,16 +1325,26 @@ def main():
         write_result=write_result,
         db_stats=db_stats,
         db_validation=db_validation,
+        elapsed_seconds=elapsed_seconds,
     )
 
-    REPORT_FILE.write_text(report, encoding="utf-8")
+    REPORT_FILE.write_text(
+        report,
+        encoding="utf-8",
+    )
 
     print()
     print(report)
     print()
-    print(f"Saved report       : {REPORT_FILE}")
-    print(f"Saved extraction   : {EXTRACTED_FILE}")
-    print(f"Saved raw Nuxt     : {NUXT_RAW_FILE}")
+    print(
+        f"Saved report       : {REPORT_FILE}"
+    )
+    print(
+        f"Saved extraction   : {EXTRACTED_FILE}"
+    )
+    print(
+        f"Saved raw Nuxt     : {NUXT_RAW_FILE}"
+    )
     print(SEP)
 
     if not extraction_validation["valid"]:
