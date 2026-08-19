@@ -32,16 +32,33 @@ jobs:
         run: |
           python src/sleeper_car_lab.py
 
+      - name: Inspect generated files
+        if: always()
+        run: |
+          echo "Generated Sleeper Lab files:"
+          find data/bop_lab reports -maxdepth 2 -type f \
+            \( -name 'sleeper_car_index.json' \
+            -o -name 'sleeper_car_lab_error.txt' \
+            -o -name 'sleeper_car_lab.txt' \) \
+            -print || true
+
       - name: Save Sleeper Car Lab results
         if: always()
         run: |
           git config user.name "GT7 Sleeper Car Lab"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add \
-            data/bop_lab/sleeper_car_index.json \
-            data/bop_lab/sleeper_car_lab_error.txt \
-            reports/sleeper_car_lab.txt 2>/dev/null || true
+          if [ -f data/bop_lab/sleeper_car_index.json ]; then
+            git add data/bop_lab/sleeper_car_index.json
+          fi
+
+          if [ -f data/bop_lab/sleeper_car_lab_error.txt ]; then
+            git add data/bop_lab/sleeper_car_lab_error.txt
+          fi
+
+          if [ -f reports/sleeper_car_lab.txt ]; then
+            git add reports/sleeper_car_lab.txt
+          fi
 
           if git diff --cached --quiet; then
             echo "No Sleeper Car Lab changes to save."
