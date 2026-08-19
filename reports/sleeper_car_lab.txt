@@ -1,6 +1,6 @@
 GT7 SLEEPER CAR LAB V0.3
 ====================================================================================================
-Generated            : 2026-08-19T13:16:41.372517+00:00
+Generated            : 2026-08-19T13:30:52.407508+00:00
 Track                : Yas Marina Circuit
 Group                : GR.3
 Active BoP           : MID
@@ -8,11 +8,11 @@ Model key            : GR.3|MID
 Total drivers        : 13,155
 Cars observed        : 53
 Cars eligible (n>=20) : 39
-Eligible with BoP    : 38
-Eligible without BoP : 1
+Eligible with BoP    : 39
+Eligible without BoP : 0
 WR                   : 1:51.945
 Top 500              : 1:53.737
-Elapsed              : 49.2s
+Elapsed              : 42.2s
 Production modified  : NO
 
 METHOD
@@ -56,10 +56,6 @@ TOP SLEEPER CANDIDATES
 15. Genesis X GR3 | SCI 50.7 | NO SLEEPER SIGNAL | n=27 (0.21%) | Eff 0.92x | T100 0 / T500 0 / T1000 2 | Best #738 1:53.965 | Conf LOW
     Active GR.3 MID BoP: 466 HP / 1285 kg / PP 699.78 / FR
 
-BOP MAPPING GAPS
-----------------------------------------------------------------------------------------------------
-- Toyota FT-1 Vision Gran Turismo (Gr.3) | n=30 | SCI still calculated, technical model excluded
-
 MULTI-GROUP MODEL POLICY
 ----------------------------------------------------------------------------------------------------
 GR.3 observations never train GR.4, GR.2, GR.1 or GR.B models.
@@ -78,14 +74,14 @@ Technical SCI weight : 0.0
 Policy               : group + speed-class models are completely separate.
 
 Observed correlations (diagnostic only):
-  power_weight_hp_t        +0.136
-  weight_kg                -0.175
-  front_weight_pct         +0.067
-  acceleration_0_400       -0.019
-  acceleration_100_150     -0.136
-  rotational_g_60          -0.015
-  rotational_g_120         +0.006
-  rotational_g_240         +0.098
+  power_weight_hp_t        +0.143
+  weight_kg                -0.199
+  front_weight_pct         +0.053
+  acceleration_0_400       -0.024
+  acceleration_100_150     -0.147
+  rotational_g_60          -0.034
+  rotational_g_120         +0.007
+  rotational_g_240         +0.099
 
 MODEL COVERAGE
   GR.3|MID       1 independent race(s) | BOOTSTRAP

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T13:16:41.372517+00:00",
+  "generated_at": "2026-08-19T13:30:52.407508+00:00",
   "version": "0.3",
   "snapshot_timestamp": "2026-08-19T06:17:29.766163-03:00",
   "track": "Yas Marina Circuit",
@@ -30,11 +30,9 @@
   },
   "bop_coverage": {
     "group_database_records": 156,
-    "eligible_cars_with_bop": 38,
-    "eligible_cars_without_bop": 1,
-    "unmatched_cars": [
-      "Toyota FT-1 Vision Gran Turismo (Gr.3)"
-    ]
+    "eligible_cars_with_bop": 39,
+    "eligible_cars_without_bop": 0,
+    "unmatched_cars": []
   },
   "cars_total": 53,
   "cars_eligible": 39,
@@ -434,7 +432,7 @@
       "bop_match": {
         "requested_name": "Mitsubishi Lancer Evolution Final Edition Gr.3",
         "matched_name": "Mitsubishi Lancer Evolution Final Gr.3",
-        "match_score": 86
+        "match_score": 94
       },
       "bop_available": true
     },
@@ -719,7 +717,7 @@
       "bop_match": {
         "requested_name": "Renault Sport R.S.01 GT3 '16",
         "matched_name": "Renault R.S.01 GT3 '16",
-        "match_score": 86
+        "match_score": 91
       },
       "bop_available": true
     },
@@ -890,7 +888,7 @@
       "bop_match": {
         "requested_name": "Genesis X GR3",
         "matched_name": "Genesis Genesis X GR3",
-        "match_score": 90
+        "match_score": 94
       },
       "bop_available": true
     },
@@ -1315,9 +1313,40 @@
       "sleeper_score": 48.408517154732685,
       "sleeper_label": "NO SLEEPER SIGNAL",
       "confidence": "LOW",
-      "active_bop": null,
-      "bop_match": null,
-      "bop_available": false
+      "active_bop": {
+        "car": "Toyota FT-1 VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 691.17,
+        "power_hp": 473.0,
+        "torque_nm": 408.9,
+        "weight_kg": 1350.0,
+        "power_weight_hp_t": 350.3703703703703,
+        "weight_balance": "51:49",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.05,
+          "0_1000m": 21.52,
+          "100_150_kmh": 2.88
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.44,
+          "240_kmh": 1.69
+        },
+        "stability": {
+          "low_speed": "-0.27 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Toyota FT-1 Vision Gran Turismo (Gr.3)",
+        "matched_name": "Toyota FT-1 VGT (Gr.3)",
+        "match_score": 100
+      },
+      "bop_available": true
     },
     {
       "car_code": 2131,
@@ -1543,7 +1572,7 @@
       "bop_match": {
         "requested_name": "Mercedes-AMG GT3 '16",
         "matched_name": "AMG Mercedes-AMG GT3 '16",
-        "match_score": 90
+        "match_score": 94
       },
       "bop_available": true
     },
@@ -1771,7 +1800,7 @@
       "bop_match": {
         "requested_name": "Mercedes-AMG GT3 '20",
         "matched_name": "AMG Mercedes-AMG GT3 '20",
-        "match_score": 90
+        "match_score": 94
       },
       "bop_available": true
     },
@@ -1828,7 +1857,7 @@
       "bop_match": {
         "requested_name": "GT by Citroën Race Car (Gr.3)",
         "matched_name": "Citroën GT by Citroën Race Car (Gr.3)",
-        "match_score": 90
+        "match_score": 94
       },
       "bop_available": true
     },
@@ -1999,7 +2028,7 @@
       "bop_match": {
         "requested_name": "Ford GT Race Car '18",
         "matched_name": "Ford Ford GT Race Car '18",
-        "match_score": 90
+        "match_score": 94
       },
       "bop_available": true
     },
@@ -2252,14 +2281,14 @@
       "rotational_g_240"
     ],
     "observed_feature_correlations": {
-      "power_weight_hp_t": 0.13566299524276462,
-      "weight_kg": -0.1746132426878068,
-      "front_weight_pct": 0.06734270049159279,
-      "acceleration_0_400": -0.018542975117715226,
-      "acceleration_100_150": -0.13588870145894127,
-      "rotational_g_60": -0.015121006236056427,
-      "rotational_g_120": 0.006098777467189464,
-      "rotational_g_240": 0.09784271269932036
+      "power_weight_hp_t": 0.14283254735899614,
+      "weight_kg": -0.19901659374300404,
+      "front_weight_pct": 0.05291564899549675,
+      "acceleration_0_400": -0.023993681094356404,
+      "acceleration_100_150": -0.1468808052743846,
+      "rotational_g_60": -0.0339449449011556,
+      "rotational_g_120": 0.007130520624247572,
+      "rotational_g_240": 0.09871932379045802
     },
     "technical_weight_in_sleeper_score": 0.0,
     "multi_group_model_coverage": {

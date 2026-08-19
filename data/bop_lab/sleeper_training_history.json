@@ -4,7 +4,7 @@
     {
       "race_key": "live:GR.3:MID:2026-08-17",
       "week_start": "2026-08-17",
-      "captured_at": "2026-08-19T13:16:41.445297+00:00",
+      "captured_at": "2026-08-19T13:30:52.497175+00:00",
       "track": "Yas Marina Circuit",
       "group": "GR.3",
       "speed_class": "MID",
@@ -365,6 +365,22 @@
           }
         },
         {
+          "car_code": 2187,
+          "car": "Toyota FT-1 Vision Gran Turismo (Gr.3)",
+          "sample": 30,
+          "performance_target": 0.32092671844681786,
+          "technical": {
+            "power_weight_hp_t": 350.3703703703703,
+            "weight_kg": 1350.0,
+            "front_weight_pct": 51.0,
+            "acceleration_0_400": 12.05,
+            "acceleration_100_150": 2.88,
+            "rotational_g_60": 1.34,
+            "rotational_g_120": 1.44,
+            "rotational_g_240": 1.69
+          }
+        },
+        {
           "car_code": 2131,
           "car": "Aston Martin V12 Vantage GT3 '12",
           "sample": 40,
@@ -623,5 +639,5 @@
       ]
     }
   ],
-  "updated_at": "2026-08-19T13:16:41.445320+00:00"
+  "updated_at": "2026-08-19T13:30:52.497203+00:00"
 }

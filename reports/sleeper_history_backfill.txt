@@ -1,13 +1,14 @@
-GT7 SLEEPER HISTORY BACKFILL V0.3
+GT7 SLEEPER HISTORY BACKFILL V0.4
 ====================================================================================================
 Target model          : GR.3|MID
-Target group          : GR.3
-Target speed class    : MID
 Current live week     : 2026-08-17
 Removed invalid/duplicate observations : 0
 Existing independent observations      : 1
 Target observations   : 3
 Eligible historical weeks : 0
+Unresolved track rows : 0
+Other speed-class rows: 0
+Speed resolution      : explicit=0, group-map=0, default-map=0
 
 
 Added this run        : 0
