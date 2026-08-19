@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-19T12:16:06.397494+00:00",
-  "classifier_version": "1.0",
+  "generated_at": "2026-08-19T12:20:17.328391+00:00",
+  "classifier_version": "1.1",
   "snapshot_timestamp": "2026-08-19T06:17:29.766163-03:00",
   "race_description": "C Gr.3 Running 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit P. Blazsán - Porsche 911 GT3 R (992) '22 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom",
   "track": "Yas Marina Circuit",
@@ -24,10 +24,16 @@
       "url": "https://gran-turismo.fandom.com/wiki/Yas_Marina_Circuit"
     }
   ],
+  "database_records": 156,
   "my_car": "Porsche 911 GT3 R (992) '22",
   "my_car_fingerprint": {
     "car": "Porsche 911 GT3 R (992) '22",
     "available": true,
+    "match": {
+      "requested_name": "Porsche 911 GT3 R (992) '22",
+      "matched_name": "Porsche 911 GT3 R (992) '22",
+      "match_score": 100
+    },
     "bop_version": "1.67",
     "distinct_signatures": 1,
     "can_identify_speed_class_from_car": false,
@@ -148,6 +154,11 @@
     {
       "car": "Porsche 911 GT3 R (992) '22",
       "available": true,
+      "match": {
+        "requested_name": "Porsche 911 GT3 R (992) '22",
+        "matched_name": "Porsche 911 GT3 R (992) '22",
+        "match_score": 100
+      },
       "bop_version": "1.67",
       "distinct_signatures": 1,
       "can_identify_speed_class_from_car": false,
@@ -269,6 +280,11 @@
     {
       "car": "Audi R8 LMS Evo '19",
       "available": true,
+      "match": {
+        "requested_name": "Audi R8 LMS Evo '19",
+        "matched_name": "Audi R8 LMS Evo '19",
+        "match_score": 100
+      },
       "bop_version": "1.67",
       "distinct_signatures": 3,
       "can_identify_speed_class_from_car": true,
@@ -390,6 +406,11 @@
     {
       "car": "Ferrari 296 GT3 '23",
       "available": true,
+      "match": {
+        "requested_name": "Ferrari 296 GT3 '23",
+        "matched_name": "Ferrari 296 GT3 '23",
+        "match_score": 100
+      },
       "bop_version": "1.67",
       "distinct_signatures": 2,
       "can_identify_speed_class_from_car": true,
@@ -511,6 +532,11 @@
     {
       "car": "Lamborghini Huracán GT3 '15",
       "available": true,
+      "match": {
+        "requested_name": "Lamborghini Huracán GT3 '15",
+        "matched_name": "Lamborghini Huracán GT3 '15",
+        "match_score": 100
+      },
       "bop_version": "1.67",
       "distinct_signatures": 3,
       "can_identify_speed_class_from_car": true,
@@ -632,6 +658,11 @@
     {
       "car": "Jaguar F-type Gr.3",
       "available": true,
+      "match": {
+        "requested_name": "Jaguar F-type Gr.3",
+        "matched_name": "Jaguar F-type Gr.3",
+        "match_score": 100
+      },
       "bop_version": "1.67",
       "distinct_signatures": 3,
       "can_identify_speed_class_from_car": true,

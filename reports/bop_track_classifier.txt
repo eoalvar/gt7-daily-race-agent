@@ -1,11 +1,13 @@
-GT7 BOP TRACK CLASSIFIER V1.0
+GT7 BOP TRACK CLASSIFIER V1.1
 ====================================================================================================
-Snapshot            : 2026-08-19T06:17:29.766163-03:00
-Track               : Yas Marina Circuit
-Group               : GR.3
-BoP speed class     : MID
-Confidence          : VALIDATED_EXTERNAL
-Production modified : NO
+Generated            : 2026-08-19T12:20:17.328391+00:00
+Snapshot             : 2026-08-19T06:17:29.766163-03:00
+Track                : Yas Marina Circuit
+Group                : GR.3
+BoP speed class      : MID
+Confidence           : VALIDATED_EXTERNAL
+BoP DB records       : 156
+Production modified  : NO
 
 CLASSIFICATION EVIDENCE
 ----------------------------------------------------------------------------------------------------
@@ -15,13 +17,15 @@ CLASSIFICATION EVIDENCE
 
 YOUR CURRENT CAR
 ----------------------------------------------------------------------------------------------------
-Car                 : Porsche 911 GT3 R (992) '22
-BoP version         : 1.67
-HIGH                : 446 HP / 1320 kg / PP 693.04
-MID                 : 446 HP / 1320 kg / PP 693.04
-LOW                 : 446 HP / 1320 kg / PP 693.04
-Active (MID)        : 446 HP / 1320 kg / PP 693.04
-Fingerprint useful  : NO - this car has identical/insufficient BoP signatures
+Car                  : Porsche 911 GT3 R (992) '22
+Matched DB car       : Porsche 911 GT3 R (992) '22
+Name match score     : 100
+BoP version          : 1.67
+HIGH                 : 446 HP / 1320 kg / PP 693.04
+MID                  : 446 HP / 1320 kg / PP 693.04
+LOW                  : 446 HP / 1320 kg / PP 693.04
+Active (MID)         : 446 HP / 1320 kg / PP 693.04
+Fingerprint useful   : NO
 
 TOP 5 USED CARS - ACTIVE BOP
 ----------------------------------------------------------------------------------------------------
@@ -33,6 +37,6 @@ TOP 5 USED CARS - ACTIVE BOP
 
 RESULT
 ----------------------------------------------------------------------------------------------------
-Current Daily Race C uses MID-speed BoP for Yas Marina Circuit.
-The active technical comparison for sleeper analysis should therefore use the MID records from bop_database.json.
+Current Daily Race C classified as MID-speed BoP at Yas Marina Circuit.
+Sleeper analysis should use MID records from bop_database.json.
 ====================================================================================================
