@@ -1,27 +1,82 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "tracks": {
     "Yas Marina Circuit": {
       "speed_class": "MID",
       "confidence": "VALIDATED_EXTERNAL",
       "validation": [
         {
-          "source": "GTPlanet Daily Races 2025-12-08",
-          "evidence": "Yas Marina Circuit / Gr.4 / BOP (M)",
-          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20251208/"
-        },
-        {
           "source": "Lights to Flag Daily Races 2026-06-01",
           "evidence": "Yas Marina Circuit / Gr.3 / BOP (M)",
           "url": "https://lights-to-flag.com/gt7-daily-races-20260601/"
-        },
+        }
+      ]
+    },
+    "WeatherTech Raceway Laguna Seca": {
+      "speed_class": "LOW",
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-05-11",
+          "evidence": "WeatherTech Raceway Laguna Seca / Gr.3 / BOP (L)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-try-to-keep-a-copen-mind-20260511/"
+        }
+      ]
+    },
+    "Mount Panorama Motor Racing Circuit": {
+      "speed_class": "HIGH",
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
+        {
+          "source": "Traxion Daily Races 2023-01-02",
+          "evidence": "Mount Panorama / Gr.3 / High-speed (H)",
+          "url": "https://traxion.gg/your-guide-to-gran-turismo-7s-daily-races-w-c-2nd-january-2023-customer-racing/"
+        }
+      ]
+    },
+    "Nürburgring Endurance": {
+      "speed_class": "HIGH",
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
         {
           "source": "Gran Turismo Wiki",
-          "evidence": "Yas Marina Circuit BoP (GT7): Mid-speed",
-          "url": "https://gran-turismo.fandom.com/wiki/Yas_Marina_Circuit"
+          "evidence": "Nürburgring Endurance BoP (GT7): High-speed",
+          "url": "https://gran-turismo.fandom.com/wiki/N%C3%BCrburgring_Endurance"
         }
-      ],
-      "notes": "Validated as GT7 mid-speed BoP. Mapping is track-based, not car-based."
+      ]
+    },
+    "Nürburgring Endurance II": {
+      "speed_class": "HIGH",
+      "confidence": "INFERRED_FROM_LAYOUT_FAMILY",
+      "validation": [
+        {
+          "source": "Gran Turismo Wiki",
+          "evidence": "Endurance II is the reverse GT7 variant of Nürburgring Endurance, whose GT7 BoP is High-speed",
+          "url": "https://gran-turismo.fandom.com/wiki/N%C3%BCrburgring_Endurance"
+        }
+      ]
+    },
+    "Suzuka Circuit": {
+      "speed_class": "MID",
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
+        {
+          "source": "Lights to Flag Daily Races 2026-07-13",
+          "evidence": "Suzuka Circuit / Gr.3 / BOP (M)",
+          "url": "https://lights-to-flag.com/gt7-daily-races-20260713/"
+        }
+      ]
+    },
+    "Deep Forest Raceway": {
+      "speed_class": "MID",
+      "confidence": "VALIDATED_EXTERNAL",
+      "validation": [
+        {
+          "source": "GTPlanet Daily Races 2026-06-29",
+          "evidence": "Deep Forest Raceway / Gr.3 / BOP (M)",
+          "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-bombs-away-at-bathurst-20260629/"
+        }
+      ]
     }
   }
 }
