@@ -1,6 +1,6 @@
-GT7 SLEEPER CAR LAB V0.1
+GT7 SLEEPER CAR LAB V0.2
 ====================================================================================================
-Generated            : 2026-08-19T12:32:17.189996+00:00
+Generated            : 2026-08-19T12:40:31.739630+00:00
 Track                : Yas Marina Circuit
 Group                : GR.3
 Active BoP           : MID
@@ -9,7 +9,7 @@ Cars observed        : 53
 Cars eligible (n>=20) : 39
 WR                   : 1:51.945
 Top 500              : 1:53.737
-Elapsed              : 47.2s
+Elapsed              : 42.6s
 Production modified  : NO
 
 METHOD
@@ -66,3 +66,23 @@ V0.2 should learn circuit-specific technical weights from multiple finalized rac
 That is where power/weight, weight balance, acceleration, rotational G and stability
 can become explanatory/predictive variables instead of hand-picked assumptions.
 ====================================================================================================
+
+V0.2 TECHNICAL LEARNING
+----------------------------------------------------------------------------------------------------
+Model status         : BOOTSTRAP
+Independent races    : 1 / 3 minimum
+Technical SCI weight : 0.0
+Policy               : empirical learning only; no arbitrary technical weights.
+
+Observed correlations (diagnostic only):
+  power_weight_hp_t        +0.136
+  weight_kg                -0.175
+  front_weight_pct         +0.067
+  acceleration_0_400       -0.019
+  acceleration_100_150     -0.136
+  rotational_g_60          -0.015
+  rotational_g_120         +0.006
+  rotational_g_240         +0.098
+
+The history file is persistent. Repeated observations accumulate evidence for future
+circuit/speed-class technical modelling without changing the production Daily Race C agent.
