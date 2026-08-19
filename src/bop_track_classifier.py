@@ -4,7 +4,7 @@ import traceback
 from pathlib import Path
 from datetime import datetime
 
-VERSION = "1.1"
+VERSION = "2.0"
 
 LATEST_SNAPSHOT_FILE = Path("data/latest_snapshot.json")
 TRACK_MAP_FILE = Path("data/bop_lab/track_bop_classes.json")
@@ -16,6 +16,7 @@ ERROR_FILE = Path("data/bop_lab/current_track_bop_error.txt")
 SEP = "=" * 100
 SUB = "-" * 100
 VALID_SPEEDS = {"HIGH", "MID", "LOW"}
+VALID_GROUPS = {"GR.1", "GR.2", "GR.3", "GR.4", "GR.B"}
 
 
 def now_iso():
@@ -36,16 +37,11 @@ def normalize_group(value):
         return None
     text = str(value).strip().upper().replace(" ", "")
     aliases = {
-        "GR1": "GR.1",
-        "GR.1": "GR.1",
-        "GR2": "GR.2",
-        "GR.2": "GR.2",
-        "GR3": "GR.3",
-        "GR.3": "GR.3",
-        "GR4": "GR.4",
-        "GR.4": "GR.4",
-        "GRB": "GR.B",
-        "GR.B": "GR.B",
+        "GR1": "GR.1", "GR.1": "GR.1",
+        "GR2": "GR.2", "GR.2": "GR.2",
+        "GR3": "GR.3", "GR.3": "GR.3",
+        "GR4": "GR.4", "GR.4": "GR.4",
+        "GRB": "GR.B", "GR.B": "GR.B",
     }
     return aliases.get(text)
 
@@ -54,9 +50,14 @@ def detect_track(description, track_map):
     if not description:
         return None
     lowered = description.casefold()
-    for track in sorted(track_map.keys(), key=len, reverse=True):
-        if track.casefold() in lowered:
-            return track
+    aliases = []
+    for track, item in track_map.items():
+        aliases.append((track, track))
+        for alias in item.get("aliases") or []:
+            aliases.append((alias, track))
+    for alias, canonical in sorted(aliases, key=lambda x: len(x[0]), reverse=True):
+        if alias.casefold() in lowered:
+            return canonical
     return None
 
 
@@ -68,6 +69,28 @@ def detect_group(description):
         return None
     token = match.group(1).upper()
     return "GR.B" if token == "B" else normalize_group(f"GR.{token}")
+
+
+def detect_explicit_speed(description):
+    """Prefer an explicit event BoP class whenever a source exposes it."""
+    if not description:
+        return None
+    patterns = [
+        r"\bBOP\s*\(\s*([HML])\s*\)",
+        r"\bBOP\s*(?:=|:)\s*([HML])\b",
+        r"\b(?:HIGH|MID|MEDIUM|LOW)[ -]?SPEED\s+BOP\b",
+    ]
+    upper = description.upper()
+    match = re.search(patterns[0], upper) or re.search(patterns[1], upper)
+    if match:
+        return {"H": "HIGH", "M": "MID", "L": "LOW"}.get(match.group(1))
+    if re.search(patterns[2], upper):
+        if "HIGH" in upper:
+            return "HIGH"
+        if "LOW" in upper:
+            return "LOW"
+        return "MID"
+    return None
 
 
 def version_key(value):
@@ -82,6 +105,11 @@ def normalize_car_name(value):
         return ""
     text = str(value).casefold()
     text = text.replace("･", " ").replace("・", " ")
+    # VGT and Vision Gran Turismo are semantic equivalents.
+    text = re.sub(r"\bvision\s+gran\s+turismo\b", " vgt ", text)
+    # Group suffixes are metadata rather than model identity.
+    text = re.sub(r"\(\s*gr\.?\s*[1234b]\s*\)", " ", text)
+    text = re.sub(r"\bgr\.?\s*[1234b]\b", " ", text)
     text = re.sub(r"[^a-z0-9]+", " ", text)
     return re.sub(r"\s+", " ", text).strip()
 
@@ -94,43 +122,32 @@ def car_match_score(target, candidate):
     if a == b:
         return 100
     if a in b or b in a:
-        return 90
+        return 94
     a_tokens = set(a.split())
     b_tokens = set(b.split())
     if not a_tokens or not b_tokens:
         return 0
     overlap = len(a_tokens & b_tokens)
     union = len(a_tokens | b_tokens)
-    return int(round(100 * overlap / union)) if union else 0
+    jaccard = overlap / union if union else 0.0
+    containment = overlap / min(len(a_tokens), len(b_tokens))
+    return int(round(100 * (0.60 * jaccard + 0.40 * containment)))
 
 
 def records_for_car(all_records, car, group):
     group = normalize_group(group)
     candidates = []
-
     for record in all_records:
         if normalize_group(record.get("group")) != group:
             continue
         score = car_match_score(car, record.get("car"))
-        if score >= 70:
+        if score >= 68:
             candidates.append((score, record))
-
     if not candidates:
         return [], None
-
     best_score = max(score for score, _ in candidates)
-    best_name = next(
-        record.get("car")
-        for score, record in candidates
-        if score == best_score
-    )
-
-    selected = [
-        record
-        for score, record in candidates
-        if record.get("car") == best_name
-    ]
-
+    best_name = next(record.get("car") for score, record in candidates if score == best_score)
+    selected = [record for score, record in candidates if record.get("car") == best_name]
     return selected, {
         "requested_name": car,
         "matched_name": best_name,
@@ -171,7 +188,6 @@ def compact_bop(record):
 
 def fingerprint_profile(all_records, car, group):
     records, match = records_for_car(all_records, car, group)
-
     if not records:
         return {
             "car": car,
@@ -179,28 +195,23 @@ def fingerprint_profile(all_records, car, group):
             "reason": "No matching BoP records for this car/group.",
             "match": None,
         }
-
     version = latest_version(records)
     by_speed = {}
-
     for speed in ["HIGH", "MID", "LOW"]:
         selected = next(
             (
-                record
-                for record in records
+                record for record in records
                 if str(record.get("speed_class") or "").upper() == speed
                 and str(record.get("bop_version") or "") == str(version)
             ),
             None,
         )
         by_speed[speed] = compact_bop(selected)
-
     signatures = []
     for speed in ["HIGH", "MID", "LOW"]:
         item = by_speed.get(speed)
         if item:
             signatures.append((item.get("power_hp"), item.get("weight_kg"), item.get("pp")))
-
     return {
         "car": car,
         "available": len(signatures) == 3,
@@ -212,6 +223,25 @@ def fingerprint_profile(all_records, car, group):
         "MID": by_speed.get("MID"),
         "LOW": by_speed.get("LOW"),
     }
+
+
+def resolve_track_speed(mapping, group, description):
+    explicit = detect_explicit_speed(description)
+    if explicit:
+        return explicit, "EXPLICIT_EVENT_TEXT", "DIRECT"
+
+    group = normalize_group(group)
+    overrides = mapping.get("group_speed_classes") or {}
+    if group in overrides:
+        speed = str(overrides[group]).upper()
+        if speed in VALID_SPEEDS:
+            return speed, "GROUP_SPECIFIC_MAP", mapping.get("confidence") or "VALIDATED_EXTERNAL"
+
+    speed = str(mapping.get("speed_class") or mapping.get("default_speed_class") or "").upper()
+    if speed in VALID_SPEEDS:
+        return speed, "TRACK_DEFAULT_MAP", mapping.get("confidence") or "VALIDATED_EXTERNAL"
+
+    return None, "UNRESOLVED", "UNRESOLVED"
 
 
 def format_number(value):
@@ -237,7 +267,6 @@ def run_classifier():
 
     track_map = mapping_payload.get("tracks") or {}
     all_records = database_payload.get("records") or []
-
     race = snapshot.get("race") or {}
     description = race.get("description") or ""
     track = detect_track(description, track_map)
@@ -248,18 +277,16 @@ def run_classifier():
             "Current track was not found in track_bop_classes.json. "
             f"Race description: {description}"
         )
-
-    if not group:
+    if group not in VALID_GROUPS:
         raise RuntimeError(
-            "Could not determine race group from latest snapshot. "
+            "Could not determine a supported race group from latest snapshot. "
             f"Race description: {description}"
         )
 
     mapping = track_map[track]
-    speed_class = str(mapping.get("speed_class") or "").upper()
-
+    speed_class, selection_mode, confidence = resolve_track_speed(mapping, group, description)
     if speed_class not in VALID_SPEEDS:
-        raise RuntimeError(f"Invalid speed class for {track}: {speed_class}")
+        raise RuntimeError(f"No valid BoP speed class for {track} / {group}")
 
     my_result = snapshot.get("my_result") or {}
     my_car = my_result.get("car")
@@ -284,8 +311,10 @@ def run_classifier():
         "race_description": description,
         "track": track,
         "group": group,
+        "model_key": f"{group}|{speed_class}",
         "speed_class": speed_class,
-        "classification_confidence": mapping.get("confidence"),
+        "speed_selection_mode": selection_mode,
+        "classification_confidence": confidence,
         "classification_validation": mapping.get("validation") or [],
         "database_records": len(all_records),
         "my_car": my_car,
@@ -297,33 +326,25 @@ def run_classifier():
 
     RESULT_FILE.parent.mkdir(parents=True, exist_ok=True)
     REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
-
-    RESULT_FILE.write_text(
-        json.dumps(result, ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
+    RESULT_FILE.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
 
     lines = [
-        f"GT7 BOP TRACK CLASSIFIER V{VERSION}",
-        SEP,
+        f"GT7 BOP TRACK CLASSIFIER V{VERSION}", SEP,
         f"Generated            : {result['generated_at']}",
         f"Snapshot             : {snapshot.get('timestamp')}",
         f"Track                : {track}",
         f"Group                : {group}",
+        f"Model key            : {result['model_key']}",
         f"BoP speed class      : {speed_class}",
-        f"Confidence           : {mapping.get('confidence')}",
+        f"Selection mode       : {selection_mode}",
+        f"Confidence           : {confidence}",
         f"BoP DB records       : {len(all_records)}",
-        "Production modified  : NO",
-        "",
-        "CLASSIFICATION EVIDENCE",
-        SUB,
+        "Production modified  : NO", "", "CLASSIFICATION EVIDENCE", SUB,
     ]
-
     for evidence in mapping.get("validation") or []:
         lines.append(f"- {evidence.get('source')} | {evidence.get('evidence')}")
 
     lines += ["", "YOUR CURRENT CAR", SUB]
-
     if not my_car:
         lines.append("No current personal car in latest snapshot.")
     elif not my_profile or not my_profile.get("available"):
@@ -340,40 +361,32 @@ def run_classifier():
         lines.append(f"HIGH                 : {format_bop(my_profile.get('HIGH'))}")
         lines.append(f"MID                  : {format_bop(my_profile.get('MID'))}")
         lines.append(f"LOW                  : {format_bop(my_profile.get('LOW'))}")
-        lines.append(f"Active ({speed_class})         : {format_bop(active_bop)}")
+        lines.append(f"ACTIVE {speed_class:<12}: {format_bop(active_bop)}")
         lines.append(
-            "Fingerprint useful   : "
+            "Fingerprint usable   : "
             + ("YES" if my_profile.get("can_identify_speed_class_from_car") else "NO")
         )
 
-    lines += ["", "TOP 5 USED CARS - ACTIVE BOP", SUB]
-
-    for index, profile in enumerate(top5_profiles, start=1):
+    lines += ["", "TOP 5 USED CARS", SUB]
+    for i, profile in enumerate(top5_profiles, 1):
+        match = profile.get("match") or {}
         lines.append(
-            f"{index}. {profile.get('car')} | "
-            f"usage {profile.get('leaderboard_percentage')}% | "
-            f"{speed_class}: {format_bop(profile.get('active_bop'))} | "
-            f"fingerprint {'YES' if profile.get('can_identify_speed_class_from_car') else 'NO'}"
+            f"{i}. {profile.get('car')} | DB={match.get('matched_name')} | "
+            f"score={match.get('match_score')} | active={format_bop(profile.get('active_bop'))} | "
+            f"fingerprint={'YES' if profile.get('can_identify_speed_class_from_car') else 'NO'}"
         )
 
-    lines += [
-        "",
-        "RESULT",
-        SUB,
-        f"Current Daily Race C classified as {speed_class}-speed BoP at {track}.",
-        f"Sleeper analysis should use {speed_class} records from bop_database.json.",
-        SEP,
-    ]
+    lines += ["", "CLASSIFIER POLICY", SUB,
+              "Priority 1: explicit BOP (H/M/L) in event text when available.",
+              "Priority 2: group-specific track mapping.",
+              "Priority 3: validated track default mapping.",
+              "This avoids assuming that one historical track classification must apply to every group/event forever.",
+              SEP]
 
     REPORT_FILE.write_text("\n".join(lines), encoding="utf-8")
-
     if ERROR_FILE.exists():
         ERROR_FILE.unlink()
-
     print("\n".join(lines))
-    print()
-    print(f"Saved report         : {REPORT_FILE}")
-    print(f"Saved result         : {RESULT_FILE}")
 
 
 def main():
@@ -383,12 +396,9 @@ def main():
         ERROR_FILE.parent.mkdir(parents=True, exist_ok=True)
         REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
         diagnostic = (
-            f"GT7 BOP TRACK CLASSIFIER V{VERSION} - ERROR\n"
-            f"{SEP}\n"
-            f"Generated: {now_iso()}\n"
-            f"Error: {type(error).__name__}: {error}\n\n"
-            f"TRACEBACK\n{SUB}\n{traceback.format_exc()}\n"
-            f"{SEP}\n"
+            f"GT7 BOP TRACK CLASSIFIER V{VERSION} - ERROR\n{SEP}\n"
+            f"Generated: {now_iso()}\nError: {type(error).__name__}: {error}\n\n"
+            f"TRACEBACK\n{SUB}\n{traceback.format_exc()}\n{SEP}\n"
         )
         ERROR_FILE.write_text(diagnostic, encoding="utf-8")
         REPORT_FILE.write_text(diagnostic, encoding="utf-8")
