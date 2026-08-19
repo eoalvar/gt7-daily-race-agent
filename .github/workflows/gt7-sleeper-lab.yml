@@ -26,11 +26,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Backfill historical Sleeper training data
+      - name: Backfill historical Sleeper training data V0.4
         id: run_history_backfill
         continue-on-error: true
         run: |
-          python src/sleeper_history_backfill.py
+          python src/sleeper_history_backfill_v04.py
 
       - name: Run Sleeper Car Lab base model
         id: run_sleeper_lab
@@ -38,7 +38,7 @@ jobs:
         run: |
           python src/sleeper_car_lab.py
 
-      - name: Run V0.2 technical learning layer
+      - name: Run multi-group technical learning layer
         id: run_technical_learning
         if: steps.run_sleeper_lab.outcome == 'success'
         continue-on-error: true
@@ -80,12 +80,12 @@ jobs:
           if git diff --cached --quiet; then
             echo "No Sleeper Car Lab changes to save."
           else
-            git commit -m "Update GT7 Sleeper Car Lab V0.2 data"
+            git commit -m "Update GT7 Sleeper Car Lab V0.4 data"
             git push
           fi
 
       - name: Report Sleeper Car Lab failure
         if: steps.run_history_backfill.outcome == 'failure' || steps.run_sleeper_lab.outcome == 'failure' || steps.run_technical_learning.outcome == 'failure'
         run: |
-          echo "Sleeper Car Lab V0.2 had a failed stage. Diagnostic files were preserved."
+          echo "Sleeper Car Lab V0.4 had a failed stage. Diagnostic files were preserved."
           exit 1
