@@ -1,7 +1,9 @@
+import json
 import re
 import time
 from pathlib import Path
 from datetime import datetime
+from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -14,27 +16,20 @@ from bop_database import (
     normalize_group,
 )
 
-# ============================================================
-# CONFIG
-# ============================================================
+VERSION = "1.3"
 
-VERSION = "1.2"
-
-DG_EDGE_BOP_URL = "https://www.dg-edge.com/database/bop"
+DG_EDGE_BASE_URL = "https://www.dg-edge.com"
+DG_EDGE_BOP_URL = f"{DG_EDGE_BASE_URL}/database/bop"
 
 DATA_DIR = Path("data") / "bop_lab"
 REPORT_DIR = Path("reports")
 RAW_DIR = DATA_DIR / "raw"
+JS_DIR = RAW_DIR / "js"
 
 REPORT_FILE = REPORT_DIR / "bop_lab.txt"
+MECHANISM_FILE = DATA_DIR / "speed_switch_mechanism.json"
 
 GROUP = "GR.3"
-
-SPEED_CLASSES = {
-    "HIGH": "High",
-    "LOW": "Low",
-    "MID": "Mid",
-}
 
 REQUEST_TIMEOUT = 60
 REQUEST_DELAY_SECONDS = 0.20
@@ -52,10 +47,32 @@ HEADERS = {
 SEP = "=" * 100
 SUB = "-" * 100
 
+SEARCH_TERMS = [
+    "speed-0",
+    "speed-1",
+    "speed-2",
+    'name="speed"',
+    "High",
+    "Low",
+    "Mid",
+    "localStorage",
+    "sessionStorage",
+    "document.cookie",
+    "cookie",
+    "fetch(",
+    "XMLHttpRequest",
+    "axios",
+    "htmx",
+    "location.href",
+    "window.location",
+    "URLSearchParams",
+    "FormData",
+    "change",
+    "onclick",
+    "onchange",
+    "/database/bop",
+]
 
-# ============================================================
-# BASIC HELPERS
-# ============================================================
 
 def now_iso():
     return datetime.now().astimezone().isoformat()
@@ -64,59 +81,22 @@ def now_iso():
 def clean_text(value):
     if value is None:
         return ""
-
-    text = str(value).replace("\xa0", " ")
-    return re.sub(r"\s+", " ", text).strip()
+    return re.sub(r"\s+", " ", str(value).replace("\xa0", " ")).strip()
 
 
-def safe_float(value):
-    if value is None:
-        return None
-
-    if isinstance(value, (int, float)):
-        return float(value)
-
-    text = clean_text(value)
-
-    if not text or text in {"-", "N", "U"}:
-        return None
-
-    text = text.replace(",", "")
-
-    match = re.search(
-        r"[-+]?\d+(?:\.\d+)?",
-        text
-    )
-
-    if not match:
-        return None
-
-    try:
-        return float(match.group(0))
-    except Exception:
-        return None
+def safe_filename(value):
+    text = re.sub(r"[^A-Za-z0-9._-]+", "_", str(value))
+    return text.strip("_") or "script.js"
 
 
 def version_key(version):
     try:
-        return tuple(
-            int(part)
-            for part in str(version).split(".")
-        )
+        return tuple(int(part) for part in str(version).split("."))
     except Exception:
         return (0,)
 
 
-# ============================================================
-# HTTP
-# ============================================================
-
-def fetch_html(
-    session,
-    url,
-    params=None,
-    raise_for_status=True,
-):
+def fetch_text(session, url, params=None, raise_for_status=True):
     response = session.get(
         url,
         params=params,
@@ -124,14 +104,13 @@ def fetch_html(
     )
 
     result = {
+        "requested_url": url,
         "url": response.url,
         "status": response.status_code,
-        "html": response.text,
+        "text": response.text,
         "bytes": len(response.content),
-        "content_type": response.headers.get(
-            "Content-Type",
-            ""
-        ),
+        "content_type": response.headers.get("Content-Type", ""),
+        "headers": dict(response.headers),
     }
 
     if raise_for_status:
@@ -140,101 +119,46 @@ def fetch_html(
     return result
 
 
-# ============================================================
-# VERSION DISCOVERY
-# ============================================================
-
 def build_group_url(group, version):
     group = normalize_group(group)
-
     if not group:
-        raise ValueError(
-            f"Invalid group: {group}"
-        )
-
-    return (
-        f"{DG_EDGE_BOP_URL}/"
-        f"{group}/"
-        f"{version}"
-    )
+        raise ValueError(f"Invalid group: {group}")
+    return f"{DG_EDGE_BOP_URL}/{group}/{version}"
 
 
 def extract_versions(html):
-    soup = BeautifulSoup(
-        html,
-        "html.parser"
-    )
-
+    soup = BeautifulSoup(html, "html.parser")
     versions = set()
 
-    for link in soup.find_all(
-        "a",
-        href=True
-    ):
-        href = link.get(
-            "href",
-            ""
-        )
-
+    for link in soup.find_all("a", href=True):
+        href = link.get("href", "")
         match = re.search(
-            r"/database/bop/"
-            r"(?:GR\.[1234]|GR\.B)"
-            r"/(\d+\.\d+)",
+            r"/database/bop/(?:GR\.[1234]|GR\.B)/(\d+\.\d+)",
             href,
             flags=re.IGNORECASE,
         )
-
         if match:
-            versions.add(
-                match.group(1)
-            )
+            versions.add(match.group(1))
 
     if not versions:
-        text = soup.get_text(
-            " ",
-            strip=True
-        )
-
+        text = soup.get_text(" ", strip=True)
         for match in re.finditer(
-            r"\b(?:Update|Version)\s+"
-            r"(\d+\.\d+)\b",
+            r"\b(?:Update|Version)\s+(\d+\.\d+)\b",
             text,
             flags=re.IGNORECASE,
         ):
-            versions.add(
-                match.group(1)
-            )
+            versions.add(match.group(1))
 
-    return sorted(
-        versions,
-        key=version_key,
-        reverse=True,
-    )
+    return sorted(versions, key=version_key, reverse=True)
 
 
-def looks_like_valid_bop_page(
-    html,
-    group,
-):
+def looks_like_valid_bop_page(html, group):
     if not html:
         return False
 
-    soup = BeautifulSoup(
-        html,
-        "html.parser"
-    )
-
-    text = clean_text(
-        soup.get_text(
-            " ",
-            strip=True
-        )
-    ).lower()
-
-    group_text = (
-        normalize_group(group)
-        or ""
-    ).lower()
+    soup = BeautifulSoup(html, "html.parser")
+    text = clean_text(soup.get_text(" ", strip=True)).lower()
+    group_text = (normalize_group(group) or "").lower()
 
     signals = [
         "max power",
@@ -244,32 +168,17 @@ def looks_like_valid_bop_page(
         "drivetrain",
     ]
 
-    signal_count = sum(
-        1
-        for signal in signals
-        if signal in text
-    )
+    signal_count = sum(1 for signal in signals if signal in text)
 
-    return (
-        group_text in text
-        and signal_count >= 3
-    )
+    return group_text in text and signal_count >= 3
 
 
-def probe_versions(
-    session,
-    group,
-    versions,
-):
+def probe_versions(session, group, versions):
     probes = []
 
     for version in versions:
-        url = build_group_url(
-            group,
-            version
-        )
-
-        result = fetch_html(
+        url = build_group_url(group, version)
+        result = fetch_text(
             session,
             url,
             raise_for_status=False,
@@ -277,10 +186,7 @@ def probe_versions(
 
         valid = (
             result["status"] == 200
-            and looks_like_valid_bop_page(
-                result["html"],
-                group,
-            )
+            and looks_like_valid_bop_page(result["text"], group)
         )
 
         probes.append(
@@ -303,443 +209,598 @@ def probe_versions(
         if valid:
             return version, result, probes
 
-        time.sleep(
-            REQUEST_DELAY_SECONDS
-        )
+        time.sleep(REQUEST_DELAY_SECONDS)
 
     return None, None, probes
 
 
-# ============================================================
-# SPEED CONTROLS
-# ============================================================
+def save_raw_page(group, version, html):
+    RAW_DIR.mkdir(parents=True, exist_ok=True)
 
-def detect_speed_controls(html):
-    soup = BeautifulSoup(
-        html,
-        "html.parser"
+    group_safe = group.replace(".", "").lower()
+
+    path = RAW_DIR / (
+        f"{group_safe}_{version}_mechanism.html"
     )
 
+    path.write_text(html, encoding="utf-8")
+    return path
+
+
+def save_script(index, source_url, text):
+    JS_DIR.mkdir(parents=True, exist_ok=True)
+
+    parsed = urlparse(source_url)
+    basename = Path(parsed.path).name or f"script_{index:02d}.js"
+
+    filename = f"{index:02d}_{safe_filename(basename)}"
+    path = JS_DIR / filename
+    path.write_text(text, encoding="utf-8")
+    return path
+
+
+def element_attributes(tag):
+    output = {}
+
+    for key, value in tag.attrs.items():
+        if isinstance(value, list):
+            value = " ".join(str(item) for item in value)
+        output[key] = str(value)
+
+    return output
+
+
+def inspect_speed_controls(html):
+    soup = BeautifulSoup(html, "html.parser")
     controls = []
 
     for input_tag in soup.find_all(
         "input",
-        attrs={
-            "name": "speed"
-        }
+        attrs={"name": "speed"},
     ):
+        identifier = input_tag.get("id")
+        label = None
+
+        if identifier:
+            label_tag = soup.find(
+                "label",
+                attrs={"for": identifier},
+            )
+            if label_tag:
+                label = clean_text(
+                    label_tag.get_text(" ", strip=True)
+                )
+
+        parent = input_tag.parent
+
+        parent_info = None
+        if parent:
+            parent_info = {
+                "tag": parent.name,
+                "attributes": element_attributes(parent),
+                "text": clean_text(
+                    parent.get_text(" ", strip=True)
+                )[:500],
+            }
+
+        form = input_tag.find_parent("form")
+
+        form_info = None
+        if form:
+            form_info = {
+                "attributes": element_attributes(form),
+                "text": clean_text(
+                    form.get_text(" ", strip=True)
+                )[:1000],
+            }
+
         controls.append(
             {
-                "value": clean_text(
-                    input_tag.get(
-                        "value",
-                        ""
-                    )
-                ),
-                "id": clean_text(
-                    input_tag.get(
-                        "id",
-                        ""
-                    )
-                ),
-                "checked": (
-                    input_tag.has_attr(
-                        "checked"
-                    )
-                ),
+                "label": label,
+                "attributes": element_attributes(input_tag),
+                "parent": parent_info,
+                "form": form_info,
             }
         )
 
     return controls
 
 
-def selected_speed_from_html(html):
-    controls = detect_speed_controls(
-        html
-    )
+def extract_script_inventory(html, page_url):
+    soup = BeautifulSoup(html, "html.parser")
+    scripts = []
 
-    for control in controls:
-        if control["checked"]:
-            return (
-                control["value"]
-                .strip()
-                .upper()
-            )
-
-    return None
-
-
-# ============================================================
-# TABLE DISCOVERY
-# ============================================================
-
-def score_table(table):
-    text = clean_text(
-        table.get_text(
-            " ",
-            strip=True
-        )
-    ).lower()
-
-    signals = [
-        ("max power", 5),
-        ("max torque", 5),
-        ("weight", 5),
-        ("power/weight", 4),
-        ("weight balance", 4),
-        ("drivetrain", 4),
-        ("aspiration", 3),
-        ("engine model", 3),
-        ("acc. 0-400", 2),
-        ("rot. g", 2),
-    ]
-
-    return sum(
-        weight
-        for signal, weight in signals
-        if signal in text
-    )
-
-
-def find_bop_table(html):
-    soup = BeautifulSoup(
-        html,
-        "html.parser"
-    )
-
-    tables = soup.find_all(
-        "table"
-    )
-
-    if not tables:
-        return None
-
-    scored = sorted(
-        (
-            (
-                score_table(table),
-                table,
-            )
-            for table in tables
-        ),
-        key=lambda item: item[0],
-        reverse=True,
-    )
-
-    if (
-        not scored
-        or scored[0][0] < 10
+    for index, tag in enumerate(
+        soup.find_all("script"),
+        start=1,
     ):
-        return None
+        src = tag.get("src")
 
-    return scored[0][1]
-
-
-def extract_rows(table):
-    rows = []
-
-    if table is None:
-        return rows
-
-    for tr in table.find_all(
-        "tr"
-    ):
-        cells = [
-            clean_text(
-                cell.get_text(
-                    " ",
-                    strip=True
-                )
+        if src:
+            scripts.append(
+                {
+                    "index": index,
+                    "kind": "external",
+                    "src": urljoin(page_url, src),
+                    "attributes": element_attributes(tag),
+                    "inline_text": "",
+                }
             )
-            for cell in tr.find_all(
-                [
-                    "th",
-                    "td",
-                ]
-            )
-        ]
+        else:
+            text = tag.string
+            if text is None:
+                text = tag.get_text("\n")
 
-        if cells:
-            rows.append(
-                cells
+            scripts.append(
+                {
+                    "index": index,
+                    "kind": "inline",
+                    "src": None,
+                    "attributes": element_attributes(tag),
+                    "inline_text": text or "",
+                }
             )
 
-    return rows
+    return scripts
 
 
-# ============================================================
-# CAR PARSER
-#
-# V1.1 discovery:
-# [00] blank
-# [01] car name
-# [03] current PP
-# [06] current power HP
-# [09] current torque Nm
-# [12] current weight KG
-# [15] current HP/T
-# [18] current KG/HP
-# [21] current weight balance
-# [23] current 0-400
-# [26] current 0-1000
-# [29] current 100-150
-# [32] current low-speed stability
-# [35] current high-speed stability
-# [37] current Rot G 60
-# [40] current Rot G 120
-# [42] current Rot G 240
-# [50] powertrain
-# [51] aspiration
-# [52] drivetrain
-# [53] displacement
-# [54] engine model
-# ============================================================
+def context_snippet(text, start, end, radius=240):
+    left = max(0, start - radius)
+    right = min(len(text), end + radius)
+    return text[left:right].replace("\r", " ").strip()
 
-def looks_like_car_name(value):
-    text = clean_text(
-        value
-    )
+
+def find_terms(text, source_name):
+    findings = []
 
     if not text:
-        return False
+        return findings
 
-    lowered = text.lower()
-
-    exclusions = [
-        "car",
-        "prev.",
-        "curr.",
-        "max power",
-        "max torque",
-        "weight",
-        "power/weight",
-        "weight balance",
-        "stability",
-        "rot. g",
-        "powertrain",
-        "aspiration",
-        "drivetrain",
-        "engine model",
-    ]
-
-    if any(
-        lowered == term
-        or term in lowered
-        for term in exclusions
-    ):
-        return False
-
-    return bool(
-        re.search(
-            r"[A-Za-z]",
-            text
+    for term in SEARCH_TERMS:
+        pattern = re.compile(
+            re.escape(term),
+            flags=re.IGNORECASE,
         )
+
+        for match in list(pattern.finditer(text))[:20]:
+            findings.append(
+                {
+                    "source": source_name,
+                    "term": term,
+                    "position": match.start(),
+                    "snippet": context_snippet(
+                        text,
+                        match.start(),
+                        match.end(),
+                    ),
+                }
+            )
+
+    return findings
+
+
+def inspect_interactive_attributes(html):
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+
+    interesting_prefixes = (
+        "on",
+        "hx-",
+        "data-",
+        "x-",
+        "wire:",
+        "@",
+        "v-",
     )
 
+    for tag in soup.find_all(True):
+        attrs = element_attributes(tag)
+        interesting = {}
 
-def parse_current_car_row(row):
-    if len(row) < 55:
-        return None
+        for key, value in attrs.items():
+            lowered = key.lower()
 
-    car = clean_text(
-        row[1]
-    )
+            if (
+                lowered.startswith(interesting_prefixes)
+                or "speed" in lowered
+                or "bop" in lowered
+                or "ajax" in lowered
+            ):
+                interesting[key] = value
 
-    if not looks_like_car_name(
-        car
+        if not interesting:
+            continue
+
+        combined = (
+            clean_text(tag.get_text(" ", strip=True))
+            + " "
+            + " ".join(
+                f"{key}={value}"
+                for key, value in interesting.items()
+            )
+        ).lower()
+
+        if any(
+            token in combined
+            for token in [
+                "speed",
+                "bop",
+                "high",
+                "low",
+                "mid",
+            ]
+        ):
+            results.append(
+                {
+                    "tag": tag.name,
+                    "attributes": interesting,
+                    "text": clean_text(
+                        tag.get_text(" ", strip=True)
+                    )[:400],
+                }
+            )
+
+    return results[:200]
+
+
+def fetch_external_scripts(session, inventory):
+    fetched = []
+
+    for item in inventory:
+        if item["kind"] != "external":
+            continue
+
+        url = item["src"]
+        result = fetch_text(
+            session,
+            url,
+            raise_for_status=False,
+        )
+
+        text = (
+            result["text"]
+            if result["status"] == 200
+            else ""
+        )
+
+        path = None
+        if text:
+            path = save_script(
+                item["index"],
+                url,
+                text,
+            )
+
+        fetched.append(
+            {
+                "index": item["index"],
+                "url": url,
+                "status": result["status"],
+                "bytes": result["bytes"],
+                "content_type": result["content_type"],
+                "saved_path": str(path) if path else None,
+                "text": text,
+            }
+        )
+
+        time.sleep(REQUEST_DELAY_SECONDS)
+
+    return fetched
+
+
+def classify_mechanism(
+    html_findings,
+    script_findings,
+    controls,
+    interactive,
+):
+    all_findings = html_findings + script_findings
+    combined = "\n".join(
+        finding["snippet"]
+        for finding in all_findings
+    ).lower()
+
+    evidence = []
+
+    if "localstorage" in combined:
+        evidence.append("localStorage")
+
+    if "sessionstorage" in combined:
+        evidence.append("sessionStorage")
+
+    if (
+        "document.cookie" in combined
+        or re.search(r"\bcookie\b", combined)
     ):
-        return None
+        evidence.append("cookie")
+
+    if (
+        "fetch(" in combined
+        or "xmlhttprequest" in combined
+        or "axios" in combined
+    ):
+        evidence.append("ajax")
+
+    if (
+        "urlsearchparams" in combined
+        or "location.href" in combined
+        or "window.location" in combined
+    ):
+        evidence.append("url_navigation")
+
+    form_actions = []
+
+    for control in controls:
+        form = control.get("form")
+
+        if not form:
+            continue
+
+        attrs = form.get("attributes", {})
+
+        action = attrs.get("action")
+        method = attrs.get("method")
+
+        if action or method:
+            form_actions.append(
+                {
+                    "action": action,
+                    "method": method,
+                }
+            )
+
+    if form_actions:
+        evidence.append("form_submission")
+
+    if interactive:
+        evidence.append("interactive_attributes")
+
+    if not evidence:
+        mode = "UNRESOLVED"
+    elif "ajax" in evidence:
+        mode = "CLIENT_AJAX_OR_SCRIPT"
+    elif (
+        "localStorage" in evidence
+        or "sessionStorage" in evidence
+    ):
+        mode = "CLIENT_STORAGE"
+    elif "cookie" in evidence:
+        mode = "COOKIE_OR_CLIENT_STATE"
+    elif "form_submission" in evidence:
+        mode = "FORM_SUBMISSION"
+    elif "url_navigation" in evidence:
+        mode = "URL_NAVIGATION"
+    else:
+        mode = "CLIENT_SIDE_UNKNOWN"
 
     return {
-        "car": car,
-        "pp": safe_float(row[3]),
-        "power_hp": safe_float(row[6]),
-        "torque_nm": safe_float(row[9]),
-        "weight_kg": safe_float(row[12]),
-        "power_weight_hp_t": safe_float(row[15]),
-        "weight_power_kg_hp": safe_float(row[18]),
-        "weight_balance": clean_text(row[21]),
-        "acceleration_0_400": safe_float(row[23]),
-        "acceleration_0_1000": safe_float(row[26]),
-        "acceleration_100_150": safe_float(row[29]),
-        "stability_low": clean_text(row[32]),
-        "stability_high": clean_text(row[35]),
-        "rotational_g_60": safe_float(row[37]),
-        "rotational_g_120": safe_float(row[40]),
-        "rotational_g_240": safe_float(row[42]),
-        "powertrain": clean_text(row[50]),
-        "aspiration": clean_text(row[51]),
-        "drivetrain": clean_text(row[52]),
-        "displacement": clean_text(row[53]),
-        "engine_model": clean_text(row[54]),
+        "mode": mode,
+        "evidence": evidence,
+        "form_actions": form_actions,
     }
 
 
-def parse_current_cars(rows):
-    cars = []
-
-    for row in rows:
-        parsed = parse_current_car_row(
-            row
-        )
-
-        if parsed:
-            cars.append(
-                parsed
-            )
-
-    return cars
-
-
-def build_signature(cars):
-    return [
-        (
-            car["car"],
-            car["pp"],
-            car["power_hp"],
-            car["weight_kg"],
-        )
-        for car in cars[:5]
-    ]
-
-
-# ============================================================
-# RAW HTML
-# ============================================================
-
-def save_raw_html(
-    group,
-    version,
-    speed,
-    html,
+def build_report(
+    selected_version,
+    probes,
+    raw_path,
+    controls,
+    inventory,
+    fetched_scripts,
+    html_findings,
+    script_findings,
+    interactive,
+    classification,
+    stats,
+    validation,
 ):
-    RAW_DIR.mkdir(
-        parents=True,
-        exist_ok=True,
+    lines = []
+
+    lines.append(
+        "GT7 BOP LAB V1.3 - SPEED SWITCH MECHANISM DIAGNOSTIC"
+    )
+    lines.append(SEP)
+    lines.append(
+        f"Generated           : {now_iso()}"
+    )
+    lines.append(
+        f"Group               : {GROUP}"
+    )
+    lines.append(
+        f"Selected version    : {selected_version}"
+    )
+    lines.append(
+        "Production modified : NO"
+    )
+    lines.append(
+        f"Raw HTML            : {raw_path}"
     )
 
-    group_safe = (
-        group
-        .replace(".", "")
-        .lower()
-    )
+    lines.append("")
+    lines.append("VERSION PROBES")
+    lines.append(SUB)
 
-    path = (
-        RAW_DIR
-        / (
-            f"{group_safe}_"
-            f"{version}_"
-            f"{speed.lower()}.html"
+    for probe in probes:
+        lines.append(
+            f"{probe['version']:<8} | "
+            f"HTTP {probe['status']:<3} | "
+            f"{probe['bytes']:>8,} bytes | "
+            f"{'VALID' if probe['valid'] else 'UNUSABLE'}"
         )
+
+    lines.append("")
+    lines.append("SPEED CONTROLS")
+    lines.append(SUB)
+    lines.append(
+        f"Controls found      : {len(controls)}"
     )
 
-    path.write_text(
-        html,
-        encoding="utf-8",
+    for index, control in enumerate(
+        controls,
+        start=1,
+    ):
+        lines.append(f"Control {index}")
+        lines.append(
+            f"  Label             : "
+            f"{control.get('label')}"
+        )
+        lines.append(
+            f"  Attributes        : "
+            f"{control.get('attributes')}"
+        )
+        lines.append(
+            f"  Parent            : "
+            f"{control.get('parent')}"
+        )
+        lines.append(
+            f"  Form              : "
+            f"{control.get('form')}"
+        )
+
+    lines.append("")
+    lines.append("SCRIPT INVENTORY")
+    lines.append(SUB)
+    lines.append(
+        f"Scripts found       : {len(inventory)}"
     )
 
-    return path
-
-
-# ============================================================
-# HIGH / LOW / MID TEST
-# ============================================================
-
-def collect_speed_variant(
-    session,
-    base_url,
-    version,
-    speed_key,
-    speed_value,
-):
-    result = fetch_html(
-        session,
-        base_url,
-        params={
-            "speed": speed_value
-        },
-        raise_for_status=False,
-    )
-
-    selected_speed = None
-    rows = []
-    cars = []
-    raw_path = None
-
-    if result["status"] == 200:
-        selected_speed = (
-            selected_speed_from_html(
-                result["html"]
+    for item in inventory:
+        if item["kind"] == "external":
+            lines.append(
+                f"#{item['index']:02d} EXTERNAL | "
+                f"{item['src']}"
             )
-        )
-
-        table = find_bop_table(
-            result["html"]
-        )
-
-        if table is not None:
-            rows = extract_rows(
-                table
+        else:
+            lines.append(
+                f"#{item['index']:02d} INLINE   | "
+                f"{len(item['inline_text']):,} chars"
             )
 
-            cars = parse_current_cars(
-                rows
-            )
+    lines.append("")
+    lines.append("EXTERNAL SCRIPT FETCH")
+    lines.append(SUB)
 
-        raw_path = save_raw_html(
-            GROUP,
-            version,
-            speed_key,
-            result["html"],
+    for item in fetched_scripts:
+        lines.append(
+            f"#{item['index']:02d} | "
+            f"HTTP {item['status']} | "
+            f"{item['bytes']:,} bytes | "
+            f"{item['url']} | "
+            f"saved={item['saved_path']}"
         )
 
-    return {
-        "requested_speed": speed_key,
-        "requested_value": speed_value,
-        "selected_speed": selected_speed,
-        "status": result["status"],
-        "url": result["url"],
-        "bytes": result["bytes"],
-        "rows": len(rows),
-        "cars": cars,
-        "car_count": len(cars),
-        "signature": build_signature(cars),
-        "raw_path": (
-            str(raw_path)
-            if raw_path
-            else None
-        ),
-    }
+    lines.append("")
+    lines.append("INTERACTIVE ATTRIBUTES")
+    lines.append(SUB)
+    lines.append(
+        f"Relevant elements   : {len(interactive)}"
+    )
 
+    for item in interactive[:80]:
+        lines.append(str(item))
 
-# ============================================================
-# MAIN
-# ============================================================
+    lines.append("")
+    lines.append("HTML FINDINGS")
+    lines.append(SUB)
+    lines.append(
+        f"Matches             : {len(html_findings)}"
+    )
+
+    for finding in html_findings[:120]:
+        lines.append(
+            f"[{finding['term']}] "
+            f"pos={finding['position']}"
+        )
+        lines.append(
+            finding["snippet"]
+        )
+        lines.append("")
+
+    lines.append("SCRIPT FINDINGS")
+    lines.append(SUB)
+    lines.append(
+        f"Matches             : {len(script_findings)}"
+    )
+
+    for finding in script_findings[:180]:
+        lines.append(
+            f"[{finding['source']}] "
+            f"[{finding['term']}] "
+            f"pos={finding['position']}"
+        )
+        lines.append(
+            finding["snippet"]
+        )
+        lines.append("")
+
+    lines.append("MECHANISM CLASSIFICATION")
+    lines.append(SUB)
+    lines.append(
+        f"Mode                : "
+        f"{classification['mode']}"
+    )
+    lines.append(
+        f"Evidence            : "
+        f"{', '.join(classification['evidence']) or 'none'}"
+    )
+    lines.append(
+        f"Form actions        : "
+        f"{classification['form_actions']}"
+    )
+
+    lines.append("")
+    lines.append("DATABASE")
+    lines.append(SUB)
+    lines.append(
+        f"Records             : {stats['records']}"
+    )
+    lines.append(
+        f"Validation          : "
+        f"{'PASSED' if validation['valid'] else 'FAILED'}"
+    )
+
+    lines.append("")
+    lines.append("IMPORTANT")
+    lines.append(SUB)
+    lines.append(
+        "V1.3 does NOT write BoP car records."
+    )
+    lines.append(
+        "Its purpose is to discover how DG EDGE switches "
+        "between HIGH / LOW / MID."
+    )
+    lines.append(
+        "After the mechanism is identified, the next version "
+        "will fetch the three real tables and validate that "
+        "their car fingerprints differ."
+    )
+    lines.append(SEP)
+
+    return "\n".join(lines)
+
 
 def main():
     DATA_DIR.mkdir(
         parents=True,
         exist_ok=True,
     )
-
     REPORT_DIR.mkdir(
         parents=True,
         exist_ok=True,
     )
-
     RAW_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+    JS_DIR.mkdir(
         parents=True,
         exist_ok=True,
     )
 
     print()
-    print(
-        f"GT7 BOP LAB V{VERSION}"
-    )
+    print(f"GT7 BOP LAB V{VERSION}")
     print(SEP)
-    print(
-        "Experimental pipeline."
-    )
+    print("Experimental pipeline.")
     print(
         "The production Daily Race C agent "
         "is NOT modified."
@@ -747,41 +808,31 @@ def main():
     print()
 
     session = requests.Session()
-    session.headers.update(
-        HEADERS
-    )
+    session.headers.update(HEADERS)
 
-    # ========================================================
-    # INDEX
-    # ========================================================
-
-    print(
-        "READING DG EDGE BOP INDEX"
-    )
+    print("READING DG EDGE BOP INDEX")
     print(SUB)
 
-    index_result = fetch_html(
+    index_result = fetch_text(
         session,
         DG_EDGE_BOP_URL,
     )
 
     print(
-        f"HTTP status       : "
+        f"HTTP status        : "
         f"{index_result['status']}"
     )
     print(
-        f"Response bytes    : "
+        f"Response bytes     : "
         f"{index_result['bytes']:,}"
     )
 
     versions = extract_versions(
-        index_result[
-            "html"
-        ]
+        index_result["text"]
     )
 
     print(
-        f"Versions detected : "
+        f"Versions detected  : "
         f"{', '.join(versions)}"
     )
 
@@ -790,14 +841,8 @@ def main():
             "No BoP versions discovered."
         )
 
-    # ========================================================
-    # VERSION PROBE
-    # ========================================================
-
     print()
-    print(
-        "PROBING GR.3 VERSIONS"
-    )
+    print("PROBING GR.3 VERSIONS")
     print(SUB)
 
     (
@@ -812,258 +857,210 @@ def main():
 
     if not selected_version:
         raise RuntimeError(
-            "No usable DG EDGE GR.3 "
-            "BoP page was found."
+            "No usable DG EDGE GR.3 BoP page was found."
         )
 
-    base_url = build_group_url(
+    page_url = build_group_url(
         GROUP,
-        selected_version
+        selected_version,
+    )
+
+    html = source["text"]
+
+    raw_path = save_raw_page(
+        GROUP,
+        selected_version,
+        html,
     )
 
     print()
-    print(
-        "SELECTED BOP VERSION"
-    )
+    print("SELECTED BOP PAGE")
     print(SUB)
     print(
-        f"Group             : {GROUP}"
+        f"Group              : {GROUP}"
     )
     print(
-        f"Version           : "
-        f"{selected_version}"
+        f"Version            : {selected_version}"
     )
     print(
-        f"Base URL          : "
-        f"{base_url}"
+        f"URL                : {page_url}"
     )
-
-    # ========================================================
-    # SPEED VARIANTS
-    # ========================================================
-
-    variants = []
+    print(
+        f"Raw HTML           : {raw_path}"
+    )
 
     print()
-    print(
-        "TESTING SPEED VARIANTS"
-    )
+    print("INSPECTING SPEED CONTROLS")
     print(SUB)
 
-    for (
-        speed_key,
-        speed_value,
-    ) in SPEED_CLASSES.items():
+    controls = inspect_speed_controls(
+        html
+    )
 
-        variant = collect_speed_variant(
-            session=session,
-            base_url=base_url,
-            version=selected_version,
-            speed_key=speed_key,
-            speed_value=speed_value,
-        )
+    print(
+        f"Controls found     : {len(controls)}"
+    )
 
-        variants.append(
-            variant
-        )
-
+    for control in controls:
         print(
-            f"{speed_key:<4} | "
-            f"HTTP {variant['status']} | "
-            f"selected={variant['selected_speed']} | "
-            f"rows={variant['rows']} | "
-            f"cars={variant['car_count']} | "
-            f"{variant['url']}"
+            f"{control.get('label')} | "
+            f"{control.get('attributes')}"
         )
 
-        time.sleep(
-            REQUEST_DELAY_SECONDS
+    print()
+    print("DISCOVERING SCRIPTS")
+    print(SUB)
+
+    inventory = extract_script_inventory(
+        html,
+        page_url,
+    )
+
+    external_count = sum(
+        1
+        for item in inventory
+        if item["kind"] == "external"
+    )
+    inline_count = sum(
+        1
+        for item in inventory
+        if item["kind"] == "inline"
+    )
+
+    print(
+        f"Scripts total      : {len(inventory)}"
+    )
+    print(
+        f"External           : {external_count}"
+    )
+    print(
+        f"Inline             : {inline_count}"
+    )
+
+    print()
+    print("FETCHING EXTERNAL SCRIPTS")
+    print(SUB)
+
+    fetched_scripts = fetch_external_scripts(
+        session,
+        inventory,
+    )
+
+    for item in fetched_scripts:
+        print(
+            f"#{item['index']:02d} | "
+            f"HTTP {item['status']} | "
+            f"{item['bytes']:,} bytes | "
+            f"{item['url']}"
         )
 
-    # ========================================================
-    # DATABASE STILL READ-ONLY
-    # ========================================================
+    html_findings = find_terms(
+        html,
+        "PAGE_HTML",
+    )
+
+    script_findings = []
+
+    for item in inventory:
+        if item["kind"] != "inline":
+            continue
+
+        script_findings.extend(
+            find_terms(
+                item["inline_text"],
+                f"INLINE_SCRIPT_{item['index']:02d}",
+            )
+        )
+
+    for item in fetched_scripts:
+        script_findings.extend(
+            find_terms(
+                item["text"],
+                f"EXTERNAL_SCRIPT_{item['index']:02d}",
+            )
+        )
+
+    interactive = inspect_interactive_attributes(
+        html
+    )
+
+    classification = classify_mechanism(
+        html_findings,
+        script_findings,
+        controls,
+        interactive,
+    )
+
+    print()
+    print("MECHANISM CLASSIFICATION")
+    print(SUB)
+    print(
+        f"Mode               : "
+        f"{classification['mode']}"
+    )
+    print(
+        f"Evidence           : "
+        f"{', '.join(classification['evidence']) or 'none'}"
+    )
 
     database = load_database()
-    save_database(
-        database
-    )
+    save_database(database)
 
     stats = database_stats()
     validation = validate_database()
 
-    # ========================================================
-    # REPORT
-    # ========================================================
+    payload = {
+        "generated_at": now_iso(),
+        "lab_version": VERSION,
+        "group": GROUP,
+        "selected_version": selected_version,
+        "page_url": page_url,
+        "controls": controls,
+        "scripts": [
+            {
+                key: value
+                for key, value in item.items()
+                if key != "inline_text"
+            }
+            for item in inventory
+        ],
+        "external_scripts": [
+            {
+                key: value
+                for key, value in item.items()
+                if key != "text"
+            }
+            for item in fetched_scripts
+        ],
+        "interactive_attributes": interactive,
+        "html_findings": html_findings,
+        "script_findings": script_findings,
+        "classification": classification,
+        "production_pipeline_modified": False,
+    }
 
-    lines = []
-
-    lines.append(
-        "GT7 BOP LAB V1.2 - SPEED CLASS DIAGNOSTIC"
-    )
-    lines.append(SEP)
-    lines.append(
-        f"Generated          : {now_iso()}"
-    )
-    lines.append(
-        f"Group              : {GROUP}"
-    )
-    lines.append(
-        f"Selected version   : "
-        f"{selected_version}"
-    )
-    lines.append(
-        "Production modified: NO"
-    )
-
-    lines.append("")
-    lines.append(
-        "VERSION PROBES"
-    )
-    lines.append(SUB)
-
-    for probe in probes:
-        lines.append(
-            f"{probe['version']:<8} | "
-            f"HTTP {probe['status']:<3} | "
-            f"{probe['bytes']:>8,} bytes | "
-            f"{'VALID' if probe['valid'] else 'UNUSABLE'}"
-        )
-
-    lines.append("")
-    lines.append(
-        "SPEED VARIANT TEST"
-    )
-    lines.append(SUB)
-
-    for variant in variants:
-        lines.append(
-            f"{variant['requested_speed']:<4} | "
-            f"HTTP {variant['status']:<3} | "
-            f"selected={variant['selected_speed']} | "
-            f"rows={variant['rows']} | "
-            f"cars={variant['car_count']}"
-        )
-        lines.append(
-            f"URL: {variant['url']}"
-        )
-        lines.append(
-            f"Raw: {variant['raw_path']}"
-        )
-        lines.append(
-            "Signature:"
-        )
-
-        for item in variant[
-            "signature"
-        ]:
-            lines.append(
-                f"  {item[0]} | "
-                f"PP {item[1]} | "
-                f"HP {item[2]} | "
-                f"KG {item[3]}"
-            )
-
-        lines.append("")
-
-    lines.append(
-        "FIRST 5 PARSED CARS BY SPEED"
-    )
-    lines.append(SUB)
-
-    for variant in variants:
-        lines.append(
-            f"[{variant['requested_speed']}]"
-        )
-
-        for car in variant[
-            "cars"
-        ][:5]:
-            lines.append(
-                f"{car['car']} | "
-                f"PP {car['pp']} | "
-                f"HP {car['power_hp']} | "
-                f"Torque {car['torque_nm']} | "
-                f"KG {car['weight_kg']} | "
-                f"Balance {car['weight_balance']} | "
-                f"{car['drivetrain']} | "
-                f"{car['aspiration']}"
-            )
-
-        lines.append("")
-
-    signatures = [
-        tuple(
-            variant[
-                "signature"
-            ]
-        )
-        for variant in variants
-    ]
-
-    unique_signatures = len(
-        set(
-            signatures
-        )
+    MECHANISM_FILE.write_text(
+        json.dumps(
+            payload,
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
     )
 
-    lines.append(
-        "SPEED-SWITCH VALIDATION"
-    )
-    lines.append(SUB)
-    lines.append(
-        f"Distinct signatures: "
-        f"{unique_signatures} / "
-        f"{len(variants)}"
-    )
-
-    if unique_signatures == 3:
-        lines.append(
-            "Result             : PASSED - "
-            "HIGH/LOW/MID returned distinct tables."
-        )
-    elif unique_signatures > 1:
-        lines.append(
-            "Result             : PARTIAL - "
-            "some speed variants differ."
-        )
-    else:
-        lines.append(
-            "Result             : FAILED/INCONCLUSIVE - "
-            "all speed requests returned the same table."
-        )
-
-    lines.append("")
-    lines.append(
-        "DATABASE"
-    )
-    lines.append(SUB)
-    lines.append(
-        f"Records            : "
-        f"{stats['records']}"
-    )
-    lines.append(
-        f"Validation         : "
-        f"{'PASSED' if validation['valid'] else 'FAILED'}"
-    )
-
-    lines.append("")
-    lines.append(
-        "IMPORTANT"
-    )
-    lines.append(SUB)
-    lines.append(
-        "V1.2 intentionally does not write "
-        "BoP car records yet."
-    )
-    lines.append(
-        "Once HIGH/LOW/MID switching is proven, "
-        "V1.3 will persist all three tables."
-    )
-    lines.append(SEP)
-
-    report = "\n".join(
-        lines
+    report = build_report(
+        selected_version=selected_version,
+        probes=probes,
+        raw_path=raw_path,
+        controls=controls,
+        inventory=inventory,
+        fetched_scripts=fetched_scripts,
+        html_findings=html_findings,
+        script_findings=script_findings,
+        interactive=interactive,
+        classification=classification,
+        stats=stats,
+        validation=validation,
     )
 
     REPORT_FILE.write_text(
@@ -1073,10 +1070,21 @@ def main():
 
     print()
     print(report)
+
     print()
+    print("FILES CREATED")
+    print(SUB)
     print(
-        f"Saved report      : "
-        f"{REPORT_FILE}"
+        f"Report             : {REPORT_FILE}"
+    )
+    print(
+        f"Mechanism JSON     : {MECHANISM_FILE}"
+    )
+    print(
+        f"Raw HTML           : {raw_path}"
+    )
+    print(
+        f"Saved JS directory : {JS_DIR}"
     )
     print(SEP)
 
