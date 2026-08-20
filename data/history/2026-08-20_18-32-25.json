@@ -101,18 +101,11 @@
     "gap_to_wr_ms": 4420,
     "wr_percentage": 103.99378343212375,
     "position_score": 6.828170028818443,
-    "elite_score": 5.868619315005212,
+    "elite_score": 1.2324895114255507,
     "composite_rating": 4.589897821861285,
     "percentile_ahead": 68.28170028818444,
     "top_percent": 31.724448446645653,
-    "pace_band": "COMPETITIVE",
-    "legacy_elite_score": 1.2324895114255507,
-    "legacy_general_score": 6.828170028818443,
-    "legacy_composite_rating": 4.589897821861285,
-    "cpi_score": 5.868619315005212,
-    "cpi_band": "MID-FIELD",
-    "rating_model": "CPI_50_50_V1",
-    "driver_rating_label": "B"
+    "pace_band": "COMPETITIVE"
   },
   "my_brake_bias": {
     "layout": "Unknown",
@@ -136,8 +129,7 @@
   "dr_stats": {
     "rank": 1767,
     "total": 3642,
-    "dr": 4,
-    "label": "B"
+    "dr": 4
   },
   "next_targets": [
     {
@@ -319,49 +311,5 @@
   "forecast_v2": {
     "available": false,
     "reason": "Fewer than 3 comparable current-week snapshots."
-  },
-  "dr_laptime_stats": {
-    "1": {
-      "dr": 1,
-      "label": "E",
-      "drivers": 385,
-      "average_score": 120288.52727272727,
-      "average_laptime": "2:00.289"
-    },
-    "2": {
-      "dr": 2,
-      "label": "D",
-      "drivers": 2755,
-      "average_score": 119479.08965517241,
-      "average_laptime": "1:59.479"
-    },
-    "3": {
-      "dr": 3,
-      "label": "C",
-      "drivers": 2794,
-      "average_score": 117102.5050107373,
-      "average_laptime": "1:57.103"
-    },
-    "4": {
-      "dr": 4,
-      "label": "B",
-      "drivers": 3642,
-      "average_score": 115557.89923119165,
-      "average_laptime": "1:55.558"
-    },
-    "5": {
-      "dr": 5,
-      "label": "A",
-      "drivers": 1039,
-      "average_score": 114227.5948026949,
-      "average_laptime": "1:54.228"
-    },
-    "6": {
-      "dr": 6,
-      "label": "A+",
-      "drivers": 486,
-      "average_score": 112858.77777777778,
-      "average_laptime": "1:52.859"
-    }
   }
 }

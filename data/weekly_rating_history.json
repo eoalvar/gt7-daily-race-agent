@@ -890,33 +890,5 @@
     "cpi_score": 7.049831997530207,
     "cpi_band": "VERY STRONG",
     "rating_model": "CPI_50_50_V1"
-  },
-  {
-    "participated": true,
-    "week_start": "2026-08-17",
-    "final_snapshot": "2026-08-20T06:18:51.434574-03:00",
-    "finalization_mode": "backfill_last_available_snapshot",
-    "race": "C Gr.3 Running 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit N.Baglioni - Porsche 911 GT3 R (992) '22 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom",
-    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dAAG8BB1RWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
-    "general_score": 7.804568527918781,
-    "elite_score": 6.561769012289105,
-    "composite_rating": 7.30744872166691,
-    "position": 4845,
-    "total_drivers": 22065,
-    "top_percent": 21.957851801495583,
-    "percentile_ahead": 78.04568527918782,
-    "wr_percentage": 103.02856938534701,
-    "laptime": "1:55.256",
-    "score_ms": 115256,
-    "car": "Jaguar F-type Gr.3",
-    "car_code": 2184,
-    "country": "BR",
-    "driver_rating": 4,
-    "legacy_elite_score": 6.561769012289105,
-    "legacy_general_score": 7.804568527918781,
-    "legacy_composite_rating": 7.30744872166691,
-    "cpi_score": 6.561769012289105,
-    "cpi_band": "COMPETITIVE",
-    "rating_model": "CPI_50_50_V1"
   }
 ]
