@@ -4,9 +4,6 @@ on:
   workflow_dispatch:
 
   schedule:
-    # Daily report at 05:50 Sao Paulo local time.
-    # America/Sao_Paulo is used intentionally so the schedule remains
-    # tied to local time if timezone rules ever change.
     - cron: "50 5 * * *"
       timezone: "America/Sao_Paulo"
 
@@ -33,110 +30,64 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      # ============================================================
-      # MONDAY ONLY
-      # Recover the race that has just finished from the archived,
-      # fully paginated historical leaderboard.
-      # ============================================================
-
       - name: Finalize previous Daily Race C
         id: previous_week
         if: ${{ github.event_name == 'schedule' && github.event.schedule == '50 5 * * *' }}
         shell: bash
         run: |
           DAY_OF_WEEK=$(TZ=America/Sao_Paulo date +%u)
-
           echo "Sao Paulo weekday: $DAY_OF_WEEK"
-
           if [ "$DAY_OF_WEEK" = "1" ]; then
-            echo "Monday detected."
-            echo "Recovering previous Daily Race C final leaderboard..."
-
             set +e
             python src/finalize_previous_week.py
             RECOVERY_EXIT=$?
             set -e
-
+            echo "is_monday=true" >> "$GITHUB_OUTPUT"
             if [ "$RECOVERY_EXIT" -eq 0 ]; then
-              echo "Previous week historical final recovered successfully."
-              echo "is_monday=true" >> "$GITHUB_OUTPUT"
               echo "recovery_status=success" >> "$GITHUB_OUTPUT"
             else
-              echo "Historical recovery not yet available."
-              echo "Normal Daily Race C report will continue."
-              echo "is_monday=true" >> "$GITHUB_OUTPUT"
               echo "recovery_status=pending" >> "$GITHUB_OUTPUT"
             fi
           else
-            echo "Not Monday."
-            echo "Skipping previous-week recovery."
             echo "is_monday=false" >> "$GITHUB_OUTPUT"
             echo "recovery_status=not_required" >> "$GITHUB_OUTPUT"
           fi
 
-      # ============================================================
-      # FINALIZED HISTORY GUARD
-      # The current running week must never be treated as finalized.
-      # This also removes accidental duplicate records for the current
-      # Monday before long-term trends and comparisons are calculated.
-      # ============================================================
-
       - name: Remove current week from finalized rating history
-        run: |
-          python src/remove_current_week_from_final_history.py
-
-      # ============================================================
-      # CURRENT DAILY RACE C
-      # ============================================================
+        run: python src/remove_current_week_from_final_history.py
 
       - name: Run GT7 Daily Race C Agent
         env:
           FINAL_WEEKLY_SNAPSHOT: "0"
-        run: |
-          python src/test_race_detector.py
-
-      # ============================================================
-      # WEEKLY CAR RECOMMENDATION LAYER
-      # Production-safe: experimental stages may fail without blocking
-      # the normal Daily C email.
-      # ============================================================
+        run: python src/test_race_detector.py
 
       - name: Refresh current Sleeper Car Index
         id: daily_sleeper_index
         continue-on-error: true
-        run: |
-          python src/sleeper_car_lab_live.py
+        run: python src/sleeper_car_lab_live.py
 
       - name: Refresh technical learning layer
         id: daily_technical_learning
         if: steps.daily_sleeper_index.outcome == 'success'
         continue-on-error: true
-        run: |
-          python src/sleeper_technical_learning.py
+        run: python src/sleeper_technical_learning.py
 
       - name: Refresh structural sleeper model
         id: daily_structural_sleeper
         if: steps.daily_technical_learning.outcome == 'success'
         continue-on-error: true
-        run: |
-          python src/structural_sleeper_model.py
+        run: python src/structural_sleeper_model.py
 
       - name: Refresh weekly car recommendation consensus
         id: daily_weekly_recommender
         if: steps.daily_structural_sleeper.outcome == 'success'
         continue-on-error: true
-        run: |
-          python src/weekly_car_recommender.py
+        run: python src/weekly_car_recommender.py
 
       - name: Append Cars to Test This Week to email report
         if: steps.daily_weekly_recommender.outcome == 'success'
         continue-on-error: true
-        run: |
-          python src/append_weekly_car_recommendations.py
-
-      # ============================================================
-      # MONDAY EMAIL
-      # ============================================================
+        run: python src/append_weekly_car_recommendations.py
 
       - name: Build Monday combined report
         if: ${{ steps.previous_week.outputs.is_monday == 'true' }}
@@ -144,7 +95,6 @@ jobs:
         run: |
           if [ -f reports/previous_week_final.txt ]; then
             cp reports/latest.txt reports/current_week_report.tmp
-
             {
               cat reports/previous_week_final.txt
               echo
@@ -154,12 +104,7 @@ jobs:
               echo
               cat reports/current_week_report.tmp
             } > reports/latest.txt
-
             rm -f reports/current_week_report.tmp
-            echo "Monday combined email report created."
-          else
-            echo "Previous-week report not found."
-            echo "Keeping normal current-week report."
           fi
 
       - name: Update Monday email subject
@@ -168,7 +113,6 @@ jobs:
         run: |
           if [ -f reports/email_subject.txt ]; then
             CURRENT_SUBJECT=$(cat reports/email_subject.txt)
-
             if [ "${{ steps.previous_week.outputs.recovery_status }}" = "success" ]; then
               echo "GT7 FINAL + NEW WEEK | ${CURRENT_SUBJECT}" > reports/email_subject.txt
             else
@@ -176,42 +120,20 @@ jobs:
             fi
           fi
 
-      # ============================================================
-      # CPI PRODUCTION MODEL
-      # CPI = Competitive Performance Index.
-      # 50% proximity to WR + 50% actual leaderboard percentile.
-      # General and Composite are removed from presentation and retained
-      # only as legacy compatibility fields in stored data.
-      # Historical finalized races are recalculated on every run.
-      # ============================================================
-
       - name: Apply CPI production model
-        run: |
-          python src/apply_cpi_production.py
-
-      # ============================================================
-      # FINAL EMAIL LAYOUT
-      # Remove legacy Brake Bias / Race Strategy sections and place
-      # snapshot changes and weekly car recommendations where requested.
-      # Runs after Monday merge and CPI conversion so the final email uses
-      # the simplified competitive-performance presentation.
-      # ============================================================
+        run: python src/apply_cpi_production.py
 
       - name: Format final Daily C report layout
-        run: |
-          python src/format_daily_report_layout.py
+        run: python src/format_daily_report_layout.py
 
-      # ============================================================
-      # SAVE EVERYTHING
-      # ============================================================
+      - name: Add DR full-sample lap-time benchmarks
+        run: python src/append_dr_analysis.py
 
       - name: Save report and snapshot
         run: |
           git config user.name "GT7 Daily Race Agent"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git add reports/ data/
-
           if git diff --cached --quiet; then
             echo "No changes to save."
           else
@@ -219,14 +141,9 @@ jobs:
             git push
           fi
 
-      # ============================================================
-      # EMAIL
-      # ============================================================
-
       - name: Send report by email
         env:
           EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
           EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
-        run: |
-          python src/send_email.py
+        run: python src/send_email.py
