@@ -18,13 +18,15 @@ OUT_JSON = Path("data/dr_grid_position_lab.json")
 OUT_TXT = Path("reports/dr_grid_position_lab.txt")
 
 PSN_ID = "crazy_rooster74"
-SAMPLE_SIZE = 120
+TARGET_VALID = 100
+MAX_PROFILE_ATTEMPTS = 600
 MIN_LOCAL_N = 30
-START_WINDOW = 10.0
-MAX_WINDOW = 35.0
-WINDOW_STEP = 5.0
+START_WINDOW = 5.0
+MAX_WINDOW = 20.0
+WINDOW_STEP = 2.5
 GRID_SIZE = 16
-BOOTSTRAPS = 3000
+BOOTSTRAPS = 5000
+SLEEP_BETWEEN_PROFILES = 0.06
 DR_LABELS = {1: "E", 2: "D", 3: "C", 4: "B", 5: "A", 6: "A+", 7: "S"}
 
 
@@ -51,6 +53,7 @@ def gtsh_profile(session, psn_id):
         key = body.get("header") if body else None
         if not key:
             return None
+
         response = session.post(
             url,
             headers={
@@ -67,15 +70,18 @@ def gtsh_profile(session, psn_id):
         encrypted = wrapper.get("data") if isinstance(wrapper, dict) else None
         if not isinstance(encrypted, str):
             return None
+
         payload = json.loads(xor_decrypt(base64.b64decode(encrypted), key))
         user = payload.get("monthly_stats", {}).get("result", {}).get("user")
         if not isinstance(user, dict):
             return None
+
         pct = user.get("dr_percentage")
         dr = user.get("driver_rating")
         points = user.get("dr_points")
         if not isinstance(pct, (int, float)) or not isinstance(dr, (int, float)):
             return None
+
         return {
             "psn_id": user.get("np_online_id") or psn_id,
             "driver_rating": int(dr),
@@ -92,11 +98,13 @@ def leaderboard_entries(session, url):
     offset = 0
     limit = 1000
     server_total = None
+
     for _ in range(1000):
         sep = "&" if "?" in url else "?"
         response = session.get(f"{url}{sep}page_data=1&offset={offset}&limit={limit}", timeout=60)
         response.raise_for_status()
         payload = response.json()
+
         entries = None
         if isinstance(payload, list):
             entries = payload
@@ -109,8 +117,10 @@ def leaderboard_entries(session, url):
                 if isinstance(payload.get(key), (int, float)):
                     server_total = int(payload[key])
                     break
+
         if not entries:
             break
+
         added = 0
         for entry in entries:
             if not isinstance(entry, dict):
@@ -123,43 +133,14 @@ def leaderboard_entries(session, url):
                 seen.add(rank)
             all_entries.append(entry)
             added += 1
+
         if added == 0:
             break
         if server_total is not None and len(seen) >= server_total:
             break
         offset += len(entries)
+
     return all_entries
-
-
-def stratified_sample(items, n):
-    if len(items) <= n:
-        return items[:]
-    result = []
-    for i in range(n):
-        idx = round(i * (len(items) - 1) / (n - 1))
-        result.append(items[idx])
-    return result
-
-
-def ols(points):
-    xs = [p[0] for p in points]
-    ys = [p[1] for p in points]
-    xbar = statistics.mean(xs)
-    ybar = statistics.mean(ys)
-    sxx = sum((x - xbar) ** 2 for x in xs)
-    if sxx <= 0:
-        return None
-    beta = sum((x - xbar) * (y - ybar) for x, y in points) / sxx
-    alpha = ybar - beta * xbar
-    fitted = [alpha + beta * x for x in xs]
-    residuals = [y - f for y, f in zip(ys, fitted)]
-    sigma = math.sqrt(sum(r * r for r in residuals) / max(1, len(points) - 2))
-    syy = sum((y - ybar) ** 2 for y in ys)
-    corr = (
-        sum((x - xbar) * (y - ybar) for x, y in points) / math.sqrt(sxx * syy)
-        if syy > 0 else 0.0
-    )
-    return alpha, beta, sigma, corr
 
 
 def median_abs_deviation(values):
@@ -180,20 +161,6 @@ def robust_filter(observations):
     robust_sigma = 1.4826 * mad
     kept = [o for o in observations if abs(o["score"] - med) <= 3.5 * robust_sigma]
     return kept, len(observations) - len(kept)
-
-
-def adaptive_local(observations, my_pct):
-    window = START_WINDOW
-    selected = []
-    while window <= MAX_WINDOW:
-        selected = [o for o in observations if abs(o["dr_percentage"] - my_pct) <= window]
-        if len(selected) >= MIN_LOCAL_N:
-            break
-        window += WINDOW_STEP
-    if len(selected) < MIN_LOCAL_N:
-        selected = sorted(observations, key=lambda o: abs(o["dr_percentage"] - my_pct))[:MIN_LOCAL_N]
-        window = max((abs(o["dr_percentage"] - my_pct) for o in selected), default=MAX_WINDOW)
-    return selected, window
 
 
 def empirical_faster_probability(local, my_score):
@@ -224,6 +191,83 @@ def bootstrap_empirical_range(local, my_score, iterations=BOOTSTRAPS):
     return [lo, hi]
 
 
+def ols(points):
+    xs = [p[0] for p in points]
+    ys = [p[1] for p in points]
+    xbar = statistics.mean(xs)
+    ybar = statistics.mean(ys)
+    sxx = sum((x - xbar) ** 2 for x in xs)
+    if sxx <= 0:
+        return None
+    beta = sum((x - xbar) * (y - ybar) for x, y in points) / sxx
+    alpha = ybar - beta * xbar
+    fitted = [alpha + beta * x for x in xs]
+    residuals = [y - f for y, f in zip(ys, fitted)]
+    sigma = math.sqrt(sum(r * r for r in residuals) / max(1, len(points) - 2))
+    syy = sum((y - ybar) ** 2 for y in ys)
+    corr = (
+        sum((x - xbar) * (y - ybar) for x, y in points) / math.sqrt(sxx * syy)
+        if syy > 0 else 0.0
+    )
+    return alpha, beta, sigma, corr
+
+
+def prioritized_candidates(same_dr, my_score):
+    """Probe likely peers first, then expand outwards through the DR population.
+
+    Leaderboard position is not the target variable, but qualifying-time proximity increases
+    the chance of collecting a dense local competitive sample before broadening coverage.
+    """
+    if not same_dr:
+        return []
+
+    by_distance = sorted(same_dr, key=lambda x: abs(x["score"] - my_score))
+    selected = []
+    seen = set()
+
+    # First 250 closest in qualifying pace.
+    for item in by_distance[:250]:
+        key = item["psn_id"].lower()
+        if key not in seen:
+            seen.add(key)
+            selected.append(item)
+
+    # Then interleave the full DR distribution to prevent local pace-selection bias.
+    n = len(same_dr)
+    stride_count = min(n, MAX_PROFILE_ATTEMPTS)
+    if stride_count > 1:
+        for i in range(stride_count):
+            idx = round(i * (n - 1) / (stride_count - 1))
+            item = same_dr[idx]
+            key = item["psn_id"].lower()
+            if key not in seen:
+                seen.add(key)
+                selected.append(item)
+
+    # Finally fill remaining attempts from the full sorted population.
+    for item in same_dr:
+        if len(selected) >= MAX_PROFILE_ATTEMPTS:
+            break
+        key = item["psn_id"].lower()
+        if key not in seen:
+            seen.add(key)
+            selected.append(item)
+
+    return selected[:MAX_PROFILE_ATTEMPTS]
+
+
+def choose_local(clean, my_pct):
+    for window in [5.0, 7.5, 10.0, 12.5, 15.0, 17.5, 20.0]:
+        local = [o for o in clean if abs(o["dr_percentage"] - my_pct) <= window]
+        if len(local) >= MIN_LOCAL_N:
+            return local, window, "fixed_window"
+
+    # If the GTSH hit rate still prevents 30 observations inside +/-20, use nearest neighbors.
+    nearest = sorted(clean, key=lambda o: abs(o["dr_percentage"] - my_pct))[:MIN_LOCAL_N]
+    effective_window = max((abs(o["dr_percentage"] - my_pct) for o in nearest), default=None)
+    return nearest, effective_window, "nearest_30_fallback"
+
+
 def main():
     if not SNAPSHOT_FILE.exists():
         raise RuntimeError("Run the Daily Race C agent first.")
@@ -243,8 +287,10 @@ def main():
 
     my_dr = int(my_dr)
     my_pct = float(my_pct)
+    my_score = float(my_score)
+
     session = requests.Session()
-    session.headers.update({"User-Agent": "Mozilla/5.0 (GT7 DR Grid Position Lab V0.2)"})
+    session.headers.update({"User-Agent": "Mozilla/5.0 (GT7 DR Grid Position Lab V0.3)"})
 
     entries = leaderboard_entries(session, leaderboard_url)
     same_dr = []
@@ -255,18 +301,33 @@ def main():
         psn = user.get("np_online_id")
         if isinstance(dr, (int, float)) and int(dr) == my_dr:
             if isinstance(score, (int, float)) and isinstance(psn, str) and psn:
-                same_dr.append({"psn_id": psn, "score": float(score), "rank": entry.get("display_rank")})
+                same_dr.append({
+                    "psn_id": psn,
+                    "score": float(score),
+                    "rank": entry.get("display_rank"),
+                })
 
     same_dr.sort(key=lambda x: x["score"])
-    sampled = stratified_sample(same_dr, SAMPLE_SIZE)
+    candidates = prioritized_candidates(same_dr, my_score)
 
     observations = []
-    for i, item in enumerate(sampled, start=1):
+    attempts = 0
+    failures = 0
+    for item in candidates:
+        if len(observations) >= TARGET_VALID:
+            break
+        attempts += 1
         profile = gtsh_profile(session, item["psn_id"])
         if profile and profile["driver_rating"] == my_dr:
-            observations.append({**item, "dr_percentage": profile["dr_percentage"], "dr_points": profile.get("dr_points")})
-        print(f"Profile {i}/{len(sampled)} | valid={len(observations)}")
-        time.sleep(0.08)
+            observations.append({
+                **item,
+                "dr_percentage": profile["dr_percentage"],
+                "dr_points": profile.get("dr_points"),
+            })
+        else:
+            failures += 1
+        print(f"Profile {attempts}/{len(candidates)} | valid={len(observations)}/{TARGET_VALID} | failures={failures}")
+        time.sleep(SLEEP_BETWEEN_PROFILES)
 
     clean, removed_outliers = robust_filter(observations)
     points = [(o["dr_percentage"], o["score"]) for o in clean]
@@ -278,28 +339,28 @@ def main():
     dr_median = statistics.median(all_same_scores) if all_same_scores else None
     dr_mad = median_abs_deviation(all_same_scores) if all_same_scores else None
 
-    local, adaptive_window = adaptive_local(clean, my_pct) if clean else ([], START_WINDOW)
+    local, effective_window, local_method = choose_local(clean, my_pct) if clean else ([], None, "none")
     local_scores = [o["score"] for o in local]
     local_median = statistics.median(local_scores) if local_scores else None
+    local_mean = statistics.mean(local_scores) if local_scores else None
     local_mad = median_abs_deviation(local_scores) if local_scores else None
+    local_sd = statistics.pstdev(local_scores) if len(local_scores) >= 2 else None
     local_iqr = None
     if len(local_scores) >= 4:
         qs = statistics.quantiles(local_scores, n=4, method="inclusive")
         local_iqr = qs[2] - qs[0]
 
-    empirical_q = empirical_faster_probability(local, float(my_score)) if local else None
+    empirical_q = empirical_faster_probability(local, my_score) if local else None
     empirical_pos = grid_position(empirical_q) if empirical_q is not None else None
-    empirical_range = bootstrap_empirical_range(local, float(my_score)) if local else None
+    empirical_range = bootstrap_empirical_range(local, my_score) if local else None
 
     regression = None
     if model:
         alpha, beta, residual_sd, corr = model
         mu = alpha + beta * my_pct
-        robust_local_sigma = None
-        if local_mad and local_mad > 0:
-            robust_local_sigma = 1.4826 * local_mad
+        robust_local_sigma = 1.4826 * local_mad if local_mad and local_mad > 0 else None
         sigma = max(750.0, robust_local_sigma or residual_sd)
-        z = (float(my_score) - mu) / sigma
+        z = (my_score - mu) / sigma
         q = NormalDist().cdf(z)
         regression = {
             "alpha_ms": alpha,
@@ -317,10 +378,13 @@ def main():
 
     hybrid = None
     if empirical_q is not None and regression:
-        # Empirical neighborhood gets most weight; regression contributes only as a smoothing prior.
-        sample_weight = min(0.85, 0.55 + 0.01 * min(len(local), 30))
-        corr_strength = min(1.0, abs(regression["correlation"]) / 0.35)
-        empirical_weight = min(0.90, sample_weight + 0.10 * (1.0 - corr_strength))
+        # Empirical result dominates once a genuine local set reaches 30+ drivers.
+        if len(local) >= 50 and local_method == "fixed_window":
+            empirical_weight = 0.90
+        elif len(local) >= 30 and local_method == "fixed_window":
+            empirical_weight = 0.85
+        else:
+            empirical_weight = 0.75
         regression_weight = 1.0 - empirical_weight
         q = empirical_weight * empirical_q + regression_weight * regression["faster_probability"]
         hybrid = {
@@ -330,27 +394,42 @@ def main():
             "expected_grid_position": grid_position(q),
         }
 
+    production_ready = (
+        len(local) >= 30
+        and local_method == "fixed_window"
+        and effective_window is not None
+        and effective_window <= 10.0
+        and empirical_range is not None
+    )
+
     output = {
         "status": "STUDY_ONLY",
-        "version": "0.2",
+        "version": "0.3",
         "production_modified": False,
+        "production_ready": production_ready,
         "my_dr": my_dr,
         "my_dr_label": DR_LABELS.get(my_dr),
         "my_dr_percentage": my_pct,
         "my_score": my_score,
         "same_dr_leaderboard_n": len(same_dr),
-        "requested_profile_sample": len(sampled),
+        "profile_target_valid": TARGET_VALID,
+        "profile_max_attempts": MAX_PROFILE_ATTEMPTS,
+        "profile_attempts": attempts,
         "valid_profile_sample": len(observations),
+        "profile_failures": failures,
         "clean_profile_sample": len(clean),
         "outliers_removed": removed_outliers,
         "dr_full_mean_ms": dr_mean,
         "dr_full_sd_ms": dr_sd,
         "dr_full_median_ms": dr_median,
         "dr_full_mad_ms": dr_mad,
-        "adaptive_local": {
-            "window_pct": adaptive_window,
+        "local_peer_set": {
+            "selection_method": local_method,
+            "window_pct": effective_window,
             "n": len(local),
+            "mean_ms": local_mean,
             "median_ms": local_median,
+            "sd_ms": local_sd,
             "mad_ms": local_mad,
             "iqr_ms": local_iqr,
         },
@@ -369,21 +448,23 @@ def main():
     OUT_JSON.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
 
     lines = [
-        "GT7 DR GRID POSITION LAB V0.2",
-        "=" * 100,
+        "GT7 DR GRID POSITION LAB V0.3",
+        "=" * 104,
         "Status: STUDY ONLY - production report formula not modified.",
         f"Driver: {PSN_ID} | DR {DR_LABELS.get(my_dr)} | DR progress {my_pct:.0f}%",
         f"Your qualifying time: {score_to_laptime(my_score)}",
         f"Same-DR leaderboard population: {len(same_dr):,}",
-        f"GTSH profiles: {len(observations)} valid of {len(sampled)} requested | clean={len(clean)} | outliers removed={removed_outliers}",
-        f"Full DR mean: {score_to_laptime(dr_mean)} | SD {dr_sd/1000:.3f}s" if dr_sd is not None else "Full DR mean/SD unavailable",
-        f"Full DR median: {score_to_laptime(dr_median)} | MAD {dr_mad/1000:.3f}s" if dr_mad is not None else "Full DR median/MAD unavailable",
+        f"GTSH collection: {len(observations)} valid | {attempts} attempts | target {TARGET_VALID} | max {MAX_PROFILE_ATTEMPTS}",
+        f"Clean sample: {len(clean)} | outliers removed: {removed_outliers}",
+        f"Full DR mean: {score_to_laptime(dr_mean)} | SD {dr_sd/1000:.3f}s" if dr_sd is not None else "Full DR stats unavailable",
+        f"Full DR median: {score_to_laptime(dr_median)} | MAD {dr_mad/1000:.3f}s" if dr_mad is not None else "Full DR robust stats unavailable",
         "",
-        "ADAPTIVE LOCAL PEER SET",
-        f"Window around your DR%: +/-{adaptive_window:.1f} points",
+        "LOCAL PEER SET",
+        f"Method: {local_method}",
+        f"Effective DR% window: +/-{effective_window:.1f}" if effective_window is not None else "Effective DR% window: N/A",
         f"Peer sample: n={len(local)}",
-        f"Peer median: {score_to_laptime(local_median)}" if local_median is not None else "Peer median: N/A",
-        f"Peer MAD: {local_mad/1000:.3f}s" if local_mad is not None else "Peer MAD: N/A",
+        f"Peer mean: {score_to_laptime(local_mean)} | SD {local_sd/1000:.3f}s" if local_sd is not None else "Peer mean/SD: N/A",
+        f"Peer median: {score_to_laptime(local_median)} | MAD {local_mad/1000:.3f}s" if local_mad is not None else "Peer median/MAD: N/A",
         f"Peer IQR: {local_iqr/1000:.3f}s" if local_iqr is not None else "Peer IQR: N/A",
         "",
         "MODEL 1 - EMPIRICAL LOCAL PERCENTILE",
@@ -396,9 +477,9 @@ def main():
             f"Bootstrap 80% range: P{empirical_range[0]:.1f} to P{empirical_range[1]:.1f}" if empirical_range else "Bootstrap range unavailable",
         ])
     else:
-        lines.append("Insufficient local sample.")
+        lines.append("Unavailable")
 
-    lines.extend(["", "MODEL 2 - ROBUST REGRESSION / NORMAL"])
+    lines.extend(["", "MODEL 2 - REGRESSION / NORMAL DIAGNOSTIC"])
     if regression:
         lines.extend([
             f"beta: {regression['beta_ms_per_dr_pct']:.2f} ms per DR percentage point",
@@ -409,7 +490,7 @@ def main():
             f"Expected grid position: P{regression['expected_grid_position']:.1f} of {GRID_SIZE}",
         ])
     else:
-        lines.append("Insufficient clean sample for regression.")
+        lines.append("Unavailable")
 
     lines.extend(["", "MODEL 3 - HYBRID"])
     if hybrid:
@@ -419,13 +500,14 @@ def main():
             f"Expected grid position: P{hybrid['expected_grid_position']:.1f} of {GRID_SIZE}",
         ])
     else:
-        lines.append("Hybrid unavailable.")
+        lines.append("Unavailable")
 
     lines.extend([
         "",
-        "DECISION RULE",
-        f"Primary candidate is empirical local percentile if peer n >= {MIN_LOCAL_N}; hybrid is the smoothing fallback.",
-        "Regression is diagnostic and should not be the primary production estimator unless the DR%-pace relationship strengthens materially.",
+        "PRODUCTION READINESS",
+        f"Ready: {'YES' if production_ready else 'NO'}",
+        "Criteria: >=30 clean peers inside a true fixed DR% window of +/-10 or narrower, plus bootstrap interval.",
+        "Primary estimator if ready: empirical local percentile. Hybrid remains secondary diagnostic.",
     ])
 
     OUT_TXT.write_text("\n".join(lines) + "\n", encoding="utf-8")
