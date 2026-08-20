@@ -1,115 +1,29 @@
-GTSH DR POINTS DISCOVERY LAB V4
+GTSH DR POINTS DISCOVERY LAB V5
 ========================================================================================================
 PSN ID: crazy_rooster74
 Scope: public GTSH web client only; no official GT7 API.
 
-RESOLVED USER DATA
-- not resolved yet
+REQUEST REPRODUCTION
+GET profile status : 200
+Body header key    : FOUND
+Body attrs         : header
+POST status        : 200
+POST content-type  : application/json
+POST method/body  : application/x-www-form-urlencoded | psnid=<PSN>
 
-FETCH CALLS RECONSTRUCTED
-- expr=window.location.href | resolved=None | options=
+RESOLVED DR DATA
+- np_online_id: None
+- driver_rating: None
+- dr_label: None
+- dr_points: 20126
+- dr_percentage: None
+- sportsmanship_rating: None
 
-XOR KEY CANDIDATES
-- expression=key | literal_found=NO
+DECRYPTION
+- wrapper JSON parsed: YES
+- wrapper contains data: YES
+- XOR key present: YES
+- decrypt error: none
 
-REQUEST / DECRYPT PROBES
-- none
-
-FULL getProfile() FUNCTION
---------------------------------------------------------------------------------------------------------
-function getProfile() {
-        const np_online_id = document.getElementById('psnid').value;
-        const getBtn = document.getElementById('getBtn'); // Gomb lekérése
-
-        if (np_online_id.trim() === '') {
-            alert('Please enter the Online ID!');
-            return;
-        }
-
-        // Gomb letiltása a folyamat elején
-        if (getBtn) {
-            getBtn.disabled = true;
-            getBtn.textContent = 'WAIT...'; // Opcionális: átírja a szöveget
-        }
-
-        const loader = document.getElementById('loader');
-        if (loader) loader.classList.remove('hidden');
-
-        const infoBox = document.getElementById('info-box');
-        if (infoBox) infoBox.style.display = 'none';
-
-        const drLimitBox = document.getElementById('info-box-dr-limit');
-        if (drLimitBox) drLimitBox.style.display = 'none';
-
-        document.getElementById('result').innerHTML = '';
-        document.getElementById('saveImageBtn').style.display = 'none';
-
-        fetch(window.location.href, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: 'psnid=' + encodeURIComponent(np_online_id)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok: ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(responseData => {
-            if (loader) loader.classList.add('hidden');
-
-            if (responseData.error) {
-                if (responseData.maintenance_notice) {
-                    applyMaintenanceBox(responseData.maintenance_notice);
-                }
-                document.getElementById('result').innerHTML = `<p style="color: #ff3333;">Error: ${responseData.error}</p>`;
-                document.getElementById('info-box').style.display = 'block';
-                document.getElementById('info-box-error').style.display = 'block';
-                return;
-            }
-
-            const key = document.body.getAttribute('header');
-            if (!key) {
-                console.error("Dinamikus kulcs nem található!");
-                document.getElementById('result').innerHTML = `<p style="color: #ff3333;">Error: Missing encryption key</p>`;
-                return;
-            }
-
-            try {
-                const encryptedData = atob(responseData.data);
-                const decryptedData = xorDecrypt(encryptedData, key);
-                const data = JSON.parse(decryptedData);
-                hideAutomaticMaintenanceBox();
-                displayResults(data);
-            } catch (error) {
-                console.error("Dekódolási hiba:", error);
-                document.getElementById('result').innerHTML = `<p style="color: #ff3333;">Error: Failed to decrypt data</p>`;
-                document.getElementById('info-box').style.display = 'block';
-                document.getElementById('info-box-error').style.display = 'block';
-            }
-        })
-        .catch(error => {
-            console.error('Fetch Error:', error);
-            if (loader) loader.classList.add('hidden');
-            document.getElementById('info-box').style.display = 'block';
-            document.getElementById('info-box-error').style.display = 'block';
-            document.getElementById('result').innerHTML = `<p style="color: #ff3333;">An error occurred: ${error.message}</p>`;
-        })
-        .finally(() => {
-            // Ez a rész mindenképpen lefut a végén (siker és hiba esetén is)
-            if (getBtn) {
-                getBtn.disabled = false; // Gomb újra engedélyezése
-                getBtn.textContent = 'GET'; // Szöveg visszaállítása
-            }
-        });
-    }
-
-FULL xorDecrypt() FUNCTION
---------------------------------------------------------------------------------------------------------
-function xorDecrypt(data, key) {
-        let result = '';
-        for (let i = 0; i < data.length; i++) {
-            result += String.fromCharCode(data.charCodeAt(i) ^ key.charCodeAt(i % key.length));
-        }
-        return result;
-    }
+RESPONSE PREVIEW
+{"data":"ShcFUBFTb0pcTUJWBEALQF1cF1RHHhJdQWdUXAcEVBBUWwJURwhrCwMNBQZNUwhXBgNNCFIFbRURXEJqCQtCFl5HGBNfaUsbV1lEUENYE1ABB1ccVQodCAYaHBcFEG4SXlwPRRYQCgsDCQIDHE5KQFVUFVRHCBILAwoGGFFaHFMHF00TAUBvSVxRXkESQAtQAQRTBxgeSxtXWURQQ1gTUAEHVxxVCh0IBBocFwUQbhJeXA9FFhAKCwMJAgMcTkpAVVQVVEcIEgsDCgYYUVocUwkXTRMBQG9JXFFeQRJAC1MIAFUEGB5LG1dZRFBDWBNQAQdXHFUKHQgKGhwXBRBuEl5cD0UWEAoICg0HAxxOSkBVVBVURwgSCwMKBhhRWhxQABdNEwFAb0lcUV5BEkALUAEAVAIYbxwbVVlGWhMLRQdCagJQF0ESA0gaVlQXDUMLRVASE19pSxtQWUJqAg1VBxMPUgVVBxwbUFdFWxVAC1UdFxNQC1kSAwIUEkYVG10HblwFE18DCQ0BCQgNV1cDUwMNVQRSBxwbRktRUgQ9QwNFXA4TXwIeCQoPAkhNGRMBUEc+UgpWVRsJCwYFUU4TAV5AD0VHCAYVEUpRWwpAC1AdFxJFHF5VZlpcEg9QWwVQAA1UB1QLAggEDwAEUU4TF0JUBlQ6QFFNWlcSD1FMAVoCBhwdHhBTWEFnU1oFBxNYAgZQAEkQU1ZGVkQXW1cdQENUD1pHCAMVEUtETA0HbgtVF1sAXAYCCAoIBABVVAFQBANVCEkQRUpSX1VqEwNFC14XWwFLAgYAB0VtSE1AXA1fQQldHG1DTVJMQxdbGRMQVEYUXREQCkIRW1FHPg5YBFQXW0pHUEVAbFtRRz4BXhdfQUMLVwEcG1FNSWoCA0M9UkcEVQxGb1heV0VbFUALUwQFWQFQAgAVEVtRRz4GWAFFXA5fBEBJZkNKX1ITB0IREw9QAkkQU0xATF9YCBhUPVJHBFUMRm9YXldFWxVAC1MDAFEBSRBETF1RXlI+AUMHVVwVbgRfX0xdTBIPUFQGVQYAUUxJEFRLWk5ZWwZACxkTVBdUF1NXXGxeRVANPVINX0YUXBVGWVZdGgoBVlUAThNRE1gTW15ebFxZRhUDXwFUF1sEUwoJCwoKBRlDBkMLR1wPVjpGWVRWGgoDVVUJUgYZQ0UKRlFVbF5FUA09Ug1fRhRcFUZZVl0aCgRQWwNWAAJWTEkQV1heXW9FDQNIQAtOQ1IXV1RQR2dRWA4XXxYTD1QHXAEJCAANHBcRCl4WXmoCXhBcRBsJCRwXEQ5QG25BCFwAEAoIBQ8BDVJVTE4TUhVuEl1CVVcaCk5DAVgQUkAIRTpXSElWSllQDwFUPUFHDlYXV0NKEQIAGUMGQwtXQT5BClteTRECABlDB0ELQloFVDpCQlZUSlVGEkALUkwZQ10KVVlXbFxRTD4BXhdfQUMLVAUEFRFVVVEADhNYShcDQwpcSlwRAgUZQwVeDlUXWwBJEENQX05VR0NYA1dMGUNeEVpVSxECa2hNQEEQXlMIXQAQCkIRWlFRBgcTWAQZQ1UXW0ZcQWdcUBcHXUALAVEdR1dISRECAwFRVwZVAA1NEwlbU1xdS1UXW1dMThNGDlIMU1wbCUMSVgAQbhFFTA1URwhLG19RW1AFPVINRFsVE18CHBtcSFVbPgFeF19BQwtVHhJKW1lCUAU9Ug1EWxUTXwJNFRFcVVYADhNYShcNWA5XVGZQV0VbFUALUh0XDkEAXG9aXE1eQUNYAU4TRglQF1dUZlBXRVsVQAt
