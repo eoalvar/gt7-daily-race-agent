@@ -1,0 +1,38 @@
+name: GT7 Relativa Scale Validation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  relative-scale-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Relativa Scale Validation
+        run: |
+          python src/relative_scale_validation.py
+
+      - name: Save validation outputs
+        run: |
+          git config user.name "GT7 Relativa Scale Validation"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add data/relative_scale_validation.json reports/relative_scale_validation.txt
+
+          if git diff --cached --quiet; then
+            echo "No changes to save."
+          else
+            git commit -m "Update GT7 Relativa scale validation"
+            git push
+          fi
