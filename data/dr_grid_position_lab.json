@@ -1,0 +1,186 @@
+{
+  "status": "STUDY_ONLY",
+  "production_modified": false,
+  "my_dr": 4,
+  "my_dr_label": "B",
+  "my_dr_percentage": 52,
+  "same_dr_leaderboard_n": 3978,
+  "requested_profile_sample": 60,
+  "valid_profile_sample": 21,
+  "dr_full_mean_ms": 115555.8197586727,
+  "dr_full_sd_ms": 2720.7893414346313,
+  "theoretical_quantile_mean_ms": 115419.3624233471,
+  "observations": [
+    {
+      "psn_id": "GL_Efonde",
+      "score": 111160.0,
+      "rank": 19,
+      "dr_percentage": 56.0,
+      "dr_points": 21269
+    },
+    {
+      "psn_id": "WRT-PERCY",
+      "score": 112798.0,
+      "rank": 564,
+      "dr_percentage": 99.0,
+      "dr_points": 29811
+    },
+    {
+      "psn_id": "ABorges_1996",
+      "score": 113123.0,
+      "rank": 828,
+      "dr_percentage": 92.0,
+      "dr_points": 28598
+    },
+    {
+      "psn_id": "OLLUCASH",
+      "score": 113888.0,
+      "rank": 1745,
+      "dr_percentage": 22.0,
+      "dr_points": 14515
+    },
+    {
+      "psn_id": "SJZ_86",
+      "score": 113956.0,
+      "rank": 1853,
+      "dr_percentage": 72.0,
+      "dr_points": 24476
+    },
+    {
+      "psn_id": "MetalliCar911",
+      "score": 114012.0,
+      "rank": 1947,
+      "dr_percentage": 59.0,
+      "dr_points": 21896
+    },
+    {
+      "psn_id": "FinalRebelOne",
+      "score": 114598.0,
+      "rank": 2879,
+      "dr_percentage": 59.0,
+      "dr_points": 21832
+    },
+    {
+      "psn_id": "fflp0001",
+      "score": 114646.0,
+      "rank": 2981,
+      "dr_percentage": 15.0,
+      "dr_points": 13154
+    },
+    {
+      "psn_id": "ymt-hkt3333",
+      "score": 114706.0,
+      "rank": 3091,
+      "dr_percentage": 46.0,
+      "dr_points": 19356
+    },
+    {
+      "psn_id": "Daalz-33",
+      "score": 115164.0,
+      "rank": 4001,
+      "dr_percentage": 7.0,
+      "dr_points": 11583
+    },
+    {
+      "psn_id": "JoggI2910",
+      "score": 115219.0,
+      "rank": 4117,
+      "dr_percentage": 6.0,
+      "dr_points": 11211
+    },
+    {
+      "psn_id": "kenneth191919",
+      "score": 115281.0,
+      "rank": 4252,
+      "dr_percentage": 26.0,
+      "dr_points": 15391
+    },
+    {
+      "psn_id": "gamespawn21",
+      "score": 115805.0,
+      "rank": 5296,
+      "dr_percentage": 25.0,
+      "dr_points": 15192
+    },
+    {
+      "psn_id": "Dancsi006",
+      "score": 115880.0,
+      "rank": 5463,
+      "dr_percentage": 46.0,
+      "dr_points": 19382
+    },
+    {
+      "psn_id": "Owe-G17",
+      "score": 115976.0,
+      "rank": 5655,
+      "dr_percentage": 94.0,
+      "dr_points": 28980
+    },
+    {
+      "psn_id": "fersouza1972",
+      "score": 116616.0,
+      "rank": 6886,
+      "dr_percentage": 12.0,
+      "dr_points": 12574
+    },
+    {
+      "psn_id": "Pepsidogs",
+      "score": 116731.0,
+      "rank": 7103,
+      "dr_percentage": 7.0,
+      "dr_points": 11455
+    },
+    {
+      "psn_id": "bautii_022",
+      "score": 116857.0,
+      "rank": 7337,
+      "dr_percentage": 91.0,
+      "dr_points": 28290
+    },
+    {
+      "psn_id": "CONTAKTK",
+      "score": 118100.0,
+      "rank": 9100,
+      "dr_percentage": 20.0,
+      "dr_points": 14145
+    },
+    {
+      "psn_id": "Reakie",
+      "score": 118407.0,
+      "rank": 9430,
+      "dr_percentage": 48.0,
+      "dr_points": 19769
+    },
+    {
+      "psn_id": "Crimson_Tide_",
+      "score": 118970.0,
+      "rank": 9965,
+      "dr_percentage": 89.0,
+      "dr_points": 27950
+    }
+  ],
+  "estimate": {
+    "alpha_ms": 115754.32887840908,
+    "beta_ms_per_dr_pct": -9.02916896729636,
+    "correlation": -0.1532009338239596,
+    "regression_residual_sd_ms": 1938.2443636091625,
+    "my_dr_percentage": 52,
+    "expected_peer_mean_ms": 115284.81209210967,
+    "expected_peer_mean_laptime": "1:55.285",
+    "local_window_pct": 10.0,
+    "local_sample_n": 6,
+    "local_observed_mean_ms": 114793.83333333333,
+    "local_sd_ms": 1938.2443636091625,
+    "my_score": 114642,
+    "my_laptime": "1:54.642",
+    "z_vs_similar_dr": -0.3316465685021801,
+    "probability_random_peer_faster": 0.370078075623259,
+    "grid_size": 16,
+    "expected_grid_position": 6.551171134348885,
+    "grid_position_80pct_range": [
+      4.157603852093376,
+      8.944738416604395
+    ],
+    "hypothesis_direction_supported": true
+  }
+}

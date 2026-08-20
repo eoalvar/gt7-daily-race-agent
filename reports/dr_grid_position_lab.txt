@@ -1,0 +1,26 @@
+GT7 DR GRID POSITION LAB V0.1
+================================================================================================
+Status: STUDY ONLY - production report formula not modified.
+Driver: crazy_rooster74 | DR B | DR progress 52%
+Same-DR leaderboard population: 3,978
+GTSH profiles sampled: 21 valid of 60 requested
+Full DR mean: 1:55.556 | SD 2.721s
+Theoretical quantile baseline at 52%: 1:55.419
+
+MODEL
+For similar DR progress p, model qualifying time as T ~ Normal(mu(p), sigma_local).
+mu(p) = alpha + beta * p, calibrated from sampled GTSH profiles in the same DR.
+q = P(peer is faster) = Phi((T_my - mu(p)) / sigma_local).
+Expected grid position on a 16-car grid = 1 + (16-1) * q.
+
+beta: -9.03 ms per DR percentage point
+correlation: -0.153
+hypothesis supported (higher DR% -> faster): YES
+Expected peer mean at DR 52%: 1:55.285
+Local sample within +/-10 DR points: n=6
+Local/residual SD used: 1.938s
+Your qualifying time: 1:54.642
+z vs similar-DR peers: -0.332
+Probability a similar-DR peer is faster: 37.0%
+Estimated grid position: P6.6 of 16
+Approx. 80% range: P4.2 to P8.9
