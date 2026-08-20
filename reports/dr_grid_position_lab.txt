@@ -1,26 +1,38 @@
-GT7 DR GRID POSITION LAB V0.1
-================================================================================================
+GT7 DR GRID POSITION LAB V0.2
+====================================================================================================
 Status: STUDY ONLY - production report formula not modified.
 Driver: crazy_rooster74 | DR B | DR progress 52%
-Same-DR leaderboard population: 3,978
-GTSH profiles sampled: 21 valid of 60 requested
-Full DR mean: 1:55.556 | SD 2.721s
-Theoretical quantile baseline at 52%: 1:55.419
-
-MODEL
-For similar DR progress p, model qualifying time as T ~ Normal(mu(p), sigma_local).
-mu(p) = alpha + beta * p, calibrated from sampled GTSH profiles in the same DR.
-q = P(peer is faster) = Phi((T_my - mu(p)) / sigma_local).
-Expected grid position on a 16-car grid = 1 + (16-1) * q.
-
-beta: -9.03 ms per DR percentage point
-correlation: -0.153
-hypothesis supported (higher DR% -> faster): YES
-Expected peer mean at DR 52%: 1:55.285
-Local sample within +/-10 DR points: n=6
-Local/residual SD used: 1.938s
 Your qualifying time: 1:54.642
-z vs similar-DR peers: -0.332
-Probability a similar-DR peer is faster: 37.0%
-Estimated grid position: P6.6 of 16
-Approx. 80% range: P4.2 to P8.9
+Same-DR leaderboard population: 3,978
+GTSH profiles: 27 valid of 120 requested | clean=27 | outliers removed=0
+Full DR mean: 1:55.556 | SD 2.721s
+Full DR median: 1:55.131 | MAD 0.984s
+
+ADAPTIVE LOCAL PEER SET
+Window around your DR%: +/-52.0 points
+Peer sample: n=27
+Peer median: 1:55.234
+Peer MAD: 0.994s
+Peer IQR: 1.736s
+
+MODEL 1 - EMPIRICAL LOCAL PERCENTILE
+Similar-DR peers faster than you: 33.3%
+Expected grid position: P6.0 of 16
+Bootstrap 80% range: P4.3 to P7.7
+
+MODEL 2 - ROBUST REGRESSION / NORMAL
+beta: -25.56 ms per DR percentage point
+correlation: -0.491
+higher DR% -> faster supported: YES
+Expected peer mean at DR 52%: 1:54.822
+Similar-DR peer faster probability: 45.1%
+Expected grid position: P7.8 of 16
+
+MODEL 3 - HYBRID
+Weights: empirical 82% | regression 18%
+Similar-DR peer faster probability: 35.5%
+Expected grid position: P6.3 of 16
+
+DECISION RULE
+Primary candidate is empirical local percentile if peer n >= 30; hybrid is the smoothing fallback.
+Regression is diagnostic and should not be the primary production estimator unless the DR%-pace relationship strengthens materially.

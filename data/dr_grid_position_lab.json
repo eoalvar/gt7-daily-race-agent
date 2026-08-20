@@ -1,15 +1,54 @@
 {
   "status": "STUDY_ONLY",
+  "version": "0.2",
   "production_modified": false,
   "my_dr": 4,
   "my_dr_label": "B",
-  "my_dr_percentage": 52,
+  "my_dr_percentage": 52.0,
+  "my_score": 114642,
   "same_dr_leaderboard_n": 3978,
-  "requested_profile_sample": 60,
-  "valid_profile_sample": 21,
+  "requested_profile_sample": 120,
+  "valid_profile_sample": 27,
+  "clean_profile_sample": 27,
+  "outliers_removed": 0,
   "dr_full_mean_ms": 115555.8197586727,
   "dr_full_sd_ms": 2720.7893414346313,
-  "theoretical_quantile_mean_ms": 115419.3624233471,
+  "dr_full_median_ms": 115131.0,
+  "dr_full_mad_ms": 984.0,
+  "adaptive_local": {
+    "window_pct": 52.0,
+    "n": 27,
+    "median_ms": 115234.0,
+    "mad_ms": 994.0,
+    "iqr_ms": 1735.5
+  },
+  "empirical_model": {
+    "faster_probability": 0.3333333333333333,
+    "expected_grid_position": 6.0,
+    "bootstrap_80pct_range": [
+      4.333333333333333,
+      7.666666666666666
+    ]
+  },
+  "regression_model": {
+    "alpha_ms": 116151.24581688388,
+    "beta_ms_per_dr_pct": -25.55798496565897,
+    "correlation": -0.4913864202783838,
+    "residual_sd_ms": 1499.515075759762,
+    "expected_peer_mean_ms": 114822.23059866962,
+    "expected_peer_mean_laptime": "1:54.822",
+    "sigma_used_ms": 1473.7043999999999,
+    "z": -0.12229765933359199,
+    "faster_probability": 0.4513316428330885,
+    "expected_grid_position": 7.769974642496328,
+    "hypothesis_direction_supported": true
+  },
+  "hybrid_model": {
+    "empirical_weight": 0.8200000000000001,
+    "regression_weight": 0.17999999999999994,
+    "faster_probability": 0.35457302904328925,
+    "expected_grid_position": 6.318595435649339
+  },
   "observations": [
     {
       "psn_id": "GL_Efonde",
@@ -19,6 +58,13 @@
       "dr_points": 21269
     },
     {
+      "psn_id": "Mr_T-42Renzo",
+      "score": 112585.0,
+      "rank": 399,
+      "dr_percentage": 44.0,
+      "dr_points": 18836
+    },
+    {
       "psn_id": "WRT-PERCY",
       "score": 112798.0,
       "rank": 564,
@@ -26,161 +72,172 @@
       "dr_points": 29811
     },
     {
-      "psn_id": "ABorges_1996",
-      "score": 113123.0,
-      "rank": 828,
-      "dr_percentage": 92.0,
-      "dr_points": 28598
+      "psn_id": "marioojea03",
+      "score": 113883.0,
+      "rank": 1734,
+      "dr_percentage": 98.0,
+      "dr_points": 29715
     },
     {
-      "psn_id": "OLLUCASH",
-      "score": 113888.0,
-      "rank": 1745,
-      "dr_percentage": 22.0,
-      "dr_points": 14515
+      "psn_id": "Rablan_",
+      "score": 113917.0,
+      "rank": 1798,
+      "dr_percentage": 85.0,
+      "dr_points": 27014
     },
     {
-      "psn_id": "SJZ_86",
-      "score": 113956.0,
-      "rank": 1853,
-      "dr_percentage": 72.0,
-      "dr_points": 24476
+      "psn_id": "A_FER9DO",
+      "score": 113947.0,
+      "rank": 1845,
+      "dr_percentage": 19.0,
+      "dr_points": 13991
     },
     {
-      "psn_id": "MetalliCar911",
-      "score": 114012.0,
-      "rank": 1947,
-      "dr_percentage": 59.0,
-      "dr_points": 21896
-    },
-    {
-      "psn_id": "FinalRebelOne",
-      "score": 114598.0,
-      "rank": 2879,
-      "dr_percentage": 59.0,
-      "dr_points": 21832
-    },
-    {
-      "psn_id": "fflp0001",
-      "score": 114646.0,
-      "rank": 2981,
-      "dr_percentage": 15.0,
-      "dr_points": 13154
-    },
-    {
-      "psn_id": "ymt-hkt3333",
-      "score": 114706.0,
-      "rank": 3091,
-      "dr_percentage": 46.0,
-      "dr_points": 19356
-    },
-    {
-      "psn_id": "Daalz-33",
-      "score": 115164.0,
-      "rank": 4001,
-      "dr_percentage": 7.0,
-      "dr_points": 11583
-    },
-    {
-      "psn_id": "JoggI2910",
-      "score": 115219.0,
-      "rank": 4117,
-      "dr_percentage": 6.0,
-      "dr_points": 11211
-    },
-    {
-      "psn_id": "kenneth191919",
-      "score": 115281.0,
-      "rank": 4252,
+      "psn_id": "affaladdy",
+      "score": 114207.0,
+      "rank": 2245,
       "dr_percentage": 26.0,
-      "dr_points": 15391
+      "dr_points": 15286
     },
     {
-      "psn_id": "gamespawn21",
-      "score": 115805.0,
-      "rank": 5296,
-      "dr_percentage": 25.0,
-      "dr_points": 15192
+      "psn_id": "Foxatribe_bzh",
+      "score": 114240.0,
+      "rank": 2292,
+      "dr_percentage": 35.0,
+      "dr_points": 17069
     },
     {
-      "psn_id": "Dancsi006",
-      "score": 115880.0,
-      "rank": 5463,
-      "dr_percentage": 46.0,
-      "dr_points": 19382
+      "psn_id": "RCK3911",
+      "score": 114280.0,
+      "rank": 2352,
+      "dr_percentage": 85.0,
+      "dr_points": 27162
     },
     {
-      "psn_id": "Owe-G17",
-      "score": 115976.0,
-      "rank": 5655,
-      "dr_percentage": 94.0,
-      "dr_points": 28980
+      "psn_id": "A-UrielYT",
+      "score": 114695.0,
+      "rank": 3069,
+      "dr_percentage": 76.0,
+      "dr_points": 25294
     },
     {
-      "psn_id": "fersouza1972",
-      "score": 116616.0,
-      "rank": 6886,
-      "dr_percentage": 12.0,
-      "dr_points": 12574
+      "psn_id": "BabszindaHouse",
+      "score": 114720.0,
+      "rank": 3124,
+      "dr_percentage": 5.0,
+      "dr_points": 11017
     },
     {
-      "psn_id": "Pepsidogs",
-      "score": 116731.0,
-      "rank": 7103,
-      "dr_percentage": 7.0,
-      "dr_points": 11455
+      "psn_id": "Sgt2467",
+      "score": 114745.0,
+      "rank": 3172,
+      "dr_percentage": 16.0,
+      "dr_points": 13383
     },
     {
-      "psn_id": "bautii_022",
-      "score": 116857.0,
-      "rank": 7337,
-      "dr_percentage": 91.0,
-      "dr_points": 28290
+      "psn_id": "Autentico_Chacal",
+      "score": 115206.0,
+      "rank": 4091,
+      "dr_percentage": 18.0,
+      "dr_points": 13777
     },
     {
-      "psn_id": "CONTAKTK",
-      "score": 118100.0,
-      "rank": 9100,
-      "dr_percentage": 20.0,
-      "dr_points": 14145
+      "psn_id": "Ticki_Tacka_123",
+      "score": 115234.0,
+      "rank": 4150,
+      "dr_percentage": 0.0,
+      "dr_points": 10197
     },
     {
-      "psn_id": "Reakie",
-      "score": 118407.0,
-      "rank": 9430,
-      "dr_percentage": 48.0,
-      "dr_points": 19769
+      "psn_id": "Keviin-w-",
+      "score": 115266.0,
+      "rank": 4214,
+      "dr_percentage": 8.0,
+      "dr_points": 11720
     },
     {
-      "psn_id": "Crimson_Tide_",
-      "score": 118970.0,
-      "rank": 9965,
-      "dr_percentage": 89.0,
-      "dr_points": 27950
+      "psn_id": "Mr_Froher_Park",
+      "score": 115774.0,
+      "rank": 5238,
+      "dr_percentage": 42.0,
+      "dr_points": 18423
+    },
+    {
+      "psn_id": "redrooster456",
+      "score": 115816.0,
+      "rank": 5318,
+      "dr_percentage": 69.0,
+      "dr_points": 23806
+    },
+    {
+      "psn_id": "henri_1000",
+      "score": 115855.0,
+      "rank": 5408,
+      "dr_percentage": 60.0,
+      "dr_points": 22118
+    },
+    {
+      "psn_id": "stet1979",
+      "score": 115893.0,
+      "rank": 5485,
+      "dr_percentage": 11.0,
+      "dr_points": 12354
+    },
+    {
+      "psn_id": "LiesOfKura",
+      "score": 115930.0,
+      "rank": 5568,
+      "dr_percentage": 10.0,
+      "dr_points": 12044
+    },
+    {
+      "psn_id": "Espartero300",
+      "score": 115988.0,
+      "rank": 5680,
+      "dr_percentage": 63.0,
+      "dr_points": 22607
+    },
+    {
+      "psn_id": "BitMack12",
+      "score": 116527.0,
+      "rank": 6722,
+      "dr_percentage": 15.0,
+      "dr_points": 13165
+    },
+    {
+      "psn_id": "Dillomat",
+      "score": 116582.0,
+      "rank": 6822,
+      "dr_percentage": 3.0,
+      "dr_points": 10635
+    },
+    {
+      "psn_id": "Son_from_Joseph",
+      "score": 116624.0,
+      "rank": 6904,
+      "dr_percentage": 5.0,
+      "dr_points": 11024
+    },
+    {
+      "psn_id": "blondJC",
+      "score": 118112.0,
+      "rank": 9117,
+      "dr_percentage": 42.0,
+      "dr_points": 18574
+    },
+    {
+      "psn_id": "gLeNnGlEnN46",
+      "score": 118262.0,
+      "rank": 9297,
+      "dr_percentage": 4.0,
+      "dr_points": 10937
+    },
+    {
+      "psn_id": "theociro",
+      "score": 118433.0,
+      "rank": 9454,
+      "dr_percentage": 0.0,
+      "dr_points": 10184
     }
-  ],
-  "estimate": {
-    "alpha_ms": 115754.32887840908,
-    "beta_ms_per_dr_pct": -9.02916896729636,
-    "correlation": -0.1532009338239596,
-    "regression_residual_sd_ms": 1938.2443636091625,
-    "my_dr_percentage": 52,
-    "expected_peer_mean_ms": 115284.81209210967,
-    "expected_peer_mean_laptime": "1:55.285",
-    "local_window_pct": 10.0,
-    "local_sample_n": 6,
-    "local_observed_mean_ms": 114793.83333333333,
-    "local_sd_ms": 1938.2443636091625,
-    "my_score": 114642,
-    "my_laptime": "1:54.642",
-    "z_vs_similar_dr": -0.3316465685021801,
-    "probability_random_peer_faster": 0.370078075623259,
-    "grid_size": 16,
-    "expected_grid_position": 6.551171134348885,
-    "grid_position_80pct_range": [
-      4.157603852093376,
-      8.944738416604395
-    ],
-    "hypothesis_direction_supported": true
-  }
+  ]
 }
