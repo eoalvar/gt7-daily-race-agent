@@ -1,24 +1,115 @@
-GTSH DR POINTS DISCOVERY LAB V3
-================================================================================================
+GTSH DR POINTS DISCOVERY LAB V4
+========================================================================================================
 PSN ID: crazy_rooster74
-Scope: GTSH public web sources only; no official GT7 API.
-
-CONFIRMED SCHEMA
-- user.dr_points
-- user.dr_percentage
-- mapping 1=E, 2=D, 3=C, 4=B, 5=A, 6=A+, 7=S
+Scope: public GTSH web client only; no official GT7 API.
 
 RESOLVED USER DATA
 - not resolved yet
 
-NETWORK CANDIDATES
+FETCH CALLS RECONSTRUCTED
+- expr=window.location.href | resolved=None | options=
+
+XOR KEY CANDIDATES
+- expression=key | literal_found=NO
+
+REQUEST / DECRYPT PROBES
 - none
 
-PROBES
-- none
+FULL getProfile() FUNCTION
+--------------------------------------------------------------------------------------------------------
+function getProfile() {
+        const np_online_id = document.getElementById('psnid').value;
+        const getBtn = document.getElementById('getBtn'); // Gomb lekérése
 
-KEY CODE CONTEXT: monthly_stats
-const encryptedData = atob(responseData.data); const decryptedData = xorDecrypt(encryptedData, key); const data = JSON.parse(decryptedData); hideAutomaticMaintenanceBox(); displayResults(data); } catch (error) { console.error("Dekódolási hiba:", error); document.getElementById('result').innerHTML = `<p style="color: #ff3333;">Error: Failed to decrypt data</p>`; document.getElementById('info-box').style.display = 'block'; document.getElementById('info-box-error').style.display = 'block'; } }) .catch(error => { console.error('Fetch Error:', error); if (loader) loader.classList.add('hidden'); document.getElementById('info-box').style.display = 'block'; document.getElementById('info-box-error').style.display = 'block'; document.getElementById('result').innerHTML = `<p style="color: #ff3333;">An error occurred: ${error.message}</p>`; }) .finally(() => { // Ez a rész mindenképpen lefut a végén (siker és hiba esetén is) if (getBtn) { getBtn.disabled = false; // Gomb újra engedélyezése getBtn.textContent = 'GET'; // Szöveg visszaállítása } }); } function displayResults(data) { currentRivalTelemetry = data.rival_telemetry && typeof data.rival_telemetry === 'object' ? data.rival_telemetry : null; let resultHTML = '<h3>Profile Information</h3><hr>'; let driverPhotoSrc = data.profile?.result?.driver_photo_base64 || data.profile?.result?.driver_photo_url || 'driver.png'; const countryCode = data.monthly_stats?.result?.user?.country_code?.toLowerCase() || 'unknown'; const flagUrl = `flag/${countryCode}.png`; const country = countries.find(c => c.code === countryCode) || { name: '-' }; const countryName = country.name; const manufacturerId = data.monthly_stats?.result?.user?.manufacturer_id || 'default'; const brandLogoUrl = `brand/${manufacturerId}.png`; resultHTML += `<div class="driver-photo-container"> <img class="driver-photo" src="${driverPhotoSrc}" alt="Driver Photo" onerror="this.onerror=null; this.src='driver.png';"> <img class="country-flag" src="${flagUrl}" alt="${countryCode} Flag" onerror="this.style.display='none';"> <img class="brand-logo" src="${brandLogoUrl}" alt="Brand Logo" onerror="this.style.display='none';"> </div>`; if (data.monthly_stats && data.monthly_stats.result && data.monthly_stats.result.user) { const user = data.monthly_stats.result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'S'}; const srLevel = sportsmanshipRatingMapping[user.sportsmanship_rating] || '-'; let drChangeIndicator = ''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history
+        if (np_online_id.trim() === '') {
+            alert('Please enter the Online ID!');
+            return;
+        }
 
-KEY CODE CONTEXT: getProfile
--open').forEach(button => { if (button !== raceControlInfo) { button.classList.remove('is-open'); button.setAttribute('aria-expanded', 'false'); } }); if (raceControlInfo) { const isOpen = raceControlInfo.classList.toggle('is-open'); raceControlInfo.setAttribute('aria-expanded', isOpen ? 'true' : 'false'); return; } const rivalButton = e.target.closest('.rival-telemetry-btn'); if (rivalButton) { openRivalTelemetry(rivalButton.dataset.rivalUserId || ''); } }); document.addEventListener('keydown', event => { if (event.key !== 'Escape') return; document.querySelectorAll('.rival-engineering-race-control-info.is-open').forEach(button => { button.classList.remove('is-open'); button.setAttribute('aria-expanded', 'false'); }); }); document.getElementById('rival-telemetry-close')?.addEventListener('click', closeRivalTelemetry); document.getElementById('rival-telemetry-run')?.addEventListener('click', runRivalTelemetryCompare); document.getElementById('rival-telemetry-modal')?.addEventListener('click', event => { if (event.target.id === 'rival-telemetry-modal') closeRivalTelemetry(); }); // URL paraméterből automatikus betöltés const urlParams = new URLSearchParams(window.location.search); const idFromUrl = urlParams.get('id'); if (idFromUrl) { document.getElementById('psnid').value = idFromUrl; // Kis késleltetés hogy minden betöltődjön setTimeout(() => { getProfile(); }, 100); } }); const countries = [{"name":"Israel","code":"il"},{"name":"Afghanistan","code":"af"},{"name":"Albania","code":"al"},{"name":"Algeria","code":"dz"},{"name":"AmericanSamoa","code":"as"},{"name":"Andorra","code":"ad"},{"name":"Angola","code":"ao"},{"name":"Anguilla","code":"ai"},{"name":"Antigua and Barbuda","code":"ag"},{"name":"Argentina","code":"ar"},{"name":"Armenia","code":"am"},{"name":"Aruba","code":"aw"},{"name":"Australia","code":"au"},{"name":"Austria","code":"at"},{"name":"Azerbaijan","code":"az"},{"name":"Bahamas","code":"bs"},{"name":"Bahrain","code":"bh"},{"name":"Bangladesh","code":"bd"},{"name":"Barbados","code":"bb"},{"name":"Belarus","code":"by"},{"name":"Belgium","code":"be"},{"name":"Belize","code":"bz"},{"name":"Benin","code":"bj"},{"name":"Bermuda","code":"bm"},{"name":"Bhutan","code":"bt"},{"name":"Bosnia and Herzegovina","code":"ba"},{"name":"Botswana","code":"bw"},{"name":"Brazil","code":"br"},{"name":"BIOT","code":"io"},{"name":"Bulgaria","code":"bg"},{"name":"Burkina Faso","code":"bf"},{"name":"Burundi","code":"bi"},{"name":"Cambodia","code":"kh"},{"name":"Cameroon","code":"cm"},{"name":"Canada","code":"ca"},{"name":"Cape Verde","code":"cv"},{"name":"Cayman Islands","code":"ky"},{"name":"Central African Republic","code":"cf"},{"name":"Chad","code":"td"},{"name":"Chile","code":"cl"},{"name":"China","code":"cn"},{"name":"Christmas Island","code":"cx"},{"name":"Colombia","code":"co"},{"name":"Comoros","code":"km"},{"name":"Congo","code":"cg"},{"name":"Cook Islands","code":"ck"},{"name":"Costa Rica","code":"cr"},{"name":"Croatia","code":"hr"},{"name":"Cuba","code":"cu"},{"name":"Cyprus","code":"cy"},{"name":"Czech","code":"cz"},{"name":"Denmark","code":"dk"},{"name":"Djibouti","code":"dj"},{"na
+        // Gomb letiltása a folyamat elején
+        if (getBtn) {
+            getBtn.disabled = true;
+            getBtn.textContent = 'WAIT...'; // Opcionális: átírja a szöveget
+        }
+
+        const loader = document.getElementById('loader');
+        if (loader) loader.classList.remove('hidden');
+
+        const infoBox = document.getElementById('info-box');
+        if (infoBox) infoBox.style.display = 'none';
+
+        const drLimitBox = document.getElementById('info-box-dr-limit');
+        if (drLimitBox) drLimitBox.style.display = 'none';
+
+        document.getElementById('result').innerHTML = '';
+        document.getElementById('saveImageBtn').style.display = 'none';
+
+        fetch(window.location.href, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'psnid=' + encodeURIComponent(np_online_id)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(responseData => {
+            if (loader) loader.classList.add('hidden');
+
+            if (responseData.error) {
+                if (responseData.maintenance_notice) {
+                    applyMaintenanceBox(responseData.maintenance_notice);
+                }
+                document.getElementById('result').innerHTML = `<p style="color: #ff3333;">Error: ${responseData.error}</p>`;
+                document.getElementById('info-box').style.display = 'block';
+                document.getElementById('info-box-error').style.display = 'block';
+                return;
+            }
+
+            const key = document.body.getAttribute('header');
+            if (!key) {
+                console.error("Dinamikus kulcs nem található!");
+                document.getElementById('result').innerHTML = `<p style="color: #ff3333;">Error: Missing encryption key</p>`;
+                return;
+            }
+
+            try {
+                const encryptedData = atob(responseData.data);
+                const decryptedData = xorDecrypt(encryptedData, key);
+                const data = JSON.parse(decryptedData);
+                hideAutomaticMaintenanceBox();
+                displayResults(data);
+            } catch (error) {
+                console.error("Dekódolási hiba:", error);
+                document.getElementById('result').innerHTML = `<p style="color: #ff3333;">Error: Failed to decrypt data</p>`;
+                document.getElementById('info-box').style.display = 'block';
+                document.getElementById('info-box-error').style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Fetch Error:', error);
+            if (loader) loader.classList.add('hidden');
+            document.getElementById('info-box').style.display = 'block';
+            document.getElementById('info-box-error').style.display = 'block';
+            document.getElementById('result').innerHTML = `<p style="color: #ff3333;">An error occurred: ${error.message}</p>`;
+        })
+        .finally(() => {
+            // Ez a rész mindenképpen lefut a végén (siker és hiba esetén is)
+            if (getBtn) {
+                getBtn.disabled = false; // Gomb újra engedélyezése
+                getBtn.textContent = 'GET'; // Szöveg visszaállítása
+            }
+        });
+    }
+
+FULL xorDecrypt() FUNCTION
+--------------------------------------------------------------------------------------------------------
+function xorDecrypt(data, key) {
+        let result = '';
+        for (let i = 0; i < data.length; i++) {
+            result += String.fromCharCode(data.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+        }
+        return result;
+    }
