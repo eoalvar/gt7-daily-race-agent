@@ -1,0 +1,188 @@
+GT7 RELATIVA RATING STUDY V0.1
+==============================================================================================
+Purpose: redesign the former Elite rating using WR gap plus the real distribution of lap times.
+No production rating formula is changed by this study.
+Races analysed: 8
+
+2026-06-22 | Gr.1 | 47,183 drivers
+----------------------------------------------------------------------------------------------
+User Top %          : 18.206%
+User gap to WR      : +4.377%
+Legacy General      : 8.18
+Legacy Relativa     : 1.58
+Gap distribution    : Q25 +4.925% | Median +6.759% | Q75 +9.131%
+Robust position     : -0.566 IQR from median
+Local density       : 2.39% of drivers within +/-0.10 pp of user's WR gap
+Distribution anchors:
+  Top  0.1% | rank     48 | gap to WR +0.984%
+  Top  0.5% | rank    236 | gap to WR +1.635%
+  Top    1% | rank    472 | gap to WR +1.983%
+  Top    2% | rank    944 | gap to WR +2.374%
+  Top    5% | rank  2,360 | gap to WR +2.969%
+  Top   10% | rank  4,719 | gap to WR +3.594%
+  Top   15% | rank  7,078 | gap to WR +4.094%
+  Top   25% | rank 11,796 | gap to WR +4.925%
+  Top   50% | rank 23,592 | gap to WR +6.759%
+  Top   75% | rank 35,388 | gap to WR +9.131%
+  Top   90% | rank 42,465 | gap to WR +12.307%
+
+2026-06-29 | Gr.3 | 68,537 drivers
+----------------------------------------------------------------------------------------------
+User Top %          : 28.765%
+User gap to WR      : +2.972%
+Legacy General      : 7.12
+Legacy Relativa     : 1.12
+Gap distribution    : Q25 +2.798% | Median +3.988% | Q75 +5.666%
+Robust position     : -0.354 IQR from median
+Local density       : 4.40% of drivers within +/-0.10 pp of user's WR gap
+Distribution anchors:
+  Top  0.1% | rank     69 | gap to WR +0.355%
+  Top  0.5% | rank    343 | gap to WR +0.752%
+  Top    1% | rank    686 | gap to WR +0.974%
+  Top    2% | rank  1,371 | gap to WR +1.201%
+  Top    5% | rank  3,427 | gap to WR +1.615%
+  Top   10% | rank  6,854 | gap to WR +2.002%
+  Top   15% | rank 10,281 | gap to WR +2.289%
+  Top   25% | rank 17,135 | gap to WR +2.798%
+  Top   50% | rank 34,269 | gap to WR +3.988%
+  Top   75% | rank 51,403 | gap to WR +5.666%
+  Top   90% | rank 61,684 | gap to WR +7.724%
+
+2026-07-06 | Gr.1 | 43,096 drivers
+----------------------------------------------------------------------------------------------
+User Top %          : 9.268%
+User gap to WR      : +3.129%
+Legacy General      : 9.07
+Legacy Relativa     : 2.23
+Gap distribution    : Q25 +4.452% | Median +6.332% | Q75 +8.870%
+Robust position     : -0.725 IQR from median
+Local density       : 1.70% of drivers within +/-0.10 pp of user's WR gap
+Distribution anchors:
+  Top  0.1% | rank     44 | gap to WR +0.513%
+  Top  0.5% | rank    216 | gap to WR +1.251%
+  Top    1% | rank    431 | gap to WR +1.630%
+  Top    2% | rank    862 | gap to WR +1.959%
+  Top    5% | rank  2,155 | gap to WR +2.546%
+  Top   10% | rank  4,310 | gap to WR +3.214%
+  Top   15% | rank  6,465 | gap to WR +3.677%
+  Top   25% | rank 10,774 | gap to WR +4.451%
+  Top   50% | rank 21,548 | gap to WR +6.332%
+  Top   75% | rank 32,322 | gap to WR +8.870%
+  Top   90% | rank 38,787 | gap to WR +12.210%
+
+2026-07-13 | Gr.3 | 60,636 drivers
+----------------------------------------------------------------------------------------------
+User Top %          : 14.340%
+User gap to WR      : +2.593%
+Legacy General      : 8.57
+Legacy Relativa     : 1.76
+Gap distribution    : Q25 +3.206% | Median +4.572% | Q75 +6.498%
+Robust position     : -0.601 IQR from median
+Local density       : 2.81% of drivers within +/-0.10 pp of user's WR gap
+Distribution anchors:
+  Top  0.1% | rank     61 | gap to WR +0.465%
+  Top  0.5% | rank    304 | gap to WR +0.830%
+  Top    1% | rank    607 | gap to WR +1.068%
+  Top    2% | rank  1,213 | gap to WR +1.335%
+  Top    5% | rank  3,032 | gap to WR +1.785%
+  Top   10% | rank  6,064 | gap to WR +2.275%
+  Top   15% | rank  9,096 | gap to WR +2.636%
+  Top   25% | rank 15,159 | gap to WR +3.206%
+  Top   50% | rank 30,318 | gap to WR +4.572%
+  Top   75% | rank 45,477 | gap to WR +6.498%
+  Top   90% | rank 54,573 | gap to WR +9.238%
+
+2026-07-20 | Gr.4 | 44,161 drivers
+----------------------------------------------------------------------------------------------
+User Top %          : 11.370%
+User gap to WR      : +2.676%
+Legacy General      : 8.86
+Legacy Relativa     : 2.03
+Gap distribution    : Q25 +3.674% | Median +5.256% | Q75 +7.195%
+Robust position     : -0.733 IQR from median
+Local density       : 2.31% of drivers within +/-0.10 pp of user's WR gap
+Distribution anchors:
+  Top  0.1% | rank     45 | gap to WR +0.604%
+  Top  0.5% | rank    221 | gap to WR +1.013%
+  Top    1% | rank    442 | gap to WR +1.235%
+  Top    2% | rank    884 | gap to WR +1.499%
+  Top    5% | rank  2,209 | gap to WR +2.035%
+  Top   10% | rank  4,417 | gap to WR +2.551%
+  Top   15% | rank  6,625 | gap to WR +2.974%
+  Top   25% | rank 11,041 | gap to WR +3.674%
+  Top   50% | rank 22,081 | gap to WR +5.256%
+  Top   75% | rank 33,121 | gap to WR +7.195%
+  Top   90% | rank 39,745 | gap to WR +9.575%
+
+2026-07-27 | Gr.2 | 45,823 drivers
+----------------------------------------------------------------------------------------------
+User Top %          : 13.498%
+User gap to WR      : +3.850%
+Legacy General      : 8.65
+Legacy Relativa     : 1.87
+Gap distribution    : Q25 +4.716% | Median +6.435% | Q75 +9.118%
+Robust position     : -0.587 IQR from median
+Local density       : 2.37% of drivers within +/-0.10 pp of user's WR gap
+Distribution anchors:
+  Top  0.1% | rank     46 | gap to WR +0.794%
+  Top  0.5% | rank    230 | gap to WR +1.465%
+  Top    1% | rank    459 | gap to WR +1.816%
+  Top    2% | rank    917 | gap to WR +2.233%
+  Top    5% | rank  2,292 | gap to WR +2.878%
+  Top   10% | rank  4,583 | gap to WR +3.511%
+  Top   15% | rank  6,874 | gap to WR +3.970%
+  Top   25% | rank 11,456 | gap to WR +4.716%
+  Top   50% | rank 22,912 | gap to WR +6.435%
+  Top   75% | rank 34,368 | gap to WR +9.118%
+  Top   90% | rank 41,241 | gap to WR +13.392%
+
+2026-08-03 | Gr.3 | 51,009 drivers
+----------------------------------------------------------------------------------------------
+User Top %          : 11.818%
+User gap to WR      : +2.165%
+Legacy General      : 8.82
+Legacy Relativa     : 1.97
+Gap distribution    : Q25 +2.940% | Median +4.356% | Q75 +6.310%
+Robust position     : -0.650 IQR from median
+Local density       : 3.04% of drivers within +/-0.10 pp of user's WR gap
+Distribution anchors:
+  Top  0.1% | rank     52 | gap to WR +0.300%
+  Top  0.5% | rank    256 | gap to WR +0.706%
+  Top    1% | rank    511 | gap to WR +0.917%
+  Top    2% | rank  1,021 | gap to WR +1.171%
+  Top    5% | rank  2,551 | gap to WR +1.607%
+  Top   10% | rank  5,101 | gap to WR +2.035%
+  Top   15% | rank  7,652 | gap to WR +2.367%
+  Top   25% | rank 12,753 | gap to WR +2.940%
+  Top   50% | rank 25,505 | gap to WR +4.356%
+  Top   75% | rank 38,257 | gap to WR +6.310%
+  Top   90% | rank 45,909 | gap to WR +8.474%
+
+2026-08-10 | Gr.4 | 31,126 drivers
+----------------------------------------------------------------------------------------------
+User Top %          : 15.514%
+User gap to WR      : +2.371%
+Legacy General      : 8.44
+Legacy Relativa     : 1.80
+Gap distribution    : Q25 +2.907% | Median +4.338% | Q75 +6.472%
+Robust position     : -0.552 IQR from median
+Local density       : 3.05% of drivers within +/-0.10 pp of user's WR gap
+Distribution anchors:
+  Top  0.1% | rank     32 | gap to WR +0.389%
+  Top  0.5% | rank    156 | gap to WR +0.784%
+  Top    1% | rank    312 | gap to WR +0.971%
+  Top    2% | rank    623 | gap to WR +1.162%
+  Top    5% | rank  1,557 | gap to WR +1.542%
+  Top   10% | rank  3,113 | gap to WR +1.975%
+  Top   15% | rank  4,669 | gap to WR +2.331%
+  Top   25% | rank  7,782 | gap to WR +2.907%
+  Top   50% | rank 15,563 | gap to WR +4.338%
+  Top   75% | rank 23,345 | gap to WR +6.472%
+  Top   90% | rank 28,014 | gap to WR +9.073%
+
+NEXT CALIBRATION STEP
+----------------------------------------------------------------------------------------------
+Use these empirical distributions to test candidate Relativa scales.
+The final formula should reward closeness to WR while adapting to how tightly or loosely the field is distributed.
+A formula will only replace the legacy logarithmic score after cross-race comparison is reviewed.
+==============================================================================================
