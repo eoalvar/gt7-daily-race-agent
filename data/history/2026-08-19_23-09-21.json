@@ -101,17 +101,11 @@
     "gap_to_wr_ms": 3388,
     "wr_percentage": 103.02856938534701,
     "position_score": 7.800793095404712,
-    "elite_score": 6.5608226034638335,
+    "elite_score": 1.5184489121274147,
     "composite_rating": 5.287855422093793,
     "percentile_ahead": 78.00793095404713,
     "top_percent": 21.99570815450644,
-    "pace_band": "COMPETITIVE",
-    "legacy_elite_score": 1.5184489121274147,
-    "legacy_general_score": 7.800793095404712,
-    "legacy_composite_rating": 5.287855422093793,
-    "cpi_score": 6.5608226034638335,
-    "cpi_band": "COMPETITIVE",
-    "rating_model": "CPI_50_50_V1"
+    "pace_band": "COMPETITIVE"
   },
   "my_brake_bias": {
     "layout": "Unknown",

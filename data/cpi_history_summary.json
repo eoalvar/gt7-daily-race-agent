@@ -1,0 +1,18 @@
+{
+  "model": "CPI_50_50_V1",
+  "name": "Competitive Performance Index",
+  "formula": {
+    "wr_proximity_weight": 0.5,
+    "leaderboard_percentile_weight": 0.5
+  },
+  "current": {
+    "cpi_score": 6.5608226034638335,
+    "cpi_band": "COMPETITIVE",
+    "top_percent": 21.99570815450644,
+    "wr_percentage": 103.02856938534701
+  },
+  "finalized_races": 25,
+  "cpi_trend_8": "IMPROVING",
+  "top_percent_trend_8": "IMPROVING",
+  "wr_percentage_trend_8": "IMPROVING"
+}
