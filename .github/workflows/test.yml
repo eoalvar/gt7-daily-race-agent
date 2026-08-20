@@ -129,6 +129,10 @@ jobs:
       - name: Add DR full-sample lap-time benchmarks
         run: python src/append_dr_analysis.py
 
+      - name: Add expected start range
+        continue-on-error: true
+        run: python src/append_expected_start.py
+
       - name: Save report and snapshot
         run: |
           git config user.name "GT7 Daily Race Agent"
