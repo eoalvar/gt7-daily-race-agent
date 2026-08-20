@@ -18,403 +18,483 @@
   "keyword_snippets": [
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "let drChangeIndicator = ''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr"
+      "snippet": "] || '-'; let drChangeIndicator = ''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDiffere"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; co"
+      "snippet": "drChangeIndicator = ''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previ"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "rrentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) {"
+      "snippet": "const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) { drChangeIndicator = `<"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) { drChangeIndicator = `<span class=\"dr-increase-ar"
+      "snippet": "dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) { drChangeIndicator = `<span class=\"dr-increase-arrow\">▲</span><span class=\"dr-increase-va"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "<div class=\"level-bar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span>"
+      "snippet": "ontainer\"> <div class=\"level-bar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_onlin"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-"
+      "snippet": "ar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-'}</span></p> <p><span c"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "</div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-'}</span></p>"
+      "snippet": "tage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-'}</span></p> <p><span class=\"stat-label\">Nickname:<"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "L} ${favoritesHTML} `; } else { resultHTML += ` <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"s"
+      "snippet": "${statsHTML} ${favoritesHTML} `; } else { resultHTML += ` <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"stat-label\">Nickname:</span> <span class="
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "`; }); } if (data.dr_history && data.dr_history.length > 0) { resultHTML += ` <h3>DR Points History</h3><hr> <div class=\"zoom-slider-container\"> <label for=\"zoomSliderDR\" class=\"zoom-label\">Time Range</label> <input"
+      "snippet": "</p> `; }); } if (data.dr_history && data.dr_history.length > 0) { resultHTML += ` <h3>DR Points History</h3><hr> <div class=\"zoom-slider-container\"> <label for=\"zoomSliderDR\" class=\"zoom-label\">Time Range</label> <input type=\"range\" id=\"zoomSliderDR\" min=\"0\""
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "now.setHours(0, 0, 0, 0); const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now);"
+      "snippet": "now = new Date(); now.setHours(0, 0, 0, 0); const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDa"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate()"
+      "snippet": "0, 0, 0, 0); const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate() - days); const filtered"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "= data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate() - days); c"
+      "snippet": "onst originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate() - days); const filteredIndices = originalDatesDR"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "map(item => item.index); const filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR,"
+      "snippet": ".map(item => item.index); const filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ?"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "nst filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filt"
+      "snippet": "const filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryCh"
+      "snippet": "Points[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d');"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d');"
+      "snippet": "eturn { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d'); let chartData = updateChartDat"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "teredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d'); let chart"
+      "snippet": "labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d'); let chartData = updateChartDataDR(30);"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "data: { labels: chartData.labels, datasets: [{ label: 'DR Points', data: chartData.data, borderColor: '#00ff00', backgroundColor: 'rgba(0, 255, 0, 0.2)',"
+      "snippet": "'line', data: { labels: chartData.labels, datasets: [{ label: 'DR Points', data: chartData.data, borderColor: '#00ff00', backgroundColor: 'rgba(0, 255, 0, 0.2)', fill: true,"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "255, 0.1)' } }, y: { title: { display: true, text: 'DR Points', color: '#fff' }, ticks: { color: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' },"
+      "snippet": "or: 'rgba(255, 255, 255, 0.1)' } }, y: { title: { display: true, text: 'DR Points', color: '#fff' }, ticks: { color: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' }, min: Math.max(1, Math.min(...orig"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "grid: { color: 'rgba(255, 255, 255, 0.1)' }, min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: {"
+      "snippet": "or: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' }, min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: { legend: { labels:"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: { legend: { labels: { color: '#fff' } },"
+      "snippet": ", 255, 0.1)' }, min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: { legend: { labels: { color: '#fff' } }, tooltip: {"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "F-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <!-- SEO Meta Tags --> <title>GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance"
+      "snippet": "ata.monthly_stats && data.monthly_stats.result && data.monthly_stats.result.user) { const user = data.monthly_stats.result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMa"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "yer Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player profiles, Gran Turismo 7 Driver Rating, GT7 player statistics, G"
+      "snippet": "data.monthly_stats.result && data.monthly_stats.result.user) { const user = data.monthly_stats.result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rat"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player profiles, Gran Turismo 7 Driver Rating, GT7 player statistics, GT7 leaderboard, GTSH-Rank\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"theme"
+      "snippet": "</div> </div> <div class=\"level-bar-container\"> <div class=\"level-bar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p>"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "nical\" href=\"https://gtsh-rank.com/profile/\"> <!-- Open Graph Meta Tags --> <meta property=\"og:title\" content=\"GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta property=\"o"
+      "snippet": "<meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <!-- SEO Meta Tags --> <title>GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "er Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turi"
+      "snippet": "> <title>GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player profiles, Gran Turismo 7 Driver Rating, GT7 player statistics, GT7 leaderboard, GTSH-Rank\"> <meta na"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "ard Meta Tags --> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta name=\"twit"
+      "snippet": "iles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player profiles, Gran Turismo 7 Driver Rating, GT7 player statistics, GT7 leaderboard, GTSH-Rank\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "r Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta name=\"twitter:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <script type=\"application/ld+json\">{\"@context\":\"https://s"
+      "snippet": "<link rel=\"canonical\" href=\"https://gtsh-rank.com/profile/\"> <!-- Open Graph Meta Tags --> <meta property=\"og:title\" content=\"GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "\"@type\":\"CollectionPage\",\"name\":\"GT7 Player Profiles\",\"url\":\"https://gtsh-rank.com/profile/\",\"description\":\"Gran Turismo 7 player profiles, Driver Rating history and race statistics.\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"GTSH-Rank\",\"url\":\"https://gtsh-rank.com/\"},\"about\":{\"@type\":\"VideoGame\",\"name\":\"Gran Turismo 7\"}}</script>"
+      "snippet": "e\" content=\"GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 player profiles\"> <meta proper"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRat"
+      "snippet": "> <!-- Twitter Card Meta Tags --> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta name=\"twitter:image\" content=\"https://gtsh-rank.co"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "vel || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'S'}; const srLevel = sportsmanshipRating"
+      "snippet": "\" content=\"GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta name=\"twitter:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"nam"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "onst driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'S'}; const srLevel = sportsmanshipRatingMapping[user.sportsmanship"
+      "snippet": "https://schema.org\",\"@type\":\"CollectionPage\",\"name\":\"GT7 Player Profiles\",\"url\":\"https://gtsh-rank.com/profile/\",\"description\":\"Gran Turismo 7 player profiles, Driver Rating history and race statistics.\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"GTSH-Rank\",\"url\":\"https://gtsh-rank.com/\"},\"about\":{\"@type\":\"VideoGame\",\"name\":\"Gran Turismo 7\"}}</script> <!-- Egyéb erőforrások --> <link rel"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "; const performance = stats.performance || {}; const activity = stats.activity || {}; const progression = stats.progression || {}; const cars = stats.cars || {}; const rivalries = stats.rivalries || {}; statsHTML += `<div class=\"le"
+      "snippet": "data.monthly_stats.result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4:"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "nst performance = stats.performance || {}; const activity = stats.activity || {}; const progression = stats.progression || {}; const cars = stats.cars || {}; const rivalries = stats.rivalries || {}; statsHTML += `<div class=\"leaderboard-stats\"><h3"
+      "snippet": "drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'S'}; const srLevel = sportsmanshipRatingMapping[user.sportsmanship_rating] || '-"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "</div> </div>`; if (performance.best_rank) { const trendClass = progression.performance_trend?.trend === 'improving' ? 'trend-improving' : progression.performance_trend?.trend === 'declining' ? 'trend-declining' :"
+      "snippet": "| 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'S'}; const srLevel = sportsmanshipRatingMapping[user.sportsmanship_rating] || '-'; let drChan"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "const trendClass = progression.performance_trend?.trend === 'improving' ? 'trend-improving' : progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲'"
+      "snippet": "stats.summary || {}; const performance = stats.performance || {}; const activity = stats.activity || {}; const progression = stats.progression || {}; const cars = stats.cars || {}; const rivalries = stats.rivalries || {}; statsHTML += `<div class=\"leaderboard-stats\"><h3>Leaderboard Statist"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲' : progression.performance_trend?.trend === 'declining' ? '▼' : '●'; con"
+      "snippet": "; const performance = stats.performance || {}; const activity = stats.activity || {}; const progression = stats.progression || {}; const cars = stats.cars || {}; const rivalries = stats.rivalries || {}; statsHTML += `<div class=\"leaderboard-stats\"><h3>Leaderboard Statistics</h3><hr>`;"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲' : progression.performance_trend?.trend === 'declining' ? '▼' : '●'; const percentileSpread = Number.isFinite(Number(performance.percentile_stddev))"
+      "snippet": "/div> </div> </div>`; if (performance.best_rank) { const trendClass = progression.performance_trend?.trend === 'improving' ? 'trend-improving' : progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; con"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": ".label}</span></p> <p><span class=\"stat-label\">Performance Trend:</span> <span class=\"${trendClass}\">${trendIcon} ${progression.performance_trend?.trend || 'unknown'}</span></p> `; if (progression.performance_trend) {"
+      "snippet": "ank) { const trendClass = progression.performance_trend?.trend === 'improving' ? 'trend-improving' : progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲' :"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "dIcon} ${progression.performance_trend?.trend || 'unknown'}</span></p> `; if (progression.performance_trend) { const pt = progression.performance_trend; if (pt.last_30_days_avg_percentile !== null) {"
+      "snippet": "progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲' : progression.performance_trend?.trend === 'declining' ? '▼' : '●'; const percentileSpread = Number.isFinite(Nu"
+    },
+    {
+      "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "ing' : 'trend-stable'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲' : progression.performance_trend?.trend === 'declining' ? '▼' : '●'; const percentileSpread = Number.isFinite(Number(performance.percentile_stddev)) ? Number(performance.percentile_stddev"
+    },
+    {
+      "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "sName}\">${spreadMeta.label}</span></p> <p><span class=\"stat-label\">Performance Trend:</span> <span class=\"${trendClass}\">${trendIcon} ${progression.performance_trend?.trend || 'unknown'}</span></p> `; if (progression.performance_trend) { const pt = progression.performance_trend"
+    },
+    {
+      "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "{trendClass}\">${trendIcon} ${progression.performance_trend?.trend || 'unknown'}</span></p> `; if (progression.performance_trend) { const pt = progression.performance_trend; if (pt.last_30_days_avg_percentile !== null) { statsHTML += `<p><span class=\""
+    },
+    {
+      "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "'unknown'}</span></p> `; if (progression.performance_trend) { const pt = progression.performance_trend; if (pt.last_30_days_avg_percentile !== null) { statsHTML += `<p><span class=\"stat-label\">Last 30 Days Avg:</span> <span class=\"stat-value\">${pt.l"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "\"@type\":\"CollectionPage\",\"name\":\"GT7 Player Profiles\",\"url\":\"https://gtsh-rank.com/profile/\",\"description\":\"Gran Turismo 7 player profiles, Driver Rating history and race statistics.\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"GTSH-Rank\",\"url\":\"https://gtsh-rank.com/\"},\"about\":{\"@type\":\"VideoGame\",\"name\":\"Gran Turismo 7\"}}"
+      "snippet": "https://schema.org\",\"@type\":\"CollectionPage\",\"name\":\"GT7 Player Profiles\",\"url\":\"https://gtsh-rank.com/profile/\",\"description\":\"Gran Turismo 7 player profiles, Driver Rating history and race statistics.\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"GTSH-Rank\",\"url\":\"https://gtsh-rank.com/\"},\"about\":{\"@type\":\"VideoGame\",\"name\":\"Gran Turismo 7\"}}"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "let drChangeIndicator = ''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr"
+      "snippet": "] || '-'; let drChangeIndicator = ''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDiffere"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; co"
+      "snippet": "drChangeIndicator = ''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previ"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "rrentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) {"
+      "snippet": "const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) { drChangeIndicator = `<"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) { drChangeIndicator = `<span class=\"dr-increase-ar"
+      "snippet": "dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) { drChangeIndicator = `<span class=\"dr-increase-arrow\">▲</span><span class=\"dr-increase-va"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "<div class=\"level-bar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span>"
+      "snippet": "ontainer\"> <div class=\"level-bar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_onlin"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-"
+      "snippet": "ar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-'}</span></p> <p><span c"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "</div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-'}</span></p>"
+      "snippet": "tage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-'}</span></p> <p><span class=\"stat-label\">Nickname:<"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "L} ${favoritesHTML} `; } else { resultHTML += ` <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"s"
+      "snippet": "${statsHTML} ${favoritesHTML} `; } else { resultHTML += ` <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"stat-label\">Nickname:</span> <span class="
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "`; }); } if (data.dr_history && data.dr_history.length > 0) { resultHTML += ` <h3>DR Points History</h3><hr> <div class=\"zoom-slider-container\"> <label for=\"zoomSliderDR\" class=\"zoom-label\">Time Range</label> <input"
+      "snippet": "</p> `; }); } if (data.dr_history && data.dr_history.length > 0) { resultHTML += ` <h3>DR Points History</h3><hr> <div class=\"zoom-slider-container\"> <label for=\"zoomSliderDR\" class=\"zoom-label\">Time Range</label> <input type=\"range\" id=\"zoomSliderDR\" min=\"0\""
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "now.setHours(0, 0, 0, 0); const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now);"
+      "snippet": "now = new Date(); now.setHours(0, 0, 0, 0); const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDa"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate()"
+      "snippet": "0, 0, 0, 0); const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate() - days); const filtered"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "= data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate() - days); c"
+      "snippet": "onst originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate() - days); const filteredIndices = originalDatesDR"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "map(item => item.index); const filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR,"
+      "snippet": ".map(item => item.index); const filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ?"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "nst filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filt"
+      "snippet": "const filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryCh"
+      "snippet": "Points[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d');"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d');"
+      "snippet": "eturn { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d'); let chartData = updateChartDat"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "teredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d'); let chart"
+      "snippet": "labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d'); let chartData = updateChartDataDR(30);"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "data: { labels: chartData.labels, datasets: [{ label: 'DR Points', data: chartData.data, borderColor: '#00ff00', backgroundColor: 'rgba(0, 255, 0, 0.2)',"
+      "snippet": "'line', data: { labels: chartData.labels, datasets: [{ label: 'DR Points', data: chartData.data, borderColor: '#00ff00', backgroundColor: 'rgba(0, 255, 0, 0.2)', fill: true,"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "255, 0.1)' } }, y: { title: { display: true, text: 'DR Points', color: '#fff' }, ticks: { color: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' },"
+      "snippet": "or: 'rgba(255, 255, 255, 0.1)' } }, y: { title: { display: true, text: 'DR Points', color: '#fff' }, ticks: { color: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' }, min: Math.max(1, Math.min(...orig"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "grid: { color: 'rgba(255, 255, 255, 0.1)' }, min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: {"
+      "snippet": "or: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' }, min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: { legend: { labels:"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: { legend: { labels: { color: '#fff' } },"
+      "snippet": ", 255, 0.1)' }, min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: { legend: { labels: { color: '#fff' } }, tooltip: {"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRat"
+      "snippet": "ata.monthly_stats && data.monthly_stats.result && data.monthly_stats.result.user) { const user = data.monthly_stats.result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMa"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "vel || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'S'}; const srLevel = sportsmanshipRating"
+      "snippet": "data.monthly_stats.result && data.monthly_stats.result.user) { const user = data.monthly_stats.result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rat"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "onst driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'S'}; const srLevel = sportsmanshipRatingMapping[user.sportsmanship"
+      "snippet": "</div> </div> <div class=\"level-bar-container\"> <div class=\"level-bar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p>"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "; const performance = stats.performance || {}; const activity = stats.activity || {}; const progression = stats.progression || {}; const cars = stats.cars || {}; const rivalries = stats.rivalries || {}; statsHTML += `<div class=\"le"
+      "snippet": "data.monthly_stats.result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4:"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "nst performance = stats.performance || {}; const activity = stats.activity || {}; const progression = stats.progression || {}; const cars = stats.cars || {}; const rivalries = stats.rivalries || {}; statsHTML += `<div class=\"leaderboard-stats\"><h3"
+      "snippet": "drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'S'}; const srLevel = sportsmanshipRatingMapping[user.sportsmanship_rating] || '-"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "</div> </div>`; if (performance.best_rank) { const trendClass = progression.performance_trend?.trend === 'improving' ? 'trend-improving' : progression.performance_trend?.trend === 'declining' ? 'trend-declining' :"
+      "snippet": "| 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'S'}; const srLevel = sportsmanshipRatingMapping[user.sportsmanship_rating] || '-'; let drChan"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "const trendClass = progression.performance_trend?.trend === 'improving' ? 'trend-improving' : progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲'"
+      "snippet": "stats.summary || {}; const performance = stats.performance || {}; const activity = stats.activity || {}; const progression = stats.progression || {}; const cars = stats.cars || {}; const rivalries = stats.rivalries || {}; statsHTML += `<div class=\"leaderboard-stats\"><h3>Leaderboard Statist"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲' : progression.performance_trend?.trend === 'declining' ? '▼' : '●'; con"
+      "snippet": "; const performance = stats.performance || {}; const activity = stats.activity || {}; const progression = stats.progression || {}; const cars = stats.cars || {}; const rivalries = stats.rivalries || {}; statsHTML += `<div class=\"leaderboard-stats\"><h3>Leaderboard Statistics</h3><hr>`;"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲' : progression.performance_trend?.trend === 'declining' ? '▼' : '●'; const percentileSpread = Number.isFinite(Number(performance.percentile_stddev))"
+      "snippet": "/div> </div> </div>`; if (performance.best_rank) { const trendClass = progression.performance_trend?.trend === 'improving' ? 'trend-improving' : progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; con"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": ".label}</span></p> <p><span class=\"stat-label\">Performance Trend:</span> <span class=\"${trendClass}\">${trendIcon} ${progression.performance_trend?.trend || 'unknown'}</span></p> `; if (progression.performance_trend) {"
+      "snippet": "ank) { const trendClass = progression.performance_trend?.trend === 'improving' ? 'trend-improving' : progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲' :"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "dIcon} ${progression.performance_trend?.trend || 'unknown'}</span></p> `; if (progression.performance_trend) { const pt = progression.performance_trend; if (pt.last_30_days_avg_percentile !== null) {"
+      "snippet": "progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲' : progression.performance_trend?.trend === 'declining' ? '▼' : '●'; const percentileSpread = Number.isFinite(Nu"
     },
     {
       "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
-      "snippet": "p> `; if (progression.performance_trend) { const pt = progression.performance_trend; if (pt.last_30_days_avg_percentile !== null) { statsHTML += `<p><span class=\"stat-label\">Last 30 Days Avg"
+      "snippet": "ing' : 'trend-stable'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲' : progression.performance_trend?.trend === 'declining' ? '▼' : '●'; const percentileSpread = Number.isFinite(Number(performance.percentile_stddev)) ? Number(performance.percentile_stddev"
+    },
+    {
+      "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
+      "snippet": "sName}\">${spreadMeta.label}</span></p> <p><span class=\"stat-label\">Performance Trend:</span> <span class=\"${trendClass}\">${trendIcon} ${progression.performance_trend?.trend || 'unknown'}</span></p> `; if (progression.performance_trend) { const pt = progression.performance_trend"
+    },
+    {
+      "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
+      "snippet": "{trendClass}\">${trendIcon} ${progression.performance_trend?.trend || 'unknown'}</span></p> `; if (progression.performance_trend) { const pt = progression.performance_trend; if (pt.last_30_days_avg_percentile !== null) { statsHTML += `<p><span class=\""
+    },
+    {
+      "source": "https://gtsh-rank.com/profile/?id=crazy_rooster74#inline-script",
+      "snippet": "'unknown'}</span></p> `; if (progression.performance_trend) { const pt = progression.performance_trend; if (pt.last_30_days_avg_percentile !== null) { statsHTML += `<p><span class=\"stat-label\">Last 30 Days Avg:</span> <span class=\"stat-value\">${pt.l"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "let drChangeIndicator = ''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr"
+      "snippet": "] || '-'; let drChangeIndicator = ''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDiffere"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; co"
+      "snippet": "drChangeIndicator = ''; if (data.dr_history && data.dr_history.length >= 2) { const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previ"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "rrentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) {"
+      "snippet": "const currentPoints = user.dr_points === 0 ? 1 : user.dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) { drChangeIndicator = `<"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) { drChangeIndicator = `<span class=\"dr-increase-ar"
+      "snippet": "dr_points; const previousPoints = data.dr_history[data.dr_history.length - 2].dr_points === 0 ? 1 : data.dr_history[data.dr_history.length - 2].dr_points; const drDifference = currentPoints - previousPoints; if (drDifference > 0) { drChangeIndicator = `<span class=\"dr-increase-arrow\">▲</span><span class=\"dr-increase-va"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "<div class=\"level-bar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span>"
+      "snippet": "ontainer\"> <div class=\"level-bar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_onlin"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-"
+      "snippet": "ar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-'}</span></p> <p><span c"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "</div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-'}</span></p>"
+      "snippet": "tage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-user\">${user.np_online_id || '-'}</span></p> <p><span class=\"stat-label\">Nickname:<"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "L} ${favoritesHTML} `; } else { resultHTML += ` <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"s"
+      "snippet": "${statsHTML} ${favoritesHTML} `; } else { resultHTML += ` <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"stat-label\">Online ID:</span> <span class=\"stat-value\">-</span></p> <p><span class=\"stat-label\">Nickname:</span> <span class="
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "`; }); } if (data.dr_history && data.dr_history.length > 0) { resultHTML += ` <h3>DR Points History</h3><hr> <div class=\"zoom-slider-container\"> <label for=\"zoomSliderDR\" class=\"zoom-label\">Time Range</label> <input"
+      "snippet": "</p> `; }); } if (data.dr_history && data.dr_history.length > 0) { resultHTML += ` <h3>DR Points History</h3><hr> <div class=\"zoom-slider-container\"> <label for=\"zoomSliderDR\" class=\"zoom-label\">Time Range</label> <input type=\"range\" id=\"zoomSliderDR\" min=\"0\""
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "now.setHours(0, 0, 0, 0); const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now);"
+      "snippet": "now = new Date(); now.setHours(0, 0, 0, 0); const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDa"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate()"
+      "snippet": "0, 0, 0, 0); const originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate() - days); const filtered"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "= data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate() - days); c"
+      "snippet": "onst originalDatesDR = data.dr_history.map(item => item.date); const originalDrPoints = data.dr_history.map(item => item.dr_points === 0 ? 1 : item.dr_points); const updateChartDataDR = (days) => { const cutoffDate = new Date(now); cutoffDate.setDate(now.getDate() - days); const filteredIndices = originalDatesDR"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "map(item => item.index); const filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR,"
+      "snippet": ".map(item => item.index); const filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ?"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "nst filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filt"
+      "snippet": "const filteredDates = filteredIndices.map(i => originalDatesDR[i]); const filteredDrPoints = filteredIndices.map(i => originalDrPoints[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryCh"
+      "snippet": "Points[i]); return { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d');"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d');"
+      "snippet": "eturn { labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d'); let chartData = updateChartDat"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "teredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d'); let chart"
+      "snippet": "labels: filteredDates.length > 0 ? filteredDates : originalDatesDR, data: filteredDrPoints.length > 0 ? filteredDrPoints : originalDrPoints }; }; setTimeout(() => { const ctx = document.getElementById('drHistoryChart').getContext('2d'); let chartData = updateChartDataDR(30);"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "data: { labels: chartData.labels, datasets: [{ label: 'DR Points', data: chartData.data, borderColor: '#00ff00', backgroundColor: 'rgba(0, 255, 0, 0.2)',"
+      "snippet": "'line', data: { labels: chartData.labels, datasets: [{ label: 'DR Points', data: chartData.data, borderColor: '#00ff00', backgroundColor: 'rgba(0, 255, 0, 0.2)', fill: true,"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "255, 0.1)' } }, y: { title: { display: true, text: 'DR Points', color: '#fff' }, ticks: { color: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' },"
+      "snippet": "or: 'rgba(255, 255, 255, 0.1)' } }, y: { title: { display: true, text: 'DR Points', color: '#fff' }, ticks: { color: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' }, min: Math.max(1, Math.min(...orig"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "grid: { color: 'rgba(255, 255, 255, 0.1)' }, min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: {"
+      "snippet": "or: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' }, min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: { legend: { labels:"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: { legend: { labels: { color: '#fff' } },"
+      "snippet": ", 255, 0.1)' }, min: Math.max(1, Math.min(...originalDrPoints) - 100), max: Math.max(...originalDrPoints) + 100 } }, plugins: { legend: { labels: { color: '#fff' } }, tooltip: {"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "F-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <!-- SEO Meta Tags --> <title>GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance"
+      "snippet": "ata.monthly_stats && data.monthly_stats.result && data.monthly_stats.result.user) { const user = data.monthly_stats.result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMa"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "yer Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player profiles, Gran Turismo 7 Driver Rating, GT7 player statistics, G"
+      "snippet": "data.monthly_stats.result && data.monthly_stats.result.user) { const user = data.monthly_stats.result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rat"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player profiles, Gran Turismo 7 Driver Rating, GT7 player statistics, GT7 leaderboard, GTSH-Rank\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"theme"
+      "snippet": "</div> </div> <div class=\"level-bar-container\"> <div class=\"level-bar\" style=\"width: ${drPercentage}%\"></div> </div> <p><span class=\"stat-label\">DR Points:</span> <span class=\"stat-value\">${user.dr_points === 0 ? 1 : (user.dr_points || '-')}${drChangeIndicator}</span></p>"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "nical\" href=\"https://gtsh-rank.com/profile/\"> <!-- Open Graph Meta Tags --> <meta property=\"og:title\" content=\"GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta property=\"o"
+      "snippet": "<meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <!-- SEO Meta Tags --> <title>GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords"
     },
     {
       "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
-      "snippet": "er Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turi"
+      "snippet": "> <title>GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player profiles, Gran Turismo 7 Driver Rating, GT7 player statistics, GT7 leaderboard, GTSH-Rank\"> <meta na"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "iles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player profiles, Gran Turismo 7 Driver Rating, GT7 player statistics, GT7 leaderboard, GTSH-Rank\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "<link rel=\"canonical\" href=\"https://gtsh-rank.com/profile/\"> <!-- Open Graph Meta Tags --> <meta property=\"og:title\" content=\"GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "e\" content=\"GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 player profiles\"> <meta proper"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "> <!-- Twitter Card Meta Tags --> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta name=\"twitter:image\" content=\"https://gtsh-rank.co"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "\" content=\"GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history and race statistics.\"> <meta name=\"twitter:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"nam"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "https://schema.org\",\"@type\":\"CollectionPage\",\"name\":\"GT7 Player Profiles\",\"url\":\"https://gtsh-rank.com/profile/\",\"description\":\"Gran Turismo 7 player profiles, Driver Rating history and race statistics.\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"GTSH-Rank\",\"url\":\"https://gtsh-rank.com/\"},\"about\":{\"@type\":\"VideoGame\",\"name\":\"Gran Turismo 7\"}}</script> <!-- Egyéb erőforrások --> <link rel"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "data.monthly_stats.result.user; const drPercentage = user.dr_percentage || 0; const drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4:"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "drLevel = user.dr_level || 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'S'}; const srLevel = sportsmanshipRatingMapping[user.sportsmanship_rating] || '-"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "| 'D'; const driverRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'A+', 7: 'S'}; const drLevel2 = driverRatingMapping[user.driver_rating] || '-'; const sportsmanshipRatingMapping = {1: 'E', 2: 'D', 3: 'C', 4: 'B', 5: 'A', 6: 'S'}; const srLevel = sportsmanshipRatingMapping[user.sportsmanship_rating] || '-'; let drChan"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "stats.summary || {}; const performance = stats.performance || {}; const activity = stats.activity || {}; const progression = stats.progression || {}; const cars = stats.cars || {}; const rivalries = stats.rivalries || {}; statsHTML += `<div class=\"leaderboard-stats\"><h3>Leaderboard Statist"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "; const performance = stats.performance || {}; const activity = stats.activity || {}; const progression = stats.progression || {}; const cars = stats.cars || {}; const rivalries = stats.rivalries || {}; statsHTML += `<div class=\"leaderboard-stats\"><h3>Leaderboard Statistics</h3><hr>`;"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "/div> </div> </div>`; if (performance.best_rank) { const trendClass = progression.performance_trend?.trend === 'improving' ? 'trend-improving' : progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; con"
+    },
+    {
+      "source": "https://gt7.gtsh-rank.com/profile/?id=crazy_rooster74",
+      "snippet": "ank) { const trendClass = progression.performance_trend?.trend === 'improving' ? 'trend-improving' : progression.performance_trend?.trend === 'declining' ? 'trend-declining' : 'trend-stable'; const trendIcon = progression.performance_trend?.trend === 'improving' ? '▲' :"
     }
   ],
   "forms": [],
@@ -423,7 +503,392 @@
     "https://gt7.gtsh-rank.com/assets/js/content-protection.js?v=20260703"
   ],
   "endpoint_candidates": [
+    "https://gtsh-rank.com/profile/",
+    "https://gtsh-rank.com/profile/getProfile()",
+    "https://gtsh-rank.com/profile/saveProfileAsImage()",
+    "https://gtsh-rank.com/images/andris.png",
+    "https://gtsh-rank.com/profile/rival_user_id",
+    "https://gtsh-rank.com/profile/driver.png",
+    "https://gtsh-rank.com/profile/driver-photo-container",
+    "https://gtsh-rank.com/profile/driver-photo",
+    "https://gtsh-rank.com/profile/${driverPhotoSrc}",
+    "https://gtsh-rank.com/profile/dr-increase-value",
+    "https://gtsh-rank.com/profile/dr-decrease-arrow",
+    "https://gtsh-rank.com/profile/dr-decrease-value",
+    "https://gtsh-rank.com/profile/favorite-car-stats",
+    "https://gtsh-rank.com/profile/manufacturer-stats",
+    "https://gtsh-rank.com/profile/?id=${encodeURIComponent(comp.np_online_id)}",
+    "https://gtsh-rank.com/profile/data-rival-user-id=",
+    "https://gtsh-rank.com/profile/dr-logo.svg",
+    "https://gtsh-rank.com/profile/DR",
+    "https://gtsh-rank.com/profile/rating-text",
+    "https://gtsh-rank.com/profile/stat-user",
+    "https://gtsh-rank.com/profile/dr-increase-arrow",
+    "https://gtsh-rank.com/profile/zoomSliderDR",
+    "https://gtsh-rank.com/profile/drHistoryChart",
     "https://gtsh-rank.com/assets/js/dragstart",
+    "https://gt7.gtsh-rank.com/profile/",
+    "https://gt7.gtsh-rank.com/profile/getProfile()",
+    "https://gt7.gtsh-rank.com/profile/saveProfileAsImage()",
+    "https://gt7.gtsh-rank.com/images/andris.png",
+    "https://gt7.gtsh-rank.com/profile/rival_user_id",
+    "https://gt7.gtsh-rank.com/profile/driver.png",
+    "https://gt7.gtsh-rank.com/profile/driver-photo-container",
+    "https://gt7.gtsh-rank.com/profile/driver-photo",
+    "https://gt7.gtsh-rank.com/profile/${driverPhotoSrc}",
+    "https://gt7.gtsh-rank.com/profile/dr-increase-value",
+    "https://gt7.gtsh-rank.com/profile/dr-decrease-arrow",
+    "https://gt7.gtsh-rank.com/profile/dr-decrease-value",
+    "https://gt7.gtsh-rank.com/profile/favorite-car-stats",
+    "https://gt7.gtsh-rank.com/profile/manufacturer-stats",
+    "https://gt7.gtsh-rank.com/profile/?id=${encodeURIComponent(comp.np_online_id)}",
+    "https://gt7.gtsh-rank.com/profile/data-rival-user-id=",
+    "https://gt7.gtsh-rank.com/profile/dr-logo.svg",
+    "https://gt7.gtsh-rank.com/profile/DR",
+    "https://gt7.gtsh-rank.com/profile/rating-text",
+    "https://gt7.gtsh-rank.com/profile/stat-user",
+    "https://gt7.gtsh-rank.com/profile/dr-increase-arrow",
+    "https://gt7.gtsh-rank.com/profile/zoomSliderDR",
+    "https://gt7.gtsh-rank.com/profile/drHistoryChart",
     "https://gt7.gtsh-rank.com/assets/js/dragstart"
-  ]
+  ],
+  "endpoint_probes": [
+    {
+      "url": "https://gtsh-rank.com/profile/",
+      "status": 200,
+      "final_url": "https://gtsh-rank.com/profile/",
+      "content_type": "text/html; charset=UTF-8",
+      "body_preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <!-- SEO Meta Tags --> <title>GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player pro",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/DR",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/DR",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/",
+      "status": 200,
+      "final_url": "https://gtsh-rank.com/profile/",
+      "content_type": "text/html; charset=UTF-8",
+      "body_preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <!-- SEO Meta Tags --> <title>GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player pro",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/DR",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/DR",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/stat-user",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/stat-user",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/rating-text",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/rating-text",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/getProfile()",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/getProfile()",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/driver-photo",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/driver-photo",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/zoomSliderDR",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/zoomSliderDR",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/rival_user_id",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/rival_user_id",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/stat-user",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/stat-user",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/drHistoryChart",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/drHistoryChart",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/rating-text",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/rating-text",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/getProfile()",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/getProfile()",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/driver-photo",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/driver-photo",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/zoomSliderDR",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/zoomSliderDR",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/${driverPhotoSrc}",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/$%7BdriverPhotoSrc%7D",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/dr-increase-value",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/dr-increase-value",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/dr-decrease-arrow",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/dr-decrease-arrow",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/dr-decrease-value",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/dr-decrease-value",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/dr-increase-arrow",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/dr-increase-arrow",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/rival_user_id",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/rival_user_id",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/favorite-car-stats",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/favorite-car-stats",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/manufacturer-stats",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/manufacturer-stats",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/drHistoryChart",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/drHistoryChart",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/data-rival-user-id=",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/data-rival-user-id=",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/saveProfileAsImage()",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/saveProfileAsImage()",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/${driverPhotoSrc}",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/$%7bdriverPhotoSrc%7d",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/dr-increase-value",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/dr-increase-value",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/dr-decrease-arrow",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/dr-decrease-arrow",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/dr-decrease-value",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/dr-decrease-value",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/dr-increase-arrow",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/dr-increase-arrow",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/driver-photo-container",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/driver-photo-container",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/favorite-car-stats",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/favorite-car-stats",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/manufacturer-stats",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/manufacturer-stats",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/data-rival-user-id=",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/data-rival-user-id=",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/saveProfileAsImage()",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/saveProfileAsImage()",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/driver-photo-container",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/profile/driver-photo-container",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/profile/?id=${encodeURIComponent(comp.np_online_id)}",
+      "status": 200,
+      "final_url": "https://gtsh-rank.com/profile/?id=$%7BencodeURIComponent(comp.np_online_id)%7D",
+      "content_type": "text/html; charset=UTF-8",
+      "body_preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <!-- SEO Meta Tags --> <title>GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player pro",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/profile/?id=${encodeURIComponent(comp.np_online_id)}",
+      "status": 200,
+      "final_url": "https://gtsh-rank.com/profile/?id=$%7BencodeURIComponent(comp.np_online_id)%7D",
+      "content_type": "text/html; charset=UTF-8",
+      "body_preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <!-- SEO Meta Tags --> <title>GT7 Player Profiles, Driver Rating and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Search Gran Turismo 7 player profiles, Driver Rating history, race statistics and leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 player pro",
+      "json": false
+    },
+    {
+      "url": "https://gtsh-rank.com/assets/js/dragstart",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/assets/js/dragstart",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    },
+    {
+      "url": "https://gt7.gtsh-rank.com/assets/js/dragstart",
+      "status": 404,
+      "final_url": "https://gtsh-rank.com/assets/js/dragstart",
+      "content_type": "text/html; charset=iso-8859-1",
+      "body_preview": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> </body></html>",
+      "json": false
+    }
+  ],
+  "resolved_user": null
 }
