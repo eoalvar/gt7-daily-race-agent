@@ -1,14 +1,23 @@
 from __future__ import annotations
 
+import base64
 import json
 import re
+import statistics
 from collections import defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
+
+import requests
+from bs4 import BeautifulSoup
 
 SNAPSHOT_FILE = Path("data/latest_snapshot.json")
 REPORT_FILE = Path("reports/latest.txt")
+DR_HISTORY_FILE = Path("data/dr_progress_history.json")
 
-DR_LABELS = {1: "E", 2: "D", 3: "C", 4: "B", 5: "A", 6: "A+"}
+PSN_ID = "crazy_rooster74"
+GTSH_PROFILE_URL = f"https://gtsh-rank.com/profile/?id={PSN_ID}"
+DR_LABELS = {1: "E", 2: "D", 3: "C", 4: "B", 5: "A", 6: "A+", 7: "S"}
 
 
 def score_to_laptime(score):
@@ -16,6 +25,96 @@ def score_to_laptime(score):
         return "N/A"
     score = int(round(score))
     return f"{score // 60000}:{(score % 60000) // 1000:02d}.{score % 1000:03d}"
+
+
+def seconds_text(ms):
+    if not isinstance(ms, (int, float)):
+        return "N/A"
+    return f"{ms / 1000:.3f}s"
+
+
+def xor_decrypt(data: bytes, key: str) -> str:
+    key_bytes = key.encode("utf-8")
+    decoded = bytes(b ^ key_bytes[i % len(key_bytes)] for i, b in enumerate(data))
+    return decoded.decode("utf-8")
+
+
+def fetch_gtsh_dr_profile(session):
+    try:
+        page = session.get(GTSH_PROFILE_URL, timeout=30)
+        page.raise_for_status()
+        soup = BeautifulSoup(page.text, "html.parser")
+        body = soup.find("body")
+        key = body.get("header") if body else None
+        if not key:
+            return None
+
+        response = session.post(
+            GTSH_PROFILE_URL,
+            headers={
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Referer": GTSH_PROFILE_URL,
+                "Origin": "https://gtsh-rank.com",
+                "Accept": "application/json,text/plain,*/*",
+            },
+            data={"psnid": PSN_ID},
+            timeout=60,
+        )
+        response.raise_for_status()
+        wrapper = response.json()
+        encrypted = wrapper.get("data") if isinstance(wrapper, dict) else None
+        if not isinstance(encrypted, str):
+            return None
+
+        payload = json.loads(xor_decrypt(base64.b64decode(encrypted), key))
+        user = (
+            payload.get("monthly_stats", {})
+            .get("result", {})
+            .get("user")
+        )
+        if not isinstance(user, dict):
+            return None
+
+        dr_code = user.get("driver_rating")
+        dr_code = int(dr_code) if isinstance(dr_code, (int, float)) else None
+        return {
+            "psn_id": user.get("np_online_id") or PSN_ID,
+            "driver_rating": dr_code,
+            "dr_label": user.get("dr_level") or DR_LABELS.get(dr_code),
+            "dr_points": user.get("dr_points"),
+            "dr_percentage": user.get("dr_percentage"),
+            "sportsmanship_rating": user.get("sportsmanship_rating"),
+            "source": "GTSH public profile",
+            "captured_at": datetime.now(timezone.utc).isoformat(),
+        }
+    except Exception as exc:
+        print(f"GTSH DR profile unavailable: {exc}")
+        return None
+
+
+def update_dr_history(profile):
+    if not profile:
+        return
+    history = []
+    if DR_HISTORY_FILE.exists():
+        try:
+            loaded = json.loads(DR_HISTORY_FILE.read_text(encoding="utf-8"))
+            if isinstance(loaded, list):
+                history = loaded
+        except Exception:
+            history = []
+
+    entry = {
+        "captured_at": profile.get("captured_at"),
+        "driver_rating": profile.get("driver_rating"),
+        "dr_label": profile.get("dr_label"),
+        "dr_points": profile.get("dr_points"),
+        "dr_percentage": profile.get("dr_percentage"),
+    }
+    history.append(entry)
+    history = history[-500:]
+    DR_HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
+    DR_HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def main():
@@ -27,9 +126,6 @@ def main():
     leaderboard_url = race.get("leaderboard_url")
     if not leaderboard_url:
         raise RuntimeError("Leaderboard URL missing from latest snapshot")
-
-    # Import the production collector so this analysis uses the same GTSH schema.
-    import requests
 
     session = requests.Session()
     session.headers.update({"User-Agent": "Mozilla/5.0 (GT7 Daily Race Agent)"})
@@ -91,13 +187,22 @@ def main():
     stats = {}
     for dr in sorted(DR_LABELS):
         scores = groups.get(dr, [])
+        mean = (sum(scores) / len(scores)) if scores else None
+        std = statistics.pstdev(scores) if len(scores) >= 2 else None
         stats[str(dr)] = {
             "dr": dr,
             "label": DR_LABELS[dr],
             "drivers": len(scores),
-            "average_score": (sum(scores) / len(scores)) if scores else None,
-            "average_laptime": score_to_laptime(sum(scores) / len(scores)) if scores else "N/A",
+            "average_score": mean,
+            "average_laptime": score_to_laptime(mean) if mean is not None else "N/A",
+            "stddev_ms": std,
+            "stddev_seconds": (std / 1000) if std is not None else None,
         }
+
+    dr_profile = fetch_gtsh_dr_profile(session)
+    if dr_profile:
+        snapshot["dr_profile"] = dr_profile
+        update_dr_history(dr_profile)
 
     snapshot["dr_laptime_stats"] = stats
     my = snapshot.get("my_result") or {}
@@ -112,7 +217,6 @@ def main():
 
     report = REPORT_FILE.read_text(encoding="utf-8")
 
-    # Convert the user's DR code in the existing line to its human-readable class.
     if isinstance(my_dr, (int, float)):
         code = int(my_dr)
         label = DR_LABELS.get(code)
@@ -123,18 +227,34 @@ def main():
                 report,
             )
 
+    if dr_profile:
+        progress_line = (
+            f"DR progress      : DR {dr_profile.get('dr_label')} | "
+            f"{dr_profile.get('dr_points'):,} pts | "
+            f"{dr_profile.get('dr_percentage')}% toward next DR"
+            if isinstance(dr_profile.get("dr_points"), (int, float))
+            else f"DR progress      : DR {dr_profile.get('dr_label')} | {dr_profile.get('dr_percentage')}% toward next DR"
+        )
+        if "DR progress      :" in report:
+            report = re.sub(r"^DR progress\s*:.*$", progress_line, report, flags=re.MULTILINE)
+        else:
+            match = re.search(r"^DR [A-Z+]+ rank\s*:.*$", report, flags=re.MULTILINE)
+            if match:
+                insert_at = match.end()
+                report = report[:insert_at] + "\n" + progress_line + report[insert_at:]
+
     block = [
         "DR LAP-TIME BENCHMARKS - FULL LEADERBOARD",
-        "Average qualifying lap time by Driver Rating across the complete current sample.",
+        "Average qualifying lap time and population standard deviation by Driver Rating.",
     ]
     for dr in sorted(DR_LABELS, reverse=True):
         item = stats[str(dr)]
         block.append(
-            f"DR {item['label']:<2} : {item['average_laptime']} average | {item['drivers']:,} drivers"
+            f"DR {item['label']:<2} : {item['average_laptime']} average | "
+            f"SD {seconds_text(item['stddev_ms'])} | {item['drivers']:,} drivers"
         )
     block_text = "\n".join(block)
 
-    # Replace an existing block if this step is ever run twice.
     report = re.sub(
         r"\nDR LAP-TIME BENCHMARKS - FULL LEADERBOARD\n.*?(?=\n\n[A-Z][A-Z &/0-9-]+\n|\Z)",
         "",
@@ -150,10 +270,18 @@ def main():
 
     REPORT_FILE.write_text(report, encoding="utf-8")
     print("DR analysis appended to final report.")
+    if dr_profile:
+        print(
+            f"DR profile: {dr_profile.get('dr_label')} | {dr_profile.get('dr_points')} pts | "
+            f"{dr_profile.get('dr_percentage')}%"
+        )
     print(f"Leaderboard entries sampled: {sum(len(v) for v in groups.values()):,}")
     for dr in sorted(DR_LABELS, reverse=True):
         item = stats[str(dr)]
-        print(f"DR {item['label']}: {item['average_laptime']} | n={item['drivers']:,}")
+        print(
+            f"DR {item['label']}: {item['average_laptime']} | "
+            f"SD {seconds_text(item['stddev_ms'])} | n={item['drivers']:,}"
+        )
 
 
 if __name__ == "__main__":
