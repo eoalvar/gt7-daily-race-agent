@@ -21,6 +21,7 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (GT7 Daily Race Agent DR Lab)"}
 
 KEY_PATTERNS = [
     r"dr[_\- ]?points?",
+    r"dr[_\- ]?percentage",
     r"driver[_\- ]?rating",
     r"driver[_\- ]?rating[_\- ]?points?",
     r"dr[_\- ]?point[_\- ]?ratio",
@@ -37,8 +38,8 @@ def compact(text: str, n: int = 240) -> str:
 def extract_numeric_candidates(text: str):
     found = []
     patterns = [
-        r'(?i)(?:dr[_\- ]?points?|driver[_\- ]?rating[_\- ]?points?|rating[_\- ]?points?)\s*[":=]\s*"?(\d{2,6}(?:\.\d+)?)',
-        r'(?i)"(?:drPoints|dr_points|driverRatingPoints|driver_rating_points|ratingPoints)"\s*:\s*(\d{2,6}(?:\.\d+)?)',
+        r'(?i)(?:dr[_\- ]?points?|dr[_\- ]?percentage|driver[_\- ]?rating[_\- ]?points?|rating[_\- ]?points?)\s*[":=]\s*"?(\d{1,6}(?:\.\d+)?)',
+        r'(?i)"(?:drPoints|dr_points|drPercentage|dr_percentage|driverRatingPoints|driver_rating_points|ratingPoints)"\s*:\s*(\d{1,6}(?:\.\d+)?)',
     ]
     for pattern in patterns:
         for match in re.finditer(pattern, text):
@@ -53,10 +54,10 @@ def keyword_snippets(text: str):
     snippets = []
     for pat in KEY_PATTERNS:
         for match in re.finditer(pat, text, flags=re.IGNORECASE):
-            snippet = compact(text[max(0, match.start()-140):match.end()+180], 360)
+            snippet = compact(text[max(0, match.start()-160):match.end()+220], 420)
             if snippet and snippet not in snippets:
                 snippets.append(snippet)
-            if len(snippets) >= 40:
+            if len(snippets) >= 60:
                 return snippets
     return snippets
 
@@ -68,15 +69,67 @@ def same_host(url: str, base: str) -> bool:
 def fetch(session, url):
     try:
         r = session.get(url, timeout=30)
+        ctype = r.headers.get("content-type", "")
+        textual = any(token in ctype for token in ("text", "javascript", "json"))
         return {
             "url": url,
             "status": r.status_code,
             "final_url": r.url,
-            "content_type": r.headers.get("content-type", ""),
-            "text": r.text if "text" in r.headers.get("content-type", "") or "javascript" in r.headers.get("content-type", "") or "json" in r.headers.get("content-type", "") else "",
+            "content_type": ctype,
+            "text": r.text if textual else "",
         }
     except Exception as exc:
         return {"url": url, "error": str(exc), "text": ""}
+
+
+def discover_endpoints(text: str, source_url: str, base: str):
+    candidates = []
+
+    # Quoted strings that look endpoint-like.
+    for match in re.finditer(r'["\']([^"\']*(?:profile|player|user|rating|dr|ajax|api|stats|search)[^"\']*)["\']', text, flags=re.IGNORECASE):
+        candidate = match.group(1).strip()
+        if not candidate or len(candidate) > 260 or " " in candidate:
+            continue
+        if candidate.startswith("http") and not same_host(candidate, base):
+            continue
+        full = urljoin(source_url, candidate)
+        if same_host(full, base):
+            candidates.append(full)
+
+    # Explicit fetch()/axios URLs, including template literals.
+    call_patterns = [
+        r"fetch\(\s*([`\"'])(.+?)\1",
+        r"axios\.(?:get|post)\(\s*([`\"'])(.+?)\1",
+        r"\.open\(\s*[`\"'](?:GET|POST)[`\"']\s*,\s*([`\"'])(.+?)\1",
+    ]
+    for pattern in call_patterns:
+        for match in re.finditer(pattern, text, flags=re.IGNORECASE | re.DOTALL):
+            candidate = match.group(2).strip()
+            if len(candidate) > 300:
+                continue
+            # Resolve the PSN template variables commonly used by the page.
+            candidate = candidate.replace("${onlineId}", PSN_ID).replace("${id}", PSN_ID).replace("${psnId}", PSN_ID).replace("${psn_id}", PSN_ID)
+            candidate = candidate.replace("${encodeURIComponent(onlineId)}", PSN_ID).replace("${encodeURIComponent(id)}", PSN_ID)
+            if "${" in candidate:
+                continue
+            full = urljoin(source_url, candidate)
+            if same_host(full, base):
+                candidates.append(full)
+
+    return list(dict.fromkeys(candidates))
+
+
+def parse_json_user(payload):
+    if isinstance(payload, dict):
+        if isinstance(payload.get("user"), dict):
+            return payload.get("user"), payload
+        if isinstance(payload.get("result"), dict):
+            result = payload["result"]
+            if isinstance(result.get("user"), dict):
+                return result.get("user"), payload
+        if any(key in payload for key in ("dr_points", "dr_percentage", "driver_rating")):
+            return payload, payload
+    return None, payload
 
 
 def main():
@@ -91,6 +144,8 @@ def main():
         "forms": [],
         "script_urls": [],
         "endpoint_candidates": [],
+        "endpoint_probes": [],
+        "resolved_user": None,
     }
 
     for base in BASES:
@@ -108,6 +163,11 @@ def main():
 
         for snippet in keyword_snippets(text):
             report["keyword_snippets"].append({"source": profile_url, "snippet": snippet})
+
+        # Crucial: the GTSH profile logic is inline, so inspect endpoint calls here too.
+        for endpoint in discover_endpoints(text, profile_url, base):
+            if endpoint not in report["endpoint_candidates"]:
+                report["endpoint_candidates"].append(endpoint)
 
         soup = BeautifulSoup(text, "html.parser")
 
@@ -138,6 +198,9 @@ def main():
                 for item in extract_numeric_candidates(inline):
                     item["source"] = profile_url + "#inline-script"
                     report["numeric_candidates"].append(item)
+                for endpoint in discover_endpoints(inline, profile_url, base):
+                    if endpoint not in report["endpoint_candidates"]:
+                        report["endpoint_candidates"].append(endpoint)
 
         for script_url in list(dict.fromkeys(scripts))[:40]:
             report["script_urls"].append(script_url)
@@ -145,24 +208,48 @@ def main():
             stext = sres.get("text", "")
             if not stext:
                 continue
-
             for snippet in keyword_snippets(stext):
                 report["keyword_snippets"].append({"source": script_url, "snippet": snippet})
-
             for item in extract_numeric_candidates(stext):
                 item["source"] = script_url
                 report["numeric_candidates"].append(item)
+            for endpoint in discover_endpoints(stext, script_url, base):
+                if endpoint not in report["endpoint_candidates"]:
+                    report["endpoint_candidates"].append(endpoint)
 
-            # Discover likely same-site endpoint strings without guessing external APIs.
-            for match in re.finditer(r'["\']([^"\']*(?:profile|player|user|rating|dr|ajax|api)[^"\']*)["\']', stext, flags=re.IGNORECASE):
-                candidate = match.group(1)
-                if len(candidate) > 220 or " " in candidate or candidate.startswith("http") and not same_host(candidate, base):
-                    continue
-                full = urljoin(script_url, candidate)
-                if same_host(full, base) and full not in report["endpoint_candidates"]:
-                    report["endpoint_candidates"].append(full)
+    # Probe only plausible same-site URLs, prioritizing paths that include the PSN.
+    prioritized = sorted(
+        list(dict.fromkeys(report["endpoint_candidates"])),
+        key=lambda u: (PSN_ID.lower() not in u.lower(), "profile" not in u.lower(), len(u)),
+    )[:80]
 
-    # Keep output concise and deduplicated.
+    for endpoint in prioritized:
+        if endpoint.endswith((".js", ".css", ".png", ".jpg", ".svg")):
+            continue
+        res = fetch(session, endpoint)
+        probe = {k: v for k, v in res.items() if k != "text"}
+        body = res.get("text", "")
+        probe["body_preview"] = compact(body, 500)
+        if body:
+            try:
+                payload = json.loads(body)
+                user, _ = parse_json_user(payload)
+                probe["json"] = True
+                if isinstance(user, dict):
+                    probe["user_fields"] = {
+                        key: user.get(key)
+                        for key in ("np_online_id", "driver_rating", "dr_level", "dr_points", "dr_percentage")
+                        if key in user
+                    }
+                    if any(key in user for key in ("dr_points", "dr_percentage")):
+                        report["resolved_user"] = probe["user_fields"]
+            except Exception:
+                probe["json"] = False
+        report["endpoint_probes"].append(probe)
+        if report["resolved_user"]:
+            break
+
+    # Deduplicate concise outputs.
     seen = set()
     dedup_snips = []
     for item in report["keyword_snippets"]:
@@ -170,48 +257,51 @@ def main():
         if key not in seen:
             seen.add(key)
             dedup_snips.append(item)
-    report["keyword_snippets"] = dedup_snips[:100]
-    report["endpoint_candidates"] = report["endpoint_candidates"][:100]
+    report["keyword_snippets"] = dedup_snips[:120]
+    report["endpoint_candidates"] = list(dict.fromkeys(report["endpoint_candidates"]))[:120]
 
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_TXT.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 
     lines = [
-        "GTSH DR POINTS DISCOVERY LAB",
+        "GTSH DR POINTS DISCOVERY LAB V2",
         "=" * 88,
         f"PSN ID: {PSN_ID}",
         "Scope: GTSH public web sources only; no official GT7 API.",
         "",
-        "PROFILE REQUESTS",
+        "CONFIRMED PROFILE SCHEMA",
+        "- user.dr_points exists in GTSH profile code",
+        "- user.dr_percentage exists in GTSH profile code",
+        "- mapping: 1=E, 2=D, 3=C, 4=B, 5=A, 6=A+, 7=S",
+        "",
+        "RESOLVED USER DATA",
     ]
+
+    if report["resolved_user"]:
+        for key, value in report["resolved_user"].items():
+            lines.append(f"- {key}: {value}")
+    else:
+        lines.append("- not resolved yet")
+
+    lines.extend(["", "PROFILE REQUESTS"])
     for src in report["sources"]:
         lines.append(f"- {src.get('url')} | status={src.get('status')} | final={src.get('final_url')} | error={src.get('error')}")
 
-    lines.extend(["", "NUMERIC DR/RATING CANDIDATES"])
-    if report["numeric_candidates"]:
-        for item in report["numeric_candidates"][:30]:
-            lines.append(f"- {item['value']} | {item['source']} | {item['context']}")
-    else:
-        lines.append("- none found directly in fetched HTML/JS")
+    lines.extend(["", "DISCOVERED ENDPOINTS"])
+    for url in prioritized[:50]:
+        lines.append(f"- {url}")
 
-    lines.extend(["", "DISCOVERED FORMS"])
-    if report["forms"]:
-        for form in report["forms"][:20]:
-            lines.append(f"- {form['method']} {form['action']} | inputs={form['inputs']}")
+    lines.extend(["", "ENDPOINT PROBES"])
+    if report["endpoint_probes"]:
+        for item in report["endpoint_probes"][:50]:
+            lines.append(f"- {item.get('url')} | status={item.get('status')} | type={item.get('content_type')} | user={item.get('user_fields')} | preview={item.get('body_preview')}")
     else:
         lines.append("- none")
 
-    lines.extend(["", "KEYWORD SNIPPETS"])
-    for item in report["keyword_snippets"][:40]:
+    lines.extend(["", "KEY PROFILE CODE EVIDENCE"])
+    for item in report["keyword_snippets"][:30]:
         lines.append(f"- {item['source']} | {item['snippet']}")
-
-    lines.extend(["", "LIKELY SAME-SITE ENDPOINT STRINGS"])
-    if report["endpoint_candidates"]:
-        for url in report["endpoint_candidates"][:50]:
-            lines.append(f"- {url}")
-    else:
-        lines.append("- none")
 
     OUT_TXT.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
