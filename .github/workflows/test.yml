@@ -177,10 +177,24 @@ jobs:
           fi
 
       # ============================================================
+      # CPI PRODUCTION MODEL
+      # CPI = Competitive Performance Index.
+      # 50% proximity to WR + 50% actual leaderboard percentile.
+      # General and Composite are removed from presentation and retained
+      # only as legacy compatibility fields in stored data.
+      # Historical finalized races are recalculated on every run.
+      # ============================================================
+
+      - name: Apply CPI production model
+        run: |
+          python src/apply_cpi_production.py
+
+      # ============================================================
       # FINAL EMAIL LAYOUT
       # Remove legacy Brake Bias / Race Strategy sections and place
       # snapshot changes and weekly car recommendations where requested.
-      # Runs after Monday merge so both report portions are cleaned.
+      # Runs after Monday merge and CPI conversion so the final email uses
+      # the simplified competitive-performance presentation.
       # ============================================================
 
       - name: Format final Daily C report layout
