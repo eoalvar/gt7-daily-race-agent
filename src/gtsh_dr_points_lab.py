@@ -14,7 +14,7 @@ OUT_JSON = Path("data/gtsh_dr_points_lab.json")
 OUT_TXT = Path("reports/gtsh_dr_points_lab.txt")
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (GT7 Daily Race Agent DR Lab V5)",
+    "User-Agent": "Mozilla/5.0 (GT7 Daily Race Agent DR Lab V6)",
     "Accept": "text/html,application/xhtml+xml,application/json,*/*;q=0.8",
 }
 
@@ -33,6 +33,15 @@ def xor_decrypt(data: bytes, key: str) -> str:
     return decoded.decode("utf-8")
 
 
+def get_path(obj, *path):
+    cur = obj
+    for key in path:
+        if not isinstance(cur, dict) or key not in cur:
+            return None
+        cur = cur[key]
+    return cur
+
+
 def recursively_find_user(obj):
     if isinstance(obj, dict):
         if any(k in obj for k in ("dr_points", "dr_percentage", "driver_rating")):
@@ -49,42 +58,43 @@ def recursively_find_user(obj):
     return None
 
 
+def select_profile_user(payload):
+    """Prefer the exact object used by the GTSH profile UI; use recursion only as fallback."""
+    exact_paths = [
+        ("monthly_stats", "result", "user"),
+        ("monthly_stats", "user"),
+        ("result", "monthly_stats", "result", "user"),
+        ("result", "monthly_stats", "user"),
+        ("result", "user"),
+        ("user",),
+    ]
+    for path in exact_paths:
+        candidate = get_path(payload, *path)
+        if isinstance(candidate, dict):
+            return candidate, ".".join(path)
+    return recursively_find_user(payload), "recursive_fallback"
+
+
 def main():
     session = requests.Session()
     session.headers.update(HEADERS)
 
-    # 1) Load the exact public profile page used by the browser client.
     page = session.get(PROFILE_URL, timeout=30)
     page.raise_for_status()
-    html = page.text
-    soup = BeautifulSoup(html, "html.parser")
+    soup = BeautifulSoup(page.text, "html.parser")
 
-    # V4 established that the client reads the XOR key from document.body.getAttribute('header').
     body = soup.find("body")
     xor_key = body.get("header") if body else None
-
-    # Keep forensic evidence of where the key came from without printing the key itself.
     body_attrs = dict(body.attrs) if body else {}
     body_attr_names = sorted(body_attrs.keys())
 
-    # 2) Reproduce getProfile() exactly:
-    #    POST window.location.href
-    #    Content-Type: application/x-www-form-urlencoded
-    #    body: psnid=<PSN>
     post_headers = {
         "Content-Type": "application/x-www-form-urlencoded",
         "Referer": PROFILE_URL,
         "Origin": "https://gtsh-rank.com",
         "Accept": "application/json,text/plain,*/*",
     }
-
-    post = session.post(
-        PROFILE_URL,
-        headers=post_headers,
-        data={"psnid": PSN_ID},
-        timeout=60,
-    )
-
+    post = session.post(PROFILE_URL, headers=post_headers, data={"psnid": PSN_ID}, timeout=60)
     response_content_type = post.headers.get("content-type", "")
     response_preview = compact(post.text, 1800)
 
@@ -98,26 +108,24 @@ def main():
     decrypted_payload = None
     decrypt_error = None
     resolved_user = None
+    selected_path = None
 
     if isinstance(wrapper, dict):
-        # If GTSH ever decides to return plain JSON, support that too.
-        direct_user = recursively_find_user(wrapper)
-        if direct_user is not None:
-            resolved_user = direct_user
-            decrypted_payload = wrapper
+        encrypted_b64 = wrapper.get("data")
+        if isinstance(encrypted_b64, str):
+            if not xor_key:
+                decrypt_error = "Encrypted payload returned, but body header XOR key was not found."
+            else:
+                try:
+                    encrypted_bytes = base64.b64decode(encrypted_b64)
+                    plaintext = xor_decrypt(encrypted_bytes, xor_key)
+                    decrypted_payload = json.loads(plaintext)
+                    resolved_user, selected_path = select_profile_user(decrypted_payload)
+                except Exception as exc:
+                    decrypt_error = str(exc)
         else:
-            encrypted_b64 = wrapper.get("data")
-            if isinstance(encrypted_b64, str):
-                if not xor_key:
-                    decrypt_error = "Encrypted payload returned, but body header XOR key was not found."
-                else:
-                    try:
-                        encrypted_bytes = base64.b64decode(encrypted_b64)
-                        plaintext = xor_decrypt(encrypted_bytes, xor_key)
-                        decrypted_payload = json.loads(plaintext)
-                        resolved_user = recursively_find_user(decrypted_payload)
-                    except Exception as exc:
-                        decrypt_error = str(exc)
+            decrypted_payload = wrapper
+            resolved_user, selected_path = select_profile_user(wrapper)
 
     dr_summary = None
     if isinstance(resolved_user, dict):
@@ -128,20 +136,18 @@ def main():
             dr_code_int = None
 
         dr_label = resolved_user.get("dr_level") or DR_MAP.get(dr_code_int)
-        dr_points = resolved_user.get("dr_points")
-        dr_percentage = resolved_user.get("dr_percentage")
-
         dr_summary = {
             "driver_rating": dr_code_int,
             "dr_label": dr_label,
-            "dr_points": dr_points,
-            "dr_percentage": dr_percentage,
+            "dr_points": resolved_user.get("dr_points"),
+            "dr_percentage": resolved_user.get("dr_percentage"),
             "np_online_id": resolved_user.get("np_online_id"),
             "sportsmanship_rating": resolved_user.get("sportsmanship_rating"),
+            "selected_path": selected_path,
         }
 
     report = {
-        "version": "V5",
+        "version": "V6",
         "psn_id": PSN_ID,
         "profile_url": PROFILE_URL,
         "profile_status": page.status_code,
@@ -150,9 +156,9 @@ def main():
         "post_status": post.status_code,
         "post_content_type": response_content_type,
         "post_response_preview": response_preview,
-        "wrapper_json": wrapper,
         "wrapper_json_error": wrapper_error,
         "decrypt_error": decrypt_error,
+        "selected_user_path": selected_path,
         "resolved_user": resolved_user,
         "dr_summary": dr_summary,
         "decrypted_payload": decrypted_payload,
@@ -163,7 +169,7 @@ def main():
     OUT_JSON.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 
     lines = [
-        "GTSH DR POINTS DISCOVERY LAB V5",
+        "GTSH DR POINTS DISCOVERY LAB V6",
         "=" * 104,
         f"PSN ID: {PSN_ID}",
         "Scope: public GTSH web client only; no official GT7 API.",
@@ -171,10 +177,12 @@ def main():
         "REQUEST REPRODUCTION",
         f"GET profile status : {page.status_code}",
         f"Body header key    : {'FOUND' if xor_key else 'NOT FOUND'}",
-        f"Body attrs         : {', '.join(body_attr_names) if body_attr_names else 'none'}",
         f"POST status        : {post.status_code}",
         f"POST content-type  : {response_content_type}",
         "POST method/body  : application/x-www-form-urlencoded | psnid=<PSN>",
+        "",
+        "PROFILE USER SELECTION",
+        f"- selected path: {selected_path or 'not found'}",
         "",
         "RESOLVED DR DATA",
     ]
@@ -204,7 +212,6 @@ def main():
     ])
 
     OUT_TXT.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
     print("\n".join(lines))
     print(f"Saved: {OUT_JSON}")
     print(f"Saved: {OUT_TXT}")
