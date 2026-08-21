@@ -39,6 +39,64 @@ def xor_decrypt(data: bytes, key: str) -> str:
     return decoded.decode("utf-8")
 
 
+def robust_clean_scores(scores):
+    """Remove only extreme lap-time outliers using a conservative MAD fence.
+
+    The Daily C report keeps the same compact format; diagnostics stay in the
+    snapshot only. A 5-sigma robust fence is deliberately conservative so
+    legitimate slow laps remain in the DR distribution while pathological
+    entries no longer dominate mean/SD.
+    """
+    values = [float(x) for x in scores if isinstance(x, (int, float))]
+    if len(values) < 12:
+        return values, {
+            "raw_n": len(values),
+            "clean_n": len(values),
+            "excluded_n": 0,
+            "median_ms": statistics.median(values) if values else None,
+            "mad_ms": None,
+            "lower_fence_ms": None,
+            "upper_fence_ms": None,
+        }
+
+    median = statistics.median(values)
+    abs_dev = [abs(x - median) for x in values]
+    mad = statistics.median(abs_dev)
+
+    if not mad or mad <= 0:
+        return values, {
+            "raw_n": len(values),
+            "clean_n": len(values),
+            "excluded_n": 0,
+            "median_ms": median,
+            "mad_ms": mad,
+            "lower_fence_ms": None,
+            "upper_fence_ms": None,
+        }
+
+    robust_sigma = 1.4826 * mad
+    lower = median - 5.0 * robust_sigma
+    upper = median + 5.0 * robust_sigma
+    clean = [x for x in values if lower <= x <= upper]
+
+    # Safety valve: never let the robust filter discard an implausibly large
+    # fraction of a DR group. If that happens, retain the raw distribution.
+    if len(clean) < 0.90 * len(values):
+        clean = values
+        lower = None
+        upper = None
+
+    return clean, {
+        "raw_n": len(values),
+        "clean_n": len(clean),
+        "excluded_n": len(values) - len(clean),
+        "median_ms": median,
+        "mad_ms": mad,
+        "lower_fence_ms": lower,
+        "upper_fence_ms": upper,
+    }
+
+
 def fetch_gtsh_dr_profile(session):
     try:
         page = session.get(GTSH_PROFILE_URL, timeout=30)
@@ -186,8 +244,9 @@ def main():
 
     stats = {}
     for dr in sorted(DR_LABELS):
-        scores = groups.get(dr, [])
-        mean = (sum(scores) / len(scores)) if scores else None
+        raw_scores = groups.get(dr, [])
+        scores, diagnostics = robust_clean_scores(raw_scores)
+        mean = statistics.mean(scores) if scores else None
         std = statistics.pstdev(scores) if len(scores) >= 2 else None
         stats[str(dr)] = {
             "dr": dr,
@@ -197,6 +256,7 @@ def main():
             "average_laptime": score_to_laptime(mean) if mean is not None else "N/A",
             "stddev_ms": std,
             "stddev_seconds": (std / 1000) if std is not None else None,
+            "diagnostics": diagnostics,
         }
 
     dr_profile = fetch_gtsh_dr_profile(session)
