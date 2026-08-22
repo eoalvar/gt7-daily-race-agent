@@ -1,0 +1,37 @@
+name: GTSH Global DR Rank Lab
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  discover-global-dr-rank:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run global DR rank discovery
+        run: python src/gtsh_global_dr_rank_lab.py
+
+      - name: Save discovery output
+        run: |
+          git config user.name "GT7 Daily Race Agent"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/gtsh_global_dr_rank_lab.json reports/gtsh_global_dr_rank_lab.txt
+          if git diff --cached --quiet; then
+            echo "No changes to save."
+          else
+            git commit -m "Update GTSH global DR rank discovery"
+            git push
+          fi
