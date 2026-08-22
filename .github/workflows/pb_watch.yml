@@ -1,0 +1,42 @@
+name: GT7 PB Watch
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: gt7-pb-watch
+  cancel-in-progress: true
+
+jobs:
+  watch-pb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependency
+        run: pip install requests
+
+      - name: Check qualifying PB
+        id: pb
+        run: python src/pb_watch.py
+
+      - name: Trigger Daily Race C on improvement
+        if: steps.pb.outputs.improved == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "New PB detected: gain ${{ steps.pb.outputs.gain_ms }} ms, live rank #${{ steps.pb.outputs.live_rank }}"
+          gh workflow run test.yml --ref main
