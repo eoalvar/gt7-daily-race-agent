@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 SNAPSHOT_FILE = Path("data/latest_snapshot.json")
 REPORT_FILE = Path("reports/latest.txt")
 DR_HISTORY_FILE = Path("data/dr_progress_history.json")
+CACHE_FILE = Path(".cache/current_leaderboard.json")
 
 PSN_ID = "crazy_rooster74"
 GTSH_PROFILE_URL = f"https://gtsh-rank.com/profile/?id={PSN_ID}"
@@ -40,13 +41,6 @@ def xor_decrypt(data: bytes, key: str) -> str:
 
 
 def robust_clean_scores(scores):
-    """Remove only extreme lap-time outliers using a conservative MAD fence.
-
-    The Daily C report keeps the same compact format; diagnostics stay in the
-    snapshot only. A 5-sigma robust fence is deliberately conservative so
-    legitimate slow laps remain in the DR distribution while pathological
-    entries no longer dominate mean/SD.
-    """
     values = [float(x) for x in scores if isinstance(x, (int, float))]
     if len(values) < 12:
         return values, {
@@ -79,8 +73,6 @@ def robust_clean_scores(scores):
     upper = median + 5.0 * robust_sigma
     clean = [x for x in values if lower <= x <= upper]
 
-    # Safety valve: never let the robust filter discard an implausibly large
-    # fraction of a DR group. If that happens, retain the raw distribution.
     if len(clean) < 0.90 * len(values):
         clean = values
         lower = None
@@ -125,11 +117,7 @@ def fetch_gtsh_dr_profile(session):
             return None
 
         payload = json.loads(xor_decrypt(base64.b64decode(encrypted), key))
-        user = (
-            payload.get("monthly_stats", {})
-            .get("result", {})
-            .get("user")
-        )
+        user = payload.get("monthly_stats", {}).get("result", {}).get("user")
         if not isinstance(user, dict):
             return None
 
@@ -175,6 +163,66 @@ def update_dr_history(profile):
     DR_HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def load_cached_entries(leaderboard_url):
+    if not CACHE_FILE.exists():
+        return None
+    try:
+        cache = json.loads(CACHE_FILE.read_text(encoding="utf-8"))
+        entries = cache.get("entries")
+        if cache.get("leaderboard_url") == leaderboard_url and isinstance(entries, list) and len(entries) >= 1000:
+            print(f"DR benchmarks using shared runtime leaderboard cache: {len(entries):,} entries")
+            return entries
+    except Exception as exc:
+        print(f"Shared leaderboard cache unavailable for DR analysis: {exc}")
+    return None
+
+
+def fetch_entries(session, leaderboard_url):
+    cached = load_cached_entries(leaderboard_url)
+    if cached is not None:
+        return cached
+
+    result = []
+    seen = set()
+    offset = 0
+    limit = 1000
+    server_total = None
+    for _ in range(1000):
+        sep = "&" if "?" in leaderboard_url else "?"
+        url = f"{leaderboard_url}{sep}page_data=1&offset={offset}&limit={limit}"
+        response = session.get(url, timeout=60)
+        response.raise_for_status()
+        payload = response.json()
+        entries = None
+        if isinstance(payload, list):
+            entries = payload
+        elif isinstance(payload, dict):
+            for key in ("board", "ranking", "data", "entries", "results", "drivers"):
+                if isinstance(payload.get(key), list):
+                    entries = payload[key]
+                    break
+            for key in ("total", "total_drivers", "totalDrivers", "count", "recordsTotal"):
+                if isinstance(payload.get(key), (int, float)):
+                    server_total = int(payload[key])
+                    break
+        if not entries:
+            break
+        for driver in entries:
+            if not isinstance(driver, dict):
+                continue
+            rank = driver.get("display_rank")
+            if isinstance(rank, (int, float)):
+                rank = int(rank)
+                if rank in seen:
+                    continue
+                seen.add(rank)
+            result.append(driver)
+        if server_total is not None and len(seen) >= server_total:
+            break
+        offset += len(entries)
+    return result
+
+
 def main():
     if not SNAPSHOT_FILE.exists() or not REPORT_FILE.exists():
         raise RuntimeError("Required snapshot/report not found")
@@ -189,58 +237,17 @@ def main():
     session.headers.update({"User-Agent": "Mozilla/5.0 (GT7 Daily Race Agent)"})
 
     groups = defaultdict(list)
-    offset = 0
-    limit = 1000
-    seen = set()
-    server_total = None
-
-    for _ in range(1000):
-        sep = "&" if "?" in leaderboard_url else "?"
-        url = f"{leaderboard_url}{sep}page_data=1&offset={offset}&limit={limit}"
-        response = session.get(url, timeout=60)
-        response.raise_for_status()
-        payload = response.json()
-
-        entries = None
-        if isinstance(payload, list):
-            entries = payload
-        elif isinstance(payload, dict):
-            for key in ("board", "ranking", "data", "entries", "results", "drivers"):
-                if isinstance(payload.get(key), list):
-                    entries = payload[key]
-                    break
-            for key in ("total", "total_drivers", "totalDrivers", "count", "recordsTotal"):
-                if isinstance(payload.get(key), (int, float)):
-                    server_total = int(payload[key])
-                    break
-
-        if not entries:
-            break
-
-        added = 0
-        for driver in entries:
-            if not isinstance(driver, dict):
-                continue
-            rank = driver.get("display_rank")
-            if isinstance(rank, (int, float)):
-                rank = int(rank)
-                if rank in seen:
-                    continue
-                seen.add(rank)
-            user = driver.get("user") or {}
-            dr = user.get("driver_rating")
-            score = driver.get("score")
-            if isinstance(dr, (int, float)) and isinstance(score, (int, float)):
-                dr = int(dr)
-                if dr in DR_LABELS:
-                    groups[dr].append(float(score))
-            added += 1
-
-        if added == 0:
-            break
-        if server_total is not None and len(seen) >= server_total:
-            break
-        offset += len(entries)
+    entries = fetch_entries(session, leaderboard_url)
+    for driver in entries:
+        if not isinstance(driver, dict):
+            continue
+        user = driver.get("user") or {}
+        dr = user.get("driver_rating")
+        score = driver.get("score")
+        if isinstance(dr, (int, float)) and isinstance(score, (int, float)):
+            dr = int(dr)
+            if dr in DR_LABELS:
+                groups[dr].append(float(score))
 
     stats = {}
     for dr in sorted(DR_LABELS):
@@ -274,7 +281,6 @@ def main():
         dr_stats["label"] = DR_LABELS.get(int(dr_stats["dr"]), f"DR {int(dr_stats['dr'])}")
 
     SNAPSHOT_FILE.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding="utf-8")
-
     report = REPORT_FILE.read_text(encoding="utf-8")
 
     if isinstance(my_dr, (int, float)):
