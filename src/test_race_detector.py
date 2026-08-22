@@ -16,7 +16,6 @@ from car_database import (
     update_car_database_from_html,
     get_car_name as database_get_car_name,
     load_car_technical_database,
-    get_car_layout
 )
 
 
@@ -53,65 +52,6 @@ CAR_TECHNICAL_DATABASE = (
     load_car_technical_database()
 )
 
-
-# ============================================================
-# BRAKE BIAS V2
-# ============================================================
-
-BRAKE_BIAS_BASELINES = {
-
-    "FF": {
-        "qualifying": (1, 2),
-        "race": (2, 3),
-        "reason":
-            (
-                "FF cars place substantial braking and cornering "
-                "load on the front axle. A modest rearward bias "
-                "can aid rotation and reduce front tyre stress."
-            )
-    },
-
-    "FR": {
-        "qualifying": (0, 1),
-        "race": (1, 2),
-        "reason":
-            (
-                "FR cars generally tolerate a mild rearward "
-                "bias while retaining predictable braking stability."
-            )
-    },
-
-    "MR": {
-        "qualifying": (-1, 0),
-        "race": (-1, 0),
-        "reason":
-            (
-                "MR cars can become sensitive to rear instability "
-                "under braking. A neutral to slightly forward bias "
-                "is a conservative starting point."
-            )
-    },
-
-    "4WD": {
-        "qualifying": (1, 2),
-        "race": (2, 3),
-        "reason":
-            (
-                "4WD cars generally tolerate a modest rearward bias, "
-                "helping rotation while retaining strong braking stability."
-            )
-    },
-
-    "RR": {
-        "qualifying": (-1, 0),
-        "race": (-2, -1),
-        "reason":
-            (
-                "RR cars carry substantial rear mass and may benefit "
-                "from a modestly forward brake bias to protect rear stability."
-            )
-    }
-}
 
 
 # ============================================================
@@ -1232,287 +1172,6 @@ def extract_start_date(
         race_text
     )
 
-
-# ============================================================
-# BRAKE BIAS
-# ============================================================
-
-def format_bb_value(value):
-
-    if value is None:
-        return "N/A"
-
-    if value > 0:
-        return f"+{value}"
-
-    return str(
-        value
-    )
-
-
-def format_bb_range(range_value):
-
-    if not range_value:
-        return "N/A"
-
-    low, high = range_value
-
-    if low == high:
-        return format_bb_value(
-            low
-        )
-
-    return (
-        f"{format_bb_value(low)} "
-        f"to "
-        f"{format_bb_value(high)}"
-    )
-
-
-def brake_bias_recommendation(
-    car_code,
-    tyre_multiplier
-):
-
-    layout = get_car_layout(
-        car_code,
-        CAR_TECHNICAL_DATABASE
-    )
-
-    if not layout:
-
-        return {
-            "layout":
-                "Unknown",
-
-            "qualifying_range":
-                None,
-
-            "race_range":
-                None,
-
-            "qualifying_start":
-                None,
-
-            "race_start":
-                None,
-
-            "confidence":
-                "UNVALIDATED",
-
-            "reason":
-                (
-                    "Car is identified, but drivetrain metadata "
-                    "has not yet been validated in the central database."
-                ),
-
-            "wear_adjustment":
-                "No recommendation generated."
-        }
-
-    baseline = (
-        BRAKE_BIAS_BASELINES.get(
-            layout
-        )
-    )
-
-    if not baseline:
-
-        return {
-            "layout":
-                layout,
-
-            "qualifying_range":
-                None,
-
-            "race_range":
-                None,
-
-            "qualifying_start":
-                None,
-
-            "race_start":
-                None,
-
-            "confidence":
-                "UNVALIDATED",
-
-            "reason":
-                (
-                    "Validated drivetrain exists, but no "
-                    "Brake Bias model is defined for this layout."
-                ),
-
-            "wear_adjustment":
-                "No recommendation generated."
-        }
-
-    qual_low, qual_high = (
-        baseline[
-            "qualifying"
-        ]
-    )
-
-    race_low, race_high = (
-        baseline[
-            "race"
-        ]
-    )
-
-    qualifying_start = int(
-        round(
-            (
-                qual_low
-                + qual_high
-            )
-            / 2
-        )
-    )
-
-    if tyre_multiplier <= 1:
-
-        race_start = qualifying_start
-
-        wear_adjustment = (
-            "Low tyre wear: start close to the qualifying setting."
-        )
-
-    elif tyre_multiplier <= 2:
-
-        race_start = int(
-            round(
-                (
-                    race_low
-                    + race_high
-                )
-                / 2
-            )
-        )
-
-        wear_adjustment = (
-            "Moderate tyre wear: use the middle of the "
-            "conservative race range."
-        )
-
-    elif tyre_multiplier <= 4:
-
-        if layout in (
-            "FF",
-            "FR",
-            "4WD"
-        ):
-
-            race_start = race_high
-
-            wear_adjustment = (
-                "Meaningful tyre wear: start toward the rearward "
-                "end of the race range to reduce front-axle load."
-            )
-
-        elif layout in (
-            "MR",
-            "RR"
-        ):
-
-            race_start = race_low
-
-            wear_adjustment = (
-                "Meaningful tyre wear: start toward the forward "
-                "end of the race range to prioritize rear stability."
-            )
-
-        else:
-
-            race_start = int(
-                round(
-                    (
-                        race_low
-                        + race_high
-                    )
-                    / 2
-                )
-            )
-
-            wear_adjustment = (
-                "Meaningful tyre wear: use the middle of the range."
-            )
-
-    else:
-
-        if layout in (
-            "FF",
-            "FR",
-            "4WD"
-        ):
-
-            race_start = race_high
-
-            wear_adjustment = (
-                "High tyre wear: begin at the rearward end of the "
-                "heuristic range, without exceeding it."
-            )
-
-        elif layout in (
-            "MR",
-            "RR"
-        ):
-
-            race_start = race_low
-
-            wear_adjustment = (
-                "High tyre wear: begin at the forward end of the "
-                "heuristic range, without exceeding it."
-            )
-
-        else:
-
-            race_start = int(
-                round(
-                    (
-                        race_low
-                        + race_high
-                    )
-                    / 2
-                )
-            )
-
-            wear_adjustment = (
-                "High tyre wear: remain inside the conservative range."
-            )
-
-    return {
-        "layout":
-            layout,
-
-        "qualifying_range":
-            (
-                qual_low,
-                qual_high
-            ),
-
-        "race_range":
-            (
-                race_low,
-                race_high
-            ),
-
-        "qualifying_start":
-            qualifying_start,
-
-        "race_start":
-            race_start,
-
-        "confidence":
-            "HEURISTIC",
-
-        "reason":
-            baseline[
-                "reason"
-            ],
-
-        "wear_adjustment":
-            wear_adjustment
-    }
 
 
 # ============================================================
@@ -4404,7 +4063,6 @@ def main():
     same_car_stats = None
     country_stats = None
     dr_stats = None
-    my_brake_bias = None
 
     if my_driver:
 
@@ -4499,11 +4157,6 @@ def main():
                 )
                 == my_dr,
             my_driver
-        )
-
-        my_brake_bias = brake_bias_recommendation(
-            my_car_code,
-            tyre_multiplier
         )
 
         my_result = {
@@ -4654,11 +4307,6 @@ def main():
         )
     ):
 
-        bb = brake_bias_recommendation(
-            car_code,
-            tyre_multiplier
-        )
-
         top5_used_cars.append({
             "car_code":
                 car_code,
@@ -4677,46 +4325,6 @@ def main():
                     / len(top1000)
                     * 100
                 ),
-
-            "layout":
-                bb[
-                    "layout"
-                ],
-
-            "qualifying_range":
-                bb[
-                    "qualifying_range"
-                ],
-
-            "race_range":
-                bb[
-                    "race_range"
-                ],
-
-            "qualifying_start":
-                bb[
-                    "qualifying_start"
-                ],
-
-            "race_start":
-                bb[
-                    "race_start"
-                ],
-
-            "confidence":
-                bb[
-                    "confidence"
-                ],
-
-            "reason":
-                bb[
-                    "reason"
-                ],
-
-            "wear_adjustment":
-                bb[
-                    "wear_adjustment"
-                ]
         })
 
     # ========================================================
@@ -5016,9 +4624,6 @@ def main():
 
         "my_result":
             my_result,
-
-        "my_brake_bias":
-            my_brake_bias,
 
         "same_car_stats":
             same_car_stats,
@@ -5583,106 +5188,6 @@ def main():
             f"{car['confidence']}"
         )
 
-    # ========================================================
-    # BRAKE BIAS
-    # ========================================================
-
-    lines.append("")
-    lines.append(
-        "YOUR BRAKE BIAS STARTING POINT"
-    )
-
-    lines.append(
-        "Convention: negative = more front, "
-        "positive = more rear."
-    )
-
-    if (
-        my_result
-        and my_brake_bias
-    ):
-
-        lines.append(
-            f"Car             : "
-            f"{my_result['car']}"
-        )
-
-        lines.append(
-            f"Drivetrain      : "
-            f"{my_brake_bias['layout']}"
-        )
-
-        lines.append(
-            f"Qualifying range: "
-            f"{format_bb_range(my_brake_bias['qualifying_range'])}"
-        )
-
-        lines.append(
-            f"Qualifying start: "
-            f"{format_bb_value(my_brake_bias['qualifying_start'])}"
-        )
-
-        lines.append(
-            f"Race range      : "
-            f"{format_bb_range(my_brake_bias['race_range'])}"
-        )
-
-        lines.append(
-            f"Race start      : "
-            f"{format_bb_value(my_brake_bias['race_start'])}"
-        )
-
-        lines.append(
-            f"Confidence      : "
-            f"{my_brake_bias['confidence']}"
-        )
-
-        lines.append(
-            f"Wear adjustment : "
-            f"{my_brake_bias['wear_adjustment']}"
-        )
-
-        lines.append(
-            f"Rationale       : "
-            f"{my_brake_bias['reason']}"
-        )
-
-    else:
-
-        lines.append(
-            "No personal Brake Bias recommendation available."
-        )
-
-    lines.append("")
-    lines.append(
-        "BRAKE BIAS - TOP 5 USED CARS"
-    )
-
-    lines.append(
-        "Conservative heuristic starting ranges, "
-        "not telemetry-proven optimum settings."
-    )
-
-    for (
-        index,
-        car
-    ) in enumerate(
-        top5_used_cars,
-        start=1
-    ):
-
-        lines.append(
-            f"{index}. "
-            f"{car['car']} | "
-            f"{car['layout']} | "
-            f"Quali "
-            f"{format_bb_range(car['qualifying_range'])} "
-            f"(start {format_bb_value(car['qualifying_start'])}) | "
-            f"Race "
-            f"{format_bb_range(car['race_range'])} "
-            f"(start {format_bb_value(car['race_start'])}) | "
-            f"{car['confidence']}"
-        )
 
     # ========================================================
     # STRATEGY FLAGS

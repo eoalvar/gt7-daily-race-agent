@@ -6,8 +6,6 @@ REPORT_FILE = Path("reports/latest.txt")
 WEEKLY_HISTORY_FILE = Path("data/weekly_rating_history.json")
 TRACK_BOP_FILE = Path("data/bop_lab/track_bop_classes.json")
 
-UNWANTED_START = "YOUR BRAKE BIAS STARTING POINT\n"
-UNWANTED_END = "FORECAST TO SUNDAY - V2\n"
 
 CHANGED_START = "WHAT CHANGED SINCE PREVIOUS SNAPSHOT\n"
 CHANGED_END = "DATA QUALITY / HEALTH\n"
@@ -23,13 +21,6 @@ SUPPLEMENTAL_TRACK_NAMES = [
     "Tokyo Expressway - East Clockwise",
 ]
 
-
-def remove_unwanted_sections(text):
-    start = text.find(UNWANTED_START)
-    end = text.find(UNWANTED_END, start if start >= 0 else 0)
-    if start >= 0 and end > start:
-        text = text[:start] + text[end:]
-    return text
 
 
 def move_changed_section(text):
@@ -269,7 +260,6 @@ def rename_elite_to_relativa(text):
 
 
 def format_one_report(text):
-    text = remove_unwanted_sections(text)
     text = move_changed_section(text)
     text = move_cars_section(text)
     text = format_header(text)
@@ -303,8 +293,6 @@ def main():
     formatted = format_report(original)
     REPORT_FILE.write_text(formatted, encoding="utf-8")
     checks = {
-        "brake_bias_removed": "YOUR BRAKE BIAS STARTING POINT" not in formatted,
-        "top5_brake_removed": "BRAKE BIAS - TOP 5 USED CARS" not in formatted,
         "strategy_flags_removed": "RACE STRATEGY FLAGS" not in formatted,
         "header_current_wr": "Current WR:" in formatted,
         "header_current_wr_car": "Current WR Car:" in formatted,

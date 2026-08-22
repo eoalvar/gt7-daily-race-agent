@@ -114,16 +114,6 @@
     "rating_model": "CPI_50_50_V1",
     "driver_rating_label": "B"
   },
-  "my_brake_bias": {
-    "layout": "Unknown",
-    "qualifying_range": null,
-    "race_range": null,
-    "qualifying_start": null,
-    "race_start": null,
-    "confidence": "UNVALIDATED",
-    "reason": "Car is identified, but drivetrain metadata has not yet been validated in the central database.",
-    "wear_adjustment": "No recommendation generated."
-  },
   "same_car_stats": {
     "rank": 2743,
     "total": 8382
@@ -174,71 +164,31 @@
       "car_code": 2160,
       "car": "Hyundai Genesis Gr.3",
       "count": 920,
-      "percentage": 92.0,
-      "layout": "Unknown",
-      "qualifying_range": null,
-      "race_range": null,
-      "qualifying_start": null,
-      "race_start": null,
-      "confidence": "UNVALIDATED",
-      "reason": "Car is identified, but drivetrain metadata has not yet been validated in the central database.",
-      "wear_adjustment": "No recommendation generated."
+      "percentage": 92.0
     },
     {
       "car_code": 2184,
       "car": "Jaguar F-type Gr.3",
       "count": 18,
-      "percentage": 1.7999999999999998,
-      "layout": "Unknown",
-      "qualifying_range": null,
-      "race_range": null,
-      "qualifying_start": null,
-      "race_start": null,
-      "confidence": "UNVALIDATED",
-      "reason": "Car is identified, but drivetrain metadata has not yet been validated in the central database.",
-      "wear_adjustment": "No recommendation generated."
+      "percentage": 1.7999999999999998
     },
     {
       "car_code": 3588,
       "car": "Ferrari 296 GT3 '23",
       "count": 16,
-      "percentage": 1.6,
-      "layout": "Unknown",
-      "qualifying_range": null,
-      "race_range": null,
-      "qualifying_start": null,
-      "race_start": null,
-      "confidence": "UNVALIDATED",
-      "reason": "Car is identified, but drivetrain metadata has not yet been validated in the central database.",
-      "wear_adjustment": "No recommendation generated."
+      "percentage": 1.6
     },
     {
       "car_code": 2185,
       "car": "Mitsubishi Lancer Evolution Final Edition Gr.3",
       "count": 9,
-      "percentage": 0.8999999999999999,
-      "layout": "Unknown",
-      "qualifying_range": null,
-      "race_range": null,
-      "qualifying_start": null,
-      "race_start": null,
-      "confidence": "UNVALIDATED",
-      "reason": "Car is identified, but drivetrain metadata has not yet been validated in the central database.",
-      "wear_adjustment": "No recommendation generated."
+      "percentage": 0.8999999999999999
     },
     {
       "car_code": 2186,
       "car": "Subaru WRX Gr.3",
       "count": 5,
-      "percentage": 0.5,
-      "layout": "Unknown",
-      "qualifying_range": null,
-      "race_range": null,
-      "qualifying_start": null,
-      "race_start": null,
-      "confidence": "UNVALIDATED",
-      "reason": "Car is identified, but drivetrain metadata has not yet been validated in the central database.",
-      "wear_adjustment": "No recommendation generated."
+      "percentage": 0.5
     }
   ],
   "overperformance": [
