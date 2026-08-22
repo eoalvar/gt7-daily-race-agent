@@ -1,3 +1,4 @@
+import json
 import time
 import traceback
 from pathlib import Path
@@ -16,6 +17,7 @@ from debug_current_race import (
 
 SEP = "=" * 100
 ERROR_FILE = Path("data/bop_lab/sleeper_car_lab_error.txt")
+CACHE_FILE = Path(".cache/current_leaderboard.json")
 
 
 def safe_int(value):
@@ -47,16 +49,29 @@ def driver_key(driver):
     )
 
 
-def robust_live_leaderboard(event_url):
-    """Load a live leaderboard without requiring its total to stay frozen.
+def cached_leaderboard(event_url):
+    if not CACHE_FILE.exists():
+        return None
+    try:
+        cache = json.loads(CACHE_FILE.read_text(encoding="utf-8"))
+        if cache.get("leaderboard_url") != event_url:
+            return None
+        entries = cache.get("entries")
+        if not isinstance(entries, list) or len(entries) < 1000:
+            return None
+        print(f"Using shared runtime leaderboard cache: {len(entries):,} drivers")
+        return entries, len(entries)
+    except Exception as exc:
+        print(f"Shared leaderboard cache unavailable: {exc}")
+        return None
 
-    GTSH's leaderboard can grow while pagination is in progress. The first
-    page may therefore advertise N drivers while later pages already contain
-    N+x. That is normal for a live event and must not invalidate the Sleeper
-    model. We track the largest advertised total, paginate until the server
-    says there is no more data, then de-duplicate drivers and use the number
-    actually loaded as the denominator.
-    """
+
+def robust_live_leaderboard(event_url):
+    """Load a live leaderboard, preferring the shared per-run cache."""
+
+    cached = cached_leaderboard(event_url)
+    if cached:
+        return cached
 
     session = requests.Session()
     session.headers.update(HEADERS)
@@ -78,7 +93,6 @@ def robust_live_leaderboard(event_url):
         f"loaded {len(ranking):,} | advertised {advertised_total:,}"
     )
 
-    # Hard safety ceiling: far beyond any current GT7 Daily leaderboard.
     max_pages = 2000
 
     while (has_more or offset < advertised_total) and page_number < max_pages:
@@ -93,8 +107,6 @@ def robust_live_leaderboard(event_url):
         has_more = bool(page.get("has_more"))
 
         if not board:
-            # A live board may change between page requests. If the server now
-            # says there is no more data, accept the snapshot accumulated so far.
             if not has_more:
                 break
             raise RuntimeError(
@@ -116,7 +128,6 @@ def robust_live_leaderboard(event_url):
     if page_number >= max_pages:
         raise RuntimeError("Live leaderboard pagination exceeded safety page limit.")
 
-    # Remove duplicates caused by rank movement while the live board grows.
     unique = {}
     for driver in ranking:
         key = driver_key(driver)
@@ -151,8 +162,6 @@ def robust_live_leaderboard(event_url):
             f"Live leaderboard unexpectedly small after pagination: {actual_total} drivers."
         )
 
-    # Return the internally consistent snapshot size. base.run_lab() will use
-    # this total for shares and its completeness check.
     return ranking, actual_total
 
 
