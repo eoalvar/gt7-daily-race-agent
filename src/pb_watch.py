@@ -8,7 +8,10 @@ import requests
 
 SNAPSHOT_FILE = Path("data/latest_snapshot.json")
 PSN_ID = "crazy_rooster74"
-PAGE_SIZE = 1000
+# GTSH page_data is paginated in 100-row pages. Asking for 1000 does not
+# guarantee 1000 returned rows, so offsets must be aligned to the actual
+# server page size or the stored rank can fall between probes.
+PAGE_SIZE = 100
 
 
 def score_to_laptime(score):
@@ -41,31 +44,33 @@ def find_driver(entries):
 
 
 def candidate_offsets(last_rank: int):
-    """Search near the prior rank first, then progressively farther upward.
+    """Probe GTSH 100-row pages around the previously stored rank.
 
-    A new PB can only make the driver's own qualifying rank better relative to
-    the same leaderboard snapshot, while new entrants can push the stored rank
-    slightly downward. This usually finds the user in only a handful of 1000-row
-    requests instead of downloading the full leaderboard.
+    The exact stored-rank page is checked first. We then check a compact set
+    around it, biased upward because a new PB normally improves rank, while
+    still allowing leaderboard growth to push the driver downward.
     """
     center = max(0, ((max(1, last_rank) - 1) // PAGE_SIZE) * PAGE_SIZE)
-    offsets = [center, center + PAGE_SIZE, center + 2 * PAGE_SIZE]
 
-    step = PAGE_SIZE
-    while center - step >= 0:
-        offsets.append(center - step)
-        step *= 2
+    deltas = [
+        0,
+        -100, 100,
+        -200, 200,
+        -300, 300,
+        -500, 500,
+        -800, 800,
+        -1200, 1200,
+        -2000, 2000,
+    ]
 
-    # Fill gaps between exponential probes for moderate PB jumps.
-    for off in range(max(0, center - 5000), center, PAGE_SIZE):
-        offsets.append(off)
-
-    # Always include the first page as a final cheap safety check.
+    offsets = [max(0, center + d) for d in deltas]
     offsets.append(0)
 
     seen = set()
     ordered = []
     for off in offsets:
+        # Keep page boundaries aligned to GTSH's 100-row pagination.
+        off = (off // PAGE_SIZE) * PAGE_SIZE
         if off < 0 or off in seen:
             continue
         seen.add(off)
@@ -99,19 +104,25 @@ def main():
 
     found = None
     requests_used = 0
+    checked_offsets = []
     for offset in candidate_offsets(int(last_rank)):
         sep = "&" if "?" in leaderboard_url else "?"
         url = f"{leaderboard_url}{sep}page_data=1&offset={offset}&limit={PAGE_SIZE}"
         response = session.get(url, timeout=30)
         response.raise_for_status()
         requests_used += 1
+        checked_offsets.append(offset)
         entries = extract_entries(response.json())
         found = find_driver(entries)
         if found:
             break
 
     if not found:
-        print(f"PB Watch: {PSN_ID} not found near stored rank after {requests_used} requests; no trigger.")
+        print(
+            f"PB Watch: {PSN_ID} not found after {requests_used} page probes "
+            f"around stored rank #{int(last_rank):,}; no trigger. "
+            f"Offsets checked: {checked_offsets}"
+        )
         set_output("improved", "false")
         set_output("found", "false")
         return
