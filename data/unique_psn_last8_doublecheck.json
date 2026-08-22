@@ -1,0 +1,171 @@
+{
+  "method": "independent direct set intersection + stable user_id cross-check",
+  "psn": {
+    "union": 162066,
+    "all_8_direct_intersection": 2230,
+    "all_8_frequency_recheck": 2230
+  },
+  "user_id": {
+    "union": 161666,
+    "all_8_direct_intersection": 2251,
+    "all_8_frequency_recheck": 2251
+  },
+  "per_race": [
+    {
+      "week_start": "2026-06-29",
+      "rows": 68537,
+      "unique_psn": 68537,
+      "unique_user_id": 68537,
+      "missing_user_id_rows": 0
+    },
+    {
+      "week_start": "2026-07-06",
+      "rows": 43096,
+      "unique_psn": 43096,
+      "unique_user_id": 43096,
+      "missing_user_id_rows": 0
+    },
+    {
+      "week_start": "2026-07-13",
+      "rows": 60636,
+      "unique_psn": 60635,
+      "unique_user_id": 60635,
+      "missing_user_id_rows": 0
+    },
+    {
+      "week_start": "2026-07-20",
+      "rows": 44161,
+      "unique_psn": 44160,
+      "unique_user_id": 44160,
+      "missing_user_id_rows": 0
+    },
+    {
+      "week_start": "2026-07-27",
+      "rows": 45823,
+      "unique_psn": 45823,
+      "unique_user_id": 45823,
+      "missing_user_id_rows": 0
+    },
+    {
+      "week_start": "2026-08-03",
+      "rows": 51009,
+      "unique_psn": 51009,
+      "unique_user_id": 51009,
+      "missing_user_id_rows": 0
+    },
+    {
+      "week_start": "2026-08-10",
+      "rows": 31126,
+      "unique_psn": 31126,
+      "unique_user_id": 31126,
+      "missing_user_id_rows": 0
+    },
+    {
+      "week_start": "2026-08-17",
+      "rows": 27700,
+      "unique_psn": 27695,
+      "unique_user_id": 27695,
+      "missing_user_id_rows": 0
+    }
+  ],
+  "sequential_oldest_to_latest": [
+    {
+      "through_week": "2026-06-29",
+      "races_in_intersection": 1,
+      "common_psn": 68537,
+      "common_user_id": 68537
+    },
+    {
+      "through_week": "2026-07-06",
+      "races_in_intersection": 2,
+      "common_psn": 24861,
+      "common_user_id": 24902
+    },
+    {
+      "through_week": "2026-07-13",
+      "races_in_intersection": 3,
+      "common_psn": 16519,
+      "common_user_id": 16564
+    },
+    {
+      "through_week": "2026-07-20",
+      "races_in_intersection": 4,
+      "common_psn": 9885,
+      "common_user_id": 9937
+    },
+    {
+      "through_week": "2026-07-27",
+      "races_in_intersection": 5,
+      "common_psn": 7666,
+      "common_user_id": 7712
+    },
+    {
+      "through_week": "2026-08-03",
+      "races_in_intersection": 6,
+      "common_psn": 5817,
+      "common_user_id": 5867
+    },
+    {
+      "through_week": "2026-08-10",
+      "races_in_intersection": 7,
+      "common_psn": 4121,
+      "common_user_id": 4154
+    },
+    {
+      "through_week": "2026-08-17",
+      "races_in_intersection": 8,
+      "common_psn": 2230,
+      "common_user_id": 2251
+    }
+  ],
+  "sequential_latest_to_oldest": [
+    {
+      "oldest_week_included": "2026-08-17",
+      "latest_races_in_intersection": 1,
+      "common_psn": 27695,
+      "common_user_id": 27695
+    },
+    {
+      "oldest_week_included": "2026-08-10",
+      "latest_races_in_intersection": 2,
+      "common_psn": 8719,
+      "common_user_id": 8724
+    },
+    {
+      "oldest_week_included": "2026-08-03",
+      "latest_races_in_intersection": 3,
+      "common_psn": 6080,
+      "common_user_id": 6094
+    },
+    {
+      "oldest_week_included": "2026-07-27",
+      "latest_races_in_intersection": 4,
+      "common_psn": 4451,
+      "common_user_id": 4467
+    },
+    {
+      "oldest_week_included": "2026-07-20",
+      "latest_races_in_intersection": 5,
+      "common_psn": 3504,
+      "common_user_id": 3521
+    },
+    {
+      "oldest_week_included": "2026-07-13",
+      "latest_races_in_intersection": 6,
+      "common_psn": 3017,
+      "common_user_id": 3040
+    },
+    {
+      "oldest_week_included": "2026-07-06",
+      "latest_races_in_intersection": 7,
+      "common_psn": 2458,
+      "common_user_id": 2478
+    },
+    {
+      "oldest_week_included": "2026-06-29",
+      "latest_races_in_intersection": 8,
+      "common_psn": 2230,
+      "common_user_id": 2251
+    }
+  ]
+}

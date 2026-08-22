@@ -1,0 +1,29 @@
+GT7 UNIQUE PSN LAST 8 - DOUBLE CHECK
+==========================================================================================
+PSN union                           : 162,066
+PSN all-8 direct intersection      : 2,230
+PSN all-8 frequency recheck        : 2,230
+Stable user_id union               : 161,666
+Stable user_id all-8 intersection  : 2,251
+Stable user_id frequency recheck   : 2,251
+
+LATEST-RACE-ANCHORED INTERSECTION
+Latest 1 race(s): 27,695 PSN | 27,695 user_id
+Latest 2 race(s): 8,719 PSN | 8,724 user_id
+Latest 3 race(s): 6,080 PSN | 6,094 user_id
+Latest 4 race(s): 4,451 PSN | 4,467 user_id
+Latest 5 race(s): 3,504 PSN | 3,521 user_id
+Latest 6 race(s): 3,017 PSN | 3,040 user_id
+Latest 7 race(s): 2,458 PSN | 2,478 user_id
+Latest 8 race(s): 2,230 PSN | 2,251 user_id
+
+PER-RACE IDENTIFIER CHECK
+2026-06-29 | rows 68,537 | PSN 68,537 | user_id 68,537 | missing user_id 0
+2026-07-06 | rows 43,096 | PSN 43,096 | user_id 43,096 | missing user_id 0
+2026-07-13 | rows 60,636 | PSN 60,635 | user_id 60,635 | missing user_id 0
+2026-07-20 | rows 44,161 | PSN 44,160 | user_id 44,160 | missing user_id 0
+2026-07-27 | rows 45,823 | PSN 45,823 | user_id 45,823 | missing user_id 0
+2026-08-03 | rows 51,009 | PSN 51,009 | user_id 51,009 | missing user_id 0
+2026-08-10 | rows 31,126 | PSN 31,126 | user_id 31,126 | missing user_id 0
+2026-08-17 | rows 27,700 | PSN 27,695 | user_id 27,695 | missing user_id 0
+==========================================================================================
