@@ -1,0 +1,126 @@
+name: GT7 One-Time Obsolete Cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/cleanup-obsolete-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Remove residual Brake Bias production code
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          detector_path = Path('src/test_race_detector.py')
+          text = detector_path.read_text(encoding='utf-8')
+
+          # Remove now-unused import used only by the Brake Bias heuristic.
+          text = text.replace('    get_car_layout\n', '')
+
+          # Remove the top-level Brake Bias baseline table.
+          text, n1 = re.subn(
+              r'\n# =+\n# BRAKE BIAS V2\n# =+\n.*?(?=\n# =+\n# BASIC HELPERS\n# =+\n)',
+              '\n', text, flags=re.S
+          )
+
+          # Remove the top-level Brake Bias helper/function section.
+          text, n2 = re.subn(
+              r'\n# =+\n# BRAKE BIAS\n# =+\n.*?(?=\n# =+\n# [^\n]+\n# =+\n)',
+              '\n', text, count=1, flags=re.S
+          )
+
+          # Remove personal Brake Bias state, calculation and snapshot field.
+          text = re.sub(r'\n\s*my_brake_bias = None\n', '\n', text)
+          text = re.sub(
+              r'\n\s*my_brake_bias = brake_bias_recommendation\(\n.*?\n\s*\)\n',
+              '\n', text, flags=re.S
+          )
+          text = re.sub(
+              r'\n\s*"my_brake_bias":\n\s*my_brake_bias,\n',
+              '\n', text
+          )
+
+          # Remove Top-5 car Brake Bias calculation block and snapshot field.
+          text = re.sub(
+              r'\n    # =+\n    # TOP 5 USED CARS \+ BRAKE BIAS\n    # =+\n.*?(?=\n    # =+\n    # [^\n]+\n    # =+\n)',
+              '\n', text, flags=re.S
+          )
+          text = re.sub(
+              r'\n\s*"top5_used_cars":\n\s*top5_used_cars,\n',
+              '\n', text
+          )
+
+          # Remove Brake Bias report-output block(s).
+          text = re.sub(
+              r'\n    # =+\n    # BRAKE BIAS\n    # =+\n.*?(?=\n    # =+\n    # [^\n]+\n    # =+\n)',
+              '\n', text, flags=re.S
+          )
+
+          forbidden = [
+              'BRAKE_BIAS_BASELINES', 'brake_bias_recommendation',
+              'my_brake_bias', 'top5_used_cars',
+              'YOUR BRAKE BIAS STARTING POINT',
+              'BRAKE BIAS - TOP 5 USED CARS', 'get_car_layout'
+          ]
+          leftovers = [token for token in forbidden if token in text]
+          if leftovers:
+              raise SystemExit(f'Residual Brake Bias tokens remain in detector: {leftovers}')
+          if n1 != 1 or n2 != 1:
+              raise SystemExit(f'Unexpected Brake Bias section counts: baseline={n1}, helpers={n2}')
+
+          detector_path.write_text(text, encoding='utf-8')
+
+          # Remove the obsolete defensive Brake Bias stripping logic from formatter.
+          formatter_path = Path('src/format_daily_report_layout.py')
+          fmt = formatter_path.read_text(encoding='utf-8')
+          fmt = re.sub(r'\nUNWANTED_START = .*?\nUNWANTED_END = .*?\n', '\n', fmt)
+          fmt = re.sub(
+              r'\ndef remove_unwanted_sections\(text\):\n.*?(?=\ndef move_changed_section\(text\):)',
+              '\n', fmt, flags=re.S
+          )
+          fmt = fmt.replace('    text = remove_unwanted_sections(text)\n', '')
+          fmt = re.sub(r'\n\s*"brake_bias_removed":.*?,', '', fmt)
+          fmt = re.sub(r'\n\s*"top5_brake_removed":.*?,', '', fmt)
+          if 'brake_bias' in fmt.lower() or 'brake bias' in fmt.lower():
+              raise SystemExit('Residual Brake Bias references remain in formatter')
+          formatter_path.write_text(fmt, encoding='utf-8')
+
+          # Scrub only the live snapshot; finalized historical snapshots are preserved.
+          live = Path('data/latest_snapshot.json')
+          if live.exists():
+              obj = json.loads(live.read_text(encoding='utf-8'))
+              if isinstance(obj, dict):
+                  obj.pop('my_brake_bias', None)
+                  obj.pop('top5_used_cars', None)
+                  live.write_text(json.dumps(obj, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          PY
+
+      - name: Validate Python syntax
+        run: |
+          python -m py_compile src/test_race_detector.py src/format_daily_report_layout.py
+
+      - name: Commit cleanup and remove this one-time workflow
+        shell: bash
+        run: |
+          git config user.name "GT7 Daily Race Agent"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/cleanup-obsolete-once.yml
+          git add src/test_race_detector.py src/format_daily_report_layout.py data/latest_snapshot.json
+          git commit -m "Remove residual Brake Bias production code"
+          git pull --rebase origin main
+          git push origin HEAD:main
