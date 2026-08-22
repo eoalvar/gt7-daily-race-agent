@@ -1,6 +1,7 @@
 name: GT7 One-Time Obsolete Cleanup
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - '.github/workflows/cleanup-obsolete-once.yml'
@@ -29,22 +30,18 @@ jobs:
           detector_path = Path('src/test_race_detector.py')
           text = detector_path.read_text(encoding='utf-8')
 
-          # Remove now-unused import used only by the Brake Bias heuristic.
           text = text.replace('    get_car_layout\n', '')
 
-          # Remove the top-level Brake Bias baseline table.
           text, n1 = re.subn(
               r'\n# =+\n# BRAKE BIAS V2\n# =+\n.*?(?=\n# =+\n# BASIC HELPERS\n# =+\n)',
               '\n', text, flags=re.S
           )
 
-          # Remove the top-level Brake Bias helper/function section.
           text, n2 = re.subn(
               r'\n# =+\n# BRAKE BIAS\n# =+\n.*?(?=\n# =+\n# [^\n]+\n# =+\n)',
               '\n', text, count=1, flags=re.S
           )
 
-          # Remove personal Brake Bias state, calculation and snapshot field.
           text = re.sub(r'\n\s*my_brake_bias = None\n', '\n', text)
           text = re.sub(
               r'\n\s*my_brake_bias = brake_bias_recommendation\(\n.*?\n\s*\)\n',
@@ -55,7 +52,6 @@ jobs:
               '\n', text
           )
 
-          # Remove Top-5 car Brake Bias calculation block and snapshot field.
           text = re.sub(
               r'\n    # =+\n    # TOP 5 USED CARS \+ BRAKE BIAS\n    # =+\n.*?(?=\n    # =+\n    # [^\n]+\n    # =+\n)',
               '\n', text, flags=re.S
@@ -65,7 +61,6 @@ jobs:
               '\n', text
           )
 
-          # Remove Brake Bias report-output block(s).
           text = re.sub(
               r'\n    # =+\n    # BRAKE BIAS\n    # =+\n.*?(?=\n    # =+\n    # [^\n]+\n    # =+\n)',
               '\n', text, flags=re.S
@@ -85,7 +80,6 @@ jobs:
 
           detector_path.write_text(text, encoding='utf-8')
 
-          # Remove the obsolete defensive Brake Bias stripping logic from formatter.
           formatter_path = Path('src/format_daily_report_layout.py')
           fmt = formatter_path.read_text(encoding='utf-8')
           fmt = re.sub(r'\nUNWANTED_START = .*?\nUNWANTED_END = .*?\n', '\n', fmt)
@@ -100,7 +94,6 @@ jobs:
               raise SystemExit('Residual Brake Bias references remain in formatter')
           formatter_path.write_text(fmt, encoding='utf-8')
 
-          # Scrub only the live snapshot; finalized historical snapshots are preserved.
           live = Path('data/latest_snapshot.json')
           if live.exists():
               obj = json.loads(live.read_text(encoding='utf-8'))
