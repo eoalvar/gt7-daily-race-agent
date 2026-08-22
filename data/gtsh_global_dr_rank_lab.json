@@ -1,3507 +1,2076 @@
 {
-  "version": "V2",
+  "version": "V3",
   "psn_id": "crazy_rooster74",
   "ranking_url": "https://gtsh-rank.com/ranking/",
-  "page_status": 200,
-  "page_bytes": 148979,
-  "page_contains_psn": false,
-  "forms": [],
-  "selects": [
+  "update_url_script": "document.addEventListener(\"keydown\", function (e) { if ( e.key === \"F12\" || (e.ctrlKey && e.shiftKey && (e.key === \"I\" || e.key === \"J\")) || (e.ctrlKey && e.key === \"U\") || (e.ctrlKey && e.shiftKey && e.key === \"C\") ) { e.preventDefault(); e.stopPropagation(); return false; } }); document.addEventListener(\"contextmenu\", function (e) { e.preventDefault(); }); document.addEventListener(\"mousedown\", function (e) { if (e.button === 2) { e.preventDefault(); } }); document.addEventListener('DOMContentLoaded', () => { const hamburger = document.querySelector('.hamburger'); const sidebar = document.querySelector('.sidebar'); const body = document.body; hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); sidebar.classList.toggle('active'); body.classList.toggle('menu-open'); }); document.addEventListener('click', (e) => { if (!sidebar.contains(e.target) && !hamburger.contains(e.target) && sidebar.classList.contains('active')) { hamburger.classList.remove('active'); sidebar.classList.remove('active'); body.classList.remove('menu-open'); } }); }); window.addEventListener('load', () => { const loader = document.getElementById('loader'); if (loader) loader.classList.add('hidden'); }); function updateUrl() { const loader = document.getElementById('loader'); if (loader) loader.classList.remove('hidden'); const region = document.getElementById('region').value || 'Global'; const history = document.getElementById('history').value || '2days'; const country = document.getElementById('country').value || 'all'; const url = `?region=${encodeURIComponent(region)}&history=${encodeURIComponent(history)}&country=${encodeURIComponent(country)}`; window.location.href = url; }",
+  "pagination_clues": [
+    "split"
+  ],
+  "ranking_variants": [
     {
-      "name": "region",
-      "id": "region",
-      "class": null,
-      "options": [
+      "url": "https://gtsh-rank.com/ranking/?region=Global&history=1day&country=all",
+      "status": 200,
+      "rows": [
         {
-          "value": "EMEA",
-          "text": "EMEA",
-          "selected": false
+          "rank": 1,
+          "psn": "BSCOMP_Aphe",
+          "dr_points": 116764
         },
         {
-          "value": "Oceania",
-          "text": "Oceania",
-          "selected": false
+          "rank": 2,
+          "psn": "Didico__15",
+          "dr_points": 115708
         },
         {
-          "value": "Asia",
-          "text": "Asia",
-          "selected": false
+          "rank": 3,
+          "psn": "SFE_BRacer",
+          "dr_points": 114734
         },
         {
-          "value": "North America",
-          "text": "North America",
-          "selected": false
+          "rank": 4,
+          "psn": "Akagi_1942mi",
+          "dr_points": 113468
         },
         {
-          "value": "Central and South America",
-          "text": "Central and South America",
-          "selected": false
+          "rank": 5,
+          "psn": "RVT_BONELLI",
+          "dr_points": 113449
         },
         {
-          "value": "Global",
-          "text": "Global",
-          "selected": true
+          "rank": 6,
+          "psn": "Jackbalding25",
+          "dr_points": 112947
+        },
+        {
+          "rank": 7,
+          "psn": "N2_SMoreno",
+          "dr_points": 111891
+        },
+        {
+          "rank": 8,
+          "psn": "N2_HyperzWC",
+          "dr_points": 111573
+        },
+        {
+          "rank": 9,
+          "psn": "VSR_Symin",
+          "dr_points": 111168
+        },
+        {
+          "rank": 10,
+          "psn": "SZ_TakuAn22",
+          "dr_points": 110534
+        },
+        {
+          "rank": 11,
+          "psn": "FleXXsyX-__-",
+          "dr_points": 110054
+        },
+        {
+          "rank": 12,
+          "psn": "Ma_Xo_07",
+          "dr_points": 109885
+        },
+        {
+          "rank": 13,
+          "psn": "VitaIity_Kylian",
+          "dr_points": 108925
+        },
+        {
+          "rank": 14,
+          "psn": "ZETA_Suzuki",
+          "dr_points": 108777
+        },
+        {
+          "rank": 15,
+          "psn": "NicArrS",
+          "dr_points": 108138
+        },
+        {
+          "rank": 16,
+          "psn": "SFE_Quartz",
+          "dr_points": 108101
+        },
+        {
+          "rank": 17,
+          "psn": "Falcon_Josete",
+          "dr_points": 108072
+        },
+        {
+          "rank": 18,
+          "psn": "SFE_Morley",
+          "dr_points": 107333
+        },
+        {
+          "rank": 19,
+          "psn": "MSedzzz_25",
+          "dr_points": 107291
+        },
+        {
+          "rank": 20,
+          "psn": "SFE_Damian",
+          "dr_points": 107014
+        },
+        {
+          "rank": 21,
+          "psn": "Williams_Nono",
+          "dr_points": 105518
+        },
+        {
+          "rank": 22,
+          "psn": "SFE_Lewis10",
+          "dr_points": 105267
+        },
+        {
+          "rank": 23,
+          "psn": "Ishino_465",
+          "dr_points": 104931
+        },
+        {
+          "rank": 24,
+          "psn": "AMS_Rodriguez",
+          "dr_points": 103626
+        },
+        {
+          "rank": 25,
+          "psn": "AMS__Andrew",
+          "dr_points": 103553
+        },
+        {
+          "rank": 26,
+          "psn": "SV-Cooper",
+          "dr_points": 103505
+        },
+        {
+          "rank": 27,
+          "psn": "IOF_RACING17",
+          "dr_points": 103313
+        },
+        {
+          "rank": 28,
+          "psn": "VQS_ART55MN",
+          "dr_points": 102988
+        },
+        {
+          "rank": 29,
+          "psn": "IGTSH_Szotyi42x",
+          "dr_points": 102117
+        },
+        {
+          "rank": 30,
+          "psn": "VQS_TenagaZaru",
+          "dr_points": 102107
+        },
+        {
+          "rank": 31,
+          "psn": "Bentley6349",
+          "dr_points": 102094
+        },
+        {
+          "rank": 32,
+          "psn": "HIROGRAND_1009",
+          "dr_points": 101995
+        },
+        {
+          "rank": 33,
+          "psn": "roachintel",
+          "dr_points": 101859
+        },
+        {
+          "rank": 34,
+          "psn": "A2P_root",
+          "dr_points": 101806
+        },
+        {
+          "rank": 35,
+          "psn": "Calster_25",
+          "dr_points": 101748
+        },
+        {
+          "rank": 36,
+          "psn": "QTD_Kawakana",
+          "dr_points": 101682
+        },
+        {
+          "rank": 37,
+          "psn": "Falcon_PolUrra",
+          "dr_points": 101588
+        },
+        {
+          "rank": 38,
+          "psn": "KR_NySoRi",
+          "dr_points": 101527
+        },
+        {
+          "rank": 39,
+          "psn": "ALN_Sillon40",
+          "dr_points": 101421
+        },
+        {
+          "rank": 40,
+          "psn": "Vitality_Kaj",
+          "dr_points": 101416
+        },
+        {
+          "rank": 41,
+          "psn": "PRiMA_Mohamed",
+          "dr_points": 101209
+        },
+        {
+          "rank": 42,
+          "psn": "VQS_Miumiu",
+          "dr_points": 101057
+        },
+        {
+          "rank": 43,
+          "psn": "anchovy_sand_",
+          "dr_points": 100803
+        },
+        {
+          "rank": 44,
+          "psn": "AMS_Windfire1010",
+          "dr_points": 100797
+        },
+        {
+          "rank": 45,
+          "psn": "SV-RushRacing",
+          "dr_points": 100723
+        },
+        {
+          "rank": 46,
+          "psn": "sisimaru21",
+          "dr_points": 100706
+        },
+        {
+          "rank": 47,
+          "psn": "SFE_Popcorn",
+          "dr_points": 100406
+        },
+        {
+          "rank": 48,
+          "psn": "ART1212_",
+          "dr_points": 100366
+        },
+        {
+          "rank": 49,
+          "psn": "Nik_Makozi",
+          "dr_points": 100307
+        },
+        {
+          "rank": 50,
+          "psn": "Q3_RobbyHeck",
+          "dr_points": 100254
+        },
+        {
+          "rank": 51,
+          "psn": "tokari7I",
+          "dr_points": 100154
+        },
+        {
+          "rank": 52,
+          "psn": "VQS_Ntinoskonsta",
+          "dr_points": 100085
+        },
+        {
+          "rank": 53,
+          "psn": "LLOYDZZELITE",
+          "dr_points": 100000
+        },
+        {
+          "rank": 54,
+          "psn": "Fede-_-volante",
+          "dr_points": 100000
+        },
+        {
+          "rank": 55,
+          "psn": "GTS92_Maxim",
+          "dr_points": 100000
+        },
+        {
+          "rank": 56,
+          "psn": "ERM_Nick",
+          "dr_points": 100000
+        },
+        {
+          "rank": 57,
+          "psn": "AVA_AlexLM",
+          "dr_points": 100000
+        },
+        {
+          "rank": 58,
+          "psn": "BSCOMP_Ryun",
+          "dr_points": 99827
+        },
+        {
+          "rank": 59,
+          "psn": "SFE_VELTRO",
+          "dr_points": 99304
+        },
+        {
+          "rank": 60,
+          "psn": "SFE_Juju34",
+          "dr_points": 99049
+        },
+        {
+          "rank": 61,
+          "psn": "RVT_AMAROK23",
+          "dr_points": 98820
+        },
+        {
+          "rank": 62,
+          "psn": "Umami_Eats01",
+          "dr_points": 98774
+        },
+        {
+          "rank": 63,
+          "psn": "QuintenJeh_",
+          "dr_points": 98551
+        },
+        {
+          "rank": 64,
+          "psn": "SV-Sosaa",
+          "dr_points": 98163
+        },
+        {
+          "rank": 65,
+          "psn": "FLAMEnimau11",
+          "dr_points": 98142
+        },
+        {
+          "rank": 66,
+          "psn": "Dstinct_Asteria",
+          "dr_points": 98037
+        },
+        {
+          "rank": 67,
+          "psn": "TX3_Carvajal",
+          "dr_points": 98019
+        },
+        {
+          "rank": 68,
+          "psn": "SFE_Twitchy",
+          "dr_points": 97683
+        },
+        {
+          "rank": 69,
+          "psn": "VQS_Coyote7",
+          "dr_points": 97532
+        },
+        {
+          "rank": 70,
+          "psn": "ZETA_Miyazono",
+          "dr_points": 97508
+        },
+        {
+          "rank": 71,
+          "psn": "LVI_Deano",
+          "dr_points": 97390
+        },
+        {
+          "rank": 72,
+          "psn": "ZETA_Sasaki",
+          "dr_points": 97356
+        },
+        {
+          "rank": 73,
+          "psn": "ORIGINALS-15",
+          "dr_points": 97239
+        },
+        {
+          "rank": 74,
+          "psn": "is250dec",
+          "dr_points": 97155
+        },
+        {
+          "rank": 75,
+          "psn": "Wind_Racing",
+          "dr_points": 97115
+        },
+        {
+          "rank": 76,
+          "psn": "yamado_racing38",
+          "dr_points": 97115
+        },
+        {
+          "rank": 77,
+          "psn": "hero0503s",
+          "dr_points": 96859
+        },
+        {
+          "rank": 78,
+          "psn": "RyunYouTube",
+          "dr_points": 96692
+        },
+        {
+          "rank": 79,
+          "psn": "Insect_Bee",
+          "dr_points": 96497
+        },
+        {
+          "rank": 80,
+          "psn": "DoodleAM",
+          "dr_points": 96358
         }
-      ]
+      ],
+      "row_count": 80,
+      "min_rank": 1,
+      "max_rank": 80,
+      "contains_target": false
     },
     {
-      "name": "country",
-      "id": "country",
-      "class": null,
-      "options": [
+      "url": "https://gtsh-rank.com/ranking/?region=Global&history=2days&country=all",
+      "status": 200,
+      "rows": [
         {
-          "value": "all",
-          "text": "All Countries",
-          "selected": false
+          "rank": 1,
+          "psn": "BSCOMP_Aphe",
+          "dr_points": 116764
         },
         {
-          "value": "ar",
-          "text": "Argentina",
-          "selected": false
+          "rank": 2,
+          "psn": "Didico__15",
+          "dr_points": 115708
         },
         {
-          "value": "au",
-          "text": "Australia",
-          "selected": false
+          "rank": 3,
+          "psn": "SFE_BRacer",
+          "dr_points": 114734
         },
         {
-          "value": "at",
-          "text": "Austria",
-          "selected": false
+          "rank": 4,
+          "psn": "Akagi_1942mi",
+          "dr_points": 113468
         },
         {
-          "value": "bh",
-          "text": "Bahrain",
-          "selected": false
+          "rank": 5,
+          "psn": "RVT_BONELLI",
+          "dr_points": 113449
         },
         {
-          "value": "be",
-          "text": "Belgium",
-          "selected": false
+          "rank": 6,
+          "psn": "Jackbalding25",
+          "dr_points": 112947
         },
         {
-          "value": "bo",
-          "text": "Bolivia, Plurinational State of",
-          "selected": false
+          "rank": 7,
+          "psn": "N2_SMoreno",
+          "dr_points": 111891
         },
         {
-          "value": "br",
-          "text": "Brazil",
-          "selected": false
+          "rank": 8,
+          "psn": "N2_HyperzWC",
+          "dr_points": 111573
         },
         {
-          "value": "bg",
-          "text": "Bulgaria",
-          "selected": false
+          "rank": 9,
+          "psn": "VSR_Symin",
+          "dr_points": 111168
         },
         {
-          "value": "ca",
-          "text": "Canada",
-          "selected": false
+          "rank": 10,
+          "psn": "SZ_TakuAn22",
+          "dr_points": 110534
         },
         {
-          "value": "cl",
-          "text": "Chile",
-          "selected": false
+          "rank": 11,
+          "psn": "FleXXsyX-__-",
+          "dr_points": 110054
         },
         {
-          "value": "cn",
-          "text": "China",
-          "selected": false
+          "rank": 12,
+          "psn": "Ma_Xo_07",
+          "dr_points": 109885
         },
         {
-          "value": "co",
-          "text": "Colombia",
-          "selected": false
+          "rank": 13,
+          "psn": "VitaIity_Kylian",
+          "dr_points": 108925
         },
         {
-          "value": "cr",
-          "text": "Costa Rica",
-          "selected": false
+          "rank": 14,
+          "psn": "ZETA_Suzuki",
+          "dr_points": 108777
         },
         {
-          "value": "hr",
-          "text": "Croatia",
-          "selected": false
+          "rank": 15,
+          "psn": "NicArrS",
+          "dr_points": 108138
         },
         {
-          "value": "cy",
-          "text": "Cyprus",
-          "selected": false
+          "rank": 16,
+          "psn": "SFE_Quartz",
+          "dr_points": 108101
         },
         {
-          "value": "cz",
-          "text": "Czech",
-          "selected": false
+          "rank": 17,
+          "psn": "Falcon_Josete",
+          "dr_points": 108072
         },
         {
-          "value": "dk",
-          "text": "Denmark",
-          "selected": false
+          "rank": 18,
+          "psn": "SFE_Morley",
+          "dr_points": 107333
         },
         {
-          "value": "ec",
-          "text": "Ecuador",
-          "selected": false
+          "rank": 19,
+          "psn": "MSedzzz_25",
+          "dr_points": 107291
         },
         {
-          "value": "sv",
-          "text": "El Salvador",
-          "selected": false
+          "rank": 20,
+          "psn": "SFE_Damian",
+          "dr_points": 107014
         },
         {
-          "value": "fi",
-          "text": "Finland",
-          "selected": false
+          "rank": 21,
+          "psn": "Williams_Nono",
+          "dr_points": 105518
         },
         {
-          "value": "fr",
-          "text": "France",
-          "selected": false
+          "rank": 22,
+          "psn": "SFE_Lewis10",
+          "dr_points": 105267
         },
         {
-          "value": "de",
-          "text": "Germany",
-          "selected": false
+          "rank": 23,
+          "psn": "Ishino_465",
+          "dr_points": 104931
         },
         {
-          "value": "gr",
-          "text": "Greece",
-          "selected": false
+          "rank": 24,
+          "psn": "AMS_Rodriguez",
+          "dr_points": 103626
         },
         {
-          "value": "gt",
-          "text": "Guatemala",
-          "selected": false
+          "rank": 25,
+          "psn": "AMS__Andrew",
+          "dr_points": 103553
         },
         {
-          "value": "hn",
-          "text": "Honduras",
-          "selected": false
+          "rank": 26,
+          "psn": "SV-Cooper",
+          "dr_points": 103505
         },
         {
-          "value": "hk",
-          "text": "Hong Kong",
-          "selected": false
+          "rank": 27,
+          "psn": "IOF_RACING17",
+          "dr_points": 103313
         },
         {
-          "value": "hu",
-          "text": "Hungary",
-          "selected": false
+          "rank": 28,
+          "psn": "VQS_ART55MN",
+          "dr_points": 102988
         },
         {
-          "value": "is",
-          "text": "Iceland",
-          "selected": false
+          "rank": 29,
+          "psn": "IGTSH_Szotyi42x",
+          "dr_points": 102117
         },
         {
-          "value": "in",
-          "text": "India",
-          "selected": false
+          "rank": 30,
+          "psn": "VQS_TenagaZaru",
+          "dr_points": 102107
         },
         {
-          "value": "id",
-          "text": "Indonesia",
-          "selected": false
+          "rank": 31,
+          "psn": "Bentley6349",
+          "dr_points": 102094
         },
         {
-          "value": "ie",
-          "text": "Ireland",
-          "selected": false
+          "rank": 32,
+          "psn": "HIROGRAND_1009",
+          "dr_points": 101995
         },
         {
-          "value": "il",
-          "text": "Israel",
-          "selected": false
+          "rank": 33,
+          "psn": "roachintel",
+          "dr_points": 101859
         },
         {
-          "value": "it",
-          "text": "Italy",
-          "selected": false
+          "rank": 34,
+          "psn": "A2P_root",
+          "dr_points": 101806
         },
         {
-          "value": "jp",
-          "text": "Japan",
-          "selected": false
+          "rank": 35,
+          "psn": "Calster_25",
+          "dr_points": 101748
         },
         {
-          "value": "kr",
-          "text": "Korea",
-          "selected": false
+          "rank": 36,
+          "psn": "QTD_Kawakana",
+          "dr_points": 101682
         },
         {
-          "value": "kw",
-          "text": "Kuwait",
-          "selected": false
+          "rank": 37,
+          "psn": "Falcon_PolUrra",
+          "dr_points": 101588
         },
         {
-          "value": "lb",
-          "text": "Lebanon",
-          "selected": false
+          "rank": 38,
+          "psn": "KR_NySoRi",
+          "dr_points": 101527
         },
         {
-          "value": "lu",
-          "text": "Luxembourg",
-          "selected": false
+          "rank": 39,
+          "psn": "ALN_Sillon40",
+          "dr_points": 101421
         },
         {
-          "value": "my",
-          "text": "Malaysia",
-          "selected": false
+          "rank": 40,
+          "psn": "Vitality_Kaj",
+          "dr_points": 101416
         },
         {
-          "value": "mt",
-          "text": "Malta",
-          "selected": false
+          "rank": 41,
+          "psn": "PRiMA_Mohamed",
+          "dr_points": 101209
         },
         {
-          "value": "mx",
-          "text": "Mexico",
-          "selected": false
+          "rank": 42,
+          "psn": "VQS_Miumiu",
+          "dr_points": 101057
         },
         {
-          "value": "nl",
-          "text": "Netherlands",
-          "selected": false
+          "rank": 43,
+          "psn": "anchovy_sand_",
+          "dr_points": 100803
         },
         {
-          "value": "nz",
-          "text": "New Zealand",
-          "selected": false
+          "rank": 44,
+          "psn": "AMS_Windfire1010",
+          "dr_points": 100797
         },
         {
-          "value": "ni",
-          "text": "Nicaragua",
-          "selected": false
+          "rank": 45,
+          "psn": "SV-RushRacing",
+          "dr_points": 100723
         },
         {
-          "value": "no",
-          "text": "Norway",
-          "selected": false
+          "rank": 46,
+          "psn": "sisimaru21",
+          "dr_points": 100706
         },
         {
-          "value": "om",
-          "text": "Oman",
-          "selected": false
+          "rank": 47,
+          "psn": "SFE_Popcorn",
+          "dr_points": 100406
         },
         {
-          "value": "pa",
-          "text": "Panama",
-          "selected": false
+          "rank": 48,
+          "psn": "ART1212_",
+          "dr_points": 100366
         },
         {
-          "value": "py",
-          "text": "Paraguay",
-          "selected": false
+          "rank": 49,
+          "psn": "Nik_Makozi",
+          "dr_points": 100307
         },
         {
-          "value": "pe",
-          "text": "Peru",
-          "selected": false
+          "rank": 50,
+          "psn": "Q3_RobbyHeck",
+          "dr_points": 100254
         },
         {
-          "value": "pl",
-          "text": "Poland",
-          "selected": false
+          "rank": 51,
+          "psn": "tokari7I",
+          "dr_points": 100154
         },
         {
-          "value": "pt",
-          "text": "Portugal",
-          "selected": false
+          "rank": 52,
+          "psn": "VQS_Ntinoskonsta",
+          "dr_points": 100085
         },
         {
-          "value": "qa",
-          "text": "Qatar",
-          "selected": false
+          "rank": 53,
+          "psn": "LLOYDZZELITE",
+          "dr_points": 100000
         },
         {
-          "value": "ro",
-          "text": "Romania",
-          "selected": false
+          "rank": 54,
+          "psn": "Fede-_-volante",
+          "dr_points": 100000
         },
         {
-          "value": "ru",
-          "text": "Russia",
-          "selected": false
+          "rank": 55,
+          "psn": "GTS92_Maxim",
+          "dr_points": 100000
         },
         {
-          "value": "sa",
-          "text": "Saudi Arabia",
-          "selected": false
+          "rank": 56,
+          "psn": "ERM_Nick",
+          "dr_points": 100000
         },
         {
-          "value": "sg",
-          "text": "Singapore",
-          "selected": false
+          "rank": 57,
+          "psn": "AVA_AlexLM",
+          "dr_points": 100000
         },
         {
-          "value": "sk",
-          "text": "Slovakia",
-          "selected": false
+          "rank": 58,
+          "psn": "BSCOMP_Ryun",
+          "dr_points": 99827
         },
         {
-          "value": "si",
-          "text": "Slovenia",
-          "selected": false
+          "rank": 59,
+          "psn": "SFE_VELTRO",
+          "dr_points": 99304
         },
         {
-          "value": "za",
-          "text": "South Africa",
-          "selected": false
+          "rank": 60,
+          "psn": "SFE_Juju34",
+          "dr_points": 99049
         },
         {
-          "value": "es",
-          "text": "Spain",
-          "selected": false
+          "rank": 61,
+          "psn": "RVT_AMAROK23",
+          "dr_points": 98820
         },
         {
-          "value": "se",
-          "text": "Sweden",
-          "selected": false
+          "rank": 62,
+          "psn": "Umami_Eats01",
+          "dr_points": 98774
         },
         {
-          "value": "ch",
-          "text": "Switzerland",
-          "selected": false
+          "rank": 63,
+          "psn": "QuintenJeh_",
+          "dr_points": 98551
         },
         {
-          "value": "tw",
-          "text": "Taiwan",
-          "selected": false
+          "rank": 64,
+          "psn": "SV-Sosaa",
+          "dr_points": 98163
         },
         {
-          "value": "th",
-          "text": "Thailand",
-          "selected": false
+          "rank": 65,
+          "psn": "FLAMEnimau11",
+          "dr_points": 98142
         },
         {
-          "value": "tr",
-          "text": "Turkey",
-          "selected": false
+          "rank": 66,
+          "psn": "Dstinct_Asteria",
+          "dr_points": 98037
         },
         {
-          "value": "ae",
-          "text": "UAE",
-          "selected": false
+          "rank": 67,
+          "psn": "TX3_Carvajal",
+          "dr_points": 98019
         },
         {
-          "value": "gb",
-          "text": "UK",
-          "selected": false
+          "rank": 68,
+          "psn": "SFE_Twitchy",
+          "dr_points": 97683
         },
         {
-          "value": "un",
-          "text": "UN",
-          "selected": false
+          "rank": 69,
+          "psn": "VQS_Coyote7",
+          "dr_points": 97532
         },
         {
-          "value": "ua",
-          "text": "Ukraine",
-          "selected": false
+          "rank": 70,
+          "psn": "ZETA_Miyazono",
+          "dr_points": 97508
         },
         {
-          "value": "us",
-          "text": "United States",
-          "selected": false
+          "rank": 71,
+          "psn": "LVI_Deano",
+          "dr_points": 97390
         },
         {
-          "value": "uy",
-          "text": "Uruguay",
-          "selected": false
+          "rank": 72,
+          "psn": "ZETA_Sasaki",
+          "dr_points": 97356
+        },
+        {
+          "rank": 73,
+          "psn": "ORIGINALS-15",
+          "dr_points": 97239
+        },
+        {
+          "rank": 74,
+          "psn": "is250dec",
+          "dr_points": 97155
+        },
+        {
+          "rank": 75,
+          "psn": "Wind_Racing",
+          "dr_points": 97115
+        },
+        {
+          "rank": 76,
+          "psn": "yamado_racing38",
+          "dr_points": 97115
+        },
+        {
+          "rank": 77,
+          "psn": "hero0503s",
+          "dr_points": 96859
+        },
+        {
+          "rank": 78,
+          "psn": "RyunYouTube",
+          "dr_points": 96692
+        },
+        {
+          "rank": 79,
+          "psn": "Insect_Bee",
+          "dr_points": 96497
+        },
+        {
+          "rank": 80,
+          "psn": "DoodleAM",
+          "dr_points": 96358
         }
-      ]
+      ],
+      "row_count": 80,
+      "min_rank": 1,
+      "max_rank": 80,
+      "contains_target": false
     },
     {
-      "name": "history",
-      "id": "history",
-      "class": null,
-      "options": [
+      "url": "https://gtsh-rank.com/ranking/?region=Global&history=1week&country=all",
+      "status": 200,
+      "rows": [
         {
-          "value": "1day",
-          "text": "1day",
-          "selected": false
+          "rank": 1,
+          "psn": "BSCOMP_Aphe",
+          "dr_points": 116764
         },
         {
-          "value": "2days",
-          "text": "2day",
-          "selected": true
+          "rank": 2,
+          "psn": "Didico__15",
+          "dr_points": 115708
         },
         {
-          "value": "3days",
-          "text": "3day",
-          "selected": false
+          "rank": 3,
+          "psn": "SFE_BRacer",
+          "dr_points": 114734
         },
         {
-          "value": "4days",
-          "text": "4day",
-          "selected": false
+          "rank": 4,
+          "psn": "Akagi_1942mi",
+          "dr_points": 113468
         },
         {
-          "value": "5days",
-          "text": "5day",
-          "selected": false
+          "rank": 5,
+          "psn": "RVT_BONELLI",
+          "dr_points": 113449
         },
         {
-          "value": "6days",
-          "text": "6day",
-          "selected": false
+          "rank": 6,
+          "psn": "Jackbalding25",
+          "dr_points": 112947
         },
         {
-          "value": "1week",
-          "text": "1week",
-          "selected": false
+          "rank": 7,
+          "psn": "N2_SMoreno",
+          "dr_points": 111891
         },
         {
-          "value": "2weeks",
-          "text": "2week",
-          "selected": false
+          "rank": 8,
+          "psn": "N2_HyperzWC",
+          "dr_points": 111573
         },
         {
-          "value": "3weeks",
-          "text": "3week",
-          "selected": false
+          "rank": 9,
+          "psn": "VSR_Symin",
+          "dr_points": 111168
         },
         {
-          "value": "1month",
-          "text": "1month",
-          "selected": false
+          "rank": 10,
+          "psn": "SZ_TakuAn22",
+          "dr_points": 110534
         },
         {
-          "value": "2month",
-          "text": "2month",
-          "selected": false
+          "rank": 11,
+          "psn": "FleXXsyX-__-",
+          "dr_points": 110054
         },
         {
-          "value": "3month",
-          "text": "3month",
-          "selected": false
+          "rank": 12,
+          "psn": "Ma_Xo_07",
+          "dr_points": 109885
         },
         {
-          "value": "4month",
-          "text": "4month",
-          "selected": false
+          "rank": 13,
+          "psn": "VitaIity_Kylian",
+          "dr_points": 108925
         },
         {
-          "value": "5month",
-          "text": "5month",
-          "selected": false
+          "rank": 14,
+          "psn": "ZETA_Suzuki",
+          "dr_points": 108777
         },
         {
-          "value": "6month",
-          "text": "6month",
-          "selected": false
+          "rank": 15,
+          "psn": "NicArrS",
+          "dr_points": 108138
         },
         {
-          "value": "7month",
-          "text": "7month",
-          "selected": false
+          "rank": 16,
+          "psn": "SFE_Quartz",
+          "dr_points": 108101
         },
         {
-          "value": "8month",
-          "text": "8month",
-          "selected": false
+          "rank": 17,
+          "psn": "Falcon_Josete",
+          "dr_points": 108072
         },
         {
-          "value": "9month",
-          "text": "9month",
-          "selected": false
+          "rank": 18,
+          "psn": "SFE_Morley",
+          "dr_points": 107333
         },
         {
-          "value": "10month",
-          "text": "10month",
-          "selected": false
+          "rank": 19,
+          "psn": "MSedzzz_25",
+          "dr_points": 107291
         },
         {
-          "value": "11month",
-          "text": "11month",
-          "selected": false
+          "rank": 20,
+          "psn": "SFE_Damian",
+          "dr_points": 107014
         },
         {
-          "value": "1year",
-          "text": "1year",
-          "selected": false
+          "rank": 21,
+          "psn": "Williams_Nono",
+          "dr_points": 105518
+        },
+        {
+          "rank": 22,
+          "psn": "SFE_Lewis10",
+          "dr_points": 105267
+        },
+        {
+          "rank": 23,
+          "psn": "Ishino_465",
+          "dr_points": 104931
+        },
+        {
+          "rank": 24,
+          "psn": "AMS_Rodriguez",
+          "dr_points": 103626
+        },
+        {
+          "rank": 25,
+          "psn": "AMS__Andrew",
+          "dr_points": 103553
+        },
+        {
+          "rank": 26,
+          "psn": "SV-Cooper",
+          "dr_points": 103505
+        },
+        {
+          "rank": 27,
+          "psn": "IOF_RACING17",
+          "dr_points": 103313
+        },
+        {
+          "rank": 28,
+          "psn": "VQS_ART55MN",
+          "dr_points": 102988
+        },
+        {
+          "rank": 29,
+          "psn": "IGTSH_Szotyi42x",
+          "dr_points": 102117
+        },
+        {
+          "rank": 30,
+          "psn": "VQS_TenagaZaru",
+          "dr_points": 102107
+        },
+        {
+          "rank": 31,
+          "psn": "Bentley6349",
+          "dr_points": 102094
+        },
+        {
+          "rank": 32,
+          "psn": "HIROGRAND_1009",
+          "dr_points": 101995
+        },
+        {
+          "rank": 33,
+          "psn": "roachintel",
+          "dr_points": 101859
+        },
+        {
+          "rank": 34,
+          "psn": "A2P_root",
+          "dr_points": 101806
+        },
+        {
+          "rank": 35,
+          "psn": "Calster_25",
+          "dr_points": 101748
+        },
+        {
+          "rank": 36,
+          "psn": "QTD_Kawakana",
+          "dr_points": 101682
+        },
+        {
+          "rank": 37,
+          "psn": "Falcon_PolUrra",
+          "dr_points": 101588
+        },
+        {
+          "rank": 38,
+          "psn": "KR_NySoRi",
+          "dr_points": 101527
+        },
+        {
+          "rank": 39,
+          "psn": "ALN_Sillon40",
+          "dr_points": 101421
+        },
+        {
+          "rank": 40,
+          "psn": "Vitality_Kaj",
+          "dr_points": 101416
+        },
+        {
+          "rank": 41,
+          "psn": "PRiMA_Mohamed",
+          "dr_points": 101209
+        },
+        {
+          "rank": 42,
+          "psn": "VQS_Miumiu",
+          "dr_points": 101057
+        },
+        {
+          "rank": 43,
+          "psn": "anchovy_sand_",
+          "dr_points": 100803
+        },
+        {
+          "rank": 44,
+          "psn": "AMS_Windfire1010",
+          "dr_points": 100797
+        },
+        {
+          "rank": 45,
+          "psn": "SV-RushRacing",
+          "dr_points": 100723
+        },
+        {
+          "rank": 46,
+          "psn": "sisimaru21",
+          "dr_points": 100706
+        },
+        {
+          "rank": 47,
+          "psn": "SFE_Popcorn",
+          "dr_points": 100406
+        },
+        {
+          "rank": 48,
+          "psn": "ART1212_",
+          "dr_points": 100366
+        },
+        {
+          "rank": 49,
+          "psn": "Nik_Makozi",
+          "dr_points": 100307
+        },
+        {
+          "rank": 50,
+          "psn": "Q3_RobbyHeck",
+          "dr_points": 100254
+        },
+        {
+          "rank": 51,
+          "psn": "tokari7I",
+          "dr_points": 100154
+        },
+        {
+          "rank": 52,
+          "psn": "VQS_Ntinoskonsta",
+          "dr_points": 100085
+        },
+        {
+          "rank": 53,
+          "psn": "LLOYDZZELITE",
+          "dr_points": 100000
+        },
+        {
+          "rank": 54,
+          "psn": "Fede-_-volante",
+          "dr_points": 100000
+        },
+        {
+          "rank": 55,
+          "psn": "GTS92_Maxim",
+          "dr_points": 100000
+        },
+        {
+          "rank": 56,
+          "psn": "ERM_Nick",
+          "dr_points": 100000
+        },
+        {
+          "rank": 57,
+          "psn": "AVA_AlexLM",
+          "dr_points": 100000
+        },
+        {
+          "rank": 58,
+          "psn": "BSCOMP_Ryun",
+          "dr_points": 99827
+        },
+        {
+          "rank": 59,
+          "psn": "SFE_VELTRO",
+          "dr_points": 99304
+        },
+        {
+          "rank": 60,
+          "psn": "SFE_Juju34",
+          "dr_points": 99049
+        },
+        {
+          "rank": 61,
+          "psn": "RVT_AMAROK23",
+          "dr_points": 98820
+        },
+        {
+          "rank": 62,
+          "psn": "Umami_Eats01",
+          "dr_points": 98774
+        },
+        {
+          "rank": 63,
+          "psn": "QuintenJeh_",
+          "dr_points": 98551
+        },
+        {
+          "rank": 64,
+          "psn": "SV-Sosaa",
+          "dr_points": 98163
+        },
+        {
+          "rank": 65,
+          "psn": "FLAMEnimau11",
+          "dr_points": 98142
+        },
+        {
+          "rank": 66,
+          "psn": "Dstinct_Asteria",
+          "dr_points": 98037
+        },
+        {
+          "rank": 67,
+          "psn": "TX3_Carvajal",
+          "dr_points": 98019
+        },
+        {
+          "rank": 68,
+          "psn": "SFE_Twitchy",
+          "dr_points": 97683
+        },
+        {
+          "rank": 69,
+          "psn": "VQS_Coyote7",
+          "dr_points": 97532
+        },
+        {
+          "rank": 70,
+          "psn": "ZETA_Miyazono",
+          "dr_points": 97508
+        },
+        {
+          "rank": 71,
+          "psn": "LVI_Deano",
+          "dr_points": 97390
+        },
+        {
+          "rank": 72,
+          "psn": "ZETA_Sasaki",
+          "dr_points": 97356
+        },
+        {
+          "rank": 73,
+          "psn": "ORIGINALS-15",
+          "dr_points": 97239
+        },
+        {
+          "rank": 74,
+          "psn": "is250dec",
+          "dr_points": 97155
+        },
+        {
+          "rank": 75,
+          "psn": "Wind_Racing",
+          "dr_points": 97115
+        },
+        {
+          "rank": 76,
+          "psn": "yamado_racing38",
+          "dr_points": 97115
+        },
+        {
+          "rank": 77,
+          "psn": "hero0503s",
+          "dr_points": 96859
+        },
+        {
+          "rank": 78,
+          "psn": "RyunYouTube",
+          "dr_points": 96692
+        },
+        {
+          "rank": 79,
+          "psn": "Insect_Bee",
+          "dr_points": 96497
+        },
+        {
+          "rank": 80,
+          "psn": "DoodleAM",
+          "dr_points": 96358
         }
-      ]
+      ],
+      "row_count": 80,
+      "min_rank": 1,
+      "max_rank": 80,
+      "contains_target": false
+    },
+    {
+      "url": "https://gtsh-rank.com/ranking/?region=Central+and+South+America&history=1day&country=br",
+      "status": 200,
+      "rows": [
+        {
+          "rank": 1,
+          "psn": "Didico__15",
+          "dr_points": 115708
+        },
+        {
+          "rank": 2,
+          "psn": "RVT_BONELLI",
+          "dr_points": 113449
+        },
+        {
+          "rank": 3,
+          "psn": "IOF_RACING17",
+          "dr_points": 103313
+        },
+        {
+          "rank": 4,
+          "psn": "VQS_ART55MN",
+          "dr_points": 102988
+        },
+        {
+          "rank": 5,
+          "psn": "RVT_AMAROK23",
+          "dr_points": 98820
+        },
+        {
+          "rank": 6,
+          "psn": "WilLemos_121398",
+          "dr_points": 96069
+        },
+        {
+          "rank": 7,
+          "psn": "Celso_Filho_",
+          "dr_points": 94834
+        },
+        {
+          "rank": 8,
+          "psn": "QSD_Piovesan",
+          "dr_points": 94486
+        },
+        {
+          "rank": 9,
+          "psn": "gbellesi",
+          "dr_points": 93268
+        },
+        {
+          "rank": 10,
+          "psn": "N2_JoaoSof",
+          "dr_points": 91490
+        }
+      ],
+      "row_count": 10,
+      "min_rank": 1,
+      "max_rank": 10,
+      "contains_target": false
+    },
+    {
+      "url": "https://gtsh-rank.com/ranking/?region=Central+and+South+America&history=2days&country=br",
+      "status": 200,
+      "rows": [
+        {
+          "rank": 1,
+          "psn": "Didico__15",
+          "dr_points": 115708
+        },
+        {
+          "rank": 2,
+          "psn": "RVT_BONELLI",
+          "dr_points": 113449
+        },
+        {
+          "rank": 3,
+          "psn": "IOF_RACING17",
+          "dr_points": 103313
+        },
+        {
+          "rank": 4,
+          "psn": "VQS_ART55MN",
+          "dr_points": 102988
+        },
+        {
+          "rank": 5,
+          "psn": "RVT_AMAROK23",
+          "dr_points": 98820
+        },
+        {
+          "rank": 6,
+          "psn": "WilLemos_121398",
+          "dr_points": 96069
+        },
+        {
+          "rank": 7,
+          "psn": "Celso_Filho_",
+          "dr_points": 94834
+        },
+        {
+          "rank": 8,
+          "psn": "QSD_Piovesan",
+          "dr_points": 94486
+        },
+        {
+          "rank": 9,
+          "psn": "gbellesi",
+          "dr_points": 93268
+        },
+        {
+          "rank": 10,
+          "psn": "N2_JoaoSof",
+          "dr_points": 91490
+        }
+      ],
+      "row_count": 10,
+      "min_rank": 1,
+      "max_rank": 10,
+      "contains_target": false
     }
   ],
-  "links": [
-    {
-      "text": "Profile",
-      "href": "/profile/"
-    },
-    {
-      "text": "DR Rankings",
-      "href": "/ranking/"
-    },
-    {
-      "text": "BSCOMP_Aphe T. Labouteley",
-      "href": "https://gtsh-rank.com/profile/?id=BSCOMP_Aphe"
-    },
-    {
-      "text": "Didico__15 A. Carrazza",
-      "href": "https://gtsh-rank.com/profile/?id=Didico__15"
-    },
-    {
-      "text": "SFE_BRacer V. Gallo",
-      "href": "https://gtsh-rank.com/profile/?id=SFE_BRacer"
-    },
-    {
-      "text": "Akagi_1942mi おさかな",
-      "href": "https://gtsh-rank.com/profile/?id=Akagi_1942mi"
-    },
-    {
-      "text": "RVT_BONELLI L. Bonelli",
-      "href": "https://gtsh-rank.com/profile/?id=RVT_BONELLI"
-    },
-    {
-      "text": "Jackbalding25 J. Balding",
-      "href": "https://gtsh-rank.com/profile/?id=Jackbalding25"
-    },
-    {
-      "text": "N2_SMoreno S. Moreno",
-      "href": "https://gtsh-rank.com/profile/?id=N2_SMoreno"
-    },
-    {
-      "text": "N2_HyperzWC ッ",
-      "href": "https://gtsh-rank.com/profile/?id=N2_HyperzWC"
-    },
-    {
-      "text": "VSR_Symin GSR_Siro",
-      "href": "https://gtsh-rank.com/profile/?id=VSR_Symin"
-    },
-    {
-      "text": "SZ_TakuAn22 たくあん",
-      "href": "https://gtsh-rank.com/profile/?id=SZ_TakuAn22"
-    },
-    {
-      "text": "FleXXsyX-__- N. Goger",
-      "href": "https://gtsh-rank.com/profile/?id=FleXXsyX-__-"
-    },
-    {
-      "text": "Ma_Xo_07 VQS_Iceman",
-      "href": "https://gtsh-rank.com/profile/?id=Ma_Xo_07"
-    },
-    {
-      "text": "VitaIity_Kylian K. Drumont",
-      "href": "https://gtsh-rank.com/profile/?id=VitaIity_Kylian"
-    },
-    {
-      "text": "ZETA_Suzuki CRV",
-      "href": "https://gtsh-rank.com/profile/?id=ZETA_Suzuki"
-    },
-    {
-      "text": "NicArrS N. Arriagada",
-      "href": "https://gtsh-rank.com/profile/?id=NicArrS"
-    },
-    {
-      "text": "SFE_Quartz S. Cardinal",
-      "href": "https://gtsh-rank.com/profile/?id=SFE_Quartz"
-    },
-    {
-      "text": "Falcon_Josete J. Serrano",
-      "href": "https://gtsh-rank.com/profile/?id=Falcon_Josete"
-    },
-    {
-      "text": "SFE_Morley S. Moriyama",
-      "href": "https://gtsh-rank.com/profile/?id=SFE_Morley"
-    },
-    {
-      "text": "MSedzzz_25 M. Sedziak",
-      "href": "https://gtsh-rank.com/profile/?id=MSedzzz_25"
-    },
-    {
-      "text": "SFE_Damian D. Chafe",
-      "href": "https://gtsh-rank.com/profile/?id=SFE_Damian"
-    },
-    {
-      "text": "Williams_Nono N. Lanuza",
-      "href": "https://gtsh-rank.com/profile/?id=Williams_Nono"
-    },
-    {
-      "text": "SFE_Lewis10 L. Burton",
-      "href": "https://gtsh-rank.com/profile/?id=SFE_Lewis10"
-    },
-    {
-      "text": "Ishino_465 K.Ishino",
-      "href": "https://gtsh-rank.com/profile/?id=Ishino_465"
-    },
-    {
-      "text": "AMS_Rodriguez R. Regalado",
-      "href": "https://gtsh-rank.com/profile/?id=AMS_Rodriguez"
-    },
-    {
-      "text": "AMS__Andrew A. Lee",
-      "href": "https://gtsh-rank.com/profile/?id=AMS__Andrew"
-    },
-    {
-      "text": "SV-Cooper Cooper",
-      "href": "https://gtsh-rank.com/profile/?id=SV-Cooper"
-    },
-    {
-      "text": "IOF_RACING17 IOF17",
-      "href": "https://gtsh-rank.com/profile/?id=IOF_RACING17"
-    },
-    {
-      "text": "VQS_ART55MN A. Mosso Nunes",
-      "href": "https://gtsh-rank.com/profile/?id=VQS_ART55MN"
-    },
-    {
-      "text": "IGTSH_Szotyi42x B. Hencsei",
-      "href": "https://gtsh-rank.com/profile/?id=IGTSH_Szotyi42x"
-    },
-    {
-      "text": "VQS_TenagaZaru TenagaZaru0310",
-      "href": "https://gtsh-rank.com/profile/?id=VQS_TenagaZaru"
-    },
-    {
-      "text": "Bentley6349 Toxic_KILLER",
-      "href": "https://gtsh-rank.com/profile/?id=Bentley6349"
-    },
-    {
-      "text": "HIROGRAND_1009 H.O",
-      "href": "https://gtsh-rank.com/profile/?id=HIROGRAND_1009"
-    },
-    {
-      "text": "roachintel C. Roach",
-      "href": "https://gtsh-rank.com/profile/?id=roachintel"
-    },
-    {
-      "text": "A2P_root A. Inostroza",
-      "href": "https://gtsh-rank.com/profile/?id=A2P_root"
-    },
-    {
-      "text": "Calster_25 Calster",
-      "href": "https://gtsh-rank.com/profile/?id=Calster_25"
-    },
-    {
-      "text": "QTD_Kawakana 1_川上 奏",
-      "href": "https://gtsh-rank.com/profile/?id=QTD_Kawakana"
-    },
-    {
-      "text": "Falcon_PolUrra P. Urra",
-      "href": "https://gtsh-rank.com/profile/?id=Falcon_PolUrra"
-    },
-    {
-      "text": "KR_NySoRi H. Walsen",
-      "href": "https://gtsh-rank.com/profile/?id=KR_NySoRi"
-    },
-    {
-      "text": "ALN_Sillon40 Sillon",
-      "href": "https://gtsh-rank.com/profile/?id=ALN_Sillon40"
-    },
-    {
-      "text": "Vitality_Kaj K. de Bruin",
-      "href": "https://gtsh-rank.com/profile/?id=Vitality_Kaj"
-    },
-    {
-      "text": "PRiMA_Mohamed M. Buhdeima",
-      "href": "https://gtsh-rank.com/profile/?id=PRiMA_Mohamed"
-    },
-    {
-      "text": "VQS_Miumiu Miumiu",
-      "href": "https://gtsh-rank.com/profile/?id=VQS_Miumiu"
-    },
-    {
-      "text": "anchovy_sand_ あ",
-      "href": "https://gtsh-rank.com/profile/?id=anchovy_sand_"
-    },
-    {
-      "text": "AMS_Windfire1010 Windfire1010",
-      "href": "https://gtsh-rank.com/profile/?id=AMS_Windfire1010"
-    },
-    {
-      "text": "SV-RushRacing T. Jeffrey",
-      "href": "https://gtsh-rank.com/profile/?id=SV-RushRacing"
-    },
-    {
-      "text": "sisimaru21 K.Sato",
-      "href": "https://gtsh-rank.com/profile/?id=sisimaru21"
-    },
-    {
-      "text": "SFE_Popcorn M. Rosolen",
-      "href": "https://gtsh-rank.com/profile/?id=SFE_Popcorn"
-    },
-    {
-      "text": "ART1212_ M. Glushko",
-      "href": "https://gtsh-rank.com/profile/?id=ART1212_"
-    },
-    {
-      "text": "Nik_Makozi K. N. Latkovski",
-      "href": "https://gtsh-rank.com/profile/?id=Nik_Makozi"
-    },
-    {
-      "text": "Q3_RobbyHeck R. Heck",
-      "href": "https://gtsh-rank.com/profile/?id=Q3_RobbyHeck"
-    },
-    {
-      "text": "tokari7I tokari71",
-      "href": "https://gtsh-rank.com/profile/?id=tokari7I"
-    },
-    {
-      "text": "VQS_Ntinoskonsta K. Konstantinou",
-      "href": "https://gtsh-rank.com/profile/?id=VQS_Ntinoskonsta"
-    },
-    {
-      "text": "LLOYDZZELITE J. Gallan",
-      "href": "https://gtsh-rank.com/profile/?id=LLOYDZZELITE"
-    },
-    {
-      "text": "Fede-_-volante Casper",
-      "href": "https://gtsh-rank.com/profile/?id=Fede-_-volante"
-    },
-    {
-      "text": "GTS92_Maxim M. Glushko",
-      "href": "https://gtsh-rank.com/profile/?id=GTS92_Maxim"
-    },
-    {
-      "text": "ERM_Nick N. Moysov",
-      "href": "https://gtsh-rank.com/profile/?id=ERM_Nick"
-    },
-    {
-      "text": "AVA_AlexLM A. López",
-      "href": "https://gtsh-rank.com/profile/?id=AVA_AlexLM"
-    },
-    {
-      "text": "BSCOMP_Ryun BSCOMP+ Ryun",
-      "href": "https://gtsh-rank.com/profile/?id=BSCOMP_Ryun"
-    },
-    {
-      "text": "SFE_VELTRO ビンチョウマグロ",
-      "href": "https://gtsh-rank.com/profile/?id=SFE_VELTRO"
-    },
-    {
-      "text": "SFE_Juju34 J. Veyrunes",
-      "href": "https://gtsh-rank.com/profile/?id=SFE_Juju34"
-    },
-    {
-      "text": "RVT_AMAROK23 Amarok",
-      "href": "https://gtsh-rank.com/profile/?id=RVT_AMAROK23"
-    },
-    {
-      "text": "Umami_Eats01 うまみイース|-",
-      "href": "https://gtsh-rank.com/profile/?id=Umami_Eats01"
-    },
-    {
-      "text": "QuintenJeh_ Q. Jehoul",
-      "href": "https://gtsh-rank.com/profile/?id=QuintenJeh_"
-    },
-    {
-      "text": "SV-Sosaa S. Kindall",
-      "href": "https://gtsh-rank.com/profile/?id=SV-Sosaa"
-    },
-    {
-      "text": "FLAMEnimau11 Theghostbaby_2nd",
-      "href": "https://gtsh-rank.com/profile/?id=FLAMEnimau11"
-    },
-    {
-      "text": "Dstinct_Asteria luvlyxbella",
-      "href": "https://gtsh-rank.com/profile/?id=Dstinct_Asteria"
-    },
-    {
-      "text": "TX3_Carvajal F. Carvajal",
-      "href": "https://gtsh-rank.com/profile/?id=TX3_Carvajal"
-    },
-    {
-      "text": "SFE_Twitchy G. Barbara",
-      "href": "https://gtsh-rank.com/profile/?id=SFE_Twitchy"
-    },
-    {
-      "text": "VQS_Coyote7 Coyote",
-      "href": "https://gtsh-rank.com/profile/?id=VQS_Coyote7"
-    },
-    {
-      "text": "ZETA_Miyazono Takuma Miyazono",
-      "href": "https://gtsh-rank.com/profile/?id=ZETA_Miyazono"
-    },
-    {
-      "text": "LVI_Deano D. Heldt",
-      "href": "https://gtsh-rank.com/profile/?id=LVI_Deano"
-    },
-    {
-      "text": "ZETA_Sasaki みうな",
-      "href": "https://gtsh-rank.com/profile/?id=ZETA_Sasaki"
-    },
-    {
-      "text": "ORIGINALS-15 R. Haywood",
-      "href": "https://gtsh-rank.com/profile/?id=ORIGINALS-15"
-    },
-    {
-      "text": "is250dec DTR_DEC",
-      "href": "https://gtsh-rank.com/profile/?id=is250dec"
-    },
-    {
-      "text": "Wind_Racing A.Gurra",
-      "href": "https://gtsh-rank.com/profile/?id=Wind_Racing"
-    },
-    {
-      "text": "yamado_racing38 T. Yamanaka",
-      "href": "https://gtsh-rank.com/profile/?id=yamado_racing38"
-    },
-    {
-      "text": "hero0503s H. Shibuyaman",
-      "href": "https://gtsh-rank.com/profile/?id=hero0503s"
-    },
-    {
-      "text": "RyunYouTube Ryun｜R. Hayashi",
-      "href": "https://gtsh-rank.com/profile/?id=RyunYouTube"
-    },
-    {
-      "text": "Insect_Bee Bee",
-      "href": "https://gtsh-rank.com/profile/?id=Insect_Bee"
-    },
-    {
-      "text": "DoodleAM A. McCabe",
-      "href": "https://gtsh-rank.com/profile/?id=DoodleAM"
-    }
+  "profile_rankish": [
+    [
+      "dr_history[0].dr_points",
+      20126
+    ],
+    [
+      "dr_history[1].dr_points",
+      20126
+    ],
+    [
+      "dr_history[2].dr_points",
+      20126
+    ],
+    [
+      "dr_history[3].dr_points",
+      19545
+    ],
+    [
+      "dr_history[4].dr_points",
+      19576
+    ],
+    [
+      "dr_history[5].dr_points",
+      20553
+    ],
+    [
+      "dr_history[6].dr_points",
+      20553
+    ],
+    [
+      "dr_history[7].dr_points",
+      21079
+    ],
+    [
+      "favorites_cars.favorites[0].rank",
+      1
+    ],
+    [
+      "favorites_cars.favorites[1].rank",
+      2
+    ],
+    [
+      "favorites_cars.favorites[2].rank",
+      3
+    ],
+    [
+      "monthly_stats.result.sports_mode.pole_position_count",
+      17
+    ],
+    [
+      "monthly_stats.result.user.dr_points",
+      21079
+    ],
+    [
+      "rival_telemetry.rivals[0].boards[0].driver_rank",
+      5328
+    ],
+    [
+      "rival_telemetry.rivals[0].boards[0].rival_rank",
+      5335
+    ],
+    [
+      "rival_telemetry.rivals[0].boards[1].driver_rank",
+      32218
+    ],
+    [
+      "rival_telemetry.rivals[0].boards[1].rival_rank",
+      32203
+    ],
+    [
+      "rival_telemetry.rivals[1].boards[0].driver_rank",
+      10458
+    ],
+    [
+      "rival_telemetry.rivals[1].boards[0].rival_rank",
+      10452
+    ],
+    [
+      "rival_telemetry.rivals[1].boards[1].driver_rank",
+      10647
+    ],
+    [
+      "rival_telemetry.rivals[1].boards[1].rival_rank",
+      10631
+    ],
+    [
+      "rival_telemetry.rivals[2].boards[0].driver_rank",
+      6625
+    ],
+    [
+      "rival_telemetry.rivals[2].boards[0].rival_rank",
+      6640
+    ],
+    [
+      "rival_telemetry.rivals[2].boards[1].driver_rank",
+      1958
+    ],
+    [
+      "rival_telemetry.rivals[2].boards[1].rival_rank",
+      1940
+    ],
+    [
+      "rival_telemetry.rivals[3].boards[0].driver_rank",
+      6028
+    ],
+    [
+      "rival_telemetry.rivals[3].boards[0].rival_rank",
+      6042
+    ],
+    [
+      "rival_telemetry.rivals[3].boards[1].driver_rank",
+      6185
+    ],
+    [
+      "rival_telemetry.rivals[3].boards[1].rival_rank",
+      6189
+    ],
+    [
+      "sport.result[0].average_qualify_rank",
+      6.043478260869565
+    ],
+    [
+      "sport.result[0].average_rank",
+      5.494279176201373
+    ],
+    [
+      "sport.result[0].pole_position",
+      16
+    ],
+    [
+      "sport.result[1].average_qualify_rank",
+      7.45
+    ],
+    [
+      "sport.result[1].average_rank",
+      5.45
+    ],
+    [
+      "sport.result[1].pole_position",
+      1
+    ],
+    [
+      "sport_type1_history[0].sport_type1.average_qualify_rank",
+      6.02093023255814
+    ],
+    [
+      "sport_type1_history[0].sport_type1.average_rank",
+      5.497674418604651
+    ],
+    [
+      "sport_type1_history[0].sport_type1.pole_position",
+      16
+    ],
+    [
+      "sport_type1_history[1].sport_type1.average_qualify_rank",
+      6.02093023255814
+    ],
+    [
+      "sport_type1_history[1].sport_type1.average_rank",
+      5.497674418604651
+    ],
+    [
+      "sport_type1_history[1].sport_type1.pole_position",
+      16
+    ],
+    [
+      "sport_type1_history[2].sport_type1.average_qualify_rank",
+      6.02093023255814
+    ],
+    [
+      "sport_type1_history[2].sport_type1.average_rank",
+      5.497674418604651
+    ],
+    [
+      "sport_type1_history[2].sport_type1.pole_position",
+      16
+    ],
+    [
+      "sport_type1_history[3].sport_type1.average_qualify_rank",
+      6.050925925925926
+    ],
+    [
+      "sport_type1_history[3].sport_type1.average_rank",
+      5.493055555555555
+    ],
+    [
+      "sport_type1_history[3].sport_type1.pole_position",
+      16
+    ],
+    [
+      "sport_type1_history[4].sport_type1.average_qualify_rank",
+      6.053117782909931
+    ],
+    [
+      "sport_type1_history[4].sport_type1.average_rank",
+      5.498845265588915
+    ],
+    [
+      "sport_type1_history[4].sport_type1.pole_position",
+      16
+    ],
+    [
+      "sport_type1_history[5].sport_type1.average_qualify_rank",
+      6.055172413793104
+    ],
+    [
+      "sport_type1_history[5].sport_type1.average_rank",
+      5.491954022988506
+    ],
+    [
+      "sport_type1_history[5].sport_type1.pole_position",
+      16
+    ],
+    [
+      "sport_type1_history[6].sport_type1.average_qualify_rank",
+      6.055172413793104
+    ],
+    [
+      "sport_type1_history[6].sport_type1.average_rank",
+      5.491954022988506
+    ],
+    [
+      "sport_type1_history[6].sport_type1.pole_position",
+      16
+    ],
+    [
+      "sport_type1_history[7].sport_type1.average_qualify_rank",
+      6.043478260869565
+    ],
+    [
+      "sport_type1_history[7].sport_type1.average_rank",
+      5.494279176201373
+    ],
+    [
+      "sport_type1_history[7].sport_type1.pole_position",
+      16
+    ],
+    [
+      "sport_type2_history[0].sport_type2.average_qualify_rank",
+      7.45
+    ],
+    [
+      "sport_type2_history[0].sport_type2.average_rank",
+      5.45
+    ],
+    [
+      "sport_type2_history[0].sport_type2.pole_position",
+      1
+    ],
+    [
+      "sport_type2_history[1].sport_type2.average_qualify_rank",
+      7.45
+    ],
+    [
+      "sport_type2_history[1].sport_type2.average_rank",
+      5.45
+    ],
+    [
+      "sport_type2_history[1].sport_type2.pole_position",
+      1
+    ],
+    [
+      "sport_type2_history[2].sport_type2.average_qualify_rank",
+      7.45
+    ],
+    [
+      "sport_type2_history[2].sport_type2.average_rank",
+      5.45
+    ],
+    [
+      "sport_type2_history[2].sport_type2.pole_position",
+      1
+    ],
+    [
+      "sport_type2_history[3].sport_type2.average_qualify_rank",
+      7.45
+    ],
+    [
+      "sport_type2_history[3].sport_type2.average_rank",
+      5.45
+    ],
+    [
+      "sport_type2_history[3].sport_type2.pole_position",
+      1
+    ],
+    [
+      "sport_type2_history[4].sport_type2.average_qualify_rank",
+      7.45
+    ],
+    [
+      "sport_type2_history[4].sport_type2.average_rank",
+      5.45
+    ],
+    [
+      "sport_type2_history[4].sport_type2.pole_position",
+      1
+    ],
+    [
+      "sport_type2_history[5].sport_type2.average_qualify_rank",
+      7.45
+    ],
+    [
+      "sport_type2_history[5].sport_type2.average_rank",
+      5.45
+    ],
+    [
+      "sport_type2_history[5].sport_type2.pole_position",
+      1
+    ],
+    [
+      "sport_type2_history[6].sport_type2.average_qualify_rank",
+      7.45
+    ],
+    [
+      "sport_type2_history[6].sport_type2.average_rank",
+      5.45
+    ],
+    [
+      "sport_type2_history[6].sport_type2.pole_position",
+      1
+    ],
+    [
+      "sport_type2_history[7].sport_type2.average_qualify_rank",
+      7.45
+    ],
+    [
+      "sport_type2_history[7].sport_type2.average_rank",
+      5.45
+    ],
+    [
+      "sport_type2_history[7].sport_type2.pole_position",
+      1
+    ],
+    [
+      "stats.boards.most_played[0].avg_percentile",
+      65.83
+    ],
+    [
+      "stats.boards.most_played[0].best_rank",
+      38738
+    ],
+    [
+      "stats.boards.most_played[1].avg_percentile",
+      52.76
+    ],
+    [
+      "stats.boards.most_played[1].best_rank",
+      122020
+    ],
+    [
+      "stats.boards.most_played[2].avg_percentile",
+      31.89
+    ],
+    [
+      "stats.boards.most_played[2].best_rank",
+      22526
+    ],
+    [
+      "stats.boards.most_played[3].avg_percentile",
+      53.14
+    ],
+    [
+      "stats.boards.most_played[3].best_rank",
+      36063
+    ],
+    [
+      "stats.boards.most_played[4].avg_percentile",
+      38.35
+    ],
+    [
+      "stats.boards.most_played[4].best_rank",
+      24287
+    ],
+    [
+      "stats.boards.most_played[5].avg_percentile",
+      51.09
+    ],
+    [
+      "stats.boards.most_played[5].best_rank",
+      35816
+    ],
+    [
+      "stats.boards.most_played[6].avg_percentile",
+      22.68
+    ],
+    [
+      "stats.boards.most_played[6].best_rank",
+      38764
+    ],
+    [
+      "stats.boards.most_played[7].avg_percentile",
+      26.53
+    ],
+    [
+      "stats.boards.most_played[7].best_rank",
+      10647
+    ],
+    [
+      "stats.boards.most_played[8].avg_percentile",
+      51.23
+    ],
+    [
+      "stats.boards.most_played[8].best_rank",
+      15901
+    ],
+    [
+      "stats.boards.most_played[9].avg_percentile",
+      24.44
+    ],
+    [
+      "stats.boards.most_played[9].best_rank",
+      54134
+    ],
+    [
+      "stats.boards.most_played[10].avg_percentile",
+      19.4
+    ],
+    [
+      "stats.boards.most_played[10].best_rank",
+      8538
+    ],
+    [
+      "stats.boards.most_played[11].avg_percentile",
+      34.2
+    ],
+    [
+      "stats.boards.most_played[11].best_rank",
+      38680
+    ],
+    [
+      "stats.boards.most_played[12].avg_percentile",
+      31.4
+    ],
+    [
+      "stats.boards.most_played[12].best_rank",
+      9997
+    ],
+    [
+      "stats.boards.most_played[13].avg_percentile",
+      40.89
+    ],
+    [
+      "stats.boards.most_played[13].best_rank",
+      32218
+    ],
+    [
+      "stats.boards.most_played[14].avg_percentile",
+      27.64
+    ],
+    [
+      "stats.boards.most_played[14].best_rank",
+      58667
+    ],
+    [
+      "stats.boards.most_played[15].avg_percentile",
+      38.69
+    ],
+    [
+      "stats.boards.most_played[15].best_rank",
+      39168
+    ],
+    [
+      "stats.boards.most_played[16].avg_percentile",
+      18.66
+    ],
+    [
+      "stats.boards.most_played[16].best_rank",
+      7738
+    ],
+    [
+      "stats.boards.most_played[17].avg_percentile",
+      18.39
+    ],
+    [
+      "stats.boards.most_played[17].best_rank",
+      28305
+    ],
+    [
+      "stats.boards.most_played[18].avg_percentile",
+      22.16
+    ],
+    [
+      "stats.boards.most_played[18].best_rank",
+      17583
+    ],
+    [
+      "stats.boards.most_played[19].avg_percentile",
+      35.12
+    ],
+    [
+      "stats.boards.most_played[19].best_rank",
+      63107
+    ],
+    [
+      "stats.cars.car_performance[0].avg_percentile",
+      24.92
+    ],
+    [
+      "stats.cars.car_performance[0].avg_rank",
+      10415.86
+    ],
+    [
+      "stats.cars.car_performance[0].best_rank",
+      1393
+    ],
+    [
+      "stats.cars.car_performance[0].median_percentile",
+      22.88
+    ],
+    [
+      "stats.cars.car_performance[1].avg_percentile",
+      26.08
+    ],
+    [
+      "stats.cars.car_performance[1].avg_rank",
+      35058.83
+    ],
+    [
+      "stats.cars.car_performance[1].best_rank",
+      6625
+    ],
+    [
+      "stats.cars.car_performance[1].median_percentile",
+      20.9
+    ],
+    [
+      "stats.cars.car_performance[2].avg_percentile",
+      37.47
+    ],
+    [
+      "stats.cars.car_performance[2].avg_rank",
+      29226.8
+    ],
+    [
+      "stats.cars.car_performance[2].best_rank",
+      15901
+    ],
+    [
+      "stats.cars.car_performance[2].median_percentile",
+      31.89
+    ],
+    [
+      "stats.cars.car_performance[3].avg_percentile",
+      43.57
+    ],
+    [
+      "stats.cars.car_performance[3].avg_rank",
+      24557.33
+    ],
+    [
+      "stats.cars.car_performance[3].best_rank",
+      10647
+    ],
+    [
+      "stats.cars.car_performance[3].median_percentile",
+      38.35
+    ],
+    [
+      "stats.cars.car_performance[4].avg_percentile",
+      35.21
+    ],
+    [
+      "stats.cars.car_performance[4].avg_rank",
+      23260.5
+    ],
+    [
+      "stats.cars.car_performance[4].best_rank",
+      10458
+    ],
+    [
+      "stats.cars.car_performance[4].median_percentile",
+      35.21
+    ],
+    [
+      "stats.cars.car_performance[5].avg_percentile",
+      17.99
+    ],
+    [
+      "stats.cars.car_performance[5].avg_rank",
+      7763
+    ],
+    [
+      "stats.cars.car_performance[5].best_rank",
+      6988
+    ],
+    [
+      "stats.cars.car_performance[5].median_percentile",
+      17.99
+    ],
+    [
+      "stats.cars.car_performance[6].avg_percentile",
+      17.57
+    ],
+    [
+      "stats.cars.car_performance[6].avg_rank",
+      20172
+    ],
+    [
+      "stats.cars.car_performance[6].best_rank",
+      8590
+    ],
+    [
+      "stats.cars.car_performance[6].median_percentile",
+      17.57
+    ],
+    [
+      "stats.cars.car_performance[7].avg_percentile",
+      22.35
+    ],
+    [
+      "stats.cars.car_performance[7].avg_rank",
+      31493.5
+    ],
+    [
+      "stats.cars.car_performance[7].best_rank",
+      6185
+    ],
+    [
+      "stats.cars.car_performance[7].median_percentile",
+      22.35
+    ],
+    [
+      "stats.cars.car_performance[8].avg_percentile",
+      22.68
+    ],
+    [
+      "stats.cars.car_performance[8].avg_rank",
+      38764
+    ],
+    [
+      "stats.cars.car_performance[8].best_rank",
+      38764
+    ],
+    [
+      "stats.cars.car_performance[8].median_percentile",
+      22.68
+    ],
+    [
+      "stats.cars.car_performance[9].avg_percentile",
+      24.44
+    ],
+    [
+      "stats.cars.car_performance[9].avg_rank",
+      54134
+    ],
+    [
+      "stats.cars.car_performance[9].best_rank",
+      54134
+    ],
+    [
+      "stats.cars.car_performance[9].median_percentile",
+      24.44
+    ],
+    [
+      "stats.cars.favorites[0].rank",
+      1
+    ],
+    [
+      "stats.cars.favorites[1].rank",
+      2
+    ],
+    [
+      "stats.cars.favorites[2].rank",
+      3
+    ],
+    [
+      "stats.performance.average_rank",
+      26235.25
+    ],
+    [
+      "stats.performance.best_rank",
+      1393
+    ],
+    [
+      "stats.performance.median_rank",
+      18831
+    ],
+    [
+      "stats.performance.percentile_avg",
+      28.15
+    ],
+    [
+      "stats.performance.percentile_best",
+      7.84
+    ],
+    [
+      "stats.performance.percentile_median",
+      24.09
+    ],
+    [
+      "stats.performance.percentile_stddev",
+      16.8
+    ],
+    [
+      "stats.performance.rank_stddev",
+      23841.78
+    ],
+    [
+      "stats.performance.worst_rank",
+      122020
+    ],
+    [
+      "stats.progression.performance_trend.all_time_avg_percentile",
+      28.15
+    ],
+    [
+      "stats.progression.performance_trend.last_30_days_avg_percentile",
+      24.71
+    ],
+    [
+      "stats.progression.performance_trend.last_90_days_avg_percentile",
+      26.87
+    ]
   ],
-  "attributes_of_interest": [
-    {
-      "tag": "link",
-      "attrs": {
-        "rel": [
-          "stylesheet"
-        ],
-        "href": "https://fonts.googleapis.com/css?family=Oswald|Montserrat:200,400"
-      },
-      "text": ""
-    },
-    {
-      "tag": "link",
-      "attrs": {
-        "rel": [
-          "stylesheet"
-        ],
-        "href": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      },
-      "text": ""
-    },
-    {
-      "tag": "meta",
-      "attrs": {
-        "name": "description",
-        "content": "Explore Gran Turismo 7 Driver Rating rankings, live GT7 player statistics and regional leaderboard performance on GTSH-Rank."
-      },
-      "text": ""
-    },
-    {
-      "tag": "meta",
-      "attrs": {
-        "name": "keywords",
-        "content": "GT7 Driver Rating rankings, Gran Turismo 7 rankings, GT7 player statistics, Driver Rating leaderboard, GTSH-Rank"
-      },
-      "text": ""
-    },
-    {
-      "tag": "link",
-      "attrs": {
-        "rel": [
-          "canonical"
-        ],
-        "href": "https://gtsh-rank.com/ranking/"
-      },
-      "text": ""
-    },
-    {
-      "tag": "meta",
-      "attrs": {
-        "property": "og:title",
-        "content": "GT7 Driver Rating Rankings and Statistics | GTSH-Rank"
-      },
-      "text": ""
-    },
-    {
-      "tag": "meta",
-      "attrs": {
-        "property": "og:description",
-        "content": "Live Gran Turismo 7 Driver Rating rankings, regional standings and player statistics."
-      },
-      "text": ""
-    },
-    {
-      "tag": "meta",
-      "attrs": {
-        "property": "og:image",
-        "content": "https://gtsh-rank.com/images/share-image.jpg"
-      },
-      "text": ""
-    },
-    {
-      "tag": "meta",
-      "attrs": {
-        "property": "og:image:alt",
-        "content": "GTSH-Rank Gran Turismo 7 Driver Rating rankings"
-      },
-      "text": ""
-    },
-    {
-      "tag": "meta",
-      "attrs": {
-        "property": "og:url",
-        "content": "https://gtsh-rank.com/ranking/"
-      },
-      "text": ""
-    },
-    {
-      "tag": "meta",
-      "attrs": {
-        "property": "og:site_name",
-        "content": "GTSH-Rank"
-      },
-      "text": ""
-    },
-    {
-      "tag": "meta",
-      "attrs": {
-        "name": "twitter:title",
-        "content": "GT7 Driver Rating Rankings and Statistics | GTSH-Rank"
-      },
-      "text": ""
-    },
-    {
-      "tag": "meta",
-      "attrs": {
-        "name": "twitter:description",
-        "content": "Live Gran Turismo 7 Driver Rating rankings and player statistics."
-      },
-      "text": ""
-    },
-    {
-      "tag": "meta",
-      "attrs": {
-        "name": "twitter:image",
-        "content": "https://gtsh-rank.com/images/share-image.jpg"
-      },
-      "text": ""
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "href": "/ranking/"
-      },
-      "text": "DR Rankings"
-    },
-    {
-      "tag": "select",
-      "attrs": {
-        "id": "region",
-        "name": "region",
-        "onchange": "updateUrl()"
-      },
-      "text": "EMEA Oceania Asia North America Central and South America Global"
-    },
-    {
-      "tag": "select",
-      "attrs": {
-        "id": "country",
-        "name": "country",
-        "onchange": "updateUrl()"
-      },
-      "text": "All Countries Argentina Australia Austria Bahrain Belgium Bolivia, Plurinational State of Brazil Bulgaria Canada Chile China Colombia Costa Rica Croatia Cyprus "
-    },
-    {
-      "tag": "select",
-      "attrs": {
-        "id": "history",
-        "name": "history",
-        "onchange": "updateUrl()"
-      },
-      "text": "1day 2day 3day 4day 5day 6day 1week 2week 3week 1month 2month 3month 4month 5month 6month 7month 8month 9month 10month 11month 1year"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "ranking-table"
-        ]
-      },
-      "text": "TOP Split 1 Global 2026-08-21 # Nat. Driver / Brand DR / Avg Stat Trend 1. A+ S BSCOMP_Aphe T. Labouteley 116764 4.36 DT 157375 +190 W 67 R 170 2. S S Didico__1"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-header",
-          "main-header"
-        ]
-      },
-      "text": "TOP Split 1 Global 2026-08-21"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-left"
-        ]
-      },
-      "text": "TOP Split 1 Global"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-subtitle"
-        ]
-      },
-      "text": "TOP Split 1"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-title"
-        ]
-      },
-      "text": "Global"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-right"
-        ]
-      },
-      "text": "2026-08-21"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-date"
-        ]
-      },
-      "text": "2026-08-21"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "header-row"
-        ],
-        "data-label": "Rank"
-      },
-      "text": ""
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "1."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=BSCOMP_Aphe",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "BSCOMP_Aphe T. Labouteley"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "116764 4.36"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "4.36"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "2."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=Didico__15",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "Didico__15 A. Carrazza"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "115708 2.84"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "2.84"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "3."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=SFE_BRacer",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "SFE_BRacer V. Gallo"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "114734 4.93"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "4.93"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "4."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=Akagi_1942mi",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "Akagi_1942mi おさかな"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "113468 3.06"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "3.06"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "5."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=RVT_BONELLI",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "RVT_BONELLI L. Bonelli"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "113449 2.60"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "2.60"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "6."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=Jackbalding25",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "Jackbalding25 J. Balding"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "112947 4.78"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "4.78"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "7."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=N2_SMoreno",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "N2_SMoreno S. Moreno"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "111891 3.40"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "3.40"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "8."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=N2_HyperzWC",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "N2_HyperzWC ッ"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "111573 3.85"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "3.85"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "9."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=VSR_Symin",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "VSR_Symin GSR_Siro"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "111168 5.38"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.38"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "10."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=SZ_TakuAn22",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "SZ_TakuAn22 たくあん"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "110534 3.96"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "3.96"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "11."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=FleXXsyX-__-",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "FleXXsyX-__- N. Goger"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "110054 5.05"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.05"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "12."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=Ma_Xo_07",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "Ma_Xo_07 VQS_Iceman"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "109885 5.13"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.13"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "13."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=VitaIity_Kylian",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "VitaIity_Kylian K. Drumont"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "108925 3.84"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "3.84"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "14."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=ZETA_Suzuki",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "ZETA_Suzuki CRV"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "108777 4.14"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "4.14"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "15."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=NicArrS",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "NicArrS N. Arriagada"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "108138 5.34"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.34"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "16."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=SFE_Quartz",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "SFE_Quartz S. Cardinal"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "108101 5.71"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.71"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-header",
-          "sub-header"
-        ]
-      },
-      "text": "TOP Split 2 Global"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-left"
-        ]
-      },
-      "text": "TOP Split 2"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-title"
-        ]
-      },
-      "text": "TOP Split 2"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-right"
-        ]
-      },
-      "text": "Global"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-subtitle"
-        ]
-      },
-      "text": "Global"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "header-row"
-        ],
-        "data-label": "Rank"
-      },
-      "text": ""
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "17."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=Falcon_Josete",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "Falcon_Josete J. Serrano"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "108072 4.53"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "4.53"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "18."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=SFE_Morley",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "SFE_Morley S. Moriyama"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "107333 5.57"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.57"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "19."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=MSedzzz_25",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "MSedzzz_25 M. Sedziak"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "107291 5.81"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.81"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "20."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=SFE_Damian",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "SFE_Damian D. Chafe"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "107014 7.28"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "7.28"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "21."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=Williams_Nono",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "Williams_Nono N. Lanuza"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "105518 7.41"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "7.41"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "22."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=SFE_Lewis10",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "SFE_Lewis10 L. Burton"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "105267 6.85"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "6.85"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "23."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=Ishino_465",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "Ishino_465 K.Ishino"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "104931 4.47"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "4.47"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "24."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=AMS_Rodriguez",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "AMS_Rodriguez R. Regalado"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "103626 4.90"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "4.90"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "25."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=AMS__Andrew",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "AMS__Andrew A. Lee"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "103553 2.58"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "2.58"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "26."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=SV-Cooper",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "SV-Cooper Cooper"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "103505 5.21"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.21"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "27."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=IOF_RACING17",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "IOF_RACING17 IOF17"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "103313 2.66"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "2.66"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "28."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=VQS_ART55MN",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "VQS_ART55MN A. Mosso Nunes"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "102988 5.13"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.13"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "29."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=IGTSH_Szotyi42x",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "IGTSH_Szotyi42x B. Hencsei"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "102117 6.12"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "6.12"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "30."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=VQS_TenagaZaru",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "VQS_TenagaZaru TenagaZaru0310"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "102107 6.32"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "6.32"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "31."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=Bentley6349",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "Bentley6349 Toxic_KILLER"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "102094 5.17"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.17"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "32."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=HIROGRAND_1009",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "HIROGRAND_1009 H.O"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "101995 6.28"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "6.28"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-header",
-          "sub-header"
-        ]
-      },
-      "text": "TOP Split 3 Global"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-left"
-        ]
-      },
-      "text": "TOP Split 3"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-title"
-        ]
-      },
-      "text": "TOP Split 3"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-right"
-        ]
-      },
-      "text": "Global"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "split-subtitle"
-        ]
-      },
-      "text": "Global"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "header-row"
-        ],
-        "data-label": "Rank"
-      },
-      "text": ""
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "33."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=roachintel",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "roachintel C. Roach"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "101859 3.94"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "3.94"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "34."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=A2P_root",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "A2P_root A. Inostroza"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "101806 4.74"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "4.74"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "35."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=Calster_25",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "Calster_25 Calster"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "101748 6.56"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "6.56"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "36."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=QTD_Kawakana",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "QTD_Kawakana 1_川上 奏"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "101682 4.88"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "4.88"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "37."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=Falcon_PolUrra",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "Falcon_PolUrra P. Urra"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "101588 4.73"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "4.73"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "38."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=KR_NySoRi",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "KR_NySoRi H. Walsen"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "101527 5.92"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.92"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "39."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=ALN_Sillon40",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "ALN_Sillon40 Sillon"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "101421 6.59"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "6.59"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "40."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "S S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=Vitality_Kaj",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "Vitality_Kaj K. de Bruin"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "101416 5.83"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "5.83"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "41."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=PRiMA_Mohamed",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "PRiMA_Mohamed M. Buhdeima"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "101209 6.04"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "6.04"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "42."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    },
-    {
-      "tag": "a",
-      "attrs": {
-        "class": [
-          "driver-link"
-        ],
-        "href": "https://gtsh-rank.com/profile/?id=VQS_Miumiu",
-        "target": "_blank",
-        "style": "text-decoration: none; color: inherit;"
-      },
-      "text": "VQS_Miumiu Miumiu"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "DR / Avg Rank",
-        "class": [
-          "col-dr"
-        ]
-      },
-      "text": "101057 6.80"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "class": [
-          "avg-rank"
-        ],
-        "style": "color: orange;"
-      },
-      "text": "6.80"
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "#",
-        "class": [
-          "col-rank-number"
-        ]
-      },
-      "text": "43."
-    },
-    {
-      "tag": "div",
-      "attrs": {
-        "data-label": "Rank",
-        "class": [
-          "col-rank"
-        ]
-      },
-      "text": "A+ S"
-    }
-  ],
-  "scripts": [
-    {
-      "src": null,
-      "text": "{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"name\":\"GT7 Driver Rating Rankings\",\"url\":\"https://gtsh-rank.com/ranking/\",\"description\":\"Gran Turismo 7 Driver Rating rankings and player statistics.\",\"isPartOf\":{\"@type\":\"WebSite\",\"name\":\"GTSH-Rank\",\"url\":\"https://gtsh-rank.com/\"},\"about\":{\"@type\":\"VideoGame\",\"name\":\"Gran Turismo 7\"}}"
-    },
-    {
-      "src": "/assets/js/content-protection.js?v=20260703",
-      "text": ""
-    },
-    {
-      "src": null,
-      "text": "document.addEventListener(\"keydown\", function (e) { if ( e.key === \"F12\" || (e.ctrlKey && e.shiftKey && (e.key === \"I\" || e.key === \"J\")) || (e.ctrlKey && e.key === \"U\") || (e.ctrlKey && e.shiftKey && e.key === \"C\") ) { e.preventDefault(); e.stopPropagation(); return false; } }); document.addEventListener(\"contextmenu\", function (e) { e.preventDefault(); }); document.addEventListener(\"mousedown\", function (e) { if (e.button === 2) { e.preventDefault(); } }); document.addEventListener('DOMContentLoaded', () => { const hamburger = document.querySelector('.hamburger'); const sidebar = document.querySelector('.sidebar'); const body = document.body; hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); sidebar.classList.toggle('active'); body.classList.toggle('menu-open'); }); document.addEventListener('click', (e) => { if (!sidebar.contains(e.target) && !hamburger.contains(e.target) && sidebar.classList.contains('active')) { hamburger.classList.remove('active'); sidebar.classList.remove('active'); body.classList.remove('menu-open'); } }); }); window.addEventListener('load', () => { const loader = document.getElementById('loader'); if (loader) loader.classList.add('hidden'); }); function updateUrl() { const loader = document.getElementById('loader'); if (loader) loader.classList.remove('hidden'); const region = document.getElementById('region').value || 'Global'; const history = document.getElementById('history').value || '2days'; const country = document.getElementById('country').value || 'all'; const url = `?region=${encodeURIComponent(region)}&history=${encodeURIComponent(history)}&country=${encodeURIComponent(country)}`; window.location.href = url; }"
-    }
-  ],
-  "probes": [
-    {
-      "method": "GET",
-      "url": "https://gtsh-rank.com/ranking/?page=2",
-      "status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "bytes": 148921,
-      "contains_psn": false,
-      "preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Oswald|Montserrat:200,400\"> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"> <title>GT7 Driver Rating Rankings and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Explore Gran Turismo 7 Driver Rating rankings, live GT7 player statistics and regional leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 Driver Rating rankings, Gran Turismo 7 rankings, GT7 player statistics, Driver Rating leaderboard, GTSH-Rank\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel=\"canonical\" href=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Live Gran Turismo 7 Driver Rating rankings, regional standings and player statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 Driver Rating rankings\"> <meta property=\"og:url\" content=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:type\" content=\"website\"> <meta property=\"og:site_name\" content=\"GTSH-Rank\"> <meta property=\"og:locale\" content=\"en_US\"> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Live Gran Turismo 7 Driver R"
-    },
-    {
-      "method": "GET",
-      "url": "https://gtsh-rank.com/ranking/?p=2",
-      "status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "bytes": 148921,
-      "contains_psn": false,
-      "preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Oswald|Montserrat:200,400\"> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"> <title>GT7 Driver Rating Rankings and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Explore Gran Turismo 7 Driver Rating rankings, live GT7 player statistics and regional leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 Driver Rating rankings, Gran Turismo 7 rankings, GT7 player statistics, Driver Rating leaderboard, GTSH-Rank\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel=\"canonical\" href=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Live Gran Turismo 7 Driver Rating rankings, regional standings and player statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 Driver Rating rankings\"> <meta property=\"og:url\" content=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:type\" content=\"website\"> <meta property=\"og:site_name\" content=\"GTSH-Rank\"> <meta property=\"og:locale\" content=\"en_US\"> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Live Gran Turismo 7 Driver R"
-    },
-    {
-      "method": "GET",
-      "url": "https://gtsh-rank.com/ranking/?split=2",
-      "status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "bytes": 148921,
-      "contains_psn": false,
-      "preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Oswald|Montserrat:200,400\"> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"> <title>GT7 Driver Rating Rankings and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Explore Gran Turismo 7 Driver Rating rankings, live GT7 player statistics and regional leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 Driver Rating rankings, Gran Turismo 7 rankings, GT7 player statistics, Driver Rating leaderboard, GTSH-Rank\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel=\"canonical\" href=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Live Gran Turismo 7 Driver Rating rankings, regional standings and player statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 Driver Rating rankings\"> <meta property=\"og:url\" content=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:type\" content=\"website\"> <meta property=\"og:site_name\" content=\"GTSH-Rank\"> <meta property=\"og:locale\" content=\"en_US\"> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Live Gran Turismo 7 Driver R"
-    },
-    {
-      "method": "GET",
-      "url": "https://gtsh-rank.com/ranking/?top_split=2",
-      "status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "bytes": 148921,
-      "contains_psn": false,
-      "preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Oswald|Montserrat:200,400\"> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"> <title>GT7 Driver Rating Rankings and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Explore Gran Turismo 7 Driver Rating rankings, live GT7 player statistics and regional leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 Driver Rating rankings, Gran Turismo 7 rankings, GT7 player statistics, Driver Rating leaderboard, GTSH-Rank\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel=\"canonical\" href=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Live Gran Turismo 7 Driver Rating rankings, regional standings and player statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 Driver Rating rankings\"> <meta property=\"og:url\" content=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:type\" content=\"website\"> <meta property=\"og:site_name\" content=\"GTSH-Rank\"> <meta property=\"og:locale\" content=\"en_US\"> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Live Gran Turismo 7 Driver R"
-    },
-    {
-      "method": "GET",
-      "url": "https://gtsh-rank.com/ranking/?country=br",
-      "status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "bytes": 45864,
-      "contains_psn": false,
-      "preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Oswald|Montserrat:200,400\"> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"> <title>GT7 Driver Rating Rankings and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Explore Gran Turismo 7 Driver Rating rankings, live GT7 player statistics and regional leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 Driver Rating rankings, Gran Turismo 7 rankings, GT7 player statistics, Driver Rating leaderboard, GTSH-Rank\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel=\"canonical\" href=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Live Gran Turismo 7 Driver Rating rankings, regional standings and player statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 Driver Rating rankings\"> <meta property=\"og:url\" content=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:type\" content=\"website\"> <meta property=\"og:site_name\" content=\"GTSH-Rank\"> <meta property=\"og:locale\" content=\"en_US\"> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Live Gran Turismo 7 Driver R"
-    },
-    {
-      "method": "GET",
-      "url": "https://gtsh-rank.com/ranking/?region=br",
-      "status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "bytes": 148921,
-      "contains_psn": false,
-      "preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Oswald|Montserrat:200,400\"> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"> <title>GT7 Driver Rating Rankings and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Explore Gran Turismo 7 Driver Rating rankings, live GT7 player statistics and regional leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 Driver Rating rankings, Gran Turismo 7 rankings, GT7 player statistics, Driver Rating leaderboard, GTSH-Rank\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel=\"canonical\" href=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Live Gran Turismo 7 Driver Rating rankings, regional standings and player statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 Driver Rating rankings\"> <meta property=\"og:url\" content=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:type\" content=\"website\"> <meta property=\"og:site_name\" content=\"GTSH-Rank\"> <meta property=\"og:locale\" content=\"en_US\"> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Live Gran Turismo 7 Driver R"
-    },
-    {
-      "method": "GET",
-      "url": "https://gtsh-rank.com/ranking/?search=crazy_rooster74",
-      "status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "bytes": 148921,
-      "contains_psn": false,
-      "preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Oswald|Montserrat:200,400\"> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"> <title>GT7 Driver Rating Rankings and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Explore Gran Turismo 7 Driver Rating rankings, live GT7 player statistics and regional leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 Driver Rating rankings, Gran Turismo 7 rankings, GT7 player statistics, Driver Rating leaderboard, GTSH-Rank\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel=\"canonical\" href=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Live Gran Turismo 7 Driver Rating rankings, regional standings and player statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 Driver Rating rankings\"> <meta property=\"og:url\" content=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:type\" content=\"website\"> <meta property=\"og:site_name\" content=\"GTSH-Rank\"> <meta property=\"og:locale\" content=\"en_US\"> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Live Gran Turismo 7 Driver R"
-    },
-    {
-      "method": "GET",
-      "url": "https://gtsh-rank.com/ranking/?psnid=crazy_rooster74",
-      "status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "bytes": 148921,
-      "contains_psn": false,
-      "preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Oswald|Montserrat:200,400\"> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"> <title>GT7 Driver Rating Rankings and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Explore Gran Turismo 7 Driver Rating rankings, live GT7 player statistics and regional leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 Driver Rating rankings, Gran Turismo 7 rankings, GT7 player statistics, Driver Rating leaderboard, GTSH-Rank\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"robots\" content=\"noindex,follow\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel=\"canonical\" href=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Live Gran Turismo 7 Driver Rating rankings, regional standings and player statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 Driver Rating rankings\"> <meta property=\"og:url\" content=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:type\" content=\"website\"> <meta property=\"og:site_name\" content=\"GTSH-Rank\"> <meta property=\"og:locale\" content=\"en_US\"> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta name=\"twitter:description\" content=\"Live Gran Turismo 7 Driver R"
-    },
-    {
-      "method": "POST",
-      "url": "https://gtsh-rank.com/ranking/",
-      "status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "bytes": 148979,
-      "contains_psn": false,
-      "preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Oswald|Montserrat:200,400\"> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"> <title>GT7 Driver Rating Rankings and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Explore Gran Turismo 7 Driver Rating rankings, live GT7 player statistics and regional leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 Driver Rating rankings, Gran Turismo 7 rankings, GT7 player statistics, Driver Rating leaderboard, GTSH-Rank\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"robots\" content=\"index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel=\"canonical\" href=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Live Gran Turismo 7 Driver Rating rankings, regional standings and player statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 Driver Rating rankings\"> <meta property=\"og:url\" content=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:type\" content=\"website\"> <meta property=\"og:site_name\" content=\"GTSH-Rank\"> <meta property=\"og:locale\" content=\"en_US\"> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta name=\""
-    },
-    {
-      "method": "POST",
-      "url": "https://gtsh-rank.com/ranking/",
-      "status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "bytes": 148979,
-      "contains_psn": false,
-      "preview": "<!DOCTYPE html> <html lang=\"en\"> <head> <link rel=\"icon\" type=\"image/x-icon\" href=\"/images/favicon.ico\"> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Oswald|Montserrat:200,400\"> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"> <title>GT7 Driver Rating Rankings and Statistics | GTSH-Rank</title> <meta name=\"description\" content=\"Explore Gran Turismo 7 Driver Rating rankings, live GT7 player statistics and regional leaderboard performance on GTSH-Rank.\"> <meta name=\"keywords\" content=\"GT7 Driver Rating rankings, Gran Turismo 7 rankings, GT7 player statistics, Driver Rating leaderboard, GTSH-Rank\"> <meta name=\"author\" content=\"Race Online Hungary\"> <meta name=\"robots\" content=\"index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1\"> <meta name=\"theme-color\" content=\"#06101e\"> <link rel=\"canonical\" href=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta property=\"og:description\" content=\"Live Gran Turismo 7 Driver Rating rankings, regional standings and player statistics.\"> <meta property=\"og:image\" content=\"https://gtsh-rank.com/images/share-image.jpg\"> <meta property=\"og:image:alt\" content=\"GTSH-Rank Gran Turismo 7 Driver Rating rankings\"> <meta property=\"og:url\" content=\"https://gtsh-rank.com/ranking/\"> <meta property=\"og:type\" content=\"website\"> <meta property=\"og:site_name\" content=\"GTSH-Rank\"> <meta property=\"og:locale\" content=\"en_US\"> <meta name=\"twitter:card\" content=\"summary_large_image\"> <meta name=\"twitter:title\" content=\"GT7 Driver Rating Rankings and Statistics | GTSH-Rank\"> <meta name=\""
-    }
-  ]
+  "profile_error": null
 }
