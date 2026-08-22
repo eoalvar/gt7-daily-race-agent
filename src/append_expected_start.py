@@ -5,7 +5,7 @@ import json
 import math
 import re
 import statistics
-import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from statistics import NormalDist
 from urllib.parse import quote
@@ -15,11 +15,13 @@ from bs4 import BeautifulSoup
 
 SNAPSHOT_FILE = Path("data/latest_snapshot.json")
 REPORT_FILE = Path("reports/latest.txt")
+CACHE_FILE = Path(".cache/current_leaderboard.json")
 PSN_ID = "crazy_rooster74"
 SAMPLE_SIZE = 60
 GRID_SIZE = 16
 LOCAL_WINDOW = 10.0
 MIN_LOCAL = 8
+PROFILE_WORKERS = 6
 DR_LABELS = {1: "E", 2: "D", 3: "C", 4: "B", 5: "A", 6: "A+", 7: "S"}
 
 
@@ -28,7 +30,9 @@ def xor_decrypt(data: bytes, key: str) -> str:
     return bytes(b ^ kb[i % len(kb)] for i, b in enumerate(data)).decode("utf-8")
 
 
-def gtsh_profile(session: requests.Session, psn_id: str):
+def gtsh_profile(psn_id: str):
+    session = requests.Session()
+    session.headers.update({"User-Agent": "Mozilla/5.0 (GT7 Expected Start Hybrid)"})
     url = f"https://gtsh-rank.com/profile/?id={quote(psn_id)}"
     try:
         page = session.get(url, timeout=20)
@@ -64,9 +68,29 @@ def gtsh_profile(session: requests.Session, psn_id: str):
         return {"driver_rating": int(dr), "dr_percentage": float(pct)}
     except Exception:
         return None
+    finally:
+        session.close()
+
+
+def cached_leaderboard_entries(url: str):
+    if not CACHE_FILE.exists():
+        return None
+    try:
+        cache = json.loads(CACHE_FILE.read_text(encoding="utf-8"))
+        entries = cache.get("entries")
+        if cache.get("leaderboard_url") == url and isinstance(entries, list) and len(entries) >= 1000:
+            print(f"Expected-start using shared runtime leaderboard cache: {len(entries):,} entries")
+            return entries
+    except Exception as exc:
+        print(f"Shared leaderboard cache unavailable for expected start: {exc}")
+    return None
 
 
 def leaderboard_entries(session: requests.Session, url: str):
+    cached = cached_leaderboard_entries(url)
+    if cached is not None:
+        return cached
+
     result = []
     seen = set()
     offset = 0
@@ -191,12 +215,17 @@ def main():
 
     sampled = stratified_sample(same_dr, SAMPLE_SIZE)
     observations = []
-    for i, item in enumerate(sampled, 1):
-        profile = gtsh_profile(session, item["psn_id"])
-        if profile and profile["driver_rating"] == my_dr:
-            observations.append({**item, "dr_percentage": profile["dr_percentage"]})
-        print(f"Expected-start profile {i}/{len(sampled)} | valid={len(observations)}")
-        time.sleep(0.05)
+
+    with ThreadPoolExecutor(max_workers=PROFILE_WORKERS) as executor:
+        future_map = {executor.submit(gtsh_profile, item["psn_id"]): item for item in sampled}
+        completed = 0
+        for future in as_completed(future_map):
+            completed += 1
+            item = future_map[future]
+            profile = future.result()
+            if profile and profile["driver_rating"] == my_dr:
+                observations.append({**item, "dr_percentage": profile["dr_percentage"]})
+            print(f"Expected-start profile {completed}/{len(sampled)} | valid={len(observations)}")
 
     if len(observations) < 8:
         print("Expected-start estimate skipped: insufficient valid GTSH profiles.")
@@ -222,7 +251,6 @@ def main():
         q_reg = NormalDist().cdf((float(my_score) - mu) / sigma)
         pos_reg = 1 + (GRID_SIZE - 1) * q_reg
 
-    # Fast hybrid: empirical local evidence dominates; regression smooths small samples.
     emp_weight = 0.75 if len(local) >= 8 else 0.65
     if abs(corr) < 0.15:
         emp_weight = min(0.85, emp_weight + 0.10)
@@ -241,7 +269,7 @@ def main():
         confidence = "LOW"
 
     estimate = {
-        "model": "FAST_HYBRID_V1",
+        "model": "FAST_HYBRID_V1_PARALLEL",
         "grid_size": GRID_SIZE,
         "dr": my_dr,
         "dr_label": DR_LABELS.get(my_dr),
@@ -258,6 +286,7 @@ def main():
         "empirical_weight": emp_weight,
         "regression_weight": 1 - emp_weight,
         "correlation": corr,
+        "profile_workers": PROFILE_WORKERS,
     }
     snapshot["expected_start"] = estimate
     SNAPSHOT_FILE.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding="utf-8")
