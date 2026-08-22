@@ -61,6 +61,9 @@ jobs:
           FINAL_WEEKLY_SNAPSHOT: "0"
         run: python src/test_race_detector.py
 
+      - name: Build shared runtime leaderboard cache
+        run: python src/build_runtime_leaderboard_cache.py
+
       - name: Refresh current Sleeper Car Index
         id: daily_sleeper_index
         continue-on-error: true
