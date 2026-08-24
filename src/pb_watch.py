@@ -32,6 +32,16 @@ def extract_entries(payload):
     return []
 
 
+def extract_total(payload):
+    if not isinstance(payload, dict):
+        return None
+    for key in ("total", "total_drivers", "totalDrivers", "count", "recordsTotal"):
+        value = payload.get(key)
+        if isinstance(value, (int, float)):
+            return int(value)
+    return None
+
+
 def find_driver(entries):
     for entry in entries:
         if not isinstance(entry, dict):
@@ -44,12 +54,7 @@ def find_driver(entries):
 
 
 def candidate_offsets(last_rank: int):
-    """Probe GTSH 100-row pages around the previously stored rank.
-
-    The exact stored-rank page is checked first. We then check a compact set
-    around it, biased upward because a new PB normally improves rank, while
-    still allowing leaderboard growth to push the driver downward.
-    """
+    """Probe GTSH 100-row pages around the previously stored rank."""
     center = max(0, ((max(1, last_rank) - 1) // PAGE_SIZE) * PAGE_SIZE)
 
     deltas = [
@@ -69,13 +74,61 @@ def candidate_offsets(last_rank: int):
     seen = set()
     ordered = []
     for off in offsets:
-        # Keep page boundaries aligned to GTSH's 100-row pagination.
         off = (off // PAGE_SIZE) * PAGE_SIZE
         if off < 0 or off in seen:
             continue
         seen.add(off)
         ordered.append(off)
     return ordered
+
+
+def page_url(leaderboard_url: str, offset: int) -> str:
+    sep = "&" if "?" in leaderboard_url else "?"
+    return f"{leaderboard_url}{sep}page_data=1&offset={offset}&limit={PAGE_SIZE}"
+
+
+def fetch_page(session, leaderboard_url: str, offset: int):
+    response = session.get(page_url(leaderboard_url, offset), timeout=30)
+    response.raise_for_status()
+    payload = response.json()
+    return payload, extract_entries(payload)
+
+
+def find_first_weekly_pb(session, leaderboard_url: str):
+    """Find the driver's first qualifying time when no stored baseline exists.
+
+    With no previous rank there is no useful anchor, so scan the live ranking
+    in 100-row pages until the PSN is found or the server total is exhausted.
+    This path is only used before the first Daily C time of a new week has
+    been captured; after that, normal rank-centered probing resumes.
+    """
+    offset = 0
+    requests_used = 0
+    server_total = None
+
+    while True:
+        payload, entries = fetch_page(session, leaderboard_url, offset)
+        requests_used += 1
+
+        if server_total is None:
+            server_total = extract_total(payload)
+
+        found = find_driver(entries)
+        if found:
+            return found, requests_used, server_total
+
+        if not entries:
+            return None, requests_used, server_total
+
+        offset += len(entries)
+        offset = (offset // PAGE_SIZE) * PAGE_SIZE
+
+        if server_total is not None and offset >= server_total:
+            return None, requests_used, server_total
+
+        # Safety valve against a malformed endpoint that never terminates.
+        if requests_used >= 1000:
+            return None, requests_used, server_total
 
 
 def set_output(name: str, value: str):
@@ -96,23 +149,78 @@ def main():
     baseline_score = me.get("score")
     last_rank = me.get("rank")
 
-    if not leaderboard_url or not isinstance(baseline_score, (int, float)) or not isinstance(last_rank, (int, float)):
-        raise RuntimeError("Snapshot lacks leaderboard URL, baseline score, or rank")
+    if not leaderboard_url:
+        raise RuntimeError("Snapshot lacks leaderboard URL")
 
     session = requests.Session()
     session.headers.update({"User-Agent": "Mozilla/5.0 (GT7 PB Watch)"})
 
+    has_baseline = (
+        isinstance(baseline_score, (int, float))
+        and isinstance(last_rank, (int, float))
+    )
+
+    # FIRST PB OF WEEK MODE
+    # A Monday/new-week snapshot can legitimately have my_result=null. In
+    # that case, the first appearance of the PSN in the live leaderboard is
+    # itself the event that must trigger a full Daily Race C refresh.
+    if not has_baseline:
+        found, requests_used, server_total = find_first_weekly_pb(
+            session, leaderboard_url
+        )
+
+        if not found:
+            total_text = f"/{server_total:,}" if isinstance(server_total, int) else ""
+            print(
+                f"PB Watch: no stored weekly baseline and {PSN_ID} not yet found "
+                f"in live leaderboard after {requests_used} page requests{total_text}; no trigger."
+            )
+            set_output("improved", "false")
+            set_output("found", "false")
+            set_output("mode", "first_pb_wait")
+            return
+
+        live_score = found.get("score")
+        live_rank = found.get("display_rank")
+
+        if not isinstance(live_score, (int, float)):
+            print("PB Watch: first weekly entry found but score missing; no trigger.")
+            set_output("improved", "false")
+            set_output("found", "true")
+            set_output("mode", "first_pb_invalid")
+            return
+
+        print(
+            f"PB Watch: FIRST PB OF WEEK detected for {PSN_ID}: "
+            f"{score_to_laptime(live_score)} at "
+            f"#{int(live_rank):,} | requests={requests_used}. Trigger Daily Race C."
+            if isinstance(live_rank, (int, float))
+            else (
+                f"PB Watch: FIRST PB OF WEEK detected for {PSN_ID}: "
+                f"{score_to_laptime(live_score)} | requests={requests_used}. "
+                "Trigger Daily Race C."
+            )
+        )
+
+        set_output("improved", "true")
+        set_output("found", "true")
+        set_output("mode", "first_pb")
+        set_output("live_score", str(int(live_score)))
+        set_output(
+            "live_rank",
+            str(int(live_rank)) if isinstance(live_rank, (int, float)) else "",
+        )
+        set_output("gain_ms", "0")
+        return
+
+    # NORMAL PB MODE
     found = None
     requests_used = 0
     checked_offsets = []
     for offset in candidate_offsets(int(last_rank)):
-        sep = "&" if "?" in leaderboard_url else "?"
-        url = f"{leaderboard_url}{sep}page_data=1&offset={offset}&limit={PAGE_SIZE}"
-        response = session.get(url, timeout=30)
-        response.raise_for_status()
+        _, entries = fetch_page(session, leaderboard_url, offset)
         requests_used += 1
         checked_offsets.append(offset)
-        entries = extract_entries(response.json())
         found = find_driver(entries)
         if found:
             break
@@ -125,6 +233,7 @@ def main():
         )
         set_output("improved", "false")
         set_output("found", "false")
+        set_output("mode", "baseline")
         return
 
     live_score = found.get("score")
@@ -133,6 +242,7 @@ def main():
         print("PB Watch: driver found but score missing; no trigger.")
         set_output("improved", "false")
         set_output("found", "true")
+        set_output("mode", "baseline")
         return
 
     improved = float(live_score) < float(baseline_score)
@@ -140,14 +250,22 @@ def main():
 
     print(
         f"PB Watch: baseline {score_to_laptime(baseline_score)} at #{int(last_rank):,} | "
-        f"live {score_to_laptime(live_score)} at #{int(live_rank):,} | "
-        f"requests={requests_used} | improved={'YES' if improved else 'NO'}"
+        f"live {score_to_laptime(live_score)} at "
+        f"#{int(live_rank):,} | requests={requests_used} | "
+        f"improved={'YES' if improved else 'NO'}"
+        if isinstance(live_rank, (int, float))
+        else (
+            f"PB Watch: baseline {score_to_laptime(baseline_score)} at #{int(last_rank):,} | "
+            f"live {score_to_laptime(live_score)} | requests={requests_used} | "
+            f"improved={'YES' if improved else 'NO'}"
+        )
     )
     if improved:
         print(f"New PB detected: {gain_ms} ms faster. Trigger Daily Race C.")
 
     set_output("improved", "true" if improved else "false")
     set_output("found", "true")
+    set_output("mode", "baseline")
     set_output("live_score", str(int(live_score)))
     set_output("live_rank", str(int(live_rank)) if isinstance(live_rank, (int, float)) else "")
     set_output("gain_ms", str(gain_ms))
