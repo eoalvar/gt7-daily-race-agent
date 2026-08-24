@@ -1,27 +1,13 @@
 GT7 DAILY RACE C
 ==============================================================================
 Snapshot: 24/08/2026 07:01:08 - Sao Paulo
-C Gr.2 Running 24 Aug 2026 Daily Race C
-Circuit de Sainte-Croix - B
-Current WR: Twitch_Szotyi42x (1:51.550)
-Current WR Car: Lexus RC F GT500 '16
-Race Setup: RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x7 Pit - Slipstream Custom
+C Gr.2 Running 24 Aug 2026 Daily Race C i 18:49 Circuit de Sainte-Croix - B Twitch_Szotyi42x - Lexus RC F GT500 '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x7 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
 Total drivers: 2,688
 
 WHERE YOU ARE
 crazy_rooster74 not found in leaderboard.
-
-DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
-Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : 1:52.090 average | SD N/A | 1 drivers
-DR A+ : 1:53.649 average | SD 1.174s | 121 drivers
-DR A  : 1:55.288 average | SD 1.796s | 287 drivers
-DR B  : 1:57.061 average | SD 2.240s | 924 drivers
-DR C  : 1:59.538 average | SD 3.251s | 649 drivers
-DR D  : 2:02.652 average | SD 5.009s | 598 drivers
-DR E  : 2:05.862 average | SD 8.483s | 52 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:51.550 | Twitch_Szotyi42x | Lexus RC F GT500 '16
@@ -62,48 +48,51 @@ Fuel consumption may influence race pace.
 FORECAST TO SUNDAY - V2
 Fewer than 3 comparable current-week snapshots.
 
-LONG-TERM COMPETITIVE PERFORMANCE
-CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percentile
-Higher CPI is better. Lower Top % and WR gap are better.
-
-CURRENT WEEK
-CPI        : N/A / 10 | N/A
-Top %      : N/A%
-WR gap     : +N/A%
+LONG-TERM RATING TREND
+Higher General, Elite and Composite ratings are better.
+Lower Top % and WR % are better.
+Only FINAL Sunday ratings are used for historical trend calculations.
+Current race status: PROVISIONAL
 
 LATEST FINALIZED WEEK
 Week       : 2026-08-17
-CPI        : 6.89 / 10 | COMPETITIVE
+General    : 8.77
+Elite      : 6.89
+Composite  : 8.02
 Top %      : 12.32%
-WR gap     : +2.979%
+WR %       : 102.979%
+
+LATEST FINALIZED WEEK VS PRIOR FINALIZED WEEK
+General    : 8.44 -> 8.77 (+0.33)
+Elite      : 7.05 -> 6.89 (-0.16)
+Composite  : 5.78 -> 8.02 (+2.23)
 
 4-WEEK FINALIZED MOVING AVERAGE
-CPI        : 6.92
+General    : 8.67
+Elite      : 6.92
+Composite  : 6.45
 Top %      : 13.30%
-WR gap     : +2.841%
+WR %       : 102.841%
 
 8-WEEK FINALIZED TREND
-CPI        : IMPROVING
+General    : IMPROVING
+Elite      : STABLE
+Composite  : IMPROVING
 Top %      : IMPROVING
-WR gap     : IMPROVING
+WR %       : STABLE
 
 LAST FINALIZED RACES
-- 2026-06-29 | Gr.3 | Deep Forest Raceway
-CPI 6.44 | Top 28.77% | WR +2.972%
-- 2026-07-06 | Gr.1 | Watkins Glen Long Course
-CPI 7.01 | Top 9.27% | WR +3.129%
-- 2026-07-13 | Gr.3 | Suzuka Circuit
-CPI 6.99 | Top 14.34% | WR +2.593%
-- 2026-07-20 | Gr.4 | Circuit Gilles-Villeneuve
-CPI 7.09 | Top 11.37% | WR +2.676%
-- 2026-07-27 | Gr.2 | Circuit de Barcelona-Catalunya GP
-CPI 6.40 | Top 13.50% | WR +3.850%
-- 2026-08-03 | Gr.3 | Tokyo Expressway - East Clockwise
-CPI 7.33 | Top 11.82% | WR +2.165%
-- 2026-08-10 | Gr.4 | Grand Valley - Highway 1
-CPI 7.05 | Top 15.58% | WR +2.371%
-- 2026-08-17 | Gr.3 | Yas Marina Circuit
-CPI 6.89 | Top 12.32% | WR +2.979%
+2026-06-29 | Gen 7.12 | Elite 6.44 | Comp 4.72 | Top 28.77% | WR 102.972%
+2026-07-06 | Gen 9.07 | Elite 7.01 | Comp 6.34 | Top 9.27% | WR 103.129%
+2026-07-13 | Gen 8.57 | Elite 6.99 | Comp 5.85 | Top 14.34% | WR 102.593%
+2026-07-20 | Gen 8.86 | Elite 7.09 | Comp 6.13 | Top 11.37% | WR 102.676%
+2026-07-27 | Gen 8.65 | Elite 6.40 | Comp 5.94 | Top 13.50% | WR 103.850%
+2026-08-03 | Gen 8.82 | Elite 7.33 | Comp 6.08 | Top 11.82% | WR 102.165%
+2026-08-10 | Gen 8.44 | Elite 7.05 | Comp 5.78 | Top 15.58% | WR 102.371%
+2026-08-17 | Gen 8.77 | Elite 6.89 | Comp 8.02 | Top 12.32% | WR 102.979%
+
+WHAT CHANGED SINCE PREVIOUS SNAPSHOT
+First snapshot of this Daily Race C.
 
 DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block

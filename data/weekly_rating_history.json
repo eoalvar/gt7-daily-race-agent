@@ -890,5 +890,33 @@
     "cpi_score": 7.049831997530207,
     "cpi_band": "VERY STRONG",
     "rating_model": "CPI_50_50_V1"
+  },
+  {
+    "participated": true,
+    "week_start": "2026-08-17",
+    "final_snapshot": "2026-08-23T06:12:00.480479-03:00",
+    "finalization_mode": "backfill_last_available_snapshot",
+    "race": "C Gr.3 Running 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit D. Chafe - Hyundai Genesis Gr.3 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dAAG8BB1NWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "general_score": 8.768700403278263,
+    "elite_score": 6.894485927101027,
+    "composite_rating": 8.019014612807368,
+    "position": 3787,
+    "total_drivers": 30749,
+    "top_percent": 12.315847669842922,
+    "percentile_ahead": 87.68700403278262,
+    "wr_percentage": 102.97944337881366,
+    "laptime": "1:53.817",
+    "score_ms": 113817,
+    "car": "Hyundai Genesis Gr.3",
+    "car_code": 2160,
+    "country": "BR",
+    "driver_rating": 4,
+    "legacy_elite_score": 6.894485927101027,
+    "legacy_general_score": 8.768700403278263,
+    "legacy_composite_rating": 8.019014612807368,
+    "cpi_score": 6.894485927101027,
+    "cpi_band": "COMPETITIVE",
+    "rating_model": "CPI_50_50_V1"
   }
 ]
