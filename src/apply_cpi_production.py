@@ -182,7 +182,7 @@ def migrate_latest_snapshot():
 
 def build_history_section(history, snapshot):
     finals = [r for r in history if isinstance(r, dict) and r.get("participated") is True and isinstance(r.get("cpi_score"), (int, float))]
-    my = snapshot.get("my_result", {}) if isinstance(snapshot, dict) else {}
+    my = (snapshot.get("my_result") or {}) if isinstance(snapshot, dict) else {}
     current_cpi = my.get("cpi_score")
     current_top = my.get("top_percent")
     current_wr = my.get("wr_percentage")
@@ -247,7 +247,7 @@ def build_history_section(history, snapshot):
 
 def build_summary(history, snapshot):
     finals = [r for r in history if isinstance(r.get("cpi_score"), (int, float))]
-    my = snapshot.get("my_result", {}) if isinstance(snapshot, dict) else {}
+    my = (snapshot.get("my_result") or {}) if isinstance(snapshot, dict) else {}
     summary = {
         "model": "CPI_50_50_V1",
         "name": "Competitive Performance Index",
@@ -272,7 +272,7 @@ def simplify_report(report_text, history_section, snapshot):
     out = []
     skipping_long_term = False
     inserted_history = False
-    my = snapshot.get("my_result", {}) if isinstance(snapshot, dict) else {}
+    my = (snapshot.get("my_result") or {}) if isinstance(snapshot, dict) else {}
     cpi = my.get("cpi_score")
     band = my.get("cpi_band")
 
