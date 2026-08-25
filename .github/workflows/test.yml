@@ -129,6 +129,10 @@ jobs:
       - name: Format final Daily C report layout
         run: python src/format_daily_report_layout.py
 
+      - name: Add race lap count to email header
+        continue-on-error: true
+        run: python src/append_race_laps.py
+
       - name: Add DR full-sample lap-time benchmarks
         run: python src/append_dr_analysis.py
 
