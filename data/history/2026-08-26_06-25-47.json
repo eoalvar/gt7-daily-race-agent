@@ -12,8 +12,7 @@
       "RH",
       "RM"
     ],
-    "start_date": "2026-08-24T00:00:00-03:00",
-    "laps": 12
+    "start_date": "2026-08-24T00:00:00-03:00"
   },
   "total_drivers": 25388,
   "world_record": {
@@ -102,18 +101,11 @@
     "gap_to_wr_ms": 3649,
     "wr_percentage": 103.28892814651908,
     "position_score": 8.484263599480048,
-    "elite_score": 6.601518280608428,
+    "elite_score": 1.860044679077878,
     "composite_rating": 5.83457603131918,
     "percentile_ahead": 84.84263599480049,
     "top_percent": 15.160705845281235,
-    "pace_band": "COMPETITIVE",
-    "legacy_elite_score": 1.860044679077878,
-    "legacy_general_score": 8.484263599480048,
-    "legacy_composite_rating": 5.83457603131918,
-    "cpi_score": 6.601518280608428,
-    "cpi_band": "COMPETITIVE",
-    "rating_model": "CPI_50_50_V1",
-    "driver_rating_label": "B"
+    "pace_band": "COMPETITIVE"
   },
   "same_car_stats": {
     "rank": 2660,
@@ -127,8 +119,7 @@
   "dr_stats": {
     "rank": 1752,
     "total": 7894,
-    "dr": 4,
-    "label": "B"
+    "dr": 4
   },
   "next_targets": [
     {
@@ -341,163 +332,5 @@
         "mode": "DIRECT"
       }
     }
-  },
-  "dr_profile": {
-    "psn_id": "crazy_rooster74",
-    "driver_rating": 4,
-    "dr_label": "B",
-    "dr_points": 20238,
-    "dr_percentage": 51,
-    "sportsmanship_rating": 6,
-    "source": "GTSH public profile",
-    "captured_at": "2026-08-26T09:30:22.128407+00:00"
-  },
-  "dr_laptime_stats": {
-    "1": {
-      "dr": 1,
-      "label": "E",
-      "drivers": 777,
-      "average_score": 124915.65122265123,
-      "average_laptime": "2:04.916",
-      "stddev_ms": 7811.042997149752,
-      "stddev_seconds": 7.811042997149753,
-      "diagnostics": {
-        "raw_n": 790,
-        "clean_n": 777,
-        "excluded_n": 13,
-        "median_ms": 123434.0,
-        "mad_ms": 4505.5,
-        "lower_fence_ms": 90034.7285,
-        "upper_fence_ms": 156833.2715
-      }
-    },
-    "2": {
-      "dr": 2,
-      "label": "D",
-      "drivers": 7065,
-      "average_score": 121485.39532908706,
-      "average_laptime": "2:01.485",
-      "stddev_ms": 4746.364331703097,
-      "stddev_seconds": 4.746364331703098,
-      "diagnostics": {
-        "raw_n": 7225,
-        "clean_n": 7065,
-        "excluded_n": 160,
-        "median_ms": 120269.0,
-        "mad_ms": 2675.0,
-        "lower_fence_ms": 100439.225,
-        "upper_fence_ms": 140098.775
-      }
-    },
-    "3": {
-      "dr": 3,
-      "label": "C",
-      "drivers": 6658,
-      "average_score": 118323.90552718534,
-      "average_laptime": "1:58.324",
-      "stddev_ms": 2922.009595507105,
-      "stddev_seconds": 2.922009595507105,
-      "diagnostics": {
-        "raw_n": 6821,
-        "clean_n": 6658,
-        "excluded_n": 163,
-        "median_ms": 117706.0,
-        "mad_ms": 1634.0,
-        "lower_fence_ms": 105593.158,
-        "upper_fence_ms": 129818.842
-      }
-    },
-    "4": {
-      "dr": 4,
-      "label": "B",
-      "drivers": 7696,
-      "average_score": 116129.53027546777,
-      "average_laptime": "1:56.130",
-      "stddev_ms": 2111.148648676092,
-      "stddev_seconds": 2.111148648676092,
-      "diagnostics": {
-        "raw_n": 7894,
-        "clean_n": 7696,
-        "excluded_n": 198,
-        "median_ms": 115731.5,
-        "mad_ms": 1181.5,
-        "lower_fence_ms": 106973.0405,
-        "upper_fence_ms": 124489.9595
-      }
-    },
-    "5": {
-      "dr": 5,
-      "label": "A",
-      "drivers": 1930,
-      "average_score": 114375.90414507771,
-      "average_laptime": "1:54.376",
-      "stddev_ms": 1511.8626389319772,
-      "stddev_seconds": 1.5118626389319771,
-      "diagnostics": {
-        "raw_n": 1971,
-        "clean_n": 1930,
-        "excluded_n": 41,
-        "median_ms": 114042.0,
-        "mad_ms": 829.0,
-        "lower_fence_ms": 107896.623,
-        "upper_fence_ms": 120187.377
-      }
-    },
-    "6": {
-      "dr": 6,
-      "label": "A+",
-      "drivers": 674,
-      "average_score": 113061.31602373887,
-      "average_laptime": "1:53.061",
-      "stddev_ms": 1157.6106683493279,
-      "stddev_seconds": 1.157610668349328,
-      "diagnostics": {
-        "raw_n": 681,
-        "clean_n": 674,
-        "excluded_n": 7,
-        "median_ms": 112890.0,
-        "mad_ms": 720.0,
-        "lower_fence_ms": 107552.64,
-        "upper_fence_ms": 118227.36
-      }
-    },
-    "7": {
-      "dr": 7,
-      "label": "S",
-      "drivers": 6,
-      "average_score": 111687.33333333333,
-      "average_laptime": "1:51.687",
-      "stddev_ms": 403.39792871169885,
-      "stddev_seconds": 0.4033979287116988,
-      "diagnostics": {
-        "raw_n": 6,
-        "clean_n": 6,
-        "excluded_n": 0,
-        "median_ms": 111546.0,
-        "mad_ms": null,
-        "lower_fence_ms": null,
-        "upper_fence_ms": null
-      }
-    }
-  },
-  "expected_start": {
-    "model": "FAST_HYBRID_V1_PARALLEL",
-    "grid_size": 16,
-    "dr": 4,
-    "dr_label": "B",
-    "dr_percentage": 51.0,
-    "profiles_requested": 60,
-    "profiles_valid": 60,
-    "local_method": "nearest 8 DR% peers",
-    "local_n": 8,
-    "empirical_position": 6.625,
-    "regression_position": 7.154935591363466,
-    "hybrid_position": 6.757483897840866,
-    "expected_start_range": "7 to 9",
-    "confidence": "HIGH",
-    "empirical_weight": 0.75,
-    "regression_weight": 0.25,
-    "correlation": -0.186305807392903,
-    "profile_workers": 6
   }
 }
