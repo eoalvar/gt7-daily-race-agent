@@ -3,9 +3,8 @@ name: GT7 Daily C Delivery Watchdog
 on:
   workflow_dispatch:
   schedule:
-    # 09:17-11:57 UTC = 06:17-08:57 in Sao Paulo (UTC-3).
-    # Use plain UTC cron deliberately: the watchdog must remain independent
-    # from timezone-aware scheduling, which is still a GitHub public preview.
+    # UTC: 09:17-11:57 = 06:17-08:57 Sao Paulo (UTC-3).
+    # Deliberately avoid minute 0, when scheduled Actions are more congested.
     - cron: "17,37,57 9-11 * * *"
 
 permissions:
@@ -25,6 +24,7 @@ jobs:
         id: check
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         shell: bash
         run: |
           set -euo pipefail
@@ -32,6 +32,7 @@ jobs:
           NOW_LOCAL=$(TZ=America/Sao_Paulo date +%H%M)
           TODAY_LOCAL=$(TZ=America/Sao_Paulo date +%F)
           echo "Sao Paulo now: $(TZ=America/Sao_Paulo date '+%Y-%m-%d %H:%M:%S')"
+          echo "Repository: $GH_REPO"
 
           if [ "$NOW_LOCAL" -lt 0610 ]; then
             echo "Before 06:10 Sao Paulo; recovery window not open yet."
@@ -39,6 +40,8 @@ jobs:
             exit 0
           fi
 
+          # GH_REPO gives GitHub CLI explicit repository context, so this
+          # watchdog does not need a checkout/.git directory.
           RUNS=$(gh run list --workflow test.yml --limit 50 --json databaseId,status,conclusion,createdAt,event)
 
           # GitHub returns createdAt in UTC. Convert each run timestamp to
@@ -72,6 +75,7 @@ jobs:
         if: steps.check.outputs.recover == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         run: |
           echo "Triggering GT7 Daily Race C recovery run."
           gh workflow run test.yml --ref main
