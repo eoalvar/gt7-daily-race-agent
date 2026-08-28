@@ -33,10 +33,75 @@ jobs:
         id: pb
         run: python src/pb_watch.py
 
+      - name: Check Daily Race C morning delivery
+        id: daily_watchdog
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          NOW_LOCAL=$(TZ=America/Sao_Paulo date +%H%M)
+          TODAY_LOCAL=$(TZ=America/Sao_Paulo date +%F)
+          echo "Sao Paulo now: $(TZ=America/Sao_Paulo date '+%Y-%m-%d %H:%M:%S')"
+
+          # The normal Daily Race C workflow starts at 05:50. Give it until
+          # 06:10 before the watchdog is allowed to recover a missed run.
+          if [ "$NOW_LOCAL" -lt 0610 ]; then
+            echo "Before 06:10 Sao Paulo; watchdog inactive."
+            echo "recover=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          SNAPSHOT_DATE=$(python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("data/latest_snapshot.json")
+          if not path.exists():
+              print("")
+          else:
+              try:
+                  obj = json.loads(path.read_text(encoding="utf-8"))
+                  ts = str(obj.get("timestamp") or "")
+                  print(ts[:10] if len(ts) >= 10 else "")
+              except Exception:
+                  print("")
+          PY
+          )
+
+          echo "Latest snapshot date: ${SNAPSHOT_DATE:-NONE}"
+          if [ "$SNAPSHOT_DATE" = "$TODAY_LOCAL" ]; then
+            echo "Today's Daily Race C snapshot already exists; no recovery needed."
+            echo "recover=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Avoid duplicate recovery runs while Daily Race C is already queued
+          # or running (for example, because the normal cron was merely late).
+          ACTIVE=$(gh run list --workflow test.yml --limit 20 --json status --jq '[.[] | select(.status == "queued" or .status == "in_progress" or .status == "waiting" or .status == "pending")] | length')
+          echo "Active Daily Race C runs: $ACTIVE"
+          if [ "$ACTIVE" -gt 0 ]; then
+            echo "Daily Race C is already active; watchdog will not duplicate it."
+            echo "recover=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "No Daily Race C snapshot for today after 06:10 and no active run. Recovery required."
+          echo "recover=true" >> "$GITHUB_OUTPUT"
+
       - name: Trigger Daily Race C on improvement
         if: steps.pb.outputs.improved == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           echo "New PB detected: gain ${{ steps.pb.outputs.gain_ms }} ms, live rank #${{ steps.pb.outputs.live_rank }}"
+          gh workflow run test.yml --ref main
+
+      - name: Recover missed Daily Race C morning run
+        if: steps.daily_watchdog.outputs.recover == 'true' && steps.pb.outputs.improved != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Daily morning watchdog: triggering GT7 Daily Race C recovery run."
           gh workflow run test.yml --ref main
