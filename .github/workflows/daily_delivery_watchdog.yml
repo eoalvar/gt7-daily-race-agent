@@ -1,0 +1,69 @@
+name: GT7 Daily C Delivery Watchdog
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 6-8 * * *"
+      timezone: "America/Sao_Paulo"
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: gt7-daily-c-delivery-watchdog
+  cancel-in-progress: false
+
+jobs:
+  verify-delivery:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check whether today's Daily Race C completed successfully
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          NOW_LOCAL=$(TZ=America/Sao_Paulo date +%H%M)
+          TODAY_LOCAL=$(TZ=America/Sao_Paulo date +%F)
+          echo "Sao Paulo now: $(TZ=America/Sao_Paulo date '+%Y-%m-%d %H:%M:%S')"
+
+          if [ "$NOW_LOCAL" -lt 0610 ]; then
+            echo "Before 06:10 Sao Paulo; recovery window not open yet."
+            echo "recover=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          RUNS=$(gh run list --workflow test.yml --limit 50 --json databaseId,status,conclusion,createdAt,event)
+
+          SUCCESS_TODAY=$(printf '%s' "$RUNS" | jq --arg today "$TODAY_LOCAL" '[.[] | select((.createdAt | startswith($today)) and .status == "completed" and .conclusion == "success")] | length')
+          ACTIVE=$(printf '%s' "$RUNS" | jq '[.[] | select(.status == "queued" or .status == "in_progress" or .status == "waiting" or .status == "pending")] | length')
+
+          echo "Successful Daily Race C runs today: $SUCCESS_TODAY"
+          echo "Active Daily Race C runs: $ACTIVE"
+
+          if [ "$SUCCESS_TODAY" -gt 0 ]; then
+            echo "Today's Daily Race C already completed successfully; email step was reached."
+            echo "recover=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ "$ACTIVE" -gt 0 ]; then
+            echo "A Daily Race C run is already active; no duplicate recovery."
+            echo "recover=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "No successful Daily Race C run today and none active. Recovery required."
+          echo "recover=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger recovery Daily Race C
+        if: steps.check.outputs.recover == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Triggering GT7 Daily Race C recovery run."
+          gh workflow run test.yml --ref main
