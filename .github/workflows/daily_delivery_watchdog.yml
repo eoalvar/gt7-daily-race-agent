@@ -3,8 +3,10 @@ name: GT7 Daily C Delivery Watchdog
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/10 6-8 * * *"
-      timezone: "America/Sao_Paulo"
+    # 09:17-11:57 UTC = 06:17-08:57 in Sao Paulo (UTC-3).
+    # Use plain UTC cron deliberately: the watchdog must remain independent
+    # from timezone-aware scheduling, which is still a GitHub public preview.
+    - cron: "17,37,57 9-11 * * *"
 
 permissions:
   contents: read
@@ -39,14 +41,20 @@ jobs:
 
           RUNS=$(gh run list --workflow test.yml --limit 50 --json databaseId,status,conclusion,createdAt,event)
 
-          SUCCESS_TODAY=$(printf '%s' "$RUNS" | jq --arg today "$TODAY_LOCAL" '[.[] | select((.createdAt | startswith($today)) and .status == "completed" and .conclusion == "success")] | length')
+          # GitHub returns createdAt in UTC. Convert each run timestamp to
+          # America/Sao_Paulo before deciding whether it belongs to today.
+          SUCCESS_TODAY=$(printf '%s' "$RUNS" | jq -r '.[] | select(.status == "completed" and .conclusion == "success") | .createdAt' | while read -r ts; do
+            [ -z "$ts" ] && continue
+            run_day=$(TZ=America/Sao_Paulo date -d "$ts" +%F)
+            if [ "$run_day" = "$TODAY_LOCAL" ]; then echo 1; fi
+          done | wc -l)
           ACTIVE=$(printf '%s' "$RUNS" | jq '[.[] | select(.status == "queued" or .status == "in_progress" or .status == "waiting" or .status == "pending")] | length')
 
           echo "Successful Daily Race C runs today: $SUCCESS_TODAY"
           echo "Active Daily Race C runs: $ACTIVE"
 
           if [ "$SUCCESS_TODAY" -gt 0 ]; then
-            echo "Today's Daily Race C already completed successfully; email step was reached."
+            echo "Today's Daily Race C already completed successfully; no recovery needed."
             echo "recover=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
