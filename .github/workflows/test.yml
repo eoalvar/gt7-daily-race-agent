@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: "50 5 * * *"
-      timezone: "America/Sao_Paulo"
+    # 08:47 UTC = 05:47 Sao Paulo (UTC-3).
+    # Use standard GitHub cron only; avoid timezone scheduler preview and minute 0.
+    - cron: "47 8 * * *"
 
 permissions:
   contents: write
@@ -32,7 +33,7 @@ jobs:
 
       - name: Finalize previous Daily Race C
         id: previous_week
-        if: ${{ github.event_name == 'schedule' && github.event.schedule == '50 5 * * *' }}
+        if: ${{ github.event_name == 'schedule' && github.event.schedule == '47 8 * * *' }}
         shell: bash
         run: |
           DAY_OF_WEEK=$(TZ=America/Sao_Paulo date +%u)
