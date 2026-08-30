@@ -33,10 +33,50 @@ jobs:
         id: pb
         run: python src/pb_watch.py
 
-      - name: Trigger Daily Race C on improvement
-        if: steps.pb.outputs.improved == 'true'
+      - name: Check Daily C morning delivery
+        id: daily
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
         run: |
-          echo "New PB detected: gain ${{ steps.pb.outputs.gain_ms }} ms, live rank #${{ steps.pb.outputs.live_rank }}"
-          gh workflow run test.yml --ref main
+          set -euo pipefail
+          NOW=$(TZ=America/Sao_Paulo date +%H%M)
+          TODAY=$(TZ=America/Sao_Paulo date +%F)
+
+          # Only act during the morning recovery window.
+          if [ "$NOW" -lt 0610 ] || [ "$NOW" -gt 0900 ]; then
+            echo "recover=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          RUNS=$(gh run list --repo "$GH_REPO" --workflow test.yml --limit 30 --json status,conclusion,createdAt)
+          SUCCESS=0
+          ACTIVE=0
+          while IFS=$'\t' read -r status conclusion created; do
+            [ -z "$created" ] && continue
+            DAY=$(TZ=America/Sao_Paulo date -d "$created" +%F)
+            [ "$DAY" != "$TODAY" ] && continue
+            if [ "$status" = "completed" ] && [ "$conclusion" = "success" ]; then SUCCESS=1; fi
+            if [ "$status" = "queued" ] || [ "$status" = "in_progress" ] || [ "$status" = "waiting" ] || [ "$status" = "pending" ]; then ACTIVE=1; fi
+          done < <(printf '%s' "$RUNS" | jq -r '.[] | [.status, (.conclusion // ""), .createdAt] | @tsv')
+
+          echo "Daily C success today: $SUCCESS | active: $ACTIVE"
+          if [ "$SUCCESS" -eq 0 ] && [ "$ACTIVE" -eq 0 ]; then
+            echo "recover=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "recover=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Trigger Daily Race C
+        if: steps.pb.outputs.improved == 'true' || steps.daily.outputs.recover == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if [ "${{ steps.pb.outputs.improved }}" = "true" ]; then
+            echo "Trigger reason: new PB | gain ${{ steps.pb.outputs.gain_ms }} ms | live rank #${{ steps.pb.outputs.live_rank }}"
+          else
+            echo "Trigger reason: morning delivery recovery"
+          fi
+          gh workflow run test.yml --repo "$GH_REPO" --ref main
