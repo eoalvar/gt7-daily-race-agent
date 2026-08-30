@@ -4,8 +4,6 @@ on:
   workflow_dispatch:
 
   schedule:
-    # 08:47 UTC = 05:47 Sao Paulo (UTC-3).
-    # Use standard GitHub cron only; avoid timezone scheduler preview and minute 0.
     - cron: "47 8 * * *"
 
 permissions:
@@ -60,7 +58,7 @@ jobs:
       - name: Run GT7 Daily Race C Agent
         env:
           FINAL_WEEKLY_SNAPSHOT: "0"
-        run: python src/test_race_detector.py
+        run: python src/run_daily_cached.py
 
       - name: Build shared runtime leaderboard cache
         run: python src/build_runtime_leaderboard_cache.py
