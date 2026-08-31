@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: gt7-pb-watch
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   watch-pb:
@@ -33,7 +33,7 @@ jobs:
         id: pb
         run: python src/pb_watch.py
 
-      - name: Check Daily C morning delivery
+      - name: Check Daily C delivery
         id: daily
         env:
           GH_TOKEN: ${{ github.token }}
@@ -44,8 +44,11 @@ jobs:
           NOW=$(TZ=America/Sao_Paulo date +%H%M)
           TODAY=$(TZ=America/Sao_Paulo date +%F)
 
-          # Only act during the morning recovery window.
-          if [ "$NOW" -lt 0610 ] || [ "$NOW" -gt 0900 ]; then
+          # Once 06:10 Sao Paulo has passed, ANY later PB Watch run may
+          # recover a missing Daily C. Do not depend on GitHub landing in
+          # a narrow morning window, because scheduled runs can be delayed.
+          if [ "$NOW" -lt 0610 ]; then
+            echo "Recovery not eligible before 06:10 Sao Paulo."
             echo "recover=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -63,6 +66,7 @@ jobs:
 
           echo "Daily C success today: $SUCCESS | active: $ACTIVE"
           if [ "$SUCCESS" -eq 0 ] && [ "$ACTIVE" -eq 0 ]; then
+            echo "No successful/active Daily C today. Recovery required."
             echo "recover=true" >> "$GITHUB_OUTPUT"
           else
             echo "recover=false" >> "$GITHUB_OUTPUT"
@@ -77,6 +81,6 @@ jobs:
           if [ "${{ steps.pb.outputs.improved }}" = "true" ]; then
             echo "Trigger reason: new PB | gain ${{ steps.pb.outputs.gain_ms }} ms | live rank #${{ steps.pb.outputs.live_rank }}"
           else
-            echo "Trigger reason: morning delivery recovery"
+            echo "Trigger reason: Daily C delivery recovery"
           fi
           gh workflow run test.yml --repo "$GH_REPO" --ref main
