@@ -21,7 +21,11 @@ SAMPLE_SIZE = 60
 GRID_SIZE = 16
 LOCAL_WINDOW = 10.0
 MIN_LOCAL = 8
-PROFILE_WORKERS = 6
+# Each sampled profile is an independent GTSH request pair.  Six workers made
+# this step the dominant runtime (~62s for 60 profiles).  Twelve keeps the same
+# statistical sample while roughly halving wall-clock time without changing the
+# model or reducing data quality.
+PROFILE_WORKERS = 12
 DR_LABELS = {1: "E", 2: "D", 3: "C", 4: "B", 5: "A", 6: "A+", 7: "S"}
 
 
