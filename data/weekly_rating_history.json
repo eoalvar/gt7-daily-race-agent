@@ -918,5 +918,33 @@
     "cpi_score": 6.894485927101027,
     "cpi_band": "COMPETITIVE",
     "rating_model": "CPI_50_50_V1"
+  },
+  {
+    "participated": true,
+    "week_start": "2026-08-24",
+    "final_snapshot": "2026-08-30T11:00:21.734185-03:00",
+    "finalization_mode": "backfill_last_available_snapshot",
+    "race": "C Gr.2 Running 24 Aug 2026 Daily Race C i 18:49 Circuit de Sainte-Croix - B K. de Bruin - Lexus RC F GT500 '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x7 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dDAG8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "general_score": 9.044398155732909,
+    "elite_score": 7.195686468406642,
+    "composite_rating": 8.304913480802401,
+    "position": 4084,
+    "total_drivers": 42728,
+    "top_percent": 9.558135180677775,
+    "percentile_ahead": 90.4439815573291,
+    "wr_percentage": 102.69700002705116,
+    "laptime": "1:53.892",
+    "score_ms": 113892,
+    "car": "Lexus RC F GT500 '16",
+    "car_code": 3349,
+    "country": "BR",
+    "driver_rating": 4,
+    "legacy_elite_score": 7.195686468406642,
+    "legacy_general_score": 9.044398155732909,
+    "legacy_composite_rating": 8.304913480802401,
+    "cpi_score": 7.195686468406642,
+    "cpi_band": "VERY STRONG",
+    "rating_model": "CPI_50_50_V1"
   }
 ]
