@@ -1,11 +1,7 @@
 GT7 DAILY RACE C
 ==============================================================================
 Snapshot: 02/09/2026 21:16:27 - Sao Paulo
-C Running Daily Race C
-24 Heures du Mans Racing Circuit
-Current WR: J. Serrano (3:25.637)
-Current WR Car: Porsche 963 '24
-Race Setup: RM IM W BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom
+C Running Daily Race C i 17:40 24 Heures du Mans Racing Circuit J. Serrano - Porsche 963 '24 RM IM W BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
 Total drivers: 23,458
@@ -17,29 +13,15 @@ Time            : 3:34.902
 Car             : Porsche 963 '24
 Gap to WR       : +9.265s
 WR percentage   : 104.506%
-CPI             : 5.88 / 10 | MID-FIELD
 Pace class      : COMPETITIVE
+General rating  : 8.04 / 10
+Elite rating    : 1.62 / 10
+Composite       : 5.47 / 10
 Top percentile  : Top 19.62%
 Ahead of        : 80.39% of participants
 Country rank    : #226 of 1,193 (BR)
-DR B rank     : #2,322 of 7,236
-DR progress      : DR B | 19,839 pts | 49% toward next DR
+DR rank         : #2,322 of 7,236 (DR 4)
 Same-car rank   : #3,360 of 12,823
-
-EXPECTED START
-Projected grid range : 10 to 12
-Confidence           : MEDIUM
-Model basis          : DR B 49% | 60 valid profiles | +/-10 DR%
-
-DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
-Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : 3:26.229 average | SD 0.515s | 6 drivers
-DR A+ : 3:30.646 average | SD 2.494s | 580 drivers
-DR A  : 3:33.437 average | SD 2.854s | 1,658 drivers
-DR B  : 3:36.981 average | SD 3.801s | 7,126 drivers
-DR C  : 3:40.635 average | SD 4.692s | 6,078 drivers
-DR D  : 3:45.241 average | SD 6.673s | 6,633 drivers
-DR E  : 3:49.476 average | SD 10.943s | 935 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 3:25.637 | J. Serrano | Porsche 963 '24
@@ -88,53 +70,78 @@ Fuel consumption may influence race pace.
 FORECAST TO SUNDAY - V2
 Race start date unavailable.
 
-LONG-TERM COMPETITIVE PERFORMANCE
-CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percentile
-Higher CPI is better. Lower Top % and WR gap are better.
+LONG-TERM RATING TREND
+Higher General, Elite and Composite ratings are better.
+Lower Top % and WR % are better.
+Only FINAL Sunday ratings are used for historical trend calculations.
+Current race status: PROVISIONAL
 
 CURRENT WEEK
-CPI        : 5.88 / 10 | MID-FIELD
+General    : 8.04
+Elite      : 1.62
+Composite  : 5.47
 Top %      : 19.62%
-WR gap     : +4.506%
+WR %       : 104.506%
 
 LATEST FINALIZED WEEK
 Week       : 2026-08-24
-CPI        : 7.15 / 10 | VERY STRONG
+General    : 9.06
+Elite      : 7.15
+Composite  : 6.31
 Top %      : 9.44%
-WR gap     : +2.805%
+WR %       : 102.805%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
-CPI        : 7.15 -> 5.88 (-1.27)
-Top %      : 9.44% -> 19.62% (+10.18 pp)
-WR gap     : +2.805% -> +4.506% (+1.701 pp)
+General    : 9.06 -> 8.04 (-1.02) | WORSE
+Elite      : 7.15 -> 1.62 (-5.54) | WORSE
+Composite  : 6.31 -> 5.47 (-0.84) | WORSE
+Top %      : 9.44% -> 19.62% (+10.18 pp) | WORSE
+WR %       : 102.805% -> 104.506% (+1.701 pp) | WORSE
+
+Current week assessment : BELOW LAST WEEK
+
+LATEST FINALIZED WEEK VS PRIOR FINALIZED WEEK
+General    : 8.77 -> 9.06 (+0.29)
+Elite      : 6.89 -> 7.15 (+0.26)
+Composite  : 8.02 -> 6.31 (-1.70)
 
 4-WEEK FINALIZED MOVING AVERAGE
-CPI        : 7.11
+General    : 8.77
+Elite      : 7.11
+Composite  : 6.55
 Top %      : 12.29%
-WR gap     : +2.580%
+WR %       : 102.580%
 
 8-WEEK FINALIZED TREND
-CPI        : STABLE
-Top %      : DECLINING
-WR gap     : IMPROVING
+General    : STABLE
+Elite      : STABLE
+Composite  : IMPROVING
+Top %      : STABLE
+WR %       : STABLE
+
+PERFORMANCE SUMMARY
+Current week vs last final : BELOW LAST WEEK
+Long-term Composite trend  : IMPROVING
+Long-term WR % trend       : STABLE
+Interpretation               : Short-term pullback inside an improving long-term trend.
 
 LAST FINALIZED RACES
-- 2026-07-06 | Gr.1 | Watkins Glen Long Course
-CPI 7.01 | Top 9.27% | WR +3.129%
-- 2026-07-13 | Gr.3 | Suzuka Circuit
-CPI 6.99 | Top 14.34% | WR +2.593%
-- 2026-07-20 | Gr.4 | Circuit Gilles-Villeneuve
-CPI 7.09 | Top 11.37% | WR +2.676%
-- 2026-07-27 | Gr.2 | Circuit de Barcelona-Catalunya GP
-CPI 6.40 | Top 13.50% | WR +3.850%
-- 2026-08-03 | Gr.3 | Tokyo Expressway - East Clockwise
-CPI 7.33 | Top 11.82% | WR +2.165%
-- 2026-08-10 | Gr.4 | Grand Valley - Highway 1
-CPI 7.05 | Top 15.58% | WR +2.371%
-- 2026-08-17 | Gr.3 | Yas Marina Circuit
-CPI 6.89 | Top 12.32% | WR +2.979%
-- 2026-08-24 | Gr.2 | Circuit N/A
-CPI 7.15 | Top 9.44% | WR +2.805%
+2026-07-06 | Gen 9.07 | Elite 7.01 | Comp 6.34 | Top 9.27% | WR 103.129%
+2026-07-13 | Gen 8.57 | Elite 6.99 | Comp 5.85 | Top 14.34% | WR 102.593%
+2026-07-20 | Gen 8.86 | Elite 7.09 | Comp 6.13 | Top 11.37% | WR 102.676%
+2026-07-27 | Gen 8.65 | Elite 6.40 | Comp 5.94 | Top 13.50% | WR 103.850%
+2026-08-03 | Gen 8.82 | Elite 7.33 | Comp 6.08 | Top 11.82% | WR 102.165%
+2026-08-10 | Gen 8.44 | Elite 7.05 | Comp 5.78 | Top 15.58% | WR 102.371%
+2026-08-17 | Gen 8.77 | Elite 6.89 | Comp 8.02 | Top 12.32% | WR 102.979%
+2026-08-24 | Gen 9.06 | Elite 7.15 | Comp 6.31 | Top 9.44% | WR 102.805%
+
+WHAT CHANGED SINCE PREVIOUS SNAPSHOT
+World Record   : 0.000s
+Top 500        : -0.008s
+My position    : #5,885 -> #4,602 (+1283 positions)
+My time        : -0.933s
+General rating : 7.46 -> 8.04 (+0.58)
+Elite rating   : 5.51 -> 1.62 (-3.89)
 
 DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
