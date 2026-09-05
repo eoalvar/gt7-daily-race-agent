@@ -19,6 +19,30 @@
     "visible_grid_size": 11,
     "full_grid_size": null,
     "source": "user-provided GT7 starting-grid screenshot",
-    "notes": "Race at 10:00 Sao Paulo time on Saturday 2026-09-05. First 10 positions fully visible; P11 partially visible. User is P10. Visible lobby mixes DR A and DR B; SR shown as S for visible drivers. Faster drivers ahead of user: P1 A, P2 A, P3 B, P4 B, P5 A, P6 B, P7 A, P8 B, P9 A. This sample demonstrates that same-DR global qualifying percentile alone materially underestimates grid position when matchmaking mixes A and B drivers."
+    "notes": "Race at 10:00 Sao Paulo time on Saturday 2026-09-05. First 10 positions fully visible; P11 partially visible. User is P10. Visible lobby mixes DR A and DR B; SR shown as S for visible drivers. Faster drivers ahead of user: P1 A, P2 A, P3 B, P4 B, P5 A, P6 B, P7 A, P8 B, P9 A."
+  },
+  {
+    "timestamp_pre_race_sao_paulo": "2026-09-05T12:00:00-03:00",
+    "actual_race_datetime_sao_paulo": "2026-09-05T12:00:00-03:00",
+    "actual_race_day": "Saturday",
+    "race_week": "2026-08-31",
+    "track": "24 Heures du Mans Racing Circuit",
+    "psn_id": "crazy_rooster74",
+    "qualifying_time": "3:33.998",
+    "qualifying_score": 213998,
+    "driver_rating": 4,
+    "driver_rating_label": "B",
+    "same_dr_rank": null,
+    "same_dr_population": null,
+    "same_dr_fraction_ahead_approx": null,
+    "population_model_expected_position": null,
+    "population_model_expected_range": null,
+    "actual_grid_position": 2,
+    "visible_grid_size": 12,
+    "full_grid_size": null,
+    "visible_dr_composition": {"B": 12, "A": 0},
+    "drivers_ahead": [{"position": 1, "driver_rating_label": "B", "qualifying_time": "3:33.700"}],
+    "source": "user-provided GT7 starting-grid screenshot",
+    "notes": "Second calibration race, Saturday around 12:00 Sao Paulo time. User starts P2 with 3:33.998. All 12 visible drivers are DR B; no DR A visible. P1 is DR B with 3:33.700. This contrasts strongly with the 10:00 sample, where the user started P10 and five DR A drivers were ahead. The pre-race global same-DR percentile was intentionally not reused because the persisted leaderboard snapshot was stale."
   }
 ]
