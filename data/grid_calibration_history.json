@@ -1,0 +1,22 @@
+[
+  {
+    "timestamp_pre_race_sao_paulo": "2026-09-05T09:07:54-03:00",
+    "race_week": "2026-08-31",
+    "track": "24 Heures du Mans Racing Circuit",
+    "psn_id": "crazy_rooster74",
+    "qualifying_time": "3:33.998",
+    "qualifying_score": null,
+    "driver_rating": 4,
+    "driver_rating_label": "B",
+    "same_dr_rank": 2091,
+    "same_dr_population": 9059,
+    "same_dr_fraction_ahead_approx": 0.2308,
+    "population_model_expected_position": 4.46,
+    "population_model_expected_range": "4 to 6",
+    "actual_grid_position": 10,
+    "visible_grid_size": 11,
+    "full_grid_size": null,
+    "source": "user-provided GT7 starting-grid screenshot",
+    "notes": "First 10 positions fully visible; P11 partially visible. User is P10. Visible lobby mixes DR A and DR B; SR shown as S for visible drivers. Faster drivers ahead of user: P1 A, P2 A, P3 B, P4 B, P5 A, P6 B, P7 A, P8 B, P9 A. This sample demonstrates that same-DR global qualifying percentile alone materially underestimates grid position when matchmaking mixes A and B drivers."
+  }
+]
