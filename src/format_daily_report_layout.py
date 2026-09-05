@@ -126,22 +126,36 @@ def load_track_names():
 
 
 def fallback_extract_circuit(record, remainder):
-    car = str(record.get("car") or "").strip()
-    if not car:
+    """Extract the circuit when it is not present in the known-track catalogue.
+
+    GTSH race descriptions end their track/driver portion as:
+        <track> <WR driver> - <WR car> <race setup>
+
+    Older code tried to find the separator using record['car'], which is the
+    user's car, not necessarily the WR car embedded in the race description.
+    That made extraction fail whenever those cars differed.  The final spaced
+    hyphen is the driver/WR-car separator; track variants can themselves contain
+    spaced hyphens (for example "Circuit de Sainte-Croix - B"), hence rsplit.
+    """
+    if " - " not in remainder:
         return None
-    marker = f" - {car}"
-    marker_pos = remainder.rfind(marker)
-    if marker_pos < 0:
+
+    before_wr_car, _ = remainder.rsplit(" - ", 1)
+    before_wr_car = before_wr_car.strip()
+    if not before_wr_car:
         return None
-    before_car = remainder[:marker_pos].strip()
+
     driver_patterns = [
+        # Initial + surname, e.g. "D. Chafe" or "J. Serrano".
         r"\s+[A-Z]\.\s+[\wÀ-ÿ'._-]+$",
+        # Compact initial/name form.
         r"\s+[A-Z]\.[\wÀ-ÿ'._-]+$",
-        r"\s+[\wÀ-ÿ'._-]+$",
+        # PSN / single-token driver names, including non-Latin characters.
+        r"\s+[^\s]+$",
     ]
     for pattern in driver_patterns:
-        candidate = re.sub(pattern, "", before_car).strip()
-        if candidate != before_car and candidate:
+        candidate = re.sub(pattern, "", before_wr_car).strip()
+        if candidate != before_wr_car and candidate:
             return candidate
     return None
 
@@ -159,7 +173,7 @@ def extract_group_and_circuit(record, track_names):
     for candidate, canonical in track_names:
         candidate_lower = candidate.casefold()
         if remainder_lower == candidate_lower or remainder_lower.startswith(candidate_lower + " "):
-            return group, candidate
+            return group, canonical
 
     fallback = fallback_extract_circuit(record, remainder)
     if fallback:
@@ -259,39 +273,41 @@ def rename_elite_to_relativa(text):
     return text
 
 
-def format_one_report(text):
-    text = move_changed_section(text)
-    text = move_cars_section(text)
-    text = format_header(text)
-    text = enrich_finalized_history(text)
-    text = rename_elite_to_relativa(text)
-    while "\n\n\n" in text:
-        text = text.replace("\n\n\n", "\n\n")
-    return text.strip() + "\n"
-
-
-def format_report(text):
-    marker_pos = text.find(CURRENT_WEEK_MARKER)
-    if marker_pos < 0:
-        return format_one_report(text)
-    first = text[:marker_pos]
-    second = text[marker_pos:]
-    first = format_one_report(first).rstrip()
-    marker_end = second.find("\n")
-    if marker_end < 0:
-        return first + "\n\n" + second.strip() + "\n"
-    marker_line = second[:marker_end].rstrip()
-    remainder = second[marker_end + 1:]
-    remainder = format_one_report(remainder).strip()
-    return first + "\n\n" + marker_line + "\n" + remainder + "\n"
+def format_finalized_history_metrics(text):
+    """Keep historical rows compact while preserving current CPI wording."""
+    if "LAST FINALIZED RACES" not in text:
+        return text
+    lines = text.splitlines()
+    out = []
+    in_section = False
+    for line in lines:
+        if line.strip() == "LAST FINALIZED RACES":
+            in_section = True
+            out.append(line)
+            continue
+        if in_section and not line.strip():
+            in_section = False
+            out.append(line)
+            continue
+        if in_section:
+            line = re.sub(r"^Gen\s+[^|]+\|\s*", "", line)
+            line = re.sub(r"^Relativa\s+[^|]+\|\s*", "", line)
+        out.append(line)
+    return "\n".join(out) + ("\n" if text.endswith("\n") else "")
 
 
 def main():
     if not REPORT_FILE.exists():
-        raise RuntimeError("reports/latest.txt not found")
-    original = REPORT_FILE.read_text(encoding="utf-8")
-    formatted = format_report(original)
+        raise SystemExit("reports/latest.txt not found")
+    text = REPORT_FILE.read_text(encoding="utf-8")
+    formatted = format_header(text)
+    formatted = move_changed_section(formatted)
+    formatted = move_cars_section(formatted)
+    formatted = enrich_finalized_history(formatted)
+    formatted = rename_elite_to_relativa(formatted)
+    formatted = format_finalized_history_metrics(formatted)
     REPORT_FILE.write_text(formatted, encoding="utf-8")
+
     checks = {
         "strategy_flags_removed": "RACE STRATEGY FLAGS" not in formatted,
         "header_current_wr": "Current WR:" in formatted,
@@ -301,8 +317,11 @@ def main():
             "LAST FINALIZED RACES" not in formatted
             or bool(re.search(r"^- \d{4}-\d{2}-\d{2} \| Gr\.", formatted, re.MULTILINE))
         ),
-        "finalized_history_no_na": "| Circuit N/A" not in formatted,
-        "relativa_label": "Elite rating" not in formatted and "| Elite " not in formatted,
+        "finalized_history_no_na": (
+            "LAST FINALIZED RACES" not in formatted
+            or "Circuit N/A" not in formatted
+        ),
+        "relativa_label": "Elite " not in formatted,
     }
     for key, value in checks.items():
         print(f"{key}: {'YES' if value else 'NO'}")
