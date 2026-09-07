@@ -1,126 +1,41 @@
 {
-  "version": "1.0",
-  "generated_at": "2026-08-31T13:24:23.986034-03:00",
-  "week_start": "2026-08-24",
-  "complete_leaderboard": true,
-  "loaded_drivers": 44963,
-  "total_drivers": 44963,
-  "extraction_mode": "server_paged_page_data",
+  "version": "fallback-1.0",
+  "generated_at": "2026-09-07T11:04:21.975430-03:00",
+  "week_start": "2026-08-31",
+  "complete_leaderboard": false,
   "result": {
     "participated": true,
-    "week_start": "2026-08-24",
-    "final_snapshot": "archived_leaderboard",
-    "finalization_mode": "historical_previous_week_final",
-    "extraction_mode": "server_paged_page_data",
-    "race": "C Gr.2 Archived 24 Aug 2026 Daily Race C i 18:49 Circuit de Sainte-Croix - B D. Chafe - Lexus RC F GT500 '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x7 Pit - Slipstream Custom",
-    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dDAG8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
-    "general_score": 9.056091810862506,
-    "elite_score": 2.2029002064048955,
-    "composite_rating": 6.314815169079462,
-    "position": 4245,
-    "total_drivers": 44963,
-    "top_percent": 9.44109601227676,
-    "percentile_ahead": 90.56091810862506,
-    "wr_percentage": 102.80453129936362,
-    "laptime": "1:53.892",
-    "score_ms": 113892,
-    "world_record": "1:50.785",
-    "world_record_ms": 110785,
-    "gap_to_wr_ms": 3107,
-    "car_code": 3349,
+    "week_start": "2026-08-31",
+    "final_snapshot": "2026-09-06T09:21:32.924206-03:00",
+    "finalization_mode": "snapshot_fallback_pending_archive",
+    "race": "C Running Daily Race C i 17:40 24 Heures du Mans Racing Circuit K. de Bruin - Porsche 963 '24 RM IM W BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dDC28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "general_score": 8.599710854748768,
+    "elite_score": 6.200144392263432,
+    "composite_rating": 7.639884269754633,
+    "position": 4747,
+    "total_drivers": 33894,
+    "top_percent": 14.005428689443558,
+    "percentile_ahead": 85.99710854748767,
+    "wr_percentage": 104.19916834652878,
+    "laptime": "3:33.998",
+    "score_ms": 213998,
+    "car": "Porsche 963 '24",
+    "car_code": 3607,
     "country": "BR",
     "driver_rating": 4,
-    "country_rank": 178,
-    "country_total": 2378,
-    "same_car_rank": 3424,
-    "same_car_total": 21047,
-    "dr_rank": 1772,
-    "dr_total": 12583
+    "legacy_elite_score": 6.200144392263432,
+    "legacy_general_score": 8.599710854748768,
+    "legacy_composite_rating": 7.639884269754633,
+    "cpi_score": 6.200144392263432,
+    "cpi_band": "COMPETITIVE",
+    "rating_model": "CPI_50_50_V1",
+    "archive_upgrade_pending": true,
+    "fallback_source_snapshot": "2026-09-06T09:21:32.924206-03:00"
   },
   "benchmarks": {
-    "fixed": {
-      "1": {
-        "rank": 1,
-        "score": 110785,
-        "laptime": "1:50.785"
-      },
-      "10": {
-        "rank": 10,
-        "score": 111128,
-        "laptime": "1:51.128"
-      },
-      "50": {
-        "rank": 50,
-        "score": 111442,
-        "laptime": "1:51.442"
-      },
-      "100": {
-        "rank": 100,
-        "score": 111610,
-        "laptime": "1:51.610"
-      },
-      "250": {
-        "rank": 250,
-        "score": 111946,
-        "laptime": "1:51.946"
-      },
-      "500": {
-        "rank": 500,
-        "score": 112303,
-        "laptime": "1:52.303"
-      },
-      "1000": {
-        "rank": 1000,
-        "score": 112696,
-        "laptime": "1:52.696"
-      },
-      "2500": {
-        "rank": 2500,
-        "score": 113387,
-        "laptime": "1:53.387"
-      },
-      "5000": {
-        "rank": 5000,
-        "score": 114081,
-        "laptime": "1:54.081"
-      },
-      "10000": {
-        "rank": 10000,
-        "score": 115074,
-        "laptime": "1:55.074"
-      }
-    },
-    "percentiles": {
-      "10": {
-        "percent": 10,
-        "rank": 4497,
-        "score": 113954,
-        "laptime": "1:53.954"
-      },
-      "5": {
-        "percent": 5,
-        "rank": 2249,
-        "score": 113283,
-        "laptime": "1:53.283"
-      },
-      "2": {
-        "percent": 2,
-        "rank": 900,
-        "score": 112628,
-        "laptime": "1:52.628"
-      },
-      "1": {
-        "percent": 1,
-        "rank": 450,
-        "score": 112250,
-        "laptime": "1:52.250"
-      },
-      "0.5": {
-        "percent": 0.5,
-        "rank": 225,
-        "score": 111907,
-        "laptime": "1:51.907"
-      }
-    }
-  }
+    "fixed": {},
+    "percentiles": {}
+  },
+  "archive_upgrade_pending": true
 }

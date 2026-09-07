@@ -1,69 +1,107 @@
 LAST WEEK - FINAL RESULT
 ==============================================================================
-Status          : PENDING ARCHIVE AVAILABILITY
-Reason          : Could not find the previous week's Daily Race C. Target week: 2026-08-31. Available Race C dates: ['2026-06-22', '2026-06-29', '2026-07-06', '2026-07-13', '2026-07-20', '2026-07-27', '2026-08-03', '2026-08-10', '2026-08-17', '2026-08-24']
-The historical result was NOT marked final.
+Week            : 2026-08-31
+Race            : C Running Daily Race C i 17:40 24 Heures du Mans Racing Circuit K. de Bruin - Porsche 963 '24 RM IM W BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom
+
+YOUR FINAL AVAILABLE RESULT
+Position        : #4,747 of 33,894
+Time            : 3:33.998
+Top percentile  : Top 14.01%
+Ahead of        : 86.00% of participants
+WR percentage   : 104.199%
+CPI             : 7.70 / 10 | VERY STRONG
+CPI             : 6.20 / 10 (COMPETITIVE)
+
+Status          : FINAL FALLBACK - last valid snapshot before archive
+Archive         : GTSH historical leaderboard not available yet
+Upgrade         : Will be replaced by archived full leaderboard when available
 ==============================================================================
+
 
 NEW WEEK - CURRENT DAILY RACE C
 ==============================================================================
 
 GT7 DAILY RACE C
 ==============================================================================
-Snapshot: 07/09/2026 09:04:30 - Sao Paulo
-C Running Daily Race C
+Snapshot: 07/09/2026 11:04:22 - Sao Paulo
+C Gr.3 Running Daily Race C
 Dragon Trail - Seaside
-Current WR: Ryun｜R. Hayashi (1:35.823)
+Current WR: N.Baglioni (1:35.673)
 Current WR Car: Hyundai Genesis Gr.3
 Race Setup: RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x6 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 6,415
+Total drivers: 9,285
 
 WHERE YOU ARE
-crazy_rooster74 not found in leaderboard.
+PSN             : crazy_rooster74
+Position        : #786 of 9,285
+Time            : 1:37.499
+Car             : Hyundai Genesis Gr.3
+Gap to WR       : +1.826s
+WR percentage   : 101.909%
+CPI             : 7.70 / 10 | VERY STRONG
+Pace class      : ELITE
+Top percentile  : Top 8.47%
+Ahead of        : 91.54% of participants
+Country rank    : #12 of 327 (BR)
+DR B rank     : #151 of 3,189
+DR progress      : DR B | 21,566 pts | 57% toward next DR
+Same-car rank   : #679 of 3,993
+
+EXPECTED START
+Projected grid range : 1 to 3
+Expected position    : P1.7
+Confidence           : HIGH
+Model basis          : DR B qualifying percentile | 3,189 drivers | 4.7% faster
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : 1:36.155 average | SD 0.174s | 2 drivers
-DR A+ : 1:37.050 average | SD 0.712s | 238 drivers
-DR A  : 1:38.049 average | SD 0.986s | 661 drivers
-DR B  : 1:39.418 average | SD 1.403s | 2,215 drivers
-DR C  : 1:40.958 average | SD 1.816s | 1,567 drivers
-DR D  : 1:43.045 average | SD 2.647s | 1,457 drivers
-DR E  : 1:44.304 average | SD 4.589s | 150 drivers
+DR S  : 1:35.898 average | SD 0.083s | 2 drivers
+DR A+ : 1:37.008 average | SD 0.715s | 338 drivers
+DR A  : 1:37.963 average | SD 0.951s | 931 drivers
+DR B  : 1:39.386 average | SD 1.413s | 3,138 drivers
+DR C  : 1:40.859 average | SD 1.789s | 2,296 drivers
+DR D  : 1:42.977 average | SD 2.669s | 2,187 drivers
+DR E  : 1:44.510 average | SD 4.584s | 234 drivers
 
 WORLD RECORD & BENCHMARKS
-WR              : 1:35.823 | Ryun｜R. Hayashi | Hyundai Genesis Gr.3
-103% WR         : 1:38.698
-105% WR         : 1:40.614
-Top 10          : 1:36.077
-Top 100         : 1:36.615
-Top 500         : 1:37.466
-Top 1000        : 1:38.065
-Top 2500        : 1:39.445
-Top 5000        : 1:42.335
+WR              : 1:35.673 | N.Baglioni | Hyundai Genesis Gr.3
+103% WR         : 1:38.543
+105% WR         : 1:40.457
+Top 10          : 1:35.981
+Top 100         : 1:36.463
+Top 500         : 1:37.207
+Top 1000        : 1:37.680
+Top 2500        : 1:38.788
+Top 5000        : 1:40.271
 
 WHERE YOU SHOULD AIM
-No higher automatic target available.
+1. Top 500: #500 | 1:37.207 | gain needed 0.292s
+2. Top 5%: #465 | 1:37.155 | gain needed 0.344s
+3. Top 2%: #186 | 1:36.676 | gain needed 0.823s
+4. Top 100: #100 | 1:36.463 | gain needed 1.036s
 
 YOUR CAR VS META
-No personal car comparison available.
+Your car best   : 1:35.673 | Hyundai Genesis Gr.3
+Gap to car best : +1.826s
+Meta car best   : 1:35.673 | Hyundai Genesis Gr.3
+Best-lap delta  : 0.000s
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Hyundai Genesis Gr.3 | 771 drivers | 77.1%
-2. Lexus RC F GT3 '17 | 45 drivers | 4.5%
-3. BMW M6 GT3 Sprint Model '16 | 38 drivers | 3.8%
-4. Ferrari 296 GT3 '23 | 23 drivers | 2.3%
-5. Genesis X GR3 | 22 drivers | 2.2%
+1. Hyundai Genesis Gr.3 | 846 drivers | 84.6%
+2. Lexus RC F GT3 '17 | 41 drivers | 4.1%
+3. BMW M6 GT3 Sprint Model '16 | 20 drivers | 2.0%
+4. Ferrari 296 GT3 '23 | 17 drivers | 1.7%
+5. Subaru WRX Gr.3 | 12 drivers | 1.2%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Hyundai Genesis Gr.3 | OI 2.11 | Top100 95 | Top1000 771 | High
-2. Lexus RC F GT3 '17 | OI 1.24 | Top100 2 | Top1000 45 | Medium
-3. Subaru WRX Gr.3 | OI 0.26 | Top100 0 | Top1000 15 | Medium
-4. BMW M6 GT3 Sprint Model '16 | OI 0.21 | Top100 0 | Top1000 38 | Medium
-5. Volkswagen Beetle Gr.3 | OI 0.14 | Top100 0 | Top1000 10 | Medium
+1. Hyundai Genesis Gr.3 | OI 2.10 | Top100 93 | Top1000 846 | High
+2. Lexus RC F GT3 '17 | OI 1.19 | Top100 2 | Top1000 41 | Medium
+3. BMW M6 GT3 Sprint Model '16 | OI 0.25 | Top100 1 | Top1000 20 | Medium
+4. Subaru WRX Gr.3 | OI 0.23 | Top100 0 | Top1000 12 | Medium
+5. Ferrari 296 GT3 '23 | OI 0.08 | Top100 0 | Top1000 17 | Medium
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x3
@@ -80,15 +118,20 @@ CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percent
 Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
-CPI        : N/A / 10 | N/A
-Top %      : N/A%
-WR gap     : +N/A%
+CPI        : 7.70 / 10 | VERY STRONG
+Top %      : 8.47%
+WR gap     : +1.909%
 
 LATEST FINALIZED WEEK
 Week       : 2026-08-31
 CPI        : 6.20 / 10 | COMPETITIVE
 Top %      : 14.01%
 WR gap     : +4.199%
+
+CURRENT WEEK VS LAST FINALIZED WEEK
+CPI        : 6.20 -> 7.70 (+1.50)
+Top %      : 14.01% -> 8.47% (-5.54 pp)
+WR gap     : +4.199% -> +1.909% (-2.291 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
 CPI        : 6.82
@@ -122,13 +165,13 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data)
-Entries        : 6,415
+Entries        : 9,285
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
 Unknown codes  : 0 valid unmapped entries
 Invalid codes  : 0 entries
-My PSN found   : No
+My PSN found   : Yes
 Weekly final   : No
 Percentile data: Top 10% and Top 5% direct snapshot stored
 GTSH car scan  : 586 discovered | 0 new | 0 updated
