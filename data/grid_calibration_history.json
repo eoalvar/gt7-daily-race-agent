@@ -44,5 +44,31 @@
     "drivers_ahead": [{"position": 1, "driver_rating_label": "B", "qualifying_time": "3:33.700"}],
     "source": "user-provided GT7 starting-grid screenshot",
     "notes": "Second calibration race, Saturday around 12:00 Sao Paulo time. User starts P2 with 3:33.998. All 12 visible drivers are DR B; no DR A visible. P1 is DR B with 3:33.700. This contrasts strongly with the 10:00 sample, where the user started P10 and five DR A drivers were ahead. The pre-race global same-DR percentile was intentionally not reused because the persisted leaderboard snapshot was stale."
+  },
+  {
+    "timestamp_pre_race_sao_paulo": "2026-09-07T18:48:00-03:00",
+    "actual_race_datetime_sao_paulo": null,
+    "actual_race_day": "Monday",
+    "race_week": "2026-09-07",
+    "track": "Dragon Trail - Seaside",
+    "psn_id": "crazy_rooster74",
+    "qualifying_time": "1:37.499",
+    "qualifying_score": 97499,
+    "driver_rating": 4,
+    "driver_rating_label": "B",
+    "same_dr_rank": 369,
+    "same_dr_population": 6431,
+    "same_dr_fraction_ahead_approx": 0.0574,
+    "population_model_expected_position": 1.9,
+    "population_model_expected_range": "1 to 3",
+    "actual_grid_position": null,
+    "visible_grid_size": null,
+    "full_grid_size": null,
+    "visible_dr_composition": null,
+    "drivers_ahead": null,
+    "snapshot_timestamp_sao_paulo": "2026-09-07T17:59:24.427538-03:00",
+    "snapshot_age_minutes_approx": 49,
+    "source": "latest persisted Daily Race C snapshot captured before user entered race",
+    "notes": "Pending calibration sample. User announced 'vou correr' at 18:48 Sao Paulo. Persisted snapshot is about 49 minutes old, so same-DR rank/population and expected start are recorded as pre-race context but must be treated as potentially stale. Await GT7 starting-grid screenshot or actual grid position and lobby DR composition."
   }
 ]
