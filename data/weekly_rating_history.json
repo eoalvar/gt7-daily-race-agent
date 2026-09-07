@@ -965,7 +965,7 @@
     "race": "C Archived Daily Race C i 17:40 24 Heures du Mans Racing Circuit K. de Bruin - Porsche 963 '24 RM IM W BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0dDC28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
     "general_score": 8.611172997660688,
-    "elite_score": 1.8819727850848877,
+    "elite_score": 6.205882422853575,
     "composite_rating": 5.919492912630368,
     "position": 4988,
     "total_drivers": 35909,
@@ -986,6 +986,12 @@
     "same_car_total": 19689,
     "dr_rank": 2424,
     "dr_total": 10160,
-    "archive_upgrade_pending": false
+    "archive_upgrade_pending": false,
+    "legacy_elite_score": 1.8819727850848877,
+    "legacy_general_score": 8.611172997660688,
+    "legacy_composite_rating": 5.919492912630368,
+    "cpi_score": 6.205882422853575,
+    "cpi_band": "COMPETITIVE",
+    "rating_model": "CPI_50_50_V1"
   }
 ]
