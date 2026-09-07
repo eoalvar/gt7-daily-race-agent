@@ -72,5 +72,31 @@
     "snapshot_age_minutes_approx": 49,
     "source": "user-provided GT7 starting-grid screenshot plus latest persisted Daily Race C snapshot",
     "notes": "Third calibration sample. GT7 grid screenshot shows the 19:30 Sao Paulo race on Monday 2026-09-07. User starts P2 with 1:37.499. All 12 visible drivers are DR B and SR S; no DR A drivers are visible. P1 is FTR_P.crocco, DR B/S, with 1:37.359. The model predicted P1.9 / range 1 to 3, so the observed P2 is effectively on target. The same-DR rank/population used for the prediction came from a snapshot about 49 minutes before the user's race entry and is therefore not an exact race-time measurement."
+  },
+  {
+    "timestamp_pre_race_sao_paulo": "2026-09-07T19:56:00-03:00",
+    "actual_race_datetime_sao_paulo": "2026-09-07T20:00:00-03:00",
+    "actual_race_day": "Monday",
+    "race_week": "2026-09-07",
+    "track": "Dragon Trail - Seaside",
+    "psn_id": "crazy_rooster74",
+    "qualifying_time": "1:37.499",
+    "qualifying_score": 97499,
+    "driver_rating": 4,
+    "driver_rating_label": "B",
+    "same_dr_rank": null,
+    "same_dr_population": null,
+    "same_dr_fraction_ahead_approx": null,
+    "population_model_expected_position": null,
+    "population_model_expected_range": null,
+    "actual_grid_position": 2,
+    "visible_grid_size": 12,
+    "full_grid_size": null,
+    "visible_dr_composition": {"B": 12, "A": 0},
+    "drivers_ahead": [
+      {"position": 1, "driver_rating_label": "B", "sportsmanship_rating_label": "S", "qualifying_time": "1:37.105"}
+    ],
+    "source": "user-provided GT7 starting-grid screenshot",
+    "notes": "Fourth calibration sample. GT7 grid screenshot shows the 20:00 Sao Paulo race on Monday 2026-09-07. User again starts P2 with 1:37.499. All 12 visible drivers are DR B and SR S. P1 is S. Lima at 1:37.105. No fresh race-time same-DR snapshot was available, so model percentile fields are intentionally left null rather than reusing stale values. This is the second consecutive Dragon Trail B-only lobby with the user at P2."
   }
 ]
