@@ -117,7 +117,7 @@ jobs:
               echo
               echo
               echo "NEW WEEK - CURRENT DAILY RACE C"
-              echo "=============================================================================="
+              echo "----------------------------------------"
               echo
               cat reports/current_week_report.tmp
             } > reports/latest.txt
@@ -144,6 +144,10 @@ jobs:
 
       - name: Format final Daily C report layout
         run: python src/format_daily_report_layout.py
+
+      - name: Clean Monday combined report
+        if: ${{ steps.previous_week.outputs.is_monday == 'true' }}
+        run: python src/clean_monday_combined_report.py
 
       - name: Add race lap count to email header
         continue-on-error: true
