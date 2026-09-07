@@ -42,16 +42,29 @@ jobs:
             set +e
             python src/finalize_previous_week.py
             RECOVERY_EXIT=$?
+            if [ "$RECOVERY_EXIT" -ne 0 ]; then
+              echo "Archive final unavailable; trying last valid saved snapshot."
+              python src/finalize_previous_week_fallback.py
+              FALLBACK_EXIT=$?
+            else
+              FALLBACK_EXIT=0
+            fi
             set -e
             echo "is_monday=true" >> "$GITHUB_OUTPUT"
             if [ "$RECOVERY_EXIT" -eq 0 ]; then
               echo "recovery_status=success" >> "$GITHUB_OUTPUT"
+              echo "recovery_mode=archive" >> "$GITHUB_OUTPUT"
+            elif [ "$FALLBACK_EXIT" -eq 0 ]; then
+              echo "recovery_status=success" >> "$GITHUB_OUTPUT"
+              echo "recovery_mode=snapshot_fallback" >> "$GITHUB_OUTPUT"
             else
               echo "recovery_status=pending" >> "$GITHUB_OUTPUT"
+              echo "recovery_mode=none" >> "$GITHUB_OUTPUT"
             fi
           else
             echo "is_monday=false" >> "$GITHUB_OUTPUT"
             echo "recovery_status=not_required" >> "$GITHUB_OUTPUT"
+            echo "recovery_mode=not_required" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Remove current week from finalized rating history
@@ -117,8 +130,10 @@ jobs:
         run: |
           if [ -f reports/email_subject.txt ]; then
             CURRENT_SUBJECT=$(cat reports/email_subject.txt)
-            if [ "${{ steps.previous_week.outputs.recovery_status }}" = "success" ]; then
+            if [ "${{ steps.previous_week.outputs.recovery_mode }}" = "archive" ]; then
               echo "GT7 FINAL + NEW WEEK | ${CURRENT_SUBJECT}" > reports/email_subject.txt
+            elif [ "${{ steps.previous_week.outputs.recovery_mode }}" = "snapshot_fallback" ]; then
+              echo "GT7 FINAL SNAPSHOT + NEW WEEK | ${CURRENT_SUBJECT}" > reports/email_subject.txt
             else
               echo "GT7 NEW WEEK | Previous Final Pending | ${CURRENT_SUBJECT}" > reports/email_subject.txt
             fi
