@@ -10,6 +10,12 @@ that happens the detector correctly identifies the live Race C, but its date is
 None. Daily Races are weekly events starting on Monday, so for an explicitly
 RUNNING Race C we infer the current Sao Paulo Monday. This restores start_date for
 the Sunday forecast and other enrichments without changing race selection.
+
+Some historical weekly records were created while start_date was unavailable and
+therefore contain week_start=null. Python 3 cannot sort a list whose key mixes
+None and strings, so the runtime patch below normalizes null week_start values to
+an empty string before the history sort. This preserves legacy records while
+allowing new records to be written safely.
 """
 from __future__ import annotations
 
@@ -49,11 +55,19 @@ def _cached_get(self, url, *args, **kwargs):
 
 def _run_daily_agent():
     source = AGENT_FILE.read_text(encoding="utf-8")
-    marker = '''        selected[\n            "detection_mode"\n        ] = "explicit_running_local_block"\n'''
-    replacement = '''        # GTSH may omit the date from the compact RUNNING block.\n        # An explicitly running Daily Race is the current weekly event, whose\n        # GT7 week starts on the current Sao Paulo Monday.\n        if selected.get("date") is None:\n            selected["date"] = monday_of_week(now)\n            selected["date_inferred"] = True\n\n        selected[\n            "detection_mode"\n        ] = "explicit_running_local_block"\n'''
-    if marker not in source:
+
+    date_marker = '''        selected[\n            "detection_mode"\n        ] = "explicit_running_local_block"\n'''
+    date_replacement = '''        # GTSH may omit the date from the compact RUNNING block.\n        # An explicitly running Daily Race is the current weekly event, whose\n        # GT7 week starts on the current Sao Paulo Monday.\n        if selected.get("date") is None:\n            selected["date"] = monday_of_week(now)\n            selected["date_inferred"] = True\n\n        selected[\n            "detection_mode"\n        ] = "explicit_running_local_block"\n'''
+    if date_marker not in source:
         raise RuntimeError("Daily C date-inference patch marker not found; refusing silent fallback.")
-    source = source.replace(marker, replacement, 1)
+    source = source.replace(date_marker, date_replacement, 1)
+
+    history_sort_marker = '''            item.get(\n                "week_start",\n                ""\n            )\n'''
+    history_sort_replacement = '''            (item.get(\n                "week_start"\n            ) or "")\n'''
+    if history_sort_marker not in source:
+        raise RuntimeError("Weekly-history sort patch marker not found; refusing silent fallback.")
+    source = source.replace(history_sort_marker, history_sort_replacement, 1)
+
     namespace = {
         "__name__": "__main__",
         "__file__": str(AGENT_FILE),
