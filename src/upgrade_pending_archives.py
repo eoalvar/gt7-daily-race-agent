@@ -26,28 +26,53 @@ def load_history():
     return data if isinstance(data, list) else []
 
 
-def pending_weeks(history):
-    weeks = []
+def pending_records(history):
+    records = []
     for record in history:
         if not isinstance(record, dict):
             continue
         mode = str(record.get("finalization_mode") or "")
         pending = record.get("archive_upgrade_pending") is True or mode == "snapshot_fallback_pending_archive"
         week = str(record.get("week_start") or "").strip()
-        if pending and week and week not in weeks:
-            weeks.append(week)
-    return sorted(weeks)
+        if pending and week:
+            records.append(record)
+    # Keep only the latest record for each week.
+    by_week = {}
+    for record in records:
+        by_week[str(record.get("week_start"))] = record
+    return [by_week[k] for k in sorted(by_week)]
 
 
 def parse_week(week: str):
     return datetime.strptime(week, "%Y-%m-%d").replace(tzinfo=SAO_PAULO)
 
 
+def try_load_complete(session, url):
+    if not url:
+        return None
+    try:
+        result = recovery.get_full_event_ranking(session, url)
+    except Exception as error:
+        print(f"Stored leaderboard URL not ready: {type(error).__name__}: {error}")
+        return None
+
+    ranking = result.get("ranking") or []
+    total_records = result.get("total_records")
+    complete = result.get("complete", False)
+    if not complete or not isinstance(total_records, int) or len(ranking) != total_records:
+        print(
+            "Stored leaderboard URL is reachable but not complete yet: "
+            f"loaded={len(ranking)} total={total_records} complete={complete}"
+        )
+        return None
+    return result
+
+
 def main():
     history = load_history()
-    weeks = pending_weeks(history)
+    pending = pending_records(history)
 
-    if not weeks:
+    if not pending:
         print("No pending Daily C archive upgrades.")
         return
 
@@ -55,26 +80,41 @@ def main():
     session.headers.update(finalizer.HEADERS)
 
     upgraded = 0
-    for week in weeks:
+    for source in pending:
+        week = str(source.get("week_start"))
         print(f"Checking pending archive for {week}...")
         target = parse_week(week)
 
-        try:
-            event = finalizer.discover_previous_race_c(session, target)
-        except Exception as error:
-            print(f"Archive still unavailable for {week}: {error}")
+        # Primary path: use the exact leaderboard URL captured during the race week.
+        # GTSH can expose a completed archived leaderboard before its server-rendered
+        # archive index changes from Running to Archived, so archive-page discovery is
+        # not a reliable gate for finalization.
+        url = str(source.get("leaderboard_url") or "").strip()
+        result = try_load_complete(session, url)
+        event = None
+
+        if result is not None:
+            event_text = str(source.get("race") or "Daily Race C")
+            event_text = event_text.replace(" Running ", " Archived ", 1)
+            event = {"date": target, "text": event_text, "url": url}
+            print("Using stored leaderboard URL; full leaderboard is complete.")
+        else:
+            # Secondary path for historical rows that lack a usable stored URL.
+            try:
+                event = finalizer.discover_previous_race_c(session, target)
+                result = try_load_complete(session, event["url"])
+            except Exception as error:
+                print(f"Archive index still unavailable for {week}: {error}")
+                result = None
+
+        if event is None or result is None:
+            print(f"No definitive full leaderboard available yet for {week}.")
             continue
 
         try:
-            result = recovery.get_full_event_ranking(session, event["url"])
             ranking = result["ranking"]
             total_records = result["total_records"]
             extraction_mode = result["mode"]
-            complete = result.get("complete", False)
-
-            if not complete or len(ranking) != total_records:
-                print(f"Archive found for {week}, but full leaderboard is not complete yet.")
-                continue
 
             record = finalizer.build_final_record(
                 event,
@@ -84,15 +124,12 @@ def main():
             )
             benchmarks = finalizer.build_final_benchmarks(ranking)
 
-            # Force exact target week in case the page text carries an unexpected date.
             record["week_start"] = week
             record["archive_upgrade_pending"] = False
             record.pop("fallback_source_snapshot", None)
 
             finalizer.upsert_weekly_record(history, record)
 
-            # Keep the detailed payload available when the upgraded race is the latest
-            # pending week. This does not affect the current Daily C email by itself.
             payload = {
                 "version": finalizer.VERSION,
                 "generated_at": datetime.now(SAO_PAULO).isoformat(),
