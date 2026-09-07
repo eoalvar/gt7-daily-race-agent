@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -9,11 +10,7 @@ HISTORY = Path("data/weekly_rating_history.json")
 OUTPUT_JSON = Path("data/previous_week_final.json")
 OUTPUT_REPORT = Path("reports/previous_week_final.txt")
 SAO_PAULO = ZoneInfo("America/Sao_Paulo")
-SEPARATOR = "=" * 78
-
-
-def monday_for(dt):
-    return (dt - timedelta(days=dt.weekday())).date().isoformat()
+SEPARATOR = "-" * 40
 
 
 def target_week():
@@ -34,7 +31,11 @@ def eligible(record, week):
         return False
     if not record.get("participated"):
         return False
-    return record.get("score_ms") is not None and record.get("position") is not None and record.get("total_drivers") is not None
+    return (
+        record.get("score_ms") is not None
+        and record.get("position") is not None
+        and record.get("total_drivers") is not None
+    )
 
 
 def snapshot_dt(record):
@@ -47,26 +48,49 @@ def snapshot_dt(record):
         return datetime.min.replace(tzinfo=SAO_PAULO)
 
 
+def concise_race(record):
+    race = str(record.get("race") or "").strip()
+    if not race:
+        return "Daily Race C"
+
+    # Remove GTSH status/time prefix.
+    match = re.search(r"Daily Race C\s+i\s+\d{1,2}:\d{2}\s+(.+)$", race, flags=re.IGNORECASE)
+    remainder = match.group(1).strip() if match else race
+
+    # GTSH then uses: <circuit> <WR driver> - <WR car> <setup>.
+    # Keep only the circuit side and remove the trailing WR-driver token(s).
+    if " - " in remainder:
+        before_car = remainder.rsplit(" - ", 1)[0].strip()
+        before_car = re.sub(r"\s+[A-Z]\.\s+[\wÀ-ÿ'._-]+$", "", before_car).strip()
+        before_car = re.sub(r"\s+[^\s]+$", "", before_car).strip() if before_car == remainder.rsplit(" - ", 1)[0].strip() else before_car
+        if before_car:
+            return before_car
+
+    return remainder
+
+
 def build_report(record):
     lines = ["LAST WEEK - FINAL RESULT", SEPARATOR]
-    lines.append(f"Week            : {record.get('week_start')}")
-    lines.append(f"Race            : {record.get('race', 'Daily Race C')}")
+    lines.append(f"Week       : {record.get('week_start')}")
+    lines.append(f"Circuit    : {concise_race(record)}")
+    if record.get("car"):
+        lines.append(f"Car        : {record.get('car')}")
     lines.append("")
-    lines.append("YOUR FINAL AVAILABLE RESULT")
-    lines.append(f"Position        : #{int(record['position']):,} of {int(record['total_drivers']):,}")
-    lines.append(f"Time            : {record.get('laptime', '-')}")
+    lines.append("YOUR RESULT")
+    lines.append(f"Position   : #{int(record['position']):,} of {int(record['total_drivers']):,}")
+    lines.append(f"Time       : {record.get('laptime', '-')}")
     if record.get("top_percent") is not None:
-        lines.append(f"Top percentile  : Top {float(record['top_percent']):.2f}%")
+        lines.append(f"Top        : {float(record['top_percent']):.2f}%")
     if record.get("percentile_ahead") is not None:
-        lines.append(f"Ahead of        : {float(record['percentile_ahead']):.2f}% of participants")
+        lines.append(f"Ahead of   : {float(record['percentile_ahead']):.2f}% of participants")
     if record.get("wr_percentage") is not None:
-        lines.append(f"WR percentage   : {float(record['wr_percentage']):.3f}%")
+        lines.append(f"WR         : {float(record['wr_percentage']):.3f}%")
     if record.get("cpi_score") is not None:
-        lines.append(f"CPI             : {float(record['cpi_score']):.2f} / 10 ({record.get('cpi_band', '-')})")
+        lines.append(f"CPI        : {float(record['cpi_score']):.2f} / 10 | {record.get('cpi_band', '-')}")
     lines.append("")
-    lines.append("Status          : FINAL FALLBACK - last valid snapshot before archive")
-    lines.append("Archive         : GTSH historical leaderboard not available yet")
-    lines.append("Upgrade         : Will be replaced by archived full leaderboard when available")
+    lines.append("Status     : FINAL SNAPSHOT")
+    lines.append("Note       : Full GTSH archive is not available yet.")
+    lines.append("             This will be upgraded automatically when archived.")
     lines.append(SEPARATOR)
     return "\n".join(lines)
 
@@ -89,7 +113,6 @@ def main():
     replaced = False
     for i, existing in enumerate(history):
         if str(existing.get("week_start") or "") == week:
-            # Never downgrade an already archived definitive result.
             if str(existing.get("finalization_mode") or "").startswith("historical_"):
                 print("Archived definitive result already exists; fallback not needed.")
                 return
@@ -103,7 +126,7 @@ def main():
     HISTORY.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     payload = {
-        "version": "fallback-1.0",
+        "version": "fallback-1.1",
         "generated_at": datetime.now(SAO_PAULO).isoformat(),
         "week_start": week,
         "complete_leaderboard": False,
