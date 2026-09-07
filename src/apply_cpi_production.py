@@ -149,7 +149,10 @@ def migrate_history():
 
     if changed:
         save_json(HISTORY_FILE, history)
-    history.sort(key=lambda r: r.get("week_start", ""))
+    # Historical rows created when GTSH omitted the race date may contain an
+    # explicit null week_start. Dict.get(..., "") does not replace an existing
+    # None, so normalize falsy values before sorting.
+    history.sort(key=lambda r: r.get("week_start") or "")
     return history
 
 
