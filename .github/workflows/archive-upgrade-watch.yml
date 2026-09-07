@@ -1,0 +1,49 @@
+name: GT7 GTSH Archive Upgrade Watch
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gt7-archive-upgrade-watch
+  cancel-in-progress: false
+
+jobs:
+  check-archive-upgrades:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Repair missing historical week dates
+        run: python src/repair_week_start.py
+
+      - name: Check pending GTSH archives
+        run: python src/upgrade_pending_archives.py
+
+      - name: Commit upgraded historical result
+        run: |
+          git config user.name "GT7 Daily Race Agent"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/weekly_rating_history.json data/previous_week_final.json
+          if git diff --cached --quiet; then
+            echo "No archive upgrade available yet."
+          else
+            git commit -m "Upgrade GT7 Daily C archived result"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
