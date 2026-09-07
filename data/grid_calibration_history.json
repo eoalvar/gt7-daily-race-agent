@@ -47,7 +47,7 @@
   },
   {
     "timestamp_pre_race_sao_paulo": "2026-09-07T18:48:00-03:00",
-    "actual_race_datetime_sao_paulo": null,
+    "actual_race_datetime_sao_paulo": "2026-09-07T19:30:00-03:00",
     "actual_race_day": "Monday",
     "race_week": "2026-09-07",
     "track": "Dragon Trail - Seaside",
@@ -61,14 +61,16 @@
     "same_dr_fraction_ahead_approx": 0.0574,
     "population_model_expected_position": 1.9,
     "population_model_expected_range": "1 to 3",
-    "actual_grid_position": null,
-    "visible_grid_size": null,
+    "actual_grid_position": 2,
+    "visible_grid_size": 12,
     "full_grid_size": null,
-    "visible_dr_composition": null,
-    "drivers_ahead": null,
+    "visible_dr_composition": {"B": 12, "A": 0},
+    "drivers_ahead": [
+      {"position": 1, "driver_rating_label": "B", "sportsmanship_rating_label": "S", "qualifying_time": "1:37.359"}
+    ],
     "snapshot_timestamp_sao_paulo": "2026-09-07T17:59:24.427538-03:00",
     "snapshot_age_minutes_approx": 49,
-    "source": "latest persisted Daily Race C snapshot captured before user entered race",
-    "notes": "Pending calibration sample. User announced 'vou correr' at 18:48 Sao Paulo. Persisted snapshot is about 49 minutes old, so same-DR rank/population and expected start are recorded as pre-race context but must be treated as potentially stale. Await GT7 starting-grid screenshot or actual grid position and lobby DR composition."
+    "source": "user-provided GT7 starting-grid screenshot plus latest persisted Daily Race C snapshot",
+    "notes": "Third calibration sample. GT7 grid screenshot shows the 19:30 Sao Paulo race on Monday 2026-09-07. User starts P2 with 1:37.499. All 12 visible drivers are DR B and SR S; no DR A drivers are visible. P1 is FTR_P.crocco, DR B/S, with 1:37.359. The model predicted P1.9 / range 1 to 3, so the observed P2 is effectively on target. The same-DR rank/population used for the prediction came from a snapshot about 49 minutes before the user's race entry and is therefore not an exact race-time measurement."
   }
 ]
