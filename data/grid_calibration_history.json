@@ -43,7 +43,7 @@
     "visible_dr_composition": {"B": 12, "A": 0},
     "drivers_ahead": [{"position": 1, "driver_rating_label": "B", "qualifying_time": "3:33.700"}],
     "source": "user-provided GT7 starting-grid screenshot",
-    "notes": "Second calibration race, Saturday around 12:00 Sao Paulo time. User starts P2 with 3:33.998. All 12 visible drivers are DR B; no DR A visible. P1 is DR B with 3:33.700. This contrasts strongly with the 10:00 sample, where the user started P10 and five DR A drivers were ahead. The pre-race global same-DR percentile was intentionally not reused because the persisted leaderboard snapshot was stale."
+    "notes": "Second calibration race, Saturday around 12:00 Sao Paulo time. User starts P2 with 3:33.998. All 12 visible drivers are DR B; no DR A visible. P1 is DR B with 3:33.700."
   },
   {
     "timestamp_pre_race_sao_paulo": "2026-09-07T18:48:00-03:00",
@@ -65,13 +65,11 @@
     "visible_grid_size": 12,
     "full_grid_size": null,
     "visible_dr_composition": {"B": 12, "A": 0},
-    "drivers_ahead": [
-      {"position": 1, "driver_rating_label": "B", "sportsmanship_rating_label": "S", "qualifying_time": "1:37.359"}
-    ],
+    "drivers_ahead": [{"position": 1, "driver_rating_label": "B", "sportsmanship_rating_label": "S", "qualifying_time": "1:37.359"}],
     "snapshot_timestamp_sao_paulo": "2026-09-07T17:59:24.427538-03:00",
     "snapshot_age_minutes_approx": 49,
     "source": "user-provided GT7 starting-grid screenshot plus latest persisted Daily Race C snapshot",
-    "notes": "Third calibration sample. GT7 grid screenshot shows the 19:30 Sao Paulo race on Monday 2026-09-07. User starts P2 with 1:37.499. All 12 visible drivers are DR B and SR S; no DR A drivers are visible. P1 is FTR_P.crocco, DR B/S, with 1:37.359. The model predicted P1.9 / range 1 to 3, so the observed P2 is effectively on target. The same-DR rank/population used for the prediction came from a snapshot about 49 minutes before the user's race entry and is therefore not an exact race-time measurement."
+    "notes": "Third calibration sample. User starts P2. All 12 visible drivers are DR B and SR S."
   },
   {
     "timestamp_pre_race_sao_paulo": "2026-09-07T19:56:00-03:00",
@@ -93,10 +91,46 @@
     "visible_grid_size": 12,
     "full_grid_size": null,
     "visible_dr_composition": {"B": 12, "A": 0},
-    "drivers_ahead": [
-      {"position": 1, "driver_rating_label": "B", "sportsmanship_rating_label": "S", "qualifying_time": "1:37.105"}
-    ],
+    "drivers_ahead": [{"position": 1, "driver_rating_label": "B", "sportsmanship_rating_label": "S", "qualifying_time": "1:37.105"}],
     "source": "user-provided GT7 starting-grid screenshot",
-    "notes": "Fourth calibration sample. GT7 grid screenshot shows the 20:00 Sao Paulo race on Monday 2026-09-07. User again starts P2 with 1:37.499. All 12 visible drivers are DR B and SR S. P1 is S. Lima at 1:37.105. No fresh race-time same-DR snapshot was available, so model percentile fields are intentionally left null rather than reusing stale values. This is the second consecutive Dragon Trail B-only lobby with the user at P2."
+    "notes": "Fourth calibration sample. User starts P2. All 12 visible drivers are DR B and SR S."
+  },
+  {
+    "timestamp_pre_race_sao_paulo": "2026-09-08T12:02:00-03:00",
+    "actual_race_datetime_sao_paulo": "2026-09-08T11:30:00-03:00",
+    "actual_race_day": "Tuesday",
+    "race_week": "2026-09-07",
+    "track": "Dragon Trail - Seaside",
+    "psn_id": "crazy_rooster74",
+    "qualifying_time": "1:37.499",
+    "qualifying_score": 97499,
+    "driver_rating": 4,
+    "driver_rating_label": "B",
+    "same_dr_rank": null,
+    "same_dr_population": null,
+    "same_dr_fraction_ahead_approx": null,
+    "population_model_expected_position": null,
+    "population_model_expected_range": null,
+    "actual_grid_position": 1,
+    "visible_grid_size": 12,
+    "full_grid_size": null,
+    "visible_dr_composition": {"B": 12, "A": 0},
+    "visible_grid": [
+      {"position": 1, "display_name": "crazy_rooster74", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "BR", "qualifying_time": "1:37.499"},
+      {"position": 2, "display_name": "Jenriquegt", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "MX", "qualifying_time": "1:37.794"},
+      {"position": 3, "display_name": "RTR_SMOKE", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "CA", "qualifying_time": "1:37.815"},
+      {"position": 4, "display_name": "Emerson", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "BR", "qualifying_time": "1:38.112"},
+      {"position": 5, "display_name": "DustySpeed", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "CA", "qualifying_time": "1:38.127"},
+      {"position": 6, "display_name": "strikefast", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "US", "qualifying_time": "1:38.428"},
+      {"position": 7, "display_name": "Zero", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "BR", "qualifying_time": "1:38.745"},
+      {"position": 8, "display_name": "JWS", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "US", "qualifying_time": "1:38.839"},
+      {"position": 9, "display_name": "OG Koolaid47", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "US", "qualifying_time": "1:38.982"},
+      {"position": 10, "display_name": "Joe Momma", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "US", "qualifying_time": "1:39.494"},
+      {"position": 11, "display_name": "Ventisca Va", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "MX", "qualifying_time": "1:39.613"},
+      {"position": 12, "display_name": "S.M.T", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "US", "qualifying_time": "1:39.627"}
+    ],
+    "drivers_ahead": [],
+    "source": "user-provided GT7 starting-grid screenshot",
+    "notes": "Fifth calibration sample. Screenshot header shows 11:30 on 8 Sep, while the user's pre-race message was received at 12:02; preserve both timestamps because of this inconsistency. User starts P1 with 1:37.499. All 12 visible drivers are DR B and SR S. Individual visible grid rows were captured for later exact GTSH DR-point enrichment. Display names are transcribed from the screenshot and should not be assumed to be exact PSN IDs unless verified."
   }
 ]
