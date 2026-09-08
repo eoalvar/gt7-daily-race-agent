@@ -96,7 +96,7 @@
     "notes": "Fourth calibration sample. User starts P2. All 12 visible drivers are DR B and SR S."
   },
   {
-    "timestamp_pre_race_sao_paulo": "2026-09-08T12:02:00-03:00",
+    "timestamp_pre_race_sao_paulo": "2026-09-08T11:30:00-03:00",
     "actual_race_datetime_sao_paulo": "2026-09-08T11:30:00-03:00",
     "actual_race_day": "Tuesday",
     "race_week": "2026-09-07",
@@ -131,6 +131,6 @@
     ],
     "drivers_ahead": [],
     "source": "user-provided GT7 starting-grid screenshot",
-    "notes": "Fifth calibration sample. Screenshot header shows 11:30 on 8 Sep, while the user's pre-race message was received at 12:02; preserve both timestamps because of this inconsistency. User starts P1 with 1:37.499. All 12 visible drivers are DR B and SR S. Individual visible grid rows were captured for later exact GTSH DR-point enrichment. Display names are transcribed from the screenshot and should not be assumed to be exact PSN IDs unless verified."
+    "notes": "Fifth calibration sample. GT7 screenshot time is authoritative: Tuesday 2026-09-08 at 11:30 Sao Paulo time. User starts P1 with 1:37.499. All 12 visible drivers are DR B and SR S. Individual visible grid rows were captured for later exact GTSH DR-point enrichment. Display names are transcribed from the screenshot and should not be assumed to be exact PSN IDs unless verified."
   }
 ]
