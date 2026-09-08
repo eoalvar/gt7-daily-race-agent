@@ -216,7 +216,20 @@
         "sportsmanship_rating_label": "S",
         "country": "CA",
         "qualifying_time": "1:38.127",
-        "profile_lookup_status": "not_resolved_exactly"
+        "profile_lookup_status": "resolved_exactly",
+        "psn_id": "StarDustRacing",
+        "psn_id_source": "GT7 chat join message",
+        "profile_dr": {
+          "psn_id": "StarDustRacing",
+          "driver_rating": 4,
+          "driver_rating_label": "B",
+          "dr_points": 23019,
+          "dr_percentage": 65,
+          "sportsmanship_rating": 6,
+          "captured_at": "2026-09-08T17:29:15.138077+00:00"
+        },
+        "dr_points": 23019,
+        "dr_percentage": 65
       },
       {
         "position": 6,
@@ -299,15 +312,15 @@
     "source": "user-provided GT7 starting-grid screenshot",
     "notes": "Fifth calibration sample. GT7 screenshot time is authoritative: Tuesday 2026-09-08 at 11:30 Sao Paulo time. User starts P1 with 1:37.499. All 12 visible drivers are DR B and SR S. Individual visible grid rows were captured for later exact GTSH DR-point enrichment. Display names are transcribed from the screenshot and should not be assumed to be exact PSN IDs unless verified.",
     "lobby_dr_points_summary": {
-      "profiles_resolved": 3,
+      "profiles_resolved": 4,
       "visible_drivers": 12,
       "min": 15967.0,
       "max": 23472.0,
-      "average": 20650.7,
-      "median": 22513.0,
+      "average": 21242.8,
+      "median": 22766.0,
       "user_dr_points": 22513,
-      "user_percentile_within_resolved_grid": 50.0,
-      "drivers_above_user": 1,
+      "user_percentile_within_resolved_grid": 37.5,
+      "drivers_above_user": 2,
       "drivers_below_user": 1
     }
   }
