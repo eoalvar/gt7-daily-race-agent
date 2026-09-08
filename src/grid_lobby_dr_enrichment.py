@@ -12,6 +12,18 @@ from bs4 import BeautifulSoup
 HISTORY = Path("data/grid_calibration_history.json")
 DR_LABELS = {1: "E", 2: "D", 3: "C", 4: "B", 5: "A", 6: "A+", 7: "S"}
 
+# GT7 grid can show the player's display/nickname while the chat join message
+# exposes the PSN online ID in parentheses. These aliases are taken directly
+# from the user's captured grid/chat screenshot and are used only when exact.
+DISPLAY_TO_PSN = {
+    "DustySpeed": "StarDustRacing",
+    "Emerson": "yremerson",
+    "JWS": "frothy-books86",
+    "S.M.T": "hoseinh",
+    "Ventisca Va": "Ventisca-va",
+    "Zero": "DarthZerus",
+}
+
 
 def xor_decrypt(data: bytes, key: str) -> str:
     kb = key.encode("utf-8")
@@ -92,14 +104,19 @@ def main():
         for driver in drivers:
             if driver.get("dr_points") is not None:
                 continue
-            candidate = driver.get("psn_id") or driver.get("display_name")
+            display = driver.get("display_name")
+            candidate = driver.get("psn_id") or DISPLAY_TO_PSN.get(display) or display
             if not candidate:
                 continue
             profile = fetch_profile(session, candidate)
             if not profile:
-                driver["profile_lookup_status"] = "not_resolved_exactly"
+                if driver.get("profile_lookup_status") != "not_resolved_exactly":
+                    driver["profile_lookup_status"] = "not_resolved_exactly"
+                    changed = True
                 continue
             driver["psn_id"] = profile["psn_id"]
+            if display in DISPLAY_TO_PSN:
+                driver["psn_id_source"] = "GT7 chat join message"
             driver["profile_dr"] = profile
             driver["dr_points"] = profile.get("dr_points")
             driver["dr_percentage"] = profile.get("dr_percentage")
