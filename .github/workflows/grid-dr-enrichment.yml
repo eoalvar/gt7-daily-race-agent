@@ -6,6 +6,7 @@ on:
     paths:
       - 'src/grid_lobby_dr_enrichment.py'
       - 'data/grid_calibration_history.json'
+      - 'data/grid_samples/*.json'
       - '.github/workflows/grid-dr-enrichment.yml'
 
 permissions:
@@ -31,12 +32,12 @@ jobs:
 
       - name: Commit enrichment
         run: |
-          if git diff --quiet -- data/grid_calibration_history.json; then
+          if git diff --quiet -- data/grid_calibration_history.json data/grid_samples; then
             echo "No DR enrichment changes"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/grid_calibration_history.json
+          git add data/grid_calibration_history.json data/grid_samples
           git commit -m "Enrich GT7 grid DR points"
           git push
