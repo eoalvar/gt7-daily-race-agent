@@ -10,11 +10,9 @@ import requests
 from bs4 import BeautifulSoup
 
 HISTORY = Path("data/grid_calibration_history.json")
+SAMPLES_DIR = Path("data/grid_samples")
 DR_LABELS = {1: "E", 2: "D", 3: "C", 4: "B", 5: "A", 6: "A+", 7: "S"}
 
-# GT7 grid can show the player's display/nickname while the chat join message
-# exposes the PSN online ID in parentheses. These aliases are taken directly
-# from the user's captured grid/chat screenshot and are used only when exact.
 DISPLAY_TO_PSN = {
     "DustySpeed": "StarDustRacing",
     "Emerson": "yremerson",
@@ -87,81 +85,79 @@ def percentile_rank(points, value):
     return round(100.0 * (below + 0.5 * equal) / len(points), 1)
 
 
-def main():
-    if not HISTORY.exists():
-        print("No grid calibration history")
-        return
+def enrich_race(race, session):
+    drivers = race.get("visible_grid") or race.get("visible_drivers") or []
+    if not drivers:
+        return False
 
-    history = json.loads(HISTORY.read_text(encoding="utf-8"))
-    session = requests.Session()
     changed = False
-
-    for race in history:
-        drivers = race.get("visible_grid") or race.get("visible_drivers") or []
-        if not drivers:
+    for driver in drivers:
+        if driver.get("dr_points") is not None:
             continue
+        display = driver.get("display_name")
+        candidate = driver.get("psn_id") or DISPLAY_TO_PSN.get(display) or display
+        if not candidate:
+            continue
+        profile = fetch_profile(session, candidate)
+        if not profile:
+            if driver.get("profile_lookup_status") != "not_resolved_exactly":
+                driver["profile_lookup_status"] = "not_resolved_exactly"
+                changed = True
+            continue
+        driver["psn_id"] = profile["psn_id"]
+        if not driver.get("psn_id_source") and display in DISPLAY_TO_PSN:
+            driver["psn_id_source"] = "GT7 chat join message"
+        driver["profile_dr"] = profile
+        driver["dr_points"] = profile.get("dr_points")
+        driver["dr_percentage"] = profile.get("dr_percentage")
+        driver["profile_lookup_status"] = "resolved_exactly"
+        changed = True
 
-        for driver in drivers:
-            if driver.get("dr_points") is not None:
-                continue
-            display = driver.get("display_name")
-            candidate = driver.get("psn_id") or DISPLAY_TO_PSN.get(display) or display
-            if not candidate:
-                continue
-            profile = fetch_profile(session, candidate)
-            if not profile:
-                if driver.get("profile_lookup_status") != "not_resolved_exactly":
-                    driver["profile_lookup_status"] = "not_resolved_exactly"
-                    changed = True
-                continue
-            driver["psn_id"] = profile["psn_id"]
-            if display in DISPLAY_TO_PSN:
-                driver["psn_id_source"] = "GT7 chat join message"
-            driver["profile_dr"] = profile
-            driver["dr_points"] = profile.get("dr_points")
-            driver["dr_percentage"] = profile.get("dr_percentage")
-            driver["profile_lookup_status"] = "resolved_exactly"
-            changed = True
+    points = [float(d["dr_points"]) for d in drivers if isinstance(d.get("dr_points"), (int, float))]
+    user_driver = next(
+        (d for d in drivers if (d.get("psn_id") or d.get("display_name", "")).casefold() == str(race.get("psn_id", "")).casefold()),
+        None,
+    )
+    mine = user_driver.get("dr_points") if user_driver else None
+    summary = {
+        "profiles_resolved": len(points),
+        "visible_drivers": len(drivers),
+        "min": min(points) if points else None,
+        "max": max(points) if points else None,
+        "average": round(sum(points) / len(points), 1) if points else None,
+        "median": round(statistics.median(points), 1) if points else None,
+        "user_dr_points": mine,
+        "user_percentile_within_resolved_grid": percentile_rank(points, mine),
+        "drivers_above_user": sum(1 for p in points if mine is not None and p > mine) if mine is not None else None,
+        "drivers_below_user": sum(1 for p in points if mine is not None and p < mine) if mine is not None else None,
+    }
+    if race.get("lobby_dr_points_summary") != summary:
+        race["lobby_dr_points_summary"] = summary
+        changed = True
+    return changed
 
-        points = [
-            float(d["dr_points"])
-            for d in drivers
-            if isinstance(d.get("dr_points"), (int, float))
-        ]
-        user_driver = next(
-            (
-                d
-                for d in drivers
-                if (d.get("psn_id") or d.get("display_name", "")).casefold()
-                == str(race.get("psn_id", "")).casefold()
-            ),
-            None,
-        )
-        mine = user_driver.get("dr_points") if user_driver else None
-        summary = {
-            "profiles_resolved": len(points),
-            "visible_drivers": len(drivers),
-            "min": min(points) if points else None,
-            "max": max(points) if points else None,
-            "average": round(sum(points) / len(points), 1) if points else None,
-            "median": round(statistics.median(points), 1) if points else None,
-            "user_dr_points": mine,
-            "user_percentile_within_resolved_grid": percentile_rank(points, mine),
-            "drivers_above_user": sum(1 for p in points if mine is not None and p > mine) if mine is not None else None,
-            "drivers_below_user": sum(1 for p in points if mine is not None and p < mine) if mine is not None else None,
-        }
-        if race.get("lobby_dr_points_summary") != summary:
-            race["lobby_dr_points_summary"] = summary
-            changed = True
 
-    if changed:
-        HISTORY.write_text(
-            json.dumps(history, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
-        print("Grid calibration DR enrichment updated")
-    else:
-        print("No grid DR enrichment changes")
+def main():
+    session = requests.Session()
+    total_changed = False
+
+    if HISTORY.exists():
+        history = json.loads(HISTORY.read_text(encoding="utf-8"))
+        changed = False
+        for race in history:
+            changed = enrich_race(race, session) or changed
+        if changed:
+            HISTORY.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            total_changed = True
+
+    if SAMPLES_DIR.exists():
+        for path in sorted(SAMPLES_DIR.glob("*.json")):
+            race = json.loads(path.read_text(encoding="utf-8"))
+            if enrich_race(race, session):
+                path.write_text(json.dumps(race, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                total_changed = True
+
+    print("Grid calibration DR enrichment updated" if total_changed else "No grid DR enrichment changes")
 
 
 if __name__ == "__main__":
