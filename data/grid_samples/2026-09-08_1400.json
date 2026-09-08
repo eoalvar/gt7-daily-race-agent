@@ -1,0 +1,36 @@
+{
+  "timestamp_pre_race_sao_paulo": "2026-09-08T14:00:00-03:00",
+  "actual_race_datetime_sao_paulo": "2026-09-08T14:00:00-03:00",
+  "actual_race_day": "Tuesday",
+  "race_week": "2026-09-07",
+  "track": "Dragon Trail - Seaside",
+  "psn_id": "crazy_rooster74",
+  "qualifying_time": "1:37.499",
+  "qualifying_score": 97499,
+  "driver_rating": 4,
+  "driver_rating_label": "B",
+  "actual_grid_position": 4,
+  "visible_grid_size": 12,
+  "visible_dr_composition": {"B": 12, "A": 0},
+  "visible_grid": [
+    {"position": 1, "display_name": "S. Santoni", "psn_id": "S-Santoni", "psn_id_source": "GT7 chat join message", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "AR", "qualifying_time": "1:36.888"},
+    {"position": 2, "display_name": "WideOpen", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "US", "qualifying_time": "1:37.399"},
+    {"position": 3, "display_name": "caranascimento", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "CA", "qualifying_time": "1:37.497"},
+    {"position": 4, "display_name": "crazy_rooster74", "psn_id": "crazy_rooster74", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "BR", "qualifying_time": "1:37.499"},
+    {"position": 5, "display_name": "ERG_Ruso", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "AR", "qualifying_time": "1:37.572"},
+    {"position": 6, "display_name": "TURN-N-BURN", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "US", "qualifying_time": "1:38.274"},
+    {"position": 7, "display_name": "Mando", "psn_id": "mando_3190", "psn_id_source": "GT7 chat join message", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "UY", "qualifying_time": "1:38.349"},
+    {"position": 8, "display_name": "Fabo_Roman", "psn_id": "Fabo_roman16", "psn_id_source": "GT7 chat join message", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "UY", "qualifying_time": "1:38.613"},
+    {"position": 9, "display_name": "CaliAuto", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "US", "qualifying_time": "1:38.780"},
+    {"position": 10, "display_name": "Alan Tortrix", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "PA", "qualifying_time": "1:39.002"},
+    {"position": 11, "display_name": "CyberPunkBr", "psn_id": "Bigas1982", "psn_id_source": "GT7 chat join message", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "BR", "qualifying_time": "1:39.273"},
+    {"position": 12, "display_name": "MELBREY", "driver_rating_label": "B", "sportsmanship_rating_label": "S", "country": "US", "qualifying_time": "1:39.494"}
+  ],
+  "drivers_ahead": [
+    {"position": 1, "display_name": "S. Santoni", "driver_rating_label": "B", "qualifying_time": "1:36.888"},
+    {"position": 2, "display_name": "WideOpen", "driver_rating_label": "B", "qualifying_time": "1:37.399"},
+    {"position": 3, "display_name": "caranascimento", "driver_rating_label": "B", "qualifying_time": "1:37.497"}
+  ],
+  "source": "user-provided GT7 starting-grid screenshot",
+  "notes": "Sixth calibration sample. GT7 screenshot time is authoritative: Tuesday 2026-09-08 at 14:00 Sao Paulo time. User starts P4 with 1:37.499. All 12 visible drivers are DR B and SR S. Exact PSN aliases visible in chat are stored for enrichment."
+}
