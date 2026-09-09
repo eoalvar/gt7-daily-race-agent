@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import math
 import re
+import statistics
 from pathlib import Path
 
 import requests
@@ -77,26 +78,26 @@ def leaderboard_entries(session: requests.Session, url: str):
     return result
 
 
-def start_band(position: float) -> str:
-    if position <= 3.0:
-        return "1 to 3"
-    if position <= 6.0:
-        return "4 to 6"
-    if position <= 9.0:
-        return "7 to 9"
-    if position <= 12.0:
-        return "10 to 12"
-    return "13 to 16"
+def normal_cdf(z: float) -> float:
+    return 0.5 * (1.0 + math.erf(z / math.sqrt(2.0)))
 
 
-def wilson_interval(faster: int, total: int, z: float = 1.96):
-    if total <= 0:
-        return None, None
-    p = faster / total
-    denominator = 1.0 + z * z / total
-    centre = (p + z * z / (2.0 * total)) / denominator
-    margin = z * math.sqrt((p * (1.0 - p) + z * z / (4.0 * total)) / total) / denominator
-    return max(0.0, centre - margin), min(1.0, centre + margin)
+def binomial_probabilities(n: int, p: float):
+    return [math.comb(n, k) * (p ** k) * ((1.0 - p) ** (n - k)) for k in range(n + 1)]
+
+
+def binomial_quantile(probs, q: float) -> int:
+    cumulative = 0.0
+    for k, prob in enumerate(probs):
+        cumulative += prob
+        if cumulative >= q:
+            return k
+    return len(probs) - 1
+
+
+def score_to_laptime(score_ms: float) -> str:
+    score = int(round(score_ms))
+    return f"{score // 60000}:{(score % 60000) // 1000:02d}.{score % 1000:03d}"
 
 
 def main():
@@ -114,7 +115,7 @@ def main():
 
     my_dr = int(my_dr)
     session = requests.Session()
-    session.headers.update({"User-Agent": "Mozilla/5.0 (GT7 Expected Start DR Percentile)"})
+    session.headers.update({"User-Agent": "Mozilla/5.0 (GT7 Expected Start Normal Random Grid)"})
     try:
         entries = leaderboard_entries(session, leaderboard_url)
     finally:
@@ -130,42 +131,49 @@ def main():
         if isinstance(dr, (int, float)) and int(dr) == my_dr and isinstance(score, (int, float)):
             scores.append(float(score))
 
-    if not scores:
-        print("Expected-start estimate skipped: no same-DR qualifying population.")
+    if len(scores) < 2:
+        print("Expected-start estimate skipped: insufficient same-DR qualifying population.")
         return
 
     my_score = float(my_score)
-    faster = sum(1 for score in scores if score < my_score)
-    equal = sum(1 for score in scores if score == my_score)
-    # Half-credit ties avoids systematically pushing an equal-time driver backward.
-    q = (faster + 0.5 * equal) / len(scores)
-    expected_position = 1.0 + (GRID_SIZE - 1) * q
-    band = start_band(expected_position)
+    mean_score = statistics.mean(scores)
+    std_score = statistics.pstdev(scores)
+    if std_score <= 0:
+        print("Expected-start estimate skipped: same-DR standard deviation is zero.")
+        return
 
-    low_q, high_q = wilson_interval(faster, len(scores))
-    low_position = 1.0 + (GRID_SIZE - 1) * low_q if low_q is not None else expected_position
-    high_position = 1.0 + (GRID_SIZE - 1) * high_q if high_q is not None else expected_position
+    # Model assumption requested by user:
+    # 1) same-DR qualifying lap times follow a Normal(mean, std) distribution;
+    # 2) the other 15 drivers in a 16-car lobby are random draws from that same DR;
+    # 3) grid order is then determined only by qualifying lap time.
+    z_score = (my_score - mean_score) / std_score
+    p_random_opponent_faster = normal_cdf(z_score)
 
-    # This is deliberately a matchmaking approximation, not a claim that the
-    # global leaderboard itself is the lobby. GT7 forms the lobby first; the
-    # qualifying times of those matched drivers then determine grid order.
-    # Same-DR qualifying percentile is therefore used as the population prior.
-    confidence = "HIGH" if len(scores) >= 1000 else "MEDIUM" if len(scores) >= 250 else "LOW"
+    opponents = GRID_SIZE - 1
+    expected_faster = opponents * p_random_opponent_faster
+    expected_position = 1.0 + expected_faster
+
+    probs = binomial_probabilities(opponents, p_random_opponent_faster)
+    most_likely_faster = max(range(len(probs)), key=lambda k: probs[k])
+    most_likely_position = 1 + most_likely_faster
+    low_position = 1 + binomial_quantile(probs, 0.025)
+    high_position = 1 + binomial_quantile(probs, 0.975)
 
     estimate = {
-        "model": "DR_QUALIFYING_PERCENTILE_V2",
+        "model": "DR_NORMAL_RANDOM_GRID_V1",
         "grid_size": GRID_SIZE,
         "dr": my_dr,
         "dr_label": DR_LABELS.get(my_dr),
         "same_dr_population": len(scores),
-        "faster_same_dr": faster,
-        "equal_same_dr": equal,
-        "qualifying_percentile_faster": q * 100.0,
+        "my_score_ms": my_score,
+        "same_dr_mean_ms": mean_score,
+        "same_dr_std_ms": std_score,
+        "z_score": z_score,
+        "probability_random_same_dr_opponent_faster": p_random_opponent_faster,
         "expected_position": expected_position,
-        "expected_start_range": band,
-        "confidence": confidence,
-        "sampling_interval_position_95": [low_position, high_position],
-        "basis": "qualifying percentile within current DR population",
+        "most_likely_position": most_likely_position,
+        "random_grid_interval_95": [low_position, high_position],
+        "basis": "Normal distribution fitted from mean/std of same-DR qualifying times; 15 random same-DR opponents",
     }
     snapshot["expected_start"] = estimate
     SNAPSHOT_FILE.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -174,10 +182,16 @@ def main():
     report = re.sub(r"\nEXPECTED START\n.*?(?=\n\n[A-Z][A-Z &/0-9-]+\n|\Z)", "", report, flags=re.DOTALL)
     block = (
         "EXPECTED START\n"
-        f"Projected grid range : {band}\n"
-        f"Expected position    : P{expected_position:.1f}\n"
-        f"Confidence           : {confidence}\n"
-        f"Model basis          : DR {DR_LABELS.get(my_dr)} qualifying percentile | {len(scores):,} drivers | {q * 100:.1f}% faster\n"
+        f"Expected position     : P{expected_position:.1f}\n"
+        f"Most likely position  : P{most_likely_position}\n"
+        f"95% random-grid range : P{low_position} to P{high_position}\n"
+        f"Your qualifying time  : {score_to_laptime(my_score)}\n"
+        f"DR {DR_LABELS.get(my_dr)} mean time       : {score_to_laptime(mean_score)}\n"
+        f"DR {DR_LABELS.get(my_dr)} std deviation   : {std_score / 1000.0:.3f}s\n"
+        f"Z-score               : {z_score:+.2f}\n"
+        f"Random opponent faster: {p_random_opponent_faster * 100.0:.1f}%\n"
+        f"Population            : {len(scores):,} DR {DR_LABELS.get(my_dr)} drivers\n"
+        f"Model                 : Normal lap-time distribution + random {GRID_SIZE}-driver same-DR grid\n"
     )
     marker = "\nDR LAP-TIME BENCHMARKS - FULL LEADERBOARD\n"
     if marker in report:
@@ -187,9 +201,10 @@ def main():
     REPORT_FILE.write_text(report, encoding="utf-8")
 
     print(
-        f"Expected Start: {band} | Confidence: {confidence} | "
-        f"P{expected_position:.1f} | DR {DR_LABELS.get(my_dr)} population={len(scores):,} | "
-        f"faster={q * 100:.1f}%"
+        f"Expected Start: P{expected_position:.1f} | mode=P{most_likely_position} | "
+        f"95% P{low_position}-P{high_position} | DR {DR_LABELS.get(my_dr)} n={len(scores):,} | "
+        f"mean={score_to_laptime(mean_score)} | std={std_score / 1000.0:.3f}s | z={z_score:+.2f} | "
+        f"random opponent faster={p_random_opponent_faster * 100.0:.1f}%"
     )
 
 
