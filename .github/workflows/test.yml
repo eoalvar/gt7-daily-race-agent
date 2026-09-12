@@ -73,8 +73,14 @@ jobs:
           FINAL_WEEKLY_SNAPSHOT: "0"
         run: python src/run_daily_cached.py
 
+      - name: Refresh current track/category BoP context
+        id: current_bop_context
+        continue-on-error: true
+        run: python src/bop_track_classifier.py
+
       - name: Refresh current Sleeper Car Index
         id: daily_sleeper_index
+        if: steps.current_bop_context.outcome == 'success'
         continue-on-error: true
         run: python src/sleeper_car_lab_live.py
 
