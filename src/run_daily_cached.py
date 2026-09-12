@@ -1,14 +1,18 @@
-"""Run the Daily C agent and build the shared leaderboard cache in memory.
+"""Run the Daily C agent with parallel GTSH leaderboard pagination.
 
-The main agent already downloads the complete live leaderboard. Older versions of
-this wrapper serialized every page_data response to an individual file and a
-second workflow step parsed all of those files again to assemble
-.cache/current_leaderboard.json. This version keeps the responses in memory and
-writes the consolidated cache once, after the agent finishes.
+The Daily C agent needs the complete live qualifying leaderboard for the report,
+DR benchmarks, Expected Start and car statistics. GTSH serves that leaderboard in
+paged page_data responses. The original agent fetched those pages sequentially,
+which made network latency dominate runtime as the weekly population grew.
 
-This removes dozens of JSON writes/reads per Daily C run while preserving the
-single-network-scan design used by downstream DR, Expected Start and Sleeper
-analysis.
+This wrapper patches only the live page-data collection block at runtime. It:
+- fetches page 0 synchronously to learn the real server page size and population;
+- fetches the remaining offsets concurrently with a conservative worker limit;
+- retries failed offsets sequentially before allowing the agent's own fallbacks;
+- captures the exact page_data responses and writes one shared runtime cache for
+  downstream analysis.
+
+All report calculations remain unchanged.
 """
 from __future__ import annotations
 
@@ -83,7 +87,7 @@ def _write_runtime_cache():
     for _, payload in sorted(matching, key=lambda item: item[0]):
         entries, total = _extract(payload)
         if total is not None:
-            server_total = total
+            server_total = max(server_total or 0, total)
         if not entries:
             continue
         for entry in entries:
@@ -116,7 +120,201 @@ def _write_runtime_cache():
         ),
         encoding="utf-8",
     )
-    print(f"Shared runtime leaderboard cache built in memory: {len(result):,} entries")
+    print(f"Shared runtime leaderboard cache built: {len(result):,} entries")
+
+
+def _parallel_page_data_block() -> str:
+    return r'''    # --------------------------------------------------------
+    # 1. PRIMARY SOURCE: LIVE page_data=1 (parallel pagination)
+    # --------------------------------------------------------
+
+    try:
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+
+        live_ranking = []
+        seen_ranks = set()
+        requested_limit = 1000
+        max_workers = 6
+
+        separator = (
+            "&"
+            if "?" in race_c_link
+            else "?"
+        )
+
+        def build_page_url(offset):
+            return (
+                race_c_link
+                + separator
+                + "page_data=1"
+                + f"&offset={offset}"
+                + f"&limit={requested_limit}"
+            )
+
+        # Fetch page zero synchronously. Its returned size is the authoritative
+        # paging stride even if GTSH caps/ignores limit=1000.
+        first_response = session.get(
+            build_page_url(0),
+            timeout=60
+        )
+        first_response.raise_for_status()
+        first_payload = first_response.json()
+        (
+            first_entries,
+            first_total,
+            _first_offset,
+            _first_limit,
+            _first_has_more
+        ) = extract_page_data_payload(first_payload)
+
+        if not isinstance(first_entries, list):
+            raise RuntimeError(
+                "page_data response did not contain a ranking list."
+            )
+        if not first_entries:
+            raise RuntimeError(
+                "page_data returned an empty first page."
+            )
+
+        page_stride = len(first_entries)
+        live_total_drivers = first_total or page_stride
+
+        def add_entries(entries):
+            added = 0
+            for driver in entries:
+                if not isinstance(driver, dict):
+                    continue
+                rank = driver.get("display_rank")
+                if isinstance(rank, (int, float)):
+                    rank_key = int(rank)
+                    if rank_key in seen_ranks:
+                        continue
+                    seen_ranks.add(rank_key)
+                live_ranking.append(driver)
+                added += 1
+            return added
+
+        add_entries(first_entries)
+
+        def fetch_offset(offset):
+            # requests.Session is not shared across worker threads.
+            worker_session = requests.Session()
+            worker_session.headers.update(HEADERS)
+            response = worker_session.get(
+                build_page_url(offset),
+                timeout=60
+            )
+            response.raise_for_status()
+            payload = response.json()
+            parsed = extract_page_data_payload(payload)
+            entries, total, _returned_offset, _returned_limit, _has_more = parsed
+            if not isinstance(entries, list):
+                raise RuntimeError(
+                    f"page_data offset {offset} did not contain a ranking list."
+                )
+            return offset, entries, total
+
+        next_offset = page_stride
+        parallel_round = 0
+
+        # Usually one round is sufficient. Extra rounds cover drivers added to
+        # the leaderboard while this scan is running.
+        while next_offset < live_total_drivers and parallel_round < 4:
+            parallel_round += 1
+            round_end = live_total_drivers
+            offsets = list(range(next_offset, round_end, page_stride))
+            if not offsets:
+                break
+
+            print(
+                f"Parallel leaderboard round {parallel_round}: "
+                f"{len(offsets)} pages | workers={max_workers} | "
+                f"target={round_end:,}"
+            )
+
+            page_results = {}
+            failed_offsets = []
+
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                futures = {
+                    executor.submit(fetch_offset, offset): offset
+                    for offset in offsets
+                }
+                for future in as_completed(futures):
+                    offset = futures[future]
+                    try:
+                        returned_offset, entries, total = future.result()
+                        page_results[returned_offset] = entries
+                        if isinstance(total, (int, float)):
+                            live_total_drivers = max(
+                                live_total_drivers,
+                                int(total)
+                            )
+                    except Exception as exc:
+                        print(
+                            f"WARNING: parallel page failed at offset {offset}: {exc}"
+                        )
+                        failed_offsets.append(offset)
+
+            # Retry only failed pages sequentially. This avoids discarding an
+            # otherwise complete parallel scan because of a transient request.
+            for offset in failed_offsets:
+                last_error = None
+                for attempt in range(2):
+                    try:
+                        returned_offset, entries, total = fetch_offset(offset)
+                        page_results[returned_offset] = entries
+                        if isinstance(total, (int, float)):
+                            live_total_drivers = max(
+                                live_total_drivers,
+                                int(total)
+                            )
+                        last_error = None
+                        break
+                    except Exception as exc:
+                        last_error = exc
+                        print(
+                            f"WARNING: retry {attempt + 1}/2 failed at "
+                            f"offset {offset}: {exc}"
+                        )
+                if last_error is not None:
+                    raise RuntimeError(
+                        f"Unable to fetch leaderboard offset {offset}: {last_error}"
+                    )
+
+            for offset in sorted(page_results):
+                entries = page_results[offset]
+                if not entries and offset < round_end:
+                    raise RuntimeError(
+                        f"Leaderboard returned zero entries at offset {offset}."
+                    )
+                add_entries(entries)
+
+            next_offset = offsets[-1] + page_stride
+
+        if live_total_drivers is not None and len(live_ranking) < live_total_drivers:
+            raise RuntimeError(
+                f"Parallel leaderboard incomplete: "
+                f"{len(live_ranking):,}/{live_total_drivers:,}"
+            )
+
+        if live_ranking:
+            ranking = live_ranking
+            source_mode = "live_page_data_parallel"
+            print(
+                f"Leaderboard source: LIVE page_data PARALLEL | "
+                f"entries={len(ranking):,} | "
+                f"server_total={live_total_drivers} | workers={max_workers}"
+            )
+
+    except Exception as exc:
+        print(
+            "WARNING: parallel live page_data leaderboard failed: "
+            f"{exc}"
+        )
+        ranking = None
+
+'''
 
 
 def _run_daily_agent():
@@ -133,6 +331,20 @@ def _run_daily_agent():
     if history_sort_marker not in source:
         raise RuntimeError("Weekly-history sort patch marker not found; refusing silent fallback.")
     source = source.replace(history_sort_marker, history_sort_replacement, 1)
+
+    primary_start_marker = '''    # --------------------------------------------------------\n    # 1. PRIMARY SOURCE: LIVE page_data=1\n    # --------------------------------------------------------\n'''
+    fallback_marker = '''    # --------------------------------------------------------\n    # 2. FALLBACK: initialRanking embedded in HTML\n    # --------------------------------------------------------\n'''
+    primary_start = source.find(primary_start_marker)
+    fallback_start = source.find(fallback_marker, primary_start + 1)
+    if primary_start < 0 or fallback_start < 0:
+        raise RuntimeError(
+            "Daily C primary leaderboard block markers not found; refusing silent fallback."
+        )
+    source = (
+        source[:primary_start]
+        + _parallel_page_data_block()
+        + source[fallback_start:]
+    )
 
     namespace = {
         "__name__": "__main__",
