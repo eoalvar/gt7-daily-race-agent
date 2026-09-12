@@ -52,6 +52,16 @@ def move_cars_section(text):
     return prefix + "\n\n" + block + "\n\n" + suffix
 
 
+def category_from_race_line(race_line):
+    match = re.search(r"\b(Gr\.[1234]|Gr\.B)\b", race_line, flags=re.IGNORECASE)
+    if not match:
+        return "N/A"
+    token = match.group(1)
+    if token.lower() == "gr.b":
+        return "Gr.B"
+    return f"Gr.{token[-1]}"
+
+
 def format_header(text):
     lines = text.splitlines()
     snapshot_index = next((i for i, line in enumerate(lines) if line.startswith("Snapshot:")), None)
@@ -60,8 +70,16 @@ def format_header(text):
 
     race_index = snapshot_index + 1
     race_line = lines[race_index].strip()
+    category = category_from_race_line(race_line)
+
+    # The report may already have been formatted by an earlier pass. In that
+    # case keep the formatted header and only ensure the explicit category line
+    # exists. This makes the transformation idempotent.
     if race_line.startswith("C ") and race_line.endswith("Daily Race C"):
-        return text
+        header_slice = lines[race_index + 1:race_index + 8]
+        if not any(line.startswith("Car category:") for line in header_slice):
+            lines.insert(race_index + 1, f"Car category: {category}")
+        return "\n".join(lines) + ("\n" if text.endswith("\n") else "")
 
     race_match = re.match(r"^(C\s+.+?\s+Daily Race C)\s+i\s+\d{1,2}:\d{2}\s+(.+)$", race_line)
     if not race_match:
@@ -88,6 +106,7 @@ def format_header(text):
     race_setup = after_driver[len(wr_car):].strip()
     lines[race_index:race_index + 1] = [
         race_title,
+        f"Car category: {category}",
         circuit,
         f"Current WR: {wr_driver} ({wr_time})",
         f"Current WR Car: {wr_car}",
@@ -146,11 +165,8 @@ def fallback_extract_circuit(record, remainder):
         return None
 
     driver_patterns = [
-        # Initial + surname, e.g. "D. Chafe" or "J. Serrano".
         r"\s+[A-Z]\.\s+[\wÀ-ÿ'._-]+$",
-        # Compact initial/name form.
         r"\s+[A-Z]\.[\wÀ-ÿ'._-]+$",
-        # PSN / single-token driver names, including non-Latin characters.
         r"\s+[^\s]+$",
     ]
     for pattern in driver_patterns:
@@ -310,6 +326,7 @@ def main():
 
     checks = {
         "strategy_flags_removed": "RACE STRATEGY FLAGS" not in formatted,
+        "header_car_category": "Car category:" in formatted,
         "header_current_wr": "Current WR:" in formatted,
         "header_current_wr_car": "Current WR Car:" in formatted,
         "header_race_setup": "Race Setup:" in formatted,
