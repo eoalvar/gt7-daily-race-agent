@@ -161,6 +161,9 @@ jobs:
         continue-on-error: true
         run: python src/append_expected_start.py
 
+      - name: Put car group first in email subject
+        run: python src/normalize_email_subject.py
+
       - name: Save report and snapshot
         run: |
           git config user.name "GT7 Daily Race Agent"
