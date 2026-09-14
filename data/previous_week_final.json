@@ -1,41 +1,128 @@
 {
-  "version": "fallback-1.1",
-  "generated_at": "2026-09-14T14:51:55.648658-03:00",
+  "version": "1.0",
+  "generated_at": "2026-09-14T16:40:36.901410-03:00",
   "week_start": "2026-09-07",
-  "complete_leaderboard": false,
+  "complete_leaderboard": true,
+  "loaded_drivers": 70116,
+  "total_drivers": 70116,
+  "extraction_mode": "server_paged_page_data",
   "result": {
     "participated": true,
     "week_start": "2026-09-07",
-    "final_snapshot": "2026-09-13T10:28:33.513353-03:00",
-    "finalization_mode": "snapshot_fallback_pending_archive",
-    "race": "C Gr.3 Running Daily Race C i 15:43 Dragon Trail - Seaside S. Cardinal - Hyundai Genesis Gr.3 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x6 Pit - Slipstream Custom",
+    "final_snapshot": "archived_leaderboard",
+    "finalization_mode": "historical_previous_week_final",
+    "extraction_mode": "server_paged_page_data",
+    "race": "C Gr.3 Archived Daily Race C i 15:43 Dragon Trail - Seaside S. Cardinal - Hyundai Genesis Gr.3 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x6 Pit - Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0REAm8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
-    "general_score": 9.116960912689454,
-    "elite_score": 7.539741039190843,
-    "composite_rating": 8.48607296329001,
-    "position": 5868,
-    "total_drivers": 66442,
-    "top_percent": 8.831763041449685,
-    "percentile_ahead": 91.16960912689453,
-    "wr_percentage": 102.15416531332838,
+    "general_score": 9.119731869072238,
+    "elite_score": 2.177797524268692,
+    "composite_rating": 6.342958131150819,
+    "position": 6173,
+    "total_drivers": 70116,
+    "top_percent": 8.803981972730902,
+    "percentile_ahead": 91.19731869072238,
+    "wr_percentage": 102.1702225761831,
     "laptime": "1:37.499",
     "score_ms": 97499,
-    "car": "Hyundai Genesis Gr.3",
+    "world_record": "1:35.428",
+    "world_record_ms": 95428,
+    "gap_to_wr_ms": 2071,
     "car_code": 2160,
     "country": "BR",
     "driver_rating": 4,
-    "legacy_elite_score": 7.539741039190843,
-    "legacy_general_score": 9.116960912689454,
-    "legacy_composite_rating": 8.48607296329001,
-    "cpi_score": 7.539741039190843,
-    "cpi_band": "VERY STRONG",
-    "rating_model": "CPI_50_50_V1",
-    "archive_upgrade_pending": true,
-    "fallback_source_snapshot": "2026-09-13T10:28:33.513353-03:00"
+    "country_rank": 322,
+    "country_total": 4498,
+    "same_car_rank": 5778,
+    "same_car_total": 32079,
+    "dr_rank": 2345,
+    "dr_total": 19566,
+    "archive_upgrade_pending": false
   },
   "benchmarks": {
-    "fixed": {},
-    "percentiles": {}
+    "fixed": {
+      "1": {
+        "rank": 1,
+        "score": 95428,
+        "laptime": "1:35.428"
+      },
+      "10": {
+        "rank": 10,
+        "score": 95539,
+        "laptime": "1:35.539"
+      },
+      "50": {
+        "rank": 50,
+        "score": 95820,
+        "laptime": "1:35.820"
+      },
+      "100": {
+        "rank": 100,
+        "score": 95951,
+        "laptime": "1:35.951"
+      },
+      "250": {
+        "rank": 250,
+        "score": 96175,
+        "laptime": "1:36.175"
+      },
+      "500": {
+        "rank": 500,
+        "score": 96350,
+        "laptime": "1:36.350"
+      },
+      "1000": {
+        "rank": 1000,
+        "score": 96568,
+        "laptime": "1:36.568"
+      },
+      "2500": {
+        "rank": 2500,
+        "score": 96930,
+        "laptime": "1:36.930"
+      },
+      "5000": {
+        "rank": 5000,
+        "score": 97340,
+        "laptime": "1:37.340"
+      },
+      "10000": {
+        "rank": 10000,
+        "score": 97927,
+        "laptime": "1:37.927"
+      }
+    },
+    "percentiles": {
+      "10": {
+        "percent": 10,
+        "rank": 7012,
+        "score": 97600,
+        "laptime": "1:37.600"
+      },
+      "5": {
+        "percent": 5,
+        "rank": 3506,
+        "score": 97109,
+        "laptime": "1:37.109"
+      },
+      "2": {
+        "percent": 2,
+        "rank": 1403,
+        "score": 96691,
+        "laptime": "1:36.691"
+      },
+      "1": {
+        "percent": 1,
+        "rank": 702,
+        "score": 96455,
+        "laptime": "1:36.455"
+      },
+      "0.5": {
+        "percent": 0.5,
+        "rank": 351,
+        "score": 96261,
+        "laptime": "1:36.261"
+      }
+    }
   },
-  "archive_upgrade_pending": true
+  "archive_upgrade_pending": false
 }
