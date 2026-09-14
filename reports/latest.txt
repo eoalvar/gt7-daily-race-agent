@@ -22,57 +22,89 @@ NEW WEEK - CURRENT DAILY RACE C
 
 GT7 DAILY RACE C
 ----------------------------------------
-Snapshot: 14/09/2026 12:05:04 - Sao Paulo
+Snapshot: 14/09/2026 12:16:19 - Sao Paulo
 C Gr.4 Running Daily Race C
 Car category: Gr.4
 Brands Hatch Grand Prix Circuit
-Current WR: L. Burton (1:28.504)
+Current WR: W. PuNiShEr (1:28.462)
 Current WR Car: Hyundai ELANTRA N TC '24
 Race Setup: RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit 1 Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 4,870
+Total drivers: 5,674
 
 WHERE YOU ARE
-crazy_rooster74 not found in leaderboard.
+PSN             : crazy_rooster74
+Position        : #1,846 of 5,674
+Time            : 1:31.566
+Car             : Hyundai ELANTRA N TC '24
+Gap to WR       : +3.104s
+WR percentage   : 103.509%
+CPI             : 6.09 / 10 | COMPETITIVE
+Pace class      : COMPETITIVE
+Top percentile  : Top 32.53%
+Ahead of        : 67.48% of participants
+Country rank    : #24 of 123 (BR)
+DR B rank     : #958 of 1,961
+DR progress      : DR B | 26,300 pts | 81% toward next DR
+Same-car rank   : #1,749 of 4,031
+
+EXPECTED START
+Expected position     : P7.2
+Most likely position  : P7
+95% random-grid range : P4 to P11
+Your qualifying time  : 1:31.566
+DR B mean time       : 1:31.925
+DR B std deviation   : 1.599s
+Z-score               : -0.22
+Random opponent faster: 41.1%
+Population            : 1,922 DR B drivers
+Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : 1:28.924 average | SD N/A | 1 drivers
-DR A+ : 1:29.672 average | SD 0.751s | 176 drivers
-DR A  : 1:30.475 average | SD 0.977s | 459 drivers
-DR B  : 1:31.948 average | SD 1.599s | 1,659 drivers
-DR C  : 1:33.641 average | SD 2.100s | 1,187 drivers
-DR D  : 1:36.013 average | SD 3.004s | 1,161 drivers
-DR E  : 1:39.470 average | SD 6.997s | 122 drivers
+DR S  : 1:29.262 average | SD 0.338s | 2 drivers
+DR A+ : 1:29.717 average | SD 0.844s | 202 drivers
+DR A  : 1:30.486 average | SD 1.022s | 524 drivers
+DR B  : 1:31.925 average | SD 1.599s | 1,922 drivers
+DR C  : 1:33.598 average | SD 2.094s | 1,403 drivers
+DR D  : 1:36.096 average | SD 3.151s | 1,371 drivers
+DR E  : 1:39.539 average | SD 6.792s | 134 drivers
 
 WORLD RECORD & BENCHMARKS
-WR              : 1:28.504 | L. Burton | Hyundai ELANTRA N TC '24
-103% WR         : 1:31.159
-105% WR         : 1:32.929
-Top 10          : 1:28.766
-Top 100         : 1:29.360
-Top 500         : 1:30.139
-Top 1000        : 1:30.852
-Top 2500        : 1:32.791
+WR              : 1:28.462 | W. PuNiShEr | Hyundai ELANTRA N TC '24
+103% WR         : 1:31.116
+105% WR         : 1:32.885
+Top 10          : 1:28.763
+Top 100         : 1:29.281
+Top 500         : 1:30.024
+Top 1000        : 1:30.676
+Top 2500        : 1:32.307
+Top 5000        : 1:37.311
 
 WHERE YOU SHOULD AIM
-No higher automatic target available.
+1. Top 25%: #1,419 | 1:31.104 | gain needed 0.462s
+2. Top 1000: #1,000 | 1:30.676 | gain needed 0.890s
+3. Top 10%: #568 | 1:30.105 | gain needed 1.461s
+4. Top 500: #500 | 1:30.024 | gain needed 1.542s
 
 YOUR CAR VS META
-No personal car comparison available.
+Your car best   : 1:28.462 | Hyundai ELANTRA N TC '24
+Gap to car best : +3.104s
+Meta car best   : 1:28.462 | Hyundai ELANTRA N TC '24
+Best-lap delta  : 0.000s
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Hyundai ELANTRA N TC '24 | 953 drivers | 95.3%
-2. Suzuki Swift Sport KATANA Edition Gr.4 | 28 drivers | 2.8%
+1. Hyundai ELANTRA N TC '24 | 959 drivers | 95.9%
+2. Suzuki Swift Sport KATANA Edition Gr.4 | 26 drivers | 2.6%
 3. Audi TT Cup '16 | 9 drivers | 0.9%
-4. Volkswagen Scirocco Gr.4 | 5 drivers | 0.5%
-5. MAZDA3 Gr.4 | 5 drivers | 0.5%
+4. Volkswagen Scirocco Gr.4 | 4 drivers | 0.4%
+5. MAZDA3 Gr.4 | 2 drivers | 0.2%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Hyundai ELANTRA N TC '24 | OI 1.38 | Top100 99 | Top1000 953 | High
-2. Suzuki Swift Sport KATANA Edition Gr.4 | OI 0.40 | Top100 1 | Top1000 28 | Medium
+1. Hyundai ELANTRA N TC '24 | OI 1.38 | Top100 99 | Top1000 959 | High
+2. Suzuki Swift Sport KATANA Edition Gr.4 | OI 0.43 | Top100 1 | Top1000 26 | Medium
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
@@ -89,15 +121,20 @@ CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percent
 Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
-CPI        : N/A / 10 | N/A
-Top %      : N/A%
-WR gap     : +N/A%
+CPI        : 6.09 / 10 | COMPETITIVE
+Top %      : 32.53%
+WR gap     : +3.509%
 
 LATEST FINALIZED WEEK
 Week       : 2026-09-07
 CPI        : 7.54 / 10 | VERY STRONG
 Top %      : 8.83%
 WR gap     : +2.154%
+
+CURRENT WEEK VS LAST FINALIZED WEEK
+CPI        : 7.54 -> 6.09 (-1.44)
+Top %      : 8.83% -> 32.53% (+23.70 pp)
+WR gap     : +2.154% -> +3.509% (+1.355 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
 CPI        : 6.95
@@ -131,13 +168,13 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 4,870
+Entries        : 5,674
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
 Unknown codes  : 0 valid unmapped entries
 Invalid codes  : 0 entries
-My PSN found   : No
+My PSN found   : Yes
 Weekly final   : No
 Percentile data: Top 10% and Top 5% direct snapshot stored
 GTSH car scan  : 586 discovered | 0 new | 0 updated
