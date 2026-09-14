@@ -1,7 +1,7 @@
 GT7 BOP TRACK CLASSIFIER V2.0 - ERROR
 ====================================================================================================
-Generated: 2026-09-14T10:07:01.916901+00:00
-Error: RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.4 Running Daily Race C i 16:45 Brands Hatch Grand Prix Circuit CameronMmv - Hyundai ELANTRA N TC '24 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit 1 Slipstream Custom
+Generated: 2026-09-14T15:05:14.633397+00:00
+Error: RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.4 Running Daily Race C i 16:45 Brands Hatch Grand Prix Circuit L. Burton - Hyundai ELANTRA N TC '24 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit 1 Slipstream Custom
 
 TRACEBACK
 ----------------------------------------------------------------------------------------------------
@@ -10,6 +10,6 @@ Traceback (most recent call last):
     run_classifier()
   File "/home/runner/work/gt7-daily-race-agent/gt7-daily-race-agent/src/bop_track_classifier.py", line 276, in run_classifier
     raise RuntimeError(
-RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.4 Running Daily Race C i 16:45 Brands Hatch Grand Prix Circuit CameronMmv - Hyundai ELANTRA N TC '24 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit 1 Slipstream Custom
+RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.4 Running Daily Race C i 16:45 Brands Hatch Grand Prix Circuit L. Burton - Hyundai ELANTRA N TC '24 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit 1 Slipstream Custom
 
 ====================================================================================================

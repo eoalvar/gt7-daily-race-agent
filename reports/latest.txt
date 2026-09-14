@@ -1,8 +1,20 @@
 LAST WEEK - FINAL RESULT
 ----------------------------------------
-Status          : PENDING ARCHIVE AVAILABILITY
-Reason          : Could not find the previous week's Daily Race C. Target week: 2026-09-07. Available Race C dates: ['2026-06-22', '2026-06-29', '2026-07-06', '2026-07-13', '2026-07-20', '2026-07-27', '2026-08-03', '2026-08-10', '2026-08-17', '2026-08-24']
-The historical result was NOT marked final.
+Week       : 2026-09-07
+Circuit    : Dragon Trail - Seaside S. Cardinal - Hyundai Genesis Gr.3 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x6
+Car        : Hyundai Genesis Gr.3
+
+YOUR RESULT
+Position   : #5,868 of 66,442
+Time       : 1:37.499
+Top        : 8.83%
+Ahead of   : 91.17% of participants
+WR         : 102.154%
+CPI        : 7.54 / 10 | VERY STRONG
+
+Status     : FINAL SNAPSHOT
+Note       : Full GTSH archive is not available yet.
+             This will be upgraded automatically when archived.
 ----------------------------------------
 
 NEW WEEK - CURRENT DAILY RACE C
@@ -10,38 +22,39 @@ NEW WEEK - CURRENT DAILY RACE C
 
 GT7 DAILY RACE C
 ----------------------------------------
-Snapshot: 14/09/2026 07:06:56 - Sao Paulo
+Snapshot: 14/09/2026 12:05:04 - Sao Paulo
 C Gr.4 Running Daily Race C
 Car category: Gr.4
 Brands Hatch Grand Prix Circuit
-Current WR: CameronMmv (1:28.648)
+Current WR: L. Burton (1:28.504)
 Current WR Car: Hyundai ELANTRA N TC '24
 Race Setup: RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit 1 Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 2,076
+Total drivers: 4,870
 
 WHERE YOU ARE
 crazy_rooster74 not found in leaderboard.
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : 1:29.017 average | SD N/A | 1 drivers
-DR A+ : 1:29.873 average | SD 0.784s | 101 drivers
-DR A  : 1:30.732 average | SD 1.116s | 226 drivers
-DR B  : 1:32.197 average | SD 1.692s | 746 drivers
-DR C  : 1:33.822 average | SD 2.128s | 474 drivers
-DR D  : 1:36.317 average | SD 3.053s | 437 drivers
-DR E  : 1:38.358 average | SD 6.412s | 52 drivers
+DR S  : 1:28.924 average | SD N/A | 1 drivers
+DR A+ : 1:29.672 average | SD 0.751s | 176 drivers
+DR A  : 1:30.475 average | SD 0.977s | 459 drivers
+DR B  : 1:31.948 average | SD 1.599s | 1,659 drivers
+DR C  : 1:33.641 average | SD 2.100s | 1,187 drivers
+DR D  : 1:36.013 average | SD 3.004s | 1,161 drivers
+DR E  : 1:39.470 average | SD 6.997s | 122 drivers
 
 WORLD RECORD & BENCHMARKS
-WR              : 1:28.648 | CameronMmv | Hyundai ELANTRA N TC '24
-103% WR         : 1:31.307
-105% WR         : 1:33.080
-Top 10          : 1:29.017
-Top 100         : 1:29.768
-Top 500         : 1:31.057
-Top 1000        : 1:32.626
+WR              : 1:28.504 | L. Burton | Hyundai ELANTRA N TC '24
+103% WR         : 1:31.159
+105% WR         : 1:32.929
+Top 10          : 1:28.766
+Top 100         : 1:29.360
+Top 500         : 1:30.139
+Top 1000        : 1:30.852
+Top 2500        : 1:32.791
 
 WHERE YOU SHOULD AIM
 No higher automatic target available.
@@ -50,16 +63,16 @@ YOUR CAR VS META
 No personal car comparison available.
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Hyundai ELANTRA N TC '24 | 888 drivers | 88.8%
-2. Suzuki Swift Sport KATANA Edition Gr.4 | 58 drivers | 5.8%
-3. Audi TT Cup '16 | 16 drivers | 1.6%
-4. Volkswagen Scirocco Gr.4 | 11 drivers | 1.1%
-5. MAZDA3 Gr.4 | 8 drivers | 0.8%
+1. Hyundai ELANTRA N TC '24 | 953 drivers | 95.3%
+2. Suzuki Swift Sport KATANA Edition Gr.4 | 28 drivers | 2.8%
+3. Audi TT Cup '16 | 9 drivers | 0.9%
+4. Volkswagen Scirocco Gr.4 | 5 drivers | 0.5%
+5. MAZDA3 Gr.4 | 5 drivers | 0.5%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Hyundai ELANTRA N TC '24 | OI 1.41 | Top100 98 | Top1000 888 | High
-2. Suzuki Swift Sport KATANA Edition Gr.4 | OI 0.55 | Top100 2 | Top1000 58 | Medium
+1. Hyundai ELANTRA N TC '24 | OI 1.38 | Top100 99 | Top1000 953 | High
+2. Suzuki Swift Sport KATANA Edition Gr.4 | OI 0.40 | Top100 1 | Top1000 28 | Medium
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
@@ -81,24 +94,22 @@ Top %      : N/A%
 WR gap     : +N/A%
 
 LATEST FINALIZED WEEK
-Week       : 2026-08-31
-CPI        : 6.21 / 10 | COMPETITIVE
-Top %      : 13.89%
-WR gap     : +4.199%
+Week       : 2026-09-07
+CPI        : 7.54 / 10 | VERY STRONG
+Top %      : 8.83%
+WR gap     : +2.154%
 
 4-WEEK FINALIZED MOVING AVERAGE
-CPI        : 6.83
-Top %      : 12.81%
-WR gap     : +3.089%
+CPI        : 6.95
+Top %      : 11.12%
+WR gap     : +3.034%
 
 8-WEEK FINALIZED TREND
-CPI        : DECLINING
+CPI        : STABLE
 Top %      : IMPROVING
-WR gap     : DECLINING
+WR gap     : STABLE
 
 LAST FINALIZED RACES
-- 2026-07-13 | Gr.3 | Suzuka Circuit
-CPI 6.99 | Top 14.34% | WR +2.593%
 - 2026-07-20 | Gr.4 | Circuit Gilles-Villeneuve
 CPI 7.09 | Top 11.37% | WR +2.676%
 - 2026-07-27 | Gr.2 | Circuit de Barcelona-Catalunya GP
@@ -113,12 +124,14 @@ CPI 6.89 | Top 12.32% | WR +2.979%
 CPI 7.15 | Top 9.44% | WR +2.805%
 - 2026-08-31 | Group N/A | 24 Heures du Mans Racing Circuit
 CPI 6.21 | Top 13.89% | WR +4.199%
+- 2026-09-07 | Gr.3 | Dragon Trail - Seaside S. Cardinal - Hyundai Genesis Gr.3 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x6
+CPI 7.54 | Top 8.83% | WR +2.154%
 
 DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 2,076
+Entries        : 4,870
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized

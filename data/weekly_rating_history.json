@@ -998,7 +998,7 @@
     "participated": true,
     "week_start": "2026-09-07",
     "final_snapshot": "2026-09-13T10:28:33.513353-03:00",
-    "finalization_mode": "backfill_last_available_snapshot",
+    "finalization_mode": "snapshot_fallback_pending_archive",
     "race": "C Gr.3 Running Daily Race C i 15:43 Dragon Trail - Seaside S. Cardinal - Hyundai Genesis Gr.3 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x6 Pit - Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0REAm8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
     "general_score": 9.116960912689454,
@@ -1020,6 +1020,8 @@
     "legacy_composite_rating": 8.48607296329001,
     "cpi_score": 7.539741039190843,
     "cpi_band": "VERY STRONG",
-    "rating_model": "CPI_50_50_V1"
+    "rating_model": "CPI_50_50_V1",
+    "archive_upgrade_pending": true,
+    "fallback_source_snapshot": "2026-09-13T10:28:33.513353-03:00"
   }
 ]
