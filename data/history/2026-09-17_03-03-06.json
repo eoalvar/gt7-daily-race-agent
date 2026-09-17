@@ -100,18 +100,11 @@
     "gap_to_wr_ms": 1889,
     "wr_percentage": 102.14437343201917,
     "position_score": 9.177347742313813,
-    "elite_score": 7.6047766347757575,
+    "elite_score": 2.4773751767455954,
     "composite_rating": 6.497358716086526,
     "percentile_ahead": 91.77347742313813,
     "top_percent": 8.230366492146597,
-    "pace_band": "VERY FAST",
-    "legacy_elite_score": 2.4773751767455954,
-    "legacy_general_score": 9.177347742313813,
-    "legacy_composite_rating": 6.497358716086526,
-    "cpi_score": 7.6047766347757575,
-    "cpi_band": "VERY STRONG",
-    "rating_model": "CPI_50_50_V1",
-    "driver_rating_label": "B"
+    "pace_band": "VERY FAST"
   },
   "same_car_stats": {
     "rank": 1923,
@@ -125,8 +118,7 @@
   "dr_stats": {
     "rank": 675,
     "total": 7176,
-    "dr": 4,
-    "label": "B"
+    "dr": 4
   },
   "next_targets": [
     {
@@ -239,162 +231,5 @@
   "forecast_v2": {
     "available": false,
     "reason": "Race start date unavailable."
-  },
-  "dr_profile": {
-    "psn_id": "crazy_rooster74",
-    "driver_rating": 4,
-    "dr_label": "B",
-    "dr_points": 26659,
-    "dr_percentage": 83,
-    "sportsmanship_rating": 6,
-    "source": "GTSH public profile",
-    "captured_at": "2026-09-17T06:03:54.389885+00:00"
-  },
-  "dr_laptime_stats": {
-    "1": {
-      "dr": 1,
-      "label": "E",
-      "drivers": 777,
-      "average_score": 99552.43758043757,
-      "average_laptime": "1:39.552",
-      "stddev_ms": 6005.01914470008,
-      "stddev_seconds": 6.005019144700079,
-      "diagnostics": {
-        "raw_n": 784,
-        "clean_n": 777,
-        "excluded_n": 7,
-        "median_ms": 98606.5,
-        "mad_ms": 3418.5,
-        "lower_fence_ms": 73265.15950000001,
-        "upper_fence_ms": 123947.84049999999
-      }
-    },
-    "2": {
-      "dr": 2,
-      "label": "D",
-      "drivers": 7112,
-      "average_score": 96199.29471316085,
-      "average_laptime": "1:36.199",
-      "stddev_ms": 3583.758410300961,
-      "stddev_seconds": 3.5837584103009608,
-      "diagnostics": {
-        "raw_n": 7219,
-        "clean_n": 7112,
-        "excluded_n": 107,
-        "median_ms": 95589.0,
-        "mad_ms": 2204.0,
-        "lower_fence_ms": 79250.74799999999,
-        "upper_fence_ms": 111927.25200000001
-      }
-    },
-    "3": {
-      "dr": 3,
-      "label": "C",
-      "drivers": 6348,
-      "average_score": 93413.42832388154,
-      "average_laptime": "1:33.413",
-      "stddev_ms": 2264.874745093444,
-      "stddev_seconds": 2.2648747450934437,
-      "diagnostics": {
-        "raw_n": 6444,
-        "clean_n": 6348,
-        "excluded_n": 96,
-        "median_ms": 92907.5,
-        "mad_ms": 1329.0,
-        "lower_fence_ms": 83055.62299999999,
-        "upper_fence_ms": 102759.37700000001
-      }
-    },
-    "4": {
-      "dr": 4,
-      "label": "B",
-      "drivers": 7025,
-      "average_score": 91626.49978647687,
-      "average_laptime": "1:31.626",
-      "stddev_ms": 1583.7782072808066,
-      "stddev_seconds": 1.5837782072808066,
-      "diagnostics": {
-        "raw_n": 7176,
-        "clean_n": 7025,
-        "excluded_n": 151,
-        "median_ms": 91277.0,
-        "mad_ms": 896.0,
-        "lower_fence_ms": 84634.952,
-        "upper_fence_ms": 97919.048
-      }
-    },
-    "5": {
-      "dr": 5,
-      "label": "A",
-      "drivers": 1653,
-      "average_score": 90247.5499092559,
-      "average_laptime": "1:30.248",
-      "stddev_ms": 940.8087146639912,
-      "stddev_seconds": 0.9408087146639912,
-      "diagnostics": {
-        "raw_n": 1689,
-        "clean_n": 1653,
-        "excluded_n": 36,
-        "median_ms": 90033.0,
-        "mad_ms": 542.0,
-        "lower_fence_ms": 86015.154,
-        "upper_fence_ms": 94050.846
-      }
-    },
-    "6": {
-      "dr": 6,
-      "label": "A+",
-      "drivers": 550,
-      "average_score": 89529.33272727273,
-      "average_laptime": "1:29.529",
-      "stddev_ms": 707.1007541823791,
-      "stddev_seconds": 0.707100754182379,
-      "diagnostics": {
-        "raw_n": 560,
-        "clean_n": 550,
-        "excluded_n": 10,
-        "median_ms": 89425.0,
-        "mad_ms": 393.0,
-        "lower_fence_ms": 86511.691,
-        "upper_fence_ms": 92338.309
-      }
-    },
-    "7": {
-      "dr": 7,
-      "label": "S",
-      "drivers": 3,
-      "average_score": 88721.0,
-      "average_laptime": "1:28.721",
-      "stddev_ms": 329.68570892088525,
-      "stddev_seconds": 0.3296857089208852,
-      "diagnostics": {
-        "raw_n": 3,
-        "clean_n": 3,
-        "excluded_n": 0,
-        "median_ms": 88924.0,
-        "mad_ms": null,
-        "lower_fence_ms": null,
-        "upper_fence_ms": null
-      }
-    }
-  },
-  "expected_start": {
-    "model": "DR_NORMAL_RANDOM_GRID_V2",
-    "grid_size": 16,
-    "dr": 4,
-    "dr_label": "B",
-    "same_dr_population": 7025,
-    "my_score_ms": 89980.0,
-    "same_dr_mean_ms": 91626.49978647687,
-    "same_dr_std_ms": 1583.7782072808066,
-    "z_score": -1.0396025017314432,
-    "probability_random_same_dr_opponent_faster": 0.14926230707446642,
-    "expected_position": 3.238934606116996,
-    "most_likely_position": 3,
-    "random_grid_interval_95": [
-      1,
-      6
-    ],
-    "basis": "Normal distribution using the same cleaned DR mean/std shown in DR LAP-TIME BENCHMARKS; 15 random same-DR opponents"
   }
 }
