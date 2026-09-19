@@ -1,12 +1,7 @@
 GT7 DAILY RACE C
 ==============================================================================
 Snapshot: 19/09/2026 09:42:29 - Sao Paulo
-C Gr.4 Running Daily Race C
-Car category: Gr.4
-Brands Hatch Grand Prix Circuit
-Current WR: D. Chafe (1:27.990)
-Current WR Car: Hyundai ELANTRA N TC '24
-Race Setup: RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit 1 Slipstream Custom
+C Gr.4 Running Daily Race C i 16:45 Brands Hatch Grand Prix Circuit D. Chafe - Hyundai ELANTRA N TC '24 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit 1 Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
 Total drivers: 31,585
@@ -18,36 +13,15 @@ Time            : 1:29.980
 Car             : Hyundai ELANTRA N TC '24
 Gap to WR       : +1.990s
 WR percentage   : 102.262%
-CPI             : 7.58 / 10 | VERY STRONG
 Pace class      : VERY FAST
+General rating  : 9.21 / 10
+Elite rating    : 2.45 / 10
+Composite       : 6.50 / 10
 Top percentile  : Top 7.92%
 Ahead of        : 92.08% of participants
 Country rank    : #134 of 1,821 (BR)
-DR B rank     : #939 of 8,961
-DR progress      : DR B | 26,804 pts | 84% toward next DR
+DR rank         : #939 of 8,961 (DR 4)
 Same-car rank   : #2,450 of 21,309
-
-EXPECTED START
-Expected position     : P3.3
-Most likely position  : P3
-95% random-grid range : P1 to P6
-Your qualifying time  : 1:29.980
-DR B mean time       : 1:31.612
-DR B std deviation   : 1.613s
-Z-score               : -1.01
-Random opponent faster: 15.6%
-Population            : 8,768 DR B drivers
-Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
-
-DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
-Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : 1:28.721 average | SD 0.330s | 3 drivers
-DR A+ : 1:29.492 average | SD 0.699s | 626 drivers
-DR A  : 1:30.223 average | SD 0.952s | 1,966 drivers
-DR B  : 1:31.612 average | SD 1.613s | 8,768 drivers
-DR C  : 1:33.405 average | SD 2.312s | 8,367 drivers
-DR D  : 1:36.241 average | SD 3.695s | 10,041 drivers
-DR E  : 1:39.774 average | SD 6.011s | 1,256 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:27.990 | D. Chafe | Hyundai ELANTRA N TC '24
@@ -93,53 +67,78 @@ Fuel consumption may influence race pace.
 FORECAST TO SUNDAY - V2
 Race start date unavailable.
 
-LONG-TERM COMPETITIVE PERFORMANCE
-CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percentile
-Higher CPI is better. Lower Top % and WR gap are better.
+LONG-TERM RATING TREND
+Higher General, Elite and Composite ratings are better.
+Lower Top % and WR % are better.
+Only FINAL Sunday ratings are used for historical trend calculations.
+Current race status: PROVISIONAL
 
 CURRENT WEEK
-CPI        : 7.58 / 10 | VERY STRONG
+General    : 9.21
+Elite      : 2.45
+Composite  : 6.50
 Top %      : 7.92%
-WR gap     : +2.262%
+WR %       : 102.262%
 
 LATEST FINALIZED WEEK
 Week       : 2026-09-07
-CPI        : 7.53 / 10 | VERY STRONG
+General    : 9.12
+Elite      : 7.53
+Composite  : 6.34
 Top %      : 8.80%
-WR gap     : +2.170%
+WR %       : 102.170%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
-CPI        : 7.53 -> 7.58 (+0.04)
-Top %      : 8.80% -> 7.92% (-0.88 pp)
-WR gap     : +2.170% -> +2.262% (+0.091 pp)
+General    : 9.12 -> 9.21 (+0.09) | BETTER
+Elite      : 7.53 -> 2.45 (-5.09) | WORSE
+Composite  : 6.34 -> 6.50 (+0.16) | BETTER
+Top %      : 8.80% -> 7.92% (-0.88 pp) | BETTER
+WR %       : 102.170% -> 102.262% (+0.091 pp) | WORSE
+
+Current week assessment : ABOVE LAST WEEK
+
+LATEST FINALIZED WEEK VS PRIOR FINALIZED WEEK
+General    : 8.61 -> 9.12 (+0.51)
+Elite      : 6.21 -> 7.53 (+1.33)
+Composite  : 5.92 -> 6.34 (+0.42)
 
 4-WEEK FINALIZED MOVING AVERAGE
-CPI        : 6.95
+General    : 8.89
+Elite      : 6.95
+Composite  : 6.65
 Top %      : 11.11%
-WR gap     : +3.038%
+WR %       : 103.038%
 
 8-WEEK FINALIZED TREND
-CPI        : STABLE
+General    : STABLE
+Elite      : STABLE
+Composite  : IMPROVING
 Top %      : IMPROVING
-WR gap     : STABLE
+WR %       : STABLE
+
+PERFORMANCE SUMMARY
+Current week vs last final : ABOVE LAST WEEK
+Long-term Composite trend  : IMPROVING
+Long-term WR % trend       : STABLE
+Interpretation               : Current performance confirms the improving long-term trend.
 
 LAST FINALIZED RACES
-- 2026-07-20 | Gr.4 | Circuit Gilles-Villeneuve
-CPI 7.09 | Top 11.37% | WR +2.676%
-- 2026-07-27 | Gr.2 | Circuit de Barcelona-Catalunya GP
-CPI 6.40 | Top 13.50% | WR +3.850%
-- 2026-08-03 | Gr.3 | Tokyo Expressway - East Clockwise
-CPI 7.33 | Top 11.82% | WR +2.165%
-- 2026-08-10 | Gr.4 | Grand Valley - Highway 1
-CPI 7.05 | Top 15.58% | WR +2.371%
-- 2026-08-17 | Gr.3 | Yas Marina Circuit
-CPI 6.89 | Top 12.32% | WR +2.979%
-- 2026-08-24 | Gr.2 | Circuit de Sainte-Croix - B D. Chafe - Lexus RC F GT500 '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x7
-CPI 7.15 | Top 9.44% | WR +2.805%
-- 2026-08-31 | Group N/A | 24 Heures du Mans Racing Circuit
-CPI 6.21 | Top 13.89% | WR +4.199%
-- 2026-09-07 | Gr.3 | Dragon Trail - Seaside S. Cardinal - Hyundai Genesis Gr.3 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x6
-CPI 7.53 | Top 8.80% | WR +2.170%
+2026-07-20 | Gen 8.86 | Elite 7.09 | Comp 6.13 | Top 11.37% | WR 102.676%
+2026-07-27 | Gen 8.65 | Elite 6.40 | Comp 5.94 | Top 13.50% | WR 103.850%
+2026-08-03 | Gen 8.82 | Elite 7.33 | Comp 6.08 | Top 11.82% | WR 102.165%
+2026-08-10 | Gen 8.44 | Elite 7.05 | Comp 5.78 | Top 15.58% | WR 102.371%
+2026-08-17 | Gen 8.77 | Elite 6.89 | Comp 8.02 | Top 12.32% | WR 102.979%
+2026-08-24 | Gen 9.06 | Elite 7.15 | Comp 6.31 | Top 9.44% | WR 102.805%
+2026-08-31 | Gen 8.61 | Elite 6.21 | Comp 5.92 | Top 13.89% | WR 104.199%
+2026-09-07 | Gen 9.12 | Elite 7.53 | Comp 6.34 | Top 8.80% | WR 102.170%
+
+WHAT CHANGED SINCE PREVIOUS SNAPSHOT
+World Record   : 0.000s
+Top 500        : -0.038s
+My position    : #2,301 -> #2,502 (-201 positions)
+My time        : 0.000s
+General rating : 9.18 -> 9.21 (+0.03)
+Elite rating   : 7.55 -> 2.45 (-5.10)
 
 DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
