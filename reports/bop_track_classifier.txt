@@ -1,15 +1,37 @@
-GT7 BOP TRACK CLASSIFIER V2.0 - ERROR
+GT7 BOP TRACK CLASSIFIER V2.0
 ====================================================================================================
-Generated: 2026-09-20T13:15:12.015474+00:00
-Error: RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.4 Running Daily Race C i 16:45 Brands Hatch Grand Prix Circuit D. Chafe - Hyundai ELANTRA N TC '24 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit 1 Slipstream Custom
+Generated            : 2026-09-21T10:24:25.131548+00:00
+Snapshot             : 2026-09-21T07:24:16.713277-03:00
+Track                : Sardegna - Road Track - A
+Group                : GR.3
+Model key            : GR.3|HIGH
+BoP speed class      : HIGH
+Selection mode       : GROUP_SPECIFIC_MAP
+Confidence           : VALIDATED_EXTERNAL
+BoP DB records       : 399
+Production modified  : NO
 
-TRACEBACK
+CLASSIFICATION EVIDENCE
 ----------------------------------------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/runner/work/gt7-daily-race-agent/gt7-daily-race-agent/src/bop_track_classifier.py", line 394, in main
-    run_classifier()
-  File "/home/runner/work/gt7-daily-race-agent/gt7-daily-race-agent/src/bop_track_classifier.py", line 276, in run_classifier
-    raise RuntimeError(
-RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.4 Running Daily Race C i 16:45 Brands Hatch Grand Prix Circuit D. Chafe - Hyundai ELANTRA N TC '24 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit 1 Slipstream Custom
+- GTPlanet Daily Races 2025-07-28 | Sardegna Road Track A / Gr.3 / BOP (H)
+- GTPlanet Daily Races 2025-09-01 | Sardegna Road Track A / Gr.4 / BOP (H)
 
+YOUR CURRENT CAR
+----------------------------------------------------------------------------------------------------
+No current personal car in latest snapshot.
+
+TOP 5 USED CARS
+----------------------------------------------------------------------------------------------------
+1. Hyundai Genesis Gr.3 | DB=Hyundai Genesis Gr.3 | score=100 | active=483 HP / 1260 kg / PP 694.41 | fingerprint=YES
+2. Jaguar F-type Gr.3 | DB=Jaguar F-type Gr.3 | score=100 | active=469 HP / 1254 kg / PP 696.74 | fingerprint=YES
+3. Subaru WRX Gr.3 | DB=Subaru WRX Gr.3 | score=100 | active=497 HP / 1295 kg / PP 701.57 | fingerprint=YES
+4. SUZUKI Vision Gran Turismo (Gr.3 Version) | DB=Suzuki SUZUKI VGT (Gr.3) | score=80 | active=469 HP / 1220 kg / PP 677.97 | fingerprint=YES
+5. Ferrari 296 GT3 '23 | DB=Ferrari 296 GT3 '23 | score=100 | active=444 HP / 1320 kg / PP 694.29 | fingerprint=YES
+
+CLASSIFIER POLICY
+----------------------------------------------------------------------------------------------------
+Priority 1: explicit BOP (H/M/L) in event text when available.
+Priority 2: group-specific track mapping.
+Priority 3: validated track default mapping.
+This avoids assuming that one historical track classification must apply to every group/event forever.
 ====================================================================================================

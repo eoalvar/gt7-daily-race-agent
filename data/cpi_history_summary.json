@@ -6,12 +6,12 @@
     "leaderboard_percentile_weight": 0.5
   },
   "current": {
-    "cpi_score": 7.599415669346098,
-    "cpi_band": "VERY STRONG",
-    "top_percent": 7.69774011299435,
-    "wr_percentage": 102.26162063870893
+    "cpi_score": null,
+    "cpi_band": null,
+    "top_percent": null,
+    "wr_percentage": null
   },
-  "finalized_races": 29,
+  "finalized_races": 30,
   "cpi_trend_8": "STABLE",
   "top_percent_trend_8": "IMPROVING",
   "wr_percentage_trend_8": "STABLE"

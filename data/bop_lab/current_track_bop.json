@@ -1,648 +1,153 @@
 {
-  "generated_at": "2026-08-19T13:29:34.398228+00:00",
+  "generated_at": "2026-09-21T10:24:25.131548+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-08-19T06:17:29.766163-03:00",
-  "race_description": "C Gr.3 Running 17 Aug 2026 Daily Race C i 17:29 Yas Marina Circuit P. Blazsán - Porsche 911 GT3 R (992) '22 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x4 Pit - Slipstream Custom",
-  "track": "Yas Marina Circuit",
+  "snapshot_timestamp": "2026-09-21T07:24:16.713277-03:00",
+  "race_description": "C Gr.3 Running Daily Race C i 17:31 Sardegna - Road Track - A 54_中村匠都 - Hyundai Genesis Gr.3 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x8 Pit 1 Slipstream Custom",
+  "track": "Sardegna - Road Track - A",
   "group": "GR.3",
-  "model_key": "GR.3|MID",
-  "speed_class": "MID",
+  "model_key": "GR.3|HIGH",
+  "speed_class": "HIGH",
   "speed_selection_mode": "GROUP_SPECIFIC_MAP",
   "classification_confidence": "VALIDATED_EXTERNAL",
   "classification_validation": [
     {
-      "source": "GTPlanet Daily Races 2026-06-01",
-      "evidence": "Yas Marina Circuit / Gr.3 / BOP (M)",
-      "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-gt-one-in-a-million-20260601/"
+      "source": "GTPlanet Daily Races 2025-07-28",
+      "evidence": "Sardegna Road Track A / Gr.3 / BOP (H)",
+      "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20250728/"
+    },
+    {
+      "source": "GTPlanet Daily Races 2025-09-01",
+      "evidence": "Sardegna Road Track A / Gr.4 / BOP (H)",
+      "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20250901/"
     }
   ],
   "database_records": 399,
-  "my_car": "Porsche 911 GT3 R (992) '22",
-  "my_car_fingerprint": {
-    "car": "Porsche 911 GT3 R (992) '22",
-    "available": true,
-    "match": {
-      "requested_name": "Porsche 911 GT3 R (992) '22",
-      "matched_name": "Porsche 911 GT3 R (992) '22",
-      "match_score": 100
-    },
-    "bop_version": "1.67",
-    "distinct_signatures": 1,
-    "can_identify_speed_class_from_car": false,
-    "HIGH": {
-      "car": "Porsche 911 GT3 R (992) '22",
-      "group": "GR.3",
-      "bop_version": "1.67",
-      "speed_class": "HIGH",
-      "pp": 693.04,
-      "power_hp": 446.0,
-      "torque_nm": 400.1,
-      "weight_kg": 1320.0,
-      "power_weight_hp_t": 337.8787878787879,
-      "weight_balance": "43:57",
-      "drivetrain": "RR",
-      "aspiration": "NA",
-      "acceleration": {
-        "0_400m": 12.5,
-        "0_1000m": 21.99,
-        "100_150_kmh": 2.89
-      },
-      "rotational_g": {
-        "60_kmh": 1.34,
-        "120_kmh": 1.45,
-        "240_kmh": 1.7
-      },
-      "stability": {
-        "low_speed": "-0.35 | N",
-        "high_speed": "-1 | U"
-      }
-    },
-    "MID": {
-      "car": "Porsche 911 GT3 R (992) '22",
-      "group": "GR.3",
-      "bop_version": "1.67",
-      "speed_class": "MID",
-      "pp": 693.04,
-      "power_hp": 446.0,
-      "torque_nm": 400.1,
-      "weight_kg": 1320.0,
-      "power_weight_hp_t": 337.8787878787879,
-      "weight_balance": "43:57",
-      "drivetrain": "RR",
-      "aspiration": "NA",
-      "acceleration": {
-        "0_400m": 12.5,
-        "0_1000m": 21.99,
-        "100_150_kmh": 2.89
-      },
-      "rotational_g": {
-        "60_kmh": 1.34,
-        "120_kmh": 1.45,
-        "240_kmh": 1.7
-      },
-      "stability": {
-        "low_speed": "-0.35 | N",
-        "high_speed": "-1 | U"
-      }
-    },
-    "LOW": {
-      "car": "Porsche 911 GT3 R (992) '22",
-      "group": "GR.3",
-      "bop_version": "1.67",
-      "speed_class": "LOW",
-      "pp": 693.04,
-      "power_hp": 446.0,
-      "torque_nm": 400.1,
-      "weight_kg": 1320.0,
-      "power_weight_hp_t": 337.8787878787879,
-      "weight_balance": "43:57",
-      "drivetrain": "RR",
-      "aspiration": "NA",
-      "acceleration": {
-        "0_400m": 12.5,
-        "0_1000m": 21.99,
-        "100_150_kmh": 2.89
-      },
-      "rotational_g": {
-        "60_kmh": 1.34,
-        "120_kmh": 1.45,
-        "240_kmh": 1.7
-      },
-      "stability": {
-        "low_speed": "-0.35 | N",
-        "high_speed": "-1 | U"
-      }
-    }
-  },
-  "my_car_active_bop": {
-    "car": "Porsche 911 GT3 R (992) '22",
-    "group": "GR.3",
-    "bop_version": "1.67",
-    "speed_class": "MID",
-    "pp": 693.04,
-    "power_hp": 446.0,
-    "torque_nm": 400.1,
-    "weight_kg": 1320.0,
-    "power_weight_hp_t": 337.8787878787879,
-    "weight_balance": "43:57",
-    "drivetrain": "RR",
-    "aspiration": "NA",
-    "acceleration": {
-      "0_400m": 12.5,
-      "0_1000m": 21.99,
-      "100_150_kmh": 2.89
-    },
-    "rotational_g": {
-      "60_kmh": 1.34,
-      "120_kmh": 1.45,
-      "240_kmh": 1.7
-    },
-    "stability": {
-      "low_speed": "-0.35 | N",
-      "high_speed": "-1 | U"
-    }
-  },
+  "my_car": null,
+  "my_car_fingerprint": null,
+  "my_car_active_bop": null,
   "top5_used_cars": [
     {
-      "car": "Porsche 911 GT3 R (992) '22",
+      "car": "Hyundai Genesis Gr.3",
       "available": true,
       "match": {
-        "requested_name": "Porsche 911 GT3 R (992) '22",
-        "matched_name": "Porsche 911 GT3 R (992) '22",
-        "match_score": 100
-      },
-      "bop_version": "1.67",
-      "distinct_signatures": 1,
-      "can_identify_speed_class_from_car": false,
-      "HIGH": {
-        "car": "Porsche 911 GT3 R (992) '22",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "HIGH",
-        "pp": 693.04,
-        "power_hp": 446.0,
-        "torque_nm": 400.1,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 337.8787878787879,
-        "weight_balance": "43:57",
-        "drivetrain": "RR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 12.5,
-          "0_1000m": 21.99,
-          "100_150_kmh": 2.89
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.7
-        },
-        "stability": {
-          "low_speed": "-0.35 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "MID": {
-        "car": "Porsche 911 GT3 R (992) '22",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 693.04,
-        "power_hp": 446.0,
-        "torque_nm": 400.1,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 337.8787878787879,
-        "weight_balance": "43:57",
-        "drivetrain": "RR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 12.5,
-          "0_1000m": 21.99,
-          "100_150_kmh": 2.89
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.7
-        },
-        "stability": {
-          "low_speed": "-0.35 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "LOW": {
-        "car": "Porsche 911 GT3 R (992) '22",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "LOW",
-        "pp": 693.04,
-        "power_hp": 446.0,
-        "torque_nm": 400.1,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 337.8787878787879,
-        "weight_balance": "43:57",
-        "drivetrain": "RR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 12.5,
-          "0_1000m": 21.99,
-          "100_150_kmh": 2.89
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.7
-        },
-        "stability": {
-          "low_speed": "-0.35 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "leaderboard_count": 766,
-      "leaderboard_percentage": 76.6,
-      "active_bop": {
-        "car": "Porsche 911 GT3 R (992) '22",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 693.04,
-        "power_hp": 446.0,
-        "torque_nm": 400.1,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 337.8787878787879,
-        "weight_balance": "43:57",
-        "drivetrain": "RR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 12.5,
-          "0_1000m": 21.99,
-          "100_150_kmh": 2.89
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.7
-        },
-        "stability": {
-          "low_speed": "-0.35 | N",
-          "high_speed": "-1 | U"
-        }
-      }
-    },
-    {
-      "car": "Audi R8 LMS Evo '19",
-      "available": true,
-      "match": {
-        "requested_name": "Audi R8 LMS Evo '19",
-        "matched_name": "Audi R8 LMS Evo '19",
+        "requested_name": "Hyundai Genesis Gr.3",
+        "matched_name": "Hyundai Genesis Gr.3",
         "match_score": 100
       },
       "bop_version": "1.67",
       "distinct_signatures": 3,
       "can_identify_speed_class_from_car": true,
       "HIGH": {
-        "car": "Audi R8 LMS Evo '19",
+        "car": "Hyundai Genesis Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 690.95,
-        "power_hp": 444.0,
-        "torque_nm": 442.3,
-        "weight_kg": 1305.0,
-        "power_weight_hp_t": 340.2298850574713,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
+        "pp": 694.41,
+        "power_hp": 483.0,
+        "torque_nm": 455.0,
+        "weight_kg": 1260.0,
+        "power_weight_hp_t": 383.3333333333333,
+        "weight_balance": "53:47",
+        "drivetrain": "FR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 12.25,
-          "0_1000m": 21.67,
-          "100_150_kmh": 2.83
+          "0_400m": 12.4,
+          "0_1000m": 21.83,
+          "100_150_kmh": 2.68
         },
         "rotational_g": {
-          "60_kmh": 1.33,
+          "60_kmh": 1.32,
           "120_kmh": 1.44,
-          "240_kmh": 1.67
+          "240_kmh": 1.7
         },
         "stability": {
-          "low_speed": "-0.44 | U",
+          "low_speed": "-0.33 | N",
           "high_speed": "-1 | U"
         }
       },
       "MID": {
-        "car": "Audi R8 LMS Evo '19",
+        "car": "Hyundai Genesis Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 691.74,
-        "power_hp": 444.0,
-        "torque_nm": 442.3,
-        "weight_kg": 1310.0,
-        "power_weight_hp_t": 338.9312977099236,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
+        "pp": 693.53,
+        "power_hp": 483.0,
+        "torque_nm": 455.0,
+        "weight_kg": 1269.0,
+        "power_weight_hp_t": 380.6146572104019,
+        "weight_balance": "53:47",
+        "drivetrain": "FR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 12.27,
-          "0_1000m": 21.7,
-          "100_150_kmh": 2.84
+          "0_400m": 12.43,
+          "0_1000m": 21.87,
+          "100_150_kmh": 2.7
         },
         "rotational_g": {
-          "60_kmh": 1.33,
+          "60_kmh": 1.32,
           "120_kmh": 1.44,
-          "240_kmh": 1.68
+          "240_kmh": 1.7
         },
         "stability": {
-          "low_speed": "-0.44 | U",
+          "low_speed": "-0.33 | N",
           "high_speed": "-1 | U"
         }
       },
       "LOW": {
-        "car": "Audi R8 LMS Evo '19",
+        "car": "Hyundai Genesis Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "LOW",
-        "pp": 687.96,
-        "power_hp": 439.0,
-        "torque_nm": 436.4,
-        "weight_kg": 1315.0,
-        "power_weight_hp_t": 333.8403041825095,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
+        "pp": 692.27,
+        "power_hp": 483.0,
+        "torque_nm": 455.0,
+        "weight_kg": 1285.0,
+        "power_weight_hp_t": 375.87548638132296,
+        "weight_balance": "53:47",
+        "drivetrain": "FR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 12.36,
-          "0_1000m": 21.84,
-          "100_150_kmh": 2.89
+          "0_400m": 12.47,
+          "0_1000m": 21.93,
+          "100_150_kmh": 2.72
         },
         "rotational_g": {
-          "60_kmh": 1.33,
+          "60_kmh": 1.32,
           "120_kmh": 1.44,
-          "240_kmh": 1.67
+          "240_kmh": 1.69
         },
         "stability": {
-          "low_speed": "-0.44 | U",
+          "low_speed": "-0.33 | N",
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 88,
-      "leaderboard_percentage": 8.799999999999999,
+      "leaderboard_count": 744,
+      "leaderboard_percentage": 74.4,
       "active_bop": {
-        "car": "Audi R8 LMS Evo '19",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 691.74,
-        "power_hp": 444.0,
-        "torque_nm": 442.3,
-        "weight_kg": 1310.0,
-        "power_weight_hp_t": 338.9312977099236,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 12.27,
-          "0_1000m": 21.7,
-          "100_150_kmh": 2.84
-        },
-        "rotational_g": {
-          "60_kmh": 1.33,
-          "120_kmh": 1.44,
-          "240_kmh": 1.68
-        },
-        "stability": {
-          "low_speed": "-0.44 | U",
-          "high_speed": "-1 | U"
-        }
-      }
-    },
-    {
-      "car": "Ferrari 296 GT3 '23",
-      "available": true,
-      "match": {
-        "requested_name": "Ferrari 296 GT3 '23",
-        "matched_name": "Ferrari 296 GT3 '23",
-        "match_score": 100
-      },
-      "bop_version": "1.67",
-      "distinct_signatures": 2,
-      "can_identify_speed_class_from_car": true,
-      "HIGH": {
-        "car": "Ferrari 296 GT3 '23",
+        "car": "Hyundai Genesis Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 694.29,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 336.3636363636364,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 12.19,
-          "0_1000m": 21.68,
-          "100_150_kmh": 2.85
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.73
-        },
-        "stability": {
-          "low_speed": "-0.62 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "MID": {
-        "car": "Ferrari 296 GT3 '23",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 694.29,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 336.3636363636364,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 12.19,
-          "0_1000m": 21.68,
-          "100_150_kmh": 2.85
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.73
-        },
-        "stability": {
-          "low_speed": "-0.62 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "LOW": {
-        "car": "Ferrari 296 GT3 '23",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "LOW",
-        "pp": 692.86,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1335.0,
-        "power_weight_hp_t": 332.5842696629214,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 12.23,
-          "0_1000m": 21.75,
-          "100_150_kmh": 2.88
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.72
-        },
-        "stability": {
-          "low_speed": "-0.62 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "leaderboard_count": 23,
-      "leaderboard_percentage": 2.3,
-      "active_bop": {
-        "car": "Ferrari 296 GT3 '23",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 694.29,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 336.3636363636364,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 12.19,
-          "0_1000m": 21.68,
-          "100_150_kmh": 2.85
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.73
-        },
-        "stability": {
-          "low_speed": "-0.62 | U",
-          "high_speed": "-1 | U"
-        }
-      }
-    },
-    {
-      "car": "Lamborghini Huracán GT3 '15",
-      "available": true,
-      "match": {
-        "requested_name": "Lamborghini Huracán GT3 '15",
-        "matched_name": "Lamborghini Huracán GT3 '15",
-        "match_score": 100
-      },
-      "bop_version": "1.67",
-      "distinct_signatures": 3,
-      "can_identify_speed_class_from_car": true,
-      "HIGH": {
-        "car": "Lamborghini Huracán GT3 '15",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "HIGH",
-        "pp": 689.34,
-        "power_hp": 450.0,
-        "torque_nm": 452.1,
-        "weight_kg": 1321.0,
-        "power_weight_hp_t": 340.6510219530659,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
+        "pp": 694.41,
+        "power_hp": 483.0,
+        "torque_nm": 455.0,
+        "weight_kg": 1260.0,
+        "power_weight_hp_t": 383.3333333333333,
+        "weight_balance": "53:47",
+        "drivetrain": "FR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 12.24,
-          "0_1000m": 21.7,
-          "100_150_kmh": 2.85
+          "0_400m": 12.4,
+          "0_1000m": 21.83,
+          "100_150_kmh": 2.68
         },
         "rotational_g": {
-          "60_kmh": 1.33,
-          "120_kmh": 1.45,
-          "240_kmh": 1.66
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.7
         },
         "stability": {
-          "low_speed": "-0.57 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "MID": {
-        "car": "Lamborghini Huracán GT3 '15",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 689.81,
-        "power_hp": 450.0,
-        "torque_nm": 452.1,
-        "weight_kg": 1330.0,
-        "power_weight_hp_t": 338.3458646616541,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 12.27,
-          "0_1000m": 21.75,
-          "100_150_kmh": 2.86
-        },
-        "rotational_g": {
-          "60_kmh": 1.33,
-          "120_kmh": 1.45,
-          "240_kmh": 1.67
-        },
-        "stability": {
-          "low_speed": "-0.57 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "LOW": {
-        "car": "Lamborghini Huracán GT3 '15",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "LOW",
-        "pp": 688.85,
-        "power_hp": 450.0,
-        "torque_nm": 452.1,
-        "weight_kg": 1340.0,
-        "power_weight_hp_t": 335.820895522388,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 12.31,
-          "0_1000m": 21.8,
-          "100_150_kmh": 2.88
-        },
-        "rotational_g": {
-          "60_kmh": 1.33,
-          "120_kmh": 1.45,
-          "240_kmh": 1.67
-        },
-        "stability": {
-          "low_speed": "-0.57 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "leaderboard_count": 21,
-      "leaderboard_percentage": 2.1,
-      "active_bop": {
-        "car": "Lamborghini Huracán GT3 '15",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 689.81,
-        "power_hp": 450.0,
-        "torque_nm": 452.1,
-        "weight_kg": 1330.0,
-        "power_weight_hp_t": 338.3458646616541,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 12.27,
-          "0_1000m": 21.75,
-          "100_150_kmh": 2.86
-        },
-        "rotational_g": {
-          "60_kmh": 1.33,
-          "120_kmh": 1.45,
-          "240_kmh": 1.67
-        },
-        "stability": {
-          "low_speed": "-0.57 | U",
+          "low_speed": "-0.33 | N",
           "high_speed": "-1 | U"
         }
       }
@@ -742,33 +247,411 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 19,
-      "leaderboard_percentage": 1.9,
+      "leaderboard_count": 112,
+      "leaderboard_percentage": 11.200000000000001,
       "active_bop": {
         "car": "Jaguar F-type Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 695.6,
+        "speed_class": "HIGH",
+        "pp": 696.74,
         "power_hp": 469.0,
         "torque_nm": 577.6,
-        "weight_kg": 1265.0,
-        "power_weight_hp_t": 370.7509881422925,
+        "weight_kg": 1254.0,
+        "power_weight_hp_t": 374.0031897926635,
         "weight_balance": "52:48",
         "drivetrain": "FR",
         "aspiration": "SC",
         "acceleration": {
-          "0_400m": 11.45,
-          "0_1000m": 20.78,
-          "100_150_kmh": 2.7
+          "0_400m": 11.42,
+          "0_1000m": 20.74,
+          "100_150_kmh": 2.68
         },
         "rotational_g": {
           "60_kmh": 1.32,
-          "120_kmh": 1.43,
+          "120_kmh": 1.44,
           "240_kmh": 1.68
         },
         "stability": {
           "low_speed": "-0.38 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "Subaru WRX Gr.3",
+      "available": true,
+      "match": {
+        "requested_name": "Subaru WRX Gr.3",
+        "matched_name": "Subaru WRX Gr.3",
+        "match_score": 100
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 3,
+      "can_identify_speed_class_from_car": true,
+      "HIGH": {
+        "car": "Subaru WRX Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 701.57,
+        "power_hp": 497.0,
+        "torque_nm": 519.8,
+        "weight_kg": 1295.0,
+        "power_weight_hp_t": 383.7837837837838,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.62,
+          "0_1000m": 21.01,
+          "100_150_kmh": 2.67
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.45,
+          "240_kmh": 1.75
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Subaru WRX Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 700.75,
+        "power_hp": 497.0,
+        "torque_nm": 519.8,
+        "weight_kg": 1305.0,
+        "power_weight_hp_t": 380.84291187739467,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.64,
+          "0_1000m": 21.05,
+          "100_150_kmh": 2.69
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.45,
+          "240_kmh": 1.74
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Subaru WRX Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 699.67,
+        "power_hp": 497.0,
+        "torque_nm": 519.8,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 376.5151515151515,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.67,
+          "0_1000m": 21.1,
+          "100_150_kmh": 2.72
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.74
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 33,
+      "leaderboard_percentage": 3.3000000000000003,
+      "active_bop": {
+        "car": "Subaru WRX Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 701.57,
+        "power_hp": 497.0,
+        "torque_nm": 519.8,
+        "weight_kg": 1295.0,
+        "power_weight_hp_t": 383.7837837837838,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.62,
+          "0_1000m": 21.01,
+          "100_150_kmh": 2.67
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.45,
+          "240_kmh": 1.75
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
+      "available": true,
+      "match": {
+        "requested_name": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
+        "matched_name": "Suzuki SUZUKI VGT (Gr.3)",
+        "match_score": 80
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 2,
+      "can_identify_speed_class_from_car": true,
+      "HIGH": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 677.97,
+        "power_hp": 469.0,
+        "torque_nm": 397.2,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 384.42622950819674,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.06,
+          "0_1000m": 22.69,
+          "100_150_kmh": 2.97
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 677.97,
+        "power_hp": 469.0,
+        "torque_nm": 397.2,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 384.42622950819674,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.06,
+          "0_1000m": 22.69,
+          "100_150_kmh": 2.97
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 676.31,
+        "power_hp": 463.0,
+        "torque_nm": 391.3,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 379.5081967213115,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.11,
+          "0_1000m": 22.77,
+          "100_150_kmh": 3.0
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 22,
+      "leaderboard_percentage": 2.1999999999999997,
+      "active_bop": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 677.97,
+        "power_hp": 469.0,
+        "torque_nm": 397.2,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 384.42622950819674,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.06,
+          "0_1000m": 22.69,
+          "100_150_kmh": 2.97
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "Ferrari 296 GT3 '23",
+      "available": true,
+      "match": {
+        "requested_name": "Ferrari 296 GT3 '23",
+        "matched_name": "Ferrari 296 GT3 '23",
+        "match_score": 100
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 2,
+      "can_identify_speed_class_from_car": true,
+      "HIGH": {
+        "car": "Ferrari 296 GT3 '23",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 694.29,
+        "power_hp": 444.0,
+        "torque_nm": 526.6,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 336.3636363636364,
+        "weight_balance": "47:53",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.19,
+          "0_1000m": 21.68,
+          "100_150_kmh": 2.85
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.45,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.62 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Ferrari 296 GT3 '23",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 694.29,
+        "power_hp": 444.0,
+        "torque_nm": 526.6,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 336.3636363636364,
+        "weight_balance": "47:53",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.19,
+          "0_1000m": 21.68,
+          "100_150_kmh": 2.85
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.45,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.62 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Ferrari 296 GT3 '23",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 692.86,
+        "power_hp": 444.0,
+        "torque_nm": 526.6,
+        "weight_kg": 1335.0,
+        "power_weight_hp_t": 332.5842696629214,
+        "weight_balance": "47:53",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.23,
+          "0_1000m": 21.75,
+          "100_150_kmh": 2.88
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.45,
+          "240_kmh": 1.72
+        },
+        "stability": {
+          "low_speed": "-0.62 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 19,
+      "leaderboard_percentage": 1.9,
+      "active_bop": {
+        "car": "Ferrari 296 GT3 '23",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 694.29,
+        "power_hp": 444.0,
+        "torque_nm": 526.6,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 336.3636363636364,
+        "weight_balance": "47:53",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.19,
+          "0_1000m": 21.68,
+          "100_150_kmh": 2.85
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.45,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.62 | U",
           "high_speed": "-1 | U"
         }
       }
