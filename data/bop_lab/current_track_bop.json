@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-21T10:24:25.131548+00:00",
+  "generated_at": "2026-09-21T15:21:31.441460+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-09-21T07:24:16.713277-03:00",
-  "race_description": "C Gr.3 Running Daily Race C i 17:31 Sardegna - Road Track - A 54_中村匠都 - Hyundai Genesis Gr.3 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x8 Pit 1 Slipstream Custom",
+  "snapshot_timestamp": "2026-09-21T12:21:17.897075-03:00",
+  "race_description": "C Gr.3 Running Daily Race C i 17:31 Sardegna - Road Track - A Ryu - Hyundai Genesis Gr.3 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x8 Pit 1 Slipstream Custom",
   "track": "Sardegna - Road Track - A",
   "group": "GR.3",
   "model_key": "GR.3|HIGH",
@@ -121,8 +121,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 744,
-      "leaderboard_percentage": 74.4,
+      "leaderboard_count": 805,
+      "leaderboard_percentage": 80.5,
       "active_bop": {
         "car": "Hyundai Genesis Gr.3",
         "group": "GR.3",
@@ -279,132 +279,6 @@
       }
     },
     {
-      "car": "Subaru WRX Gr.3",
-      "available": true,
-      "match": {
-        "requested_name": "Subaru WRX Gr.3",
-        "matched_name": "Subaru WRX Gr.3",
-        "match_score": 100
-      },
-      "bop_version": "1.67",
-      "distinct_signatures": 3,
-      "can_identify_speed_class_from_car": true,
-      "HIGH": {
-        "car": "Subaru WRX Gr.3",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "HIGH",
-        "pp": 701.57,
-        "power_hp": 497.0,
-        "torque_nm": 519.8,
-        "weight_kg": 1295.0,
-        "power_weight_hp_t": 383.7837837837838,
-        "weight_balance": "54:46",
-        "drivetrain": "FR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 11.62,
-          "0_1000m": 21.01,
-          "100_150_kmh": 2.67
-        },
-        "rotational_g": {
-          "60_kmh": 1.31,
-          "120_kmh": 1.45,
-          "240_kmh": 1.75
-        },
-        "stability": {
-          "low_speed": "-0.34 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "MID": {
-        "car": "Subaru WRX Gr.3",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 700.75,
-        "power_hp": 497.0,
-        "torque_nm": 519.8,
-        "weight_kg": 1305.0,
-        "power_weight_hp_t": 380.84291187739467,
-        "weight_balance": "54:46",
-        "drivetrain": "FR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 11.64,
-          "0_1000m": 21.05,
-          "100_150_kmh": 2.69
-        },
-        "rotational_g": {
-          "60_kmh": 1.31,
-          "120_kmh": 1.45,
-          "240_kmh": 1.74
-        },
-        "stability": {
-          "low_speed": "-0.34 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "LOW": {
-        "car": "Subaru WRX Gr.3",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "LOW",
-        "pp": 699.67,
-        "power_hp": 497.0,
-        "torque_nm": 519.8,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 376.5151515151515,
-        "weight_balance": "54:46",
-        "drivetrain": "FR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 11.67,
-          "0_1000m": 21.1,
-          "100_150_kmh": 2.72
-        },
-        "rotational_g": {
-          "60_kmh": 1.32,
-          "120_kmh": 1.44,
-          "240_kmh": 1.74
-        },
-        "stability": {
-          "low_speed": "-0.34 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "leaderboard_count": 33,
-      "leaderboard_percentage": 3.3000000000000003,
-      "active_bop": {
-        "car": "Subaru WRX Gr.3",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "HIGH",
-        "pp": 701.57,
-        "power_hp": 497.0,
-        "torque_nm": 519.8,
-        "weight_kg": 1295.0,
-        "power_weight_hp_t": 383.7837837837838,
-        "weight_balance": "54:46",
-        "drivetrain": "FR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 11.62,
-          "0_1000m": 21.01,
-          "100_150_kmh": 2.67
-        },
-        "rotational_g": {
-          "60_kmh": 1.31,
-          "120_kmh": 1.45,
-          "240_kmh": 1.75
-        },
-        "stability": {
-          "low_speed": "-0.34 | N",
-          "high_speed": "-1 | U"
-        }
-      }
-    },
-    {
       "car": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
       "available": true,
       "match": {
@@ -499,8 +373,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 22,
-      "leaderboard_percentage": 2.1999999999999997,
+      "leaderboard_count": 18,
+      "leaderboard_percentage": 1.7999999999999998,
       "active_bop": {
         "car": "Suzuki SUZUKI VGT (Gr.3)",
         "group": "GR.3",
@@ -526,6 +400,132 @@
         },
         "stability": {
           "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "Subaru WRX Gr.3",
+      "available": true,
+      "match": {
+        "requested_name": "Subaru WRX Gr.3",
+        "matched_name": "Subaru WRX Gr.3",
+        "match_score": 100
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 3,
+      "can_identify_speed_class_from_car": true,
+      "HIGH": {
+        "car": "Subaru WRX Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 701.57,
+        "power_hp": 497.0,
+        "torque_nm": 519.8,
+        "weight_kg": 1295.0,
+        "power_weight_hp_t": 383.7837837837838,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.62,
+          "0_1000m": 21.01,
+          "100_150_kmh": 2.67
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.45,
+          "240_kmh": 1.75
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Subaru WRX Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 700.75,
+        "power_hp": 497.0,
+        "torque_nm": 519.8,
+        "weight_kg": 1305.0,
+        "power_weight_hp_t": 380.84291187739467,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.64,
+          "0_1000m": 21.05,
+          "100_150_kmh": 2.69
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.45,
+          "240_kmh": 1.74
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Subaru WRX Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 699.67,
+        "power_hp": 497.0,
+        "torque_nm": 519.8,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 376.5151515151515,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.67,
+          "0_1000m": 21.1,
+          "100_150_kmh": 2.72
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.74
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 17,
+      "leaderboard_percentage": 1.7000000000000002,
+      "active_bop": {
+        "car": "Subaru WRX Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 701.57,
+        "power_hp": 497.0,
+        "torque_nm": 519.8,
+        "weight_kg": 1295.0,
+        "power_weight_hp_t": 383.7837837837838,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 11.62,
+          "0_1000m": 21.01,
+          "100_150_kmh": 2.67
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.45,
+          "240_kmh": 1.75
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
           "high_speed": "-1 | U"
         }
       }
@@ -625,8 +625,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 19,
-      "leaderboard_percentage": 1.9,
+      "leaderboard_count": 11,
+      "leaderboard_percentage": 1.0999999999999999,
       "active_bop": {
         "car": "Ferrari 296 GT3 '23",
         "group": "GR.3",

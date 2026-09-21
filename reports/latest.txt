@@ -1,8 +1,20 @@
 LAST WEEK - FINAL RESULT
 ----------------------------------------
-Status          : PENDING ARCHIVE AVAILABILITY
-Reason          : Could not find the previous week's Daily Race C. Target week: 2026-09-14. Available Race C dates: ['2026-06-22', '2026-06-29', '2026-07-06', '2026-07-13', '2026-07-20', '2026-07-27', '2026-08-03', '2026-08-10', '2026-08-17', '2026-08-24']
-The historical result was NOT marked final.
+Week       : 2026-09-14
+Circuit    : Brands Hatch Grand Prix Circuit
+Car        : Hyundai ELANTRA N TC '24
+
+YOUR RESULT
+Position   : #2,725 of 35,400
+Time       : 1:29.980
+Top        : 7.70%
+Ahead of   : 92.30% of participants
+WR         : 102.262%
+CPI        : 7.60 / 10 | VERY STRONG
+
+Status     : FINAL SNAPSHOT
+Note       : Full GTSH archive is not available yet.
+             This will be upgraded automatically when archived.
 ----------------------------------------
 
 NEW WEEK - CURRENT DAILY RACE C
@@ -10,39 +22,40 @@ NEW WEEK - CURRENT DAILY RACE C
 
 GT7 DAILY RACE C
 ----------------------------------------
-Snapshot: 21/09/2026 07:24:16 - Sao Paulo
+Snapshot: 21/09/2026 12:21:17 - Sao Paulo
 C Gr.3 Running Daily Race C
 Car category: Gr.3
 Sardegna - Road Track - A
-Current WR: 54_中村匠都 (1:40.437)
+Current WR: Ryu (1:40.361)
 Current WR Car: Hyundai Genesis Gr.3
 Race Setup: RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x8 Pit 1 Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 4,865
+Total drivers: 10,689
 
 WHERE YOU ARE
 crazy_rooster74 not found in leaderboard.
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : N/A average | SD N/A | 0 drivers
-DR A+ : 1:41.807 average | SD 0.828s | 182 drivers
-DR A  : 1:42.561 average | SD 0.873s | 503 drivers
-DR B  : 1:43.688 average | SD 1.168s | 1,684 drivers
-DR C  : 1:44.977 average | SD 1.511s | 1,189 drivers
-DR D  : 1:46.673 average | SD 2.113s | 1,124 drivers
-DR E  : 1:46.656 average | SD 2.699s | 103 drivers
+DR S  : 1:40.471 average | SD N/A | 1 drivers
+DR A+ : 1:41.585 average | SD 0.705s | 383 drivers
+DR A  : 1:42.385 average | SD 0.774s | 980 drivers
+DR B  : 1:43.567 average | SD 1.137s | 3,516 drivers
+DR C  : 1:44.907 average | SD 1.475s | 2,675 drivers
+DR D  : 1:46.565 average | SD 2.142s | 2,681 drivers
+DR E  : 1:47.653 average | SD 3.335s | 295 drivers
 
 WORLD RECORD & BENCHMARKS
-WR              : 1:40.437 | 54_中村匠都 | Hyundai Genesis Gr.3
-103% WR         : 1:43.450
-105% WR         : 1:45.459
-Top 10          : 1:40.787
-Top 100         : 1:41.449
-Top 500         : 1:42.312
-Top 1000        : 1:42.840
-Top 2500        : 1:44.320
+WR              : 1:40.361 | Ryu | Hyundai Genesis Gr.3
+103% WR         : 1:43.372
+105% WR         : 1:45.379
+Top 10          : 1:40.553
+Top 100         : 1:41.044
+Top 500         : 1:41.752
+Top 1000        : 1:42.162
+Top 2500        : 1:42.959
+Top 5000        : 1:44.095
 
 WHERE YOU SHOULD AIM
 No higher automatic target available.
@@ -51,18 +64,19 @@ YOUR CAR VS META
 No personal car comparison available.
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Hyundai Genesis Gr.3 | 744 drivers | 74.4%
+1. Hyundai Genesis Gr.3 | 805 drivers | 80.5%
 2. Jaguar F-type Gr.3 | 112 drivers | 11.2%
-3. Subaru WRX Gr.3 | 33 drivers | 3.3%
-4. SUZUKI Vision Gran Turismo (Gr.3 Version) | 22 drivers | 2.2%
-5. Ferrari 296 GT3 '23 | 19 drivers | 1.9%
+3. SUZUKI Vision Gran Turismo (Gr.3 Version) | 18 drivers | 1.8%
+4. Subaru WRX Gr.3 | 17 drivers | 1.7%
+5. Ferrari 296 GT3 '23 | 11 drivers | 1.1%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Jaguar F-type Gr.3 | OI 2.10 | Top100 12 | Top1000 112 | Medium
-2. Hyundai Genesis Gr.3 | OI 1.54 | Top100 82 | Top1000 744 | High
-3. Subaru WRX Gr.3 | OI 0.65 | Top100 2 | Top1000 33 | Medium
-4. Ferrari 296 GT3 '23 | OI 0.10 | Top100 0 | Top1000 19 | Medium
+1. Hyundai Genesis Gr.3 | OI 1.71 | Top100 92 | Top1000 805 | High
+2. Jaguar F-type Gr.3 | OI 1.22 | Top100 6 | Top1000 112 | High
+3. SUZUKI Vision Gran Turismo (Gr.3 Version) | OI 1.04 | Top100 1 | Top1000 18 | Medium
+4. Subaru WRX Gr.3 | OI 0.19 | Top100 0 | Top1000 17 | Medium
+5. Ferrari 296 GT3 '23 | OI 0.05 | Top100 0 | Top1000 11 | Medium
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
@@ -76,11 +90,11 @@ CARS TO TEST THIS WEEK
 Model: GR.3|HIGH | Technical evidence: 17%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. SUZUKI Vision Gran Turismo (Gr.3 Version) | STRONG ALTERNATIVE | Consensus 78% | SCI 60.2 | SSI 65.5 | Tech 57% | Usage 1.23% | Best #4
-2. Aston Martin V12 Vantage GT3 '12 | STRONG ALTERNATIVE | Consensus 77% | SCI 53.8 | SSI 68.8 | Tech 58% | Usage 0.66% | Best #60
-3. BMW Z4 GT3 '11 | STRONG ALTERNATIVE | Consensus 76% | SCI 54.4 | SSI 68.3 | Tech 57% | Usage 0.74% | Best #22
-4. Jaguar F-type Gr.3 | STRONG ALTERNATIVE | Consensus 69% | SCI 77.7 | SSI 53.6 | Tech 55% | Usage 5.59% | Best #12
-5. Chevrolet Corvette C7 Gr.3 | STRONG ALTERNATIVE | Consensus 69% | SCI 50.2 | SSI 65.6 | Tech 54% | Usage 0.51% | Best #689
+1. Aston Martin V12 Vantage GT3 '12 | STRONG ALTERNATIVE | Consensus 80% | SCI 51.6 | SSI 64.6 | Tech 58% | Usage 0.68% | Best #116
+2. Alfa Romeo 4C Gr.3 | STRONG ALTERNATIVE | Consensus 79% | SCI 51.4 | SSI 67.3 | Tech 53% | Usage 0.28% | Best #415
+3. Ford Mustang Gr.3 | STRONG ALTERNATIVE | Consensus 78% | SCI 50.1 | SSI 66.2 | Tech 55% | Usage 0.26% | Best #741
+4. BMW Z4 GT3 '11 | STRONG ALTERNATIVE | Consensus 76% | SCI 52.7 | SSI 63.2 | Tech 58% | Usage 0.78% | Best #72
+5. SUZUKI Vision Gran Turismo (Gr.3 Version) | STRONG ALTERNATIVE | Consensus 74% | SCI 64.6 | SSI 60.4 | Tech 57% | Usage 1.19% | Best #16
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
 ----------------------------------------
@@ -98,24 +112,22 @@ Top %      : N/A%
 WR gap     : +N/A%
 
 LATEST FINALIZED WEEK
-Week       : 2026-09-07
-CPI        : 7.53 / 10 | VERY STRONG
-Top %      : 8.80%
-WR gap     : +2.170%
+Week       : 2026-09-14
+CPI        : 7.60 / 10 | VERY STRONG
+Top %      : 7.70%
+WR gap     : +2.262%
 
 4-WEEK FINALIZED MOVING AVERAGE
-CPI        : 6.95
-Top %      : 11.11%
-WR gap     : +3.038%
+CPI        : 7.12
+Top %      : 9.96%
+WR gap     : +2.859%
 
 8-WEEK FINALIZED TREND
-CPI        : STABLE
+CPI        : IMPROVING
 Top %      : IMPROVING
-WR gap     : STABLE
+WR gap     : IMPROVING
 
 LAST FINALIZED RACES
-- 2026-07-20 | Gr.4 | Circuit Gilles-Villeneuve
-CPI 7.09 | Top 11.37% | WR +2.676%
 - 2026-07-27 | Gr.2 | Circuit de Barcelona-Catalunya GP
 CPI 6.40 | Top 13.50% | WR +3.850%
 - 2026-08-03 | Gr.3 | Tokyo Expressway - East Clockwise
@@ -130,17 +142,19 @@ CPI 7.15 | Top 9.44% | WR +2.805%
 CPI 6.21 | Top 13.89% | WR +4.199%
 - 2026-09-07 | Gr.3 | Dragon Trail - Seaside S. Cardinal - Hyundai Genesis Gr.3 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x6
 CPI 7.53 | Top 8.80% | WR +2.170%
+- 2026-09-14 | Gr.4 | Brands Hatch Grand Prix Circuit
+CPI 7.60 | Top 7.70% | WR +2.262%
 
 DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 4,865
+Entries        : 10,689
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
 Unknown codes  : 0 valid unmapped entries
-Invalid codes  : 0 entries
+Invalid codes  : 1 entries
 My PSN found   : No
 Weekly final   : No
 Percentile data: Top 10% and Top 5% direct snapshot stored
