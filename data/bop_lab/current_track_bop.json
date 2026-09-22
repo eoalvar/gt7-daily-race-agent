@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-21T15:21:31.441460+00:00",
+  "generated_at": "2026-09-22T11:54:11.810455+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-09-21T12:21:17.897075-03:00",
-  "race_description": "C Gr.3 Running Daily Race C i 17:31 Sardegna - Road Track - A Ryu - Hyundai Genesis Gr.3 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x8 Pit 1 Slipstream Custom",
+  "snapshot_timestamp": "2026-09-22T08:53:20.237465-03:00",
+  "race_description": "C Gr.3 Running Daily Race C i 17:31 Sardegna - Road Track - A A. Carrazza - Hyundai Genesis Gr.3 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x8 Pit 1 Slipstream Custom",
   "track": "Sardegna - Road Track - A",
   "group": "GR.3",
   "model_key": "GR.3|HIGH",
@@ -247,8 +247,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 112,
-      "leaderboard_percentage": 11.200000000000001,
+      "leaderboard_count": 155,
+      "leaderboard_percentage": 15.5,
       "active_bop": {
         "car": "Jaguar F-type Gr.3",
         "group": "GR.3",
@@ -373,8 +373,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 18,
-      "leaderboard_percentage": 1.7999999999999998,
+      "leaderboard_count": 20,
+      "leaderboard_percentage": 2.0,
       "active_bop": {
         "car": "Suzuki SUZUKI VGT (Gr.3)",
         "group": "GR.3",
@@ -400,6 +400,132 @@
         },
         "stability": {
           "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "Aston Martin V12 Vantage GT3 '12",
+      "available": true,
+      "match": {
+        "requested_name": "Aston Martin V12 Vantage GT3 '12",
+        "matched_name": "Aston Martin V12 Vantage GT3 '12",
+        "match_score": 100
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 3,
+      "can_identify_speed_class_from_car": true,
+      "HIGH": {
+        "car": "Aston Martin V12 Vantage GT3 '12",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 686.16,
+        "power_hp": 485.0,
+        "torque_nm": 562.9,
+        "weight_kg": 1250.0,
+        "power_weight_hp_t": 388.0,
+        "weight_balance": "51:49",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.86,
+          "0_1000m": 21.22,
+          "100_150_kmh": 2.57
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.41,
+          "240_kmh": 1.6
+        },
+        "stability": {
+          "low_speed": "-0.29 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Aston Martin V12 Vantage GT3 '12",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 684.89,
+        "power_hp": 485.0,
+        "torque_nm": 562.9,
+        "weight_kg": 1265.0,
+        "power_weight_hp_t": 383.39920948616606,
+        "weight_balance": "51:49",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.9,
+          "0_1000m": 21.28,
+          "100_150_kmh": 2.6
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.41,
+          "240_kmh": 1.6
+        },
+        "stability": {
+          "low_speed": "-0.29 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Aston Martin V12 Vantage GT3 '12",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 684.54,
+        "power_hp": 479.0,
+        "torque_nm": 556.0,
+        "weight_kg": 1250.0,
+        "power_weight_hp_t": 383.2,
+        "weight_balance": "51:49",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.91,
+          "0_1000m": 21.31,
+          "100_150_kmh": 2.6
+        },
+        "rotational_g": {
+          "60_kmh": 1.31,
+          "120_kmh": 1.41,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.29 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 6,
+      "leaderboard_percentage": 0.6,
+      "active_bop": {
+        "car": "Aston Martin V12 Vantage GT3 '12",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 686.16,
+        "power_hp": 485.0,
+        "torque_nm": 562.9,
+        "weight_kg": 1250.0,
+        "power_weight_hp_t": 388.0,
+        "weight_balance": "51:49",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.86,
+          "0_1000m": 21.22,
+          "100_150_kmh": 2.57
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.41,
+          "240_kmh": 1.6
+        },
+        "stability": {
+          "low_speed": "-0.29 | N",
           "high_speed": "-1 | U"
         }
       }
@@ -499,8 +625,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 17,
-      "leaderboard_percentage": 1.7000000000000002,
+      "leaderboard_count": 5,
+      "leaderboard_percentage": 0.5,
       "active_bop": {
         "car": "Subaru WRX Gr.3",
         "group": "GR.3",
@@ -526,132 +652,6 @@
         },
         "stability": {
           "low_speed": "-0.34 | N",
-          "high_speed": "-1 | U"
-        }
-      }
-    },
-    {
-      "car": "Ferrari 296 GT3 '23",
-      "available": true,
-      "match": {
-        "requested_name": "Ferrari 296 GT3 '23",
-        "matched_name": "Ferrari 296 GT3 '23",
-        "match_score": 100
-      },
-      "bop_version": "1.67",
-      "distinct_signatures": 2,
-      "can_identify_speed_class_from_car": true,
-      "HIGH": {
-        "car": "Ferrari 296 GT3 '23",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "HIGH",
-        "pp": 694.29,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 336.3636363636364,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 12.19,
-          "0_1000m": 21.68,
-          "100_150_kmh": 2.85
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.73
-        },
-        "stability": {
-          "low_speed": "-0.62 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "MID": {
-        "car": "Ferrari 296 GT3 '23",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 694.29,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 336.3636363636364,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 12.19,
-          "0_1000m": 21.68,
-          "100_150_kmh": 2.85
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.73
-        },
-        "stability": {
-          "low_speed": "-0.62 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "LOW": {
-        "car": "Ferrari 296 GT3 '23",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "LOW",
-        "pp": 692.86,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1335.0,
-        "power_weight_hp_t": 332.5842696629214,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 12.23,
-          "0_1000m": 21.75,
-          "100_150_kmh": 2.88
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.72
-        },
-        "stability": {
-          "low_speed": "-0.62 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "leaderboard_count": 11,
-      "leaderboard_percentage": 1.0999999999999999,
-      "active_bop": {
-        "car": "Ferrari 296 GT3 '23",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "HIGH",
-        "pp": 694.29,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 336.3636363636364,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 12.19,
-          "0_1000m": 21.68,
-          "100_150_kmh": 2.85
-        },
-        "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.73
-        },
-        "stability": {
-          "low_speed": "-0.62 | U",
           "high_speed": "-1 | U"
         }
       }

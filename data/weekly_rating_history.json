@@ -1041,7 +1041,7 @@
     "race": "C Gr.4 Archived Daily Race C i 16:45 Brands Hatch Grand Prix Circuit D. Chafe - Hyundai ELANTRA N TC '24 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit 1 Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0pFBW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
     "general_score": 9.243398513677331,
-    "elite_score": 2.448022651724963,
+    "elite_score": 7.612344607253697,
     "composite_rating": 6.5252481688963835,
     "position": 2872,
     "total_drivers": 37947,
@@ -1062,6 +1062,12 @@
     "same_car_total": 24940,
     "dr_rank": 1139,
     "dr_total": 10251,
-    "archive_upgrade_pending": false
+    "archive_upgrade_pending": false,
+    "legacy_elite_score": 2.448022651724963,
+    "legacy_general_score": 9.243398513677331,
+    "legacy_composite_rating": 6.5252481688963835,
+    "cpi_score": 7.612344607253697,
+    "cpi_band": "VERY STRONG",
+    "rating_model": "CPI_50_50_V1"
   }
 ]
