@@ -1,7 +1,7 @@
 GT7 BOP TRACK CLASSIFIER V2.0
 ====================================================================================================
-Generated            : 2026-09-22T13:42:27.823004+00:00
-Snapshot             : 2026-09-22T10:41:30.084457-03:00
+Generated            : 2026-09-23T00:28:45.308608+00:00
+Snapshot             : 2026-09-22T21:27:38.802927-03:00
 Track                : Sardegna - Road Track - A
 Group                : GR.3
 Model key            : GR.3|HIGH
@@ -18,7 +18,15 @@ CLASSIFICATION EVIDENCE
 
 YOUR CURRENT CAR
 ----------------------------------------------------------------------------------------------------
-No current personal car in latest snapshot.
+Car                  : Hyundai Genesis Gr.3
+Matched DB car       : Hyundai Genesis Gr.3
+Name match score     : 100
+BoP version          : 1.67
+HIGH                 : 483 HP / 1260 kg / PP 694.41
+MID                  : 483 HP / 1269 kg / PP 693.53
+LOW                  : 483 HP / 1285 kg / PP 692.27
+ACTIVE HIGH        : 483 HP / 1260 kg / PP 694.41
+Fingerprint usable   : YES
 
 TOP 5 USED CARS
 ----------------------------------------------------------------------------------------------------
@@ -26,7 +34,7 @@ TOP 5 USED CARS
 2. Jaguar F-type Gr.3 | DB=Jaguar F-type Gr.3 | score=100 | active=469 HP / 1254 kg / PP 696.74 | fingerprint=YES
 3. SUZUKI Vision Gran Turismo (Gr.3 Version) | DB=Suzuki SUZUKI VGT (Gr.3) | score=80 | active=469 HP / 1220 kg / PP 677.97 | fingerprint=YES
 4. Subaru WRX Gr.3 | DB=Subaru WRX Gr.3 | score=100 | active=497 HP / 1295 kg / PP 701.57 | fingerprint=YES
-5. Aston Martin V12 Vantage GT3 '12 | DB=Aston Martin V12 Vantage GT3 '12 | score=100 | active=485 HP / 1250 kg / PP 686.16 | fingerprint=YES
+5. Mitsubishi Lancer Evolution Final Edition Gr.3 | DB=Mitsubishi Lancer Evolution Final Gr.3 | score=94 | active=507 HP / 1300 kg / PP 702.3 | fingerprint=YES
 
 CLASSIFIER POLICY
 ----------------------------------------------------------------------------------------------------

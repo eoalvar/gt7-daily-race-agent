@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-22T13:42:27.823004+00:00",
+  "generated_at": "2026-09-23T00:28:45.308608+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-09-22T10:41:30.084457-03:00",
-  "race_description": "C Gr.3 Running Daily Race C i 17:31 Sardegna - Road Track - A A. Carrazza - Hyundai Genesis Gr.3 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x8 Pit 1 Slipstream Custom",
+  "snapshot_timestamp": "2026-09-22T21:27:38.802927-03:00",
+  "race_description": "C Gr.3 Running Daily Race C i 17:31 Sardegna - Road Track - A G. Rosson - Hyundai Genesis Gr.3 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x8 Pit 1 Slipstream Custom",
   "track": "Sardegna - Road Track - A",
   "group": "GR.3",
   "model_key": "GR.3|HIGH",
@@ -22,9 +22,131 @@
     }
   ],
   "database_records": 399,
-  "my_car": null,
-  "my_car_fingerprint": null,
-  "my_car_active_bop": null,
+  "my_car": "Hyundai Genesis Gr.3",
+  "my_car_fingerprint": {
+    "car": "Hyundai Genesis Gr.3",
+    "available": true,
+    "match": {
+      "requested_name": "Hyundai Genesis Gr.3",
+      "matched_name": "Hyundai Genesis Gr.3",
+      "match_score": 100
+    },
+    "bop_version": "1.67",
+    "distinct_signatures": 3,
+    "can_identify_speed_class_from_car": true,
+    "HIGH": {
+      "car": "Hyundai Genesis Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 694.41,
+      "power_hp": 483.0,
+      "torque_nm": 455.0,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 383.3333333333333,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "acceleration": {
+        "0_400m": 12.4,
+        "0_1000m": 21.83,
+        "100_150_kmh": 2.68
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      }
+    },
+    "MID": {
+      "car": "Hyundai Genesis Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 693.53,
+      "power_hp": 483.0,
+      "torque_nm": 455.0,
+      "weight_kg": 1269.0,
+      "power_weight_hp_t": 380.6146572104019,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "acceleration": {
+        "0_400m": 12.43,
+        "0_1000m": 21.87,
+        "100_150_kmh": 2.7
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.7
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      }
+    },
+    "LOW": {
+      "car": "Hyundai Genesis Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 692.27,
+      "power_hp": 483.0,
+      "torque_nm": 455.0,
+      "weight_kg": 1285.0,
+      "power_weight_hp_t": 375.87548638132296,
+      "weight_balance": "53:47",
+      "drivetrain": "FR",
+      "aspiration": "NA",
+      "acceleration": {
+        "0_400m": 12.47,
+        "0_1000m": 21.93,
+        "100_150_kmh": 2.72
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.69
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      }
+    }
+  },
+  "my_car_active_bop": {
+    "car": "Hyundai Genesis Gr.3",
+    "group": "GR.3",
+    "bop_version": "1.67",
+    "speed_class": "HIGH",
+    "pp": 694.41,
+    "power_hp": 483.0,
+    "torque_nm": 455.0,
+    "weight_kg": 1260.0,
+    "power_weight_hp_t": 383.3333333333333,
+    "weight_balance": "53:47",
+    "drivetrain": "FR",
+    "aspiration": "NA",
+    "acceleration": {
+      "0_400m": 12.4,
+      "0_1000m": 21.83,
+      "100_150_kmh": 2.68
+    },
+    "rotational_g": {
+      "60_kmh": 1.32,
+      "120_kmh": 1.44,
+      "240_kmh": 1.7
+    },
+    "stability": {
+      "low_speed": "-0.33 | N",
+      "high_speed": "-1 | U"
+    }
+  },
   "top5_used_cars": [
     {
       "car": "Hyundai Genesis Gr.3",
@@ -121,8 +243,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 812,
-      "leaderboard_percentage": 81.2,
+      "leaderboard_count": 776,
+      "leaderboard_percentage": 77.60000000000001,
       "active_bop": {
         "car": "Hyundai Genesis Gr.3",
         "group": "GR.3",
@@ -247,8 +369,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 153,
-      "leaderboard_percentage": 15.299999999999999,
+      "leaderboard_count": 193,
+      "leaderboard_percentage": 19.3,
       "active_bop": {
         "car": "Jaguar F-type Gr.3",
         "group": "GR.3",
@@ -373,8 +495,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 18,
-      "leaderboard_percentage": 1.7999999999999998,
+      "leaderboard_count": 16,
+      "leaderboard_percentage": 1.6,
       "active_bop": {
         "car": "Suzuki SUZUKI VGT (Gr.3)",
         "group": "GR.3",
@@ -531,38 +653,38 @@
       }
     },
     {
-      "car": "Aston Martin V12 Vantage GT3 '12",
+      "car": "Mitsubishi Lancer Evolution Final Edition Gr.3",
       "available": true,
       "match": {
-        "requested_name": "Aston Martin V12 Vantage GT3 '12",
-        "matched_name": "Aston Martin V12 Vantage GT3 '12",
-        "match_score": 100
+        "requested_name": "Mitsubishi Lancer Evolution Final Edition Gr.3",
+        "matched_name": "Mitsubishi Lancer Evolution Final Gr.3",
+        "match_score": 94
       },
       "bop_version": "1.67",
       "distinct_signatures": 3,
       "can_identify_speed_class_from_car": true,
       "HIGH": {
-        "car": "Aston Martin V12 Vantage GT3 '12",
+        "car": "Mitsubishi Lancer Evolution Final Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 686.16,
-        "power_hp": 485.0,
-        "torque_nm": 562.9,
-        "weight_kg": 1250.0,
-        "power_weight_hp_t": 388.0,
-        "weight_balance": "51:49",
+        "pp": 702.3,
+        "power_hp": 507.0,
+        "torque_nm": 542.3,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 390.0,
+        "weight_balance": "54:46",
         "drivetrain": "FR",
-        "aspiration": "NA",
+        "aspiration": "TC",
         "acceleration": {
-          "0_400m": 11.86,
-          "0_1000m": 21.22,
-          "100_150_kmh": 2.57
+          "0_400m": 11.49,
+          "0_1000m": 20.88,
+          "100_150_kmh": 2.67
         },
         "rotational_g": {
-          "60_kmh": 1.3,
-          "120_kmh": 1.41,
-          "240_kmh": 1.6
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.75
         },
         "stability": {
           "low_speed": "-0.29 | N",
@@ -570,27 +692,27 @@
         }
       },
       "MID": {
-        "car": "Aston Martin V12 Vantage GT3 '12",
+        "car": "Mitsubishi Lancer Evolution Final Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 684.89,
-        "power_hp": 485.0,
-        "torque_nm": 562.9,
-        "weight_kg": 1265.0,
-        "power_weight_hp_t": 383.39920948616606,
-        "weight_balance": "51:49",
+        "pp": 701.43,
+        "power_hp": 507.0,
+        "torque_nm": 542.3,
+        "weight_kg": 1310.0,
+        "power_weight_hp_t": 387.0229007633588,
+        "weight_balance": "54:46",
         "drivetrain": "FR",
-        "aspiration": "NA",
+        "aspiration": "TC",
         "acceleration": {
-          "0_400m": 11.9,
-          "0_1000m": 21.28,
-          "100_150_kmh": 2.6
+          "0_400m": 11.51,
+          "0_1000m": 20.91,
+          "100_150_kmh": 2.69
         },
         "rotational_g": {
-          "60_kmh": 1.3,
-          "120_kmh": 1.41,
-          "240_kmh": 1.6
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.75
         },
         "stability": {
           "low_speed": "-0.29 | N",
@@ -598,57 +720,57 @@
         }
       },
       "LOW": {
-        "car": "Aston Martin V12 Vantage GT3 '12",
+        "car": "Mitsubishi Lancer Evolution Final Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "LOW",
-        "pp": 684.54,
-        "power_hp": 479.0,
-        "torque_nm": 556.0,
-        "weight_kg": 1250.0,
-        "power_weight_hp_t": 383.2,
-        "weight_balance": "51:49",
+        "pp": 700.02,
+        "power_hp": 507.0,
+        "torque_nm": 542.3,
+        "weight_kg": 1326.0,
+        "power_weight_hp_t": 382.35294117647055,
+        "weight_balance": "54:46",
         "drivetrain": "FR",
-        "aspiration": "NA",
+        "aspiration": "TC",
         "acceleration": {
-          "0_400m": 11.91,
-          "0_1000m": 21.31,
-          "100_150_kmh": 2.6
+          "0_400m": 11.57,
+          "0_1000m": 20.99,
+          "100_150_kmh": 2.71
         },
         "rotational_g": {
-          "60_kmh": 1.31,
-          "120_kmh": 1.41,
-          "240_kmh": 1.61
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.74
         },
         "stability": {
           "low_speed": "-0.29 | N",
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 5,
-      "leaderboard_percentage": 0.5,
+      "leaderboard_count": 3,
+      "leaderboard_percentage": 0.3,
       "active_bop": {
-        "car": "Aston Martin V12 Vantage GT3 '12",
+        "car": "Mitsubishi Lancer Evolution Final Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 686.16,
-        "power_hp": 485.0,
-        "torque_nm": 562.9,
-        "weight_kg": 1250.0,
-        "power_weight_hp_t": 388.0,
-        "weight_balance": "51:49",
+        "pp": 702.3,
+        "power_hp": 507.0,
+        "torque_nm": 542.3,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 390.0,
+        "weight_balance": "54:46",
         "drivetrain": "FR",
-        "aspiration": "NA",
+        "aspiration": "TC",
         "acceleration": {
-          "0_400m": 11.86,
-          "0_1000m": 21.22,
-          "100_150_kmh": 2.57
+          "0_400m": 11.49,
+          "0_1000m": 20.88,
+          "100_150_kmh": 2.67
         },
         "rotational_g": {
-          "60_kmh": 1.3,
-          "120_kmh": 1.41,
-          "240_kmh": 1.6
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.75
         },
         "stability": {
           "low_speed": "-0.29 | N",
