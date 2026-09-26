@@ -1,6 +1,6 @@
 GT7 DAILY RACE C
 ==============================================================================
-Snapshot: 26/09/2026 07:11:14 - Sao Paulo
+Snapshot: 26/09/2026 10:24:01 - Sao Paulo
 C Gr.3 Running Daily Race C
 Car category: Gr.3
 Sardegna - Road Track - A
@@ -9,45 +9,45 @@ Current WR Car: Hyundai Genesis Gr.3
 Race Setup: RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x8 Pit 1 Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 56,727
+Total drivers: 57,667
 
 WHERE YOU ARE
 PSN             : crazy_rooster74
-Position        : #4,739 of 56,727
+Position        : #4,804 of 57,667
 Time            : 1:42.002
 Car             : Hyundai Genesis Gr.3
 Gap to WR       : +1.888s
 WR percentage   : 101.886%
 CPI             : 7.72 / 10 | VERY STRONG
 Pace class      : ELITE
-Top percentile  : Top 8.35%
-Ahead of        : 91.65% of participants
-Country rank    : #212 of 3,250 (BR)
-DR B rank     : #1,553 of 15,648
+Top percentile  : Top 8.33%
+Ahead of        : 91.67% of participants
+Country rank    : #212 of 3,275 (BR)
+DR B rank     : #1,587 of 15,828
 DR progress      : DR B | 25,704 pts | 78% toward next DR
-Same-car rank   : #3,252 of 24,152
+Same-car rank   : #3,298 of 24,458
 
 EXPECTED START
-Expected position     : P3.1
+Expected position     : P3.2
 Most likely position  : P3
 95% random-grid range : P1 to P6
 Your qualifying time  : 1:42.002
-DR B mean time       : 1:43.187
-DR B std deviation   : 1.109s
-Z-score               : -1.07
-Random opponent faster: 14.3%
-Population            : 15,444 DR B drivers
+DR B mean time       : 1:43.185
+DR B std deviation   : 1.111s
+Z-score               : -1.06
+Random opponent faster: 14.4%
+Population            : 15,621 DR B drivers
 Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
 DR S  : 1:40.625 average | SD 0.334s | 7 drivers
-DR A+ : 1:41.358 average | SD 0.625s | 1,214 drivers
-DR A  : 1:42.093 average | SD 0.763s | 3,623 drivers
-DR B  : 1:43.187 average | SD 1.109s | 15,444 drivers
-DR C  : 1:44.443 average | SD 1.401s | 14,454 drivers
-DR D  : 1:46.248 average | SD 2.190s | 17,957 drivers
-DR E  : 1:48.538 average | SD 3.794s | 3,071 drivers
+DR A+ : 1:41.359 average | SD 0.627s | 1,222 drivers
+DR A  : 1:42.090 average | SD 0.765s | 3,653 drivers
+DR B  : 1:43.185 average | SD 1.111s | 15,621 drivers
+DR C  : 1:44.439 average | SD 1.404s | 14,646 drivers
+DR D  : 1:46.242 average | SD 2.196s | 18,351 drivers
+DR E  : 1:48.529 average | SD 3.785s | 3,178 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:40.114 | L. Burton | Hyundai Genesis Gr.3
@@ -55,16 +55,16 @@ WR              : 1:40.114 | L. Burton | Hyundai Genesis Gr.3
 105% WR         : 1:45.120
 Top 10          : 1:40.292
 Top 100         : 1:40.628
-Top 500         : 1:41.003
-Top 1000        : 1:41.239
-Top 2500        : 1:41.647
-Top 5000        : 1:42.043
+Top 500         : 1:40.997
+Top 1000        : 1:41.237
+Top 2500        : 1:41.640
+Top 5000        : 1:42.034
 
 WHERE YOU SHOULD AIM
-1. Top 5%: #2,837 | 1:41.715 | gain needed 0.287s
-2. Top 2%: #1,135 | 1:41.282 | gain needed 0.720s
-3. Top 1000: #1,000 | 1:41.239 | gain needed 0.763s
-4. Top 1%: #568 | 1:41.046 | gain needed 0.956s
+1. Top 5%: #2,884 | 1:41.716 | gain needed 0.286s
+2. Top 2%: #1,154 | 1:41.283 | gain needed 0.719s
+3. Top 1000: #1,000 | 1:41.237 | gain needed 0.765s
+4. Top 1%: #577 | 1:41.043 | gain needed 0.959s
 
 YOUR CAR VS META
 Your car best   : 1:40.114 | Hyundai Genesis Gr.3
@@ -73,17 +73,17 @@ Meta car best   : 1:40.114 | Hyundai Genesis Gr.3
 Best-lap delta  : 0.000s
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Hyundai Genesis Gr.3 | 759 drivers | 75.9%
-2. Jaguar F-type Gr.3 | 214 drivers | 21.4%
-3. SUZUKI Vision Gran Turismo (Gr.3 Version) | 12 drivers | 1.2%
+1. Hyundai Genesis Gr.3 | 763 drivers | 76.3%
+2. Jaguar F-type Gr.3 | 211 drivers | 21.1%
+3. SUZUKI Vision Gran Turismo (Gr.3 Version) | 11 drivers | 1.1%
 4. Subaru WRX Gr.3 | 6 drivers | 0.6%
 5. Mitsubishi Lancer Evolution Final Edition Gr.3 | 2 drivers | 0.2%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Hyundai Genesis Gr.3 | OI 1.97 | Top100 87 | Top1000 759 | High
-2. SUZUKI Vision Gran Turismo (Gr.3 Version) | OI 1.71 | Top100 1 | Top1000 12 | Medium
-3. Jaguar F-type Gr.3 | OI 1.13 | Top100 12 | Top1000 214 | High
+1. Hyundai Genesis Gr.3 | OI 2.01 | Top100 89 | Top1000 763 | High
+2. Jaguar F-type Gr.3 | OI 1.07 | Top100 11 | Top1000 211 | High
+3. SUZUKI Vision Gran Turismo (Gr.3 Version) | OI 0.54 | Top100 0 | Top1000 11 | Medium
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
@@ -97,11 +97,11 @@ CARS TO TEST THIS WEEK
 Model: GR.3|HIGH | Technical evidence: 17%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. PEUGEOT Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 82% | SCI 46.3 | SSI 67.3 | Tech 54% | Usage 0.07% | Best #24892
-2. Ford GT LM Spec II Test Car | STRONG ALTERNATIVE | Consensus 79% | SCI 46.0 | SSI 67.1 | Tech 51% | Usage 0.07% | Best #29777
-3. Volkswagen GTI Vision Gran Turismo (Gr.3) | STRONG ALTERNATIVE | Consensus 76% | SCI 45.0 | SSI 66.6 | Tech 56% | Usage 0.10% | Best #12073
-4. Ford GT LM Race Car Spec II | STRONG ALTERNATIVE | Consensus 76% | SCI 45.6 | SSI 66.8 | Tech 51% | Usage 0.08% | Best #18388
-5. SUZUKI Vision Gran Turismo (Gr.3 Version) | STRONG ALTERNATIVE | Consensus 75% | SCI 67.6 | SSI 62.1 | Tech 55% | Usage 0.62% | Best #83
+1. PEUGEOT Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 81% | SCI 46.2 | SSI 67.4 | Tech 54% | Usage 0.07% | Best #25239
+2. Ford GT LM Race Car Spec II | STRONG ALTERNATIVE | Consensus 77% | SCI 45.7 | SSI 66.9 | Tech 51% | Usage 0.08% | Best #18638
+3. Ford GT LM Spec II Test Car | STRONG ALTERNATIVE | Consensus 77% | SCI 45.8 | SSI 66.4 | Tech 51% | Usage 0.07% | Best #30204
+4. Lexus RC F GT3 prototype '16 | STRONG ALTERNATIVE | Consensus 76% | SCI 45.7 | SSI 66.7 | Tech 49% | Usage 0.08% | Best #21136
+5. Volkswagen GTI Vision Gran Turismo (Gr.3) | STRONG ALTERNATIVE | Consensus 76% | SCI 44.7 | SSI 66.3 | Tech 55% | Usage 0.10% | Best #12259
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
 ==============================================================================
@@ -115,7 +115,7 @@ Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
 CPI        : 7.72 / 10 | VERY STRONG
-Top %      : 8.35%
+Top %      : 8.33%
 WR gap     : +1.886%
 
 LATEST FINALIZED WEEK
@@ -126,7 +126,7 @@ WR gap     : +2.262%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
 CPI        : 7.61 -> 7.72 (+0.11)
-Top %      : 7.57% -> 8.35% (+0.79 pp)
+Top %      : 7.57% -> 8.33% (+0.76 pp)
 WR gap     : +2.262% -> +1.886% (-0.376 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
@@ -161,12 +161,12 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 56,727
+Entries        : 57,667
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
 Unknown codes  : 0 valid unmapped entries
-Invalid codes  : 20 entries
+Invalid codes  : 21 entries
 My PSN found   : Yes
 Weekly final   : No
 Percentile data: Top 10% and Top 5% direct snapshot stored
