@@ -2495,19 +2495,19 @@
     {
       "race_key": "live:GR.3:HIGH:2026-09-21",
       "week_start": "2026-09-21",
-      "captured_at": "2026-09-26T13:26:48.976997+00:00",
+      "captured_at": "2026-09-26T21:05:30.120598+00:00",
       "track": "Sardegna - Road Track - A",
       "group": "GR.3",
       "speed_class": "HIGH",
       "model_key": "GR.3|HIGH",
       "status": "LIVE_SNAPSHOT",
-      "total_drivers": 57667,
+      "total_drivers": 60367,
       "cars": [
         {
           "car_code": 2160,
           "car": "Hyundai Genesis Gr.3",
-          "sample": 24458,
-          "performance_target": 0.8691364565957592,
+          "sample": 25307,
+          "performance_target": 0.8728953435956373,
           "technical": {
             "power_weight_hp_t": 383.3333333333333,
             "weight_kg": 1260.0,
@@ -2522,8 +2522,8 @@
         {
           "car_code": 2184,
           "car": "Jaguar F-type Gr.3",
-          "sample": 7531,
-          "performance_target": 0.7207968255928874,
+          "sample": 7874,
+          "performance_target": 0.7133121801363943,
           "technical": {
             "power_weight_hp_t": 374.0031897926635,
             "weight_kg": 1254.0,
@@ -2539,7 +2539,7 @@
           "car_code": 3508,
           "car": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
           "sample": 352,
-          "performance_target": 0.44119288617720503,
+          "performance_target": 0.44797100053874644,
           "technical": {
             "power_weight_hp_t": 384.42622950819674,
             "weight_kg": 1220.0,
@@ -2554,8 +2554,8 @@
         {
           "car_code": 3183,
           "car": "PEUGEOT Vision Gran Turismo (Gr.3)",
-          "sample": 39,
-          "performance_target": 0.2488129660035225,
+          "sample": 41,
+          "performance_target": 0.24635626376224026,
           "technical": {
             "power_weight_hp_t": 375.88652482269504,
             "weight_kg": 1269.0,
@@ -2568,26 +2568,10 @@
           }
         },
         {
-          "car_code": 1425,
-          "car": "Ford GT LM Spec II Test Car",
-          "sample": 42,
-          "performance_target": 0.24164949695044272,
-          "technical": {
-            "power_weight_hp_t": 350.19762845849806,
-            "weight_kg": 1265.0,
-            "front_weight_pct": 43.0,
-            "acceleration_0_400": 11.48,
-            "acceleration_100_150": 2.82,
-            "rotational_g_60": 1.32,
-            "rotational_g_120": 1.41,
-            "rotational_g_240": 1.59
-          }
-        },
-        {
           "car_code": 3228,
           "car": "Lexus RC F GT3 prototype '16",
           "sample": 44,
-          "performance_target": 0.24240734150661447,
+          "performance_target": 0.24211601392408688,
           "technical": {
             "power_weight_hp_t": 342.7480916030534,
             "weight_kg": 1310.0,
@@ -2600,10 +2584,26 @@
           }
         },
         {
+          "car_code": 1425,
+          "car": "Ford GT LM Spec II Test Car",
+          "sample": 45,
+          "performance_target": 0.2363781677936271,
+          "technical": {
+            "power_weight_hp_t": 350.19762845849806,
+            "weight_kg": 1265.0,
+            "front_weight_pct": 43.0,
+            "acceleration_0_400": 11.48,
+            "acceleration_100_150": 2.82,
+            "rotational_g_60": 1.32,
+            "rotational_g_120": 1.41,
+            "rotational_g_240": 1.59
+          }
+        },
+        {
           "car_code": 1040,
           "car": "Ford GT LM Race Car Spec II",
-          "sample": 45,
-          "performance_target": 0.24261758849881587,
+          "sample": 47,
+          "performance_target": 0.2331024783126964,
           "technical": {
             "power_weight_hp_t": 357.7689243027889,
             "weight_kg": 1255.0,
@@ -2618,8 +2618,8 @@
         {
           "car_code": 2192,
           "car": "Volkswagen GTI Vision Gran Turismo (Gr.3)",
-          "sample": 56,
-          "performance_target": 0.23278165647325796,
+          "sample": 60,
+          "performance_target": 0.22616948609584395,
           "technical": {
             "power_weight_hp_t": 398.41269841269843,
             "weight_kg": 1260.0,
@@ -2634,8 +2634,8 @@
         {
           "car_code": 1797,
           "car": "Mercedes-Benz SLS AMG GT3 '11",
-          "sample": 60,
-          "performance_target": 0.22303266435232694,
+          "sample": 63,
+          "performance_target": 0.21815713692152539,
           "technical": {
             "power_weight_hp_t": 356.6176470588235,
             "weight_kg": 1360.0,
@@ -2650,8 +2650,8 @@
         {
           "car_code": 3503,
           "car": "MAZDA RX-VISION GT3 CONCEPT Stealth Model",
-          "sample": 69,
-          "performance_target": 0.23393868195375117,
+          "sample": 77,
+          "performance_target": 0.2223447830560214,
           "technical": {
             "power_weight_hp_t": 341.21355397951146,
             "weight_kg": 1269.0,
@@ -2666,8 +2666,8 @@
         {
           "car_code": 485,
           "car": "Nissan GT-R GT500 '99",
-          "sample": 85,
-          "performance_target": 0.20439644562773243,
+          "sample": 93,
+          "performance_target": 0.1943106492104331,
           "technical": {
             "power_weight_hp_t": 375.20661157024796,
             "weight_kg": 1210.0,
@@ -2682,8 +2682,8 @@
         {
           "car_code": 3237,
           "car": "Mazda Atenza Gr.3",
-          "sample": 107,
-          "performance_target": 0.21371186837066722,
+          "sample": 108,
+          "performance_target": 0.21148890514185004,
           "technical": {
             "power_weight_hp_t": 371.79487179487177,
             "weight_kg": 1326.0,
@@ -2696,26 +2696,10 @@
           }
         },
         {
-          "car_code": 3493,
-          "car": "Nissan Skyline Super Silhouette Group 5 '84",
-          "sample": 119,
-          "performance_target": 0.1742398998511288,
-          "technical": {
-            "power_weight_hp_t": 514.4278606965174,
-            "weight_kg": 1005.0,
-            "front_weight_pct": 52.0,
-            "acceleration_0_400": 12.14,
-            "acceleration_100_150": 2.92,
-            "rotational_g_60": 1.28,
-            "rotational_g_120": 1.41,
-            "rotational_g_240": 1.64
-          }
-        },
-        {
           "car_code": 1902,
           "car": "BMW Z4 GT3 '11",
-          "sample": 272,
-          "performance_target": 0.25211967712526095,
+          "sample": 278,
+          "performance_target": 0.25015685312843017,
           "technical": {
             "power_weight_hp_t": 368.0,
             "weight_kg": 1250.0,
@@ -2728,10 +2712,26 @@
           }
         },
         {
+          "car_code": 3493,
+          "car": "Nissan Skyline Super Silhouette Group 5 '84",
+          "sample": 125,
+          "performance_target": 0.16808633502564,
+          "technical": {
+            "power_weight_hp_t": 514.4278606965174,
+            "weight_kg": 1005.0,
+            "front_weight_pct": 52.0,
+            "acceleration_0_400": 12.14,
+            "acceleration_100_150": 2.92,
+            "rotational_g_60": 1.28,
+            "rotational_g_120": 1.41,
+            "rotational_g_240": 1.64
+          }
+        },
+        {
           "car_code": 140,
           "car": "Honda NSX GT500 '00",
-          "sample": 112,
-          "performance_target": 0.15469104812339352,
+          "sample": 115,
+          "performance_target": 0.15155422065235566,
           "technical": {
             "power_weight_hp_t": 346.5587044534413,
             "weight_kg": 1235.0,
@@ -2744,26 +2744,10 @@
           }
         },
         {
-          "car_code": 2143,
-          "car": "Audi R8 LMS '15",
-          "sample": 115,
-          "performance_target": 0.1520241512251945,
-          "technical": {
-            "power_weight_hp_t": 332.5958702064897,
-            "weight_kg": 1356.0,
-            "front_weight_pct": 42.0,
-            "acceleration_0_400": 12.49,
-            "acceleration_100_150": 2.91,
-            "rotational_g_60": 1.33,
-            "rotational_g_120": 1.44,
-            "rotational_g_240": 1.66
-          }
-        },
-        {
           "car_code": 2188,
           "car": "Renault Sport R.S.01 GT3 '16",
-          "sample": 126,
-          "performance_target": 0.16426100752713285,
+          "sample": 137,
+          "performance_target": 0.15450101234160107,
           "technical": {
             "power_weight_hp_t": 354.3726235741445,
             "weight_kg": 1315.0,
@@ -2778,8 +2762,8 @@
         {
           "car_code": 3185,
           "car": "Alfa Romeo 4C Gr.3",
-          "sample": 147,
-          "performance_target": 0.18004454128318975,
+          "sample": 156,
+          "performance_target": 0.17258921769008045,
           "technical": {
             "power_weight_hp_t": 366.93548387096774,
             "weight_kg": 1240.0,
@@ -2792,10 +2776,26 @@
           }
         },
         {
+          "car_code": 2143,
+          "car": "Audi R8 LMS '15",
+          "sample": 130,
+          "performance_target": 0.1385610530725922,
+          "technical": {
+            "power_weight_hp_t": 332.5958702064897,
+            "weight_kg": 1356.0,
+            "front_weight_pct": 42.0,
+            "acceleration_0_400": 12.49,
+            "acceleration_100_150": 2.91,
+            "rotational_g_60": 1.33,
+            "rotational_g_120": 1.44,
+            "rotational_g_240": 1.66
+          }
+        },
+        {
           "car_code": 1984,
           "car": "McLaren F1 GTR - BMW '95",
-          "sample": 153,
-          "performance_target": 0.17192074881871638,
+          "sample": 160,
+          "performance_target": 0.1660787009263473,
           "technical": {
             "power_weight_hp_t": 372.44897959183675,
             "weight_kg": 1176.0,
@@ -2810,8 +2810,8 @@
         {
           "car_code": 3394,
           "car": "Aston Martin DBR9 GT1 '10",
-          "sample": 164,
-          "performance_target": 0.1704252859219994,
+          "sample": 173,
+          "performance_target": 0.16373785725406192,
           "technical": {
             "power_weight_hp_t": 398.2978723404255,
             "weight_kg": 1175.0,
@@ -2826,8 +2826,8 @@
         {
           "car_code": 3238,
           "car": "Peugeot RCZ Gr.3",
-          "sample": 142,
-          "performance_target": 0.13816896066012588,
+          "sample": 149,
+          "performance_target": 0.13254848886282822,
           "technical": {
             "power_weight_hp_t": 382.60869565217394,
             "weight_kg": 1265.0,
@@ -2842,8 +2842,8 @@
         {
           "car_code": 2185,
           "car": "Mitsubishi Lancer Evolution Final Edition Gr.3",
-          "sample": 616,
-          "performance_target": 0.20534974596424999,
+          "sample": 646,
+          "performance_target": 0.201472145734471,
           "technical": {
             "power_weight_hp_t": 390.0,
             "weight_kg": 1300.0,
@@ -2858,8 +2858,8 @@
         {
           "car_code": 2159,
           "car": "Ford Mustang Gr.3",
-          "sample": 210,
-          "performance_target": 0.15837467996885526,
+          "sample": 214,
+          "performance_target": 0.1552818391349666,
           "technical": {
             "power_weight_hp_t": 371.53846153846155,
             "weight_kg": 1300.0,
@@ -2872,42 +2872,10 @@
           }
         },
         {
-          "car_code": 2186,
-          "car": "Subaru WRX Gr.3",
-          "sample": 1012,
-          "performance_target": 0.19978081122825958,
-          "technical": {
-            "power_weight_hp_t": 383.7837837837838,
-            "weight_kg": 1295.0,
-            "front_weight_pct": 54.0,
-            "acceleration_0_400": 11.62,
-            "acceleration_100_150": 2.67,
-            "rotational_g_60": 1.31,
-            "rotational_g_120": 1.45,
-            "rotational_g_240": 1.75
-          }
-        },
-        {
-          "car_code": 3224,
-          "car": "Mercedes-AMG GT3 '16",
-          "sample": 182,
-          "performance_target": 0.11875878601888944,
-          "technical": {
-            "power_weight_hp_t": 343.39622641509436,
-            "weight_kg": 1325.0,
-            "front_weight_pct": 49.0,
-            "acceleration_0_400": 11.46,
-            "acceleration_100_150": 2.83,
-            "rotational_g_60": 1.31,
-            "rotational_g_120": 1.43,
-            "rotational_g_240": 1.72
-          }
-        },
-        {
           "car_code": 2183,
           "car": "Chevrolet Corvette C7 Gr.3",
-          "sample": 308,
-          "performance_target": 0.17186428795542702,
+          "sample": 321,
+          "performance_target": 0.1674105281272972,
           "technical": {
             "power_weight_hp_t": 369.2307692307692,
             "weight_kg": 1300.0,
@@ -2920,10 +2888,26 @@
           }
         },
         {
+          "car_code": 2186,
+          "car": "Subaru WRX Gr.3",
+          "sample": 1052,
+          "performance_target": 0.18448381840430558,
+          "technical": {
+            "power_weight_hp_t": 383.7837837837838,
+            "weight_kg": 1295.0,
+            "front_weight_pct": 54.0,
+            "acceleration_0_400": 11.62,
+            "acceleration_100_150": 2.67,
+            "rotational_g_60": 1.31,
+            "rotational_g_120": 1.45,
+            "rotational_g_240": 1.75
+          }
+        },
+        {
           "car_code": 2190,
           "car": "GT by Citroën Race Car (Gr.3)",
-          "sample": 181,
-          "performance_target": 0.11112898494030425,
+          "sample": 192,
+          "performance_target": 0.10485271273096064,
           "technical": {
             "power_weight_hp_t": 352.38095238095235,
             "weight_kg": 1260.0,
@@ -2936,42 +2920,26 @@
           }
         },
         {
-          "car_code": 1905,
-          "car": "Nissan GT-R NISMO GT3 '13",
-          "sample": 193,
-          "performance_target": 0.1130435786228689,
+          "car_code": 3224,
+          "car": "Mercedes-AMG GT3 '16",
+          "sample": 199,
+          "performance_target": 0.10940848797420753,
           "technical": {
-            "power_weight_hp_t": 387.0722433460076,
-            "weight_kg": 1315.0,
-            "front_weight_pct": 55.0,
-            "acceleration_0_400": 11.69,
-            "acceleration_100_150": 2.74,
-            "rotational_g_60": 1.33,
-            "rotational_g_120": 1.42,
-            "rotational_g_240": 1.61
-          }
-        },
-        {
-          "car_code": 3235,
-          "car": "Honda NSX Gr.3",
-          "sample": 192,
-          "performance_target": 0.10857053387542473,
-          "technical": {
-            "power_weight_hp_t": 371.53846153846155,
-            "weight_kg": 1300.0,
-            "front_weight_pct": 42.0,
-            "acceleration_0_400": 11.61,
-            "acceleration_100_150": 2.91,
-            "rotational_g_60": 1.32,
-            "rotational_g_120": 1.45,
-            "rotational_g_240": 1.69
+            "power_weight_hp_t": 343.39622641509436,
+            "weight_kg": 1325.0,
+            "front_weight_pct": 49.0,
+            "acceleration_0_400": 11.46,
+            "acceleration_100_150": 2.83,
+            "rotational_g_60": 1.31,
+            "rotational_g_120": 1.43,
+            "rotational_g_240": 1.72
           }
         },
         {
           "car_code": 2131,
           "car": "Aston Martin V12 Vantage GT3 '12",
-          "sample": 510,
-          "performance_target": 0.16161932800131534,
+          "sample": 524,
+          "performance_target": 0.15907177829905095,
           "technical": {
             "power_weight_hp_t": 388.0,
             "weight_kg": 1250.0,
@@ -2984,10 +2952,26 @@
           }
         },
         {
+          "car_code": 1905,
+          "car": "Nissan GT-R NISMO GT3 '13",
+          "sample": 211,
+          "performance_target": 0.10394100074071794,
+          "technical": {
+            "power_weight_hp_t": 387.0722433460076,
+            "weight_kg": 1315.0,
+            "front_weight_pct": 55.0,
+            "acceleration_0_400": 11.69,
+            "acceleration_100_150": 2.74,
+            "rotational_g_60": 1.33,
+            "rotational_g_120": 1.42,
+            "rotational_g_240": 1.61
+          }
+        },
+        {
           "car_code": 3436,
           "car": "Ford GT Race Car '18",
-          "sample": 198,
-          "performance_target": 0.10623462617619109,
+          "sample": 208,
+          "performance_target": 0.10100770229969408,
           "technical": {
             "power_weight_hp_t": 354.4,
             "weight_kg": 1250.0,
@@ -3000,26 +2984,26 @@
           }
         },
         {
-          "car_code": 1470,
-          "car": "Toyota Supra GT500 '97",
-          "sample": 206,
-          "performance_target": 0.10774993229063087,
+          "car_code": 3235,
+          "car": "Honda NSX Gr.3",
+          "sample": 208,
+          "performance_target": 0.10039977379031423,
           "technical": {
-            "power_weight_hp_t": 381.27659574468083,
-            "weight_kg": 1175.0,
-            "front_weight_pct": 52.0,
-            "acceleration_0_400": 11.43,
-            "acceleration_100_150": 2.76,
-            "rotational_g_60": 1.34,
-            "rotational_g_120": 1.43,
-            "rotational_g_240": 1.65
+            "power_weight_hp_t": 371.53846153846155,
+            "weight_kg": 1300.0,
+            "front_weight_pct": 42.0,
+            "acceleration_0_400": 11.61,
+            "acceleration_100_150": 2.91,
+            "rotational_g_60": 1.32,
+            "rotational_g_120": 1.45,
+            "rotational_g_240": 1.69
           }
         },
         {
           "car_code": 1904,
           "car": "BMW M3 GT '11",
-          "sample": 214,
-          "performance_target": 0.11173760267293319,
+          "sample": 221,
+          "performance_target": 0.10798468984221185,
           "technical": {
             "power_weight_hp_t": 359.5679012345679,
             "weight_kg": 1296.0,
@@ -3032,26 +3016,26 @@
           }
         },
         {
-          "car_code": 2182,
-          "car": "McLaren 650S GT3 '15",
-          "sample": 208,
-          "performance_target": 0.09836561810096596,
+          "car_code": 1470,
+          "car": "Toyota Supra GT500 '97",
+          "sample": 220,
+          "performance_target": 0.1010145538127756,
           "technical": {
-            "power_weight_hp_t": 362.7376425855513,
-            "weight_kg": 1315.0,
-            "front_weight_pct": 44.0,
-            "acceleration_0_400": 12.09,
-            "acceleration_100_150": 2.98,
+            "power_weight_hp_t": 381.27659574468083,
+            "weight_kg": 1175.0,
+            "front_weight_pct": 52.0,
+            "acceleration_0_400": 11.43,
+            "acceleration_100_150": 2.76,
             "rotational_g_60": 1.34,
-            "rotational_g_120": 1.45,
-            "rotational_g_240": 1.7
+            "rotational_g_120": 1.43,
+            "rotational_g_240": 1.65
           }
         },
         {
           "car_code": 3340,
           "car": "Lexus RC F GT3 '17",
-          "sample": 260,
-          "performance_target": 0.1298405505971508,
+          "sample": 271,
+          "performance_target": 0.12528171522171694,
           "technical": {
             "power_weight_hp_t": 346.15384615384613,
             "weight_kg": 1300.0,
@@ -3064,26 +3048,26 @@
           }
         },
         {
-          "car_code": 3223,
-          "car": "Dodge Viper SRT GT3-R '15",
-          "sample": 522,
-          "performance_target": 0.13182750958617165,
+          "car_code": 2182,
+          "car": "McLaren 650S GT3 '15",
+          "sample": 216,
+          "performance_target": 0.09438139257046571,
           "technical": {
-            "power_weight_hp_t": 365.38461538461536,
-            "weight_kg": 1300.0,
-            "front_weight_pct": 49.0,
-            "acceleration_0_400": 11.06,
-            "acceleration_100_150": 2.6,
-            "rotational_g_60": 1.3,
-            "rotational_g_120": 1.41,
-            "rotational_g_240": 1.68
+            "power_weight_hp_t": 362.7376425855513,
+            "weight_kg": 1315.0,
+            "front_weight_pct": 44.0,
+            "acceleration_0_400": 12.09,
+            "acceleration_100_150": 2.98,
+            "rotational_g_60": 1.34,
+            "rotational_g_120": 1.45,
+            "rotational_g_240": 1.7
           }
         },
         {
           "car_code": 3419,
           "car": "MAZDA RX-VISION GT3 CONCEPT",
-          "sample": 236,
-          "performance_target": 0.10609821498771532,
+          "sample": 241,
+          "performance_target": 0.10341992723762418,
           "technical": {
             "power_weight_hp_t": 341.21355397951146,
             "weight_kg": 1269.0,
@@ -3096,10 +3080,26 @@
           }
         },
         {
+          "car_code": 3223,
+          "car": "Dodge Viper SRT GT3-R '15",
+          "sample": 542,
+          "performance_target": 0.11947041614301132,
+          "technical": {
+            "power_weight_hp_t": 365.38461538461536,
+            "weight_kg": 1300.0,
+            "front_weight_pct": 49.0,
+            "acceleration_0_400": 11.06,
+            "acceleration_100_150": 2.6,
+            "rotational_g_60": 1.3,
+            "rotational_g_120": 1.41,
+            "rotational_g_240": 1.68
+          }
+        },
+        {
           "car_code": 3221,
           "car": "BMW M6 GT3 Sprint Model '16",
-          "sample": 675,
-          "performance_target": 0.12333961267652377,
+          "sample": 707,
+          "performance_target": 0.12044509334138598,
           "technical": {
             "power_weight_hp_t": 348.41628959276017,
             "weight_kg": 1326.0,
@@ -3114,8 +3114,8 @@
         {
           "car_code": 3305,
           "car": "Volkswagen Beetle Gr.3",
-          "sample": 656,
-          "performance_target": 0.09321780182826145,
+          "sample": 698,
+          "performance_target": 0.09022572872970915,
           "technical": {
             "power_weight_hp_t": 371.60589604344455,
             "weight_kg": 1289.0,
@@ -3130,8 +3130,8 @@
         {
           "car_code": 3352,
           "car": "Toyota GR Supra Racing Concept '18",
-          "sample": 338,
-          "performance_target": 0.073049077913695,
+          "sample": 357,
+          "performance_target": 0.06886511246840014,
           "technical": {
             "power_weight_hp_t": 369.6,
             "weight_kg": 1250.0,
@@ -3146,8 +3146,8 @@
         {
           "car_code": 2187,
           "car": "Toyota FT-1 Vision Gran Turismo (Gr.3)",
-          "sample": 345,
-          "performance_target": 0.06918901388982068,
+          "sample": 359,
+          "performance_target": 0.06601365640628609,
           "technical": {
             "power_weight_hp_t": 350.3703703703703,
             "weight_kg": 1350.0,
@@ -3162,8 +3162,8 @@
         {
           "car_code": 3588,
           "car": "Ferrari 296 GT3 '23",
-          "sample": 3851,
-          "performance_target": 0.11948683867198884,
+          "sample": 4092,
+          "performance_target": 0.11783064419708442,
           "technical": {
             "power_weight_hp_t": 336.3636363636364,
             "weight_kg": 1320.0,
@@ -3176,10 +3176,26 @@
           }
         },
         {
+          "car_code": 3502,
+          "car": "Genesis X GR3",
+          "sample": 1971,
+          "performance_target": 0.0917025829701237,
+          "technical": {
+            "power_weight_hp_t": 361.2403100775194,
+            "weight_kg": 1290.0,
+            "front_weight_pct": 52.0,
+            "acceleration_0_400": 12.04,
+            "acceleration_100_150": 2.79,
+            "rotational_g_60": 1.33,
+            "rotational_g_120": 1.44,
+            "rotational_g_240": 1.74
+          }
+        },
+        {
           "car_code": 3474,
           "car": "Subaru BRZ GT300 '21",
-          "sample": 345,
-          "performance_target": 0.05809899783880913,
+          "sample": 366,
+          "performance_target": 0.05401275242460657,
           "technical": {
             "power_weight_hp_t": 334.6007604562738,
             "weight_kg": 1315.0,
@@ -3194,8 +3210,8 @@
         {
           "car_code": 3450,
           "car": "Nissan GT-R NISMO GT3 '18",
-          "sample": 407,
-          "performance_target": 0.06054121195637837,
+          "sample": 430,
+          "performance_target": 0.05700973623237689,
           "technical": {
             "power_weight_hp_t": 362.36162361623616,
             "weight_kg": 1355.0,
@@ -3208,42 +3224,10 @@
           }
         },
         {
-          "car_code": 3502,
-          "car": "Genesis X GR3",
-          "sample": 1882,
-          "performance_target": 0.09335092225986015,
-          "technical": {
-            "power_weight_hp_t": 361.2403100775194,
-            "weight_kg": 1290.0,
-            "front_weight_pct": 52.0,
-            "acceleration_0_400": 12.04,
-            "acceleration_100_150": 2.79,
-            "rotational_g_60": 1.33,
-            "rotational_g_120": 1.44,
-            "rotational_g_240": 1.74
-          }
-        },
-        {
-          "car_code": 2177,
-          "car": "Lamborghini Huracán GT3 '15",
-          "sample": 613,
-          "performance_target": 0.06732718193722814,
-          "technical": {
-            "power_weight_hp_t": 340.6510219530659,
-            "weight_kg": 1321.0,
-            "front_weight_pct": 42.0,
-            "acceleration_0_400": 12.24,
-            "acceleration_100_150": 2.85,
-            "rotational_g_60": 1.33,
-            "rotational_g_120": 1.45,
-            "rotational_g_240": 1.66
-          }
-        },
-        {
           "car_code": 2158,
           "car": "Ferrari 458 Italia GT3 '13",
-          "sample": 720,
-          "performance_target": 0.06654406411047191,
+          "sample": 771,
+          "performance_target": 0.06386226797154111,
           "technical": {
             "power_weight_hp_t": 342.20532319391634,
             "weight_kg": 1315.0,
@@ -3258,8 +3242,8 @@
         {
           "car_code": 3218,
           "car": "BMW M6 GT3 Endurance Model '16",
-          "sample": 523,
-          "performance_target": 0.05944836440335801,
+          "sample": 568,
+          "performance_target": 0.05556203498611166,
           "technical": {
             "power_weight_hp_t": 348.41628959276017,
             "weight_kg": 1326.0,
@@ -3272,10 +3256,26 @@
           }
         },
         {
+          "car_code": 2177,
+          "car": "Lamborghini Huracán GT3 '15",
+          "sample": 650,
+          "performance_target": 0.04757677432364224,
+          "technical": {
+            "power_weight_hp_t": 340.6510219530659,
+            "weight_kg": 1321.0,
+            "front_weight_pct": 42.0,
+            "acceleration_0_400": 12.24,
+            "acceleration_100_150": 2.85,
+            "rotational_g_60": 1.33,
+            "rotational_g_120": 1.45,
+            "rotational_g_240": 1.66
+          }
+        },
+        {
           "car_code": 3531,
           "car": "Mercedes-AMG GT3 '20",
-          "sample": 1268,
-          "performance_target": 0.05753551007706273,
+          "sample": 1350,
+          "performance_target": 0.05586452015296386,
           "technical": {
             "power_weight_hp_t": 341.48148148148147,
             "weight_kg": 1350.0,
@@ -3290,8 +3290,8 @@
         {
           "car_code": 3311,
           "car": "Porsche 911 RSR (991) '17",
-          "sample": 1257,
-          "performance_target": 0.05136240304563124,
+          "sample": 1372,
+          "performance_target": 0.049560031527672445,
           "technical": {
             "power_weight_hp_t": 338.9312977099236,
             "weight_kg": 1310.0,
@@ -3306,8 +3306,8 @@
         {
           "car_code": 3405,
           "car": "Audi R8 LMS Evo '19",
-          "sample": 1027,
-          "performance_target": 0.038856477859966584,
+          "sample": 1108,
+          "performance_target": 0.03707393786144753,
           "technical": {
             "power_weight_hp_t": 340.2298850574713,
             "weight_kg": 1305.0,
@@ -3322,8 +3322,8 @@
         {
           "car_code": 3600,
           "car": "Porsche 911 GT3 R (992) '22",
-          "sample": 4253,
-          "performance_target": 0.07159360522637653,
+          "sample": 4526,
+          "performance_target": 0.07022787917657057,
           "technical": {
             "power_weight_hp_t": 337.8787878787879,
             "weight_kg": 1320.0,
@@ -3338,5 +3338,5 @@
       ]
     }
   ],
-  "updated_at": "2026-09-26T13:26:48.977024+00:00"
+  "updated_at": "2026-09-26T21:05:30.120627+00:00"
 }
