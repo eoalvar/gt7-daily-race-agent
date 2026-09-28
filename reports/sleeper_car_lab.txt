@@ -1,18 +1,18 @@
 GT7 SLEEPER CAR LAB V0.3
 ====================================================================================================
-Generated            : 2026-09-27T13:00:45.959455+00:00
-Track                : Sardegna - Road Track - A
-Group                : GR.3
-Active BoP           : HIGH
-Model key            : GR.3|HIGH
-Total drivers        : 63,455
-Cars observed        : 53
-Cars eligible (n>=20) : 53
-Eligible with BoP    : 52
-Eligible without BoP : 1
-WR                   : 1:40.044
-Top 500              : 1:40.973
-Elapsed              : 0.7s
+Generated            : 2026-09-28T12:14:36.518962+00:00
+Track                : Red Bull Ring
+Group                : GR.4
+Active BoP           : MID
+Model key            : GR.4|MID
+Total drivers        : 4,197
+Cars observed        : 35
+Cars eligible (n>=20) : 20
+Eligible with BoP    : 20
+Eligible without BoP : 0
+WR                   : 1:33.525
+Top 500              : 1:35.165
+Elapsed              : 0.1s
 Production modified  : NO
 
 METHOD
@@ -25,40 +25,36 @@ matching group + speed-class model has enough independent race weeks.
 
 TOP SLEEPER CANDIDATES
 ----------------------------------------------------------------------------------------------------
- 1. Hyundai Genesis Gr.3 | SCI 76.7 | META / PROVEN | n=26295 (41.44%) | Eff 1.94x | T100 91 / T500 400 / T1000 771 | Best #1 1:40.044 | Conf HIGH
-    Active GR.3 HIGH BoP: 483 HP / 1260 kg / PP 694.41 / FR
- 2. Jaguar F-type Gr.3 | SCI 67.4 | SLEEPER CANDIDATE | n=8223 (12.96%) | Eff 1.31x | T100 9 / T500 94 / T1000 207 | Best #11 1:40.292 | Conf HIGH
-    Active GR.3 HIGH BoP: 469 HP / 1254 kg / PP 696.74 / FR
- 3. SUZUKI Vision Gran Turismo (Gr.3 Version) | SCI 53.6 | NO SLEEPER SIGNAL | n=362 (0.57%) | Eff 0.84x | T100 0 / T500 1 / T1000 11 | Best #121 1:40.654 | Conf MEDIUM
-    Active GR.3 HIGH BoP: 469 HP / 1220 kg / PP 677.97 / FR
- 4. Unknown car (-1) | SCI 49.1 | NO SLEEPER SIGNAL | n=21 (0.03%) | Eff 0.88x | T100 0 / T500 0 / T1000 0 | Best #3939 1:41.844 | Conf LOW
-    Active GR.3 HIGH BoP: BoP N/A
- 5. PEUGEOT Vision Gran Turismo (Gr.3) | SCI 46.1 | NO SLEEPER SIGNAL | n=41 (0.06%) | Eff 0.79x | T100 0 / T500 0 / T1000 0 | Best #24499 1:43.701 | Conf LOW
-    Active GR.3 HIGH BoP: 477 HP / 1269 kg / PP 693.18 / MR
- 6. Lexus RC F GT3 prototype '16 | SCI 45.6 | NO SLEEPER SIGNAL | n=46 (0.07%) | Eff 0.77x | T100 0 / T500 0 / T1000 0 | Best #22802 1:43.570 | Conf LOW
-    Active GR.3 HIGH BoP: 449 HP / 1310 kg / PP 692.39 / FR
- 7. Ford GT LM Spec II Test Car | SCI 45.4 | NO SLEEPER SIGNAL | n=46 (0.07%) | Eff 0.77x | T100 0 / T500 0 / T1000 0 | Best #32648 1:44.379 | Conf LOW
-    Active GR.3 HIGH BoP: 443 HP / 1265 kg / PP 680.08 / MR
- 8. Ford GT LM Race Car Spec II | SCI 44.9 | NO SLEEPER SIGNAL | n=50 (0.08%) | Eff 0.75x | T100 0 / T500 0 / T1000 0 | Best #36921 1:44.776 | Conf LOW-MEDIUM
-    Active GR.3 HIGH BoP: 449 HP / 1255 kg / PP 679.86 / MR
- 9. Volkswagen GTI Vision Gran Turismo (Gr.3) | SCI 43.7 | NO SLEEPER SIGNAL | n=66 (0.10%) | Eff 0.69x | T100 0 / T500 0 / T1000 0 | Best #13227 1:42.795 | Conf LOW-MEDIUM
-    Active GR.3 HIGH BoP: 502 HP / 1260 kg / PP 682.39 / MR
-10. Mercedes-Benz SLS AMG GT3 '11 | SCI 43.5 | NO SLEEPER SIGNAL | n=66 (0.10%) | Eff 0.69x | T100 0 / T500 0 / T1000 0 | Best #15922 1:43.014 | Conf LOW-MEDIUM
-    Active GR.3 HIGH BoP: 485 HP / 1360 kg / PP 685.78 / FR
-11. MAZDA RX-VISION GT3 CONCEPT Stealth Model | SCI 42.8 | NO SLEEPER SIGNAL | n=81 (0.13%) | Eff 0.65x | T100 0 / T500 0 / T1000 0 | Best #5959 1:42.100 | Conf LOW-MEDIUM
-    Active GR.3 HIGH BoP: 433 HP / 1269 kg / PP 694.26 / FR
-12. Nissan GT-R GT500 '99 | SCI 40.7 | NO SLEEPER SIGNAL | n=97 (0.15%) | Eff 0.61x | T100 0 / T500 0 / T1000 0 | Best #8257 1:42.344 | Conf LOW-MEDIUM
-    Active GR.3 HIGH BoP: 454 HP / 1210 kg / PP 688.93 / FR
-13. Mazda Atenza Gr.3 | SCI 40.4 | NO SLEEPER SIGNAL | n=115 (0.18%) | Eff 0.57x | T100 0 / T500 0 / T1000 0 | Best #2778 1:41.650 | Conf LOW-MEDIUM
-    Active GR.3 HIGH BoP: 493 HP / 1326 kg / PP 694.7 / FR
-14. BMW Z4 GT3 '11 | SCI 37.5 | NO SLEEPER SIGNAL | n=292 (0.46%) | Eff 0.49x | T100 0 / T500 1 / T1000 1 | Best #429 1:40.939 | Conf MEDIUM
-    Active GR.3 HIGH BoP: 460 HP / 1250 kg / PP 687.84 / FR
-15. Aston Martin V12 Vantage GT3 '12 | SCI 36.8 | NO SLEEPER SIGNAL | n=534 (0.84%) | Eff 0.40x | T100 0 / T500 1 / T1000 3 | Best #156 1:40.705 | Conf HIGH
-    Active GR.3 HIGH BoP: 485 HP / 1250 kg / PP 686.16 / FR
-
-BOP MAPPING GAPS
-----------------------------------------------------------------------------------------------------
-- Unknown car (-1) | n=21 | SCI still calculated, technical model excluded
+ 1. Hyundai ELANTRA N TC '24 | SCI 62.8 | META / PROVEN | n=3184 (75.86%) | Eff 1.30x | T100 100 / T500 500 / T1000 996 | Best #1 1:33.525 | Conf HIGH
+    Active GR.4 MID BoP: 332 HP / 1265 kg / PP 612.54 / FF
+ 2. Nissan GT-R Gr.4 | SCI 48.9 | NO SLEEPER SIGNAL | n=23 (0.55%) | Eff 0.87x | T100 0 / T500 0 / T1000 0 | Best #1410 1:36.270 | Conf LOW
+    Active GR.4 MID BoP: 334 HP / 1460 kg / PP 600.21 / 4WD
+ 3. Subaru WRX Gr.4 | SCI 48.7 | NO SLEEPER SIGNAL | n=22 (0.52%) | Eff 0.87x | T100 0 / T500 0 / T1000 0 | Best #1733 1:36.678 | Conf LOW
+    Active GR.4 MID BoP: 318 HP / 1370 kg / PP 597.42 / 4WD
+ 4. MAZDA3 Gr.4 | SCI 48.6 | NO SLEEPER SIGNAL | n=46 (1.10%) | Eff 0.79x | T100 0 / T500 0 / T1000 2 | Best #594 1:35.306 | Conf LOW
+    Active GR.4 MID BoP: 327 HP / 1200 kg / PP 615.14 / FF
+ 5. Volkswagen Scirocco Gr.4 | SCI 48.5 | NO SLEEPER SIGNAL | n=33 (0.79%) | Eff 0.82x | T100 0 / T500 0 / T1000 0 | Best #1074 1:35.885 | Conf LOW
+    Active GR.4 MID BoP: 294 HP / 1090 kg / PP 612.88 / FF
+ 6. Hyundai Genesis Gr.4 | SCI 48.2 | NO SLEEPER SIGNAL | n=20 (0.48%) | Eff 0.88x | T100 0 / T500 0 / T1000 0 | Best #2727 1:38.205 | Conf LOW
+    Active GR.4 MID BoP: 326 HP / 1355 kg / PP 603.93 / FR
+ 7. Suzuki Swift Sport KATANA Edition Gr.4 | SCI 48.2 | NO SLEEPER SIGNAL | n=40 (0.95%) | Eff 0.80x | T100 0 / T500 0 / T1000 1 | Best #908 1:35.702 | Conf LOW
+    Active GR.4 MID BoP: 283 HP / 1000 kg / PP 610.94 / FF
+ 8. Mazda Atenza Gr.4 | SCI 48.1 | NO SLEEPER SIGNAL | n=28 (0.67%) | Eff 0.84x | T100 0 / T500 0 / T1000 0 | Best #1750 1:36.691 | Conf LOW
+    Active GR.4 MID BoP: 346 HP / 1395 kg / PP 599.47 / 4WD
+ 9. Nissan Silvia spec-R Aero (S15) Touring Car | SCI 48.0 | NO SLEEPER SIGNAL | n=24 (0.57%) | Eff 0.86x | T100 0 / T500 0 / T1000 0 | Best #2510 1:37.782 | Conf LOW
+    Active GR.4 MID BoP: 302 HP / 1185 kg / PP 602.43 / FR
+10. McLaren 650S Gr.4 | SCI 47.8 | NO SLEEPER SIGNAL | n=22 (0.52%) | Eff 0.87x | T100 0 / T500 0 / T1000 0 | Best #3140 1:39.287 | Conf LOW
+    Active GR.4 MID BoP: 320 HP / 1361 kg / PP 600.27 / MR
+11. Audi TT Cup '16 | SCI 47.1 | NO SLEEPER SIGNAL | n=53 (1.26%) | Eff 0.75x | T100 0 / T500 0 / T1000 1 | Best #839 1:35.637 | Conf LOW-MEDIUM
+    Active GR.4 MID BoP: 305 HP / 1130 kg / PP 611.74 / FF
+12. Alfa Romeo 155 2.5 V6 TI '93 | SCI 47.1 | NO SLEEPER SIGNAL | n=35 (0.83%) | Eff 0.81x | T100 0 / T500 0 / T1000 0 | Best #2092 1:37.117 | Conf LOW
+    Active GR.4 MID BoP: 298 HP / 1205 kg / PP 599.56 / 4WD
+13. Honda NSX Gr.4 | SCI 47.0 | NO SLEEPER SIGNAL | n=33 (0.79%) | Eff 0.82x | T100 0 / T500 0 / T1000 0 | Best #2515 1:37.794 | Conf LOW
+    Active GR.4 MID BoP: 320 HP / 1425 kg / PP 608 / MR
+14. Renault Sport Mégane Trophy '11 | SCI 46.6 | NO SLEEPER SIGNAL | n=34 (0.81%) | Eff 0.82x | T100 0 / T500 0 / T1000 0 | Best #2930 1:38.719 | Conf LOW
+    Active GR.4 MID BoP: 292 HP / 1155 kg / PP 605.43 / MR
+15. Lamborghini Huracán Gr.4 | SCI 45.8 | NO SLEEPER SIGNAL | n=41 (0.98%) | Eff 0.79x | T100 0 / T500 0 / T1000 0 | Best #2844 1:38.485 | Conf LOW
+    Active GR.4 MID BoP: 291 HP / 1422 kg / PP 605.37 / 4WD
 
 MULTI-GROUP MODEL POLICY
 ----------------------------------------------------------------------------------------------------
@@ -70,62 +66,62 @@ incorrectly transferred to another class with different aero, mass and power beh
 
 V0.3 MULTI-GROUP TECHNICAL LEARNING
 ----------------------------------------------------------------------------------------------------
-Model key            : GR.3|HIGH
+Model key            : GR.4|MID
 Model status         : BOOTSTRAP
 Independent races    : 1 / 3 minimum
-Independent weeks    : 2026-09-21
+Independent weeks    : 2026-09-28
 Technical SCI weight : 0.0
 Policy               : group + speed-class models are completely separate.
 
 Observed correlations (diagnostic only):
-  power_weight_hp_t        +0.253
-  weight_kg                -0.238
-  front_weight_pct         +0.242
-  acceleration_0_400       +0.066
-  acceleration_100_150     -0.285
-  rotational_g_60          -0.215
-  rotational_g_120         -0.201
-  rotational_g_240         -0.188
+  power_weight_hp_t        +0.467
+  weight_kg                -0.244
+  front_weight_pct         +0.488
+  acceleration_0_400       +0.070
+  acceleration_100_150     -0.413
+  rotational_g_60          +0.079
+  rotational_g_120         +0.412
+  rotational_g_240         -0.061
 
 MODEL COVERAGE
   GR.3|HIGH      1 independent race(s) | BOOTSTRAP
   GR.3|MID       3 independent race(s) | ACTIVE
+  GR.4|MID       1 independent race(s) | BOOTSTRAP
 
 Repeated snapshots from one Daily Race week never increase the independent-race count.
 A future GR.4/MID race, for example, trains GR.4|MID only and cannot alter GR.3|MID.
 
 STRUCTURAL SLEEPER MODEL V0.2 - EVIDENCE CALIBRATED
 ----------------------------------------------------------------------------------------------------
-Model key            : GR.3|HIGH
+Model key            : GR.4|MID
 Status               : BOOTSTRAP
 Independent races    : 1 / 3 minimum
-Independent weeks    : 2026-09-21
-Sample benchmark     : 250.5 accumulated drivers (model median)
+Independent weeks    : 2026-09-28
+Sample benchmark     : 37.5 accumulated drivers (model median)
 Technical weight     : 0.0
 Calibration          : weak evidence is shrunk toward SSI 50 (neutral).
 
 TOP CALIBRATED STRUCTURAL SLEEPER SIGNALS
 ----------------------------------------------------------------------------------------------------
- 1. PEUGEOT Vision Gran Turismo (Gr.3) | SSI 67.3 (raw 96.2) | MODEL NOT READY | races 1/1 | sample 41 | evidence 0.375 | positive 100% | Conf LOW | NO PRIORITY
- 2. MAZDA RX-VISION GT3 CONCEPT Stealth Model | SSI 67.1 (raw 84.6) | MODEL NOT READY | races 1/1 | sample 81 | evidence 0.494 | positive 100% | Conf LOW | NO PRIORITY
- 3. Mazda Atenza Gr.3 | SSI 66.7 (raw 79.8) | MODEL NOT READY | races 1/1 | sample 115 | evidence 0.561 | positive 100% | Conf LOW | NO PRIORITY
- 4. Lexus RC F GT3 prototype '16 | SSI 66.5 (raw 91.8) | MODEL NOT READY | races 1/1 | sample 46 | evidence 0.394 | positive 100% | Conf LOW | NO PRIORITY
- 5. Ford GT LM Spec II Test Car | SSI 66.1 (raw 90.9) | MODEL NOT READY | races 1/1 | sample 46 | evidence 0.394 | positive 100% | Conf LOW | NO PRIORITY
- 6. Volkswagen GTI Vision Gran Turismo (Gr.3) | SSI 66.0 (raw 85.1) | MODEL NOT READY | races 1/1 | sample 66 | evidence 0.457 | positive 100% | Conf LOW | NO PRIORITY
- 7. Nissan GT-R GT500 '99 | SSI 65.7 (raw 79.8) | MODEL NOT READY | races 1/1 | sample 97 | evidence 0.528 | positive 100% | Conf LOW | NO PRIORITY
- 8. Ford GT LM Race Car Spec II | SSI 65.7 (raw 88.5) | MODEL NOT READY | races 1/1 | sample 50 | evidence 0.408 | positive 100% | Conf LOW | NO PRIORITY
- 9. Mercedes-Benz SLS AMG GT3 '11 | SSI 65.6 (raw 84.1) | MODEL NOT READY | races 1/1 | sample 66 | evidence 0.457 | positive 100% | Conf LOW | NO PRIORITY
-10. SUZUKI Vision Gran Turismo (Gr.3 Version) | SSI 64.0 (raw 68.3) | MODEL NOT READY | races 1/1 | sample 362 | evidence 0.769 | positive 100% | Conf LOW | NO PRIORITY
-11. McLaren F1 GTR - BMW '95 | SSI 63.3 (raw 71.2) | MODEL NOT READY | races 1/1 | sample 164 | evidence 0.629 | positive 100% | Conf LOW | NO PRIORITY
-12. BMW Z4 GT3 '11 | SSI 62.7 (raw 67.3) | MODEL NOT READY | races 1/1 | sample 292 | evidence 0.734 | positive 100% | Conf LOW | NO PRIORITY
-13. Nissan Skyline Super Silhouette Group 5 '84 | SSI 62.6 (raw 71.2) | MODEL NOT READY | races 1/1 | sample 138 | evidence 0.596 | positive 100% | Conf LOW | NO PRIORITY
-14. Alfa Romeo 4C Gr.3 | SSI 61.6 (raw 68.3) | MODEL NOT READY | races 1/1 | sample 171 | evidence 0.637 | positive 100% | Conf LOW | NO PRIORITY
-15. Honda NSX GT500 '00 | SSI 60.6 (raw 68.3) | MODEL NOT READY | races 1/1 | sample 128 | evidence 0.582 | positive 100% | Conf LOW | NO PRIORITY
+ 1. Nissan GT-R Gr.4 | SSI 71.6 (raw 85.0) | MODEL NOT READY | races 1/1 | sample 23 | evidence 0.617 | positive 100% | Conf LOW | NO PRIORITY
+ 2. Subaru WRX Gr.4 | SSI 69.0 (raw 81.2) | MODEL NOT READY | races 1/1 | sample 22 | evidence 0.608 | positive 100% | Conf LOW | NO PRIORITY
+ 3. Hyundai Genesis Gr.4 | SSI 66.2 (raw 77.5) | MODEL NOT READY | races 1/1 | sample 20 | evidence 0.590 | positive 100% | Conf LOW | NO PRIORITY
+ 4. Volkswagen Scirocco Gr.4 | SSI 64.5 (raw 71.2) | MODEL NOT READY | races 1/1 | sample 33 | evidence 0.684 | positive 100% | Conf LOW | NO PRIORITY
+ 5. Mazda Atenza Gr.4 | SSI 61.4 (raw 67.5) | MODEL NOT READY | races 1/1 | sample 28 | evidence 0.654 | positive 100% | Conf LOW | NO PRIORITY
+ 6. MAZDA3 Gr.4 | SSI 61.1 (raw 65.0) | MODEL NOT READY | races 1/1 | sample 46 | evidence 0.742 | positive 100% | Conf LOW | NO PRIORITY
+ 7. Suzuki Swift Sport KATANA Edition Gr.4 | SSI 60.8 (raw 65.0) | MODEL NOT READY | races 1/1 | sample 40 | evidence 0.718 | positive 100% | Conf LOW | NO PRIORITY
+ 8. McLaren 650S Gr.4 | SSI 59.9 (raw 66.2) | MODEL NOT READY | races 1/1 | sample 22 | evidence 0.608 | positive 100% | Conf LOW | NO PRIORITY
+ 9. Nissan Silvia spec-R Aero (S15) Touring Car | SSI 59.4 (raw 65.0) | MODEL NOT READY | races 1/1 | sample 24 | evidence 0.625 | positive 100% | Conf LOW | NO PRIORITY
+10. Hyundai ELANTRA N TC '24 | SSI 50.0 (raw 50.0) | MODEL NOT READY | races 1/1 | sample 3184 | evidence 0.994 | positive 0% | Conf LOW | CURRENT-WEEK SIGNAL ONLY
+11. Alfa Romeo 155 2.5 V6 TI '93 | SSI 50.0 (raw 50.0) | MODEL NOT READY | races 1/1 | sample 35 | evidence 0.695 | positive 0% | Conf LOW | NO PRIORITY
+12. Honda NSX Gr.4 | SSI 49.1 (raw 48.8) | MODEL NOT READY | races 1/1 | sample 33 | evidence 0.684 | positive 0% | Conf LOW | NO PRIORITY
+13. Audi TT Cup '16 | SSI 48.1 (raw 47.5) | MODEL NOT READY | races 1/1 | sample 53 | evidence 0.765 | positive 0% | Conf LOW | NO PRIORITY
+14. Renault Sport Mégane Trophy '11 | SSI 44.8 (raw 42.5) | MODEL NOT READY | races 1/1 | sample 34 | evidence 0.690 | positive 0% | Conf LOW | NO PRIORITY
+15. Lamborghini Huracán Gr.4 | SSI 37.4 (raw 32.5) | MODEL NOT READY | races 1/1 | sample 41 | evidence 0.723 | positive 0% | Conf LOW | NO PRIORITY
 
 CURRENT-WEEK PRACTICAL PRIORITIES
 ----------------------------------------------------------------------------------------------------
- 1. Hyundai Genesis Gr.3 | SSI 50.0 | Current SCI 76.7 | MODEL NOT READY | CURRENT-WEEK SIGNAL ONLY
- 2. Jaguar F-type Gr.3 | SSI 50.0 | Current SCI 67.4 | MODEL NOT READY | CURRENT-WEEK SIGNAL ONLY
+ 1. Hyundai ELANTRA N TC '24 | SSI 50.0 | Current SCI 62.8 | MODEL NOT READY | CURRENT-WEEK SIGNAL ONLY
 
 INTERPRETATION
 ----------------------------------------------------------------------------------------------------

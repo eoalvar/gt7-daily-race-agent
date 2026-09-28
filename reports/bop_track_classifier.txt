@@ -1,40 +1,38 @@
 GT7 BOP TRACK CLASSIFIER V2.0
 ====================================================================================================
-Generated            : 2026-09-27T13:00:45.142327+00:00
-Snapshot             : 2026-09-27T09:57:31.832794-03:00
-Track                : Sardegna - Road Track - A
-Group                : GR.3
-Model key            : GR.3|HIGH
-BoP speed class      : HIGH
+Generated            : 2026-09-28T12:14:36.260210+00:00
+Snapshot             : 2026-09-28T09:14:28.316803-03:00
+Track                : Red Bull Ring
+Group                : GR.4
+Model key            : GR.4|MID
+BoP speed class      : MID
 Selection mode       : GROUP_SPECIFIC_MAP
-Confidence           : VALIDATED_EXTERNAL
+Confidence           : VALIDATED_RECENT
 BoP DB records       : 399
 Production modified  : NO
 
 CLASSIFICATION EVIDENCE
 ----------------------------------------------------------------------------------------------------
-- GTPlanet Daily Races 2025-07-28 | Sardegna Road Track A / Gr.3 / BOP (H)
-- GTPlanet Daily Races 2025-09-01 | Sardegna Road Track A / Gr.4 / BOP (H)
+- GTPlanet Daily Races 2025-12-29 | Red Bull Ring / Gr.4 / BOP (M)
 
 YOUR CURRENT CAR
 ----------------------------------------------------------------------------------------------------
-Car                  : Hyundai Genesis Gr.3
-Matched DB car       : Hyundai Genesis Gr.3
+Car                  : Hyundai ELANTRA N TC '24
+Matched DB car       : Hyundai ELANTRA N TC '24
 Name match score     : 100
 BoP version          : 1.67
-HIGH                 : 483 HP / 1260 kg / PP 694.41
-MID                  : 483 HP / 1269 kg / PP 693.53
-LOW                  : 483 HP / 1285 kg / PP 692.27
-ACTIVE HIGH        : 483 HP / 1260 kg / PP 694.41
-Fingerprint usable   : YES
+HIGH                 : 332 HP / 1265 kg / PP 612.54
+MID                  : 332 HP / 1265 kg / PP 612.54
+LOW                  : 332 HP / 1265 kg / PP 612.54
+ACTIVE MID         : 332 HP / 1265 kg / PP 612.54
+Fingerprint usable   : NO
 
 TOP 5 USED CARS
 ----------------------------------------------------------------------------------------------------
-1. Hyundai Genesis Gr.3 | DB=Hyundai Genesis Gr.3 | score=100 | active=483 HP / 1260 kg / PP 694.41 | fingerprint=YES
-2. Jaguar F-type Gr.3 | DB=Jaguar F-type Gr.3 | score=100 | active=469 HP / 1254 kg / PP 696.74 | fingerprint=YES
-3. SUZUKI Vision Gran Turismo (Gr.3 Version) | DB=Suzuki SUZUKI VGT (Gr.3) | score=80 | active=469 HP / 1220 kg / PP 677.97 | fingerprint=YES
-4. Subaru WRX Gr.3 | DB=Subaru WRX Gr.3 | score=100 | active=497 HP / 1295 kg / PP 701.57 | fingerprint=YES
-5. Aston Martin V12 Vantage GT3 '12 | DB=Aston Martin V12 Vantage GT3 '12 | score=100 | active=485 HP / 1250 kg / PP 686.16 | fingerprint=YES
+1. Hyundai ELANTRA N TC '24 | DB=Hyundai ELANTRA N TC '24 | score=100 | active=332 HP / 1265 kg / PP 612.54 | fingerprint=NO
+2. MAZDA3 Gr.4 | DB=Mazda MAZDA3 Gr.4 | score=94 | active=327 HP / 1200 kg / PP 615.14 | fingerprint=NO
+3. Audi TT Cup '16 | DB=Audi TT Cup '16 | score=100 | active=305 HP / 1130 kg / PP 611.74 | fingerprint=NO
+4. Suzuki Swift Sport KATANA Edition Gr.4 | DB=Suzuki Swift Sport Gr.4 | score=94 | active=283 HP / 1000 kg / PP 610.94 | fingerprint=NO
 
 CLASSIFIER POLICY
 ----------------------------------------------------------------------------------------------------
