@@ -1,8 +1,20 @@
 LAST WEEK - FINAL RESULT
 ----------------------------------------
-Status          : PENDING ARCHIVE AVAILABILITY
-Reason          : Could not find the previous week's Daily Race C. Target week: 2026-09-21. Available Race C dates: ['2026-06-29', '2026-07-06', '2026-07-13', '2026-07-20', '2026-07-27', '2026-08-03', '2026-08-10', '2026-08-17', '2026-08-24', '2026-10-05']
-The historical result was NOT marked final.
+Week       : 2026-09-21
+Circuit    : Sardegna - Road Track - A
+Car        : Hyundai Genesis Gr.3
+
+YOUR RESULT
+Position   : #3,601 of 63,455
+Time       : 1:41.793
+Top        : 5.67%
+Ahead of   : 94.33% of participants
+WR         : 101.748%
+CPI        : 8.06 / 10 | ELITE
+
+Status     : FINAL SNAPSHOT
+Note       : Full GTSH archive is not available yet.
+             This will be upgraded automatically when archived.
 ----------------------------------------
 
 NEW WEEK - CURRENT DAILY RACE C
@@ -10,86 +22,85 @@ NEW WEEK - CURRENT DAILY RACE C
 
 GT7 DAILY RACE C
 ----------------------------------------
-Snapshot: 28/09/2026 09:14:28 - Sao Paulo
+Snapshot: 28/09/2026 10:50:18 - Sao Paulo
 C Gr.4 Running Daily Race C
 Car category: Gr.4
 Red Bull Ring
-Current WR: J.Brea13 (1:33.525)
+Current WR: D. Chafe (1:33.476)
 Current WR Car: Hyundai ELANTRA N TC '24
 Race Setup: RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 4,197
+Total drivers: 5,505
 
 WHERE YOU ARE
 PSN             : crazy_rooster74
-Position        : #645 of 4,197
-Time            : 1:35.365
+Position        : #594 of 5,505
+Time            : 1:35.102
 Car             : Hyundai ELANTRA N TC '24
-Gap to WR       : +1.840s
-WR percentage   : 101.967%
-CPI             : 7.26 / 10 | VERY STRONG
+Gap to WR       : +1.626s
+WR percentage   : 101.739%
+CPI             : 7.59 / 10 | VERY STRONG
 Pace class      : ELITE
-Top percentile  : Top 15.37%
-Ahead of        : 84.65% of participants
-Country rank    : #10 of 71 (BR)
-DR B rank     : #280 of 1,473
-DR progress      : DR B | 26,940 pts | 84% toward next DR
-Same-car rank   : #644 of 3,184
+Top percentile  : Top 10.79%
+Ahead of        : 89.23% of participants
+Country rank    : #14 of 121 (BR)
+DR B rank     : #222 of 1,900
+DR progress      : DR B | 27,156 pts | 85% toward next DR
+Same-car rank   : #594 of 4,147
 
 EXPECTED START
-Expected position     : P4.0
-Most likely position  : P4
-95% random-grid range : P1 to P7
-Your qualifying time  : 1:35.365
-DR B mean time       : 1:36.568
-DR B std deviation   : 1.446s
-Z-score               : -0.83
-Random opponent faster: 20.3%
-Population            : 1,457 DR B drivers
+Expected position     : P3.4
+Most likely position  : P3
+95% random-grid range : P1 to P6
+Your qualifying time  : 1:35.102
+DR B mean time       : 1:36.598
+DR B std deviation   : 1.497s
+Z-score               : -1.00
+Random opponent faster: 15.9%
+Population            : 1,878 DR B drivers
 Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
 DR S  : N/A average | SD N/A | 0 drivers
-DR A+ : 1:34.712 average | SD 0.813s | 133 drivers
-DR A  : 1:35.446 average | SD 1.005s | 417 drivers
-DR B  : 1:36.568 average | SD 1.446s | 1,457 drivers
-DR C  : 1:38.188 average | SD 1.960s | 1,029 drivers
-DR D  : 1:40.218 average | SD 2.830s | 1,047 drivers
-DR E  : 1:42.090 average | SD 3.859s | 82 drivers
+DR A+ : 1:34.687 average | SD 0.832s | 174 drivers
+DR A  : 1:35.393 average | SD 0.974s | 503 drivers
+DR B  : 1:36.598 average | SD 1.497s | 1,878 drivers
+DR C  : 1:38.124 average | SD 1.980s | 1,366 drivers
+DR D  : 1:40.274 average | SD 2.821s | 1,417 drivers
+DR E  : 1:42.203 average | SD 4.147s | 119 drivers
 
 WORLD RECORD & BENCHMARKS
-WR              : 1:33.525 | J.Brea13 | Hyundai ELANTRA N TC '24
-103% WR         : 1:36.331
-105% WR         : 1:38.201
-Top 10          : 1:33.845
-Top 100         : 1:34.366
-Top 500         : 1:35.165
-Top 1000        : 1:35.800
-Top 2500        : 1:37.762
+WR              : 1:33.476 | D. Chafe | Hyundai ELANTRA N TC '24
+103% WR         : 1:36.280
+105% WR         : 1:38.150
+Top 10          : 1:33.757
+Top 100         : 1:34.269
+Top 500         : 1:34.982
+Top 1000        : 1:35.531
+Top 2500        : 1:36.925
+Top 5000        : 1:42.096
 
 WHERE YOU SHOULD AIM
-1. Top 500: #500 | 1:35.165 | gain needed 0.200s
-2. Top 10%: #420 | 1:35.047 | gain needed 0.318s
-3. Top 5%: #210 | 1:34.686 | gain needed 0.679s
-4. Top 100: #100 | 1:34.366 | gain needed 0.999s
+1. Top 10%: #551 | 1:35.054 | gain needed 0.048s
+2. Top 500: #500 | 1:34.982 | gain needed 0.120s
+3. Top 5%: #276 | 1:34.681 | gain needed 0.421s
+4. Top 2%: #111 | 1:34.292 | gain needed 0.810s
 
 YOUR CAR VS META
-Your car best   : 1:33.525 | Hyundai ELANTRA N TC '24
-Gap to car best : +1.840s
-Meta car best   : 1:33.525 | Hyundai ELANTRA N TC '24
+Your car best   : 1:33.476 | Hyundai ELANTRA N TC '24
+Gap to car best : +1.626s
+Meta car best   : 1:33.476 | Hyundai ELANTRA N TC '24
 Best-lap delta  : 0.000s
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Hyundai ELANTRA N TC '24 | 996 drivers | 99.6%
-2. MAZDA3 Gr.4 | 2 drivers | 0.2%
-3. Audi TT Cup '16 | 1 drivers | 0.1%
-4. Suzuki Swift Sport KATANA Edition Gr.4 | 1 drivers | 0.1%
+1. Hyundai ELANTRA N TC '24 | 999 drivers | 99.9%
+2. MAZDA3 Gr.4 | 1 drivers | 0.1%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Hyundai ELANTRA N TC '24 | OI 1.32 | Top100 100 | Top1000 996 | High
+1. Hyundai ELANTRA N TC '24 | OI 1.33 | Top100 100 | Top1000 999 | High
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
@@ -103,11 +114,11 @@ CARS TO TEST THIS WEEK
 Model: GR.4|MID | Technical evidence: 17%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. Nissan GT-R Gr.4 | STRONG ALTERNATIVE | Consensus 79% | SCI 48.9 | SSI 71.6 | Tech 48% | Usage 0.55% | Best #1410
-2. Subaru WRX Gr.4 | STRONG ALTERNATIVE | Consensus 76% | SCI 48.7 | SSI 69.0 | Tech 49% | Usage 0.52% | Best #1733
-3. Volkswagen Scirocco Gr.4 | STRONG ALTERNATIVE | Consensus 72% | SCI 48.5 | SSI 64.5 | Tech 55% | Usage 0.79% | Best #1074
-4. MAZDA3 Gr.4 | STRONG ALTERNATIVE | Consensus 70% | SCI 48.6 | SSI 61.1 | Tech 56% | Usage 1.10% | Best #594
-5. Hyundai Genesis Gr.4 | STRONG ALTERNATIVE | Consensus 70% | SCI 48.2 | SSI 66.2 | Tech 50% | Usage 0.48% | Best #2727
+1. Renault Sport Mégane Gr.4 | PRIORITY TEST | Consensus 82% | SCI 48.4 | SSI 70.9 | Tech 55% | Usage 0.40% | Best #2621
+2. Jaguar F-type Gr.4 | STRONG ALTERNATIVE | Consensus 78% | SCI 48.3 | SSI 69.8 | Tech 50% | Usage 0.40% | Best #2843
+3. Nissan GT-R Gr.4 | STRONG ALTERNATIVE | Consensus 75% | SCI 48.2 | SSI 67.5 | Tech 48% | Usage 0.53% | Best #1810
+4. Dodge Viper Gr.4 | STRONG ALTERNATIVE | Consensus 72% | SCI 48.0 | SSI 67.4 | Tech 47% | Usage 0.38% | Best #3909
+5. BMW M4 Gr.4 | STRONG ALTERNATIVE | Consensus 69% | SCI 47.8 | SSI 64.3 | Tech 45% | Usage 0.40% | Best #4211
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
 ----------------------------------------
@@ -120,25 +131,25 @@ CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percent
 Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
-CPI        : 7.26 / 10 | VERY STRONG
-Top %      : 15.37%
-WR gap     : +1.967%
+CPI        : 7.59 / 10 | VERY STRONG
+Top %      : 10.79%
+WR gap     : +1.739%
 
 LATEST FINALIZED WEEK
-Week       : 2026-09-14
-CPI        : 7.61 / 10 | VERY STRONG
-Top %      : 7.57%
-WR gap     : +2.262%
+Week       : 2026-09-21
+CPI        : 8.06 / 10 | ELITE
+Top %      : 5.67%
+WR gap     : +1.748%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
-CPI        : 7.61 -> 7.26 (-0.36)
-Top %      : 7.57% -> 15.37% (+7.80 pp)
-WR gap     : +2.262% -> +1.967% (-0.294 pp)
+CPI        : 8.06 -> 7.59 (-0.47)
+Top %      : 5.67% -> 10.79% (+5.12 pp)
+WR gap     : +1.748% -> +1.739% (-0.009 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
-CPI        : 7.13
-Top %      : 9.93%
-WR gap     : +2.859%
+CPI        : 7.35
+Top %      : 8.98%
+WR gap     : +2.595%
 
 8-WEEK FINALIZED TREND
 CPI        : IMPROVING
@@ -146,8 +157,6 @@ Top %      : IMPROVING
 WR gap     : IMPROVING
 
 LAST FINALIZED RACES
-- 2026-07-27 | Gr.2 | Circuit de Barcelona-Catalunya GP
-CPI 6.40 | Top 13.50% | WR +3.850%
 - 2026-08-03 | Gr.3 | Tokyo Expressway - East Clockwise
 CPI 7.33 | Top 11.82% | WR +2.165%
 - 2026-08-10 | Gr.4 | Grand Valley - Highway 1
@@ -162,12 +171,14 @@ CPI 6.21 | Top 13.89% | WR +4.199%
 CPI 7.53 | Top 8.80% | WR +2.170%
 - 2026-09-14 | Gr.4 | Brands Hatch Grand Prix Circuit
 CPI 7.61 | Top 7.57% | WR +2.262%
+- 2026-09-21 | Gr.3 | Sardegna - Road Track - A
+CPI 8.06 | Top 5.67% | WR +1.748%
 
 DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 4,197
+Entries        : 5,505
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
