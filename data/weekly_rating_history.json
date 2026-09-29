@@ -1079,7 +1079,7 @@
     "race": "C Gr.3 Archived Daily Race C i 17:31 Sardegna - Road Track - A L. Burton - Hyundai Genesis Gr.3 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x8 Pit 1 Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tGB28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
     "general_score": 9.440416351585784,
-    "elite_score": 2.5927543167488665,
+    "elite_score": 8.066160988210326,
     "composite_rating": 6.701351537651017,
     "position": 3775,
     "total_drivers": 67444,
@@ -1100,6 +1100,12 @@
     "same_car_total": 27548,
     "dr_rank": 986,
     "dr_total": 17765,
-    "archive_upgrade_pending": false
+    "archive_upgrade_pending": false,
+    "legacy_elite_score": 2.5927543167488665,
+    "legacy_general_score": 9.440416351585784,
+    "legacy_composite_rating": 6.701351537651017,
+    "cpi_score": 8.066160988210326,
+    "cpi_band": "ELITE",
+    "rating_model": "CPI_50_50_V1"
   }
 ]
