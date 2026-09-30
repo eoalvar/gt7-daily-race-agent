@@ -273,9 +273,49 @@ def main():
 
     snapshot["dr_laptime_stats"] = stats
     my = snapshot.get("my_result") or {}
-    my_dr = my.get("driver_rating")
-    if isinstance(my_dr, (int, float)):
-        my["driver_rating_label"] = DR_LABELS.get(int(my_dr), f"DR {int(my_dr)}")
+
+    # The dedicated GTSH profile is the authoritative source for the user's
+    # current DR. Leaderboard rows can lag a promotion/demotion and previously
+    # left all downstream DR metrics stuck on that stale value.
+    profile_dr = dr_profile.get("driver_rating") if dr_profile else None
+    leaderboard_dr = my.get("driver_rating")
+    if isinstance(profile_dr, (int, float)) and int(profile_dr) in DR_LABELS:
+        my_dr = int(profile_dr)
+        if leaderboard_dr != my_dr:
+            print(
+                f"DR sync: leaderboard={DR_LABELS.get(int(leaderboard_dr), leaderboard_dr) if isinstance(leaderboard_dr, (int, float)) else leaderboard_dr} "
+                f"-> authoritative profile={DR_LABELS[my_dr]}"
+            )
+        my["driver_rating"] = my_dr
+        my["driver_rating_label"] = DR_LABELS[my_dr]
+    else:
+        my_dr = leaderboard_dr
+        if isinstance(my_dr, (int, float)):
+            my_dr = int(my_dr)
+            my["driver_rating_label"] = DR_LABELS.get(my_dr, f"DR {my_dr}")
+
+    # Recompute the user's same-DR rank/total from the current leaderboard
+    # whenever the authoritative profile DR is available. This keeps WHERE
+    # YOU ARE, Expected Start and DR benchmarks on the same DR population.
+    if isinstance(my_dr, int) and isinstance(my.get("score"), (int, float)):
+        same_dr_entries = []
+        for driver in entries:
+            if not isinstance(driver, dict):
+                continue
+            user = driver.get("user") or {}
+            dr = user.get("driver_rating")
+            score = driver.get("score")
+            if isinstance(dr, (int, float)) and int(dr) == my_dr and isinstance(score, (int, float)):
+                same_dr_entries.append(float(score))
+        my_score = float(my["score"])
+        same_dr_rank = 1 + sum(score < my_score for score in same_dr_entries)
+        snapshot["dr_stats"] = {
+            "rank": same_dr_rank,
+            "total": len(same_dr_entries),
+            "dr": my_dr,
+            "label": DR_LABELS.get(my_dr, f"DR {my_dr}"),
+        }
+
     dr_stats = snapshot.get("dr_stats") or {}
     if isinstance(dr_stats.get("dr"), (int, float)):
         dr_stats["label"] = DR_LABELS.get(int(dr_stats["dr"]), f"DR {int(dr_stats['dr'])}")
