@@ -1,6 +1,6 @@
 GT7 DAILY RACE C
 ==============================================================================
-Snapshot: 30/09/2026 20:13:23 - Sao Paulo
+Snapshot: 01/10/2026 12:42:39 - Sao Paulo
 C Gr.4 Running Daily Race C
 Car category: Gr.4
 Red Bull Ring
@@ -9,62 +9,62 @@ Current WR Car: Hyundai ELANTRA N TC '24
 Race Setup: RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 30,521
+Total drivers: 32,093
 
 WHERE YOU ARE
 PSN             : crazy_rooster74
-Position        : #1,414 of 30,521
+Position        : #1,479 of 32,093
 Time            : 1:34.595
 Car             : Hyundai ELANTRA N TC '24
 Gap to WR       : +1.247s
 WR percentage   : 101.336%
 CPI             : 8.37 / 10 | ELITE
 Pace class      : ELITE
-Top percentile  : Top 4.63%
-Ahead of        : 95.37% of participants
-Country rank    : #61 of 1,749 (BR)
-DR A rank     : #623 of 2,033
+Top percentile  : Top 4.61%
+Ahead of        : 95.39% of participants
+Country rank    : #68 of 1,913 (BR)
+DR A rank     : #659 of 2,102
 DR progress      : DR A | 32,198 pts | 10% toward next DR
-Same-car rank   : #1,414 of 22,654
+Same-car rank   : #1,479 of 23,710
 
 EXPECTED START
-Expected position     : P5.2
+Expected position     : P5.3
 Most likely position  : P5
 95% random-grid range : P2 to P9
 Your qualifying time  : 1:34.595
-DR A mean time       : 1:35.097
-DR A std deviation   : 0.864s
-Z-score               : -0.58
-Random opponent faster: 28.1%
-Population            : 1,991 DR A drivers
+DR A mean time       : 1:35.092
+DR A std deviation   : 0.873s
+Z-score               : -0.57
+Random opponent faster: 28.5%
+Population            : 2,061 DR A drivers
 Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
 DR S  : N/A average | SD N/A | 0 drivers
-DR A+ : 1:34.437 average | SD 0.702s | 583 drivers
-DR A  : 1:35.097 average | SD 0.864s | 1,991 drivers
-DR B  : 1:36.290 average | SD 1.385s | 8,977 drivers
-DR C  : 1:37.769 average | SD 1.937s | 8,045 drivers
-DR D  : 1:40.187 average | SD 2.982s | 9,418 drivers
-DR E  : 1:42.653 average | SD 4.033s | 1,222 drivers
+DR A+ : 1:34.431 average | SD 0.697s | 600 drivers
+DR A  : 1:35.092 average | SD 0.873s | 2,061 drivers
+DR B  : 1:36.291 average | SD 1.392s | 9,337 drivers
+DR C  : 1:37.764 average | SD 1.942s | 8,482 drivers
+DR D  : 1:40.218 average | SD 3.007s | 10,000 drivers
+DR E  : 1:42.700 average | SD 4.035s | 1,320 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:33.348 | D. Chafe | Hyundai ELANTRA N TC '24
 103% WR         : 1:36.148
 105% WR         : 1:38.015
-Top 10          : 1:33.469
-Top 100         : 1:33.794
-Top 500         : 1:34.188
-Top 1000        : 1:34.439
-Top 2500        : 1:34.889
-Top 5000        : 1:35.438
+Top 10          : 1:33.455
+Top 100         : 1:33.778
+Top 500         : 1:34.175
+Top 1000        : 1:34.419
+Top 2500        : 1:34.863
+Top 5000        : 1:35.396
 
 WHERE YOU SHOULD AIM
-1. Top 1000: #1,000 | 1:34.439 | gain needed 0.156s
-2. Top 2%: #611 | 1:34.250 | gain needed 0.345s
-3. Top 500: #500 | 1:34.188 | gain needed 0.407s
-4. Top 1%: #306 | 1:34.052 | gain needed 0.543s
+1. Top 1000: #1,000 | 1:34.419 | gain needed 0.176s
+2. Top 2%: #642 | 1:34.251 | gain needed 0.344s
+3. Top 500: #500 | 1:34.175 | gain needed 0.420s
+4. Top 1%: #321 | 1:34.057 | gain needed 0.538s
 
 YOUR CAR VS META
 Your car best   : 1:33.348 | Hyundai ELANTRA N TC '24
@@ -91,11 +91,11 @@ CARS TO TEST THIS WEEK
 Model: GR.4|MID | Technical evidence: 17%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. Peugeot RCZ Gr.4 | PRIORITY TEST | Consensus 81% | SCI 45.3 | SSI 71.5 | Tech 56% | Usage 0.17% | Best #7066
-2. Renault Sport Mégane Gr.4 | PRIORITY TEST | Consensus 81% | SCI 41.6 | SSI 72.9 | Tech 55% | Usage 0.26% | Best #14941
-3. Mitsubishi Lancer Evolution Final Edition Gr.4 | STRONG ALTERNATIVE | Consensus 80% | SCI 41.6 | SSI 72.8 | Tech 52% | Usage 0.25% | Best #16793
-4. Alfa Romeo 4C Gr.4 | STRONG ALTERNATIVE | Consensus 75% | SCI 40.7 | SSI 71.1 | Tech 48% | Usage 0.28% | Best #19937
-5. Lexus RC F Gr.4 | STRONG ALTERNATIVE | Consensus 74% | SCI 40.2 | SSI 69.8 | Tech 50% | Usage 0.29% | Best #16236
+1. Renault Sport Mégane Gr.4 | PRIORITY TEST | Consensus 82% | SCI 41.2 | SSI 73.6 | Tech 55% | Usage 0.25% | Best #15624
+2. Peugeot RCZ Gr.4 | PRIORITY TEST | Consensus 81% | SCI 45.2 | SSI 71.1 | Tech 56% | Usage 0.16% | Best #7371
+3. Mitsubishi Lancer Evolution Final Edition Gr.4 | STRONG ALTERNATIVE | Consensus 79% | SCI 40.8 | SSI 72.3 | Tech 52% | Usage 0.26% | Best #17572
+4. Alfa Romeo 4C Gr.4 | STRONG ALTERNATIVE | Consensus 75% | SCI 40.3 | SSI 71.1 | Tech 49% | Usage 0.27% | Best #20849
+5. Aston Martin Vantage Gr.4 | STRONG ALTERNATIVE | Consensus 73% | SCI 39.5 | SSI 70.0 | Tech 49% | Usage 0.30% | Best #19938
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
 ==============================================================================
@@ -109,7 +109,7 @@ Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
 CPI        : 8.37 / 10 | ELITE
-Top %      : 4.63%
+Top %      : 4.61%
 WR gap     : +1.336%
 
 LATEST FINALIZED WEEK
@@ -119,8 +119,8 @@ Top %      : 5.60%
 WR gap     : +1.748%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
-CPI        : 8.07 -> 8.37 (+0.30)
-Top %      : 5.60% -> 4.63% (-0.96 pp)
+CPI        : 8.07 -> 8.37 (+0.31)
+Top %      : 5.60% -> 4.61% (-0.99 pp)
 WR gap     : +1.748% -> +1.336% (-0.412 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
@@ -155,7 +155,7 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 30,521
+Entries        : 32,093
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
