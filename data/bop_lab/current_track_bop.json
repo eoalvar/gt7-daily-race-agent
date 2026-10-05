@@ -1,270 +1,657 @@
 {
-  "generated_at": "2026-10-04T14:26:16.204866+00:00",
+  "generated_at": "2026-10-05T16:54:46.364168+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-10-04T11:25:18.785347-03:00",
-  "race_description": "C Gr.4 Running Daily Race C i 16:02 Red Bull Ring A. Nicholaou - Hyundai ELANTRA N TC '24 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
-  "track": "Red Bull Ring",
-  "group": "GR.4",
-  "model_key": "GR.4|MID",
-  "speed_class": "MID",
+  "snapshot_timestamp": "2026-10-05T13:54:31.022815-03:00",
+  "race_description": "C Gr.3 Running Daily Race C i 00:00 Daytona Road Course L. Burton - Jaguar F-type Gr.3 RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
+  "track": "Daytona Road Course",
+  "group": "GR.3",
+  "model_key": "GR.3|HIGH",
+  "speed_class": "HIGH",
   "speed_selection_mode": "GROUP_SPECIFIC_MAP",
-  "classification_confidence": "VALIDATED_RECENT",
+  "classification_confidence": "VALIDATED_EXTERNAL",
   "classification_validation": [
     {
-      "source": "GTPlanet Daily Races 2025-12-29",
-      "evidence": "Red Bull Ring / Gr.4 / BOP (M)",
-      "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20251229/"
+      "source": "GTPlanet Daily Races 2026-01-19",
+      "evidence": "Daytona Road Course / Gr.1 / BOP (H)",
+      "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20260119/"
+    },
+    {
+      "source": "Traxion Daily Races 2022-09-19",
+      "evidence": "Daytona Road Course / Gr.3 / High-speed BoP",
+      "url": "https://traxion.gg/your-guide-to-gran-turismo-7s-daily-races-w-c-19th-september-combat-vette/"
     }
   ],
   "database_records": 399,
-  "my_car": "Hyundai ELANTRA N TC '24",
-  "my_car_fingerprint": {
-    "car": "Hyundai ELANTRA N TC '24",
-    "available": true,
-    "match": {
-      "requested_name": "Hyundai ELANTRA N TC '24",
-      "matched_name": "Hyundai ELANTRA N TC '24",
-      "match_score": 100
-    },
-    "bop_version": "1.67",
-    "distinct_signatures": 1,
-    "can_identify_speed_class_from_car": false,
-    "HIGH": {
-      "car": "Hyundai ELANTRA N TC '24",
-      "group": "GR.4",
-      "bop_version": "1.67",
-      "speed_class": "HIGH",
-      "pp": 612.54,
-      "power_hp": 332.0,
-      "torque_nm": 427.6,
-      "weight_kg": 1265.0,
-      "power_weight_hp_t": 262.4505928853755,
-      "weight_balance": "59:41",
-      "drivetrain": "FF",
-      "aspiration": "TC",
-      "acceleration": {
-        "0_400m": 13.47,
-        "0_1000m": 24.1,
-        "100_150_kmh": 4.21
-      },
-      "rotational_g": {
-        "60_kmh": 1.29,
-        "120_kmh": 1.39,
-        "240_kmh": 1.45
-      },
-      "stability": {
-        "low_speed": "-0.31 | N",
-        "high_speed": "-1 | U"
-      }
-    },
-    "MID": {
-      "car": "Hyundai ELANTRA N TC '24",
-      "group": "GR.4",
-      "bop_version": "1.67",
-      "speed_class": "MID",
-      "pp": 612.54,
-      "power_hp": 332.0,
-      "torque_nm": 427.6,
-      "weight_kg": 1265.0,
-      "power_weight_hp_t": 262.4505928853755,
-      "weight_balance": "59:41",
-      "drivetrain": "FF",
-      "aspiration": "TC",
-      "acceleration": {
-        "0_400m": 13.47,
-        "0_1000m": 24.1,
-        "100_150_kmh": 4.21
-      },
-      "rotational_g": {
-        "60_kmh": 1.29,
-        "120_kmh": 1.39,
-        "240_kmh": 1.45
-      },
-      "stability": {
-        "low_speed": "-0.31 | N",
-        "high_speed": "-1 | U"
-      }
-    },
-    "LOW": {
-      "car": "Hyundai ELANTRA N TC '24",
-      "group": "GR.4",
-      "bop_version": "1.67",
-      "speed_class": "LOW",
-      "pp": 612.54,
-      "power_hp": 332.0,
-      "torque_nm": 427.6,
-      "weight_kg": 1265.0,
-      "power_weight_hp_t": 262.4505928853755,
-      "weight_balance": "59:41",
-      "drivetrain": "FF",
-      "aspiration": "TC",
-      "acceleration": {
-        "0_400m": 13.47,
-        "0_1000m": 24.1,
-        "100_150_kmh": 4.21
-      },
-      "rotational_g": {
-        "60_kmh": 1.29,
-        "120_kmh": 1.39,
-        "240_kmh": 1.45
-      },
-      "stability": {
-        "low_speed": "-0.31 | N",
-        "high_speed": "-1 | U"
-      }
-    }
-  },
-  "my_car_active_bop": {
-    "car": "Hyundai ELANTRA N TC '24",
-    "group": "GR.4",
-    "bop_version": "1.67",
-    "speed_class": "MID",
-    "pp": 612.54,
-    "power_hp": 332.0,
-    "torque_nm": 427.6,
-    "weight_kg": 1265.0,
-    "power_weight_hp_t": 262.4505928853755,
-    "weight_balance": "59:41",
-    "drivetrain": "FF",
-    "aspiration": "TC",
-    "acceleration": {
-      "0_400m": 13.47,
-      "0_1000m": 24.1,
-      "100_150_kmh": 4.21
-    },
-    "rotational_g": {
-      "60_kmh": 1.29,
-      "120_kmh": 1.39,
-      "240_kmh": 1.45
-    },
-    "stability": {
-      "low_speed": "-0.31 | N",
-      "high_speed": "-1 | U"
-    }
-  },
+  "my_car": null,
+  "my_car_fingerprint": null,
+  "my_car_active_bop": null,
   "top5_used_cars": [
     {
-      "car": "Hyundai ELANTRA N TC '24",
+      "car": "Jaguar F-type Gr.3",
       "available": true,
       "match": {
-        "requested_name": "Hyundai ELANTRA N TC '24",
-        "matched_name": "Hyundai ELANTRA N TC '24",
+        "requested_name": "Jaguar F-type Gr.3",
+        "matched_name": "Jaguar F-type Gr.3",
         "match_score": 100
       },
       "bop_version": "1.67",
-      "distinct_signatures": 1,
-      "can_identify_speed_class_from_car": false,
+      "distinct_signatures": 3,
+      "can_identify_speed_class_from_car": true,
       "HIGH": {
-        "car": "Hyundai ELANTRA N TC '24",
-        "group": "GR.4",
+        "car": "Jaguar F-type Gr.3",
+        "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 612.54,
-        "power_hp": 332.0,
-        "torque_nm": 427.6,
-        "weight_kg": 1265.0,
-        "power_weight_hp_t": 262.4505928853755,
-        "weight_balance": "59:41",
-        "drivetrain": "FF",
-        "aspiration": "TC",
+        "pp": 696.74,
+        "power_hp": 469.0,
+        "torque_nm": 577.6,
+        "weight_kg": 1254.0,
+        "power_weight_hp_t": 374.0031897926635,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "SC",
         "acceleration": {
-          "0_400m": 13.47,
-          "0_1000m": 24.1,
-          "100_150_kmh": 4.21
+          "0_400m": 11.42,
+          "0_1000m": 20.74,
+          "100_150_kmh": 2.68
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.39,
-          "240_kmh": 1.45
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.68
         },
         "stability": {
-          "low_speed": "-0.31 | N",
+          "low_speed": "-0.38 | N",
           "high_speed": "-1 | U"
         }
       },
       "MID": {
-        "car": "Hyundai ELANTRA N TC '24",
-        "group": "GR.4",
+        "car": "Jaguar F-type Gr.3",
+        "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 612.54,
-        "power_hp": 332.0,
-        "torque_nm": 427.6,
+        "pp": 695.6,
+        "power_hp": 469.0,
+        "torque_nm": 577.6,
         "weight_kg": 1265.0,
-        "power_weight_hp_t": 262.4505928853755,
-        "weight_balance": "59:41",
-        "drivetrain": "FF",
-        "aspiration": "TC",
+        "power_weight_hp_t": 370.7509881422925,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "SC",
         "acceleration": {
-          "0_400m": 13.47,
-          "0_1000m": 24.1,
-          "100_150_kmh": 4.21
+          "0_400m": 11.45,
+          "0_1000m": 20.78,
+          "100_150_kmh": 2.7
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.39,
-          "240_kmh": 1.45
+          "60_kmh": 1.32,
+          "120_kmh": 1.43,
+          "240_kmh": 1.68
         },
         "stability": {
-          "low_speed": "-0.31 | N",
+          "low_speed": "-0.38 | N",
           "high_speed": "-1 | U"
         }
       },
       "LOW": {
-        "car": "Hyundai ELANTRA N TC '24",
-        "group": "GR.4",
+        "car": "Jaguar F-type Gr.3",
+        "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "LOW",
-        "pp": 612.54,
-        "power_hp": 332.0,
-        "torque_nm": 427.6,
-        "weight_kg": 1265.0,
-        "power_weight_hp_t": 262.4505928853755,
-        "weight_balance": "59:41",
-        "drivetrain": "FF",
-        "aspiration": "TC",
+        "pp": 694.25,
+        "power_hp": 465.0,
+        "torque_nm": 570.7,
+        "weight_kg": 1260.0,
+        "power_weight_hp_t": 369.04761904761904,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "SC",
         "acceleration": {
-          "0_400m": 13.47,
-          "0_1000m": 24.1,
-          "100_150_kmh": 4.21
+          "0_400m": 11.48,
+          "0_1000m": 20.85,
+          "100_150_kmh": 2.73
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.39,
-          "240_kmh": 1.45
+          "60_kmh": 1.32,
+          "120_kmh": 1.43,
+          "240_kmh": 1.68
         },
         "stability": {
-          "low_speed": "-0.31 | N",
+          "low_speed": "-0.38 | N",
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 1000,
-      "leaderboard_percentage": 100.0,
+      "leaderboard_count": 923,
+      "leaderboard_percentage": 92.30000000000001,
       "active_bop": {
-        "car": "Hyundai ELANTRA N TC '24",
-        "group": "GR.4",
+        "car": "Jaguar F-type Gr.3",
+        "group": "GR.3",
         "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 612.54,
-        "power_hp": 332.0,
-        "torque_nm": 427.6,
-        "weight_kg": 1265.0,
-        "power_weight_hp_t": 262.4505928853755,
-        "weight_balance": "59:41",
-        "drivetrain": "FF",
-        "aspiration": "TC",
+        "speed_class": "HIGH",
+        "pp": 696.74,
+        "power_hp": 469.0,
+        "torque_nm": 577.6,
+        "weight_kg": 1254.0,
+        "power_weight_hp_t": 374.0031897926635,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "SC",
         "acceleration": {
-          "0_400m": 13.47,
-          "0_1000m": 24.1,
-          "100_150_kmh": 4.21
+          "0_400m": 11.42,
+          "0_1000m": 20.74,
+          "100_150_kmh": 2.68
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.39,
-          "240_kmh": 1.45
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.68
         },
         "stability": {
-          "low_speed": "-0.31 | N",
+          "low_speed": "-0.38 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "Dodge Viper SRT GT3-R '15",
+      "available": true,
+      "match": {
+        "requested_name": "Dodge Viper SRT GT3-R '15",
+        "matched_name": "Dodge Viper SRT GT3-R '15",
+        "match_score": 100
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 2,
+      "can_identify_speed_class_from_car": true,
+      "HIGH": {
+        "car": "Dodge Viper SRT GT3-R '15",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 695.23,
+        "power_hp": 475.0,
+        "torque_nm": 608.0,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 365.38461538461536,
+        "weight_balance": "49:51",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.06,
+          "0_1000m": 20.36,
+          "100_150_kmh": 2.6
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
+        },
+        "stability": {
+          "low_speed": "-0.25 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Dodge Viper SRT GT3-R '15",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 695.23,
+        "power_hp": 475.0,
+        "torque_nm": 608.0,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 365.38461538461536,
+        "weight_balance": "49:51",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.06,
+          "0_1000m": 20.36,
+          "100_150_kmh": 2.6
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
+        },
+        "stability": {
+          "low_speed": "-0.25 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Dodge Viper SRT GT3-R '15",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 695.94,
+        "power_hp": 475.0,
+        "torque_nm": 608.0,
+        "weight_kg": 1290.0,
+        "power_weight_hp_t": 368.2170542635659,
+        "weight_balance": "49:51",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.0,
+          "0_1000m": 20.29,
+          "100_150_kmh": 2.58
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
+        },
+        "stability": {
+          "low_speed": "-0.25 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 31,
+      "leaderboard_percentage": 3.1,
+      "active_bop": {
+        "car": "Dodge Viper SRT GT3-R '15",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 695.23,
+        "power_hp": 475.0,
+        "torque_nm": 608.0,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 365.38461538461536,
+        "weight_balance": "49:51",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 11.06,
+          "0_1000m": 20.36,
+          "100_150_kmh": 2.6
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
+        },
+        "stability": {
+          "low_speed": "-0.25 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "Hyundai Genesis Gr.3",
+      "available": true,
+      "match": {
+        "requested_name": "Hyundai Genesis Gr.3",
+        "matched_name": "Hyundai Genesis Gr.3",
+        "match_score": 100
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 3,
+      "can_identify_speed_class_from_car": true,
+      "HIGH": {
+        "car": "Hyundai Genesis Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 694.41,
+        "power_hp": 483.0,
+        "torque_nm": 455.0,
+        "weight_kg": 1260.0,
+        "power_weight_hp_t": 383.3333333333333,
+        "weight_balance": "53:47",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.4,
+          "0_1000m": 21.83,
+          "100_150_kmh": 2.68
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.7
+        },
+        "stability": {
+          "low_speed": "-0.33 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Hyundai Genesis Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 693.53,
+        "power_hp": 483.0,
+        "torque_nm": 455.0,
+        "weight_kg": 1269.0,
+        "power_weight_hp_t": 380.6146572104019,
+        "weight_balance": "53:47",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.43,
+          "0_1000m": 21.87,
+          "100_150_kmh": 2.7
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.7
+        },
+        "stability": {
+          "low_speed": "-0.33 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Hyundai Genesis Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 692.27,
+        "power_hp": 483.0,
+        "torque_nm": 455.0,
+        "weight_kg": 1285.0,
+        "power_weight_hp_t": 375.87548638132296,
+        "weight_balance": "53:47",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.47,
+          "0_1000m": 21.93,
+          "100_150_kmh": 2.72
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.69
+        },
+        "stability": {
+          "low_speed": "-0.33 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 19,
+      "leaderboard_percentage": 1.9,
+      "active_bop": {
+        "car": "Hyundai Genesis Gr.3",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 694.41,
+        "power_hp": 483.0,
+        "torque_nm": 455.0,
+        "weight_kg": 1260.0,
+        "power_weight_hp_t": 383.3333333333333,
+        "weight_balance": "53:47",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.4,
+          "0_1000m": 21.83,
+          "100_150_kmh": 2.68
+        },
+        "rotational_g": {
+          "60_kmh": 1.32,
+          "120_kmh": 1.44,
+          "240_kmh": 1.7
+        },
+        "stability": {
+          "low_speed": "-0.33 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
+      "available": true,
+      "match": {
+        "requested_name": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
+        "matched_name": "Suzuki SUZUKI VGT (Gr.3)",
+        "match_score": 80
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 2,
+      "can_identify_speed_class_from_car": true,
+      "HIGH": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 677.97,
+        "power_hp": 469.0,
+        "torque_nm": 397.2,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 384.42622950819674,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.06,
+          "0_1000m": 22.69,
+          "100_150_kmh": 2.97
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 677.97,
+        "power_hp": 469.0,
+        "torque_nm": 397.2,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 384.42622950819674,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.06,
+          "0_1000m": 22.69,
+          "100_150_kmh": 2.97
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 676.31,
+        "power_hp": 463.0,
+        "torque_nm": 391.3,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 379.5081967213115,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.11,
+          "0_1000m": 22.77,
+          "100_150_kmh": 3.0
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 10,
+      "leaderboard_percentage": 1.0,
+      "active_bop": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 677.97,
+        "power_hp": 469.0,
+        "torque_nm": 397.2,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 384.42622950819674,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.06,
+          "0_1000m": 22.69,
+          "100_150_kmh": 2.97
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "Ferrari 296 GT3 '23",
+      "available": true,
+      "match": {
+        "requested_name": "Ferrari 296 GT3 '23",
+        "matched_name": "Ferrari 296 GT3 '23",
+        "match_score": 100
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 2,
+      "can_identify_speed_class_from_car": true,
+      "HIGH": {
+        "car": "Ferrari 296 GT3 '23",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 694.29,
+        "power_hp": 444.0,
+        "torque_nm": 526.6,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 336.3636363636364,
+        "weight_balance": "47:53",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.19,
+          "0_1000m": 21.68,
+          "100_150_kmh": 2.85
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.45,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.62 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Ferrari 296 GT3 '23",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 694.29,
+        "power_hp": 444.0,
+        "torque_nm": 526.6,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 336.3636363636364,
+        "weight_balance": "47:53",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.19,
+          "0_1000m": 21.68,
+          "100_150_kmh": 2.85
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.45,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.62 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Ferrari 296 GT3 '23",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 692.86,
+        "power_hp": 444.0,
+        "torque_nm": 526.6,
+        "weight_kg": 1335.0,
+        "power_weight_hp_t": 332.5842696629214,
+        "weight_balance": "47:53",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.23,
+          "0_1000m": 21.75,
+          "100_150_kmh": 2.88
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.45,
+          "240_kmh": 1.72
+        },
+        "stability": {
+          "low_speed": "-0.62 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 3,
+      "leaderboard_percentage": 0.3,
+      "active_bop": {
+        "car": "Ferrari 296 GT3 '23",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 694.29,
+        "power_hp": 444.0,
+        "torque_nm": 526.6,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 336.3636363636364,
+        "weight_balance": "47:53",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.19,
+          "0_1000m": 21.68,
+          "100_150_kmh": 2.85
+        },
+        "rotational_g": {
+          "60_kmh": 1.34,
+          "120_kmh": 1.45,
+          "240_kmh": 1.73
+        },
+        "stability": {
+          "low_speed": "-0.62 | U",
           "high_speed": "-1 | U"
         }
       }
