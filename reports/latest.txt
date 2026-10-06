@@ -1,61 +1,39 @@
-LAST WEEK - FINAL RESULT
-----------------------------------------
-Week       : 2026-09-28
-Circuit    : Red Bull Ring A. Nicholaou - Hyundai ELANTRA N TC '24 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5
-Car        : Hyundai ELANTRA N TC '24
-
-YOUR RESULT
-Position   : #2,050 of 48,094
-Time       : 1:34.595
-Top        : 4.26%
-Ahead of   : 95.74% of participants
-WR         : 101.478%
-CPI        : 8.33 / 10 | ELITE
-
-Status     : FINAL SNAPSHOT
-Note       : Full GTSH archive is not available yet.
-             This will be upgraded automatically when archived.
-----------------------------------------
-
-NEW WEEK - CURRENT DAILY RACE C
-----------------------------------------
-
 GT7 DAILY RACE C
-----------------------------------------
-Snapshot: 05/10/2026 14:26:58 - Sao Paulo
+==============================================================================
+Snapshot: 06/10/2026 12:28:46 - Sao Paulo
 C Gr.3 Running Daily Race C
 Car category: Gr.3
 Daytona Road Course
-Current WR: L. Burton (1:44.216)
+Current WR: M. Bartoli (1:44.154)
 Current WR Car: Jaguar F-type Gr.3
 Race Setup: RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 12,687
+Total drivers: 28,709
 
 WHERE YOU ARE
 crazy_rooster74 not found in leaderboard.
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : 1:44.464 average | SD 0.095s | 2 drivers
-DR A+ : 1:45.394 average | SD 0.596s | 462 drivers
-DR A  : 1:46.239 average | SD 0.826s | 1,184 drivers
-DR B  : 1:47.494 average | SD 1.355s | 4,382 drivers
-DR C  : 1:48.860 average | SD 1.772s | 3,180 drivers
-DR D  : 1:50.527 average | SD 2.425s | 2,944 drivers
-DR E  : 1:52.268 average | SD 4.503s | 314 drivers
+DR S  : 1:44.406 average | SD 0.113s | 3 drivers
+DR A+ : 1:45.329 average | SD 0.578s | 801 drivers
+DR A  : 1:46.071 average | SD 0.766s | 2,347 drivers
+DR B  : 1:47.299 average | SD 1.269s | 9,329 drivers
+DR C  : 1:48.673 average | SD 1.677s | 7,491 drivers
+DR D  : 1:50.429 average | SD 2.419s | 7,370 drivers
+DR E  : 1:52.363 average | SD 4.266s | 838 drivers
 
 WORLD RECORD & BENCHMARKS
-WR              : 1:44.216 | L. Burton | Jaguar F-type Gr.3
-103% WR         : 1:47.342
-105% WR         : 1:49.427
-Top 10          : 1:44.467
-Top 100         : 1:44.874
-Top 500         : 1:45.460
-Top 1000        : 1:45.822
-Top 2500        : 1:46.551
-Top 5000        : 1:47.483
+WR              : 1:44.154 | M. Bartoli | Jaguar F-type Gr.3
+103% WR         : 1:47.279
+105% WR         : 1:49.362
+Top 10          : 1:44.356
+Top 100         : 1:44.711
+Top 500         : 1:45.129
+Top 1000        : 1:45.384
+Top 2500        : 1:45.866
+Top 5000        : 1:46.401
 
 WHERE YOU SHOULD AIM
 No higher automatic target available.
@@ -64,17 +42,16 @@ YOUR CAR VS META
 No personal car comparison available.
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Jaguar F-type Gr.3 | 923 drivers | 92.3%
-2. Dodge Viper SRT GT3-R '15 | 31 drivers | 3.1%
-3. Hyundai Genesis Gr.3 | 19 drivers | 1.9%
-4. SUZUKI Vision Gran Turismo (Gr.3 Version) | 10 drivers | 1.0%
-5. Ferrari 296 GT3 '23 | 3 drivers | 0.3%
+1. Jaguar F-type Gr.3 | 947 drivers | 94.7%
+2. Dodge Viper SRT GT3-R '15 | 28 drivers | 2.8%
+3. Hyundai Genesis Gr.3 | 7 drivers | 0.7%
+4. SUZUKI Vision Gran Turismo (Gr.3 Version) | 6 drivers | 0.6%
+5. Chevrolet Corvette C7 Gr.3 | 4 drivers | 0.4%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Jaguar F-type Gr.3 | OI 1.67 | Top100 94 | Top1000 923 | High
-2. Dodge Viper SRT GT3-R '15 | OI 0.70 | Top100 4 | Top1000 31 | High
-3. Hyundai Genesis Gr.3 | OI 0.25 | Top100 1 | Top1000 19 | Medium
+1. Jaguar F-type Gr.3 | OI 1.67 | Top100 94 | Top1000 947 | High
+2. Dodge Viper SRT GT3-R '15 | OI 0.51 | Top100 3 | Top1000 28 | High
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
@@ -88,14 +65,14 @@ CARS TO TEST THIS WEEK
 Model: GR.3|HIGH | Technical evidence: 33%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. PEUGEOT Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 84% | SCI 52.1 | SSI 67.9 | Tech 60% | Usage 0.33% | Best #271
-2. BMW Z4 GT3 '11 | PRIORITY TEST | Consensus 82% | SCI 51.4 | SSI 65.0 | Tech 64% | Usage 0.42% | Best #213
-3. Aston Martin DBR9 GT1 '10 | PRIORITY TEST | Consensus 81% | SCI 50.1 | SSI 64.0 | Tech 66% | Usage 0.35% | Best #662
-4. SUZUKI Vision Gran Turismo (Gr.3 Version) | STRONG ALTERNATIVE | Consensus 80% | SCI 61.5 | SSI 63.6 | Tech 57% | Usage 0.75% | Best #22
-5. Mazda Atenza Gr.3 | STRONG ALTERNATIVE | Consensus 76% | SCI 48.7 | SSI 67.8 | Tech 51% | Usage 0.17% | Best #3483
+1. Volkswagen GTI Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 84% | SCI 49.4 | SSI 66.7 | Tech 62% | Usage 0.08% | Best #1588
+2. Mercedes-Benz SLS AMG GT3 '11 | PRIORITY TEST | Consensus 81% | SCI 48.2 | SSI 65.5 | Tech 59% | Usage 0.09% | Best #5731
+3. SUZUKI Vision Gran Turismo (Gr.3 Version) | STRONG ALTERNATIVE | Consensus 79% | SCI 65.4 | SSI 63.6 | Tech 55% | Usage 0.53% | Best #32
+4. Aston Martin DBR9 GT1 '10 | STRONG ALTERNATIVE | Consensus 79% | SCI 52.6 | SSI 62.7 | Tech 66% | Usage 0.36% | Best #231
+5. PEUGEOT Vision Gran Turismo (Gr.3) | STRONG ALTERNATIVE | Consensus 79% | SCI 47.7 | SSI 66.4 | Tech 58% | Usage 0.24% | Best #816
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
-----------------------------------------
+==============================================================================
 
 FORECAST TO SUNDAY - V2
 Race start date unavailable.
@@ -111,13 +88,13 @@ WR gap     : +N/A%
 
 LATEST FINALIZED WEEK
 Week       : 2026-09-28
-CPI        : 8.33 / 10 | ELITE
-Top %      : 4.26%
+CPI        : 8.34 / 10 | ELITE
+Top %      : 4.21%
 WR gap     : +1.478%
 
 4-WEEK FINALIZED MOVING AVERAGE
 CPI        : 7.89
-Top %      : 6.56%
+Top %      : 6.55%
 WR gap     : +1.915%
 
 8-WEEK FINALIZED TREND
@@ -141,22 +118,22 @@ CPI 7.61 | Top 7.57% | WR +2.262%
 - 2026-09-21 | Gr.3 | Sardegna - Road Track - A
 CPI 8.07 | Top 5.60% | WR +1.748%
 - 2026-09-28 | Gr.4 | Red Bull Ring
-CPI 8.33 | Top 4.26% | WR +1.478%
+CPI 8.34 | Top 4.21% | WR +1.478%
 
 DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 12,687
+Entries        : 28,709
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
 Unknown codes  : 0 valid unmapped entries
-Invalid codes  : 3 entries
+Invalid codes  : 7 entries
 My PSN found   : No
 Weekly final   : No
 Percentile data: Top 10% and Top 5% direct snapshot stored
 GTSH car scan  : 586 discovered | 0 new | 0 updated
 Status         : OK
 
-----------------------------------------
+==============================================================================

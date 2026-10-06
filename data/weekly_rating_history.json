@@ -1117,7 +1117,7 @@
     "race": "C Gr.4 Archived Daily Race C i 16:02 Red Bull Ring A. Nicholaou - Hyundai ELANTRA N TC '24 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tGCm8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
     "general_score": 9.578893563480516,
-    "elite_score": 2.9224107526934526,
+    "elite_score": 8.339569685547389,
     "composite_rating": 6.91630043916569,
     "position": 2143,
     "total_drivers": 50867,
@@ -1138,6 +1138,12 @@
     "same_car_total": 35835,
     "dr_rank": 915,
     "dr_total": 2784,
-    "archive_upgrade_pending": false
+    "archive_upgrade_pending": false,
+    "legacy_elite_score": 2.9224107526934526,
+    "legacy_general_score": 9.578893563480516,
+    "legacy_composite_rating": 6.91630043916569,
+    "cpi_score": 8.339569685547389,
+    "cpi_band": "ELITE",
+    "rating_model": "CPI_50_50_V1"
   }
 ]

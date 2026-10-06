@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-05T17:27:15.058569+00:00",
+  "generated_at": "2026-10-06T15:29:23.263695+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-10-05T14:26:58.178611-03:00",
-  "race_description": "C Gr.3 Running Daily Race C i 00:00 Daytona Road Course L. Burton - Jaguar F-type Gr.3 RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
+  "snapshot_timestamp": "2026-10-06T12:28:46.505002-03:00",
+  "race_description": "C Gr.3 Running Daily Race C i 00:00 Daytona Road Course M. Bartoli - Jaguar F-type Gr.3 RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
   "track": "Daytona Road Course",
   "group": "GR.3",
   "model_key": "GR.3|HIGH",
@@ -121,8 +121,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 923,
-      "leaderboard_percentage": 92.30000000000001,
+      "leaderboard_count": 947,
+      "leaderboard_percentage": 94.69999999999999,
       "active_bop": {
         "car": "Jaguar F-type Gr.3",
         "group": "GR.3",
@@ -247,8 +247,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 31,
-      "leaderboard_percentage": 3.1,
+      "leaderboard_count": 28,
+      "leaderboard_percentage": 2.8000000000000003,
       "active_bop": {
         "car": "Dodge Viper SRT GT3-R '15",
         "group": "GR.3",
@@ -373,8 +373,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 19,
-      "leaderboard_percentage": 1.9,
+      "leaderboard_count": 7,
+      "leaderboard_percentage": 0.7000000000000001,
       "active_bop": {
         "car": "Hyundai Genesis Gr.3",
         "group": "GR.3",
@@ -499,8 +499,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 10,
-      "leaderboard_percentage": 1.0,
+      "leaderboard_count": 6,
+      "leaderboard_percentage": 0.6,
       "active_bop": {
         "car": "Suzuki SUZUKI VGT (Gr.3)",
         "group": "GR.3",
@@ -531,127 +531,127 @@
       }
     },
     {
-      "car": "Ferrari 296 GT3 '23",
+      "car": "Chevrolet Corvette C7 Gr.3",
       "available": true,
       "match": {
-        "requested_name": "Ferrari 296 GT3 '23",
-        "matched_name": "Ferrari 296 GT3 '23",
+        "requested_name": "Chevrolet Corvette C7 Gr.3",
+        "matched_name": "Chevrolet Corvette C7 Gr.3",
         "match_score": 100
       },
       "bop_version": "1.67",
       "distinct_signatures": 2,
       "can_identify_speed_class_from_car": true,
       "HIGH": {
-        "car": "Ferrari 296 GT3 '23",
+        "car": "Chevrolet Corvette C7 Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 694.29,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 336.3636363636364,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
+        "pp": 691.82,
+        "power_hp": 480.0,
+        "torque_nm": 600.2,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 369.2307692307692,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 12.19,
-          "0_1000m": 21.68,
-          "100_150_kmh": 2.85
+          "0_400m": 11.21,
+          "0_1000m": 20.58,
+          "100_150_kmh": 2.71
         },
         "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.73
+          "60_kmh": 1.31,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
         },
         "stability": {
-          "low_speed": "-0.62 | U",
+          "low_speed": "-0.34 | N",
           "high_speed": "-1 | U"
         }
       },
       "MID": {
-        "car": "Ferrari 296 GT3 '23",
+        "car": "Chevrolet Corvette C7 Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 694.29,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 336.3636363636364,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
+        "pp": 691.82,
+        "power_hp": 480.0,
+        "torque_nm": 600.2,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 369.2307692307692,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 12.19,
-          "0_1000m": 21.68,
-          "100_150_kmh": 2.85
+          "0_400m": 11.21,
+          "0_1000m": 20.58,
+          "100_150_kmh": 2.71
         },
         "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.73
+          "60_kmh": 1.31,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
         },
         "stability": {
-          "low_speed": "-0.62 | U",
+          "low_speed": "-0.34 | N",
           "high_speed": "-1 | U"
         }
       },
       "LOW": {
-        "car": "Ferrari 296 GT3 '23",
+        "car": "Chevrolet Corvette C7 Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "LOW",
-        "pp": 692.86,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1335.0,
-        "power_weight_hp_t": 332.5842696629214,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
+        "pp": 690.86,
+        "power_hp": 480.0,
+        "torque_nm": 600.2,
+        "weight_kg": 1310.0,
+        "power_weight_hp_t": 366.412213740458,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 12.23,
-          "0_1000m": 21.75,
-          "100_150_kmh": 2.88
+          "0_400m": 11.23,
+          "0_1000m": 20.61,
+          "100_150_kmh": 2.72
         },
         "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.72
+          "60_kmh": 1.31,
+          "120_kmh": 1.41,
+          "240_kmh": 1.67
         },
         "stability": {
-          "low_speed": "-0.62 | U",
+          "low_speed": "-0.33 | N",
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 3,
-      "leaderboard_percentage": 0.3,
+      "leaderboard_count": 4,
+      "leaderboard_percentage": 0.4,
       "active_bop": {
-        "car": "Ferrari 296 GT3 '23",
+        "car": "Chevrolet Corvette C7 Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 694.29,
-        "power_hp": 444.0,
-        "torque_nm": 526.6,
-        "weight_kg": 1320.0,
-        "power_weight_hp_t": 336.3636363636364,
-        "weight_balance": "47:53",
-        "drivetrain": "MR",
-        "aspiration": "TC",
+        "pp": 691.82,
+        "power_hp": 480.0,
+        "torque_nm": 600.2,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 369.2307692307692,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 12.19,
-          "0_1000m": 21.68,
-          "100_150_kmh": 2.85
+          "0_400m": 11.21,
+          "0_1000m": 20.58,
+          "100_150_kmh": 2.71
         },
         "rotational_g": {
-          "60_kmh": 1.34,
-          "120_kmh": 1.45,
-          "240_kmh": 1.73
+          "60_kmh": 1.31,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
         },
         "stability": {
-          "low_speed": "-0.62 | U",
+          "low_speed": "-0.34 | N",
           "high_speed": "-1 | U"
         }
       }
