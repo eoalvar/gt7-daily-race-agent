@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-07T15:49:05.015927+00:00",
+  "generated_at": "2026-10-08T10:33:09.362946+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-10-07T12:48:15.229539-03:00",
+  "snapshot_timestamp": "2026-10-08T07:32:13.073147-03:00",
   "race_description": "C Gr.3 Running Daily Race C i 00:00 Daytona Road Course D. Chafe - Jaguar F-type Gr.3 RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
   "track": "Daytona Road Course",
   "group": "GR.3",
@@ -121,8 +121,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 953,
-      "leaderboard_percentage": 95.3,
+      "leaderboard_count": 957,
+      "leaderboard_percentage": 95.7,
       "active_bop": {
         "car": "Jaguar F-type Gr.3",
         "group": "GR.3",
@@ -247,8 +247,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 29,
-      "leaderboard_percentage": 2.9000000000000004,
+      "leaderboard_count": 28,
+      "leaderboard_percentage": 2.8000000000000003,
       "active_bop": {
         "car": "Dodge Viper SRT GT3-R '15",
         "group": "GR.3",
@@ -405,132 +405,6 @@
       }
     },
     {
-      "car": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
-      "available": true,
-      "match": {
-        "requested_name": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
-        "matched_name": "Suzuki SUZUKI VGT (Gr.3)",
-        "match_score": 80
-      },
-      "bop_version": "1.67",
-      "distinct_signatures": 2,
-      "can_identify_speed_class_from_car": true,
-      "HIGH": {
-        "car": "Suzuki SUZUKI VGT (Gr.3)",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "HIGH",
-        "pp": 677.97,
-        "power_hp": 469.0,
-        "torque_nm": 397.2,
-        "weight_kg": 1220.0,
-        "power_weight_hp_t": 384.42622950819674,
-        "weight_balance": "50:50",
-        "drivetrain": "FR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 13.06,
-          "0_1000m": 22.69,
-          "100_150_kmh": 2.97
-        },
-        "rotational_g": {
-          "60_kmh": 1.33,
-          "120_kmh": 1.43,
-          "240_kmh": 1.61
-        },
-        "stability": {
-          "low_speed": "-0.36 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "MID": {
-        "car": "Suzuki SUZUKI VGT (Gr.3)",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 677.97,
-        "power_hp": 469.0,
-        "torque_nm": 397.2,
-        "weight_kg": 1220.0,
-        "power_weight_hp_t": 384.42622950819674,
-        "weight_balance": "50:50",
-        "drivetrain": "FR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 13.06,
-          "0_1000m": 22.69,
-          "100_150_kmh": 2.97
-        },
-        "rotational_g": {
-          "60_kmh": 1.33,
-          "120_kmh": 1.43,
-          "240_kmh": 1.61
-        },
-        "stability": {
-          "low_speed": "-0.36 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "LOW": {
-        "car": "Suzuki SUZUKI VGT (Gr.3)",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "LOW",
-        "pp": 676.31,
-        "power_hp": 463.0,
-        "torque_nm": 391.3,
-        "weight_kg": 1220.0,
-        "power_weight_hp_t": 379.5081967213115,
-        "weight_balance": "50:50",
-        "drivetrain": "FR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 13.11,
-          "0_1000m": 22.77,
-          "100_150_kmh": 3.0
-        },
-        "rotational_g": {
-          "60_kmh": 1.33,
-          "120_kmh": 1.43,
-          "240_kmh": 1.61
-        },
-        "stability": {
-          "low_speed": "-0.36 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "leaderboard_count": 3,
-      "leaderboard_percentage": 0.3,
-      "active_bop": {
-        "car": "Suzuki SUZUKI VGT (Gr.3)",
-        "group": "GR.3",
-        "bop_version": "1.67",
-        "speed_class": "HIGH",
-        "pp": 677.97,
-        "power_hp": 469.0,
-        "torque_nm": 397.2,
-        "weight_kg": 1220.0,
-        "power_weight_hp_t": 384.42622950819674,
-        "weight_balance": "50:50",
-        "drivetrain": "FR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 13.06,
-          "0_1000m": 22.69,
-          "100_150_kmh": 2.97
-        },
-        "rotational_g": {
-          "60_kmh": 1.33,
-          "120_kmh": 1.43,
-          "240_kmh": 1.61
-        },
-        "stability": {
-          "low_speed": "-0.36 | N",
-          "high_speed": "-1 | U"
-        }
-      }
-    },
-    {
       "car": "Aston Martin DBR9 GT1 '10",
       "available": true,
       "match": {
@@ -652,6 +526,132 @@
         },
         "stability": {
           "low_speed": "-0.27 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
+      "available": true,
+      "match": {
+        "requested_name": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
+        "matched_name": "Suzuki SUZUKI VGT (Gr.3)",
+        "match_score": 80
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 2,
+      "can_identify_speed_class_from_car": true,
+      "HIGH": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 677.97,
+        "power_hp": 469.0,
+        "torque_nm": 397.2,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 384.42622950819674,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.06,
+          "0_1000m": 22.69,
+          "100_150_kmh": 2.97
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 677.97,
+        "power_hp": 469.0,
+        "torque_nm": 397.2,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 384.42622950819674,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.06,
+          "0_1000m": 22.69,
+          "100_150_kmh": 2.97
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 676.31,
+        "power_hp": 463.0,
+        "torque_nm": 391.3,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 379.5081967213115,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.11,
+          "0_1000m": 22.77,
+          "100_150_kmh": 3.0
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 2,
+      "leaderboard_percentage": 0.2,
+      "active_bop": {
+        "car": "Suzuki SUZUKI VGT (Gr.3)",
+        "group": "GR.3",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 677.97,
+        "power_hp": 469.0,
+        "torque_nm": 397.2,
+        "weight_kg": 1220.0,
+        "power_weight_hp_t": 384.42622950819674,
+        "weight_balance": "50:50",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.06,
+          "0_1000m": 22.69,
+          "100_150_kmh": 2.97
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.43,
+          "240_kmh": 1.61
+        },
+        "stability": {
+          "low_speed": "-0.36 | N",
           "high_speed": "-1 | U"
         }
       }
