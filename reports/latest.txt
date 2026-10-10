@@ -1,6 +1,6 @@
 GT7 DAILY RACE C
 ==============================================================================
-Snapshot: 09/10/2026 12:35:22 - Sao Paulo
+Snapshot: 10/10/2026 11:47:46 - Sao Paulo
 C Gr.3 Running Daily Race C
 Car category: Gr.3
 Daytona Road Course
@@ -9,7 +9,7 @@ Current WR Car: Jaguar F-type Gr.3
 Race Setup: RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 49,405
+Total drivers: 57,101
 
 WHERE YOU ARE
 crazy_rooster74 not found in leaderboard.
@@ -17,23 +17,23 @@ crazy_rooster74 not found in leaderboard.
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
 DR S  : 1:44.351 average | SD 0.139s | 7 drivers
-DR A+ : 1:45.215 average | SD 0.575s | 1,122 drivers
-DR A  : 1:45.952 average | SD 0.785s | 3,370 drivers
-DR B  : 1:47.088 average | SD 1.222s | 14,561 drivers
-DR C  : 1:48.419 average | SD 1.634s | 12,868 drivers
-DR D  : 1:50.309 average | SD 2.505s | 14,486 drivers
-DR E  : 1:52.450 average | SD 4.083s | 2,019 drivers
+DR A+ : 1:45.192 average | SD 0.556s | 1,235 drivers
+DR A  : 1:45.935 average | SD 0.793s | 3,705 drivers
+DR B  : 1:47.046 average | SD 1.217s | 16,270 drivers
+DR C  : 1:48.369 average | SD 1.633s | 14,718 drivers
+DR D  : 1:50.299 average | SD 2.532s | 17,347 drivers
+DR E  : 1:52.525 average | SD 4.023s | 2,621 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:44.093 | D. Chafe | Jaguar F-type Gr.3
 103% WR         : 1:47.216
 105% WR         : 1:49.298
-Top 10          : 1:44.245
-Top 100         : 1:44.535
-Top 500         : 1:44.903
-Top 1000        : 1:45.119
-Top 2500        : 1:45.526
-Top 5000        : 1:45.908
+Top 10          : 1:44.201
+Top 100         : 1:44.512
+Top 500         : 1:44.863
+Top 1000        : 1:45.056
+Top 2500        : 1:45.447
+Top 5000        : 1:45.815
 
 WHERE YOU SHOULD AIM
 No higher automatic target available.
@@ -42,16 +42,16 @@ YOUR CAR VS META
 No personal car comparison available.
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Jaguar F-type Gr.3 | 964 drivers | 96.4%
-2. Dodge Viper SRT GT3-R '15 | 23 drivers | 2.3%
+1. Jaguar F-type Gr.3 | 963 drivers | 96.3%
+2. Dodge Viper SRT GT3-R '15 | 25 drivers | 2.5%
 3. Hyundai Genesis Gr.3 | 7 drivers | 0.7%
 4. SUZUKI Vision Gran Turismo (Gr.3 Version) | 2 drivers | 0.2%
 5. Aston Martin DBR9 GT1 '10 | 1 drivers | 0.1%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Jaguar F-type Gr.3 | OI 1.72 | Top100 98 | Top1000 964 | High
-2. Dodge Viper SRT GT3-R '15 | OI 0.29 | Top100 1 | Top1000 23 | Medium
+1. Jaguar F-type Gr.3 | OI 1.74 | Top100 99 | Top1000 963 | High
+2. Dodge Viper SRT GT3-R '15 | OI 0.32 | Top100 1 | Top1000 25 | High
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
@@ -65,11 +65,11 @@ CARS TO TEST THIS WEEK
 Model: GR.3|HIGH | Technical evidence: 33%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. Volkswagen GTI Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 84% | SCI 47.1 | SSI 67.1 | Tech 61% | Usage 0.09% | Best #3031
-2. PEUGEOT Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 80% | SCI 43.1 | SSI 67.7 | Tech 58% | Usage 0.19% | Best #1546
-3. Mazda Atenza Gr.3 | STRONG ALTERNATIVE | Consensus 80% | SCI 45.8 | SSI 67.6 | Tech 50% | Usage 0.11% | Best #4798
-4. Mercedes-Benz SLS AMG GT3 '11 | STRONG ALTERNATIVE | Consensus 79% | SCI 45.5 | SSI 65.7 | Tech 59% | Usage 0.10% | Best #10326
-5. SUZUKI Vision Gran Turismo (Gr.3 Version) | STRONG ALTERNATIVE | Consensus 79% | SCI 58.6 | SSI 65.4 | Tech 54% | Usage 0.39% | Best #98
+1. Volkswagen GTI Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 84% | SCI 47.0 | SSI 66.5 | Tech 61% | Usage 0.08% | Best #3528
+2. Mercedes-Benz SLS AMG GT3 '11 | PRIORITY TEST | Consensus 81% | SCI 45.2 | SSI 65.8 | Tech 59% | Usage 0.09% | Best #11992
+3. SUZUKI Vision Gran Turismo (Gr.3 Version) | STRONG ALTERNATIVE | Consensus 79% | SCI 51.4 | SSI 65.5 | Tech 52% | Usage 0.36% | Best #116
+4. Mazda Atenza Gr.3 | STRONG ALTERNATIVE | Consensus 79% | SCI 45.1 | SSI 67.3 | Tech 51% | Usage 0.10% | Best #5551
+5. PEUGEOT Vision Gran Turismo (Gr.3) | STRONG ALTERNATIVE | Consensus 79% | SCI 41.8 | SSI 67.8 | Tech 57% | Usage 0.19% | Best #1784
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
 ==============================================================================
@@ -124,12 +124,12 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 49,405
+Entries        : 57,101
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
 Unknown codes  : 0 valid unmapped entries
-Invalid codes  : 17 entries
+Invalid codes  : 18 entries
 My PSN found   : No
 Weekly final   : No
 Percentile data: Top 10% and Top 5% direct snapshot stored
