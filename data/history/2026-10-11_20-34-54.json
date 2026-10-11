@@ -1,0 +1,176 @@
+{
+  "timestamp": "2026-10-11T20:34:54.556480-03:00",
+  "race": {
+    "description": "C Gr.3 Running Daily Race C i 00:00 Daytona Road Course M. Busnelli - Jaguar F-type Gr.3 RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tAC28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "detection_mode": "explicit_running_local_block",
+    "safety_validation": "PASSED",
+    "source_mode": "live_page_data_parallel",
+    "fuel_multiplier": 2,
+    "tyre_multiplier": 5,
+    "compounds": [
+      "RH",
+      "RS"
+    ],
+    "start_date": null
+  },
+  "total_drivers": 64872,
+  "world_record": {
+    "score": 104068,
+    "laptime": "1:44.068",
+    "driver": "M. Busnelli",
+    "psn_id": "NRG_Markuss",
+    "car_code": 2184,
+    "car": "Jaguar F-type Gr.3"
+  },
+  "benchmarks": {
+    "103_percent": {
+      "score": 107190,
+      "laptime": "1:47.190"
+    },
+    "105_percent": {
+      "score": 109271,
+      "laptime": "1:49.271"
+    }
+  },
+  "thresholds": {
+    "1": {
+      "score": 104068,
+      "laptime": "1:44.068"
+    },
+    "10": {
+      "score": 104184,
+      "laptime": "1:44.184"
+    },
+    "50": {
+      "score": 104394,
+      "laptime": "1:44.394"
+    },
+    "100": {
+      "score": 104490,
+      "laptime": "1:44.490"
+    },
+    "250": {
+      "score": 104659,
+      "laptime": "1:44.659"
+    },
+    "500": {
+      "score": 104830,
+      "laptime": "1:44.830"
+    },
+    "1000": {
+      "score": 105022,
+      "laptime": "1:45.022"
+    },
+    "2500": {
+      "score": 105401,
+      "laptime": "1:45.401"
+    },
+    "5000": {
+      "score": 105757,
+      "laptime": "1:45.757"
+    },
+    "10000": {
+      "score": 106257,
+      "laptime": "1:46.257"
+    }
+  },
+  "percentile_thresholds": {
+    "10": {
+      "percent": 10,
+      "rank": 6488,
+      "score": 105922,
+      "laptime": "1:45.922"
+    },
+    "5": {
+      "percent": 5,
+      "rank": 3244,
+      "score": 105526,
+      "laptime": "1:45.526"
+    }
+  },
+  "my_result": null,
+  "same_car_stats": null,
+  "country_stats": null,
+  "dr_stats": null,
+  "next_targets": [],
+  "top5_used_cars": [
+    {
+      "car_code": 2184,
+      "car": "Jaguar F-type Gr.3",
+      "count": 970,
+      "percentage": 97.0
+    },
+    {
+      "car_code": 3223,
+      "car": "Dodge Viper SRT GT3-R '15",
+      "count": 20,
+      "percentage": 2.0
+    },
+    {
+      "car_code": 2160,
+      "car": "Hyundai Genesis Gr.3",
+      "count": 6,
+      "percentage": 0.6
+    },
+    {
+      "car_code": 3508,
+      "car": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
+      "count": 2,
+      "percentage": 0.2
+    },
+    {
+      "car_code": 3394,
+      "car": "Aston Martin DBR9 GT1 '10",
+      "count": 1,
+      "percentage": 0.1
+    }
+  ],
+  "overperformance": [
+    {
+      "car_code": 2184,
+      "car": "Jaguar F-type Gr.3",
+      "all_count": 36235,
+      "top100": 99,
+      "top1000": 970,
+      "oi100": 1.772410100731337,
+      "oi1000": 1.736603836070098,
+      "overperformance_index": 1.7616682213329653,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3223,
+      "car": "Dodge Viper SRT GT3-R '15",
+      "all_count": 2779,
+      "top100": 1,
+      "top1000": 20,
+      "oi100": 0.23343648794530408,
+      "oi1000": 0.46687297589060817,
+      "overperformance_index": 0.30346743432889534,
+      "confidence": "Medium"
+    }
+  ],
+  "car_comparison": null,
+  "car_database": {
+    "total_known_cars": 586,
+    "technical_records": 33,
+    "discovered_this_run": 586,
+    "added_this_run": 0,
+    "updated_this_run": 0
+  },
+  "health": {
+    "unknown_car_share": 0.0,
+    "unknown_car_entries": 0,
+    "invalid_car_code_entries": 21,
+    "source_mode": "live_page_data_parallel",
+    "race_detection_mode": "explicit_running_local_block",
+    "race_safety_validation": "PASSED",
+    "leaderboard_entries": 64872,
+    "my_driver_found": false,
+    "warnings": []
+  },
+  "forecast_v2": {
+    "available": false,
+    "reason": "Race start date unavailable."
+  }
+}
