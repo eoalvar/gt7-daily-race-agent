@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-11T15:09:16.800461+00:00",
+  "generated_at": "2026-10-11T23:26:05.262512+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-10-11T12:07:14.756518-03:00",
+  "snapshot_timestamp": "2026-10-11T20:23:52.756944-03:00",
   "race_description": "C Gr.3 Running Daily Race C i 00:00 Daytona Road Course M. Busnelli - Jaguar F-type Gr.3 RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
   "track": "Daytona Road Course",
   "group": "GR.3",
@@ -121,8 +121,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 967,
-      "leaderboard_percentage": 96.7,
+      "leaderboard_count": 970,
+      "leaderboard_percentage": 97.0,
       "active_bop": {
         "car": "Jaguar F-type Gr.3",
         "group": "GR.3",
@@ -247,8 +247,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 23,
-      "leaderboard_percentage": 2.3,
+      "leaderboard_count": 20,
+      "leaderboard_percentage": 2.0,
       "active_bop": {
         "car": "Dodge Viper SRT GT3-R '15",
         "group": "GR.3",

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-11T12:07:14.756518-03:00",
+  "timestamp": "2026-10-11T20:23:52.756944-03:00",
   "race": {
     "description": "C Gr.3 Running Daily Race C i 00:00 Daytona Road Course M. Busnelli - Jaguar F-type Gr.3 RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tAC28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
@@ -14,7 +14,7 @@
     ],
     "start_date": null
   },
-  "total_drivers": 62659,
+  "total_drivers": 64872,
   "world_record": {
     "score": 104068,
     "laptime": "1:44.068",
@@ -39,54 +39,54 @@
       "laptime": "1:44.068"
     },
     "10": {
-      "score": 104190,
-      "laptime": "1:44.190"
+      "score": 104184,
+      "laptime": "1:44.184"
     },
     "50": {
-      "score": 104401,
-      "laptime": "1:44.401"
+      "score": 104394,
+      "laptime": "1:44.394"
     },
     "100": {
-      "score": 104491,
-      "laptime": "1:44.491"
+      "score": 104490,
+      "laptime": "1:44.490"
     },
     "250": {
-      "score": 104667,
-      "laptime": "1:44.667"
+      "score": 104659,
+      "laptime": "1:44.659"
     },
     "500": {
-      "score": 104838,
-      "laptime": "1:44.838"
+      "score": 104830,
+      "laptime": "1:44.830"
     },
     "1000": {
-      "score": 105034,
-      "laptime": "1:45.034"
+      "score": 105022,
+      "laptime": "1:45.022"
     },
     "2500": {
-      "score": 105412,
-      "laptime": "1:45.412"
+      "score": 105401,
+      "laptime": "1:45.401"
     },
     "5000": {
-      "score": 105770,
-      "laptime": "1:45.770"
+      "score": 105757,
+      "laptime": "1:45.757"
     },
     "10000": {
-      "score": 106284,
-      "laptime": "1:46.284"
+      "score": 106257,
+      "laptime": "1:46.257"
     }
   },
   "percentile_thresholds": {
     "10": {
       "percent": 10,
-      "rank": 6266,
-      "score": 105913,
-      "laptime": "1:45.913"
+      "rank": 6488,
+      "score": 105922,
+      "laptime": "1:45.922"
     },
     "5": {
       "percent": 5,
-      "rank": 3133,
-      "score": 105520,
-      "laptime": "1:45.520"
+      "rank": 3244,
+      "score": 105526,
+      "laptime": "1:45.526"
     }
   },
   "my_result": null,
@@ -98,14 +98,14 @@
     {
       "car_code": 2184,
       "car": "Jaguar F-type Gr.3",
-      "count": 967,
-      "percentage": 96.7
+      "count": 970,
+      "percentage": 97.0
     },
     {
       "car_code": 3223,
       "car": "Dodge Viper SRT GT3-R '15",
-      "count": 23,
-      "percentage": 2.3
+      "count": 20,
+      "percentage": 2.0
     },
     {
       "car_code": 2160,
@@ -130,23 +130,23 @@
     {
       "car_code": 2184,
       "car": "Jaguar F-type Gr.3",
-      "all_count": 35173,
+      "all_count": 36235,
       "top100": 99,
-      "top1000": 967,
-      "oi100": 1.7636371648707816,
-      "oi1000": 1.7226637761919654,
-      "overperformance_index": 1.7513451482671367,
+      "top1000": 970,
+      "oi100": 1.772410100731337,
+      "oi1000": 1.736603836070098,
+      "overperformance_index": 1.7616682213329653,
       "confidence": "High"
     },
     {
       "car_code": 3223,
       "car": "Dodge Viper SRT GT3-R '15",
-      "all_count": 2714,
+      "all_count": 2779,
       "top100": 1,
-      "top1000": 23,
-      "oi100": 0.23087324981577007,
-      "oi1000": 0.5310084745762712,
-      "overperformance_index": 0.32091381724392043,
+      "top1000": 20,
+      "oi100": 0.23343648794530408,
+      "oi1000": 0.46687297589060817,
+      "overperformance_index": 0.30346743432889534,
       "confidence": "Medium"
     }
   ],
@@ -161,11 +161,11 @@
   "health": {
     "unknown_car_share": 0.0,
     "unknown_car_entries": 0,
-    "invalid_car_code_entries": 19,
+    "invalid_car_code_entries": 21,
     "source_mode": "live_page_data_parallel",
     "race_detection_mode": "explicit_running_local_block",
     "race_safety_validation": "PASSED",
-    "leaderboard_entries": 62659,
+    "leaderboard_entries": 64872,
     "my_driver_found": false,
     "warnings": []
   },
@@ -181,115 +181,115 @@
     "dr_percentage": 12,
     "sportsmanship_rating": 6,
     "source": "GTSH public profile",
-    "captured_at": "2026-10-11T15:09:20.845595+00:00"
+    "captured_at": "2026-10-11T23:26:09.366355+00:00"
   },
   "dr_laptime_stats": {
     "1": {
       "dr": 1,
       "label": "E",
-      "drivers": 3120,
-      "average_score": 112497.12403846154,
-      "average_laptime": "1:52.497",
-      "stddev_ms": 3993.673950321112,
-      "stddev_seconds": 3.993673950321112,
+      "drivers": 3327,
+      "average_score": 112487.13525698827,
+      "average_laptime": "1:52.487",
+      "stddev_ms": 3970.154554093423,
+      "stddev_seconds": 3.970154554093423,
       "diagnostics": {
-        "raw_n": 3241,
-        "clean_n": 3120,
-        "excluded_n": 121,
-        "median_ms": 111936.0,
-        "mad_ms": 2311.0,
-        "lower_fence_ms": 94804.557,
-        "upper_fence_ms": 129067.443
+        "raw_n": 3457,
+        "clean_n": 3327,
+        "excluded_n": 130,
+        "median_ms": 111939.0,
+        "mad_ms": 2305.0,
+        "lower_fence_ms": 94852.035,
+        "upper_fence_ms": 129025.965
       }
     },
     "2": {
       "dr": 2,
       "label": "D",
-      "drivers": 19604,
-      "average_score": 110304.4699041012,
-      "average_laptime": "1:50.304",
-      "stddev_ms": 2568.852472479567,
-      "stddev_seconds": 2.568852472479567,
+      "drivers": 20546,
+      "average_score": 110312.3080404945,
+      "average_laptime": "1:50.312",
+      "stddev_ms": 2581.0806286503466,
+      "stddev_seconds": 2.5810806286503465,
       "diagnostics": {
-        "raw_n": 20064,
-        "clean_n": 19604,
-        "excluded_n": 460,
-        "median_ms": 109762.5,
-        "mad_ms": 1529.5,
-        "lower_fence_ms": 98424.3165,
-        "upper_fence_ms": 121100.6835
+        "raw_n": 21020,
+        "clean_n": 20546,
+        "excluded_n": 474,
+        "median_ms": 109767.5,
+        "mad_ms": 1538.5,
+        "lower_fence_ms": 98362.5995,
+        "upper_fence_ms": 121172.4005
       }
     },
     "3": {
       "dr": 3,
       "label": "C",
-      "drivers": 16013,
-      "average_score": 108352.21913445326,
-      "average_laptime": "1:48.352",
-      "stddev_ms": 1645.4248932271819,
-      "stddev_seconds": 1.6454248932271818,
+      "drivers": 16557,
+      "average_score": 108342.10690342453,
+      "average_laptime": "1:48.342",
+      "stddev_ms": 1655.248497069139,
+      "stddev_seconds": 1.655248497069139,
       "diagnostics": {
-        "raw_n": 16270,
-        "clean_n": 16013,
-        "excluded_n": 257,
-        "median_ms": 107979.5,
-        "mad_ms": 915.0,
-        "lower_fence_ms": 101196.605,
-        "upper_fence_ms": 114762.395
+        "raw_n": 16819,
+        "clean_n": 16557,
+        "excluded_n": 262,
+        "median_ms": 107967.0,
+        "mad_ms": 916.0,
+        "lower_fence_ms": 101176.692,
+        "upper_fence_ms": 114757.308
       }
     },
     "4": {
       "dr": 4,
       "label": "B",
-      "drivers": 17367,
-      "average_score": 107036.10105372258,
-      "average_laptime": "1:47.036",
-      "stddev_ms": 1225.5831908729706,
-      "stddev_seconds": 1.2255831908729706,
+      "drivers": 17754,
+      "average_score": 107027.89979722879,
+      "average_laptime": "1:47.028",
+      "stddev_ms": 1223.029461819225,
+      "stddev_seconds": 1.223029461819225,
       "diagnostics": {
-        "raw_n": 17741,
-        "clean_n": 17367,
-        "excluded_n": 374,
-        "median_ms": 106774.0,
-        "mad_ms": 676.0,
-        "lower_fence_ms": 101762.812,
-        "upper_fence_ms": 111785.188
+        "raw_n": 18142,
+        "clean_n": 17754,
+        "excluded_n": 388,
+        "median_ms": 106764.0,
+        "mad_ms": 675.0,
+        "lower_fence_ms": 101760.225,
+        "upper_fence_ms": 111767.775
       }
     },
     "5": {
       "dr": 5,
       "label": "A",
-      "drivers": 3927,
-      "average_score": 105937.04558186911,
-      "average_laptime": "1:45.937",
-      "stddev_ms": 805.9064095998266,
-      "stddev_seconds": 0.8059064095998266,
+      "drivers": 3997,
+      "average_score": 105930.40305228921,
+      "average_laptime": "1:45.930",
+      "stddev_ms": 802.9778465108368,
+      "stddev_seconds": 0.8029778465108368,
       "diagnostics": {
-        "raw_n": 4016,
-        "clean_n": 3927,
-        "excluded_n": 89,
-        "median_ms": 105760.0,
-        "mad_ms": 443.0,
-        "lower_fence_ms": 102476.041,
-        "upper_fence_ms": 109043.959
+        "raw_n": 4087,
+        "clean_n": 3997,
+        "excluded_n": 90,
+        "median_ms": 105753.0,
+        "mad_ms": 441.0,
+        "lower_fence_ms": 102483.867,
+        "upper_fence_ms": 109022.133
       }
     },
     "6": {
       "dr": 6,
       "label": "A+",
-      "drivers": 1293,
-      "average_score": 105184.28847641144,
-      "average_laptime": "1:45.184",
-      "stddev_ms": 553.6113186951586,
-      "stddev_seconds": 0.5536113186951586,
+      "drivers": 1311,
+      "average_score": 105180.31121281465,
+      "average_laptime": "1:45.180",
+      "stddev_ms": 558.1656804145663,
+      "stddev_seconds": 0.5581656804145663,
       "diagnostics": {
-        "raw_n": 1318,
-        "clean_n": 1293,
-        "excluded_n": 25,
-        "median_ms": 105101.0,
-        "mad_ms": 339.5,
-        "lower_fence_ms": 102584.2865,
-        "upper_fence_ms": 107617.7135
+        "raw_n": 1338,
+        "clean_n": 1311,
+        "excluded_n": 27,
+        "median_ms": 105094.5,
+        "mad_ms": 342.0,
+        "lower_fence_ms": 102559.254,
+        "upper_fence_ms": 107629.746
       }
     },
     "7": {
