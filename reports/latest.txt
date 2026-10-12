@@ -1,6 +1,6 @@
 GT7 DAILY RACE C
 ==============================================================================
-Snapshot: 11/10/2026 20:34:54 - Sao Paulo
+Snapshot: 11/10/2026 22:05:40 - Sao Paulo
 C Gr.3 Running Daily Race C
 Car category: Gr.3
 Daytona Road Course
@@ -9,20 +9,45 @@ Current WR Car: Jaguar F-type Gr.3
 Race Setup: RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 64,872
+Total drivers: 65,215
 
 WHERE YOU ARE
-crazy_rooster74 not found in leaderboard.
+PSN             : crazy_rooster74
+Position        : #8,819 of 65,215
+Time            : 1:46.145
+Car             : Jaguar F-type Gr.3
+Gap to WR       : +2.077s
+WR percentage   : 101.996%
+CPI             : 7.33 / 10 | VERY STRONG
+Pace class      : ELITE
+Top percentile  : Top 13.52%
+Ahead of        : 86.48% of participants
+Country rank    : #467 of 4,017 (BR)
+DR A rank     : #2,813 of 4,109
+DR progress      : DR A | 32,580 pts | 12% toward next DR
+Same-car rank   : #8,280 of 36,410
+
+EXPECTED START
+Expected position     : P10.1
+Most likely position  : P10
+95% random-grid range : P6 to P14
+Your qualifying time  : 1:46.145
+DR A mean time       : 1:45.929
+DR A std deviation   : 0.801s
+Z-score               : +0.27
+Random opponent faster: 60.6%
+Population            : 4,017 DR A drivers
+Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
 DR S  : 1:44.356 average | SD 0.175s | 9 drivers
-DR A+ : 1:45.180 average | SD 0.558s | 1,311 drivers
-DR A  : 1:45.930 average | SD 0.803s | 3,997 drivers
-DR B  : 1:47.028 average | SD 1.223s | 17,754 drivers
-DR C  : 1:48.342 average | SD 1.655s | 16,557 drivers
-DR D  : 1:50.312 average | SD 2.581s | 20,546 drivers
-DR E  : 1:52.487 average | SD 3.970s | 3,327 drivers
+DR A+ : 1:45.182 average | SD 0.563s | 1,314 drivers
+DR A  : 1:45.929 average | SD 0.801s | 4,017 drivers
+DR B  : 1:47.029 average | SD 1.228s | 17,818 drivers
+DR C  : 1:48.336 average | SD 1.653s | 16,622 drivers
+DR D  : 1:50.312 average | SD 2.581s | 20,682 drivers
+DR E  : 1:52.496 average | SD 3.975s | 3,369 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:44.068 | M. Busnelli | Jaguar F-type Gr.3
@@ -30,28 +55,34 @@ WR              : 1:44.068 | M. Busnelli | Jaguar F-type Gr.3
 105% WR         : 1:49.271
 Top 10          : 1:44.184
 Top 100         : 1:44.490
-Top 500         : 1:44.830
-Top 1000        : 1:45.022
-Top 2500        : 1:45.401
-Top 5000        : 1:45.757
+Top 500         : 1:44.827
+Top 1000        : 1:45.019
+Top 2500        : 1:45.400
+Top 5000        : 1:45.753
 
 WHERE YOU SHOULD AIM
-No higher automatic target available.
+1. Top 10%: #6,522 | 1:45.921 | gain needed 0.224s
+2. Top 5%: #3,261 | 1:45.527 | gain needed 0.618s
+3. Top 2%: #1,305 | 1:45.125 | gain needed 1.020s
+4. Top 1000: #1,000 | 1:45.019 | gain needed 1.126s
 
 YOUR CAR VS META
-No personal car comparison available.
+Your car best   : 1:44.068 | Jaguar F-type Gr.3
+Gap to car best : +2.077s
+Meta car best   : 1:44.068 | Jaguar F-type Gr.3
+Best-lap delta  : 0.000s
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Jaguar F-type Gr.3 | 970 drivers | 97.0%
-2. Dodge Viper SRT GT3-R '15 | 20 drivers | 2.0%
+1. Jaguar F-type Gr.3 | 968 drivers | 96.8%
+2. Dodge Viper SRT GT3-R '15 | 21 drivers | 2.1%
 3. Hyundai Genesis Gr.3 | 6 drivers | 0.6%
 4. SUZUKI Vision Gran Turismo (Gr.3 Version) | 2 drivers | 0.2%
-5. Aston Martin DBR9 GT1 '10 | 1 drivers | 0.1%
+5. Chevrolet Corvette C7 Gr.3 | 2 drivers | 0.2%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Jaguar F-type Gr.3 | OI 1.76 | Top100 99 | Top1000 970 | High
-2. Dodge Viper SRT GT3-R '15 | OI 0.30 | Top100 1 | Top1000 20 | Medium
+1. Jaguar F-type Gr.3 | OI 1.76 | Top100 99 | Top1000 968 | High
+2. Dodge Viper SRT GT3-R '15 | OI 0.31 | Top100 1 | Top1000 21 | Medium
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
@@ -65,11 +96,11 @@ CARS TO TEST THIS WEEK
 Model: GR.3|HIGH | Technical evidence: 33%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. Volkswagen GTI Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 83% | SCI 45.5 | SSI 67.1 | Tech 61% | Usage 0.09% | Best #3916
-2. Mazda Atenza Gr.3 | STRONG ALTERNATIVE | Consensus 79% | SCI 44.9 | SSI 67.6 | Tech 51% | Usage 0.09% | Best #6113
-3. SUZUKI Vision Gran Turismo (Gr.3 Version) | STRONG ALTERNATIVE | Consensus 79% | SCI 52.0 | SSI 66.1 | Tech 52% | Usage 0.33% | Best #130
-4. Mercedes-Benz SLS AMG GT3 '11 | STRONG ALTERNATIVE | Consensus 79% | SCI 43.5 | SSI 66.1 | Tech 59% | Usage 0.10% | Best #13397
-5. PEUGEOT Vision Gran Turismo (Gr.3) | STRONG ALTERNATIVE | Consensus 78% | SCI 39.3 | SSI 68.4 | Tech 57% | Usage 0.20% | Best #1973
+1. Volkswagen GTI Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 83% | SCI 45.7 | SSI 67.0 | Tech 61% | Usage 0.09% | Best #3929
+2. SUZUKI Vision Gran Turismo (Gr.3 Version) | PRIORITY TEST | Consensus 80% | SCI 51.9 | SSI 66.1 | Tech 52% | Usage 0.33% | Best #130
+3. Mazda Atenza Gr.3 | STRONG ALTERNATIVE | Consensus 79% | SCI 44.4 | SSI 67.5 | Tech 51% | Usage 0.10% | Best #6146
+4. Mercedes-Benz SLS AMG GT3 '11 | STRONG ALTERNATIVE | Consensus 79% | SCI 43.3 | SSI 66.0 | Tech 59% | Usage 0.10% | Best #13462
+5. PEUGEOT Vision Gran Turismo (Gr.3) | STRONG ALTERNATIVE | Consensus 78% | SCI 39.2 | SSI 68.0 | Tech 57% | Usage 0.20% | Best #1978
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
 ==============================================================================
@@ -82,15 +113,20 @@ CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percent
 Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
-CPI        : N/A / 10 | N/A
-Top %      : N/A%
-WR gap     : +N/A%
+CPI        : 7.33 / 10 | VERY STRONG
+Top %      : 13.52%
+WR gap     : +1.996%
 
 LATEST FINALIZED WEEK
 Week       : 2026-09-28
 CPI        : 8.34 / 10 | ELITE
 Top %      : 4.21%
 WR gap     : +1.478%
+
+CURRENT WEEK VS LAST FINALIZED WEEK
+CPI        : 8.34 -> 7.33 (-1.01)
+Top %      : 4.21% -> 13.52% (+9.31 pp)
+WR gap     : +1.478% -> +1.996% (+0.518 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
 CPI        : 7.89
@@ -124,13 +160,13 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 64,872
+Entries        : 65,215
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
 Unknown codes  : 0 valid unmapped entries
 Invalid codes  : 21 entries
-My PSN found   : No
+My PSN found   : Yes
 Weekly final   : No
 Percentile data: Top 10% and Top 5% direct snapshot stored
 GTSH car scan  : 586 discovered | 0 new | 0 updated

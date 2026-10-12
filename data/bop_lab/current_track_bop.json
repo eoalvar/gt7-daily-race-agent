@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-11T23:37:22.256012+00:00",
+  "generated_at": "2026-10-12T01:08:05.051159+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-10-11T20:34:54.556480-03:00",
+  "snapshot_timestamp": "2026-10-11T22:05:40.015934-03:00",
   "race_description": "C Gr.3 Running Daily Race C i 00:00 Daytona Road Course M. Busnelli - Jaguar F-type Gr.3 RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
   "track": "Daytona Road Course",
   "group": "GR.3",
@@ -22,9 +22,131 @@
     }
   ],
   "database_records": 399,
-  "my_car": null,
-  "my_car_fingerprint": null,
-  "my_car_active_bop": null,
+  "my_car": "Jaguar F-type Gr.3",
+  "my_car_fingerprint": {
+    "car": "Jaguar F-type Gr.3",
+    "available": true,
+    "match": {
+      "requested_name": "Jaguar F-type Gr.3",
+      "matched_name": "Jaguar F-type Gr.3",
+      "match_score": 100
+    },
+    "bop_version": "1.67",
+    "distinct_signatures": 3,
+    "can_identify_speed_class_from_car": true,
+    "HIGH": {
+      "car": "Jaguar F-type Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 696.74,
+      "power_hp": 469.0,
+      "torque_nm": 577.6,
+      "weight_kg": 1254.0,
+      "power_weight_hp_t": 374.0031897926635,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "SC",
+      "acceleration": {
+        "0_400m": 11.42,
+        "0_1000m": 20.74,
+        "100_150_kmh": 2.68
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.44,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.38 | N",
+        "high_speed": "-1 | U"
+      }
+    },
+    "MID": {
+      "car": "Jaguar F-type Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 695.6,
+      "power_hp": 469.0,
+      "torque_nm": 577.6,
+      "weight_kg": 1265.0,
+      "power_weight_hp_t": 370.7509881422925,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "SC",
+      "acceleration": {
+        "0_400m": 11.45,
+        "0_1000m": 20.78,
+        "100_150_kmh": 2.7
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.43,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.38 | N",
+        "high_speed": "-1 | U"
+      }
+    },
+    "LOW": {
+      "car": "Jaguar F-type Gr.3",
+      "group": "GR.3",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 694.25,
+      "power_hp": 465.0,
+      "torque_nm": 570.7,
+      "weight_kg": 1260.0,
+      "power_weight_hp_t": 369.04761904761904,
+      "weight_balance": "52:48",
+      "drivetrain": "FR",
+      "aspiration": "SC",
+      "acceleration": {
+        "0_400m": 11.48,
+        "0_1000m": 20.85,
+        "100_150_kmh": 2.73
+      },
+      "rotational_g": {
+        "60_kmh": 1.32,
+        "120_kmh": 1.43,
+        "240_kmh": 1.68
+      },
+      "stability": {
+        "low_speed": "-0.38 | N",
+        "high_speed": "-1 | U"
+      }
+    }
+  },
+  "my_car_active_bop": {
+    "car": "Jaguar F-type Gr.3",
+    "group": "GR.3",
+    "bop_version": "1.67",
+    "speed_class": "HIGH",
+    "pp": 696.74,
+    "power_hp": 469.0,
+    "torque_nm": 577.6,
+    "weight_kg": 1254.0,
+    "power_weight_hp_t": 374.0031897926635,
+    "weight_balance": "52:48",
+    "drivetrain": "FR",
+    "aspiration": "SC",
+    "acceleration": {
+      "0_400m": 11.42,
+      "0_1000m": 20.74,
+      "100_150_kmh": 2.68
+    },
+    "rotational_g": {
+      "60_kmh": 1.32,
+      "120_kmh": 1.44,
+      "240_kmh": 1.68
+    },
+    "stability": {
+      "low_speed": "-0.38 | N",
+      "high_speed": "-1 | U"
+    }
+  },
   "top5_used_cars": [
     {
       "car": "Jaguar F-type Gr.3",
@@ -121,8 +243,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 970,
-      "leaderboard_percentage": 97.0,
+      "leaderboard_count": 968,
+      "leaderboard_percentage": 96.8,
       "active_bop": {
         "car": "Jaguar F-type Gr.3",
         "group": "GR.3",
@@ -247,8 +369,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 20,
-      "leaderboard_percentage": 2.0,
+      "leaderboard_count": 21,
+      "leaderboard_percentage": 2.1,
       "active_bop": {
         "car": "Dodge Viper SRT GT3-R '15",
         "group": "GR.3",
@@ -531,127 +653,127 @@
       }
     },
     {
-      "car": "Aston Martin DBR9 GT1 '10",
+      "car": "Chevrolet Corvette C7 Gr.3",
       "available": true,
       "match": {
-        "requested_name": "Aston Martin DBR9 GT1 '10",
-        "matched_name": "Aston Martin DBR9 GT1 '10",
+        "requested_name": "Chevrolet Corvette C7 Gr.3",
+        "matched_name": "Chevrolet Corvette C7 Gr.3",
         "match_score": 100
       },
       "bop_version": "1.67",
       "distinct_signatures": 2,
       "can_identify_speed_class_from_car": true,
       "HIGH": {
-        "car": "Aston Martin DBR9 GT1 '10",
+        "car": "Chevrolet Corvette C7 Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 676.82,
-        "power_hp": 468.0,
-        "torque_nm": 518.8,
-        "weight_kg": 1175.0,
-        "power_weight_hp_t": 398.2978723404255,
-        "weight_balance": "51:49",
+        "pp": 691.82,
+        "power_hp": 480.0,
+        "torque_nm": 600.2,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 369.2307692307692,
+        "weight_balance": "50:50",
         "drivetrain": "FR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 11.17,
-          "0_1000m": 20.53,
-          "100_150_kmh": 2.64
+          "0_400m": 11.21,
+          "0_1000m": 20.58,
+          "100_150_kmh": 2.71
         },
         "rotational_g": {
-          "60_kmh": 1.28,
-          "120_kmh": 1.38,
-          "240_kmh": 1.55
+          "60_kmh": 1.31,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
         },
         "stability": {
-          "low_speed": "-0.27 | N",
+          "low_speed": "-0.34 | N",
           "high_speed": "-1 | U"
         }
       },
       "MID": {
-        "car": "Aston Martin DBR9 GT1 '10",
+        "car": "Chevrolet Corvette C7 Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 676.82,
-        "power_hp": 468.0,
-        "torque_nm": 518.8,
-        "weight_kg": 1175.0,
-        "power_weight_hp_t": 398.2978723404255,
-        "weight_balance": "51:49",
+        "pp": 691.82,
+        "power_hp": 480.0,
+        "torque_nm": 600.2,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 369.2307692307692,
+        "weight_balance": "50:50",
         "drivetrain": "FR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 11.17,
-          "0_1000m": 20.53,
-          "100_150_kmh": 2.64
+          "0_400m": 11.21,
+          "0_1000m": 20.58,
+          "100_150_kmh": 2.71
         },
         "rotational_g": {
-          "60_kmh": 1.28,
-          "120_kmh": 1.38,
-          "240_kmh": 1.55
+          "60_kmh": 1.31,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
         },
         "stability": {
-          "low_speed": "-0.27 | N",
+          "low_speed": "-0.34 | N",
           "high_speed": "-1 | U"
         }
       },
       "LOW": {
-        "car": "Aston Martin DBR9 GT1 '10",
+        "car": "Chevrolet Corvette C7 Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "LOW",
-        "pp": 674.94,
-        "power_hp": 468.0,
-        "torque_nm": 518.8,
-        "weight_kg": 1200.0,
-        "power_weight_hp_t": 390.0,
-        "weight_balance": "51:49",
+        "pp": 690.86,
+        "power_hp": 480.0,
+        "torque_nm": 600.2,
+        "weight_kg": 1310.0,
+        "power_weight_hp_t": 366.412213740458,
+        "weight_balance": "50:50",
         "drivetrain": "FR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 11.22,
-          "0_1000m": 20.62,
-          "100_150_kmh": 2.68
+          "0_400m": 11.23,
+          "0_1000m": 20.61,
+          "100_150_kmh": 2.72
         },
         "rotational_g": {
-          "60_kmh": 1.28,
-          "120_kmh": 1.38,
-          "240_kmh": 1.55
+          "60_kmh": 1.31,
+          "120_kmh": 1.41,
+          "240_kmh": 1.67
         },
         "stability": {
-          "low_speed": "-0.27 | N",
+          "low_speed": "-0.33 | N",
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 1,
-      "leaderboard_percentage": 0.1,
+      "leaderboard_count": 2,
+      "leaderboard_percentage": 0.2,
       "active_bop": {
-        "car": "Aston Martin DBR9 GT1 '10",
+        "car": "Chevrolet Corvette C7 Gr.3",
         "group": "GR.3",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 676.82,
-        "power_hp": 468.0,
-        "torque_nm": 518.8,
-        "weight_kg": 1175.0,
-        "power_weight_hp_t": 398.2978723404255,
-        "weight_balance": "51:49",
+        "pp": 691.82,
+        "power_hp": 480.0,
+        "torque_nm": 600.2,
+        "weight_kg": 1300.0,
+        "power_weight_hp_t": 369.2307692307692,
+        "weight_balance": "50:50",
         "drivetrain": "FR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 11.17,
-          "0_1000m": 20.53,
-          "100_150_kmh": 2.64
+          "0_400m": 11.21,
+          "0_1000m": 20.58,
+          "100_150_kmh": 2.71
         },
         "rotational_g": {
-          "60_kmh": 1.28,
-          "120_kmh": 1.38,
-          "240_kmh": 1.55
+          "60_kmh": 1.31,
+          "120_kmh": 1.41,
+          "240_kmh": 1.68
         },
         "stability": {
-          "low_speed": "-0.27 | N",
+          "low_speed": "-0.34 | N",
           "high_speed": "-1 | U"
         }
       }
