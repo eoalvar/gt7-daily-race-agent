@@ -1,11 +1,11 @@
 GT7 SLEEPER CAR LAB V0.3
 ====================================================================================================
-Generated            : 2026-10-12T07:34:51.955141+00:00
+Generated            : 2026-10-12T11:07:41.131018+00:00
 Track                : Daytona Road Course
 Group                : GR.3
 Active BoP           : HIGH
 Model key            : GR.3|HIGH
-Total drivers        : 65,779
+Total drivers        : 65,780
 Cars observed        : 53
 Cars eligible (n>=20) : 53
 Eligible with BoP    : 52
@@ -25,13 +25,13 @@ matching group + speed-class model has enough independent race weeks.
 
 TOP SLEEPER CANDIDATES
 ----------------------------------------------------------------------------------------------------
- 1. Jaguar F-type Gr.3 | SCI 72.6 | META / PROVEN | n=36688 (55.77%) | Eff 1.74x | T100 99 / T500 487 / T1000 968 | Best #1 1:44.068 | Conf HIGH
+ 1. Jaguar F-type Gr.3 | SCI 72.6 | META / PROVEN | n=36689 (55.78%) | Eff 1.74x | T100 99 / T500 487 / T1000 968 | Best #1 1:44.068 | Conf HIGH
     Active GR.3 HIGH BoP: 469 HP / 1254 kg / PP 696.74 / FR
  2. SUZUKI Vision Gran Turismo (Gr.3 Version) | SCI 52.1 | NO SLEEPER SIGNAL | n=211 (0.32%) | Eff 0.77x | T100 0 / T500 2 / T1000 2 | Best #132 1:44.532 | Conf MEDIUM
     Active GR.3 HIGH BoP: 469 HP / 1220 kg / PP 677.97 / FR
  3. Unknown car (-1) | SCI 49.1 | NO SLEEPER SIGNAL | n=21 (0.03%) | Eff 0.88x | T100 0 / T500 0 / T1000 0 | Best #3378 1:45.541 | Conf LOW
     Active GR.3 HIGH BoP: BoP N/A
- 4. Lexus RC F GT3 prototype '16 | SCI 45.6 | NO SLEEPER SIGNAL | n=44 (0.07%) | Eff 0.77x | T100 0 / T500 0 / T1000 0 | Best #33706 1:48.118 | Conf LOW
+ 4. Lexus RC F GT3 prototype '16 | SCI 45.6 | NO SLEEPER SIGNAL | n=44 (0.07%) | Eff 0.77x | T100 0 / T500 0 / T1000 0 | Best #33707 1:48.118 | Conf LOW
     Active GR.3 HIGH BoP: 449 HP / 1310 kg / PP 692.39 / FR
  5. Volkswagen GTI Vision Gran Turismo (Gr.3) | SCI 45.5 | NO SLEEPER SIGNAL | n=58 (0.09%) | Eff 0.72x | T100 0 / T500 0 / T1000 0 | Best #3961 1:45.616 | Conf LOW-MEDIUM
     Active GR.3 HIGH BoP: 502 HP / 1260 kg / PP 682.39 / MR
@@ -39,7 +39,7 @@ TOP SLEEPER CANDIDATES
     Active GR.3 HIGH BoP: 493 HP / 1326 kg / PP 694.7 / FR
  7. Mercedes-Benz SLS AMG GT3 '11 | SCI 43.3 | NO SLEEPER SIGNAL | n=68 (0.10%) | Eff 0.69x | T100 0 / T500 0 / T1000 0 | Best #13556 1:46.535 | Conf LOW-MEDIUM
     Active GR.3 HIGH BoP: 485 HP / 1360 kg / PP 685.78 / FR
- 8. MAZDA RX-VISION GT3 CONCEPT Stealth Model | SCI 42.3 | NO SLEEPER SIGNAL | n=74 (0.11%) | Eff 0.67x | T100 0 / T500 0 / T1000 0 | Best #20289 1:47.043 | Conf LOW-MEDIUM
+ 8. MAZDA RX-VISION GT3 CONCEPT Stealth Model | SCI 42.3 | NO SLEEPER SIGNAL | n=74 (0.11%) | Eff 0.67x | T100 0 / T500 0 / T1000 0 | Best #20290 1:47.043 | Conf LOW-MEDIUM
     Active GR.3 HIGH BoP: 433 HP / 1269 kg / PP 694.26 / FR
  9. Ford GT LM Spec II Test Car | SCI 41.0 | NO SLEEPER SIGNAL | n=84 (0.13%) | Eff 0.64x | T100 0 / T500 0 / T1000 0 | Best #27417 1:47.594 | Conf LOW-MEDIUM
     Active GR.3 HIGH BoP: 443 HP / 1265 kg / PP 680.08 / MR

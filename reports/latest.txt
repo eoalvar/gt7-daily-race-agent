@@ -10,7 +10,7 @@ NEW WEEK - CURRENT DAILY RACE C
 
 GT7 DAILY RACE C
 ----------------------------------------
-Snapshot: 12/10/2026 04:32:43 - Sao Paulo
+Snapshot: 12/10/2026 08:05:31 - Sao Paulo
 C Gr.3 Running Daily Race C
 Car category: Gr.3
 Daytona Road Course
@@ -19,11 +19,11 @@ Current WR Car: Jaguar F-type Gr.3
 Race Setup: RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 65,779
+Total drivers: 65,780
 
 WHERE YOU ARE
 PSN             : crazy_rooster74
-Position        : #8,872 of 65,779
+Position        : #8,872 of 65,780
 Time            : 1:46.145
 Car             : Jaguar F-type Gr.3
 Gap to WR       : +2.077s
@@ -33,9 +33,9 @@ Pace class      : ELITE
 Top percentile  : Top 13.49%
 Ahead of        : 86.51% of participants
 Country rank    : #473 of 4,091 (BR)
-DR A rank     : #2,829 of 4,129
+DR A rank     : #2,822 of 4,122
 DR progress      : DR A | 32,580 pts | 12% toward next DR
-Same-car rank   : #8,337 of 36,688
+Same-car rank   : #8,337 of 36,689
 
 EXPECTED START
 Expected position     : P10.1
@@ -46,18 +46,18 @@ DR A mean time       : 1:45.927
 DR A std deviation   : 0.801s
 Z-score               : +0.27
 Random opponent faster: 60.7%
-Population            : 4,037 DR A drivers
+Population            : 4,030 DR A drivers
 Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
 DR S  : 1:44.356 average | SD 0.175s | 9 drivers
-DR A+ : 1:45.183 average | SD 0.564s | 1,318 drivers
-DR A  : 1:45.927 average | SD 0.801s | 4,037 drivers
-DR B  : 1:47.032 average | SD 1.232s | 17,935 drivers
-DR C  : 1:48.336 average | SD 1.657s | 16,750 drivers
-DR D  : 1:50.309 average | SD 2.583s | 20,914 drivers
-DR E  : 1:52.520 average | SD 3.991s | 3,423 drivers
+DR A+ : 1:45.183 average | SD 0.564s | 1,322 drivers
+DR A  : 1:45.927 average | SD 0.801s | 4,030 drivers
+DR B  : 1:47.031 average | SD 1.231s | 17,939 drivers
+DR C  : 1:48.335 average | SD 1.655s | 16,757 drivers
+DR D  : 1:50.312 average | SD 2.582s | 20,914 drivers
+DR E  : 1:52.529 average | SD 4.003s | 3,415 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:44.068 | M. Busnelli | Jaguar F-type Gr.3
@@ -170,7 +170,7 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 65,779
+Entries        : 65,780
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
