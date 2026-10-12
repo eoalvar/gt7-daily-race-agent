@@ -1,7 +1,7 @@
 LAST WEEK - FINAL RESULT
 ----------------------------------------
 Status          : PENDING ARCHIVE AVAILABILITY
-Reason          : Could not find the previous week's Daily Race C. Target week: 2026-10-05. Available Race C dates: ['2026-06-29', '2026-07-06', '2026-07-13', '2026-07-20', '2026-07-27', '2026-08-03', '2026-08-10', '2026-08-17', '2026-08-24', '2026-10-19']
+Reason          : Could not find the previous week's Daily Race C. Target week: 2026-10-05. Available Race C dates: ['2026-06-29', '2026-07-06', '2026-07-13', '2026-07-20', '2026-07-27', '2026-08-03', '2026-08-10', '2026-08-17', '2026-08-24']
 The historical result was NOT marked final.
 ----------------------------------------
 
@@ -10,107 +10,105 @@ NEW WEEK - CURRENT DAILY RACE C
 
 GT7 DAILY RACE C
 ----------------------------------------
-Snapshot: 12/10/2026 08:05:31 - Sao Paulo
-C Gr.3 Running Daily Race C
-Car category: Gr.3
-Daytona Road Course
-Current WR: M. Busnelli (1:44.068)
-Current WR Car: Jaguar F-type Gr.3
-Race Setup: RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom
+Snapshot: 12/10/2026 09:38:35 - Sao Paulo
+C Gr.4 Running Daily Race C
+Car category: Gr.4
+Sardegna - Road Track - B
+Current WR: PTR_Gabri (1:23.095)
+Current WR Car: Hyundai ELANTRA N TC '24
+Race Setup: RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 65,780
+Total drivers: 3,767
 
 WHERE YOU ARE
 PSN             : crazy_rooster74
-Position        : #8,872 of 65,780
-Time            : 1:46.145
-Car             : Jaguar F-type Gr.3
-Gap to WR       : +2.077s
-WR percentage   : 101.996%
-CPI             : 7.33 / 10 | VERY STRONG
+Position        : #530 of 3,767
+Time            : 1:24.647
+Car             : Hyundai ELANTRA N TC '24
+Gap to WR       : +1.552s
+WR percentage   : 101.868%
+CPI             : 7.36 / 10 | VERY STRONG
 Pace class      : ELITE
-Top percentile  : Top 13.49%
-Ahead of        : 86.51% of participants
-Country rank    : #473 of 4,091 (BR)
-DR A rank     : #2,822 of 4,122
+Top percentile  : Top 14.07%
+Ahead of        : 85.95% of participants
+Country rank    : #10 of 104 (BR)
+DR A rank     : #230 of 440
 DR progress      : DR A | 32,580 pts | 12% toward next DR
-Same-car rank   : #8,337 of 36,689
+Same-car rank   : #530 of 3,117
 
 EXPECTED START
-Expected position     : P10.1
-Most likely position  : P10
-95% random-grid range : P6 to P14
-Your qualifying time  : 1:46.145
-DR A mean time       : 1:45.927
-DR A std deviation   : 0.801s
-Z-score               : +0.27
-Random opponent faster: 60.7%
-Population            : 4,030 DR A drivers
+Expected position     : P7.4
+Most likely position  : P7
+95% random-grid range : P4 to P11
+Your qualifying time  : 1:24.647
+DR A mean time       : 1:24.809
+DR A std deviation   : 0.919s
+Z-score               : -0.18
+Random opponent faster: 43.0%
+Population            : 423 DR A drivers
 Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : 1:44.356 average | SD 0.175s | 9 drivers
-DR A+ : 1:45.183 average | SD 0.564s | 1,322 drivers
-DR A  : 1:45.927 average | SD 0.801s | 4,030 drivers
-DR B  : 1:47.031 average | SD 1.231s | 17,939 drivers
-DR C  : 1:48.335 average | SD 1.655s | 16,757 drivers
-DR D  : 1:50.312 average | SD 2.582s | 20,914 drivers
-DR E  : 1:52.529 average | SD 4.003s | 3,415 drivers
+DR S  : N/A average | SD N/A | 0 drivers
+DR A+ : 1:23.975 average | SD 0.575s | 128 drivers
+DR A  : 1:24.809 average | SD 0.919s | 423 drivers
+DR B  : 1:26.064 average | SD 1.557s | 1,302 drivers
+DR C  : 1:27.643 average | SD 1.943s | 912 drivers
+DR D  : 1:29.508 average | SD 2.809s | 883 drivers
+DR E  : 1:30.459 average | SD 3.660s | 51 drivers
 
 WORLD RECORD & BENCHMARKS
-WR              : 1:44.068 | M. Busnelli | Jaguar F-type Gr.3
-103% WR         : 1:47.190
-105% WR         : 1:49.271
-Top 10          : 1:44.182
-Top 100         : 1:44.488
-Top 500         : 1:44.826
-Top 1000        : 1:45.014
-Top 2500        : 1:45.398
-Top 5000        : 1:45.749
+WR              : 1:23.095 | PTR_Gabri | Hyundai ELANTRA N TC '24
+103% WR         : 1:25.588
+105% WR         : 1:27.250
+Top 10          : 1:23.285
+Top 100         : 1:23.819
+Top 500         : 1:24.608
+Top 1000        : 1:25.297
+Top 2500        : 1:27.657
 
 WHERE YOU SHOULD AIM
-1. Top 10%: #6,578 | 1:45.922 | gain needed 0.223s
-2. Top 5%: #3,289 | 1:45.526 | gain needed 0.619s
-3. Top 2%: #1,316 | 1:45.126 | gain needed 1.019s
-4. Top 1000: #1,000 | 1:45.014 | gain needed 1.131s
+1. Top 500: #500 | 1:24.608 | gain needed 0.039s
+2. Top 10%: #377 | 1:24.400 | gain needed 0.247s
+3. Top 5%: #189 | 1:24.047 | gain needed 0.600s
+4. Top 100: #100 | 1:23.819 | gain needed 0.828s
 
 YOUR CAR VS META
-Your car best   : 1:44.068 | Jaguar F-type Gr.3
-Gap to car best : +2.077s
-Meta car best   : 1:44.068 | Jaguar F-type Gr.3
+Your car best   : 1:23.095 | Hyundai ELANTRA N TC '24
+Gap to car best : +1.552s
+Meta car best   : 1:23.095 | Hyundai ELANTRA N TC '24
 Best-lap delta  : 0.000s
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Jaguar F-type Gr.3 | 968 drivers | 96.8%
-2. Dodge Viper SRT GT3-R '15 | 21 drivers | 2.1%
-3. Hyundai Genesis Gr.3 | 6 drivers | 0.6%
-4. SUZUKI Vision Gran Turismo (Gr.3 Version) | 2 drivers | 0.2%
-5. Chevrolet Corvette C7 Gr.3 | 2 drivers | 0.2%
+1. Hyundai ELANTRA N TC '24 | 990 drivers | 99.0%
+2. Suzuki Swift Sport KATANA Edition Gr.4 | 4 drivers | 0.4%
+3. Volkswagen Scirocco Gr.4 | 4 drivers | 0.4%
+4. Audi TT Cup '16 | 1 drivers | 0.1%
+5. MAZDA3 Gr.4 | 1 drivers | 0.1%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Jaguar F-type Gr.3 | OI 1.76 | Top100 99 | Top1000 968 | High
-2. Dodge Viper SRT GT3-R '15 | OI 0.31 | Top100 1 | Top1000 21 | Medium
+1. Hyundai ELANTRA N TC '24 | OI 1.20 | Top100 100 | Top1000 990 | High
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
 Tyre multiplier: x5
-Compounds detected: RH, RS
+Compounds detected: RM, RS
 Tyre wear is high: prioritize consistency and axle protection.
 Fuel consumption may influence race pace.
 
 CARS TO TEST THIS WEEK
 ------------------------------------------------------------------------------
-Model: GR.3|HIGH | Technical evidence: 50%
+Model: GR.4|LOW | Technical evidence: 17%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. Volkswagen GTI Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 84% | SCI 45.5 | SSI 67.8 | Tech 65% | Usage 0.09% | Best #3961
-2. Mercedes-Benz SLS AMG GT3 '11 | PRIORITY TEST | Consensus 81% | SCI 43.3 | SSI 66.5 | Tech 66% | Usage 0.10% | Best #13556
-3. SUZUKI Vision Gran Turismo (Gr.3 Version) | PRIORITY TEST | Consensus 81% | SCI 52.1 | SSI 67.4 | Tech 52% | Usage 0.32% | Best #132
-4. Mazda Atenza Gr.3 | STRONG ALTERNATIVE | Consensus 80% | SCI 44.5 | SSI 68.1 | Tech 50% | Usage 0.10% | Best #6191
-5. PEUGEOT Vision Gran Turismo (Gr.3) | STRONG ALTERNATIVE | Consensus 79% | SCI 39.8 | SSI 68.0 | Tech 61% | Usage 0.20% | Best #1542
+1. MAZDA3 Gr.4 | STRONG ALTERNATIVE | Consensus 80% | SCI 49.6 | SSI 72.0 | Tech 55% | Usage 0.61% | Best #876
+2. Suzuki Swift Sport KATANA Edition Gr.4 | STRONG ALTERNATIVE | Consensus 71% | SCI 49.5 | SSI 58.4 | Tech 58% | Usage 1.01% | Best #580
+3. Hyundai ELANTRA N TC '24 | WATCH / TEST | Consensus 68% | SCI 59.6 | SSI 50.0 | Tech 54% | Usage 82.74% | Best #1
+4. Jaguar F-type Gr.4 | WATCH / TEST | Consensus 64% | SCI 48.1 | SSI 66.6 | Tech 46% | Usage 0.56% | Best #2424
+5. Volkswagen Scirocco Gr.4 | WATCH / TEST | Consensus 61% | SCI 49.0 | SSI 50.0 | Tech 56% | Usage 1.09% | Best #685
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
 ----------------------------------------
@@ -123,9 +121,9 @@ CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percent
 Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
-CPI        : 7.33 / 10 | VERY STRONG
-Top %      : 13.49%
-WR gap     : +1.996%
+CPI        : 7.36 / 10 | VERY STRONG
+Top %      : 14.07%
+WR gap     : +1.868%
 
 LATEST FINALIZED WEEK
 Week       : 2026-09-28
@@ -134,9 +132,9 @@ Top %      : 4.21%
 WR gap     : +1.478%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
-CPI        : 8.34 -> 7.33 (-1.01)
-Top %      : 4.21% -> 13.49% (+9.27 pp)
-WR gap     : +1.478% -> +1.996% (+0.518 pp)
+CPI        : 8.34 -> 7.36 (-0.98)
+Top %      : 4.21% -> 14.07% (+9.86 pp)
+WR gap     : +1.478% -> +1.868% (+0.389 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
 CPI        : 7.89
@@ -170,12 +168,12 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 65,780
+Entries        : 3,767
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
 Unknown codes  : 0 valid unmapped entries
-Invalid codes  : 21 entries
+Invalid codes  : 0 entries
 My PSN found   : Yes
 Weekly final   : No
 Percentile data: Top 10% and Top 5% direct snapshot stored
