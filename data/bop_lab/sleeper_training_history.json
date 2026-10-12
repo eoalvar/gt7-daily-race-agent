@@ -5587,19 +5587,19 @@
     {
       "race_key": "live:GR.4:LOW:2026-10-12",
       "week_start": "2026-10-12",
-      "captured_at": "2026-10-12T12:38:42.059283+00:00",
+      "captured_at": "2026-10-12T15:17:49.775561+00:00",
       "track": "Sardegna - Road Track - B",
       "group": "GR.4",
       "speed_class": "LOW",
       "model_key": "GR.4|LOW",
       "status": "LIVE_SNAPSHOT",
-      "total_drivers": 3767,
+      "total_drivers": 5273,
       "cars": [
         {
           "car_code": 3590,
           "car": "Hyundai ELANTRA N TC '24",
-          "sample": 3117,
-          "performance_target": 0.7373597577952705,
+          "sample": 4331,
+          "performance_target": 0.7413934520033478,
           "technical": {
             "power_weight_hp_t": 262.4505928853755,
             "weight_kg": 1265.0,
@@ -5614,8 +5614,8 @@
         {
           "car_code": 3537,
           "car": "MAZDA3 Gr.4",
-          "sample": 23,
-          "performance_target": 0.37060337572526325,
+          "sample": 31,
+          "performance_target": 0.3329068212029841,
           "technical": {
             "power_weight_hp_t": 272.5,
             "weight_kg": 1200.0,
@@ -5628,10 +5628,106 @@
           }
         },
         {
+          "car_code": 3249,
+          "car": "Dodge Viper Gr.4",
+          "sample": 20,
+          "performance_target": 0.3016104033968204,
+          "technical": {
+            "power_weight_hp_t": 229.1814946619217,
+            "weight_kg": 1405.0,
+            "front_weight_pct": 49.0,
+            "acceleration_0_400": 13.86,
+            "acceleration_100_150": 4.44,
+            "rotational_g_60": 1.25,
+            "rotational_g_120": 1.35,
+            "rotational_g_240": 1.43
+          }
+        },
+        {
+          "car_code": 3261,
+          "car": "Subaru WRX Gr.4",
+          "sample": 20,
+          "performance_target": 0.2990769868019615,
+          "technical": {
+            "power_weight_hp_t": 232.11678832116786,
+            "weight_kg": 1370.0,
+            "front_weight_pct": 60.0,
+            "acceleration_0_400": 12.56,
+            "acceleration_100_150": 4.47,
+            "rotational_g_60": 1.17,
+            "rotational_g_120": 1.35,
+            "rotational_g_240": 1.4
+          }
+        },
+        {
+          "car_code": 2164,
+          "car": "Ford Mustang Gr.4",
+          "sample": 21,
+          "performance_target": 0.29324452427457526,
+          "technical": {
+            "power_weight_hp_t": 233.45195729537366,
+            "weight_kg": 1405.0,
+            "front_weight_pct": 54.0,
+            "acceleration_0_400": 12.56,
+            "acceleration_100_150": 4.34,
+            "rotational_g_60": 1.27,
+            "rotational_g_120": 1.36,
+            "rotational_g_240": 1.43
+          }
+        },
+        {
+          "car_code": 3256,
+          "car": "Mazda Atenza Gr.4",
+          "sample": 20,
+          "performance_target": 0.28629266806074477,
+          "technical": {
+            "power_weight_hp_t": 246.93140794223825,
+            "weight_kg": 1385.0,
+            "front_weight_pct": 60.0,
+            "acceleration_0_400": 12.91,
+            "acceleration_100_150": 4.43,
+            "rotational_g_60": 1.19,
+            "rotational_g_120": 1.35,
+            "rotational_g_240": 1.44
+          }
+        },
+        {
+          "car_code": 3251,
+          "car": "Honda NSX Gr.4",
+          "sample": 24,
+          "performance_target": 0.2810981141203596,
+          "technical": {
+            "power_weight_hp_t": 223.32155477031802,
+            "weight_kg": 1415.0,
+            "front_weight_pct": 42.0,
+            "acceleration_0_400": 13.46,
+            "acceleration_100_150": 4.54,
+            "rotational_g_60": 1.28,
+            "rotational_g_120": 1.38,
+            "rotational_g_240": 1.48
+          }
+        },
+        {
+          "car_code": 2161,
+          "car": "Nissan GT-R Gr.4",
+          "sample": 28,
+          "performance_target": 0.2905509377194513,
+          "technical": {
+            "power_weight_hp_t": 228.76712328767124,
+            "weight_kg": 1460.0,
+            "front_weight_pct": 54.0,
+            "acceleration_0_400": 12.91,
+            "acceleration_100_150": 4.5,
+            "rotational_g_60": 1.18,
+            "rotational_g_120": 1.36,
+            "rotational_g_240": 1.42
+          }
+        },
+        {
           "car_code": 3480,
           "car": "Suzuki Swift Sport KATANA Edition Gr.4",
-          "sample": 38,
-          "performance_target": 0.3829467144385131,
+          "sample": 54,
+          "performance_target": 0.33189322201744437,
           "technical": {
             "power_weight_hp_t": 283.0,
             "weight_kg": 1000.0,
@@ -5644,10 +5740,42 @@
           }
         },
         {
+          "car_code": 3257,
+          "car": "McLaren 650S Gr.4",
+          "sample": 24,
+          "performance_target": 0.27594175773164614,
+          "technical": {
+            "power_weight_hp_t": 235.12123438648052,
+            "weight_kg": 1361.0,
+            "front_weight_pct": 44.0,
+            "acceleration_0_400": 13.52,
+            "acceleration_100_150": 4.66,
+            "rotational_g_60": 1.27,
+            "rotational_g_120": 1.35,
+            "rotational_g_240": 1.44
+          }
+        },
+        {
+          "car_code": 3477,
+          "car": "Nissan Silvia spec-R Aero (S15) Touring Car",
+          "sample": 25,
+          "performance_target": 0.27646547631296403,
+          "technical": {
+            "power_weight_hp_t": 254.85232067510546,
+            "weight_kg": 1185.0,
+            "front_weight_pct": 55.0,
+            "acceleration_0_400": 13.2,
+            "acceleration_100_150": 4.62,
+            "rotational_g_60": 1.27,
+            "rotational_g_120": 1.36,
+            "rotational_g_240": 1.43
+          }
+        },
+        {
           "car_code": 3231,
           "car": "Volkswagen Scirocco Gr.4",
-          "sample": 41,
-          "performance_target": 0.36604685658069974,
+          "sample": 63,
+          "performance_target": 0.3333209151432347,
           "technical": {
             "power_weight_hp_t": 269.7247706422018,
             "weight_kg": 1090.0,
@@ -5660,58 +5788,10 @@
           }
         },
         {
-          "car_code": 3298,
-          "car": "Audi TT Cup '16",
-          "sample": 45,
-          "performance_target": 0.35168754664798996,
-          "technical": {
-            "power_weight_hp_t": 269.9115044247788,
-            "weight_kg": 1130.0,
-            "front_weight_pct": 60.0,
-            "acceleration_0_400": 13.29,
-            "acceleration_100_150": 4.18,
-            "rotational_g_60": 1.28,
-            "rotational_g_120": 1.38,
-            "rotational_g_240": 1.45
-          }
-        },
-        {
-          "car_code": 3252,
-          "car": "Jaguar F-type Gr.4",
-          "sample": 21,
-          "performance_target": 0.29758129106895076,
-          "technical": {
-            "power_weight_hp_t": 233.09352517985613,
-            "weight_kg": 1390.0,
-            "front_weight_pct": 52.0,
-            "acceleration_0_400": 13.03,
-            "acceleration_100_150": 4.34,
-            "rotational_g_60": 1.27,
-            "rotational_g_120": 1.35,
-            "rotational_g_240": 1.42
-          }
-        },
-        {
-          "car_code": 3501,
-          "car": "Genesis G70 GR4",
-          "sample": 26,
-          "performance_target": 0.28766470511154635,
-          "technical": {
-            "power_weight_hp_t": 229.8932384341637,
-            "weight_kg": 1405.0,
-            "front_weight_pct": 52.0,
-            "acceleration_0_400": 12.73,
-            "acceleration_100_150": 4.43,
-            "rotational_g_60": 1.28,
-            "rotational_g_120": 1.37,
-            "rotational_g_240": 1.44
-          }
-        },
-        {
           "car_code": 1563,
           "car": "Renault Sport Mégane Trophy '11",
-          "sample": 26,
-          "performance_target": 0.28343358002510943,
+          "sample": 29,
+          "performance_target": 0.2701962648964069,
           "technical": {
             "power_weight_hp_t": 249.35064935064935,
             "weight_kg": 1155.0,
@@ -5724,10 +5804,74 @@
           }
         },
         {
+          "car_code": 3298,
+          "car": "Audi TT Cup '16",
+          "sample": 57,
+          "performance_target": 0.31504722392341367,
+          "technical": {
+            "power_weight_hp_t": 269.9115044247788,
+            "weight_kg": 1130.0,
+            "front_weight_pct": 60.0,
+            "acceleration_0_400": 13.29,
+            "acceleration_100_150": 4.18,
+            "rotational_g_60": 1.28,
+            "rotational_g_120": 1.38,
+            "rotational_g_240": 1.45
+          }
+        },
+        {
+          "car_code": 3253,
+          "car": "Lamborghini Huracán Gr.4",
+          "sample": 32,
+          "performance_target": 0.26204574320253854,
+          "technical": {
+            "power_weight_hp_t": 204.64135021097047,
+            "weight_kg": 1422.0,
+            "front_weight_pct": 42.0,
+            "acceleration_0_400": 13.9,
+            "acceleration_100_150": 4.53,
+            "rotational_g_60": 1.28,
+            "rotational_g_120": 1.36,
+            "rotational_g_240": 1.47
+          }
+        },
+        {
+          "car_code": 3501,
+          "car": "Genesis G70 GR4",
+          "sample": 35,
+          "performance_target": 0.26340502486339007,
+          "technical": {
+            "power_weight_hp_t": 229.8932384341637,
+            "weight_kg": 1405.0,
+            "front_weight_pct": 52.0,
+            "acceleration_0_400": 12.73,
+            "acceleration_100_150": 4.43,
+            "rotational_g_60": 1.28,
+            "rotational_g_120": 1.37,
+            "rotational_g_240": 1.44
+          }
+        },
+        {
+          "car_code": 3252,
+          "car": "Jaguar F-type Gr.4",
+          "sample": 40,
+          "performance_target": 0.26646663423576544,
+          "technical": {
+            "power_weight_hp_t": 233.09352517985613,
+            "weight_kg": 1390.0,
+            "front_weight_pct": 52.0,
+            "acceleration_0_400": 13.03,
+            "acceleration_100_150": 4.34,
+            "rotational_g_60": 1.27,
+            "rotational_g_120": 1.35,
+            "rotational_g_240": 1.42
+          }
+        },
+        {
           "car_code": 3248,
           "car": "GT by Citroën Gr.4",
-          "sample": 31,
-          "performance_target": 0.27356062036334106,
+          "sample": 39,
+          "performance_target": 0.25517941450294895,
           "technical": {
             "power_weight_hp_t": 221.27659574468086,
             "weight_kg": 1410.0,
@@ -5740,10 +5884,26 @@
           }
         },
         {
+          "car_code": 3310,
+          "car": "Porsche Cayman GT4 Clubsport '16",
+          "sample": 49,
+          "performance_target": 0.23711319571885672,
+          "technical": {
+            "power_weight_hp_t": 221.8978102189781,
+            "weight_kg": 1370.0,
+            "front_weight_pct": 46.0,
+            "acceleration_0_400": 12.71,
+            "acceleration_100_150": 4.48,
+            "rotational_g_60": 1.26,
+            "rotational_g_120": 1.36,
+            "rotational_g_240": 1.45
+          }
+        },
+        {
           "car_code": 365,
           "car": "Alfa Romeo 155 2.5 V6 TI '93",
-          "sample": 32,
-          "performance_target": 0.27393205261115183,
+          "sample": 51,
+          "performance_target": 0.2343378862781109,
           "technical": {
             "power_weight_hp_t": 245.0,
             "weight_kg": 1200.0,
@@ -5758,8 +5918,8 @@
         {
           "car_code": 3399,
           "car": "Toyota GR Supra Race Car '19",
-          "sample": 34,
-          "performance_target": 0.27023987322762394,
+          "sample": 56,
+          "performance_target": 0.2302081812954772,
           "technical": {
             "power_weight_hp_t": 224.29906542056074,
             "weight_kg": 1391.0,
@@ -5772,26 +5932,10 @@
           }
         },
         {
-          "car_code": 3310,
-          "car": "Porsche Cayman GT4 Clubsport '16",
-          "sample": 34,
-          "performance_target": 0.26545178725370394,
-          "technical": {
-            "power_weight_hp_t": 221.8978102189781,
-            "weight_kg": 1370.0,
-            "front_weight_pct": 46.0,
-            "acceleration_0_400": 12.71,
-            "acceleration_100_150": 4.48,
-            "rotational_g_60": 1.26,
-            "rotational_g_120": 1.36,
-            "rotational_g_240": 1.45
-          }
-        },
-        {
           "car_code": 3263,
           "car": "Ferrari 458 Italia Gr.4",
-          "sample": 52,
-          "performance_target": 0.2435310690029421,
+          "sample": 74,
+          "performance_target": 0.21344430664669664,
           "technical": {
             "power_weight_hp_t": 223.40425531914894,
             "weight_kg": 1410.0,
@@ -5806,5 +5950,5 @@
       ]
     }
   ],
-  "updated_at": "2026-10-12T12:38:42.059326+00:00"
+  "updated_at": "2026-10-12T15:17:49.775590+00:00"
 }

@@ -1,8 +1,12 @@
 GT7 CURRENT-WEEK HISTORY CLEANUP
 ========================================================================
 Current week       : 2026-10-12
-Records before     : 32
-Records removed    : 0
+Records before     : 33
+Records removed    : 1
 Records remaining  : 32
+
+REMOVED RECORDS
+------------------------------------------------------------------------
+2026-10-12 | #8872 / 65780 | Jaguar F-type Gr.3 | backfill_last_available_snapshot
 
 ========================================================================
