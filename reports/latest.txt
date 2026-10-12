@@ -1,6 +1,16 @@
+LAST WEEK - FINAL RESULT
+----------------------------------------
+Status          : PENDING ARCHIVE AVAILABILITY
+Reason          : Could not find the previous week's Daily Race C. Target week: 2026-10-05. Available Race C dates: ['2026-06-29', '2026-07-06', '2026-07-13', '2026-07-20', '2026-07-27', '2026-08-03', '2026-08-10', '2026-08-17', '2026-08-24', '2026-10-19']
+The historical result was NOT marked final.
+----------------------------------------
+
+NEW WEEK - CURRENT DAILY RACE C
+----------------------------------------
+
 GT7 DAILY RACE C
-==============================================================================
-Snapshot: 11/10/2026 22:05:40 - Sao Paulo
+----------------------------------------
+Snapshot: 12/10/2026 04:32:43 - Sao Paulo
 C Gr.3 Running Daily Race C
 Car category: Gr.3
 Daytona Road Course
@@ -9,62 +19,62 @@ Current WR Car: Jaguar F-type Gr.3
 Race Setup: RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 65,215
+Total drivers: 65,779
 
 WHERE YOU ARE
 PSN             : crazy_rooster74
-Position        : #8,819 of 65,215
+Position        : #8,872 of 65,779
 Time            : 1:46.145
 Car             : Jaguar F-type Gr.3
 Gap to WR       : +2.077s
 WR percentage   : 101.996%
 CPI             : 7.33 / 10 | VERY STRONG
 Pace class      : ELITE
-Top percentile  : Top 13.52%
-Ahead of        : 86.48% of participants
-Country rank    : #467 of 4,017 (BR)
-DR A rank     : #2,813 of 4,109
+Top percentile  : Top 13.49%
+Ahead of        : 86.51% of participants
+Country rank    : #473 of 4,091 (BR)
+DR A rank     : #2,829 of 4,129
 DR progress      : DR A | 32,580 pts | 12% toward next DR
-Same-car rank   : #8,280 of 36,410
+Same-car rank   : #8,337 of 36,688
 
 EXPECTED START
 Expected position     : P10.1
 Most likely position  : P10
 95% random-grid range : P6 to P14
 Your qualifying time  : 1:46.145
-DR A mean time       : 1:45.929
+DR A mean time       : 1:45.927
 DR A std deviation   : 0.801s
 Z-score               : +0.27
-Random opponent faster: 60.6%
-Population            : 4,017 DR A drivers
+Random opponent faster: 60.7%
+Population            : 4,037 DR A drivers
 Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
 DR S  : 1:44.356 average | SD 0.175s | 9 drivers
-DR A+ : 1:45.182 average | SD 0.563s | 1,314 drivers
-DR A  : 1:45.929 average | SD 0.801s | 4,017 drivers
-DR B  : 1:47.029 average | SD 1.228s | 17,818 drivers
-DR C  : 1:48.336 average | SD 1.653s | 16,622 drivers
-DR D  : 1:50.312 average | SD 2.581s | 20,682 drivers
-DR E  : 1:52.496 average | SD 3.975s | 3,369 drivers
+DR A+ : 1:45.183 average | SD 0.564s | 1,318 drivers
+DR A  : 1:45.927 average | SD 0.801s | 4,037 drivers
+DR B  : 1:47.032 average | SD 1.232s | 17,935 drivers
+DR C  : 1:48.336 average | SD 1.657s | 16,750 drivers
+DR D  : 1:50.309 average | SD 2.583s | 20,914 drivers
+DR E  : 1:52.520 average | SD 3.991s | 3,423 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:44.068 | M. Busnelli | Jaguar F-type Gr.3
 103% WR         : 1:47.190
 105% WR         : 1:49.271
-Top 10          : 1:44.184
-Top 100         : 1:44.490
-Top 500         : 1:44.827
-Top 1000        : 1:45.019
-Top 2500        : 1:45.400
-Top 5000        : 1:45.753
+Top 10          : 1:44.182
+Top 100         : 1:44.488
+Top 500         : 1:44.826
+Top 1000        : 1:45.014
+Top 2500        : 1:45.398
+Top 5000        : 1:45.749
 
 WHERE YOU SHOULD AIM
-1. Top 10%: #6,522 | 1:45.921 | gain needed 0.224s
-2. Top 5%: #3,261 | 1:45.527 | gain needed 0.618s
-3. Top 2%: #1,305 | 1:45.125 | gain needed 1.020s
-4. Top 1000: #1,000 | 1:45.019 | gain needed 1.126s
+1. Top 10%: #6,578 | 1:45.922 | gain needed 0.223s
+2. Top 5%: #3,289 | 1:45.526 | gain needed 0.619s
+3. Top 2%: #1,316 | 1:45.126 | gain needed 1.019s
+4. Top 1000: #1,000 | 1:45.014 | gain needed 1.131s
 
 YOUR CAR VS META
 Your car best   : 1:44.068 | Jaguar F-type Gr.3
@@ -93,17 +103,17 @@ Fuel consumption may influence race pace.
 
 CARS TO TEST THIS WEEK
 ------------------------------------------------------------------------------
-Model: GR.3|HIGH | Technical evidence: 33%
+Model: GR.3|HIGH | Technical evidence: 50%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. Volkswagen GTI Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 83% | SCI 45.7 | SSI 67.0 | Tech 61% | Usage 0.09% | Best #3929
-2. SUZUKI Vision Gran Turismo (Gr.3 Version) | PRIORITY TEST | Consensus 80% | SCI 51.9 | SSI 66.1 | Tech 52% | Usage 0.33% | Best #130
-3. Mazda Atenza Gr.3 | STRONG ALTERNATIVE | Consensus 79% | SCI 44.4 | SSI 67.5 | Tech 51% | Usage 0.10% | Best #6146
-4. Mercedes-Benz SLS AMG GT3 '11 | STRONG ALTERNATIVE | Consensus 79% | SCI 43.3 | SSI 66.0 | Tech 59% | Usage 0.10% | Best #13462
-5. PEUGEOT Vision Gran Turismo (Gr.3) | STRONG ALTERNATIVE | Consensus 78% | SCI 39.2 | SSI 68.0 | Tech 57% | Usage 0.20% | Best #1978
+1. Volkswagen GTI Vision Gran Turismo (Gr.3) | PRIORITY TEST | Consensus 84% | SCI 45.5 | SSI 67.8 | Tech 65% | Usage 0.09% | Best #3961
+2. Mercedes-Benz SLS AMG GT3 '11 | PRIORITY TEST | Consensus 81% | SCI 43.3 | SSI 66.5 | Tech 66% | Usage 0.10% | Best #13556
+3. SUZUKI Vision Gran Turismo (Gr.3 Version) | PRIORITY TEST | Consensus 81% | SCI 52.1 | SSI 67.4 | Tech 52% | Usage 0.32% | Best #132
+4. Mazda Atenza Gr.3 | STRONG ALTERNATIVE | Consensus 80% | SCI 44.5 | SSI 68.1 | Tech 50% | Usage 0.10% | Best #6191
+5. PEUGEOT Vision Gran Turismo (Gr.3) | STRONG ALTERNATIVE | Consensus 79% | SCI 39.8 | SSI 68.0 | Tech 61% | Usage 0.20% | Best #1542
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
-==============================================================================
+----------------------------------------
 
 FORECAST TO SUNDAY - V2
 Race start date unavailable.
@@ -114,7 +124,7 @@ Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
 CPI        : 7.33 / 10 | VERY STRONG
-Top %      : 13.52%
+Top %      : 13.49%
 WR gap     : +1.996%
 
 LATEST FINALIZED WEEK
@@ -125,7 +135,7 @@ WR gap     : +1.478%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
 CPI        : 8.34 -> 7.33 (-1.01)
-Top %      : 4.21% -> 13.52% (+9.31 pp)
+Top %      : 4.21% -> 13.49% (+9.27 pp)
 WR gap     : +1.478% -> +1.996% (+0.518 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
@@ -160,7 +170,7 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 65,215
+Entries        : 65,779
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
@@ -172,4 +182,4 @@ Percentile data: Top 10% and Top 5% direct snapshot stored
 GTSH car scan  : 586 discovered | 0 new | 0 updated
 Status         : OK
 
-==============================================================================
+----------------------------------------

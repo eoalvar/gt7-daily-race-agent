@@ -1,0 +1,242 @@
+{
+  "timestamp": "2026-10-12T04:32:43.465443-03:00",
+  "race": {
+    "description": "C Gr.3 Running Daily Race C i 00:00 Daytona Road Course M. Busnelli - Jaguar F-type Gr.3 RH RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tAC28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "detection_mode": "explicit_running_local_block",
+    "safety_validation": "PASSED",
+    "source_mode": "live_page_data_parallel",
+    "fuel_multiplier": 2,
+    "tyre_multiplier": 5,
+    "compounds": [
+      "RH",
+      "RS"
+    ],
+    "start_date": null
+  },
+  "total_drivers": 65779,
+  "world_record": {
+    "score": 104068,
+    "laptime": "1:44.068",
+    "driver": "M. Busnelli",
+    "psn_id": "NRG_Markuss",
+    "car_code": 2184,
+    "car": "Jaguar F-type Gr.3"
+  },
+  "benchmarks": {
+    "103_percent": {
+      "score": 107190,
+      "laptime": "1:47.190"
+    },
+    "105_percent": {
+      "score": 109271,
+      "laptime": "1:49.271"
+    }
+  },
+  "thresholds": {
+    "1": {
+      "score": 104068,
+      "laptime": "1:44.068"
+    },
+    "10": {
+      "score": 104182,
+      "laptime": "1:44.182"
+    },
+    "50": {
+      "score": 104393,
+      "laptime": "1:44.393"
+    },
+    "100": {
+      "score": 104488,
+      "laptime": "1:44.488"
+    },
+    "250": {
+      "score": 104658,
+      "laptime": "1:44.658"
+    },
+    "500": {
+      "score": 104826,
+      "laptime": "1:44.826"
+    },
+    "1000": {
+      "score": 105014,
+      "laptime": "1:45.014"
+    },
+    "2500": {
+      "score": 105398,
+      "laptime": "1:45.398"
+    },
+    "5000": {
+      "score": 105749,
+      "laptime": "1:45.749"
+    },
+    "10000": {
+      "score": 106248,
+      "laptime": "1:46.248"
+    }
+  },
+  "percentile_thresholds": {
+    "10": {
+      "percent": 10,
+      "rank": 6578,
+      "score": 105922,
+      "laptime": "1:45.922"
+    },
+    "5": {
+      "percent": 5,
+      "rank": 3289,
+      "score": 105526,
+      "laptime": "1:45.526"
+    }
+  },
+  "my_result": {
+    "psn_id": "crazy_rooster74",
+    "rank": 8872,
+    "score": 106145,
+    "laptime": "1:46.145",
+    "car_code": 2184,
+    "car": "Jaguar F-type Gr.3",
+    "country": "BR",
+    "driver_rating": 5,
+    "gap_to_wr_ms": 2077,
+    "wr_percentage": 101.99581043164085,
+    "position_score": 8.651372799416219,
+    "elite_score": 1.8058322432457707,
+    "composite_rating": 5.913156576948039,
+    "percentile_ahead": 86.51372799416218,
+    "top_percent": 13.487587223886043,
+    "pace_band": "ELITE"
+  },
+  "same_car_stats": {
+    "rank": 8337,
+    "total": 36688
+  },
+  "country_stats": {
+    "rank": 473,
+    "total": 4091,
+    "country": "BR"
+  },
+  "dr_stats": {
+    "rank": 2829,
+    "total": 4129,
+    "dr": 5
+  },
+  "next_targets": [
+    {
+      "label": "Top 10%",
+      "rank": 6578,
+      "score": 105922,
+      "laptime": "1:45.922",
+      "gain_needed_ms": 223
+    },
+    {
+      "label": "Top 5%",
+      "rank": 3289,
+      "score": 105526,
+      "laptime": "1:45.526",
+      "gain_needed_ms": 619
+    },
+    {
+      "label": "Top 2%",
+      "rank": 1316,
+      "score": 105126,
+      "laptime": "1:45.126",
+      "gain_needed_ms": 1019
+    },
+    {
+      "label": "Top 1000",
+      "rank": 1000,
+      "score": 105014,
+      "laptime": "1:45.014",
+      "gain_needed_ms": 1131
+    }
+  ],
+  "top5_used_cars": [
+    {
+      "car_code": 2184,
+      "car": "Jaguar F-type Gr.3",
+      "count": 968,
+      "percentage": 96.8
+    },
+    {
+      "car_code": 3223,
+      "car": "Dodge Viper SRT GT3-R '15",
+      "count": 21,
+      "percentage": 2.1
+    },
+    {
+      "car_code": 2160,
+      "car": "Hyundai Genesis Gr.3",
+      "count": 6,
+      "percentage": 0.6
+    },
+    {
+      "car_code": 3508,
+      "car": "SUZUKI Vision Gran Turismo (Gr.3 Version)",
+      "count": 2,
+      "percentage": 0.2
+    },
+    {
+      "car_code": 2183,
+      "car": "Chevrolet Corvette C7 Gr.3",
+      "count": 2,
+      "percentage": 0.2
+    }
+  ],
+  "overperformance": [
+    {
+      "car_code": 2184,
+      "car": "Jaguar F-type Gr.3",
+      "all_count": 36688,
+      "top100": 99,
+      "top1000": 968,
+      "oi100": 1.7750002725686873,
+      "oi1000": 1.735555822067161,
+      "overperformance_index": 1.7631669374182293,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3223,
+      "car": "Dodge Viper SRT GT3-R '15",
+      "all_count": 2803,
+      "top100": 1,
+      "top1000": 21,
+      "oi100": 0.23467356403853012,
+      "oi1000": 0.4928144844809133,
+      "overperformance_index": 0.31211584017124505,
+      "confidence": "Medium"
+    }
+  ],
+  "car_comparison": {
+    "my_car": "Jaguar F-type Gr.3",
+    "my_car_best_score": 104068,
+    "my_car_best_laptime": "1:44.068",
+    "gap_to_best_same_car_ms": 2077,
+    "meta_car": "Jaguar F-type Gr.3",
+    "meta_car_best_score": 104068,
+    "meta_car_best_laptime": "1:44.068",
+    "theoretical_car_gap_ms": 0
+  },
+  "car_database": {
+    "total_known_cars": 586,
+    "technical_records": 33,
+    "discovered_this_run": 586,
+    "added_this_run": 0,
+    "updated_this_run": 0
+  },
+  "health": {
+    "unknown_car_share": 0.0,
+    "unknown_car_entries": 0,
+    "invalid_car_code_entries": 21,
+    "source_mode": "live_page_data_parallel",
+    "race_detection_mode": "explicit_running_local_block",
+    "race_safety_validation": "PASSED",
+    "leaderboard_entries": 65779,
+    "my_driver_found": true,
+    "warnings": []
+  },
+  "forecast_v2": {
+    "available": false,
+    "reason": "Race start date unavailable."
+  }
+}
