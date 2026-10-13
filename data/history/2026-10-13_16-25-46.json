@@ -1,0 +1,213 @@
+{
+  "timestamp": "2026-10-13T16:25:46.937548-03:00",
+  "race": {
+    "description": "C Gr.4 Running Daily Race C i 17:55 Sardegna - Road Track - B K. de Bruin - Hyundai ELANTRA N TC '24 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tDC28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "detection_mode": "explicit_running_local_block",
+    "safety_validation": "PASSED",
+    "source_mode": "live_page_data_parallel",
+    "fuel_multiplier": 2,
+    "tyre_multiplier": 5,
+    "compounds": [
+      "RM",
+      "RS"
+    ],
+    "start_date": null
+  },
+  "total_drivers": 15902,
+  "world_record": {
+    "score": 82984,
+    "laptime": "1:22.984",
+    "driver": "K. de Bruin",
+    "psn_id": "Vitality_Kaj",
+    "car_code": 3590,
+    "car": "Hyundai ELANTRA N TC '24"
+  },
+  "benchmarks": {
+    "103_percent": {
+      "score": 85474,
+      "laptime": "1:25.474"
+    },
+    "105_percent": {
+      "score": 87133,
+      "laptime": "1:27.133"
+    }
+  },
+  "thresholds": {
+    "1": {
+      "score": 82984,
+      "laptime": "1:22.984"
+    },
+    "10": {
+      "score": 83133,
+      "laptime": "1:23.133"
+    },
+    "50": {
+      "score": 83322,
+      "laptime": "1:23.322"
+    },
+    "100": {
+      "score": 83442,
+      "laptime": "1:23.442"
+    },
+    "250": {
+      "score": 83665,
+      "laptime": "1:23.665"
+    },
+    "500": {
+      "score": 83879,
+      "laptime": "1:23.879"
+    },
+    "1000": {
+      "score": 84160,
+      "laptime": "1:24.160"
+    },
+    "2500": {
+      "score": 84782,
+      "laptime": "1:24.782"
+    },
+    "5000": {
+      "score": 85595,
+      "laptime": "1:25.595"
+    },
+    "10000": {
+      "score": 87494,
+      "laptime": "1:27.494"
+    }
+  },
+  "percentile_thresholds": {
+    "10": {
+      "percent": 10,
+      "rank": 1591,
+      "score": 84430,
+      "laptime": "1:24.430"
+    },
+    "5": {
+      "percent": 5,
+      "rank": 796,
+      "score": 84048,
+      "laptime": "1:24.048"
+    }
+  },
+  "my_result": {
+    "psn_id": "crazy_rooster74",
+    "rank": 1509,
+    "score": 84395,
+    "laptime": "1:24.395",
+    "car_code": 3590,
+    "car": "Hyundai ELANTRA N TC '24",
+    "country": "BR",
+    "driver_rating": 5,
+    "gap_to_wr_ms": 1411,
+    "wr_percentage": 101.70032777402874,
+    "position_score": 9.051631972831897,
+    "elite_score": 2.4343074023399867,
+    "composite_rating": 6.404702144635133,
+    "percentile_ahead": 90.51631972831898,
+    "top_percent": 9.489372405986668,
+    "pace_band": "ELITE"
+  },
+  "same_car_stats": {
+    "rank": 1504,
+    "total": 12888
+  },
+  "country_stats": {
+    "rank": 68,
+    "total": 931,
+    "country": "BR"
+  },
+  "dr_stats": {
+    "rank": 650,
+    "total": 1293,
+    "dr": 5
+  },
+  "next_targets": [
+    {
+      "label": "Top 1000",
+      "rank": 1000,
+      "score": 84160,
+      "laptime": "1:24.160",
+      "gain_needed_ms": 235
+    },
+    {
+      "label": "Top 5%",
+      "rank": 796,
+      "score": 84048,
+      "laptime": "1:24.048",
+      "gain_needed_ms": 347
+    },
+    {
+      "label": "Top 500",
+      "rank": 500,
+      "score": 83879,
+      "laptime": "1:23.879",
+      "gain_needed_ms": 516
+    },
+    {
+      "label": "Top 2%",
+      "rank": 319,
+      "score": 83744,
+      "laptime": "1:23.744",
+      "gain_needed_ms": 651
+    }
+  ],
+  "top5_used_cars": [
+    {
+      "car_code": 3590,
+      "car": "Hyundai ELANTRA N TC '24",
+      "count": 999,
+      "percentage": 99.9
+    },
+    {
+      "car_code": 3231,
+      "car": "Volkswagen Scirocco Gr.4",
+      "count": 1,
+      "percentage": 0.1
+    }
+  ],
+  "overperformance": [
+    {
+      "car_code": 3590,
+      "car": "Hyundai ELANTRA N TC '24",
+      "all_count": 12888,
+      "top100": 100,
+      "top1000": 999,
+      "oi100": 1.233860955927995,
+      "oi1000": 1.232627094972067,
+      "overperformance_index": 1.2334907976412164,
+      "confidence": "High"
+    }
+  ],
+  "car_comparison": {
+    "my_car": "Hyundai ELANTRA N TC '24",
+    "my_car_best_score": 82984,
+    "my_car_best_laptime": "1:22.984",
+    "gap_to_best_same_car_ms": 1411,
+    "meta_car": "Hyundai ELANTRA N TC '24",
+    "meta_car_best_score": 82984,
+    "meta_car_best_laptime": "1:22.984",
+    "theoretical_car_gap_ms": 0
+  },
+  "car_database": {
+    "total_known_cars": 586,
+    "technical_records": 33,
+    "discovered_this_run": 586,
+    "added_this_run": 0,
+    "updated_this_run": 0
+  },
+  "health": {
+    "unknown_car_share": 0.0,
+    "unknown_car_entries": 0,
+    "invalid_car_code_entries": 2,
+    "source_mode": "live_page_data_parallel",
+    "race_detection_mode": "explicit_running_local_block",
+    "race_safety_validation": "PASSED",
+    "leaderboard_entries": 15902,
+    "my_driver_found": true,
+    "warnings": []
+  },
+  "forecast_v2": {
+    "available": false,
+    "reason": "Race start date unavailable."
+  }
+}
