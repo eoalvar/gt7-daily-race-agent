@@ -1,6 +1,6 @@
 GT7 DAILY RACE C
 ==============================================================================
-Snapshot: 14/10/2026 12:40:12 - Sao Paulo
+Snapshot: 14/10/2026 19:26:04 - Sao Paulo
 C Gr.4 Running Daily Race C
 Car category: Gr.4
 Sardegna - Road Track - B
@@ -9,62 +9,62 @@ Current WR Car: Hyundai ELANTRA N TC '24
 Race Setup: RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 19,277
+Total drivers: 20,786
 
 WHERE YOU ARE
 PSN             : crazy_rooster74
-Position        : #1,855 of 19,277
+Position        : #2,041 of 20,786
 Time            : 1:24.395
 Car             : Hyundai ELANTRA N TC '24
 Gap to WR       : +1.435s
 WR percentage   : 101.730%
-CPI             : 7.67 / 10 | VERY STRONG
+CPI             : 7.65 / 10 | VERY STRONG
 Pace class      : ELITE
-Top percentile  : Top 9.62%
-Ahead of        : 90.38% of participants
-Country rank    : #86 of 1,165 (BR)
-DR A rank     : #780 of 1,483
+Top percentile  : Top 9.82%
+Ahead of        : 90.19% of participants
+Country rank    : #94 of 1,219 (BR)
+DR A rank     : #833 of 1,565
 DR progress      : DR A | 32,790 pts | 13% toward next DR
-Same-car rank   : #1,849 of 15,486
+Same-car rank   : #2,034 of 16,608
 
 EXPECTED START
-Expected position     : P7.5
-Most likely position  : P7
+Expected position     : P7.6
+Most likely position  : P8
 95% random-grid range : P4 to P11
 Your qualifying time  : 1:24.395
-DR A mean time       : 1:24.527
-DR A std deviation   : 0.801s
+DR A mean time       : 1:24.522
+DR A std deviation   : 0.820s
 Z-score               : -0.16
-Random opponent faster: 43.5%
-Population            : 1,444 DR A drivers
+Random opponent faster: 43.8%
+Population            : 1,524 DR A drivers
 Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
 DR S  : 1:22.984 average | SD N/A | 1 drivers
-DR A+ : 1:23.872 average | SD 0.562s | 411 drivers
-DR A  : 1:24.527 average | SD 0.801s | 1,444 drivers
-DR B  : 1:25.756 average | SD 1.377s | 5,742 drivers
-DR C  : 1:27.232 average | SD 1.934s | 5,018 drivers
-DR D  : 1:29.425 average | SD 2.963s | 5,746 drivers
-DR E  : 1:32.333 average | SD 4.415s | 626 drivers
+DR A+ : 1:23.865 average | SD 0.576s | 444 drivers
+DR A  : 1:24.522 average | SD 0.820s | 1,524 drivers
+DR B  : 1:25.739 average | SD 1.393s | 6,075 drivers
+DR C  : 1:27.208 average | SD 1.941s | 5,455 drivers
+DR D  : 1:29.421 average | SD 2.996s | 6,298 drivers
+DR E  : 1:32.356 average | SD 4.340s | 677 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:22.960 | RTR_Nyjah | Hyundai ELANTRA N TC '24
 103% WR         : 1:25.449
 105% WR         : 1:27.108
-Top 10          : 1:23.097
-Top 100         : 1:23.391
-Top 500         : 1:23.806
-Top 1000        : 1:24.049
-Top 2500        : 1:24.613
-Top 5000        : 1:25.311
+Top 10          : 1:23.095
+Top 100         : 1:23.365
+Top 500         : 1:23.765
+Top 1000        : 1:23.998
+Top 2500        : 1:24.548
+Top 5000        : 1:25.212
 
 WHERE YOU SHOULD AIM
-1. Top 1000: #1,000 | 1:24.049 | gain needed 0.346s
-2. Top 5%: #964 | 1:24.031 | gain needed 0.364s
-3. Top 500: #500 | 1:23.806 | gain needed 0.589s
-4. Top 2%: #386 | 1:23.723 | gain needed 0.672s
+1. Top 5%: #1,040 | 1:24.012 | gain needed 0.383s
+2. Top 1000: #1,000 | 1:23.998 | gain needed 0.397s
+3. Top 500: #500 | 1:23.765 | gain needed 0.630s
+4. Top 2%: #416 | 1:23.697 | gain needed 0.698s
 
 YOUR CAR VS META
 Your car best   : 1:22.960 | Hyundai ELANTRA N TC '24
@@ -78,7 +78,7 @@ WHAT THE META IS - TOP 5 USED IN TOP 1000
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Hyundai ELANTRA N TC '24 | OI 1.24 | Top100 100 | Top1000 999 | High
+1. Hyundai ELANTRA N TC '24 | OI 1.25 | Top100 100 | Top1000 999 | High
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
@@ -92,11 +92,11 @@ CARS TO TEST THIS WEEK
 Model: GR.4|LOW | Technical evidence: 17%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. Renault Sport Mégane Gr.4 | PRIORITY TEST | Consensus 83% | SCI 47.2 | SSI 73.5 | Tech 55% | Usage 0.16% | Best #6258
-2. Peugeot RCZ Gr.4 | PRIORITY TEST | Consensus 80% | SCI 47.1 | SSI 72.3 | Tech 56% | Usage 0.17% | Best #6857
-3. Mitsubishi Lancer Evolution Final Edition Gr.4 | STRONG ALTERNATIVE | Consensus 79% | SCI 46.0 | SSI 72.3 | Tech 52% | Usage 0.20% | Best #11083
-4. Lexus RC F Gr.4 | STRONG ALTERNATIVE | Consensus 76% | SCI 45.2 | SSI 71.5 | Tech 51% | Usage 0.24% | Best #10210
-5. Mercedes-Benz SLS AMG Gr.4 | STRONG ALTERNATIVE | Consensus 72% | SCI 45.2 | SSI 70.7 | Tech 44% | Usage 0.24% | Best #12452
+1. Peugeot RCZ Gr.4 | PRIORITY TEST | Consensus 83% | SCI 46.9 | SSI 73.0 | Tech 56% | Usage 0.17% | Best #5526
+2. Renault Sport Mégane Gr.4 | PRIORITY TEST | Consensus 81% | SCI 46.8 | SSI 72.8 | Tech 55% | Usage 0.16% | Best #7823
+3. Mitsubishi Lancer Evolution Final Edition Gr.4 | STRONG ALTERNATIVE | Consensus 78% | SCI 45.9 | SSI 71.8 | Tech 52% | Usage 0.19% | Best #11926
+4. Lexus RC F Gr.4 | STRONG ALTERNATIVE | Consensus 76% | SCI 44.9 | SSI 71.7 | Tech 51% | Usage 0.24% | Best #11006
+5. Alfa Romeo 4C Gr.4 | STRONG ALTERNATIVE | Consensus 72% | SCI 44.6 | SSI 70.3 | Tech 46% | Usage 0.25% | Best #13680
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
 ==============================================================================
@@ -109,8 +109,8 @@ CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percent
 Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
-CPI        : 7.67 / 10 | VERY STRONG
-Top %      : 9.62%
+CPI        : 7.65 / 10 | VERY STRONG
+Top %      : 9.82%
 WR gap     : +1.730%
 
 LATEST FINALIZED WEEK
@@ -120,8 +120,8 @@ Top %      : 4.21%
 WR gap     : +1.478%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
-CPI        : 8.34 -> 7.67 (-0.67)
-Top %      : 4.21% -> 9.62% (+5.41 pp)
+CPI        : 8.34 -> 7.65 (-0.69)
+Top %      : 4.21% -> 9.82% (+5.61 pp)
 WR gap     : +1.478% -> +1.730% (+0.251 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
@@ -156,7 +156,7 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 19,277
+Entries        : 20,786
 Car database   : 586 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
