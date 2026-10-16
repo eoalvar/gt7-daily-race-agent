@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-16T09:59:34.751862-03:00",
+  "timestamp": "2026-10-16T10:33:18.673165-03:00",
   "race": {
     "description": "C Gr.4 Running Daily Race C i 17:55 Sardegna - Road Track - B RTR_Nyjah - Hyundai ELANTRA N TC '24 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tDC28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
@@ -14,7 +14,7 @@
     ],
     "start_date": null
   },
-  "total_drivers": 24305,
+  "total_drivers": 24441,
   "world_record": {
     "score": 82955,
     "laptime": "1:22.955",
@@ -71,22 +71,22 @@
       "laptime": "1:25.166"
     },
     "10000": {
-      "score": 86341,
-      "laptime": "1:26.341"
+      "score": 86339,
+      "laptime": "1:26.339"
     }
   },
   "percentile_thresholds": {
     "10": {
       "percent": 10,
-      "rank": 2431,
-      "score": 84488,
-      "laptime": "1:24.488"
+      "rank": 2445,
+      "score": 84491,
+      "laptime": "1:24.491"
     },
     "5": {
       "percent": 5,
-      "rank": 1216,
-      "score": 84070,
-      "laptime": "1:24.070"
+      "rank": 1223,
+      "score": 84073,
+      "laptime": "1:24.073"
     }
   },
   "my_result": {
@@ -100,42 +100,42 @@
     "driver_rating": 5,
     "gap_to_wr_ms": 1440,
     "wr_percentage": 101.73588089928273,
-    "position_score": 9.124835418038183,
-    "elite_score": 7.756519538015494,
-    "composite_rating": 6.4396047707472155,
-    "percentile_ahead": 91.24835418038182,
-    "top_percent": 8.755400123431393,
+    "position_score": 9.129705400981997,
+    "elite_score": 7.761391410757144,
+    "composite_rating": 6.444203007779857,
+    "percentile_ahead": 91.29705400981997,
+    "top_percent": 8.706681396014893,
     "pace_band": "ELITE",
-    "legacy_elite_score": 2.411758799810766,
-    "legacy_general_score": 9.124835418038183,
-    "legacy_composite_rating": 6.4396047707472155,
-    "cpi_score": 7.756519538015494,
+    "legacy_elite_score": 2.415949417976646,
+    "legacy_general_score": 9.129705400981997,
+    "legacy_composite_rating": 6.444203007779857,
+    "cpi_score": 7.761391410757144,
     "cpi_band": "VERY STRONG",
     "rating_model": "CPI_50_50_V1",
     "driver_rating_label": "A"
   },
   "same_car_stats": {
     "rank": 2120,
-    "total": 18824
+    "total": 18900
   },
   "country_stats": {
     "rank": 103,
-    "total": 1464,
+    "total": 1466,
     "country": "BR"
   },
   "dr_stats": {
-    "rank": 868,
-    "total": 1720,
+    "rank": 866,
+    "total": 1727,
     "dr": 5,
     "label": "A"
   },
   "next_targets": [
     {
       "label": "Top 5%",
-      "rank": 1216,
-      "score": 84070,
-      "laptime": "1:24.070",
-      "gain_needed_ms": 325
+      "rank": 1223,
+      "score": 84073,
+      "laptime": "1:24.073",
+      "gain_needed_ms": 322
     },
     {
       "label": "Top 1000",
@@ -153,10 +153,10 @@
     },
     {
       "label": "Top 2%",
-      "rank": 487,
-      "score": 83743,
-      "laptime": "1:23.743",
-      "gain_needed_ms": 652
+      "rank": 489,
+      "score": 83746,
+      "laptime": "1:23.746",
+      "gain_needed_ms": 649
     }
   ],
   "top5_used_cars": [
@@ -177,12 +177,12 @@
     {
       "car_code": 3590,
       "car": "Hyundai ELANTRA N TC '24",
-      "all_count": 18824,
+      "all_count": 18900,
       "top100": 100,
       "top1000": 999,
-      "oi100": 1.2911708457288569,
-      "oi1000": 1.289879674883128,
-      "overperformance_index": 1.2907834944751382,
+      "oi100": 1.2931746031746032,
+      "oi1000": 1.2918814285714286,
+      "overperformance_index": 1.2927866507936507,
       "confidence": "High"
     }
   ],
@@ -210,7 +210,7 @@
     "source_mode": "live_page_data_parallel",
     "race_detection_mode": "explicit_running_local_block",
     "race_safety_validation": "PASSED",
-    "leaderboard_entries": 24305,
+    "leaderboard_entries": 24441,
     "my_driver_found": true,
     "warnings": []
   },
@@ -226,111 +226,111 @@
     "dr_percentage": 13,
     "sportsmanship_rating": 6,
     "source": "GTSH public profile",
-    "captured_at": "2026-10-16T13:00:05.843765+00:00"
+    "captured_at": "2026-10-16T13:33:50.278697+00:00"
   },
   "dr_laptime_stats": {
     "1": {
       "dr": 1,
       "label": "E",
-      "drivers": 953,
-      "average_score": 92453.94018887723,
-      "average_laptime": "1:32.454",
-      "stddev_ms": 4033.109534321503,
-      "stddev_seconds": 4.033109534321503,
+      "drivers": 970,
+      "average_score": 92489.62783505155,
+      "average_laptime": "1:32.490",
+      "stddev_ms": 4047.5226566800848,
+      "stddev_seconds": 4.047522656680084,
       "diagnostics": {
-        "raw_n": 968,
-        "clean_n": 953,
+        "raw_n": 985,
+        "clean_n": 970,
         "excluded_n": 15,
-        "median_ms": 92127.5,
-        "mad_ms": 2304.5,
-        "lower_fence_ms": 75044.2415,
-        "upper_fence_ms": 109210.7585
+        "median_ms": 92134.0,
+        "mad_ms": 2317.0,
+        "lower_fence_ms": 74958.079,
+        "upper_fence_ms": 109309.921
       }
     },
     "2": {
       "dr": 2,
       "label": "D",
-      "drivers": 7580,
-      "average_score": 89634.7172823219,
-      "average_laptime": "1:29.635",
-      "stddev_ms": 3025.3606946722152,
-      "stddev_seconds": 3.0253606946722154,
+      "drivers": 7637,
+      "average_score": 89637.66492078041,
+      "average_laptime": "1:29.638",
+      "stddev_ms": 3013.433575384648,
+      "stddev_seconds": 3.013433575384648,
       "diagnostics": {
-        "raw_n": 7639,
-        "clean_n": 7580,
-        "excluded_n": 59,
-        "median_ms": 89168.0,
-        "mad_ms": 1982.0,
-        "lower_fence_ms": 74475.43400000001,
-        "upper_fence_ms": 103860.56599999999
+        "raw_n": 7697,
+        "clean_n": 7637,
+        "excluded_n": 60,
+        "median_ms": 89173.0,
+        "mad_ms": 1975.0,
+        "lower_fence_ms": 74532.325,
+        "upper_fence_ms": 103813.675
       }
     },
     "3": {
       "dr": 3,
       "label": "C",
-      "drivers": 6363,
-      "average_score": 87372.4813767091,
-      "average_laptime": "1:27.372",
-      "stddev_ms": 2002.764109590704,
-      "stddev_seconds": 2.002764109590704,
+      "drivers": 6388,
+      "average_score": 87376.78068252974,
+      "average_laptime": "1:27.377",
+      "stddev_ms": 2005.315736290157,
+      "stddev_seconds": 2.005315736290157,
       "diagnostics": {
-        "raw_n": 6434,
-        "clean_n": 6363,
-        "excluded_n": 71,
-        "median_ms": 86930.0,
-        "mad_ms": 1191.5,
-        "lower_fence_ms": 78097.4105,
-        "upper_fence_ms": 95762.5895
+        "raw_n": 6460,
+        "clean_n": 6388,
+        "excluded_n": 72,
+        "median_ms": 86933.0,
+        "mad_ms": 1194.5,
+        "lower_fence_ms": 78078.1715,
+        "upper_fence_ms": 95787.8285
       }
     },
     "4": {
       "dr": 4,
       "label": "B",
-      "drivers": 6943,
-      "average_score": 85930.67060348553,
-      "average_laptime": "1:25.931",
-      "stddev_ms": 1556.4770678336204,
-      "stddev_seconds": 1.5564770678336204,
+      "drivers": 6967,
+      "average_score": 85939.14252906559,
+      "average_laptime": "1:25.939",
+      "stddev_ms": 1562.7992864724686,
+      "stddev_seconds": 1.5627992864724685,
       "diagnostics": {
-        "raw_n": 7037,
-        "clean_n": 6943,
+        "raw_n": 7061,
+        "clean_n": 6967,
         "excluded_n": 94,
-        "median_ms": 85572.0,
-        "mad_ms": 885.0,
-        "lower_fence_ms": 79011.495,
-        "upper_fence_ms": 92132.505
+        "median_ms": 85579.0,
+        "mad_ms": 890.0,
+        "lower_fence_ms": 78981.43,
+        "upper_fence_ms": 92176.57
       }
     },
     "5": {
       "dr": 5,
       "label": "A",
-      "drivers": 1684,
-      "average_score": 84643.96496437055,
-      "average_laptime": "1:24.644",
-      "stddev_ms": 960.9902086267803,
-      "stddev_seconds": 0.9609902086267803,
+      "drivers": 1690,
+      "average_score": 84653.57159763314,
+      "average_laptime": "1:24.654",
+      "stddev_ms": 969.8439781300902,
+      "stddev_seconds": 0.9698439781300903,
       "diagnostics": {
-        "raw_n": 1720,
-        "clean_n": 1684,
-        "excluded_n": 36,
-        "median_ms": 84390.0,
-        "mad_ms": 509.5,
-        "lower_fence_ms": 80613.0765,
-        "upper_fence_ms": 88166.9235
+        "raw_n": 1727,
+        "clean_n": 1690,
+        "excluded_n": 37,
+        "median_ms": 84394.0,
+        "mad_ms": 512.0,
+        "lower_fence_ms": 80598.544,
+        "upper_fence_ms": 88189.456
       }
     },
     "6": {
       "dr": 6,
       "label": "A+",
-      "drivers": 484,
-      "average_score": 83991.81404958677,
-      "average_laptime": "1:23.992",
-      "stddev_ms": 759.9489778225366,
-      "stddev_seconds": 0.7599489778225366,
+      "drivers": 487,
+      "average_score": 83994.58932238193,
+      "average_laptime": "1:23.995",
+      "stddev_ms": 762.9170133976393,
+      "stddev_seconds": 0.7629170133976393,
       "diagnostics": {
-        "raw_n": 506,
-        "clean_n": 484,
-        "excluded_n": 22,
+        "raw_n": 510,
+        "clean_n": 487,
+        "excluded_n": 23,
         "median_ms": 83818.0,
         "mad_ms": 400.0,
         "lower_fence_ms": 80852.8,
@@ -361,13 +361,13 @@
     "grid_size": 16,
     "dr": 5,
     "dr_label": "A",
-    "same_dr_population": 1684,
+    "same_dr_population": 1690,
     "my_score_ms": 84395.0,
-    "same_dr_mean_ms": 84643.96496437055,
-    "same_dr_std_ms": 960.9902086267803,
-    "z_score": -0.25907128099287363,
-    "probability_random_same_dr_opponent_faster": 0.3977901214716211,
-    "expected_position": 6.966851822074317,
+    "same_dr_mean_ms": 84653.57159763314,
+    "same_dr_std_ms": 969.8439781300902,
+    "z_score": -0.26661154109723995,
+    "probability_random_same_dr_opponent_faster": 0.39488413434320646,
+    "expected_position": 6.923262015148097,
     "most_likely_position": 7,
     "random_grid_interval_95": [
       3,
