@@ -1,36 +1,29 @@
 GT7 BOP TRACK CLASSIFIER V2.0
 ====================================================================================================
-Generated            : 2026-10-18T12:48:55.635993+00:00
-Snapshot             : 2026-10-18T09:48:21.773398-03:00
-Track                : Sardegna - Road Track - B
-Group                : GR.4
-Model key            : GR.4|LOW
-BoP speed class      : LOW
-Selection mode       : GROUP_SPECIFIC_MAP
-Confidence           : VALIDATED_RECENT
+Generated            : 2026-10-19T10:25:01.805365+00:00
+Snapshot             : 2026-10-19T07:24:55.366227-03:00
+Track                : Suzuka Circuit
+Group                : GR.2
+Model key            : GR.2|MID
+BoP speed class      : MID
+Selection mode       : TRACK_DEFAULT_MAP
+Confidence           : VALIDATED_EXTERNAL
 BoP DB records       : 399
 Production modified  : NO
 
 CLASSIFICATION EVIDENCE
 ----------------------------------------------------------------------------------------------------
-- GTPlanet Daily Races 2026-06-15 | Sardegna Road Track B / Gr.4 / BOP (L)
+- GTPlanet Daily Races 2023-05-29 | Suzuka Circuit / Gr.3 / BOP (M)
 
 YOUR CURRENT CAR
 ----------------------------------------------------------------------------------------------------
-Car                  : Hyundai ELANTRA N TC '24
-Matched DB car       : Hyundai ELANTRA N TC '24
-Name match score     : 100
-BoP version          : 1.67
-HIGH                 : 332 HP / 1265 kg / PP 612.54
-MID                  : 332 HP / 1265 kg / PP 612.54
-LOW                  : 332 HP / 1265 kg / PP 612.54
-ACTIVE LOW         : 332 HP / 1265 kg / PP 612.54
-Fingerprint usable   : NO
+No current personal car in latest snapshot.
 
 TOP 5 USED CARS
 ----------------------------------------------------------------------------------------------------
-1. Hyundai ELANTRA N TC '24 | DB=Hyundai ELANTRA N TC '24 | score=100 | active=332 HP / 1265 kg / PP 612.54 | fingerprint=NO
-2. Volkswagen Scirocco Gr.4 | DB=Volkswagen Scirocco Gr.4 | score=100 | active=294 HP / 1090 kg / PP 612.88 | fingerprint=NO
+1. Honda NSX CONCEPT-GT '16 | DB=Honda NSX CONCEPT-GT '16 | score=100 | active=604 HP / 1064 kg / PP 864.74 | fingerprint=NO
+2. Nissan GT-R NISMO GT500 '16 | DB=Nissan GT-R NISMO GT500 '16 | score=100 | active=613 HP / 1035 kg / PP 862.2 | fingerprint=NO
+3. Lexus RC F GT500 '16 | DB=Lexus RC F GT500 '16 | score=100 | active=614 HP / 1030 kg / PP 862.89 | fingerprint=NO
 
 CLASSIFIER POLICY
 ----------------------------------------------------------------------------------------------------

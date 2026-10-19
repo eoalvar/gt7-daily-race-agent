@@ -1,0 +1,166 @@
+{
+  "timestamp": "2026-10-19T07:24:55.366227-03:00",
+  "race": {
+    "description": "C Gr.2 Running Daily Race C i 00:00 Suzuka Circuit super7seiya - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tMAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "detection_mode": "explicit_running_local_block",
+    "safety_validation": "PASSED",
+    "source_mode": "live_page_data_parallel",
+    "fuel_multiplier": 2,
+    "tyre_multiplier": 4,
+    "compounds": [
+      "RM"
+    ],
+    "start_date": null
+  },
+  "total_drivers": 3019,
+  "world_record": {
+    "score": 105077,
+    "laptime": "1:45.077",
+    "driver": "super7seiya",
+    "psn_id": "super7seiya",
+    "car_code": 3348,
+    "car": "Honda NSX CONCEPT-GT '16"
+  },
+  "benchmarks": {
+    "103_percent": {
+      "score": 108229,
+      "laptime": "1:48.229"
+    },
+    "105_percent": {
+      "score": 110331,
+      "laptime": "1:50.331"
+    }
+  },
+  "thresholds": {
+    "1": {
+      "score": 105077,
+      "laptime": "1:45.077"
+    },
+    "10": {
+      "score": 105394,
+      "laptime": "1:45.394"
+    },
+    "50": {
+      "score": 106216,
+      "laptime": "1:46.216"
+    },
+    "100": {
+      "score": 106574,
+      "laptime": "1:46.574"
+    },
+    "250": {
+      "score": 107104,
+      "laptime": "1:47.104"
+    },
+    "500": {
+      "score": 107873,
+      "laptime": "1:47.873"
+    },
+    "1000": {
+      "score": 108816,
+      "laptime": "1:48.816"
+    },
+    "2500": {
+      "score": 112945,
+      "laptime": "1:52.945"
+    }
+  },
+  "percentile_thresholds": {
+    "10": {
+      "percent": 10,
+      "rank": 302,
+      "score": 107330,
+      "laptime": "1:47.330"
+    },
+    "5": {
+      "percent": 5,
+      "rank": 151,
+      "score": 106761,
+      "laptime": "1:46.761"
+    }
+  },
+  "my_result": null,
+  "same_car_stats": null,
+  "country_stats": null,
+  "dr_stats": null,
+  "next_targets": [],
+  "top5_used_cars": [
+    {
+      "car_code": 3348,
+      "car": "Honda NSX CONCEPT-GT '16",
+      "count": 547,
+      "percentage": 54.7
+    },
+    {
+      "car_code": 3350,
+      "car": "Nissan GT-R NISMO GT500 '16",
+      "count": 365,
+      "percentage": 36.5
+    },
+    {
+      "car_code": 3349,
+      "car": "Lexus RC F GT500 '16",
+      "count": 88,
+      "percentage": 8.799999999999999
+    }
+  ],
+  "overperformance": [
+    {
+      "car_code": 3348,
+      "car": "Honda NSX CONCEPT-GT '16",
+      "all_count": 1426,
+      "top100": 58,
+      "top1000": 547,
+      "oi100": 1.2279242636746144,
+      "oi1000": 1.1580596072931277,
+      "overperformance_index": 1.2069648667601682,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3350,
+      "car": "Nissan GT-R NISMO GT500 '16",
+      "all_count": 1159,
+      "top100": 38,
+      "top1000": 365,
+      "oi100": 0.9898360655737705,
+      "oi1000": 0.9507635893011216,
+      "overperformance_index": 0.9781143226919757,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3349,
+      "car": "Lexus RC F GT500 '16",
+      "all_count": 433,
+      "top100": 4,
+      "top1000": 88,
+      "oi100": 0.27889145496535794,
+      "oi1000": 0.6135612009237874,
+      "overperformance_index": 0.3792923787528868,
+      "confidence": "Medium"
+    }
+  ],
+  "car_comparison": null,
+  "car_database": {
+    "total_known_cars": 592,
+    "technical_records": 33,
+    "discovered_this_run": 592,
+    "added_this_run": 0,
+    "updated_this_run": 0
+  },
+  "health": {
+    "unknown_car_share": 0.0,
+    "unknown_car_entries": 0,
+    "invalid_car_code_entries": 1,
+    "source_mode": "live_page_data_parallel",
+    "race_detection_mode": "explicit_running_local_block",
+    "race_safety_validation": "PASSED",
+    "leaderboard_entries": 3019,
+    "my_driver_found": false,
+    "warnings": []
+  },
+  "forecast_v2": {
+    "available": false,
+    "reason": "Race start date unavailable."
+  }
+}

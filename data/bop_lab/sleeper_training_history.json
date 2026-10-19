@@ -6140,7 +6140,68 @@
           }
         }
       ]
+    },
+    {
+      "race_key": "live:GR.2:MID:2026-10-19",
+      "week_start": "2026-10-19",
+      "captured_at": "2026-10-19T10:25:01.979293+00:00",
+      "track": "Suzuka Circuit",
+      "group": "GR.2",
+      "speed_class": "MID",
+      "model_key": "GR.2|MID",
+      "status": "LIVE_SNAPSHOT",
+      "total_drivers": 3019,
+      "cars": [
+        {
+          "car_code": 3348,
+          "car": "Honda NSX CONCEPT-GT '16",
+          "sample": 1426,
+          "performance_target": 0.7291396003853423,
+          "technical": {
+            "power_weight_hp_t": 567.6691729323308,
+            "weight_kg": 1064.0,
+            "front_weight_pct": 48.0,
+            "acceleration_0_400": 10.73,
+            "acceleration_100_150": 1.89,
+            "rotational_g_60": 1.6,
+            "rotational_g_120": 1.81,
+            "rotational_g_240": 2.75
+          }
+        },
+        {
+          "car_code": 3350,
+          "car": "Nissan GT-R NISMO GT500 '16",
+          "sample": 1159,
+          "performance_target": 0.6471155235407948,
+          "technical": {
+            "power_weight_hp_t": 592.2705314009662,
+            "weight_kg": 1035.0,
+            "front_weight_pct": 50.0,
+            "acceleration_0_400": 10.43,
+            "acceleration_100_150": 1.83,
+            "rotational_g_60": 1.6,
+            "rotational_g_120": 1.81,
+            "rotational_g_240": 2.65
+          }
+        },
+        {
+          "car_code": 3349,
+          "car": "Lexus RC F GT500 '16",
+          "sample": 433,
+          "performance_target": 0.44568034437901083,
+          "technical": {
+            "power_weight_hp_t": 596.1165048543689,
+            "weight_kg": 1030.0,
+            "front_weight_pct": 51.0,
+            "acceleration_0_400": 10.3,
+            "acceleration_100_150": 1.8,
+            "rotational_g_60": 1.6,
+            "rotational_g_120": 1.81,
+            "rotational_g_240": 2.65
+          }
+        }
+      ]
     }
   ],
-  "updated_at": "2026-10-18T12:48:56.098462+00:00"
+  "updated_at": "2026-10-19T10:25:01.979318+00:00"
 }
