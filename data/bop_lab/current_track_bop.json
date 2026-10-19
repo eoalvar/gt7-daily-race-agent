@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-19T10:25:01.805365+00:00",
+  "generated_at": "2026-10-19T14:04:45.456857+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-10-19T07:24:55.366227-03:00",
-  "race_description": "C Gr.2 Running Daily Race C i 00:00 Suzuka Circuit super7seiya - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
+  "snapshot_timestamp": "2026-10-19T11:04:35.327264-03:00",
+  "race_description": "C Gr.2 Running Daily Race C i 00:00 Suzuka Circuit N.Baglioni - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
   "track": "Suzuka Circuit",
   "group": "GR.2",
   "model_key": "GR.2|MID",
@@ -17,9 +17,131 @@
     }
   ],
   "database_records": 399,
-  "my_car": null,
-  "my_car_fingerprint": null,
-  "my_car_active_bop": null,
+  "my_car": "Honda NSX CONCEPT-GT '16",
+  "my_car_fingerprint": {
+    "car": "Honda NSX CONCEPT-GT '16",
+    "available": true,
+    "match": {
+      "requested_name": "Honda NSX CONCEPT-GT '16",
+      "matched_name": "Honda NSX CONCEPT-GT '16",
+      "match_score": 100
+    },
+    "bop_version": "1.61",
+    "distinct_signatures": 1,
+    "can_identify_speed_class_from_car": false,
+    "HIGH": {
+      "car": "Honda NSX CONCEPT-GT '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "HIGH",
+      "pp": 864.74,
+      "power_hp": 604.0,
+      "torque_nm": 612.9,
+      "weight_kg": 1064.0,
+      "power_weight_hp_t": 567.6691729323308,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "acceleration": {
+        "0_400m": 10.73,
+        "0_1000m": 19.1,
+        "100_150_kmh": 1.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.75
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-0.99 | U"
+      }
+    },
+    "MID": {
+      "car": "Honda NSX CONCEPT-GT '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "MID",
+      "pp": 864.74,
+      "power_hp": 604.0,
+      "torque_nm": 612.9,
+      "weight_kg": 1064.0,
+      "power_weight_hp_t": 567.6691729323308,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "acceleration": {
+        "0_400m": 10.73,
+        "0_1000m": 19.1,
+        "100_150_kmh": 1.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.75
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-0.99 | U"
+      }
+    },
+    "LOW": {
+      "car": "Honda NSX CONCEPT-GT '16",
+      "group": "GR.2",
+      "bop_version": "1.61",
+      "speed_class": "LOW",
+      "pp": 864.74,
+      "power_hp": 604.0,
+      "torque_nm": 612.9,
+      "weight_kg": 1064.0,
+      "power_weight_hp_t": 567.6691729323308,
+      "weight_balance": "48:52",
+      "drivetrain": "MR",
+      "aspiration": "TC",
+      "acceleration": {
+        "0_400m": 10.73,
+        "0_1000m": 19.1,
+        "100_150_kmh": 1.89
+      },
+      "rotational_g": {
+        "60_kmh": 1.6,
+        "120_kmh": 1.81,
+        "240_kmh": 2.75
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-0.99 | U"
+      }
+    }
+  },
+  "my_car_active_bop": {
+    "car": "Honda NSX CONCEPT-GT '16",
+    "group": "GR.2",
+    "bop_version": "1.61",
+    "speed_class": "MID",
+    "pp": 864.74,
+    "power_hp": 604.0,
+    "torque_nm": 612.9,
+    "weight_kg": 1064.0,
+    "power_weight_hp_t": 567.6691729323308,
+    "weight_balance": "48:52",
+    "drivetrain": "MR",
+    "aspiration": "TC",
+    "acceleration": {
+      "0_400m": 10.73,
+      "0_1000m": 19.1,
+      "100_150_kmh": 1.89
+    },
+    "rotational_g": {
+      "60_kmh": 1.6,
+      "120_kmh": 1.81,
+      "240_kmh": 2.75
+    },
+    "stability": {
+      "low_speed": "-0.33 | N",
+      "high_speed": "-0.99 | U"
+    }
+  },
   "top5_used_cars": [
     {
       "car": "Honda NSX CONCEPT-GT '16",
@@ -116,8 +238,8 @@
           "high_speed": "-0.99 | U"
         }
       },
-      "leaderboard_count": 547,
-      "leaderboard_percentage": 54.7,
+      "leaderboard_count": 736,
+      "leaderboard_percentage": 73.6,
       "active_bop": {
         "car": "Honda NSX CONCEPT-GT '16",
         "group": "GR.2",
@@ -242,8 +364,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 365,
-      "leaderboard_percentage": 36.5,
+      "leaderboard_count": 214,
+      "leaderboard_percentage": 21.4,
       "active_bop": {
         "car": "Nissan GT-R NISMO GT500 '16",
         "group": "GR.2",
@@ -368,8 +490,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 88,
-      "leaderboard_percentage": 8.799999999999999,
+      "leaderboard_count": 50,
+      "leaderboard_percentage": 5.0,
       "active_bop": {
         "car": "Lexus RC F GT500 '16",
         "group": "GR.2",

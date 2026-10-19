@@ -6144,19 +6144,19 @@
     {
       "race_key": "live:GR.2:MID:2026-10-19",
       "week_start": "2026-10-19",
-      "captured_at": "2026-10-19T10:25:01.979293+00:00",
+      "captured_at": "2026-10-19T14:04:45.757795+00:00",
       "track": "Suzuka Circuit",
       "group": "GR.2",
       "speed_class": "MID",
       "model_key": "GR.2|MID",
       "status": "LIVE_SNAPSHOT",
-      "total_drivers": 3019,
+      "total_drivers": 6320,
       "cars": [
         {
           "car_code": 3348,
           "car": "Honda NSX CONCEPT-GT '16",
-          "sample": 1426,
-          "performance_target": 0.7291396003853423,
+          "sample": 3622,
+          "performance_target": 0.7720723568831541,
           "technical": {
             "power_weight_hp_t": 567.6691729323308,
             "weight_kg": 1064.0,
@@ -6171,8 +6171,8 @@
         {
           "car_code": 3350,
           "car": "Nissan GT-R NISMO GT500 '16",
-          "sample": 1159,
-          "performance_target": 0.6471155235407948,
+          "sample": 1879,
+          "performance_target": 0.44800598074771886,
           "technical": {
             "power_weight_hp_t": 592.2705314009662,
             "weight_kg": 1035.0,
@@ -6187,8 +6187,8 @@
         {
           "car_code": 3349,
           "car": "Lexus RC F GT500 '16",
-          "sample": 433,
-          "performance_target": 0.44568034437901083,
+          "sample": 819,
+          "performance_target": 0.3268944854647635,
           "technical": {
             "power_weight_hp_t": 596.1165048543689,
             "weight_kg": 1030.0,
@@ -6203,5 +6203,5 @@
       ]
     }
   ],
-  "updated_at": "2026-10-19T10:25:01.979318+00:00"
+  "updated_at": "2026-10-19T14:04:45.757850+00:00"
 }

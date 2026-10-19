@@ -1,7 +1,7 @@
 GT7 BOP TRACK CLASSIFIER V2.0
 ====================================================================================================
-Generated            : 2026-10-19T10:25:01.805365+00:00
-Snapshot             : 2026-10-19T07:24:55.366227-03:00
+Generated            : 2026-10-19T14:04:45.456857+00:00
+Snapshot             : 2026-10-19T11:04:35.327264-03:00
 Track                : Suzuka Circuit
 Group                : GR.2
 Model key            : GR.2|MID
@@ -17,7 +17,15 @@ CLASSIFICATION EVIDENCE
 
 YOUR CURRENT CAR
 ----------------------------------------------------------------------------------------------------
-No current personal car in latest snapshot.
+Car                  : Honda NSX CONCEPT-GT '16
+Matched DB car       : Honda NSX CONCEPT-GT '16
+Name match score     : 100
+BoP version          : 1.61
+HIGH                 : 604 HP / 1064 kg / PP 864.74
+MID                  : 604 HP / 1064 kg / PP 864.74
+LOW                  : 604 HP / 1064 kg / PP 864.74
+ACTIVE MID         : 604 HP / 1064 kg / PP 864.74
+Fingerprint usable   : NO
 
 TOP 5 USED CARS
 ----------------------------------------------------------------------------------------------------
