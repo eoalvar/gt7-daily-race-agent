@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-19T15:53:46.749738+00:00",
+  "generated_at": "2026-10-20T00:02:05.732152+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-10-19T12:53:36.140854-03:00",
-  "race_description": "C Gr.2 Running Daily Race C i 00:00 Suzuka Circuit N.Baglioni - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
+  "snapshot_timestamp": "2026-10-19T21:01:50.652263-03:00",
+  "race_description": "C Gr.2 Running Daily Race C i 00:00 Suzuka Circuit D. Chafe - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
   "track": "Suzuka Circuit",
   "group": "GR.2",
   "model_key": "GR.2|MID",
@@ -238,8 +238,8 @@
           "high_speed": "-0.99 | U"
         }
       },
-      "leaderboard_count": 776,
-      "leaderboard_percentage": 77.60000000000001,
+      "leaderboard_count": 877,
+      "leaderboard_percentage": 87.7,
       "active_bop": {
         "car": "Honda NSX CONCEPT-GT '16",
         "group": "GR.2",
@@ -364,8 +364,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 178,
-      "leaderboard_percentage": 17.8,
+      "leaderboard_count": 95,
+      "leaderboard_percentage": 9.5,
       "active_bop": {
         "car": "Nissan GT-R NISMO GT500 '16",
         "group": "GR.2",
@@ -490,8 +490,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 46,
-      "leaderboard_percentage": 4.6,
+      "leaderboard_count": 28,
+      "leaderboard_percentage": 2.8000000000000003,
       "active_bop": {
         "car": "Lexus RC F GT500 '16",
         "group": "GR.2",

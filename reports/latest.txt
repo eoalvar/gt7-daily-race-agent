@@ -1,20 +1,33 @@
 LAST WEEK - FINAL RESULT
 ----------------------------------------
-Week       : 2026-10-12
-Circuit    : Sardegna - Road Track - B RTR_Nyjah - Hyundai ELANTRA N TC '24 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5
-Car        : Hyundai ELANTRA N TC '24
+Week            : 2026-10-12
+Race            : C Gr.4 Archived Daily Race C i 17:55 Sardegna - Road Track - B RTR_Nyjah - Hyundai ELANTRA N TC '24 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom
 
-YOUR RESULT
-Position   : #2,128 of 30,305
-Time       : 1:24.395
-Top        : 7.02%
-Ahead of   : 92.98% of participants
-WR         : 101.736%
-CPI        : 7.93 / 10 | VERY STRONG
+YOUR FINAL RESULT
+Position        : #2,128 of 32,498
+Time            : 1:24.395
+Gap to WR       : +1.440s
+Top percentile  : Top 6.55%
+Ahead of        : 93.45% of participants
+Brazil rank     : #103 of 1,981
+Same-car rank   : #2,120 of 23,243
 
-Status     : FINAL SNAPSHOT
-Note       : Full GTSH archive is not available yet.
-             This will be upgraded automatically when archived.
+FINAL RATINGS
+WR percentage   : 101.736%
+CPI             : 6.53 / 10 | COMPETITIVE
+
+FINAL LEADERBOARD
+WR             : 1:22.955
+Top 100        : 1:23.363
+Top 500        : 1:23.749
+Top 1000       : 1:23.981
+Top 2500       : 1:24.511
+Top 5000       : 1:25.165
+Top 10%        : 1:24.719 (#3,250)
+Top 5%         : 1:24.229 (#1,625)
+Top 2%         : 1:23.828 (#650)
+
+Status          : FINAL - archived full leaderboard
 ----------------------------------------
 
 NEW WEEK - CURRENT DAILY RACE C
@@ -22,88 +35,88 @@ NEW WEEK - CURRENT DAILY RACE C
 
 GT7 DAILY RACE C
 ----------------------------------------
-Snapshot: 19/10/2026 12:53:36 - Sao Paulo
+Snapshot: 19/10/2026 21:01:50 - Sao Paulo
 C Gr.2 Running Daily Race C
 Car category: Gr.2
 Suzuka Circuit
-Current WR: N.Baglioni (1:44.810)
+Current WR: D. Chafe (1:44.564)
 Current WR Car: Honda NSX CONCEPT-GT '16
 Race Setup: RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 8,125
+Total drivers: 15,766
 
 WHERE YOU ARE
 PSN             : crazy_rooster74
-Position        : #1,703 of 8,125
-Time            : 1:48.128
+Position        : #2,939 of 15,766
+Time            : 1:47.979
 Car             : Honda NSX CONCEPT-GT '16
-Gap to WR       : +3.318s
-WR percentage   : 103.166%
-CPI             : 6.52 / 10 | COMPETITIVE
+Gap to WR       : +3.415s
+WR percentage   : 103.266%
+CPI             : 6.53 / 10 | COMPETITIVE
 Pace class      : COMPETITIVE
-Top percentile  : Top 20.96%
-Ahead of        : 79.05% of participants
-Country rank    : #20 of 129 (BR)
-DR A rank     : #602 of 811
+Top percentile  : Top 18.64%
+Ahead of        : 81.36% of participants
+Country rank    : #66 of 495 (BR)
+DR A rank     : #1,040 of 1,429
 DR progress      : DR A | 36,923 pts | 34% toward next DR
-Same-car rank   : #1,281 of 4,969
+Same-car rank   : #2,455 of 10,423
 
 EXPECTED START
-Expected position     : P11.7
-Most likely position  : P12
+Expected position     : P11.3
+Most likely position  : P11
 95% random-grid range : P8 to P15
-Your qualifying time  : 1:48.128
-DR A mean time       : 1:47.573
-DR A std deviation   : 0.980s
-Z-score               : +0.57
-Random opponent faster: 71.5%
-Population            : 802 DR A drivers
+Your qualifying time  : 1:47.979
+DR A mean time       : 1:47.494
+DR A std deviation   : 1.010s
+Z-score               : +0.48
+Random opponent faster: 68.4%
+Population            : 1,414 DR A drivers
 Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : N/A average | SD N/A | 0 drivers
-DR A+ : 1:46.483 average | SD 0.859s | 290 drivers
-DR A  : 1:47.573 average | SD 0.980s | 802 drivers
-DR B  : 1:49.110 average | SD 1.486s | 2,796 drivers
-DR C  : 1:50.661 average | SD 1.819s | 1,999 drivers
-DR D  : 1:52.932 average | SD 3.135s | 1,815 drivers
-DR E  : 1:54.819 average | SD 5.647s | 174 drivers
+DR S  : 1:44.804 average | SD N/A | 1 drivers
+DR A+ : 1:46.409 average | SD 0.844s | 456 drivers
+DR A  : 1:47.494 average | SD 1.010s | 1,414 drivers
+DR B  : 1:48.986 average | SD 1.447s | 5,294 drivers
+DR C  : 1:50.510 average | SD 1.799s | 3,984 drivers
+DR D  : 1:52.826 average | SD 3.172s | 3,748 drivers
+DR E  : 1:55.158 average | SD 6.047s | 353 drivers
 
 WORLD RECORD & BENCHMARKS
-WR              : 1:44.810 | N.Baglioni | Honda NSX CONCEPT-GT '16
-103% WR         : 1:47.954
-105% WR         : 1:50.050
-Top 10          : 1:45.116
-Top 100         : 1:45.967
-Top 500         : 1:46.898
-Top 1000        : 1:47.533
-Top 2500        : 1:48.694
-Top 5000        : 1:50.546
+WR              : 1:44.564 | D. Chafe | Honda NSX CONCEPT-GT '16
+103% WR         : 1:47.701
+105% WR         : 1:49.792
+Top 10          : 1:44.941
+Top 100         : 1:45.725
+Top 500         : 1:46.490
+Top 1000        : 1:46.940
+Top 2500        : 1:47.798
+Top 5000        : 1:48.750
 
 WHERE YOU SHOULD AIM
-1. Top 1000: #1,000 | 1:47.533 | gain needed 0.595s
-2. Top 10%: #813 | 1:47.326 | gain needed 0.802s
-3. Top 500: #500 | 1:46.898 | gain needed 1.230s
-4. Top 5%: #407 | 1:46.749 | gain needed 1.379s
+1. Top 10%: #1,577 | 1:47.343 | gain needed 0.636s
+2. Top 1000: #1,000 | 1:46.940 | gain needed 1.039s
+3. Top 5%: #789 | 1:46.763 | gain needed 1.216s
+4. Top 500: #500 | 1:46.490 | gain needed 1.489s
 
 YOUR CAR VS META
-Your car best   : 1:44.810 | Honda NSX CONCEPT-GT '16
-Gap to car best : +3.318s
-Meta car best   : 1:44.810 | Honda NSX CONCEPT-GT '16
+Your car best   : 1:44.564 | Honda NSX CONCEPT-GT '16
+Gap to car best : +3.415s
+Meta car best   : 1:44.564 | Honda NSX CONCEPT-GT '16
 Best-lap delta  : 0.000s
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Honda NSX CONCEPT-GT '16 | 776 drivers | 77.6%
-2. Nissan GT-R NISMO GT500 '16 | 178 drivers | 17.8%
-3. Lexus RC F GT500 '16 | 46 drivers | 4.6%
+1. Honda NSX CONCEPT-GT '16 | 877 drivers | 87.7%
+2. Nissan GT-R NISMO GT500 '16 | 95 drivers | 9.5%
+3. Lexus RC F GT500 '16 | 28 drivers | 2.8%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Honda NSX CONCEPT-GT '16 | OI 1.37 | Top100 86 | Top1000 776 | High
-2. Nissan GT-R NISMO GT500 '16 | OI 0.46 | Top100 10 | Top1000 178 | High
-3. Lexus RC F GT500 '16 | OI 0.35 | Top100 4 | Top1000 46 | High
+1. Honda NSX CONCEPT-GT '16 | OI 1.40 | Top100 95 | Top1000 877 | High
+2. Nissan GT-R NISMO GT500 '16 | OI 0.25 | Top100 4 | Top1000 95 | High
+3. Lexus RC F GT500 '16 | OI 0.13 | Top100 1 | Top1000 28 | High
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
@@ -117,9 +130,9 @@ CARS TO TEST THIS WEEK
 Model: GR.2|MID | Technical evidence: 17%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. Honda NSX CONCEPT-GT '16 | WATCH / TEST | Consensus 61% | SCI 64.7 | SSI 50.0 | Tech 50% | Usage 61.16% | Best #1
-2. Nissan GT-R NISMO GT500 '16 | LOW PRIORITY | Consensus 50% | SCI 41.9 | SSI 50.0 | Tech 50% | Usage 26.84% | Best #28
-3. Lexus RC F GT500 '16 | LOW PRIORITY | Consensus 39% | SCI 36.4 | SSI 50.0 | Tech 50% | Usage 12.00% | Best #58
+1. Honda NSX CONCEPT-GT '16 | WATCH / TEST | Consensus 61% | SCI 65.1 | SSI 50.0 | Tech 50% | Usage 66.11% | Best #1
+2. Lexus RC F GT500 '16 | WATCH / TEST | Consensus 61% | SCI 34.0 | SSI 59.7 | Tech 50% | Usage 11.58% | Best #29
+3. Nissan GT-R NISMO GT500 '16 | LOW PRIORITY | Consensus 28% | SCI 30.5 | SSI 38.2 | Tech 50% | Usage 22.29% | Best #66
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
 ----------------------------------------
@@ -132,24 +145,24 @@ CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percent
 Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
-CPI        : 6.52 / 10 | COMPETITIVE
-Top %      : 20.96%
-WR gap     : +3.166%
+CPI        : 6.53 / 10 | COMPETITIVE
+Top %      : 18.64%
+WR gap     : +3.266%
 
 LATEST FINALIZED WEEK
 Week       : 2026-10-12
-CPI        : 7.93 / 10 | VERY STRONG
-Top %      : 7.02%
+CPI        : 7.98 / 10 | VERY STRONG
+Top %      : 6.55%
 WR gap     : +1.736%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
-CPI        : 7.93 -> 6.52 (-1.41)
-Top %      : 7.02% -> 20.96% (+13.94 pp)
-WR gap     : +1.736% -> +3.166% (+1.430 pp)
+CPI        : 7.98 -> 6.53 (-1.45)
+Top %      : 6.55% -> 18.64% (+12.09 pp)
+WR gap     : +1.736% -> +3.266% (+1.530 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
-CPI        : 7.99
-Top %      : 6.10%
+CPI        : 8.00
+Top %      : 5.98%
 WR gap     : +1.806%
 
 8-WEEK FINALIZED TREND
@@ -173,18 +186,18 @@ CPI 8.07 | Top 5.60% | WR +1.748%
 - 2026-09-28 | Gr.4 | Red Bull Ring
 CPI 8.34 | Top 4.21% | WR +1.478%
 - 2026-10-12 | Gr.4 | Sardegna - Road Track - B
-CPI 7.93 | Top 7.02% | WR +1.736%
+CPI 7.98 | Top 6.55% | WR +1.736%
 
 DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 8,125
+Entries        : 15,766
 Car database   : 592 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
 Unknown codes  : 0 valid unmapped entries
-Invalid codes  : 0 entries
+Invalid codes  : 3 entries
 My PSN found   : Yes
 Weekly final   : No
 Percentile data: Top 10% and Top 5% direct snapshot stored

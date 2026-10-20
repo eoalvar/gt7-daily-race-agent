@@ -1155,7 +1155,7 @@
     "race": "C Gr.4 Archived Daily Race C i 17:55 Sardegna - Road Track - B RTR_Nyjah - Hyundai ELANTRA N TC '24 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tDC28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
     "general_score": 9.34547804412715,
-    "elite_score": 2.623941996977525,
+    "elite_score": 7.977250023618526,
     "composite_rating": 6.6568636252673,
     "position": 2128,
     "total_drivers": 32498,
@@ -1176,6 +1176,12 @@
     "same_car_total": 23243,
     "dr_rank": 889,
     "dr_total": 1968,
-    "archive_upgrade_pending": false
+    "archive_upgrade_pending": false,
+    "legacy_elite_score": 2.623941996977525,
+    "legacy_general_score": 9.34547804412715,
+    "legacy_composite_rating": 6.6568636252673,
+    "cpi_score": 7.977250023618526,
+    "cpi_band": "VERY STRONG",
+    "rating_model": "CPI_50_50_V1"
   }
 ]
