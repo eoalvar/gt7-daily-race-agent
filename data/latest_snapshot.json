@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-20T10:52:29.664728-03:00",
+  "timestamp": "2026-10-20T14:20:06.452037-03:00",
   "race": {
     "description": "C Gr.2 Running Daily Race C i 00:00 Suzuka Circuit D. Chafe - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tMAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
@@ -13,7 +13,7 @@
     ],
     "start_date": null
   },
-  "total_drivers": 19615,
+  "total_drivers": 21019,
   "world_record": {
     "score": 104564,
     "laptime": "1:44.564",
@@ -38,138 +38,138 @@
       "laptime": "1:44.564"
     },
     "10": {
-      "score": 104927,
-      "laptime": "1:44.927"
+      "score": 104924,
+      "laptime": "1:44.924"
     },
     "50": {
-      "score": 105342,
-      "laptime": "1:45.342"
+      "score": 105287,
+      "laptime": "1:45.287"
     },
     "100": {
-      "score": 105629,
-      "laptime": "1:45.629"
+      "score": 105571,
+      "laptime": "1:45.571"
     },
     "250": {
-      "score": 105988,
-      "laptime": "1:45.988"
+      "score": 105971,
+      "laptime": "1:45.971"
     },
     "500": {
-      "score": 106364,
-      "laptime": "1:46.364"
+      "score": 106318,
+      "laptime": "1:46.318"
     },
     "1000": {
-      "score": 106760,
-      "laptime": "1:46.760"
+      "score": 106708,
+      "laptime": "1:46.708"
     },
     "2500": {
-      "score": 107565,
-      "laptime": "1:47.565"
+      "score": 107481,
+      "laptime": "1:47.481"
     },
     "5000": {
-      "score": 108393,
-      "laptime": "1:48.393"
+      "score": 108291,
+      "laptime": "1:48.291"
     },
     "10000": {
-      "score": 109826,
-      "laptime": "1:49.826"
+      "score": 109643,
+      "laptime": "1:49.643"
     }
   },
   "percentile_thresholds": {
     "10": {
       "percent": 10,
-      "rank": 1962,
-      "score": 107328,
-      "laptime": "1:47.328"
+      "rank": 2102,
+      "score": 107318,
+      "laptime": "1:47.318"
     },
     "5": {
       "percent": 5,
-      "rank": 981,
-      "score": 106742,
-      "laptime": "1:46.742"
+      "rank": 1051,
+      "score": 106737,
+      "laptime": "1:46.737"
     }
   },
   "my_result": {
     "psn_id": "crazy_rooster74",
-    "rank": 3671,
-    "score": 107979,
-    "laptime": "1:47.979",
+    "rank": 3157,
+    "score": 107723,
+    "laptime": "1:47.723",
     "car_code": 3348,
     "car": "Honda NSX CONCEPT-GT '16",
     "country": "BR",
     "driver_rating": 5,
-    "gap_to_wr_ms": 3415,
-    "wr_percentage": 103.26594238935007,
-    "position_score": 8.128887529315795,
-    "elite_score": 6.524147082153921,
-    "composite_rating": 5.555528398473788,
-    "percentile_ahead": 81.28887529315794,
-    "top_percent": 18.715268926841702,
+    "gap_to_wr_ms": 3159,
+    "wr_percentage": 103.02111625416013,
+    "position_score": 8.498429917213816,
+    "elite_score": 6.7389482718922915,
+    "composite_rating": 5.860946788592372,
+    "percentile_ahead": 84.98429917213817,
+    "top_percent": 15.019744041105668,
     "pace_band": "COMPETITIVE",
-    "legacy_elite_score": 1.6954897022107762,
-    "legacy_general_score": 8.128887529315795,
-    "legacy_composite_rating": 5.555528398473788,
-    "cpi_score": 6.524147082153921,
+    "legacy_elite_score": 1.9047220956602084,
+    "legacy_general_score": 8.498429917213816,
+    "legacy_composite_rating": 5.860946788592372,
+    "cpi_score": 6.7389482718922915,
     "cpi_band": "COMPETITIVE",
     "rating_model": "CPI_50_50_V1",
     "driver_rating_label": "A"
   },
   "same_car_stats": {
-    "rank": 3148,
-    "total": 13129
+    "rank": 2761,
+    "total": 14123
   },
   "country_stats": {
-    "rank": 97,
-    "total": 708,
+    "rank": 76,
+    "total": 741,
     "country": "BR"
   },
   "dr_stats": {
-    "rank": 1292,
-    "total": 1742,
+    "rank": 1226,
+    "total": 1835,
     "dr": 5,
     "label": "A"
   },
   "next_targets": [
     {
       "label": "Top 10%",
-      "rank": 1962,
-      "score": 107328,
-      "laptime": "1:47.328",
-      "gain_needed_ms": 651
+      "rank": 2102,
+      "score": 107318,
+      "laptime": "1:47.318",
+      "gain_needed_ms": 405
+    },
+    {
+      "label": "Top 5%",
+      "rank": 1051,
+      "score": 106737,
+      "laptime": "1:46.737",
+      "gain_needed_ms": 986
     },
     {
       "label": "Top 1000",
       "rank": 1000,
-      "score": 106760,
-      "laptime": "1:46.760",
-      "gain_needed_ms": 1219
-    },
-    {
-      "label": "Top 5%",
-      "rank": 981,
-      "score": 106742,
-      "laptime": "1:46.742",
-      "gain_needed_ms": 1237
+      "score": 106708,
+      "laptime": "1:46.708",
+      "gain_needed_ms": 1015
     },
     {
       "label": "Top 500",
       "rank": 500,
-      "score": 106364,
-      "laptime": "1:46.364",
-      "gain_needed_ms": 1615
+      "score": 106318,
+      "laptime": "1:46.318",
+      "gain_needed_ms": 1405
     }
   ],
   "top5_used_cars": [
     {
       "car_code": 3348,
       "car": "Honda NSX CONCEPT-GT '16",
-      "count": 905,
-      "percentage": 90.5
+      "count": 909,
+      "percentage": 90.9
     },
     {
       "car_code": 3350,
       "car": "Nissan GT-R NISMO GT500 '16",
-      "count": 67,
-      "percentage": 6.7
+      "count": 63,
+      "percentage": 6.3
     },
     {
       "car_code": 3349,
@@ -182,34 +182,34 @@
     {
       "car_code": 3348,
       "car": "Honda NSX CONCEPT-GT '16",
-      "all_count": 13129,
-      "top100": 96,
-      "top1000": 905,
-      "oi100": 1.434260035036941,
-      "oi1000": 1.352088887196283,
-      "overperformance_index": 1.4096086906847436,
+      "all_count": 14123,
+      "top100": 97,
+      "top1000": 909,
+      "oi100": 1.4436330807902005,
+      "oi1000": 1.3528479076683426,
+      "overperformance_index": 1.416397528853643,
       "confidence": "High"
     },
     {
       "car_code": 3350,
       "car": "Nissan GT-R NISMO GT500 '16",
-      "all_count": 4207,
-      "top100": 3,
-      "top1000": 67,
-      "oi100": 0.13987401949132397,
-      "oi1000": 0.31238531019729027,
-      "overperformance_index": 0.19162740670311385,
+      "all_count": 4471,
+      "top100": 2,
+      "top1000": 63,
+      "oi100": 0.09402370834265265,
+      "oi1000": 0.29617468127935587,
+      "overperformance_index": 0.15466900022366362,
       "confidence": "High"
     },
     {
       "car_code": 3349,
       "car": "Lexus RC F GT500 '16",
-      "all_count": 2275,
+      "all_count": 2421,
       "top100": 1,
       "top1000": 28,
-      "oi100": 0.08621978021978022,
-      "oi1000": 0.24141538461538462,
-      "overperformance_index": 0.1327784615384615,
+      "oi100": 0.08681949607600166,
+      "oi1000": 0.24309458901280465,
+      "overperformance_index": 0.13370202395704256,
       "confidence": "High"
     }
   ],
@@ -217,7 +217,7 @@
     "my_car": "Honda NSX CONCEPT-GT '16",
     "my_car_best_score": 104564,
     "my_car_best_laptime": "1:44.564",
-    "gap_to_best_same_car_ms": 3415,
+    "gap_to_best_same_car_ms": 3159,
     "meta_car": "Honda NSX CONCEPT-GT '16",
     "meta_car_best_score": 104564,
     "meta_car_best_laptime": "1:44.564",
@@ -237,7 +237,7 @@
     "source_mode": "live_page_data_parallel",
     "race_detection_mode": "explicit_running_local_block",
     "race_safety_validation": "PASSED",
-    "leaderboard_entries": 19615,
+    "leaderboard_entries": 21019,
     "my_driver_found": true,
     "warnings": []
   },
@@ -249,119 +249,119 @@
     "psn_id": "crazy_rooster74",
     "driver_rating": 5,
     "dr_label": "A",
-    "dr_points": 36923,
-    "dr_percentage": 34,
+    "dr_points": 37085,
+    "dr_percentage": 35,
     "sportsmanship_rating": 6,
     "source": "GTSH public profile",
-    "captured_at": "2026-10-20T13:52:51.208467+00:00"
+    "captured_at": "2026-10-20T17:20:29.004477+00:00"
   },
   "dr_laptime_stats": {
     "1": {
       "dr": 1,
       "label": "E",
-      "drivers": 488,
-      "average_score": 114880.9856557377,
-      "average_laptime": "1:54.881",
-      "stddev_ms": 5585.495171354145,
-      "stddev_seconds": 5.585495171354145,
+      "drivers": 552,
+      "average_score": 115042.01992753622,
+      "average_laptime": "1:55.042",
+      "stddev_ms": 5651.0411918635955,
+      "stddev_seconds": 5.651041191863595,
       "diagnostics": {
-        "raw_n": 523,
-        "clean_n": 488,
+        "raw_n": 587,
+        "clean_n": 552,
         "excluded_n": 35,
-        "median_ms": 113580.0,
-        "mad_ms": 2967.0,
-        "lower_fence_ms": 91585.629,
-        "upper_fence_ms": 135574.37099999998
+        "median_ms": 113735.0,
+        "mad_ms": 3026.0,
+        "lower_fence_ms": 91303.262,
+        "upper_fence_ms": 136166.738
       }
     },
     "2": {
       "dr": 2,
       "label": "D",
-      "drivers": 4816,
-      "average_score": 112772.87583056478,
-      "average_laptime": "1:52.773",
-      "stddev_ms": 3171.9381285306417,
-      "stddev_seconds": 3.1719381285306416,
+      "drivers": 5223,
+      "average_score": 112711.88320888378,
+      "average_laptime": "1:52.712",
+      "stddev_ms": 3133.552422836767,
+      "stddev_seconds": 3.1335524228367673,
       "diagnostics": {
-        "raw_n": 5061,
-        "clean_n": 4816,
-        "excluded_n": 245,
-        "median_ms": 112193.0,
-        "mad_ms": 1777.0,
-        "lower_fence_ms": 99020.099,
-        "upper_fence_ms": 125365.901
+        "raw_n": 5489,
+        "clean_n": 5223,
+        "excluded_n": 266,
+        "median_ms": 112155.0,
+        "mad_ms": 1760.0,
+        "lower_fence_ms": 99108.12,
+        "upper_fence_ms": 125201.88
       }
     },
     "3": {
       "dr": 3,
       "label": "C",
-      "drivers": 4958,
-      "average_score": 110494.46329164985,
-      "average_laptime": "1:50.494",
-      "stddev_ms": 1817.4060008062745,
-      "stddev_seconds": 1.8174060008062745,
+      "drivers": 5338,
+      "average_score": 110468.2307980517,
+      "average_laptime": "1:50.468",
+      "stddev_ms": 1810.5579108677027,
+      "stddev_seconds": 1.8105579108677028,
       "diagnostics": {
-        "raw_n": 5158,
-        "clean_n": 4958,
-        "excluded_n": 200,
-        "median_ms": 110202.5,
-        "mad_ms": 1066.5,
-        "lower_fence_ms": 102296.5355,
-        "upper_fence_ms": 118108.4645
+        "raw_n": 5565,
+        "clean_n": 5338,
+        "excluded_n": 227,
+        "median_ms": 110180.0,
+        "mad_ms": 1055.0,
+        "lower_fence_ms": 102359.285,
+        "upper_fence_ms": 118000.715
       }
     },
     "4": {
       "dr": 4,
       "label": "B",
-      "drivers": 6434,
-      "average_score": 108938.42182157289,
-      "average_laptime": "1:48.938",
-      "stddev_ms": 1432.7006943656181,
-      "stddev_seconds": 1.4327006943656182,
+      "drivers": 6812,
+      "average_score": 108915.14738696418,
+      "average_laptime": "1:48.915",
+      "stddev_ms": 1435.5491570371375,
+      "stddev_seconds": 1.4355491570371375,
       "diagnostics": {
-        "raw_n": 6589,
-        "clean_n": 6434,
-        "excluded_n": 155,
-        "median_ms": 108745.0,
-        "mad_ms": 862.0,
-        "lower_fence_ms": 102354.994,
-        "upper_fence_ms": 115135.006
+        "raw_n": 6977,
+        "clean_n": 6812,
+        "excluded_n": 165,
+        "median_ms": 108718.0,
+        "mad_ms": 863.0,
+        "lower_fence_ms": 102320.581,
+        "upper_fence_ms": 115115.419
       }
     },
     "5": {
       "dr": 5,
       "label": "A",
-      "drivers": 1722,
-      "average_score": 107463.9181184669,
-      "average_laptime": "1:47.464",
-      "stddev_ms": 1024.8875685355054,
-      "stddev_seconds": 1.0248875685355054,
+      "drivers": 1813,
+      "average_score": 107434.37948152234,
+      "average_laptime": "1:47.434",
+      "stddev_ms": 1006.4114907716177,
+      "stddev_seconds": 1.0064114907716177,
       "diagnostics": {
-        "raw_n": 1742,
-        "clean_n": 1722,
-        "excluded_n": 20,
-        "median_ms": 107305.5,
-        "mad_ms": 619.5,
-        "lower_fence_ms": 102713.1465,
-        "upper_fence_ms": 111897.8535
+        "raw_n": 1835,
+        "clean_n": 1813,
+        "excluded_n": 22,
+        "median_ms": 107271.0,
+        "mad_ms": 615.0,
+        "lower_fence_ms": 102712.005,
+        "upper_fence_ms": 111829.995
       }
     },
     "6": {
       "dr": 6,
       "label": "A+",
-      "drivers": 538,
-      "average_score": 106363.78810408922,
-      "average_laptime": "1:46.364",
-      "stddev_ms": 817.1343296673692,
-      "stddev_seconds": 0.8171343296673692,
+      "drivers": 561,
+      "average_score": 106346.7807486631,
+      "average_laptime": "1:46.347",
+      "stddev_ms": 823.6596739699089,
+      "stddev_seconds": 0.8236596739699089,
       "diagnostics": {
-        "raw_n": 541,
-        "clean_n": 538,
-        "excluded_n": 3,
-        "median_ms": 106264.0,
-        "mad_ms": 489.0,
-        "lower_fence_ms": 102639.043,
-        "upper_fence_ms": 109888.957
+        "raw_n": 565,
+        "clean_n": 561,
+        "excluded_n": 4,
+        "median_ms": 106252.0,
+        "mad_ms": 496.0,
+        "lower_fence_ms": 102575.152,
+        "upper_fence_ms": 109928.848
       }
     },
     "7": {
@@ -388,17 +388,17 @@
     "grid_size": 16,
     "dr": 5,
     "dr_label": "A",
-    "same_dr_population": 1722,
-    "my_score_ms": 107979.0,
-    "same_dr_mean_ms": 107463.9181184669,
-    "same_dr_std_ms": 1024.8875685355054,
-    "z_score": 0.5025740357736189,
-    "probability_random_same_dr_opponent_faster": 0.6923681061037932,
-    "expected_position": 11.385521591556898,
-    "most_likely_position": 12,
+    "same_dr_population": 1813,
+    "my_score_ms": 107723.0,
+    "same_dr_mean_ms": 107434.37948152234,
+    "same_dr_std_ms": 1006.4114907716177,
+    "z_score": 0.2867818194885442,
+    "probability_random_same_dr_opponent_faster": 0.6128603077802459,
+    "expected_position": 10.19290461670369,
+    "most_likely_position": 10,
     "random_grid_interval_95": [
-      8,
-      15
+      6,
+      14
     ],
     "basis": "Normal distribution using the same cleaned DR mean/std shown in DR LAP-TIME BENCHMARKS; 15 random same-DR opponents"
   }
