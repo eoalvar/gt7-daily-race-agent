@@ -1,17 +1,17 @@
 GT7 SLEEPER CAR LAB V0.3
 ====================================================================================================
-Generated            : 2026-10-22T14:08:10.646374+00:00
+Generated            : 2026-10-23T13:51:28.322741+00:00
 Track                : Suzuka Circuit
 Group                : GR.2
 Active BoP           : MID
 Model key            : GR.2|MID
-Total drivers        : 31,683
+Total drivers        : 35,647
 Cars observed        : 4
 Cars eligible (n>=20) : 3
 Eligible with BoP    : 3
 Eligible without BoP : 0
-WR                   : 1:44.564
-Top 500              : 1:46.069
+WR                   : 1:44.395
+Top 500              : 1:45.997
 Elapsed              : 0.3s
 Production modified  : NO
 
@@ -25,11 +25,11 @@ matching group + speed-class model has enough independent race weeks.
 
 TOP SLEEPER CANDIDATES
 ----------------------------------------------------------------------------------------------------
- 1. Honda NSX CONCEPT-GT '16 | SCI 65.9 | META / PROVEN | n=21427 (67.63%) | Eff 1.41x | T100 98 / T500 474 / T1000 945 | Best #1 1:44.564 | Conf HIGH
+ 1. Honda NSX CONCEPT-GT '16 | SCI 66.0 | META / PROVEN | n=24066 (67.51%) | Eff 1.41x | T100 98 / T500 474 / T1000 949 | Best #1 1:44.395 | Conf HIGH
     Active GR.2 MID BoP: 604 HP / 1064 kg / PP 864.74 / MR
- 2. Nissan GT-R NISMO GT500 '16 | SCI 33.1 | META / PROVEN | n=6541 (20.65%) | Eff 0.14x | T100 1 / T500 15 / T1000 33 | Best #11 1:44.795 | Conf HIGH
+ 2. Nissan GT-R NISMO GT500 '16 | SCI 31.1 | META / PROVEN | n=7352 (20.62%) | Eff 0.14x | T100 1 / T500 16 / T1000 31 | Best #13 1:44.795 | Conf HIGH
     Active GR.2 MID BoP: 613 HP / 1035 kg / PP 862.2 / FR
- 3. Lexus RC F GT500 '16 | SCI 32.4 | NO SLEEPER SIGNAL | n=3705 (11.69%) | Eff 0.20x | T100 1 / T500 11 / T1000 22 | Best #47 1:45.077 | Conf HIGH
+ 3. Lexus RC F GT500 '16 | SCI 30.7 | NO SLEEPER SIGNAL | n=4220 (11.84%) | Eff 0.18x | T100 1 / T500 10 / T1000 20 | Best #52 1:45.077 | Conf HIGH
     Active GR.2 MID BoP: 614 HP / 1030 kg / PP 862.89 / FR
 
 MULTI-GROUP MODEL POLICY
@@ -75,19 +75,19 @@ Model key            : GR.2|MID
 Status               : BOOTSTRAP
 Independent races    : 1 / 3 minimum
 Independent weeks    : 2026-10-19
-Sample benchmark     : 6541.0 accumulated drivers (model median)
+Sample benchmark     : 7352.0 accumulated drivers (model median)
 Technical weight     : 0.0
 Calibration          : weak evidence is shrunk toward SSI 50 (neutral).
 
 TOP CALIBRATED STRUCTURAL SLEEPER SIGNALS
 ----------------------------------------------------------------------------------------------------
- 1. Honda NSX CONCEPT-GT '16 | SSI 50.0 (raw 50.0) | MODEL NOT READY | races 1/1 | sample 21427 | evidence 0.875 | positive 0% | Conf LOW | CURRENT-WEEK SIGNAL ONLY
- 2. Nissan GT-R NISMO GT500 '16 | SSI 50.0 (raw 50.0) | MODEL NOT READY | races 1/1 | sample 6541 | evidence 0.707 | positive 0% | Conf LOW | NO PRIORITY
- 3. Lexus RC F GT500 '16 | SSI 50.0 (raw 50.0) | MODEL NOT READY | races 1/1 | sample 3705 | evidence 0.601 | positive 0% | Conf LOW | NO PRIORITY
+ 1. Honda NSX CONCEPT-GT '16 | SSI 50.0 (raw 50.0) | MODEL NOT READY | races 1/1 | sample 24066 | evidence 0.875 | positive 0% | Conf LOW | CURRENT-WEEK SIGNAL ONLY
+ 2. Nissan GT-R NISMO GT500 '16 | SSI 50.0 (raw 50.0) | MODEL NOT READY | races 1/1 | sample 7352 | evidence 0.707 | positive 0% | Conf LOW | NO PRIORITY
+ 3. Lexus RC F GT500 '16 | SSI 50.0 (raw 50.0) | MODEL NOT READY | races 1/1 | sample 4220 | evidence 0.604 | positive 0% | Conf LOW | NO PRIORITY
 
 CURRENT-WEEK PRACTICAL PRIORITIES
 ----------------------------------------------------------------------------------------------------
- 1. Honda NSX CONCEPT-GT '16 | SSI 50.0 | Current SCI 65.9 | MODEL NOT READY | CURRENT-WEEK SIGNAL ONLY
+ 1. Honda NSX CONCEPT-GT '16 | SSI 50.0 | Current SCI 66.0 | MODEL NOT READY | CURRENT-WEEK SIGNAL ONLY
 
 INTERPRETATION
 ----------------------------------------------------------------------------------------------------
