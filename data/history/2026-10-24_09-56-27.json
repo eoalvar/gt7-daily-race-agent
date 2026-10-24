@@ -1,0 +1,240 @@
+{
+  "timestamp": "2026-10-24T09:56:27.615550-03:00",
+  "race": {
+    "description": "C Gr.2 Running Daily Race C i 00:00 Suzuka Circuit D. Chafe - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tMAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "detection_mode": "explicit_running_local_block",
+    "safety_validation": "PASSED",
+    "source_mode": "live_page_data_parallel",
+    "fuel_multiplier": 2,
+    "tyre_multiplier": 4,
+    "compounds": [
+      "RM"
+    ],
+    "start_date": null
+  },
+  "total_drivers": 39999,
+  "world_record": {
+    "score": 104384,
+    "laptime": "1:44.384",
+    "driver": "D. Chafe",
+    "psn_id": "SFE_Damian",
+    "car_code": 3348,
+    "car": "Honda NSX CONCEPT-GT '16"
+  },
+  "benchmarks": {
+    "103_percent": {
+      "score": 107516,
+      "laptime": "1:47.516"
+    },
+    "105_percent": {
+      "score": 109603,
+      "laptime": "1:49.603"
+    }
+  },
+  "thresholds": {
+    "1": {
+      "score": 104384,
+      "laptime": "1:44.384"
+    },
+    "10": {
+      "score": 104709,
+      "laptime": "1:44.709"
+    },
+    "50": {
+      "score": 105069,
+      "laptime": "1:45.069"
+    },
+    "100": {
+      "score": 105309,
+      "laptime": "1:45.309"
+    },
+    "250": {
+      "score": 105680,
+      "laptime": "1:45.680"
+    },
+    "500": {
+      "score": 105943,
+      "laptime": "1:45.943"
+    },
+    "1000": {
+      "score": 106314,
+      "laptime": "1:46.314"
+    },
+    "2500": {
+      "score": 106895,
+      "laptime": "1:46.895"
+    },
+    "5000": {
+      "score": 107526,
+      "laptime": "1:47.526"
+    },
+    "10000": {
+      "score": 108386,
+      "laptime": "1:48.386"
+    }
+  },
+  "percentile_thresholds": {
+    "10": {
+      "percent": 10,
+      "rank": 4000,
+      "score": 107302,
+      "laptime": "1:47.302"
+    },
+    "5": {
+      "percent": 5,
+      "rank": 2000,
+      "score": 106730,
+      "laptime": "1:46.730"
+    }
+  },
+  "my_result": {
+    "psn_id": "crazy_rooster74",
+    "rank": 3123,
+    "score": 107073,
+    "laptime": "1:47.073",
+    "car_code": 3348,
+    "car": "Honda NSX CONCEPT-GT '16",
+    "country": "BR",
+    "driver_rating": 5,
+    "gap_to_wr_ms": 2689,
+    "wr_percentage": 102.57606529736358,
+    "position_score": 9.219460973048651,
+    "elite_score": 2.4064870178347384,
+    "composite_rating": 6.494271390963085,
+    "percentile_ahead": 92.19460973048652,
+    "top_percent": 7.80769519237981,
+    "pace_band": "VERY FAST"
+  },
+  "same_car_stats": {
+    "rank": 2892,
+    "total": 26870
+  },
+  "country_stats": {
+    "rank": 84,
+    "total": 1602,
+    "country": "BR"
+  },
+  "dr_stats": {
+    "rank": 1368,
+    "total": 2809,
+    "dr": 5
+  },
+  "next_targets": [
+    {
+      "label": "Top 5%",
+      "rank": 2000,
+      "score": 106730,
+      "laptime": "1:46.730",
+      "gain_needed_ms": 343
+    },
+    {
+      "label": "Top 1000",
+      "rank": 1000,
+      "score": 106314,
+      "laptime": "1:46.314",
+      "gain_needed_ms": 759
+    },
+    {
+      "label": "Top 2%",
+      "rank": 800,
+      "score": 106188,
+      "laptime": "1:46.188",
+      "gain_needed_ms": 885
+    },
+    {
+      "label": "Top 500",
+      "rank": 500,
+      "score": 105943,
+      "laptime": "1:45.943",
+      "gain_needed_ms": 1130
+    }
+  ],
+  "top5_used_cars": [
+    {
+      "car_code": 3348,
+      "car": "Honda NSX CONCEPT-GT '16",
+      "count": 949,
+      "percentage": 94.89999999999999
+    },
+    {
+      "car_code": 3350,
+      "car": "Nissan GT-R NISMO GT500 '16",
+      "count": 32,
+      "percentage": 3.2
+    },
+    {
+      "car_code": 3349,
+      "car": "Lexus RC F GT500 '16",
+      "count": 19,
+      "percentage": 1.9
+    }
+  ],
+  "overperformance": [
+    {
+      "car_code": 3348,
+      "car": "Honda NSX CONCEPT-GT '16",
+      "all_count": 26870,
+      "top100": 98,
+      "top1000": 949,
+      "oi100": 1.4588395980647562,
+      "oi1000": 1.4126926311871975,
+      "overperformance_index": 1.4449955080014885,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3349,
+      "car": "Lexus RC F GT500 '16",
+      "all_count": 4775,
+      "top100": 1,
+      "top1000": 19,
+      "oi100": 0.0837675392670157,
+      "oi1000": 0.15915832460732984,
+      "overperformance_index": 0.10638477486910994,
+      "confidence": "Medium"
+    },
+    {
+      "car_code": 3350,
+      "car": "Nissan GT-R NISMO GT500 '16",
+      "all_count": 8340,
+      "top100": 1,
+      "top1000": 32,
+      "oi100": 0.047960431654676255,
+      "oi1000": 0.15347338129496402,
+      "overperformance_index": 0.07961431654676258,
+      "confidence": "High"
+    }
+  ],
+  "car_comparison": {
+    "my_car": "Honda NSX CONCEPT-GT '16",
+    "my_car_best_score": 104384,
+    "my_car_best_laptime": "1:44.384",
+    "gap_to_best_same_car_ms": 2689,
+    "meta_car": "Honda NSX CONCEPT-GT '16",
+    "meta_car_best_score": 104384,
+    "meta_car_best_laptime": "1:44.384",
+    "theoretical_car_gap_ms": 0
+  },
+  "car_database": {
+    "total_known_cars": 592,
+    "technical_records": 33,
+    "discovered_this_run": 592,
+    "added_this_run": 0,
+    "updated_this_run": 0
+  },
+  "health": {
+    "unknown_car_share": 0.0,
+    "unknown_car_entries": 0,
+    "invalid_car_code_entries": 14,
+    "source_mode": "live_page_data_parallel",
+    "race_detection_mode": "explicit_running_local_block",
+    "race_safety_validation": "PASSED",
+    "leaderboard_entries": 39999,
+    "my_driver_found": true,
+    "warnings": []
+  },
+  "forecast_v2": {
+    "available": false,
+    "reason": "Race start date unavailable."
+  }
+}
