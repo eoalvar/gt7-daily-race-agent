@@ -1,6 +1,6 @@
 GT7 DAILY RACE C
 ==============================================================================
-Snapshot: 25/10/2026 09:14:57 - Sao Paulo
+Snapshot: 25/10/2026 10:23:17 - Sao Paulo
 C Gr.2 Running Daily Race C
 Car category: Gr.2
 Suzuka Circuit
@@ -9,61 +9,61 @@ Current WR Car: Honda NSX CONCEPT-GT '16
 Race Setup: RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 44,381
+Total drivers: 44,525
 
 WHERE YOU ARE
 PSN             : crazy_rooster74
-Position        : #3,392 of 44,381
+Position        : #3,399 of 44,525
 Time            : 1:47.073
 Car             : Honda NSX CONCEPT-GT '16
 Gap to WR       : +2.714s
 WR percentage   : 102.601%
 CPI             : 7.44 / 10 | VERY STRONG
 Pace class      : VERY FAST
-Top percentile  : Top 7.64%
-Ahead of        : 92.36% of participants
-Country rank    : #94 of 1,844 (BR)
-DR A rank     : #1,471 of 2,998
+Top percentile  : Top 7.63%
+Ahead of        : 92.37% of participants
+Country rank    : #94 of 1,846 (BR)
+DR A rank     : #1,473 of 3,004
 DR progress      : DR A | 38,025 pts | 40% toward next DR
-Same-car rank   : #3,144 of 29,606
+Same-car rank   : #3,152 of 29,698
 
 EXPECTED START
 Expected position     : P7.3
 Most likely position  : P7
 95% random-grid range : P4 to P11
 Your qualifying time  : 1:47.073
-DR A mean time       : 1:47.297
-DR A std deviation   : 1.064s
+DR A mean time       : 1:47.295
+DR A std deviation   : 1.061s
 Z-score               : -0.21
 Random opponent faster: 41.7%
-Population            : 2,960 DR A drivers
+Population            : 2,965 DR A drivers
 Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : 1:44.480 average | SD 0.098s | 4 drivers
-DR A+ : 1:46.232 average | SD 0.841s | 841 drivers
-DR A  : 1:47.297 average | SD 1.064s | 2,960 drivers
-DR B  : 1:48.716 average | SD 1.439s | 12,702 drivers
-DR C  : 1:50.259 average | SD 1.847s | 11,317 drivers
-DR D  : 1:52.650 average | SD 3.307s | 13,038 drivers
-DR E  : 1:55.193 average | SD 5.620s | 1,980 drivers
+DR S  : 1:44.436 average | SD 0.087s | 4 drivers
+DR A+ : 1:46.231 average | SD 0.838s | 843 drivers
+DR A  : 1:47.295 average | SD 1.061s | 2,965 drivers
+DR B  : 1:48.715 average | SD 1.437s | 12,731 drivers
+DR C  : 1:50.261 average | SD 1.850s | 11,339 drivers
+DR D  : 1:52.654 average | SD 3.313s | 13,104 drivers
+DR E  : 1:55.205 average | SD 5.631s | 1,991 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:44.359 | D. Chafe | Honda NSX CONCEPT-GT '16
 103% WR         : 1:47.490
 105% WR         : 1:49.577
 Top 10          : 1:44.635
-Top 100         : 1:45.286
+Top 100         : 1:45.282
 Top 500         : 1:45.918
-Top 1000        : 1:46.270
-Top 2500        : 1:46.838
-Top 5000        : 1:47.444
+Top 1000        : 1:46.269
+Top 2500        : 1:46.837
+Top 5000        : 1:47.440
 
 WHERE YOU SHOULD AIM
-1. Top 5%: #2,220 | 1:46.752 | gain needed 0.321s
-2. Top 1000: #1,000 | 1:46.270 | gain needed 0.803s
-3. Top 2%: #888 | 1:46.207 | gain needed 0.866s
+1. Top 5%: #2,227 | 1:46.752 | gain needed 0.321s
+2. Top 1000: #1,000 | 1:46.269 | gain needed 0.804s
+3. Top 2%: #891 | 1:46.207 | gain needed 0.866s
 4. Top 500: #500 | 1:45.918 | gain needed 1.155s
 
 YOUR CAR VS META
@@ -95,9 +95,9 @@ CARS TO TEST THIS WEEK
 Model: GR.2|MID | Technical evidence: 17%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. Honda NSX CONCEPT-GT '16 | WATCH / TEST | Consensus 61% | SCI 66.5 | SSI 50.0 | Tech 50% | Usage 66.71% | Best #1
-2. Nissan GT-R NISMO GT500 '16 | LOW PRIORITY | Consensus 50% | SCI 30.4 | SSI 50.0 | Tech 50% | Usage 21.12% | Best #20
-3. Lexus RC F GT500 '16 | LOW PRIORITY | Consensus 39% | SCI 29.7 | SSI 50.0 | Tech 50% | Usage 12.14% | Best #63
+1. Honda NSX CONCEPT-GT '16 | WATCH / TEST | Consensus 61% | SCI 66.5 | SSI 50.0 | Tech 50% | Usage 66.70% | Best #1
+2. Nissan GT-R NISMO GT500 '16 | LOW PRIORITY | Consensus 50% | SCI 30.4 | SSI 50.0 | Tech 50% | Usage 21.11% | Best #20
+3. Lexus RC F GT500 '16 | LOW PRIORITY | Consensus 39% | SCI 29.7 | SSI 50.0 | Tech 50% | Usage 12.16% | Best #64
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
 ==============================================================================
@@ -111,7 +111,7 @@ Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
 CPI        : 7.44 / 10 | VERY STRONG
-Top %      : 7.64%
+Top %      : 7.63%
 WR gap     : +2.601%
 
 LATEST FINALIZED WEEK
@@ -122,7 +122,7 @@ WR gap     : +1.736%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
 CPI        : 7.98 -> 7.44 (-0.54)
-Top %      : 6.55% -> 7.64% (+1.09 pp)
+Top %      : 6.55% -> 7.63% (+1.09 pp)
 WR gap     : +1.736% -> +2.601% (+0.865 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
@@ -157,7 +157,7 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 44,381
+Entries        : 44,525
 Car database   : 592 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
