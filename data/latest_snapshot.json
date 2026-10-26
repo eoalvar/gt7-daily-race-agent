@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-26T20:02:19.883011-03:00",
+  "timestamp": "2026-10-26T20:34:39.820087-03:00",
   "race": {
     "description": "C Gr.3 Running Daily Race C i 16:34 SUGO International Racing Course K. Drumont - Subaru BRZ GT300 '21 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBWkJCAm8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
@@ -14,7 +14,7 @@
     ],
     "start_date": null
   },
-  "total_drivers": 24000,
+  "total_drivers": 25700,
   "world_record": {
     "score": 76089,
     "laptime": "1:16.089",
@@ -43,208 +43,208 @@
       "laptime": "1:16.376"
     },
     "50": {
-      "score": 76651,
-      "laptime": "1:16.651"
+      "score": 76639,
+      "laptime": "1:16.639"
     },
     "100": {
-      "score": 76818,
-      "laptime": "1:16.818"
+      "score": 76808,
+      "laptime": "1:16.808"
     },
     "250": {
-      "score": 77133,
-      "laptime": "1:17.133"
+      "score": 77118,
+      "laptime": "1:17.118"
     },
     "500": {
-      "score": 77425,
-      "laptime": "1:17.425"
+      "score": 77397,
+      "laptime": "1:17.397"
     },
     "1000": {
-      "score": 77736,
-      "laptime": "1:17.736"
+      "score": 77707,
+      "laptime": "1:17.707"
     },
     "2500": {
-      "score": 78240,
-      "laptime": "1:18.240"
+      "score": 78197,
+      "laptime": "1:18.197"
     },
     "5000": {
-      "score": 78824,
-      "laptime": "1:18.824"
+      "score": 78753,
+      "laptime": "1:18.753"
     },
     "10000": {
-      "score": 79795,
-      "laptime": "1:19.795"
+      "score": 79668,
+      "laptime": "1:19.668"
     }
   },
   "percentile_thresholds": {
     "10": {
       "percent": 10,
-      "rank": 2400,
-      "score": 78210,
-      "laptime": "1:18.210"
+      "rank": 2570,
+      "score": 78213,
+      "laptime": "1:18.213"
     },
     "5": {
       "percent": 5,
-      "rank": 1200,
-      "score": 77819,
-      "laptime": "1:17.819"
+      "rank": 1285,
+      "score": 77822,
+      "laptime": "1:17.822"
     }
   },
   "my_result": {
     "psn_id": "crazy_rooster74",
-    "rank": 4521,
-    "score": 78719,
-    "laptime": "1:18.719",
+    "rank": 2505,
+    "score": 78197,
+    "laptime": "1:18.197",
     "car_code": 3221,
     "car": "BMW M6 GT3 Sprint Model '16",
     "country": "BR",
     "driver_rating": 5,
-    "gap_to_wr_ms": 2630,
-    "wr_percentage": 103.45647859743194,
-    "position_score": 8.116588191174632,
-    "elite_score": 6.425823201284031,
-    "composite_rating": 5.532000194775245,
-    "percentile_ahead": 81.16588191174631,
-    "top_percent": 18.8375,
-    "pace_band": "COMPETITIVE",
-    "legacy_elite_score": 1.6551182001761644,
-    "legacy_general_score": 8.116588191174632,
-    "legacy_composite_rating": 5.532000194775245,
-    "cpi_score": 6.425823201284031,
-    "cpi_band": "COMPETITIVE",
+    "gap_to_wr_ms": 2108,
+    "wr_percentage": 102.77043987961467,
+    "position_score": 9.025643021129227,
+    "elite_score": 7.140071888986439,
+    "composite_rating": 6.332520258801942,
+    "percentile_ahead": 90.25643021129227,
+    "top_percent": 9.747081712062258,
+    "pace_band": "VERY FAST",
+    "legacy_elite_score": 2.2928361153110153,
+    "legacy_general_score": 9.025643021129227,
+    "legacy_composite_rating": 6.332520258801942,
+    "cpi_score": 7.140071888986439,
+    "cpi_band": "VERY STRONG",
     "rating_model": "CPI_50_50_V1",
     "driver_rating_label": "A"
   },
   "same_car_stats": {
-    "rank": 512,
-    "total": 1816
+    "rank": 292,
+    "total": 1922
   },
   "country_stats": {
-    "rank": 113,
-    "total": 831,
+    "rank": 63,
+    "total": 1055,
     "country": "BR"
   },
   "dr_stats": {
-    "rank": 1477,
-    "total": 2186,
+    "rank": 1031,
+    "total": 2316,
     "dr": 5,
     "label": "A"
   },
   "next_targets": [
     {
-      "label": "Top 10%",
-      "rank": 2400,
-      "score": 78210,
-      "laptime": "1:18.210",
-      "gain_needed_ms": 509
-    },
-    {
       "label": "Top 5%",
-      "rank": 1200,
-      "score": 77819,
-      "laptime": "1:17.819",
-      "gain_needed_ms": 900
+      "rank": 1285,
+      "score": 77822,
+      "laptime": "1:17.822",
+      "gain_needed_ms": 375
     },
     {
       "label": "Top 1000",
       "rank": 1000,
-      "score": 77736,
-      "laptime": "1:17.736",
-      "gain_needed_ms": 983
+      "score": 77707,
+      "laptime": "1:17.707",
+      "gain_needed_ms": 490
+    },
+    {
+      "label": "Top 2%",
+      "rank": 514,
+      "score": 77409,
+      "laptime": "1:17.409",
+      "gain_needed_ms": 788
     },
     {
       "label": "Top 500",
       "rank": 500,
-      "score": 77425,
-      "laptime": "1:17.425",
-      "gain_needed_ms": 1294
+      "score": 77397,
+      "laptime": "1:17.397",
+      "gain_needed_ms": 800
     }
   ],
   "top5_used_cars": [
     {
       "car_code": 3474,
       "car": "Subaru BRZ GT300 '21",
-      "count": 633,
-      "percentage": 63.3
+      "count": 648,
+      "percentage": 64.8
     },
     {
       "car_code": 3221,
       "car": "BMW M6 GT3 Sprint Model '16",
-      "count": 124,
-      "percentage": 12.4
+      "count": 115,
+      "percentage": 11.5
     },
     {
       "car_code": 3450,
       "car": "Nissan GT-R NISMO GT3 '18",
-      "count": 112,
-      "percentage": 11.200000000000001
+      "count": 111,
+      "percentage": 11.1
     },
     {
       "car_code": 3218,
       "car": "BMW M6 GT3 Endurance Model '16",
-      "count": 36,
-      "percentage": 3.5999999999999996
+      "count": 34,
+      "percentage": 3.4000000000000004
     },
     {
       "car_code": 3305,
       "car": "Volkswagen Beetle Gr.3",
-      "count": 31,
-      "percentage": 3.1
+      "count": 33,
+      "percentage": 3.3000000000000003
     }
   ],
   "overperformance": [
     {
       "car_code": 3218,
       "car": "BMW M6 GT3 Endurance Model '16",
-      "all_count": 664,
-      "top100": 7,
-      "top1000": 36,
-      "oi100": 2.530120481927711,
-      "oi1000": 1.3012048192771084,
-      "overperformance_index": 2.16144578313253,
+      "all_count": 752,
+      "top100": 6,
+      "top1000": 34,
+      "oi100": 2.050531914893617,
+      "oi1000": 1.1619680851063832,
+      "overperformance_index": 1.7839627659574468,
       "confidence": "High"
     },
     {
       "car_code": 3474,
       "car": "Subaru BRZ GT300 '21",
-      "all_count": 9353,
+      "all_count": 10059,
       "top100": 70,
-      "top1000": 633,
-      "oi100": 1.796215118143911,
-      "oi1000": 1.6242916711215654,
-      "overperformance_index": 1.744638084037207,
-      "confidence": "High"
-    },
-    {
-      "car_code": 3450,
-      "car": "Nissan GT-R NISMO GT3 '18",
-      "all_count": 1838,
-      "top100": 10,
-      "top1000": 112,
-      "oi100": 1.3057671381936888,
-      "oi1000": 1.4624591947769314,
-      "overperformance_index": 1.3527747551686615,
+      "top1000": 648,
+      "oi100": 1.7884481558803063,
+      "oi1000": 1.6555920071577692,
+      "overperformance_index": 1.748591311263545,
       "confidence": "High"
     },
     {
       "car_code": 3221,
       "car": "BMW M6 GT3 Sprint Model '16",
-      "all_count": 1816,
-      "top100": 8,
-      "top1000": 124,
-      "oi100": 1.0572687224669606,
-      "oi1000": 1.6387665198237886,
-      "overperformance_index": 1.2317180616740089,
+      "all_count": 1922,
+      "top100": 10,
+      "top1000": 115,
+      "oi100": 1.3371488033298649,
+      "oi1000": 1.5377211238293444,
+      "overperformance_index": 1.3973204994797086,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3450,
+      "car": "Nissan GT-R NISMO GT3 '18",
+      "all_count": 1920,
+      "top100": 9,
+      "top1000": 111,
+      "oi100": 1.2046875,
+      "oi1000": 1.48578125,
+      "overperformance_index": 1.2890156249999998,
       "confidence": "High"
     },
     {
       "car_code": 3305,
       "car": "Volkswagen Beetle Gr.3",
-      "all_count": 1004,
+      "all_count": 1103,
       "top100": 1,
-      "top1000": 31,
-      "oi100": 0.23904382470119523,
-      "oi1000": 0.7410358565737052,
-      "overperformance_index": 0.38964143426294817,
+      "top1000": 33,
+      "oi100": 0.2330009066183137,
+      "oi1000": 0.7689029918404353,
+      "overperformance_index": 0.3937715321849502,
       "confidence": "High"
     }
   ],
@@ -252,7 +252,7 @@
     "my_car": "BMW M6 GT3 Sprint Model '16",
     "my_car_best_score": 76464,
     "my_car_best_laptime": "1:16.464",
-    "gap_to_best_same_car_ms": 2255,
+    "gap_to_best_same_car_ms": 1733,
     "meta_car": "Subaru BRZ GT300 '21",
     "meta_car_best_score": 76089,
     "meta_car_best_laptime": "1:16.089",
@@ -272,7 +272,7 @@
     "source_mode": "live_page_data_parallel",
     "race_detection_mode": "explicit_running_local_block",
     "race_safety_validation": "PASSED",
-    "leaderboard_entries": 24000,
+    "leaderboard_entries": 25700,
     "my_driver_found": true,
     "warnings": []
   },
@@ -288,115 +288,115 @@
     "dr_percentage": 40,
     "sportsmanship_rating": 6,
     "source": "GTSH public profile",
-    "captured_at": "2026-10-26T23:02:54.225639+00:00"
+    "captured_at": "2026-10-26T23:35:10.243232+00:00"
   },
   "dr_laptime_stats": {
     "1": {
       "dr": 1,
       "label": "E",
-      "drivers": 648,
-      "average_score": 83723.49691358025,
-      "average_laptime": "1:23.723",
-      "stddev_ms": 3711.3682375149624,
-      "stddev_seconds": 3.7113682375149626,
+      "drivers": 697,
+      "average_score": 83730.36585365854,
+      "average_laptime": "1:23.730",
+      "stddev_ms": 3714.4165348950883,
+      "stddev_seconds": 3.714416534895088,
       "diagnostics": {
-        "raw_n": 652,
-        "clean_n": 648,
-        "excluded_n": 4,
-        "median_ms": 83108.0,
-        "mad_ms": 2274.0,
-        "lower_fence_ms": 66250.838,
-        "upper_fence_ms": 99965.162
+        "raw_n": 702,
+        "clean_n": 697,
+        "excluded_n": 5,
+        "median_ms": 83121.0,
+        "mad_ms": 2212.5,
+        "lower_fence_ms": 66719.7375,
+        "upper_fence_ms": 99522.2625
       }
     },
     "2": {
       "dr": 2,
       "label": "D",
-      "drivers": 5894,
-      "average_score": 82522.54360366474,
-      "average_laptime": "1:22.523",
-      "stddev_ms": 2395.4351216791597,
-      "stddev_seconds": 2.3954351216791596,
+      "drivers": 6380,
+      "average_score": 82515.49827586208,
+      "average_laptime": "1:22.515",
+      "stddev_ms": 2406.5960493335547,
+      "stddev_seconds": 2.4065960493335545,
       "diagnostics": {
-        "raw_n": 5982,
-        "clean_n": 5894,
-        "excluded_n": 88,
-        "median_ms": 82116.5,
-        "mad_ms": 1446.5,
-        "lower_fence_ms": 71393.5955,
-        "upper_fence_ms": 92839.4045
+        "raw_n": 6491,
+        "clean_n": 6380,
+        "excluded_n": 111,
+        "median_ms": 82102.0,
+        "mad_ms": 1453.0,
+        "lower_fence_ms": 71330.911,
+        "upper_fence_ms": 92873.089
       }
     },
     "3": {
       "dr": 3,
       "label": "C",
-      "drivers": 6195,
-      "average_score": 80941.94979822438,
-      "average_laptime": "1:20.942",
-      "stddev_ms": 1687.6416123350318,
-      "stddev_seconds": 1.6876416123350317,
+      "drivers": 6647,
+      "average_score": 80920.9869113886,
+      "average_laptime": "1:20.921",
+      "stddev_ms": 1684.7242852274187,
+      "stddev_seconds": 1.6847242852274187,
       "diagnostics": {
-        "raw_n": 6277,
-        "clean_n": 6195,
-        "excluded_n": 82,
-        "median_ms": 80642.0,
-        "mad_ms": 992.0,
-        "lower_fence_ms": 73288.304,
-        "upper_fence_ms": 87995.696
+        "raw_n": 6738,
+        "clean_n": 6647,
+        "excluded_n": 91,
+        "median_ms": 80625.0,
+        "mad_ms": 995.0,
+        "lower_fence_ms": 73249.065,
+        "upper_fence_ms": 88000.935
       }
     },
     "4": {
       "dr": 4,
       "label": "B",
-      "drivers": 7982,
-      "average_score": 79655.53094462541,
-      "average_laptime": "1:19.656",
-      "stddev_ms": 1326.394101950051,
-      "stddev_seconds": 1.326394101950051,
+      "drivers": 8468,
+      "average_score": 79641.67182333491,
+      "average_laptime": "1:19.642",
+      "stddev_ms": 1321.4427963871199,
+      "stddev_seconds": 1.3214427963871198,
       "diagnostics": {
-        "raw_n": 8103,
-        "clean_n": 7982,
-        "excluded_n": 121,
-        "median_ms": 79398.0,
-        "mad_ms": 761.0,
-        "lower_fence_ms": 73756.707,
-        "upper_fence_ms": 85039.293
+        "raw_n": 8605,
+        "clean_n": 8468,
+        "excluded_n": 137,
+        "median_ms": 79387.0,
+        "mad_ms": 753.0,
+        "lower_fence_ms": 73805.011,
+        "upper_fence_ms": 84968.989
       }
     },
     "5": {
       "dr": 5,
       "label": "A",
-      "drivers": 2149,
-      "average_score": 78491.67100977199,
-      "average_laptime": "1:18.492",
-      "stddev_ms": 896.5276364322974,
-      "stddev_seconds": 0.8965276364322974,
+      "drivers": 2275,
+      "average_score": 78488.70681318681,
+      "average_laptime": "1:18.489",
+      "stddev_ms": 900.58816762595,
+      "stddev_seconds": 0.90058816762595,
       "diagnostics": {
-        "raw_n": 2186,
-        "clean_n": 2149,
-        "excluded_n": 37,
-        "median_ms": 78312.5,
-        "mad_ms": 507.0,
-        "lower_fence_ms": 74554.109,
-        "upper_fence_ms": 82070.891
+        "raw_n": 2316,
+        "clean_n": 2275,
+        "excluded_n": 41,
+        "median_ms": 78308.5,
+        "mad_ms": 508.5,
+        "lower_fence_ms": 74538.9895,
+        "upper_fence_ms": 82078.0105
       }
     },
     "6": {
       "dr": 6,
       "label": "A+",
-      "drivers": 782,
-      "average_score": 77628.6483375959,
-      "average_laptime": "1:17.629",
-      "stddev_ms": 744.2325853114978,
-      "stddev_seconds": 0.7442325853114978,
+      "drivers": 826,
+      "average_score": 77631.91646489104,
+      "average_laptime": "1:17.632",
+      "stddev_ms": 739.9940262471379,
+      "stddev_seconds": 0.7399940262471378,
       "diagnostics": {
-        "raw_n": 794,
-        "clean_n": 782,
-        "excluded_n": 12,
-        "median_ms": 77537.5,
-        "mad_ms": 433.0,
-        "lower_fence_ms": 74327.671,
-        "upper_fence_ms": 80747.329
+        "raw_n": 842,
+        "clean_n": 826,
+        "excluded_n": 16,
+        "median_ms": 77532.0,
+        "mad_ms": 433.5,
+        "lower_fence_ms": 74318.4645,
+        "upper_fence_ms": 80745.5355
       }
     },
     "7": {
@@ -423,17 +423,17 @@
     "grid_size": 16,
     "dr": 5,
     "dr_label": "A",
-    "same_dr_population": 2149,
-    "my_score_ms": 78719.0,
-    "same_dr_mean_ms": 78491.67100977199,
-    "same_dr_std_ms": 896.5276364322974,
-    "z_score": 0.2535660709051389,
-    "probability_random_same_dr_opponent_faster": 0.6000845942156372,
-    "expected_position": 10.001268913234558,
-    "most_likely_position": 10,
+    "same_dr_population": 2275,
+    "my_score_ms": 78197.0,
+    "same_dr_mean_ms": 78488.70681318681,
+    "same_dr_std_ms": 900.58816762595,
+    "z_score": -0.32390700174951886,
+    "probability_random_same_dr_opponent_faster": 0.37300422144987294,
+    "expected_position": 6.5950633217480945,
+    "most_likely_position": 6,
     "random_grid_interval_95": [
-      6,
-      14
+      3,
+      10
     ],
     "basis": "Normal distribution using the same cleaned DR mean/std shown in DR LAP-TIME BENCHMARKS; 15 random same-DR opponents"
   }
