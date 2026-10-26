@@ -1193,7 +1193,7 @@
     "race": "C Gr.2 Archived Daily Race C i 00:00 Suzuka Circuit D. Chafe - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tMAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
     "general_score": 9.242216068824114,
-    "elite_score": 2.3964790133129767,
+    "elite_score": 7.410713665268947,
     "composite_rating": 6.503921246619659,
     "position": 3586,
     "total_drivers": 47310,
@@ -1214,6 +1214,12 @@
     "same_car_total": 31433,
     "dr_rank": 1534,
     "dr_total": 3113,
-    "archive_upgrade_pending": false
+    "archive_upgrade_pending": false,
+    "legacy_elite_score": 2.3964790133129767,
+    "legacy_general_score": 9.242216068824114,
+    "legacy_composite_rating": 6.503921246619659,
+    "cpi_score": 7.410713665268947,
+    "cpi_band": "VERY STRONG",
+    "rating_model": "CPI_50_50_V1"
   }
 ]
