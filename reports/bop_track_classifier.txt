@@ -1,7 +1,7 @@
 GT7 BOP TRACK CLASSIFIER V2.0 - ERROR
 ====================================================================================================
-Generated: 2026-10-26T14:08:41.333706+00:00
-Error: RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.3 Running Daily Race C i 16:34 SUGO International Racing Course J. Veyrunes - Subaru BRZ GT300 '21 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom
+Generated: 2026-10-26T15:30:28.021529+00:00
+Error: RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.3 Running Daily Race C i 16:34 SUGO International Racing Course K. Drumont - Subaru BRZ GT300 '21 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom
 
 TRACEBACK
 ----------------------------------------------------------------------------------------------------
@@ -10,6 +10,6 @@ Traceback (most recent call last):
     run_classifier()
   File "/home/runner/work/gt7-daily-race-agent/gt7-daily-race-agent/src/bop_track_classifier.py", line 276, in run_classifier
     raise RuntimeError(
-RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.3 Running Daily Race C i 16:34 SUGO International Racing Course J. Veyrunes - Subaru BRZ GT300 '21 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom
+RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.3 Running Daily Race C i 16:34 SUGO International Racing Course K. Drumont - Subaru BRZ GT300 '21 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom
 
 ====================================================================================================

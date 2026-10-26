@@ -1,128 +1,41 @@
 {
-  "version": "1.0",
-  "generated_at": "2026-10-19T14:33:48.515484-03:00",
-  "week_start": "2026-10-12",
-  "complete_leaderboard": true,
-  "loaded_drivers": 32498,
-  "total_drivers": 32498,
-  "extraction_mode": "server_paged_page_data",
+  "version": "fallback-1.1",
+  "generated_at": "2026-10-26T12:30:10.979022-03:00",
+  "week_start": "2026-10-19",
+  "complete_leaderboard": false,
   "result": {
     "participated": true,
-    "week_start": "2026-10-12",
-    "final_snapshot": "archived_leaderboard",
-    "finalization_mode": "historical_previous_week_final",
-    "extraction_mode": "server_paged_page_data",
-    "race": "C Gr.4 Archived Daily Race C i 17:55 Sardegna - Road Track - B RTR_Nyjah - Hyundai ELANTRA N TC '24 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x5 Pit - Slipstream Custom",
-    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tDC28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
-    "general_score": 9.34547804412715,
-    "elite_score": 2.623941996977525,
-    "composite_rating": 6.6568636252673,
-    "position": 2128,
-    "total_drivers": 32498,
-    "top_percent": 6.54809526740107,
-    "percentile_ahead": 93.4547804412715,
-    "wr_percentage": 101.73588089928273,
-    "laptime": "1:24.395",
-    "score_ms": 84395,
-    "world_record": "1:22.955",
-    "world_record_ms": 82955,
-    "gap_to_wr_ms": 1440,
-    "car_code": 3590,
+    "week_start": "2026-10-19",
+    "final_snapshot": "2026-10-25T10:23:17.078856-03:00",
+    "finalization_mode": "snapshot_fallback_pending_archive",
+    "race": "C Gr.2 Running Daily Race C i 00:00 Suzuka Circuit D. Chafe - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tMAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "general_score": 9.236816099182462,
+    "elite_score": 7.436289555996934,
+    "composite_rating": 8.51660548190825,
+    "position": 3399,
+    "total_drivers": 44525,
+    "top_percent": 7.63391353172375,
+    "percentile_ahead": 92.36816099182464,
+    "wr_percentage": 102.60063818166138,
+    "laptime": "1:47.073",
+    "score_ms": 107073,
+    "car": "Honda NSX CONCEPT-GT '16",
+    "car_code": 3348,
     "country": "BR",
     "driver_rating": 5,
-    "country_rank": 103,
-    "country_total": 1981,
-    "same_car_rank": 2120,
-    "same_car_total": 23243,
-    "dr_rank": 889,
-    "dr_total": 1968,
-    "archive_upgrade_pending": false
+    "legacy_elite_score": 7.436289555996934,
+    "legacy_general_score": 9.236816099182462,
+    "legacy_composite_rating": 8.51660548190825,
+    "cpi_score": 7.436289555996934,
+    "cpi_band": "VERY STRONG",
+    "rating_model": "CPI_50_50_V1",
+    "archive_upgrade_pending": true,
+    "fallback_source_snapshot": "2026-10-25T10:23:17.078856-03:00"
   },
   "benchmarks": {
-    "fixed": {
-      "1": {
-        "rank": 1,
-        "score": 82955,
-        "laptime": "1:22.955"
-      },
-      "10": {
-        "rank": 10,
-        "score": 83095,
-        "laptime": "1:23.095"
-      },
-      "50": {
-        "rank": 50,
-        "score": 83258,
-        "laptime": "1:23.258"
-      },
-      "100": {
-        "rank": 100,
-        "score": 83363,
-        "laptime": "1:23.363"
-      },
-      "250": {
-        "rank": 250,
-        "score": 83557,
-        "laptime": "1:23.557"
-      },
-      "500": {
-        "rank": 500,
-        "score": 83749,
-        "laptime": "1:23.749"
-      },
-      "1000": {
-        "rank": 1000,
-        "score": 83981,
-        "laptime": "1:23.981"
-      },
-      "2500": {
-        "rank": 2500,
-        "score": 84511,
-        "laptime": "1:24.511"
-      },
-      "5000": {
-        "rank": 5000,
-        "score": 85165,
-        "laptime": "1:25.165"
-      },
-      "10000": {
-        "rank": 10000,
-        "score": 86229,
-        "laptime": "1:26.229"
-      }
-    },
-    "percentiles": {
-      "10": {
-        "percent": 10,
-        "rank": 3250,
-        "score": 84719,
-        "laptime": "1:24.719"
-      },
-      "5": {
-        "percent": 5,
-        "rank": 1625,
-        "score": 84229,
-        "laptime": "1:24.229"
-      },
-      "2": {
-        "percent": 2,
-        "rank": 650,
-        "score": 83828,
-        "laptime": "1:23.828"
-      },
-      "1": {
-        "percent": 1,
-        "rank": 325,
-        "score": 83626,
-        "laptime": "1:23.626"
-      },
-      "0.5": {
-        "percent": 0.5,
-        "rank": 163,
-        "score": 83451,
-        "laptime": "1:23.451"
-      }
-    }
+    "fixed": {},
+    "percentiles": {}
   },
-  "archive_upgrade_pending": false
+  "archive_upgrade_pending": true
 }

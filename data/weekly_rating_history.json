@@ -1188,7 +1188,7 @@
     "participated": true,
     "week_start": "2026-10-19",
     "final_snapshot": "2026-10-25T10:23:17.078856-03:00",
-    "finalization_mode": "backfill_last_available_snapshot",
+    "finalization_mode": "snapshot_fallback_pending_archive",
     "race": "C Gr.2 Running Daily Race C i 00:00 Suzuka Circuit D. Chafe - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tMAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
     "general_score": 9.236816099182462,
@@ -1210,6 +1210,8 @@
     "legacy_composite_rating": 8.51660548190825,
     "cpi_score": 7.436289555996934,
     "cpi_band": "VERY STRONG",
-    "rating_model": "CPI_50_50_V1"
+    "rating_model": "CPI_50_50_V1",
+    "archive_upgrade_pending": true,
+    "fallback_source_snapshot": "2026-10-25T10:23:17.078856-03:00"
   }
 ]
