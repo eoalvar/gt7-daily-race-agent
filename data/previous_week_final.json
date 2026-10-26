@@ -1,41 +1,128 @@
 {
-  "version": "fallback-1.1",
-  "generated_at": "2026-10-26T16:17:42.951217-03:00",
+  "version": "1.0",
+  "generated_at": "2026-10-26T17:36:08.211159-03:00",
   "week_start": "2026-10-19",
-  "complete_leaderboard": false,
+  "complete_leaderboard": true,
+  "loaded_drivers": 47310,
+  "total_drivers": 47310,
+  "extraction_mode": "server_paged_page_data",
   "result": {
     "participated": true,
     "week_start": "2026-10-19",
-    "final_snapshot": "2026-10-25T10:23:17.078856-03:00",
-    "finalization_mode": "snapshot_fallback_pending_archive",
-    "race": "C Gr.2 Running Daily Race C i 00:00 Suzuka Circuit D. Chafe - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
+    "final_snapshot": "archived_leaderboard",
+    "finalization_mode": "historical_previous_week_final",
+    "extraction_mode": "server_paged_page_data",
+    "race": "C Gr.2 Archived Daily Race C i 00:00 Suzuka Circuit D. Chafe - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBW0tMAW8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
-    "general_score": 9.236816099182462,
-    "elite_score": 7.436289555996934,
-    "composite_rating": 8.51660548190825,
-    "position": 3399,
-    "total_drivers": 44525,
-    "top_percent": 7.63391353172375,
-    "percentile_ahead": 92.36816099182464,
-    "wr_percentage": 102.60063818166138,
+    "general_score": 9.242216068824114,
+    "elite_score": 2.3964790133129767,
+    "composite_rating": 6.503921246619659,
+    "position": 3586,
+    "total_drivers": 47310,
+    "top_percent": 7.579792855633058,
+    "percentile_ahead": 92.42216068824114,
+    "wr_percentage": 102.6626140983355,
     "laptime": "1:47.073",
     "score_ms": 107073,
-    "car": "Honda NSX CONCEPT-GT '16",
+    "world_record": "1:44.296",
+    "world_record_ms": 104296,
+    "gap_to_wr_ms": 2777,
     "car_code": 3348,
     "country": "BR",
     "driver_rating": 5,
-    "legacy_elite_score": 7.436289555996934,
-    "legacy_general_score": 9.236816099182462,
-    "legacy_composite_rating": 8.51660548190825,
-    "cpi_score": 7.436289555996934,
-    "cpi_band": "VERY STRONG",
-    "rating_model": "CPI_50_50_V1",
-    "archive_upgrade_pending": true,
-    "fallback_source_snapshot": "2026-10-25T10:23:17.078856-03:00"
+    "country_rank": 103,
+    "country_total": 2050,
+    "same_car_rank": 3325,
+    "same_car_total": 31433,
+    "dr_rank": 1534,
+    "dr_total": 3113,
+    "archive_upgrade_pending": false
   },
   "benchmarks": {
-    "fixed": {},
-    "percentiles": {}
+    "fixed": {
+      "1": {
+        "rank": 1,
+        "score": 104296,
+        "laptime": "1:44.296"
+      },
+      "10": {
+        "rank": 10,
+        "score": 104586,
+        "laptime": "1:44.586"
+      },
+      "50": {
+        "rank": 50,
+        "score": 105023,
+        "laptime": "1:45.023"
+      },
+      "100": {
+        "rank": 100,
+        "score": 105241,
+        "laptime": "1:45.241"
+      },
+      "250": {
+        "rank": 250,
+        "score": 105593,
+        "laptime": "1:45.593"
+      },
+      "500": {
+        "rank": 500,
+        "score": 105895,
+        "laptime": "1:45.895"
+      },
+      "1000": {
+        "rank": 1000,
+        "score": 106230,
+        "laptime": "1:46.230"
+      },
+      "2500": {
+        "rank": 2500,
+        "score": 106794,
+        "laptime": "1:46.794"
+      },
+      "5000": {
+        "rank": 5000,
+        "score": 107389,
+        "laptime": "1:47.389"
+      },
+      "10000": {
+        "rank": 10000,
+        "score": 108180,
+        "laptime": "1:48.180"
+      }
+    },
+    "percentiles": {
+      "10": {
+        "percent": 10,
+        "rank": 4731,
+        "score": 107333,
+        "laptime": "1:47.333"
+      },
+      "5": {
+        "percent": 5,
+        "rank": 2366,
+        "score": 106759,
+        "laptime": "1:46.759"
+      },
+      "2": {
+        "percent": 2,
+        "rank": 947,
+        "score": 106203,
+        "laptime": "1:46.203"
+      },
+      "1": {
+        "percent": 1,
+        "rank": 474,
+        "score": 105870,
+        "laptime": "1:45.870"
+      },
+      "0.5": {
+        "percent": 0.5,
+        "rank": 237,
+        "score": 105565,
+        "laptime": "1:45.565"
+      }
+    }
   },
-  "archive_upgrade_pending": true
+  "archive_upgrade_pending": false
 }
