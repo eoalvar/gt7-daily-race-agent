@@ -1,42 +1,15 @@
-GT7 BOP TRACK CLASSIFIER V2.0
+GT7 BOP TRACK CLASSIFIER V2.0 - ERROR
 ====================================================================================================
-Generated            : 2026-10-25T13:24:05.845924+00:00
-Snapshot             : 2026-10-25T10:23:17.078856-03:00
-Track                : Suzuka Circuit
-Group                : GR.2
-Model key            : GR.2|MID
-BoP speed class      : MID
-Selection mode       : TRACK_DEFAULT_MAP
-Confidence           : VALIDATED_EXTERNAL
-BoP DB records       : 399
-Production modified  : NO
+Generated: 2026-10-26T14:08:41.333706+00:00
+Error: RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.3 Running Daily Race C i 16:34 SUGO International Racing Course J. Veyrunes - Subaru BRZ GT300 '21 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom
 
-CLASSIFICATION EVIDENCE
+TRACEBACK
 ----------------------------------------------------------------------------------------------------
-- GTPlanet Daily Races 2023-05-29 | Suzuka Circuit / Gr.3 / BOP (M)
+Traceback (most recent call last):
+  File "/home/runner/work/gt7-daily-race-agent/gt7-daily-race-agent/src/bop_track_classifier.py", line 394, in main
+    run_classifier()
+  File "/home/runner/work/gt7-daily-race-agent/gt7-daily-race-agent/src/bop_track_classifier.py", line 276, in run_classifier
+    raise RuntimeError(
+RuntimeError: Current track was not found in track_bop_classes.json. Race description: C Gr.3 Running Daily Race C i 16:34 SUGO International Racing Course J. Veyrunes - Subaru BRZ GT300 '21 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom
 
-YOUR CURRENT CAR
-----------------------------------------------------------------------------------------------------
-Car                  : Honda NSX CONCEPT-GT '16
-Matched DB car       : Honda NSX CONCEPT-GT '16
-Name match score     : 100
-BoP version          : 1.61
-HIGH                 : 604 HP / 1064 kg / PP 864.74
-MID                  : 604 HP / 1064 kg / PP 864.74
-LOW                  : 604 HP / 1064 kg / PP 864.74
-ACTIVE MID         : 604 HP / 1064 kg / PP 864.74
-Fingerprint usable   : NO
-
-TOP 5 USED CARS
-----------------------------------------------------------------------------------------------------
-1. Honda NSX CONCEPT-GT '16 | DB=Honda NSX CONCEPT-GT '16 | score=100 | active=604 HP / 1064 kg / PP 864.74 | fingerprint=NO
-2. Nissan GT-R NISMO GT500 '16 | DB=Nissan GT-R NISMO GT500 '16 | score=100 | active=613 HP / 1035 kg / PP 862.2 | fingerprint=NO
-3. Lexus RC F GT500 '16 | DB=Lexus RC F GT500 '16 | score=100 | active=614 HP / 1030 kg / PP 862.89 | fingerprint=NO
-
-CLASSIFIER POLICY
-----------------------------------------------------------------------------------------------------
-Priority 1: explicit BOP (H/M/L) in event text when available.
-Priority 2: group-specific track mapping.
-Priority 3: validated track default mapping.
-This avoids assuming that one historical track classification must apply to every group/event forever.
 ====================================================================================================
