@@ -1,0 +1,275 @@
+{
+  "timestamp": "2026-10-27T11:30:57.168869-03:00",
+  "race": {
+    "description": "C Gr.3 Running Daily Race C i 16:34 SUGO International Racing Course V. Gallo - Subaru BRZ GT300 '21 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBWkJCAm8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "detection_mode": "explicit_running_local_block",
+    "safety_validation": "PASSED",
+    "source_mode": "live_page_data_parallel",
+    "fuel_multiplier": 2,
+    "tyre_multiplier": 4,
+    "compounds": [
+      "RM",
+      "RS"
+    ],
+    "start_date": null
+  },
+  "total_drivers": 32683,
+  "world_record": {
+    "score": 76072,
+    "laptime": "1:16.072",
+    "driver": "V. Gallo",
+    "psn_id": "BRacer-V",
+    "car_code": 3474,
+    "car": "Subaru BRZ GT300 '21"
+  },
+  "benchmarks": {
+    "103_percent": {
+      "score": 78354,
+      "laptime": "1:18.354"
+    },
+    "105_percent": {
+      "score": 79876,
+      "laptime": "1:19.876"
+    }
+  },
+  "thresholds": {
+    "1": {
+      "score": 76072,
+      "laptime": "1:16.072"
+    },
+    "10": {
+      "score": 76334,
+      "laptime": "1:16.334"
+    },
+    "50": {
+      "score": 76576,
+      "laptime": "1:16.576"
+    },
+    "100": {
+      "score": 76738,
+      "laptime": "1:16.738"
+    },
+    "250": {
+      "score": 77026,
+      "laptime": "1:17.026"
+    },
+    "500": {
+      "score": 77281,
+      "laptime": "1:17.281"
+    },
+    "1000": {
+      "score": 77552,
+      "laptime": "1:17.552"
+    },
+    "2500": {
+      "score": 77989,
+      "laptime": "1:17.989"
+    },
+    "5000": {
+      "score": 78489,
+      "laptime": "1:18.489"
+    },
+    "10000": {
+      "score": 79248,
+      "laptime": "1:19.248"
+    }
+  },
+  "percentile_thresholds": {
+    "10": {
+      "percent": 10,
+      "rank": 3269,
+      "score": 78167,
+      "laptime": "1:18.167"
+    },
+    "5": {
+      "percent": 5,
+      "rank": 1635,
+      "score": 77785,
+      "laptime": "1:17.785"
+    }
+  },
+  "my_result": {
+    "psn_id": "crazy_rooster74",
+    "rank": 3393,
+    "score": 78197,
+    "laptime": "1:18.197",
+    "car_code": 3221,
+    "car": "BMW M6 GT3 Sprint Model '16",
+    "country": "BR",
+    "driver_rating": 5,
+    "gap_to_wr_ms": 2125,
+    "wr_percentage": 102.79340624671364,
+    "position_score": 8.962119821308365,
+    "elite_score": 2.17914910157627,
+    "composite_rating": 6.248931533415527,
+    "percentile_ahead": 89.62119821308366,
+    "top_percent": 10.381543921916593,
+    "pace_band": "VERY FAST"
+  },
+  "same_car_stats": {
+    "rank": 385,
+    "total": 2414
+  },
+  "country_stats": {
+    "rank": 122,
+    "total": 1585,
+    "country": "BR"
+  },
+  "dr_stats": {
+    "rank": 1348,
+    "total": 2857,
+    "dr": 5
+  },
+  "next_targets": [
+    {
+      "label": "Top 10%",
+      "rank": 3269,
+      "score": 78167,
+      "laptime": "1:18.167",
+      "gain_needed_ms": 30
+    },
+    {
+      "label": "Top 5%",
+      "rank": 1635,
+      "score": 77785,
+      "laptime": "1:17.785",
+      "gain_needed_ms": 412
+    },
+    {
+      "label": "Top 1000",
+      "rank": 1000,
+      "score": 77552,
+      "laptime": "1:17.552",
+      "gain_needed_ms": 645
+    },
+    {
+      "label": "Top 2%",
+      "rank": 654,
+      "score": 77384,
+      "laptime": "1:17.384",
+      "gain_needed_ms": 813
+    }
+  ],
+  "top5_used_cars": [
+    {
+      "car_code": 3474,
+      "car": "Subaru BRZ GT300 '21",
+      "count": 669,
+      "percentage": 66.9
+    },
+    {
+      "car_code": 3221,
+      "car": "BMW M6 GT3 Sprint Model '16",
+      "count": 108,
+      "percentage": 10.8
+    },
+    {
+      "car_code": 3450,
+      "car": "Nissan GT-R NISMO GT3 '18",
+      "count": 107,
+      "percentage": 10.7
+    },
+    {
+      "car_code": 3218,
+      "car": "BMW M6 GT3 Endurance Model '16",
+      "count": 47,
+      "percentage": 4.7
+    },
+    {
+      "car_code": 3305,
+      "car": "Volkswagen Beetle Gr.3",
+      "count": 24,
+      "percentage": 2.4
+    }
+  ],
+  "overperformance": [
+    {
+      "car_code": 3474,
+      "car": "Subaru BRZ GT300 '21",
+      "all_count": 13114,
+      "top100": 74,
+      "top1000": 669,
+      "oi100": 1.8442443190483453,
+      "oi1000": 1.667296553301815,
+      "overperformance_index": 1.791159989324386,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3218,
+      "car": "BMW M6 GT3 Endurance Model '16",
+      "all_count": 1053,
+      "top100": 5,
+      "top1000": 47,
+      "oi100": 1.5518993352326687,
+      "oi1000": 1.4587853751187083,
+      "overperformance_index": 1.5239651471984805,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3450,
+      "car": "Nissan GT-R NISMO GT3 '18",
+      "all_count": 2207,
+      "top100": 8,
+      "top1000": 107,
+      "oi100": 1.1847032170367016,
+      "oi1000": 1.5845405527865881,
+      "overperformance_index": 1.3046544177616675,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3221,
+      "car": "BMW M6 GT3 Sprint Model '16",
+      "all_count": 2414,
+      "top100": 9,
+      "top1000": 108,
+      "oi100": 1.2185045567522783,
+      "oi1000": 1.462205468102734,
+      "overperformance_index": 1.2916148301574149,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3305,
+      "car": "Volkswagen Beetle Gr.3",
+      "all_count": 1326,
+      "top100": 2,
+      "top1000": 24,
+      "oi100": 0.4929562594268477,
+      "oi1000": 0.5915475113122173,
+      "overperformance_index": 0.5225336349924585,
+      "confidence": "Medium"
+    }
+  ],
+  "car_comparison": {
+    "my_car": "BMW M6 GT3 Sprint Model '16",
+    "my_car_best_score": 76464,
+    "my_car_best_laptime": "1:16.464",
+    "gap_to_best_same_car_ms": 1733,
+    "meta_car": "Subaru BRZ GT300 '21",
+    "meta_car_best_score": 76072,
+    "meta_car_best_laptime": "1:16.072",
+    "theoretical_car_gap_ms": 392
+  },
+  "car_database": {
+    "total_known_cars": 592,
+    "technical_records": 33,
+    "discovered_this_run": 592,
+    "added_this_run": 0,
+    "updated_this_run": 0
+  },
+  "health": {
+    "unknown_car_share": 0.0,
+    "unknown_car_entries": 0,
+    "invalid_car_code_entries": 10,
+    "source_mode": "live_page_data_parallel",
+    "race_detection_mode": "explicit_running_local_block",
+    "race_safety_validation": "PASSED",
+    "leaderboard_entries": 32683,
+    "my_driver_found": true,
+    "warnings": []
+  },
+  "forecast_v2": {
+    "available": false,
+    "reason": "Race start date unavailable."
+  }
+}
