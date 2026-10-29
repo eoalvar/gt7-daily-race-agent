@@ -1,6 +1,6 @@
 GT7 DAILY RACE C
 ==============================================================================
-Snapshot: 28/10/2026 21:15:24 - Sao Paulo
+Snapshot: 29/10/2026 09:39:07 - Sao Paulo
 C Gr.3 Running Daily Race C
 Car category: Gr.3
 SUGO International Racing Course
@@ -9,62 +9,62 @@ Current WR Car: Subaru BRZ GT300 '21
 Race Setup: RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 48,112
+Total drivers: 50,440
 
 WHERE YOU ARE
 PSN             : crazy_rooster74
-Position        : #5,083 of 48,112
+Position        : #5,369 of 50,440
 Time            : 1:18.145
 Car             : Subaru BRZ GT300 '21
 Gap to WR       : +2.137s
 WR percentage   : 102.812%
-CPI             : 7.07 / 10 | VERY STRONG
+CPI             : 7.06 / 10 | VERY STRONG
 Pace class      : VERY FAST
-Top percentile  : Top 10.56%
-Ahead of        : 89.44% of participants
-Country rank    : #180 of 2,471 (BR)
-DR A rank     : #1,884 of 3,699
-DR progress      : DR A | 36,897 pts | 34% toward next DR
-Same-car rank   : #3,401 of 19,401
+Top percentile  : Top 10.64%
+Ahead of        : 89.36% of participants
+Country rank    : #196 of 2,631 (BR)
+DR A rank     : #1,959 of 3,817
+DR progress      : DR A | 37,040 pts | 35% toward next DR
+Same-car rank   : #3,590 of 20,360
 
 EXPECTED START
-Expected position     : P7.4
+Expected position     : P7.5
 Most likely position  : P7
 95% random-grid range : P4 to P11
 Your qualifying time  : 1:18.145
-DR A mean time       : 1:18.307
-DR A std deviation   : 0.866s
-Z-score               : -0.19
-Random opponent faster: 42.6%
-Population            : 3,633 DR A drivers
+DR A mean time       : 1:18.293
+DR A std deviation   : 0.858s
+Z-score               : -0.17
+Random opponent faster: 43.2%
+Population            : 3,748 DR A drivers
 Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
-DR S  : 1:16.334 average | SD 0.239s | 12 drivers
-DR A+ : 1:17.498 average | SD 0.692s | 1,318 drivers
-DR A  : 1:18.307 average | SD 0.866s | 3,633 drivers
-DR B  : 1:19.387 average | SD 1.286s | 14,561 drivers
-DR C  : 1:20.637 average | SD 1.670s | 12,366 drivers
-DR D  : 1:22.325 average | SD 2.417s | 13,582 drivers
-DR E  : 1:23.865 average | SD 3.642s | 1,831 drivers
+DR S  : 1:16.333 average | SD 0.239s | 12 drivers
+DR A+ : 1:17.490 average | SD 0.699s | 1,358 drivers
+DR A  : 1:18.293 average | SD 0.858s | 3,748 drivers
+DR B  : 1:19.366 average | SD 1.285s | 15,172 drivers
+DR C  : 1:20.627 average | SD 1.681s | 12,908 drivers
+DR D  : 1:22.325 average | SD 2.432s | 14,364 drivers
+DR E  : 1:23.881 average | SD 3.615s | 1,996 drivers
 
 WORLD RECORD & BENCHMARKS
 WR              : 1:16.008 | K. Drumont | Subaru BRZ GT300 '21
 103% WR         : 1:18.288
 105% WR         : 1:19.808
-Top 10          : 1:16.217
-Top 100         : 1:16.614
-Top 500         : 1:17.092
-Top 1000        : 1:17.353
-Top 2500        : 1:17.744
-Top 5000        : 1:18.134
+Top 10          : 1:16.198
+Top 100         : 1:16.603
+Top 500         : 1:17.067
+Top 1000        : 1:17.329
+Top 2500        : 1:17.717
+Top 5000        : 1:18.092
 
 WHERE YOU SHOULD AIM
-1. Top 10%: #4,812 | 1:18.106 | gain needed 0.039s
-2. Top 5%: #2,406 | 1:17.726 | gain needed 0.419s
-3. Top 1000: #1,000 | 1:17.353 | gain needed 0.792s
-4. Top 2%: #963 | 1:17.339 | gain needed 0.806s
+1. Top 10%: #5,044 | 1:18.098 | gain needed 0.047s
+2. Top 5%: #2,522 | 1:17.721 | gain needed 0.424s
+3. Top 2%: #1,009 | 1:17.334 | gain needed 0.811s
+4. Top 1000: #1,000 | 1:17.329 | gain needed 0.816s
 
 YOUR CAR VS META
 Your car best   : 1:16.008 | Subaru BRZ GT300 '21
@@ -73,19 +73,19 @@ Meta car best   : 1:16.008 | Subaru BRZ GT300 '21
 Best-lap delta  : 0.000s
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Subaru BRZ GT300 '21 | 708 drivers | 70.8%
-2. BMW M6 GT3 Sprint Model '16 | 102 drivers | 10.2%
-3. Nissan GT-R NISMO GT3 '18 | 74 drivers | 7.4%
-4. BMW M6 GT3 Endurance Model '16 | 58 drivers | 5.8%
-5. Volkswagen Beetle Gr.3 | 24 drivers | 2.4%
+1. Subaru BRZ GT300 '21 | 720 drivers | 72.0%
+2. BMW M6 GT3 Sprint Model '16 | 99 drivers | 9.9%
+3. Nissan GT-R NISMO GT3 '18 | 69 drivers | 6.9%
+4. BMW M6 GT3 Endurance Model '16 | 57 drivers | 5.7%
+5. Volkswagen Beetle Gr.3 | 22 drivers | 2.2%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. BMW M6 GT3 Endurance Model '16 | OI 1.82 | Top100 8 | Top1000 58 | High
-2. Subaru BRZ GT300 '21 | OI 1.79 | Top100 73 | Top1000 708 | High
-3. BMW M6 GT3 Sprint Model '16 | OI 1.23 | Top100 9 | Top1000 102 | High
-4. Nissan GT-R NISMO GT3 '18 | OI 1.03 | Top100 5 | Top1000 74 | High
-5. Volkswagen Beetle Gr.3 | OI 0.53 | Top100 2 | Top1000 24 | Medium
+1. BMW M6 GT3 Endurance Model '16 | OI 1.97 | Top100 9 | Top1000 57 | High
+2. Subaru BRZ GT300 '21 | OI 1.80 | Top100 73 | Top1000 720 | High
+3. BMW M6 GT3 Sprint Model '16 | OI 1.21 | Top100 9 | Top1000 99 | High
+4. Nissan GT-R NISMO GT3 '18 | OI 1.02 | Top100 5 | Top1000 69 | High
+5. Volkswagen Beetle Gr.3 | OI 0.34 | Top100 1 | Top1000 22 | Medium
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x2
@@ -102,8 +102,8 @@ CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percent
 Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
-CPI        : 7.07 / 10 | VERY STRONG
-Top %      : 10.56%
+CPI        : 7.06 / 10 | VERY STRONG
+Top %      : 10.64%
 WR gap     : +2.812%
 
 LATEST FINALIZED WEEK
@@ -113,8 +113,8 @@ Top %      : 7.58%
 WR gap     : +2.663%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
-CPI        : 7.41 -> 7.07 (-0.34)
-Top %      : 7.58% -> 10.56% (+2.99 pp)
+CPI        : 7.41 -> 7.06 (-0.35)
+Top %      : 7.58% -> 10.64% (+3.06 pp)
 WR gap     : +2.663% -> +2.812% (+0.149 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
@@ -149,7 +149,7 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 48,112
+Entries        : 50,440
 Car database   : 592 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
