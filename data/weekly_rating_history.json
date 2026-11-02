@@ -1226,7 +1226,7 @@
     "participated": true,
     "week_start": "2026-10-26",
     "final_snapshot": "2026-11-01T12:28:57.934933-03:00",
-    "finalization_mode": "backfill_last_available_snapshot",
+    "finalization_mode": "snapshot_fallback_pending_archive",
     "race": "C Gr.3 Running Daily Race C i 16:34 SUGO International Racing Course K. Drumont - Subaru BRZ GT300 '21 RM RS BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit - Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBWkJCAm8BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
     "general_score": 8.91903451618882,
@@ -1248,6 +1248,8 @@
     "legacy_composite_rating": 8.163149320004056,
     "cpi_score": 7.029321525726912,
     "cpi_band": "VERY STRONG",
-    "rating_model": "CPI_50_50_V1"
+    "rating_model": "CPI_50_50_V1",
+    "archive_upgrade_pending": true,
+    "fallback_source_snapshot": "2026-11-01T12:28:57.934933-03:00"
   }
 ]

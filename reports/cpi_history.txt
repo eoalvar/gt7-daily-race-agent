@@ -3,20 +3,25 @@ CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percent
 Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
-CPI        : N/A / 10 | N/A
-Top %      : N/A%
-WR gap     : +N/A%
+CPI        : 6.47 / 10 | COMPETITIVE
+Top %      : 30.72%
+WR gap     : +2.832%
 
 LATEST FINALIZED WEEK
-Week       : 2026-10-19
-CPI        : 7.41 / 10 | VERY STRONG
-Top %      : 7.58%
-WR gap     : +2.663%
+Week       : 2026-10-26
+CPI        : 7.03 / 10 | VERY STRONG
+Top %      : 10.81%
+WR gap     : +2.860%
+
+CURRENT WEEK VS LAST FINALIZED WEEK
+CPI        : 7.03 -> 6.47 (-0.56)
+Top %      : 10.81% -> 30.72% (+19.91 pp)
+WR gap     : +2.860% -> +2.832% (-0.029 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
-CPI        : 7.95
-Top %      : 5.98%
-WR gap     : +1.906%
+CPI        : 7.69
+Top %      : 7.29%
+WR gap     : +2.184%
 
 8-WEEK FINALIZED TREND
 CPI        : IMPROVING
@@ -24,7 +29,6 @@ Top %      : IMPROVING
 WR gap     : IMPROVING
 
 LAST FINALIZED RACES
-- 2026-08-24 | CPI 7.15 | Top 9.44% | WR +2.805%
 - 2026-08-31 | CPI 6.21 | Top 13.89% | WR +4.199%
 - 2026-09-07 | CPI 7.53 | Top 8.80% | WR +2.170%
 - 2026-09-14 | CPI 7.61 | Top 7.57% | WR +2.262%
@@ -32,3 +36,4 @@ LAST FINALIZED RACES
 - 2026-09-28 | CPI 8.34 | Top 4.21% | WR +1.478%
 - 2026-10-12 | CPI 7.98 | Top 6.55% | WR +1.736%
 - 2026-10-19 | CPI 7.41 | Top 7.58% | WR +2.663%
+- 2026-10-26 | CPI 7.03 | Top 10.81% | WR +2.860%

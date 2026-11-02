@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-02T12:51:17.550333+00:00",
+  "generated_at": "2026-11-02T17:54:20.158105+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-11-02T09:51:10.520408-03:00",
-  "race_description": "C Gr.4 Running Daily Race C i 00:00 Watkins Glen Long Course M.Voloshin - Audi TT Cup '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
+  "snapshot_timestamp": "2026-11-02T14:54:08.351924-03:00",
+  "race_description": "C Gr.4 Running Daily Race C i 00:00 Watkins Glen Long Course S. Inui - Audi TT Cup '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
   "track": "Watkins Glen Long Course",
   "group": "GR.4",
   "model_key": "GR.4|MID",
@@ -17,9 +17,131 @@
     }
   ],
   "database_records": 399,
-  "my_car": null,
-  "my_car_fingerprint": null,
-  "my_car_active_bop": null,
+  "my_car": "Audi TT Cup '16",
+  "my_car_fingerprint": {
+    "car": "Audi TT Cup '16",
+    "available": true,
+    "match": {
+      "requested_name": "Audi TT Cup '16",
+      "matched_name": "Audi TT Cup '16",
+      "match_score": 100
+    },
+    "bop_version": "1.67",
+    "distinct_signatures": 1,
+    "can_identify_speed_class_from_car": false,
+    "HIGH": {
+      "car": "Audi TT Cup '16",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "HIGH",
+      "pp": 611.74,
+      "power_hp": 305.0,
+      "torque_nm": 363.8,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 269.9115044247788,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "acceleration": {
+        "0_400m": 13.29,
+        "0_1000m": 23.95,
+        "100_150_kmh": 4.18
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      }
+    },
+    "MID": {
+      "car": "Audi TT Cup '16",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "MID",
+      "pp": 611.74,
+      "power_hp": 305.0,
+      "torque_nm": 363.8,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 269.9115044247788,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "acceleration": {
+        "0_400m": 13.29,
+        "0_1000m": 23.95,
+        "100_150_kmh": 4.18
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      }
+    },
+    "LOW": {
+      "car": "Audi TT Cup '16",
+      "group": "GR.4",
+      "bop_version": "1.67",
+      "speed_class": "LOW",
+      "pp": 611.74,
+      "power_hp": 305.0,
+      "torque_nm": 363.8,
+      "weight_kg": 1130.0,
+      "power_weight_hp_t": 269.9115044247788,
+      "weight_balance": "60:40",
+      "drivetrain": "FF",
+      "aspiration": "TC",
+      "acceleration": {
+        "0_400m": 13.29,
+        "0_1000m": 23.95,
+        "100_150_kmh": 4.18
+      },
+      "rotational_g": {
+        "60_kmh": 1.28,
+        "120_kmh": 1.38,
+        "240_kmh": 1.45
+      },
+      "stability": {
+        "low_speed": "-0.33 | N",
+        "high_speed": "-1 | U"
+      }
+    }
+  },
+  "my_car_active_bop": {
+    "car": "Audi TT Cup '16",
+    "group": "GR.4",
+    "bop_version": "1.67",
+    "speed_class": "MID",
+    "pp": 611.74,
+    "power_hp": 305.0,
+    "torque_nm": 363.8,
+    "weight_kg": 1130.0,
+    "power_weight_hp_t": 269.9115044247788,
+    "weight_balance": "60:40",
+    "drivetrain": "FF",
+    "aspiration": "TC",
+    "acceleration": {
+      "0_400m": 13.29,
+      "0_1000m": 23.95,
+      "100_150_kmh": 4.18
+    },
+    "rotational_g": {
+      "60_kmh": 1.28,
+      "120_kmh": 1.38,
+      "240_kmh": 1.45
+    },
+    "stability": {
+      "low_speed": "-0.33 | N",
+      "high_speed": "-1 | U"
+    }
+  },
   "top5_used_cars": [
     {
       "car": "Audi TT Cup '16",
@@ -116,8 +238,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 931,
-      "leaderboard_percentage": 93.10000000000001,
+      "leaderboard_count": 968,
+      "leaderboard_percentage": 96.8,
       "active_bop": {
         "car": "Audi TT Cup '16",
         "group": "GR.4",
@@ -242,8 +364,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 19,
-      "leaderboard_percentage": 1.9,
+      "leaderboard_count": 14,
+      "leaderboard_percentage": 1.4000000000000001,
       "active_bop": {
         "car": "Mazda MAZDA3 Gr.4",
         "group": "GR.4",
@@ -368,8 +490,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 19,
-      "leaderboard_percentage": 1.9,
+      "leaderboard_count": 5,
+      "leaderboard_percentage": 0.5,
       "active_bop": {
         "car": "Hyundai ELANTRA N TC '24",
         "group": "GR.4",
@@ -494,8 +616,8 @@
           "high_speed": "-0.99 | U"
         }
       },
-      "leaderboard_count": 8,
-      "leaderboard_percentage": 0.8,
+      "leaderboard_count": 4,
+      "leaderboard_percentage": 0.4,
       "active_bop": {
         "car": "Honda NSX Gr.4",
         "group": "GR.4",
@@ -620,8 +742,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 5,
-      "leaderboard_percentage": 0.5,
+      "leaderboard_count": 3,
+      "leaderboard_percentage": 0.3,
       "active_bop": {
         "car": "Peugeot RCZ Gr.4",
         "group": "GR.4",
