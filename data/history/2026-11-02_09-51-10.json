@@ -1,0 +1,183 @@
+{
+  "timestamp": "2026-11-02T09:51:10.520408-03:00",
+  "race": {
+    "description": "C Gr.4 Running Daily Race C i 00:00 Watkins Glen Long Course M.Voloshin - Audi TT Cup '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBWkBEA28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "detection_mode": "explicit_running_local_block",
+    "safety_validation": "PASSED",
+    "source_mode": "live_page_data_parallel",
+    "fuel_multiplier": 3,
+    "tyre_multiplier": 5,
+    "compounds": [
+      "RH",
+      "RM"
+    ],
+    "start_date": null
+  },
+  "total_drivers": 5023,
+  "world_record": {
+    "score": 114163,
+    "laptime": "1:54.163",
+    "driver": "M.Voloshin",
+    "psn_id": "rainbowlooool",
+    "car_code": 3298,
+    "car": "Audi TT Cup '16"
+  },
+  "benchmarks": {
+    "103_percent": {
+      "score": 117588,
+      "laptime": "1:57.588"
+    },
+    "105_percent": {
+      "score": 119871,
+      "laptime": "1:59.871"
+    }
+  },
+  "thresholds": {
+    "1": {
+      "score": 114163,
+      "laptime": "1:54.163"
+    },
+    "10": {
+      "score": 114406,
+      "laptime": "1:54.406"
+    },
+    "50": {
+      "score": 114747,
+      "laptime": "1:54.747"
+    },
+    "100": {
+      "score": 114941,
+      "laptime": "1:54.941"
+    },
+    "250": {
+      "score": 115402,
+      "laptime": "1:55.402"
+    },
+    "500": {
+      "score": 115854,
+      "laptime": "1:55.854"
+    },
+    "1000": {
+      "score": 116514,
+      "laptime": "1:56.514"
+    },
+    "2500": {
+      "score": 118322,
+      "laptime": "1:58.322"
+    },
+    "5000": {
+      "score": 131914,
+      "laptime": "2:11.914"
+    }
+  },
+  "percentile_thresholds": {
+    "10": {
+      "percent": 10,
+      "rank": 503,
+      "score": 115859,
+      "laptime": "1:55.859"
+    },
+    "5": {
+      "percent": 5,
+      "rank": 252,
+      "score": 115407,
+      "laptime": "1:55.407"
+    }
+  },
+  "my_result": null,
+  "same_car_stats": null,
+  "country_stats": null,
+  "dr_stats": null,
+  "next_targets": [],
+  "top5_used_cars": [
+    {
+      "car_code": 3298,
+      "car": "Audi TT Cup '16",
+      "count": 931,
+      "percentage": 93.10000000000001
+    },
+    {
+      "car_code": 3537,
+      "car": "MAZDA3 Gr.4",
+      "count": 19,
+      "percentage": 1.9
+    },
+    {
+      "car_code": 3590,
+      "car": "Hyundai ELANTRA N TC '24",
+      "count": 19,
+      "percentage": 1.9
+    },
+    {
+      "car_code": 3251,
+      "car": "Honda NSX Gr.4",
+      "count": 8,
+      "percentage": 0.8
+    },
+    {
+      "car_code": 3259,
+      "car": "Peugeot RCZ Gr.4",
+      "count": 5,
+      "percentage": 0.5
+    }
+  ],
+  "overperformance": [
+    {
+      "car_code": 3298,
+      "car": "Audi TT Cup '16",
+      "all_count": 3162,
+      "top100": 100,
+      "top1000": 931,
+      "oi100": 1.588551549652119,
+      "oi1000": 1.4789414927261229,
+      "overperformance_index": 1.55566853257432,
+      "confidence": "High"
+    },
+    {
+      "car_code": 3537,
+      "car": "MAZDA3 Gr.4",
+      "all_count": 116,
+      "top100": 0,
+      "top1000": 19,
+      "oi100": 0.0,
+      "oi1000": 0.8227327586206896,
+      "overperformance_index": 0.24681982758620688,
+      "confidence": "Medium"
+    },
+    {
+      "car_code": 3590,
+      "car": "Hyundai ELANTRA N TC '24",
+      "all_count": 432,
+      "top100": 0,
+      "top1000": 19,
+      "oi100": 0.0,
+      "oi1000": 0.22091898148148148,
+      "overperformance_index": 0.06627569444444444,
+      "confidence": "Medium"
+    }
+  ],
+  "car_comparison": null,
+  "car_database": {
+    "total_known_cars": 592,
+    "technical_records": 33,
+    "discovered_this_run": 592,
+    "added_this_run": 0,
+    "updated_this_run": 0
+  },
+  "health": {
+    "unknown_car_share": 0.0,
+    "unknown_car_entries": 0,
+    "invalid_car_code_entries": 0,
+    "source_mode": "live_page_data_parallel",
+    "race_detection_mode": "explicit_running_local_block",
+    "race_safety_validation": "PASSED",
+    "leaderboard_entries": 5023,
+    "my_driver_found": false,
+    "warnings": []
+  },
+  "forecast_v2": {
+    "available": false,
+    "reason": "Race start date unavailable."
+  }
+}

@@ -1,522 +1,652 @@
 {
-  "generated_at": "2026-10-25T13:24:05.845924+00:00",
+  "generated_at": "2026-11-02T12:51:17.550333+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-10-25T10:23:17.078856-03:00",
-  "race_description": "C Gr.2 Running Daily Race C i 00:00 Suzuka Circuit D. Chafe - Honda NSX CONCEPT-GT '16 RM BoP On Setup Allowed Damage Med Start Rolling Fuel x2 Tyres x4 Pit 1 Slipstream Custom",
-  "track": "Suzuka Circuit",
-  "group": "GR.2",
-  "model_key": "GR.2|MID",
+  "snapshot_timestamp": "2026-11-02T09:51:10.520408-03:00",
+  "race_description": "C Gr.4 Running Daily Race C i 00:00 Watkins Glen Long Course M.Voloshin - Audi TT Cup '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
+  "track": "Watkins Glen Long Course",
+  "group": "GR.4",
+  "model_key": "GR.4|MID",
   "speed_class": "MID",
-  "speed_selection_mode": "TRACK_DEFAULT_MAP",
-  "classification_confidence": "VALIDATED_EXTERNAL",
+  "speed_selection_mode": "GROUP_SPECIFIC_MAP",
+  "classification_confidence": "VALIDATED_RECENT",
   "classification_validation": [
     {
-      "source": "GTPlanet Daily Races 2023-05-29",
-      "evidence": "Suzuka Circuit / Gr.3 / BOP (M)",
-      "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20230529/"
+      "source": "GTPlanet Daily Races 2026-02-23",
+      "evidence": "Watkins Glen Long Course / Gr.4 / BOP (M)",
+      "url": "https://www.gtplanet.net/gran-turismo-7-daily-races-20260223/"
     }
   ],
   "database_records": 399,
-  "my_car": "Honda NSX CONCEPT-GT '16",
-  "my_car_fingerprint": {
-    "car": "Honda NSX CONCEPT-GT '16",
-    "available": true,
-    "match": {
-      "requested_name": "Honda NSX CONCEPT-GT '16",
-      "matched_name": "Honda NSX CONCEPT-GT '16",
-      "match_score": 100
-    },
-    "bop_version": "1.61",
-    "distinct_signatures": 1,
-    "can_identify_speed_class_from_car": false,
-    "HIGH": {
-      "car": "Honda NSX CONCEPT-GT '16",
-      "group": "GR.2",
-      "bop_version": "1.61",
-      "speed_class": "HIGH",
-      "pp": 864.74,
-      "power_hp": 604.0,
-      "torque_nm": 612.9,
-      "weight_kg": 1064.0,
-      "power_weight_hp_t": 567.6691729323308,
-      "weight_balance": "48:52",
-      "drivetrain": "MR",
-      "aspiration": "TC",
-      "acceleration": {
-        "0_400m": 10.73,
-        "0_1000m": 19.1,
-        "100_150_kmh": 1.89
-      },
-      "rotational_g": {
-        "60_kmh": 1.6,
-        "120_kmh": 1.81,
-        "240_kmh": 2.75
-      },
-      "stability": {
-        "low_speed": "-0.33 | N",
-        "high_speed": "-0.99 | U"
-      }
-    },
-    "MID": {
-      "car": "Honda NSX CONCEPT-GT '16",
-      "group": "GR.2",
-      "bop_version": "1.61",
-      "speed_class": "MID",
-      "pp": 864.74,
-      "power_hp": 604.0,
-      "torque_nm": 612.9,
-      "weight_kg": 1064.0,
-      "power_weight_hp_t": 567.6691729323308,
-      "weight_balance": "48:52",
-      "drivetrain": "MR",
-      "aspiration": "TC",
-      "acceleration": {
-        "0_400m": 10.73,
-        "0_1000m": 19.1,
-        "100_150_kmh": 1.89
-      },
-      "rotational_g": {
-        "60_kmh": 1.6,
-        "120_kmh": 1.81,
-        "240_kmh": 2.75
-      },
-      "stability": {
-        "low_speed": "-0.33 | N",
-        "high_speed": "-0.99 | U"
-      }
-    },
-    "LOW": {
-      "car": "Honda NSX CONCEPT-GT '16",
-      "group": "GR.2",
-      "bop_version": "1.61",
-      "speed_class": "LOW",
-      "pp": 864.74,
-      "power_hp": 604.0,
-      "torque_nm": 612.9,
-      "weight_kg": 1064.0,
-      "power_weight_hp_t": 567.6691729323308,
-      "weight_balance": "48:52",
-      "drivetrain": "MR",
-      "aspiration": "TC",
-      "acceleration": {
-        "0_400m": 10.73,
-        "0_1000m": 19.1,
-        "100_150_kmh": 1.89
-      },
-      "rotational_g": {
-        "60_kmh": 1.6,
-        "120_kmh": 1.81,
-        "240_kmh": 2.75
-      },
-      "stability": {
-        "low_speed": "-0.33 | N",
-        "high_speed": "-0.99 | U"
-      }
-    }
-  },
-  "my_car_active_bop": {
-    "car": "Honda NSX CONCEPT-GT '16",
-    "group": "GR.2",
-    "bop_version": "1.61",
-    "speed_class": "MID",
-    "pp": 864.74,
-    "power_hp": 604.0,
-    "torque_nm": 612.9,
-    "weight_kg": 1064.0,
-    "power_weight_hp_t": 567.6691729323308,
-    "weight_balance": "48:52",
-    "drivetrain": "MR",
-    "aspiration": "TC",
-    "acceleration": {
-      "0_400m": 10.73,
-      "0_1000m": 19.1,
-      "100_150_kmh": 1.89
-    },
-    "rotational_g": {
-      "60_kmh": 1.6,
-      "120_kmh": 1.81,
-      "240_kmh": 2.75
-    },
-    "stability": {
-      "low_speed": "-0.33 | N",
-      "high_speed": "-0.99 | U"
-    }
-  },
+  "my_car": null,
+  "my_car_fingerprint": null,
+  "my_car_active_bop": null,
   "top5_used_cars": [
     {
-      "car": "Honda NSX CONCEPT-GT '16",
+      "car": "Audi TT Cup '16",
       "available": true,
       "match": {
-        "requested_name": "Honda NSX CONCEPT-GT '16",
-        "matched_name": "Honda NSX CONCEPT-GT '16",
+        "requested_name": "Audi TT Cup '16",
+        "matched_name": "Audi TT Cup '16",
         "match_score": 100
       },
-      "bop_version": "1.61",
+      "bop_version": "1.67",
       "distinct_signatures": 1,
       "can_identify_speed_class_from_car": false,
       "HIGH": {
-        "car": "Honda NSX CONCEPT-GT '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
+        "car": "Audi TT Cup '16",
+        "group": "GR.4",
+        "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 864.74,
-        "power_hp": 604.0,
-        "torque_nm": 612.9,
-        "weight_kg": 1064.0,
-        "power_weight_hp_t": 567.6691729323308,
-        "weight_balance": "48:52",
-        "drivetrain": "MR",
+        "pp": 611.74,
+        "power_hp": 305.0,
+        "torque_nm": 363.8,
+        "weight_kg": 1130.0,
+        "power_weight_hp_t": 269.9115044247788,
+        "weight_balance": "60:40",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 10.73,
-          "0_1000m": 19.1,
-          "100_150_kmh": 1.89
+          "0_400m": 13.29,
+          "0_1000m": 23.95,
+          "100_150_kmh": 4.18
         },
         "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.75
+          "60_kmh": 1.28,
+          "120_kmh": 1.38,
+          "240_kmh": 1.45
         },
         "stability": {
           "low_speed": "-0.33 | N",
-          "high_speed": "-0.99 | U"
-        }
-      },
-      "MID": {
-        "car": "Honda NSX CONCEPT-GT '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
-        "speed_class": "MID",
-        "pp": 864.74,
-        "power_hp": 604.0,
-        "torque_nm": 612.9,
-        "weight_kg": 1064.0,
-        "power_weight_hp_t": 567.6691729323308,
-        "weight_balance": "48:52",
-        "drivetrain": "MR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 10.73,
-          "0_1000m": 19.1,
-          "100_150_kmh": 1.89
-        },
-        "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.75
-        },
-        "stability": {
-          "low_speed": "-0.33 | N",
-          "high_speed": "-0.99 | U"
-        }
-      },
-      "LOW": {
-        "car": "Honda NSX CONCEPT-GT '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
-        "speed_class": "LOW",
-        "pp": 864.74,
-        "power_hp": 604.0,
-        "torque_nm": 612.9,
-        "weight_kg": 1064.0,
-        "power_weight_hp_t": 567.6691729323308,
-        "weight_balance": "48:52",
-        "drivetrain": "MR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 10.73,
-          "0_1000m": 19.1,
-          "100_150_kmh": 1.89
-        },
-        "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.75
-        },
-        "stability": {
-          "low_speed": "-0.33 | N",
-          "high_speed": "-0.99 | U"
-        }
-      },
-      "leaderboard_count": 949,
-      "leaderboard_percentage": 94.89999999999999,
-      "active_bop": {
-        "car": "Honda NSX CONCEPT-GT '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
-        "speed_class": "MID",
-        "pp": 864.74,
-        "power_hp": 604.0,
-        "torque_nm": 612.9,
-        "weight_kg": 1064.0,
-        "power_weight_hp_t": 567.6691729323308,
-        "weight_balance": "48:52",
-        "drivetrain": "MR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 10.73,
-          "0_1000m": 19.1,
-          "100_150_kmh": 1.89
-        },
-        "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.75
-        },
-        "stability": {
-          "low_speed": "-0.33 | N",
-          "high_speed": "-0.99 | U"
-        }
-      }
-    },
-    {
-      "car": "Nissan GT-R NISMO GT500 '16",
-      "available": true,
-      "match": {
-        "requested_name": "Nissan GT-R NISMO GT500 '16",
-        "matched_name": "Nissan GT-R NISMO GT500 '16",
-        "match_score": 100
-      },
-      "bop_version": "1.61",
-      "distinct_signatures": 1,
-      "can_identify_speed_class_from_car": false,
-      "HIGH": {
-        "car": "Nissan GT-R NISMO GT500 '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
-        "speed_class": "HIGH",
-        "pp": 862.2,
-        "power_hp": 613.0,
-        "torque_nm": 588.4,
-        "weight_kg": 1035.0,
-        "power_weight_hp_t": 592.2705314009662,
-        "weight_balance": "50:50",
-        "drivetrain": "FR",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 10.43,
-          "0_1000m": 18.69,
-          "100_150_kmh": 1.83
-        },
-        "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.65
-        },
-        "stability": {
-          "low_speed": "-0.35 | N",
           "high_speed": "-1 | U"
         }
       },
       "MID": {
-        "car": "Nissan GT-R NISMO GT500 '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
+        "car": "Audi TT Cup '16",
+        "group": "GR.4",
+        "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 862.2,
-        "power_hp": 613.0,
-        "torque_nm": 588.4,
-        "weight_kg": 1035.0,
-        "power_weight_hp_t": 592.2705314009662,
-        "weight_balance": "50:50",
-        "drivetrain": "FR",
+        "pp": 611.74,
+        "power_hp": 305.0,
+        "torque_nm": 363.8,
+        "weight_kg": 1130.0,
+        "power_weight_hp_t": 269.9115044247788,
+        "weight_balance": "60:40",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 10.43,
-          "0_1000m": 18.69,
-          "100_150_kmh": 1.83
+          "0_400m": 13.29,
+          "0_1000m": 23.95,
+          "100_150_kmh": 4.18
         },
         "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.65
+          "60_kmh": 1.28,
+          "120_kmh": 1.38,
+          "240_kmh": 1.45
         },
         "stability": {
-          "low_speed": "-0.35 | N",
+          "low_speed": "-0.33 | N",
           "high_speed": "-1 | U"
         }
       },
       "LOW": {
-        "car": "Nissan GT-R NISMO GT500 '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
+        "car": "Audi TT Cup '16",
+        "group": "GR.4",
+        "bop_version": "1.67",
         "speed_class": "LOW",
-        "pp": 862.2,
-        "power_hp": 613.0,
-        "torque_nm": 588.4,
-        "weight_kg": 1035.0,
-        "power_weight_hp_t": 592.2705314009662,
-        "weight_balance": "50:50",
-        "drivetrain": "FR",
+        "pp": 611.74,
+        "power_hp": 305.0,
+        "torque_nm": 363.8,
+        "weight_kg": 1130.0,
+        "power_weight_hp_t": 269.9115044247788,
+        "weight_balance": "60:40",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 10.43,
-          "0_1000m": 18.69,
-          "100_150_kmh": 1.83
+          "0_400m": 13.29,
+          "0_1000m": 23.95,
+          "100_150_kmh": 4.18
         },
         "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.65
+          "60_kmh": 1.28,
+          "120_kmh": 1.38,
+          "240_kmh": 1.45
         },
         "stability": {
-          "low_speed": "-0.35 | N",
+          "low_speed": "-0.33 | N",
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 33,
-      "leaderboard_percentage": 3.3000000000000003,
+      "leaderboard_count": 931,
+      "leaderboard_percentage": 93.10000000000001,
       "active_bop": {
-        "car": "Nissan GT-R NISMO GT500 '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
+        "car": "Audi TT Cup '16",
+        "group": "GR.4",
+        "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 862.2,
-        "power_hp": 613.0,
-        "torque_nm": 588.4,
-        "weight_kg": 1035.0,
-        "power_weight_hp_t": 592.2705314009662,
-        "weight_balance": "50:50",
-        "drivetrain": "FR",
+        "pp": 611.74,
+        "power_hp": 305.0,
+        "torque_nm": 363.8,
+        "weight_kg": 1130.0,
+        "power_weight_hp_t": 269.9115044247788,
+        "weight_balance": "60:40",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 10.43,
-          "0_1000m": 18.69,
-          "100_150_kmh": 1.83
+          "0_400m": 13.29,
+          "0_1000m": 23.95,
+          "100_150_kmh": 4.18
         },
         "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.65
+          "60_kmh": 1.28,
+          "120_kmh": 1.38,
+          "240_kmh": 1.45
         },
         "stability": {
-          "low_speed": "-0.35 | N",
+          "low_speed": "-0.33 | N",
           "high_speed": "-1 | U"
         }
       }
     },
     {
-      "car": "Lexus RC F GT500 '16",
+      "car": "MAZDA3 Gr.4",
       "available": true,
       "match": {
-        "requested_name": "Lexus RC F GT500 '16",
-        "matched_name": "Lexus RC F GT500 '16",
-        "match_score": 100
+        "requested_name": "MAZDA3 Gr.4",
+        "matched_name": "Mazda MAZDA3 Gr.4",
+        "match_score": 94
       },
-      "bop_version": "1.61",
+      "bop_version": "1.67",
       "distinct_signatures": 1,
       "can_identify_speed_class_from_car": false,
       "HIGH": {
-        "car": "Lexus RC F GT500 '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
+        "car": "Mazda MAZDA3 Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 862.89,
-        "power_hp": 614.0,
-        "torque_nm": 588.4,
-        "weight_kg": 1030.0,
-        "power_weight_hp_t": 596.1165048543689,
-        "weight_balance": "51:49",
-        "drivetrain": "FR",
+        "pp": 615.14,
+        "power_hp": 327.0,
+        "torque_nm": 372.7,
+        "weight_kg": 1200.0,
+        "power_weight_hp_t": 272.5,
+        "weight_balance": "64:36",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 10.3,
-          "0_1000m": 18.55,
-          "100_150_kmh": 1.8
+          "0_400m": 13.11,
+          "0_1000m": 23.71,
+          "100_150_kmh": 4.23
         },
         "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.65
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.47
         },
         "stability": {
-          "low_speed": "-0.37 | N",
+          "low_speed": "-0.32 | N",
           "high_speed": "-1 | U"
         }
       },
       "MID": {
-        "car": "Lexus RC F GT500 '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
+        "car": "Mazda MAZDA3 Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 862.89,
-        "power_hp": 614.0,
-        "torque_nm": 588.4,
-        "weight_kg": 1030.0,
-        "power_weight_hp_t": 596.1165048543689,
-        "weight_balance": "51:49",
-        "drivetrain": "FR",
+        "pp": 615.14,
+        "power_hp": 327.0,
+        "torque_nm": 372.7,
+        "weight_kg": 1200.0,
+        "power_weight_hp_t": 272.5,
+        "weight_balance": "64:36",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 10.3,
-          "0_1000m": 18.55,
-          "100_150_kmh": 1.8
+          "0_400m": 13.11,
+          "0_1000m": 23.71,
+          "100_150_kmh": 4.23
         },
         "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.65
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.47
         },
         "stability": {
-          "low_speed": "-0.37 | N",
+          "low_speed": "-0.32 | N",
           "high_speed": "-1 | U"
         }
       },
       "LOW": {
-        "car": "Lexus RC F GT500 '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
+        "car": "Mazda MAZDA3 Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
         "speed_class": "LOW",
-        "pp": 862.89,
-        "power_hp": 614.0,
-        "torque_nm": 588.4,
-        "weight_kg": 1030.0,
-        "power_weight_hp_t": 596.1165048543689,
-        "weight_balance": "51:49",
-        "drivetrain": "FR",
+        "pp": 615.14,
+        "power_hp": 327.0,
+        "torque_nm": 372.7,
+        "weight_kg": 1200.0,
+        "power_weight_hp_t": 272.5,
+        "weight_balance": "64:36",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 10.3,
-          "0_1000m": 18.55,
-          "100_150_kmh": 1.8
+          "0_400m": 13.11,
+          "0_1000m": 23.71,
+          "100_150_kmh": 4.23
         },
         "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.65
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.47
         },
         "stability": {
-          "low_speed": "-0.37 | N",
+          "low_speed": "-0.32 | N",
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 18,
-      "leaderboard_percentage": 1.7999999999999998,
+      "leaderboard_count": 19,
+      "leaderboard_percentage": 1.9,
       "active_bop": {
-        "car": "Lexus RC F GT500 '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
+        "car": "Mazda MAZDA3 Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 862.89,
-        "power_hp": 614.0,
-        "torque_nm": 588.4,
-        "weight_kg": 1030.0,
-        "power_weight_hp_t": 596.1165048543689,
-        "weight_balance": "51:49",
-        "drivetrain": "FR",
+        "pp": 615.14,
+        "power_hp": 327.0,
+        "torque_nm": 372.7,
+        "weight_kg": 1200.0,
+        "power_weight_hp_t": 272.5,
+        "weight_balance": "64:36",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 10.3,
-          "0_1000m": 18.55,
-          "100_150_kmh": 1.8
+          "0_400m": 13.11,
+          "0_1000m": 23.71,
+          "100_150_kmh": 4.23
         },
         "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.65
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.47
         },
         "stability": {
-          "low_speed": "-0.37 | N",
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "Hyundai ELANTRA N TC '24",
+      "available": true,
+      "match": {
+        "requested_name": "Hyundai ELANTRA N TC '24",
+        "matched_name": "Hyundai ELANTRA N TC '24",
+        "match_score": 100
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 1,
+      "can_identify_speed_class_from_car": false,
+      "HIGH": {
+        "car": "Hyundai ELANTRA N TC '24",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 612.54,
+        "power_hp": 332.0,
+        "torque_nm": 427.6,
+        "weight_kg": 1265.0,
+        "power_weight_hp_t": 262.4505928853755,
+        "weight_balance": "59:41",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.47,
+          "0_1000m": 24.1,
+          "100_150_kmh": 4.21
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.39,
+          "240_kmh": 1.45
+        },
+        "stability": {
+          "low_speed": "-0.31 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Hyundai ELANTRA N TC '24",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 612.54,
+        "power_hp": 332.0,
+        "torque_nm": 427.6,
+        "weight_kg": 1265.0,
+        "power_weight_hp_t": 262.4505928853755,
+        "weight_balance": "59:41",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.47,
+          "0_1000m": 24.1,
+          "100_150_kmh": 4.21
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.39,
+          "240_kmh": 1.45
+        },
+        "stability": {
+          "low_speed": "-0.31 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Hyundai ELANTRA N TC '24",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 612.54,
+        "power_hp": 332.0,
+        "torque_nm": 427.6,
+        "weight_kg": 1265.0,
+        "power_weight_hp_t": 262.4505928853755,
+        "weight_balance": "59:41",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.47,
+          "0_1000m": 24.1,
+          "100_150_kmh": 4.21
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.39,
+          "240_kmh": 1.45
+        },
+        "stability": {
+          "low_speed": "-0.31 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 19,
+      "leaderboard_percentage": 1.9,
+      "active_bop": {
+        "car": "Hyundai ELANTRA N TC '24",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 612.54,
+        "power_hp": 332.0,
+        "torque_nm": 427.6,
+        "weight_kg": 1265.0,
+        "power_weight_hp_t": 262.4505928853755,
+        "weight_balance": "59:41",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.47,
+          "0_1000m": 24.1,
+          "100_150_kmh": 4.21
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.39,
+          "240_kmh": 1.45
+        },
+        "stability": {
+          "low_speed": "-0.31 | N",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "Honda NSX Gr.4",
+      "available": true,
+      "match": {
+        "requested_name": "Honda NSX Gr.4",
+        "matched_name": "Honda NSX Gr.4",
+        "match_score": 100
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 2,
+      "can_identify_speed_class_from_car": true,
+      "HIGH": {
+        "car": "Honda NSX Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 608.0,
+        "power_hp": 320.0,
+        "torque_nm": 351.1,
+        "weight_kg": 1425.0,
+        "power_weight_hp_t": 224.56140350877192,
+        "weight_balance": "42:58",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.42,
+          "0_1000m": 24.19,
+          "100_150_kmh": 4.51
+        },
+        "rotational_g": {
+          "60_kmh": 1.28,
+          "120_kmh": 1.38,
+          "240_kmh": 1.48
+        },
+        "stability": {
+          "low_speed": "-0.48 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Honda NSX Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 608.0,
+        "power_hp": 320.0,
+        "torque_nm": 351.1,
+        "weight_kg": 1425.0,
+        "power_weight_hp_t": 224.56140350877192,
+        "weight_balance": "42:58",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.42,
+          "0_1000m": 24.19,
+          "100_150_kmh": 4.51
+        },
+        "rotational_g": {
+          "60_kmh": 1.28,
+          "120_kmh": 1.38,
+          "240_kmh": 1.48
+        },
+        "stability": {
+          "low_speed": "-0.48 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Honda NSX Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 606.78,
+        "power_hp": 316.0,
+        "torque_nm": 347.2,
+        "weight_kg": 1415.0,
+        "power_weight_hp_t": 223.32155477031802,
+        "weight_balance": "42:58",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.46,
+          "0_1000m": 24.26,
+          "100_150_kmh": 4.54
+        },
+        "rotational_g": {
+          "60_kmh": 1.28,
+          "120_kmh": 1.38,
+          "240_kmh": 1.48
+        },
+        "stability": {
+          "low_speed": "-0.48 | U",
+          "high_speed": "-0.99 | U"
+        }
+      },
+      "leaderboard_count": 8,
+      "leaderboard_percentage": 0.8,
+      "active_bop": {
+        "car": "Honda NSX Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 608.0,
+        "power_hp": 320.0,
+        "torque_nm": 351.1,
+        "weight_kg": 1425.0,
+        "power_weight_hp_t": 224.56140350877192,
+        "weight_balance": "42:58",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.42,
+          "0_1000m": 24.19,
+          "100_150_kmh": 4.51
+        },
+        "rotational_g": {
+          "60_kmh": 1.28,
+          "120_kmh": 1.38,
+          "240_kmh": 1.48
+        },
+        "stability": {
+          "low_speed": "-0.48 | U",
+          "high_speed": "-1 | U"
+        }
+      }
+    },
+    {
+      "car": "Peugeot RCZ Gr.4",
+      "available": true,
+      "match": {
+        "requested_name": "Peugeot RCZ Gr.4",
+        "matched_name": "Peugeot RCZ Gr.4",
+        "match_score": 100
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 1,
+      "can_identify_speed_class_from_car": false,
+      "HIGH": {
+        "car": "Peugeot RCZ Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 610.0,
+        "power_hp": 318.0,
+        "torque_nm": 360.9,
+        "weight_kg": 1225.0,
+        "power_weight_hp_t": 259.59183673469386,
+        "weight_balance": "62:38",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.25,
+          "0_1000m": 23.93,
+          "100_150_kmh": 4.24
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.44
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Peugeot RCZ Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 610.0,
+        "power_hp": 318.0,
+        "torque_nm": 360.9,
+        "weight_kg": 1225.0,
+        "power_weight_hp_t": 259.59183673469386,
+        "weight_balance": "62:38",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.25,
+          "0_1000m": 23.93,
+          "100_150_kmh": 4.24
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.44
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Peugeot RCZ Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 610.0,
+        "power_hp": 318.0,
+        "torque_nm": 360.9,
+        "weight_kg": 1225.0,
+        "power_weight_hp_t": 259.59183673469386,
+        "weight_balance": "62:38",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.25,
+          "0_1000m": 23.93,
+          "100_150_kmh": 4.24
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.44
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 5,
+      "leaderboard_percentage": 0.5,
+      "active_bop": {
+        "car": "Peugeot RCZ Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 610.0,
+        "power_hp": 318.0,
+        "torque_nm": 360.9,
+        "weight_kg": 1225.0,
+        "power_weight_hp_t": 259.59183673469386,
+        "weight_balance": "62:38",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.25,
+          "0_1000m": 23.93,
+          "100_150_kmh": 4.24
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.44
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
           "high_speed": "-1 | U"
         }
       }

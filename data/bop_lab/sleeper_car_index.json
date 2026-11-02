@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-10-25T13:24:06.276721+00:00",
+  "generated_at": "2026-11-02T12:51:17.724326+00:00",
   "version": "0.3",
-  "snapshot_timestamp": "2026-10-25T10:23:17.078856-03:00",
-  "track": "Suzuka Circuit",
-  "group": "GR.2",
+  "snapshot_timestamp": "2026-11-02T09:51:10.520408-03:00",
+  "track": "Watkins Glen Long Course",
+  "group": "GR.4",
   "speed_class": "MID",
-  "model_key": "GR.2|MID",
-  "total_drivers": 44525,
-  "world_record_score": 104359,
-  "world_record_laptime": "1:44.359",
-  "top500_score": 105918,
-  "top500_laptime": "1:45.918",
+  "model_key": "GR.4|MID",
+  "total_drivers": 5023,
+  "world_record_score": 114163,
+  "world_record_laptime": "1:54.163",
+  "top500_score": 115854,
+  "top500_laptime": "1:55.854",
   "method": {
     "name": "Bayesian representation efficiency + elite proximity + rarity",
     "prior_strength": 150.0,
@@ -29,181 +29,1606 @@
     "bop_role": "BoP-aware and multi-group. The current race group selects an isolated group table, and the circuit selects HIGH/MID/LOW. Technical variables are learned separately for each group + speed-class model."
   },
   "bop_coverage": {
-    "group_database_records": 30,
-    "eligible_cars_with_bop": 3,
+    "group_database_records": 102,
+    "eligible_cars_with_bop": 28,
     "eligible_cars_without_bop": 0,
     "unmatched_cars": []
   },
-  "cars_total": 4,
-  "cars_eligible": 3,
+  "cars_total": 34,
+  "cars_eligible": 28,
   "ranking": [
     {
-      "car_code": 3348,
-      "car": "Honda NSX CONCEPT-GT '16",
-      "all_count": 29698,
-      "top100": 98,
-      "top500": 475,
-      "top1000": 949,
+      "car_code": 3298,
+      "car": "Audi TT Cup '16",
+      "all_count": 3162,
+      "top100": 100,
+      "top500": 479,
+      "top1000": 931,
       "best_rank": 1,
-      "best_score": 104359,
-      "share": 0.6669960696238069,
-      "share_percent": 66.69960696238068,
-      "lift_top100": 1.4669157062449742,
-      "lift_top500": 1.422163964084696,
-      "lift_top1000": 1.4206722393460198,
-      "efficiency_lift": 1.43025304090657,
-      "quality_component": 0.6872454989695302,
-      "rarity_component": 0.18330172669228273,
+      "best_score": 114163,
+      "share": 0.6295042803105714,
+      "share_percent": 62.950428031057136,
+      "lift_top100": 1.5618961352657004,
+      "lift_top500": 1.4981986714975846,
+      "lift_top1000": 1.457250301932367,
+      "efficiency_lift": 1.4899384549591286,
+      "quality_component": 0.7062450983286378,
+      "rarity_component": 0.20658694218548979,
       "elite_proximity": 1.0,
       "evidence_factor": 1.0,
-      "sleeper_score": 66.46453697716981,
+      "sleeper_score": 67.97521925178488,
       "sleeper_label": "META / PROVEN",
       "confidence": "HIGH",
       "active_bop": {
-        "car": "Honda NSX CONCEPT-GT '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
+        "car": "Audi TT Cup '16",
+        "group": "GR.4",
+        "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 864.74,
-        "power_hp": 604.0,
-        "torque_nm": 612.9,
-        "weight_kg": 1064.0,
-        "power_weight_hp_t": 567.6691729323308,
-        "weight_balance": "48:52",
-        "drivetrain": "MR",
+        "pp": 611.74,
+        "power_hp": 305.0,
+        "torque_nm": 363.8,
+        "weight_kg": 1130.0,
+        "power_weight_hp_t": 269.9115044247788,
+        "weight_balance": "60:40",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 10.73,
-          "0_1000m": 19.1,
-          "100_150_kmh": 1.89
+          "0_400m": 13.29,
+          "0_1000m": 23.95,
+          "100_150_kmh": 4.18
         },
         "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.75
+          "60_kmh": 1.28,
+          "120_kmh": 1.38,
+          "240_kmh": 1.45
         },
         "stability": {
           "low_speed": "-0.33 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Audi TT Cup '16",
+        "matched_name": "Audi TT Cup '16",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3537,
+      "car": "MAZDA3 Gr.4",
+      "all_count": 116,
+      "top100": 0,
+      "top500": 8,
+      "top1000": 19,
+      "best_rank": 117,
+      "best_score": 115005,
+      "share": 0.023093768664144934,
+      "share_percent": 2.3093768664144934,
+      "lift_top100": 0.5639097744360902,
+      "lift_top500": 0.866045112781955,
+      "lift_top1000": 0.9226954887218046,
+      "efficiency_lift": 0.820414405929085,
+      "quality_component": 0.3928183949380462,
+      "rarity_component": 0.848033659436884,
+      "elite_proximity": 0.6077873455497507,
+      "evidence_factor": 0.6811754546370561,
+      "sleeper_score": 52.56147075601836,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Mazda MAZDA3 Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 615.14,
+        "power_hp": 327.0,
+        "torque_nm": 372.7,
+        "weight_kg": 1200.0,
+        "power_weight_hp_t": 272.5,
+        "weight_balance": "64:36",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.11,
+          "0_1000m": 23.71,
+          "100_150_kmh": 4.23
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.47
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "MAZDA3 Gr.4",
+        "matched_name": "Mazda MAZDA3 Gr.4",
+        "match_score": 94
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3259,
+      "car": "Peugeot RCZ Gr.4",
+      "all_count": 36,
+      "top100": 0,
+      "top500": 1,
+      "top1000": 5,
+      "best_rank": 422,
+      "best_score": 115737,
+      "share": 0.007167031654389807,
+      "share_percent": 0.7167031654389807,
+      "lift_top100": 0.8064516129032259,
+      "lift_top500": 0.8604623655913979,
+      "lift_top1000": 0.941478494623656,
+      "efficiency_lift": 0.8884652151471407,
+      "quality_component": 0.43532154502047987,
+      "rarity_component": 0.9153416769928094,
+      "elite_proximity": 0.394234183654952,
+      "evidence_factor": 0.3794733192202055,
+      "sleeper_score": 50.79893292124549,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Peugeot RCZ Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 610.0,
+        "power_hp": 318.0,
+        "torque_nm": 360.9,
+        "weight_kg": 1225.0,
+        "power_weight_hp_t": 259.59183673469386,
+        "weight_balance": "62:38",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.25,
+          "0_1000m": 23.93,
+          "100_150_kmh": 4.24
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.44
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Peugeot RCZ Gr.4",
+        "matched_name": "Peugeot RCZ Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3480,
+      "car": "Suzuki Swift Sport KATANA Edition Gr.4",
+      "all_count": 33,
+      "top100": 0,
+      "top500": 1,
+      "top1000": 2,
+      "best_rank": 353,
+      "best_score": 115617,
+      "share": 0.00656977901652399,
+      "share_percent": 0.656977901652399,
+      "lift_top100": 0.819672131147541,
+      "lift_top500": 0.8745683060109289,
+      "lift_top1000": 0.8745683060109289,
+      "efficiency_lift": 0.8633025457454296,
+      "quality_component": 0.41985268455142494,
+      "rarity_component": 0.9189458266557237,
+      "elite_proximity": 0.42322715067970795,
+      "evidence_factor": 0.363318042491699,
+      "sleeper_score": 50.74534440293777,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Suzuki Swift Sport Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 610.94,
+        "power_hp": 283.0,
+        "torque_nm": 360.9,
+        "weight_kg": 1000.0,
+        "power_weight_hp_t": 283.0,
+        "weight_balance": "60:40",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.21,
+          "0_1000m": 23.97,
+          "100_150_kmh": 4.18
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.39,
+          "240_kmh": 1.47
+        },
+        "stability": {
+          "low_speed": "-0.44 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Suzuki Swift Sport KATANA Edition Gr.4",
+        "matched_name": "Suzuki Swift Sport Gr.4",
+        "match_score": 94
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3254,
+      "car": "Lexus RC F Gr.4",
+      "all_count": 24,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 1,
+      "best_rank": 752,
+      "best_score": 116202,
+      "share": 0.004778021102926538,
+      "share_percent": 0.47780211029265385,
+      "lift_top100": 0.8620689655172413,
+      "lift_top500": 0.8620689655172413,
+      "lift_top1000": 0.8909367816091953,
+      "efficiency_lift": 0.8763840195160449,
+      "quality_component": 0.42793238398364525,
+      "rarity_component": 0.9308767687175539,
+      "elite_proximity": 0.2994537230631042,
+      "evidence_factor": 0.30983866769659335,
+      "sleeper_score": 49.88850752059447,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Lexus RC F Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 605.28,
+        "power_hp": 339.0,
+        "torque_nm": 382.5,
+        "weight_kg": 1411.0,
+        "power_weight_hp_t": 240.25513819985824,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 13.16,
+          "0_1000m": 23.82,
+          "100_150_kmh": 4.28
+        },
+        "rotational_g": {
+          "60_kmh": 1.25,
+          "120_kmh": 1.34,
+          "240_kmh": 1.44
+        },
+        "stability": {
+          "low_speed": "-0.25 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Lexus RC F Gr.4",
+        "matched_name": "Lexus RC F Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 2166,
+      "car": "Alfa Romeo 4C Gr.4",
+      "all_count": 25,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 1,
+      "best_rank": 973,
+      "best_score": 116474,
+      "share": 0.004977105315548477,
+      "share_percent": 0.4977105315548477,
+      "lift_top100": 0.8571428571428571,
+      "lift_top500": 0.8571428571428572,
+      "lift_top1000": 0.8858457142857142,
+      "efficiency_lift": 0.8713761108330961,
+      "quality_component": 0.42484883543486957,
+      "rarity_component": 0.9294513974940078,
+      "elite_proximity": 0.2549604218082744,
+      "evidence_factor": 0.31622776601683794,
+      "sleeper_score": 49.471812492295115,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Alfa Romeo 4C Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 609.5,
+        "power_hp": 275.0,
+        "torque_nm": 331.5,
+        "weight_kg": 1105.0,
+        "power_weight_hp_t": 248.86877828054298,
+        "weight_balance": "41:59",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.9,
+          "0_1000m": 23.73,
+          "100_150_kmh": 4.8
+        },
+        "rotational_g": {
+          "60_kmh": 1.28,
+          "120_kmh": 1.38,
+          "240_kmh": 1.5
+        },
+        "stability": {
+          "low_speed": "-0.31 | N",
           "high_speed": "-0.99 | U"
         }
       },
       "bop_match": {
-        "requested_name": "Honda NSX CONCEPT-GT '16",
-        "matched_name": "Honda NSX CONCEPT-GT '16",
+        "requested_name": "Alfa Romeo 4C Gr.4",
+        "matched_name": "Alfa Romeo 4C Gr.4",
         "match_score": 100
       },
       "bop_available": true
     },
     {
-      "car_code": 3350,
-      "car": "Nissan GT-R NISMO GT500 '16",
-      "all_count": 9399,
-      "top100": 1,
-      "top500": 16,
-      "top1000": 33,
-      "best_rank": 20,
-      "best_score": 104795,
-      "share": 0.2110948905109489,
-      "share_percent": 21.10948905109489,
-      "lift_top100": 0.06233637030055503,
-      "lift_top500": 0.16491779243899887,
-      "lift_top1000": 0.16958058435438267,
-      "efficiency_lift": 0.1376628066711183,
-      "quality_component": 0.012586232260530787,
-      "rarity_component": 0.5405493600930031,
-      "elite_proximity": 0.7560358730119264,
-      "evidence_factor": 1.0,
-      "sleeper_score": 30.40412680148742,
-      "sleeper_label": "META / PROVEN",
-      "confidence": "HIGH",
+      "car_code": 3262,
+      "car": "TOYOTA 86 Gr.4",
+      "all_count": 21,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1152,
+      "best_score": 116700,
+      "share": 0.0041807684650607205,
+      "share_percent": 0.418076846506072,
+      "lift_top100": 0.8771929824561403,
+      "lift_top500": 0.8771929824561403,
+      "lift_top1000": 0.8771929824561403,
+      "efficiency_lift": 0.8771929824561403,
+      "quality_component": 0.4284293679698502,
+      "rarity_component": 0.935341137768588,
+      "elite_proximity": 0.223064194100086,
+      "evidence_factor": 0.28982753492378877,
+      "sleeper_score": 49.376013735322154,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
       "active_bop": {
-        "car": "Nissan GT-R NISMO GT500 '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
+        "car": "Toyota 86 Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 862.2,
-        "power_hp": 613.0,
-        "torque_nm": 588.4,
-        "weight_kg": 1035.0,
-        "power_weight_hp_t": 592.2705314009662,
+        "pp": 604.66,
+        "power_hp": 313.0,
+        "torque_nm": 322.6,
+        "weight_kg": 1320.0,
+        "power_weight_hp_t": 237.1212121212121,
+        "weight_balance": "55:45",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 13.69,
+          "0_1000m": 24.45,
+          "100_150_kmh": 4.45
+        },
+        "rotational_g": {
+          "60_kmh": 1.3,
+          "120_kmh": 1.36,
+          "240_kmh": 1.44
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "TOYOTA 86 Gr.4",
+        "matched_name": "Toyota 86 Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3253,
+      "car": "Lamborghini Huracán Gr.4",
+      "all_count": 59,
+      "top100": 0,
+      "top500": 1,
+      "top1000": 2,
+      "best_rank": 279,
+      "best_score": 115487,
+      "share": 0.011745968544694405,
+      "share_percent": 1.1745968544694405,
+      "lift_top100": 0.7177033492822967,
+      "lift_top500": 0.7657703349282298,
+      "lift_top1000": 0.7657703349282298,
+      "efficiency_lift": 0.7559060568010222,
+      "quality_component": 0.3507728066536334,
+      "rarity_component": 0.8916211803686052,
+      "elite_proximity": 0.4570471787685193,
+      "evidence_factor": 0.48579831205964474,
+      "sleeper_score": 49.29613044122769,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Lamborghini Huracán Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 605.37,
+        "power_hp": 291.0,
+        "torque_nm": 270.7,
+        "weight_kg": 1422.0,
+        "power_weight_hp_t": 204.64135021097047,
+        "weight_balance": "42:58",
+        "drivetrain": "4WD",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 13.9,
+          "0_1000m": 24.71,
+          "100_150_kmh": 4.53
+        },
+        "rotational_g": {
+          "60_kmh": 1.28,
+          "120_kmh": 1.36,
+          "240_kmh": 1.47
+        },
+        "stability": {
+          "low_speed": "0.05 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Lamborghini Huracán Gr.4",
+        "matched_name": "Lamborghini Huracán Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3261,
+      "car": "Subaru WRX Gr.4",
+      "all_count": 23,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1686,
+      "best_score": 117297,
+      "share": 0.004578936890304599,
+      "share_percent": 0.45789368903045985,
+      "lift_top100": 0.8670520231213873,
+      "lift_top500": 0.8670520231213873,
+      "lift_top1000": 0.8670520231213873,
+      "efficiency_lift": 0.8670520231213873,
+      "quality_component": 0.42217677438609263,
+      "rarity_component": 0.9323321576352208,
+      "elite_proximity": 0.15671267933027822,
+      "evidence_factor": 0.30331501776206204,
+      "sleeper_score": 48.72127930901799,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Subaru WRX Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 597.42,
+        "power_hp": 318.0,
+        "torque_nm": 403.1,
+        "weight_kg": 1370.0,
+        "power_weight_hp_t": 232.11678832116786,
+        "weight_balance": "60:40",
+        "drivetrain": "4WD",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.56,
+          "0_1000m": 23.31,
+          "100_150_kmh": 4.47
+        },
+        "rotational_g": {
+          "60_kmh": 1.17,
+          "120_kmh": 1.35,
+          "240_kmh": 1.4
+        },
+        "stability": {
+          "low_speed": "-0.23 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Subaru WRX Gr.4",
+        "matched_name": "Subaru WRX Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 2161,
+      "car": "Nissan GT-R Gr.4",
+      "all_count": 50,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 1,
+      "best_rank": 509,
+      "best_score": 115863,
+      "share": 0.009954210631096954,
+      "share_percent": 0.9954210631096954,
+      "lift_top100": 0.75,
+      "lift_top500": 0.75,
+      "lift_top1000": 0.775115,
+      "efficiency_lift": 0.7624540969789592,
+      "quality_component": 0.3551062485075793,
+      "rarity_component": 0.9002292095295574,
+      "elite_proximity": 0.3659266796405265,
+      "evidence_factor": 0.4472135954999579,
+      "sleeper_score": 48.51685852851979,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Nissan GT-R Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 600.21,
+        "power_hp": 334.0,
+        "torque_nm": 389.3,
+        "weight_kg": 1460.0,
+        "power_weight_hp_t": 228.76712328767124,
+        "weight_balance": "54:46",
+        "drivetrain": "4WD",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.91,
+          "0_1000m": 23.67,
+          "100_150_kmh": 4.5
+        },
+        "rotational_g": {
+          "60_kmh": 1.18,
+          "120_kmh": 1.36,
+          "240_kmh": 1.42
+        },
+        "stability": {
+          "low_speed": "-0.22 | N",
+          "high_speed": "-0.98 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Nissan GT-R Gr.4",
+        "matched_name": "Nissan GT-R Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3477,
+      "car": "Nissan Silvia spec-R Aero (S15) Touring Car",
+      "all_count": 67,
+      "top100": 0,
+      "top500": 1,
+      "top1000": 4,
+      "best_rank": 391,
+      "best_score": 115676,
+      "share": 0.013338642245669918,
+      "share_percent": 1.3338642245669918,
+      "lift_top100": 0.6912442396313364,
+      "lift_top500": 0.7375391705069124,
+      "lift_top1000": 0.7838341013824885,
+      "efficiency_lift": 0.7505401144942457,
+      "quality_component": 0.3472120188067346,
+      "rarity_component": 0.8845069601851699,
+      "elite_proximity": 0.408715141105984,
+      "evidence_factor": 0.5176871642217914,
+      "sleeper_score": 48.44936064429403,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Nissan Silvia spec-R Aero (S15) Touring Car",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 602.43,
+        "power_hp": 302.0,
+        "torque_nm": 298.1,
+        "weight_kg": 1185.0,
+        "power_weight_hp_t": 254.85232067510546,
+        "weight_balance": "55:45",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.2,
+          "0_1000m": 23.99,
+          "100_150_kmh": 4.62
+        },
+        "rotational_g": {
+          "60_kmh": 1.27,
+          "120_kmh": 1.36,
+          "240_kmh": 1.43
+        },
+        "stability": {
+          "low_speed": "-0.27 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Nissan Silvia spec-R Aero (S15) Touring Car",
+        "matched_name": "Nissan Silvia spec-R Aero (S15) Touring Car",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3245,
+      "car": "BMW M4 Gr.4",
+      "all_count": 21,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 2544,
+      "best_score": 118367,
+      "share": 0.0041807684650607205,
+      "share_percent": 0.418076846506072,
+      "lift_top100": 0.8771929824561403,
+      "lift_top500": 0.8771929824561403,
+      "lift_top1000": 0.8771929824561403,
+      "efficiency_lift": 0.8771929824561403,
+      "quality_component": 0.4284293679698502,
+      "rarity_component": 0.935341137768588,
+      "elite_proximity": 0.08323370560946934,
+      "evidence_factor": 0.28982753492378877,
+      "sleeper_score": 48.362845590661536,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "BMW M4 Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 594.77,
+        "power_hp": 320.0,
+        "torque_nm": 412.9,
+        "weight_kg": 1370.0,
+        "power_weight_hp_t": 233.5766423357664,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.87,
+          "0_1000m": 23.96,
+          "100_150_kmh": 4.91
+        },
+        "rotational_g": {
+          "60_kmh": 1.28,
+          "120_kmh": 1.36,
+          "240_kmh": 1.44
+        },
+        "stability": {
+          "low_speed": "-0.27 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "BMW M4 Gr.4",
+        "matched_name": "BMW M4 Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3231,
+      "car": "Volkswagen Scirocco Gr.4",
+      "all_count": 59,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 5,
+      "best_rank": 563,
+      "best_score": 115932,
+      "share": 0.011745968544694405,
+      "share_percent": 1.1745968544694405,
+      "lift_top100": 0.7177033492822967,
+      "lift_top500": 0.7177033492822966,
+      "lift_top1000": 0.8378708133971292,
+      "efficiency_lift": 0.7754628869526908,
+      "quality_component": 0.3636748814427193,
+      "rarity_component": 0.8916211803686052,
+      "elite_proximity": 0.35129584322324053,
+      "evidence_factor": 0.48579831205964474,
+      "sleeper_score": 48.35651427208224,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Volkswagen Scirocco Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 612.88,
+        "power_hp": 294.0,
+        "torque_nm": 324.6,
+        "weight_kg": 1090.0,
+        "power_weight_hp_t": 269.7247706422018,
+        "weight_balance": "60:40",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.22,
+          "0_1000m": 23.87,
+          "100_150_kmh": 4.36
+        },
+        "rotational_g": {
+          "60_kmh": 1.33,
+          "120_kmh": 1.39,
+          "240_kmh": 1.45
+        },
+        "stability": {
+          "low_speed": "-0.31 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Volkswagen Scirocco Gr.4",
+        "matched_name": "Volkswagen Scirocco Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3249,
+      "car": "Dodge Viper Gr.4",
+      "all_count": 24,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 2122,
+      "best_score": 117843,
+      "share": 0.004778021102926538,
+      "share_percent": 0.47780211029265385,
+      "lift_top100": 0.8620689655172413,
+      "lift_top500": 0.8620689655172413,
+      "lift_top1000": 0.8620689655172413,
+      "efficiency_lift": 0.8620689655172413,
+      "quality_component": 0.41908662434093735,
+      "rarity_component": 0.9308767687175539,
+      "elite_proximity": 0.11346883235589623,
+      "evidence_factor": 0.30983866769659335,
+      "sleeper_score": 48.29713304084867,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Dodge Viper Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 601.53,
+        "power_hp": 322.0,
+        "torque_nm": 408.9,
+        "weight_kg": 1405.0,
+        "power_weight_hp_t": 229.1814946619217,
+        "weight_balance": "49:51",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 13.86,
+          "0_1000m": 24.63,
+          "100_150_kmh": 4.44
+        },
+        "rotational_g": {
+          "60_kmh": 1.25,
+          "120_kmh": 1.35,
+          "240_kmh": 1.43
+        },
+        "stability": {
+          "low_speed": "-0.28 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Dodge Viper Gr.4",
+        "matched_name": "Dodge Viper Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3192,
+      "car": "Mercedes-Benz SLS AMG Gr.4",
+      "all_count": 26,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1995,
+      "best_score": 117670,
+      "share": 0.005176189528170416,
+      "share_percent": 0.5176189528170416,
+      "lift_top100": 0.8522727272727272,
+      "lift_top500": 0.8522727272727273,
+      "lift_top1000": 0.8522727272727273,
+      "efficiency_lift": 0.8522727272727273,
+      "quality_component": 0.4129782019374433,
+      "rarity_component": 0.9280542598330491,
+      "elite_proximity": 0.12569200654334808,
+      "evidence_factor": 0.322490309931942,
+      "sleeper_score": 48.1995967333874,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "AMG SLS AMG Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 604.18,
+        "power_hp": 330.0,
+        "torque_nm": 377.6,
+        "weight_kg": 1426.0,
+        "power_weight_hp_t": 231.41654978962134,
+        "weight_balance": "47:53",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.76,
+          "0_1000m": 23.49,
+          "100_150_kmh": 4.46
+        },
+        "rotational_g": {
+          "60_kmh": 1.26,
+          "120_kmh": 1.35,
+          "240_kmh": 1.43
+        },
+        "stability": {
+          "low_speed": "-0.26 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Mercedes-Benz SLS AMG Gr.4",
+        "matched_name": "AMG SLS AMG Gr.4",
+        "match_score": 70
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 1563,
+      "car": "Renault Sport Mégane Trophy '11",
+      "all_count": 60,
+      "top100": 0,
+      "top500": 1,
+      "top1000": 1,
+      "best_rank": 453,
+      "best_score": 115787,
+      "share": 0.011945052757316344,
+      "share_percent": 1.1945052757316343,
+      "lift_top100": 0.7142857142857143,
+      "lift_top500": 0.7621238095238095,
+      "lift_top1000": 0.7382047619047618,
+      "efficiency_lift": 0.7404069265207004,
+      "quality_component": 0.34046521464174484,
+      "rarity_component": 0.8907065749584343,
+      "elite_proximity": 0.38274799828733,
+      "evidence_factor": 0.4898979485566356,
+      "sleeper_score": 48.093522089740844,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Renault Mégane Trophy '11",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 605.43,
+        "power_hp": 292.0,
+        "torque_nm": 315.8,
+        "weight_kg": 1155.0,
+        "power_weight_hp_t": 252.8138528138528,
+        "weight_balance": "48:52",
+        "drivetrain": "MR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.57,
+          "0_1000m": 23.37,
+          "100_150_kmh": 4.41
+        },
+        "rotational_g": {
+          "60_kmh": 1.26,
+          "120_kmh": 1.36,
+          "240_kmh": 1.46
+        },
+        "stability": {
+          "low_speed": "-0.23 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Renault Sport Mégane Trophy '11",
+        "matched_name": "Renault Mégane Trophy '11",
+        "match_score": 90
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3256,
+      "car": "Mazda Atenza Gr.4",
+      "all_count": 25,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 2391,
+      "best_score": 118200,
+      "share": 0.004977105315548477,
+      "share_percent": 0.4977105315548477,
+      "lift_top100": 0.8571428571428571,
+      "lift_top500": 0.8571428571428572,
+      "lift_top1000": 0.8571428571428572,
+      "efficiency_lift": 0.8571428571428572,
+      "quality_component": 0.41602046257617287,
+      "rarity_component": 0.9294513974940078,
+      "elite_proximity": 0.09187330538481175,
+      "evidence_factor": 0.31622776601683794,
+      "sleeper_score": 48.028947915510315,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Mazda Atenza Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 599.47,
+        "power_hp": 346.0,
+        "torque_nm": 377.6,
+        "weight_kg": 1395.0,
+        "power_weight_hp_t": 248.02867383512543,
+        "weight_balance": "60:40",
+        "drivetrain": "4WD",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.85,
+          "0_1000m": 23.65,
+          "100_150_kmh": 4.4
+        },
+        "rotational_g": {
+          "60_kmh": 1.19,
+          "120_kmh": 1.35,
+          "240_kmh": 1.44
+        },
+        "stability": {
+          "low_speed": "-0.23 | N",
+          "high_speed": "-0.95 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Mazda Atenza Gr.4",
+        "matched_name": "Mazda Atenza Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 2164,
+      "car": "Ford Mustang Gr.4",
+      "all_count": 24,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 2770,
+      "best_score": 118703,
+      "share": 0.004778021102926538,
+      "share_percent": 0.47780211029265385,
+      "lift_top100": 0.8620689655172413,
+      "lift_top500": 0.8620689655172413,
+      "lift_top1000": 0.8620689655172413,
+      "efficiency_lift": 0.8620689655172413,
+      "quality_component": 0.41908662434093735,
+      "rarity_component": 0.9308767687175539,
+      "elite_proximity": 0.06823471047409699,
+      "evidence_factor": 0.30983866769659335,
+      "sleeper_score": 47.94675103939162,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Ford Mustang Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 606.13,
+        "power_hp": 328.0,
+        "torque_nm": 415.8,
+        "weight_kg": 1405.0,
+        "power_weight_hp_t": 233.45195729537366,
+        "weight_balance": "54:46",
+        "drivetrain": "FR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.56,
+          "0_1000m": 23.24,
+          "100_150_kmh": 4.34
+        },
+        "rotational_g": {
+          "60_kmh": 1.27,
+          "120_kmh": 1.36,
+          "240_kmh": 1.43
+        },
+        "stability": {
+          "low_speed": "-0.3 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Ford Mustang Gr.4",
+        "matched_name": "Ford Mustang Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3251,
+      "car": "Honda NSX Gr.4",
+      "all_count": 106,
+      "top100": 0,
+      "top500": 3,
+      "top1000": 8,
+      "best_rank": 233,
+      "best_score": 115339,
+      "share": 0.021102926537925542,
+      "share_percent": 2.110292653792554,
+      "lift_top100": 0.5859375,
+      "lift_top500": 0.7036640625,
+      "lift_top1000": 0.7429062500000001,
+      "efficiency_lift": 0.6970226263845376,
+      "quality_component": 0.311297082433861,
+      "rarity_component": 0.8547315363269593,
+      "elite_proximity": 0.49885167027763383,
+      "evidence_factor": 0.6511528238439882,
+      "sleeper_score": 47.84290130793726,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Honda NSX Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 608.0,
+        "power_hp": 320.0,
+        "torque_nm": 351.1,
+        "weight_kg": 1425.0,
+        "power_weight_hp_t": 224.56140350877192,
+        "weight_balance": "42:58",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.42,
+          "0_1000m": 24.19,
+          "100_150_kmh": 4.51
+        },
+        "rotational_g": {
+          "60_kmh": 1.28,
+          "120_kmh": 1.38,
+          "240_kmh": 1.48
+        },
+        "stability": {
+          "low_speed": "-0.48 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Honda NSX Gr.4",
+        "matched_name": "Honda NSX Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3252,
+      "car": "Jaguar F-type Gr.4",
+      "all_count": 39,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1243,
+      "best_score": 116798,
+      "share": 0.007764284292255624,
+      "share_percent": 0.7764284292255624,
+      "lift_top100": 0.7936507936507936,
+      "lift_top500": 0.7936507936507936,
+      "lift_top1000": 0.7936507936507936,
+      "efficiency_lift": 0.7936507936507936,
+      "quality_component": 0.37555794016095234,
+      "rarity_component": 0.911884823712055,
+      "elite_proximity": 0.21050422464777596,
+      "evidence_factor": 0.39496835316262996,
+      "sleeper_score": 47.691800520190775,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Jaguar F-type Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 603.43,
+        "power_hp": 324.0,
+        "torque_nm": 406.0,
+        "weight_kg": 1390.0,
+        "power_weight_hp_t": 233.09352517985613,
+        "weight_balance": "52:48",
+        "drivetrain": "FR",
+        "aspiration": "SC",
+        "acceleration": {
+          "0_400m": 13.03,
+          "0_1000m": 23.73,
+          "100_150_kmh": 4.34
+        },
+        "rotational_g": {
+          "60_kmh": 1.27,
+          "120_kmh": 1.35,
+          "240_kmh": 1.42
+        },
+        "stability": {
+          "low_speed": "-0.21 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Jaguar F-type Gr.4",
+        "matched_name": "Jaguar F-type Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3257,
+      "car": "McLaren 650S Gr.4",
+      "all_count": 30,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 3043,
+      "best_score": 119097,
+      "share": 0.005972526378658172,
+      "share_percent": 0.5972526378658172,
+      "lift_top100": 0.8333333333333334,
+      "lift_top500": 0.8333333333333334,
+      "lift_top1000": 0.8333333333333334,
+      "efficiency_lift": 0.8333333333333334,
+      "quality_component": 0.40104629824666216,
+      "rarity_component": 0.9227178780140053,
+      "elite_proximity": 0.054052465634748,
+      "evidence_factor": 0.34641016151377546,
+      "sleeper_score": 47.181335203426634,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "McLaren 650S Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 600.27,
+        "power_hp": 320.0,
+        "torque_nm": 338.3,
+        "weight_kg": 1361.0,
+        "power_weight_hp_t": 235.12123438648052,
+        "weight_balance": "44:56",
+        "drivetrain": "MR",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.52,
+          "0_1000m": 24.36,
+          "100_150_kmh": 4.66
+        },
+        "rotational_g": {
+          "60_kmh": 1.27,
+          "120_kmh": 1.35,
+          "240_kmh": 1.44
+        },
+        "stability": {
+          "low_speed": "-0.48 | U",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "McLaren 650S Gr.4",
+        "matched_name": "McLaren 650S Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 365,
+      "car": "Alfa Romeo 155 2.5 V6 TI '93",
+      "all_count": 49,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1780,
+      "best_score": 117405,
+      "share": 0.009755126418475014,
+      "share_percent": 0.9755126418475014,
+      "lift_top100": 0.7537688442211055,
+      "lift_top500": 0.7537688442211056,
+      "lift_top1000": 0.7537688442211056,
+      "efficiency_lift": 0.7537688442211056,
+      "quality_component": 0.34935559417782586,
+      "rarity_component": 0.901231956491611,
+      "elite_proximity": 0.14701675013214616,
+      "evidence_factor": 0.4427188724235731,
+      "sleeper_score": 45.97772884647962,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW",
+      "active_bop": {
+        "car": "Alfa Romeo 155 2.5 V6 TI '93",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 599.56,
+        "power_hp": 298.0,
+        "torque_nm": 210.8,
+        "weight_kg": 1205.0,
+        "power_weight_hp_t": 247.30290456431533,
+        "weight_balance": "58:42",
+        "drivetrain": "4WD",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 13.01,
+          "0_1000m": 23.77,
+          "100_150_kmh": 4.15
+        },
+        "rotational_g": {
+          "60_kmh": 1.25,
+          "120_kmh": 1.33,
+          "240_kmh": 1.4
+        },
+        "stability": {
+          "low_speed": "-0.25 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Alfa Romeo 155 2.5 V6 TI '93",
+        "matched_name": "Alfa Romeo 155 2.5 V6 TI '93",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3501,
+      "car": "Genesis G70 GR4",
+      "all_count": 58,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1358,
+      "best_score": 116937,
+      "share": 0.011546884332072467,
+      "share_percent": 1.1546884332072467,
+      "lift_top100": 0.7211538461538461,
+      "lift_top500": 0.7211538461538461,
+      "lift_top1000": 0.7211538461538461,
+      "efficiency_lift": 0.7211538461538461,
+      "quality_component": 0.3275722281928957,
+      "rarity_component": 0.8925435700757164,
+      "elite_proximity": 0.19389287983794812,
+      "evidence_factor": 0.48166378315169184,
+      "sleeper_score": 45.52759087272128,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Genesis G70 GR4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 606.08,
+        "power_hp": 327.0,
+        "torque_nm": 415.8,
+        "weight_kg": 1411.0,
+        "power_weight_hp_t": 231.75053153791637,
+        "weight_balance": "52:48",
+        "drivetrain": "4WD",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.67,
+          "0_1000m": 23.41,
+          "100_150_kmh": 4.38
+        },
+        "rotational_g": {
+          "60_kmh": 1.28,
+          "120_kmh": 1.37,
+          "240_kmh": 1.43
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Genesis G70 GR4",
+        "matched_name": "Genesis G70 GR4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3248,
+      "car": "GT by Citroën Gr.4",
+      "all_count": 54,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 2001,
+      "best_score": 117677,
+      "share": 0.01075054748158471,
+      "share_percent": 1.0750547481584711,
+      "lift_top100": 0.7352941176470589,
+      "lift_top500": 0.7352941176470589,
+      "lift_top1000": 0.7352941176470589,
+      "efficiency_lift": 0.7352941176470589,
+      "quality_component": 0.33705043478741237,
+      "rarity_component": 0.8963151530763308,
+      "elite_proximity": 0.12517277208363425,
+      "evidence_factor": 0.46475800154489,
+      "sleeper_score": 45.163447650794126,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Citroën GT by Citroën Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 610.16,
+        "power_hp": 312.0,
+        "torque_nm": 303.0,
+        "weight_kg": 1410.0,
+        "power_weight_hp_t": 221.27659574468086,
+        "weight_balance": "43:57",
+        "drivetrain": "MR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 13.28,
+          "0_1000m": 24.0,
+          "100_150_kmh": 4.36
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.37,
+          "240_kmh": 1.47
+        },
+        "stability": {
+          "low_speed": "-0.34 | N",
+          "high_speed": "-0.94 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "GT by Citroën Gr.4",
+        "matched_name": "Citroën GT by Citroën Gr.4",
+        "match_score": 94
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3310,
+      "car": "Porsche Cayman GT4 Clubsport '16",
+      "all_count": 71,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1285,
+      "best_score": 116841,
+      "share": 0.014134979096157674,
+      "share_percent": 1.4134979096157674,
+      "lift_top100": 0.6787330316742082,
+      "lift_top500": 0.6787330316742082,
+      "lift_top1000": 0.6787330316742082,
+      "efficiency_lift": 0.6787330316742082,
+      "quality_component": 0.2988960528904243,
+      "rarity_component": 0.8811093817992451,
+      "elite_proximity": 0.2052188523477735,
+      "evidence_factor": 0.532916503778969,
+      "sleeper_score": 44.24020744000873,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Porsche Cayman GT4 Clubsport '16",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 606.02,
+        "power_hp": 304.0,
+        "torque_nm": 336.4,
+        "weight_kg": 1370.0,
+        "power_weight_hp_t": 221.8978102189781,
+        "weight_balance": "46:54",
+        "drivetrain": "MR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 12.71,
+          "0_1000m": 23.42,
+          "100_150_kmh": 4.48
+        },
+        "rotational_g": {
+          "60_kmh": 1.26,
+          "120_kmh": 1.36,
+          "240_kmh": 1.45
+        },
+        "stability": {
+          "low_speed": "-0.2 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Porsche Cayman GT4 Clubsport '16",
+        "matched_name": "Porsche Cayman GT4 Clubsport '16",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3399,
+      "car": "Toyota GR Supra Race Car '19",
+      "all_count": 126,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 1,
+      "best_rank": 944,
+      "best_score": 116446,
+      "share": 0.025084610790364323,
+      "share_percent": 2.508461079036432,
+      "lift_top100": 0.5434782608695652,
+      "lift_top500": 0.5434782608695652,
+      "lift_top1000": 0.5616775362318841,
+      "efficiency_lift": 0.5525029688253327,
+      "quality_component": 0.213282400851503,
+      "rarity_component": 0.8416187801841256,
+      "elite_proximity": 0.25921726578222704,
+      "evidence_factor": 0.7099295739719539,
+      "sleeper_score": 39.38182423770659,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "LOW-MEDIUM",
+      "active_bop": {
+        "car": "Toyota GR Supra Race Car '19",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 605.65,
+        "power_hp": 312.0,
+        "torque_nm": 463.9,
+        "weight_kg": 1391.0,
+        "power_weight_hp_t": 224.29906542056074,
         "weight_balance": "50:50",
         "drivetrain": "FR",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 10.43,
-          "0_1000m": 18.69,
-          "100_150_kmh": 1.83
+          "0_400m": 13.35,
+          "0_1000m": 24.13,
+          "100_150_kmh": 4.58
         },
         "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.65
+          "60_kmh": 1.27,
+          "120_kmh": 1.37,
+          "240_kmh": 1.45
         },
         "stability": {
-          "low_speed": "-0.35 | N",
+          "low_speed": "-0.3 | N",
           "high_speed": "-1 | U"
         }
       },
       "bop_match": {
-        "requested_name": "Nissan GT-R NISMO GT500 '16",
-        "matched_name": "Nissan GT-R NISMO GT500 '16",
+        "requested_name": "Toyota GR Supra Race Car '19",
+        "matched_name": "Toyota GR Supra Race Car '19",
         "match_score": 100
       },
       "bop_available": true
     },
     {
-      "car_code": 3349,
-      "car": "Lexus RC F GT500 '16",
-      "all_count": 5415,
-      "top100": 1,
-      "top500": 9,
-      "top1000": 18,
-      "best_rank": 64,
-      "best_score": 105077,
-      "share": 0.12161706906232454,
-      "share_percent": 12.161706906232455,
-      "lift_top100": 0.10696316262353998,
-      "lift_top500": 0.17097035040431266,
-      "lift_top1000": 0.17097035040431266,
-      "efficiency_lift": 0.15566231627119773,
-      "quality_component": 0.01642893527538423,
-      "rarity_component": 0.651263610928936,
-      "elite_proximity": 0.6309355029667847,
-      "evidence_factor": 1.0,
-      "sleeper_score": 29.702251232894472,
+      "car_code": 3263,
+      "car": "Ferrari 458 Italia Gr.4",
+      "all_count": 129,
+      "top100": 0,
+      "top500": 0,
+      "top1000": 0,
+      "best_rank": 1357,
+      "best_score": 116934,
+      "share": 0.02568186342823014,
+      "share_percent": 2.5681863428230143,
+      "lift_top100": 0.5376344086021505,
+      "lift_top500": 0.5376344086021506,
+      "lift_top1000": 0.5376344086021506,
+      "efficiency_lift": 0.5376344086021506,
+      "quality_component": 0.20338540391829796,
+      "rarity_component": 0.8397443809776701,
+      "elite_proximity": 0.19423717015272332,
+      "evidence_factor": 0.7183313998427189,
+      "sleeper_score": 37.67128830498278,
       "sleeper_label": "NO SLEEPER SIGNAL",
-      "confidence": "HIGH",
+      "confidence": "LOW-MEDIUM",
       "active_bop": {
-        "car": "Lexus RC F GT500 '16",
-        "group": "GR.2",
-        "bop_version": "1.61",
+        "car": "Ferrari 458 Italia Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 862.89,
-        "power_hp": 614.0,
-        "torque_nm": 588.4,
-        "weight_kg": 1030.0,
-        "power_weight_hp_t": 596.1165048543689,
-        "weight_balance": "51:49",
-        "drivetrain": "FR",
-        "aspiration": "TC",
+        "pp": 606.83,
+        "power_hp": 315.0,
+        "torque_nm": 302.0,
+        "weight_kg": 1410.0,
+        "power_weight_hp_t": 223.40425531914894,
+        "weight_balance": "43:57",
+        "drivetrain": "MR",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 10.3,
-          "0_1000m": 18.55,
-          "100_150_kmh": 1.8
+          "0_400m": 13.69,
+          "0_1000m": 24.42,
+          "100_150_kmh": 4.41
         },
         "rotational_g": {
-          "60_kmh": 1.6,
-          "120_kmh": 1.81,
-          "240_kmh": 2.65
+          "60_kmh": 1.27,
+          "120_kmh": 1.36,
+          "240_kmh": 1.46
         },
         "stability": {
-          "low_speed": "-0.37 | N",
+          "low_speed": "-0.57 | U",
           "high_speed": "-1 | U"
         }
       },
       "bop_match": {
-        "requested_name": "Lexus RC F GT500 '16",
-        "matched_name": "Lexus RC F GT500 '16",
+        "requested_name": "Ferrari 458 Italia Gr.4",
+        "matched_name": "Ferrari 458 Italia Gr.4",
+        "match_score": 100
+      },
+      "bop_available": true
+    },
+    {
+      "car_code": 3590,
+      "car": "Hyundai ELANTRA N TC '24",
+      "all_count": 432,
+      "top100": 0,
+      "top500": 5,
+      "top1000": 19,
+      "best_rank": 180,
+      "best_score": 115218,
+      "share": 0.08600437985267768,
+      "share_percent": 8.600437985267769,
+      "lift_top100": 0.2577319587628866,
+      "lift_top500": 0.34403780068728523,
+      "lift_top1000": 0.421713058419244,
+      "efficiency_lift": 0.35952080566836897,
+      "quality_component": 0.09530090367695318,
+      "rarity_component": 0.7067349665359375,
+      "elite_proximity": 0.5358552616320204,
+      "evidence_factor": 1.0,
+      "sleeper_score": 32.772630573751684,
+      "sleeper_label": "NO SLEEPER SIGNAL",
+      "confidence": "MEDIUM",
+      "active_bop": {
+        "car": "Hyundai ELANTRA N TC '24",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 612.54,
+        "power_hp": 332.0,
+        "torque_nm": 427.6,
+        "weight_kg": 1265.0,
+        "power_weight_hp_t": 262.4505928853755,
+        "weight_balance": "59:41",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.47,
+          "0_1000m": 24.1,
+          "100_150_kmh": 4.21
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.39,
+          "240_kmh": 1.45
+        },
+        "stability": {
+          "low_speed": "-0.31 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "bop_match": {
+        "requested_name": "Hyundai ELANTRA N TC '24",
+        "matched_name": "Hyundai ELANTRA N TC '24",
         "match_score": 100
       },
       "bop_available": true
@@ -211,12 +1636,13 @@
   ],
   "production_pipeline_modified": false,
   "technical_learning": {
-    "model_key": "GR.2|MID",
+    "model_key": "GR.4|MID",
     "status": "BOOTSTRAP",
     "minimum_independent_races": 3,
-    "races_available_same_group_speed_class": 1,
+    "races_available_same_group_speed_class": 2,
     "independent_weeks": [
-      "2026-10-19"
+      "2026-09-28",
+      "2026-11-02"
     ],
     "features": [
       "power_weight_hp_t",
@@ -229,14 +1655,14 @@
       "rotational_g_240"
     ],
     "observed_feature_correlations": {
-      "power_weight_hp_t": null,
-      "weight_kg": null,
-      "front_weight_pct": null,
-      "acceleration_0_400": null,
-      "acceleration_100_150": null,
-      "rotational_g_60": null,
-      "rotational_g_120": null,
-      "rotational_g_240": null
+      "power_weight_hp_t": 0.42249844214090626,
+      "weight_kg": -0.3205973071953372,
+      "front_weight_pct": 0.34562002660047597,
+      "acceleration_0_400": 0.09233973499729357,
+      "acceleration_100_150": -0.2860584834194237,
+      "rotational_g_60": 0.13745380852322317,
+      "rotational_g_120": 0.3307687481914875,
+      "rotational_g_240": 0.09182931524273034
     },
     "technical_weight_in_sleeper_score": 0.0,
     "multi_group_model_coverage": {
@@ -257,7 +1683,7 @@
         "status": "BOOTSTRAP"
       },
       "GR.4|MID": {
-        "independent_races": 1,
+        "independent_races": 2,
         "status": "BOOTSTRAP"
       }
     },
