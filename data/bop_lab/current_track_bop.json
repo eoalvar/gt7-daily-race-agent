@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-02T17:54:20.158105+00:00",
+  "generated_at": "2026-11-02T18:52:23.831619+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-11-02T14:54:08.351924-03:00",
+  "snapshot_timestamp": "2026-11-02T15:52:10.179769-03:00",
   "race_description": "C Gr.4 Running Daily Race C i 00:00 Watkins Glen Long Course S. Inui - Audi TT Cup '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
   "track": "Watkins Glen Long Course",
   "group": "GR.4",
@@ -238,8 +238,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 968,
-      "leaderboard_percentage": 96.8,
+      "leaderboard_count": 979,
+      "leaderboard_percentage": 97.89999999999999,
       "active_bop": {
         "car": "Audi TT Cup '16",
         "group": "GR.4",
@@ -364,8 +364,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 14,
-      "leaderboard_percentage": 1.4000000000000001,
+      "leaderboard_count": 11,
+      "leaderboard_percentage": 1.0999999999999999,
       "active_bop": {
         "car": "Mazda MAZDA3 Gr.4",
         "group": "GR.4",
@@ -490,8 +490,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 5,
-      "leaderboard_percentage": 0.5,
+      "leaderboard_count": 3,
+      "leaderboard_percentage": 0.3,
       "active_bop": {
         "car": "Hyundai ELANTRA N TC '24",
         "group": "GR.4",
@@ -616,8 +616,8 @@
           "high_speed": "-0.99 | U"
         }
       },
-      "leaderboard_count": 4,
-      "leaderboard_percentage": 0.4,
+      "leaderboard_count": 3,
+      "leaderboard_percentage": 0.3,
       "active_bop": {
         "car": "Honda NSX Gr.4",
         "group": "GR.4",
@@ -648,127 +648,127 @@
       }
     },
     {
-      "car": "Peugeot RCZ Gr.4",
+      "car": "Lamborghini Huracán Gr.4",
       "available": true,
       "match": {
-        "requested_name": "Peugeot RCZ Gr.4",
-        "matched_name": "Peugeot RCZ Gr.4",
+        "requested_name": "Lamborghini Huracán Gr.4",
+        "matched_name": "Lamborghini Huracán Gr.4",
         "match_score": 100
       },
       "bop_version": "1.67",
-      "distinct_signatures": 1,
-      "can_identify_speed_class_from_car": false,
+      "distinct_signatures": 2,
+      "can_identify_speed_class_from_car": true,
       "HIGH": {
-        "car": "Peugeot RCZ Gr.4",
+        "car": "Lamborghini Huracán Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 610.0,
-        "power_hp": 318.0,
-        "torque_nm": 360.9,
-        "weight_kg": 1225.0,
-        "power_weight_hp_t": 259.59183673469386,
-        "weight_balance": "62:38",
-        "drivetrain": "FF",
-        "aspiration": "TC",
+        "pp": 606.44,
+        "power_hp": 295.0,
+        "torque_nm": 274.6,
+        "weight_kg": 1433.0,
+        "power_weight_hp_t": 205.86182833217026,
+        "weight_balance": "42:58",
+        "drivetrain": "4WD",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 13.25,
-          "0_1000m": 23.93,
-          "100_150_kmh": 4.24
+          "0_400m": 13.85,
+          "0_1000m": 24.62,
+          "100_150_kmh": 4.49
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.38,
-          "240_kmh": 1.44
+          "60_kmh": 1.28,
+          "120_kmh": 1.36,
+          "240_kmh": 1.47
         },
         "stability": {
-          "low_speed": "-0.32 | N",
+          "low_speed": "0.05 | N",
           "high_speed": "-1 | U"
         }
       },
       "MID": {
-        "car": "Peugeot RCZ Gr.4",
+        "car": "Lamborghini Huracán Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 610.0,
-        "power_hp": 318.0,
-        "torque_nm": 360.9,
-        "weight_kg": 1225.0,
-        "power_weight_hp_t": 259.59183673469386,
-        "weight_balance": "62:38",
-        "drivetrain": "FF",
-        "aspiration": "TC",
+        "pp": 605.37,
+        "power_hp": 291.0,
+        "torque_nm": 270.7,
+        "weight_kg": 1422.0,
+        "power_weight_hp_t": 204.64135021097047,
+        "weight_balance": "42:58",
+        "drivetrain": "4WD",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 13.25,
-          "0_1000m": 23.93,
-          "100_150_kmh": 4.24
+          "0_400m": 13.9,
+          "0_1000m": 24.71,
+          "100_150_kmh": 4.53
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.38,
-          "240_kmh": 1.44
+          "60_kmh": 1.28,
+          "120_kmh": 1.36,
+          "240_kmh": 1.47
         },
         "stability": {
-          "low_speed": "-0.32 | N",
+          "low_speed": "0.05 | N",
           "high_speed": "-1 | U"
         }
       },
       "LOW": {
-        "car": "Peugeot RCZ Gr.4",
+        "car": "Lamborghini Huracán Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "LOW",
-        "pp": 610.0,
-        "power_hp": 318.0,
-        "torque_nm": 360.9,
-        "weight_kg": 1225.0,
-        "power_weight_hp_t": 259.59183673469386,
-        "weight_balance": "62:38",
-        "drivetrain": "FF",
-        "aspiration": "TC",
+        "pp": 605.37,
+        "power_hp": 291.0,
+        "torque_nm": 270.7,
+        "weight_kg": 1422.0,
+        "power_weight_hp_t": 204.64135021097047,
+        "weight_balance": "42:58",
+        "drivetrain": "4WD",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 13.25,
-          "0_1000m": 23.93,
-          "100_150_kmh": 4.24
+          "0_400m": 13.9,
+          "0_1000m": 24.71,
+          "100_150_kmh": 4.53
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.38,
-          "240_kmh": 1.44
+          "60_kmh": 1.28,
+          "120_kmh": 1.36,
+          "240_kmh": 1.47
         },
         "stability": {
-          "low_speed": "-0.32 | N",
+          "low_speed": "0.05 | N",
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 3,
-      "leaderboard_percentage": 0.3,
+      "leaderboard_count": 1,
+      "leaderboard_percentage": 0.1,
       "active_bop": {
-        "car": "Peugeot RCZ Gr.4",
+        "car": "Lamborghini Huracán Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 610.0,
-        "power_hp": 318.0,
-        "torque_nm": 360.9,
-        "weight_kg": 1225.0,
-        "power_weight_hp_t": 259.59183673469386,
-        "weight_balance": "62:38",
-        "drivetrain": "FF",
-        "aspiration": "TC",
+        "pp": 605.37,
+        "power_hp": 291.0,
+        "torque_nm": 270.7,
+        "weight_kg": 1422.0,
+        "power_weight_hp_t": 204.64135021097047,
+        "weight_balance": "42:58",
+        "drivetrain": "4WD",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 13.25,
-          "0_1000m": 23.93,
-          "100_150_kmh": 4.24
+          "0_400m": 13.9,
+          "0_1000m": 24.71,
+          "100_150_kmh": 4.53
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.38,
-          "240_kmh": 1.44
+          "60_kmh": 1.28,
+          "120_kmh": 1.36,
+          "240_kmh": 1.47
         },
         "stability": {
-          "low_speed": "-0.32 | N",
+          "low_speed": "0.05 | N",
           "high_speed": "-1 | U"
         }
       }
