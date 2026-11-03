@@ -1,0 +1,231 @@
+{
+  "timestamp": "2026-11-03T13:32:45.132199-03:00",
+  "race": {
+    "description": "C Gr.4 Running Daily Race C i 00:00 Watkins Glen Long Course RTR_STOKIEBEN777 - Audi TT Cup '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBWkBEA28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "detection_mode": "explicit_running_local_block",
+    "safety_validation": "PASSED",
+    "source_mode": "live_page_data_parallel",
+    "fuel_multiplier": 3,
+    "tyre_multiplier": 5,
+    "compounds": [
+      "RH",
+      "RM"
+    ],
+    "start_date": null
+  },
+  "total_drivers": 20583,
+  "world_record": {
+    "score": 113955,
+    "laptime": "1:53.955",
+    "driver": "RTR_STOKIEBEN777",
+    "psn_id": "RTR_STOKIEBEN777",
+    "car_code": 3298,
+    "car": "Audi TT Cup '16"
+  },
+  "benchmarks": {
+    "103_percent": {
+      "score": 117374,
+      "laptime": "1:57.374"
+    },
+    "105_percent": {
+      "score": 119653,
+      "laptime": "1:59.653"
+    }
+  },
+  "thresholds": {
+    "1": {
+      "score": 113955,
+      "laptime": "1:53.955"
+    },
+    "10": {
+      "score": 114090,
+      "laptime": "1:54.090"
+    },
+    "50": {
+      "score": 114345,
+      "laptime": "1:54.345"
+    },
+    "100": {
+      "score": 114483,
+      "laptime": "1:54.483"
+    },
+    "250": {
+      "score": 114747,
+      "laptime": "1:54.747"
+    },
+    "500": {
+      "score": 114992,
+      "laptime": "1:54.992"
+    },
+    "1000": {
+      "score": 115320,
+      "laptime": "1:55.320"
+    },
+    "2500": {
+      "score": 115971,
+      "laptime": "1:55.971"
+    },
+    "5000": {
+      "score": 116781,
+      "laptime": "1:56.781"
+    },
+    "10000": {
+      "score": 118278,
+      "laptime": "1:58.278"
+    }
+  },
+  "percentile_thresholds": {
+    "10": {
+      "percent": 10,
+      "rank": 2059,
+      "score": 115818,
+      "laptime": "1:55.818"
+    },
+    "5": {
+      "percent": 5,
+      "rank": 1030,
+      "score": 115333,
+      "laptime": "1:55.333"
+    }
+  },
+  "my_result": {
+    "psn_id": "crazy_rooster74",
+    "rank": 2216,
+    "score": 115875,
+    "laptime": "1:55.875",
+    "car_code": 3298,
+    "car": "Audi TT Cup '16",
+    "country": "BR",
+    "driver_rating": 5,
+    "gap_to_wr_ms": 1920,
+    "wr_percentage": 101.68487560879294,
+    "position_score": 8.923816927412302,
+    "elite_score": 2.2439711871073023,
+    "composite_rating": 6.251878631290302,
+    "percentile_ahead": 89.23816927412302,
+    "top_percent": 10.766166253704514,
+    "pace_band": "ELITE"
+  },
+  "same_car_stats": {
+    "rank": 2161,
+    "total": 13463
+  },
+  "country_stats": {
+    "rank": 114,
+    "total": 1377,
+    "country": "BR"
+  },
+  "dr_stats": {
+    "rank": 923,
+    "total": 1701,
+    "dr": 5
+  },
+  "next_targets": [
+    {
+      "label": "Top 10%",
+      "rank": 2059,
+      "score": 115818,
+      "laptime": "1:55.818",
+      "gain_needed_ms": 57
+    },
+    {
+      "label": "Top 5%",
+      "rank": 1030,
+      "score": 115333,
+      "laptime": "1:55.333",
+      "gain_needed_ms": 542
+    },
+    {
+      "label": "Top 1000",
+      "rank": 1000,
+      "score": 115320,
+      "laptime": "1:55.320",
+      "gain_needed_ms": 555
+    },
+    {
+      "label": "Top 500",
+      "rank": 500,
+      "score": 114992,
+      "laptime": "1:54.992",
+      "gain_needed_ms": 883
+    }
+  ],
+  "top5_used_cars": [
+    {
+      "car_code": 3298,
+      "car": "Audi TT Cup '16",
+      "count": 986,
+      "percentage": 98.6
+    },
+    {
+      "car_code": 3537,
+      "car": "MAZDA3 Gr.4",
+      "count": 6,
+      "percentage": 0.6
+    },
+    {
+      "car_code": 3590,
+      "car": "Hyundai ELANTRA N TC '24",
+      "count": 4,
+      "percentage": 0.4
+    },
+    {
+      "car_code": 3251,
+      "car": "Honda NSX Gr.4",
+      "count": 1,
+      "percentage": 0.1
+    },
+    {
+      "car_code": 3263,
+      "car": "Ferrari 458 Italia Gr.4",
+      "count": 1,
+      "percentage": 0.1
+    }
+  ],
+  "overperformance": [
+    {
+      "car_code": 3298,
+      "car": "Audi TT Cup '16",
+      "all_count": 13463,
+      "top100": 100,
+      "top1000": 986,
+      "oi100": 1.528856866968729,
+      "oi1000": 1.5074528708311667,
+      "overperformance_index": 1.5224356681274602,
+      "confidence": "High"
+    }
+  ],
+  "car_comparison": {
+    "my_car": "Audi TT Cup '16",
+    "my_car_best_score": 113955,
+    "my_car_best_laptime": "1:53.955",
+    "gap_to_best_same_car_ms": 1920,
+    "meta_car": "Audi TT Cup '16",
+    "meta_car_best_score": 113955,
+    "meta_car_best_laptime": "1:53.955",
+    "theoretical_car_gap_ms": 0
+  },
+  "car_database": {
+    "total_known_cars": 592,
+    "technical_records": 33,
+    "discovered_this_run": 592,
+    "added_this_run": 0,
+    "updated_this_run": 0
+  },
+  "health": {
+    "unknown_car_share": 0.0,
+    "unknown_car_entries": 0,
+    "invalid_car_code_entries": 5,
+    "source_mode": "live_page_data_parallel",
+    "race_detection_mode": "explicit_running_local_block",
+    "race_safety_validation": "PASSED",
+    "leaderboard_entries": 20583,
+    "my_driver_found": true,
+    "warnings": []
+  },
+  "forecast_v2": {
+    "available": false,
+    "reason": "Race start date unavailable."
+  }
+}

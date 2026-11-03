@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-03T00:41:40.049478+00:00",
+  "generated_at": "2026-11-03T16:33:04.097758+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-11-02T21:41:26.237261-03:00",
+  "snapshot_timestamp": "2026-11-03T13:32:45.132199-03:00",
   "race_description": "C Gr.4 Running Daily Race C i 00:00 Watkins Glen Long Course RTR_STOKIEBEN777 - Audi TT Cup '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
   "track": "Watkins Glen Long Course",
   "group": "GR.4",
@@ -238,8 +238,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 985,
-      "leaderboard_percentage": 98.5,
+      "leaderboard_count": 986,
+      "leaderboard_percentage": 98.6,
       "active_bop": {
         "car": "Audi TT Cup '16",
         "group": "GR.4",
@@ -364,8 +364,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 8,
-      "leaderboard_percentage": 0.8,
+      "leaderboard_count": 6,
+      "leaderboard_percentage": 0.6,
       "active_bop": {
         "car": "Mazda MAZDA3 Gr.4",
         "group": "GR.4",
@@ -616,8 +616,8 @@
           "high_speed": "-0.99 | U"
         }
       },
-      "leaderboard_count": 2,
-      "leaderboard_percentage": 0.2,
+      "leaderboard_count": 1,
+      "leaderboard_percentage": 0.1,
       "active_bop": {
         "car": "Honda NSX Gr.4",
         "group": "GR.4",
@@ -648,127 +648,127 @@
       }
     },
     {
-      "car": "Lamborghini Huracán Gr.4",
+      "car": "Ferrari 458 Italia Gr.4",
       "available": true,
       "match": {
-        "requested_name": "Lamborghini Huracán Gr.4",
-        "matched_name": "Lamborghini Huracán Gr.4",
+        "requested_name": "Ferrari 458 Italia Gr.4",
+        "matched_name": "Ferrari 458 Italia Gr.4",
         "match_score": 100
       },
       "bop_version": "1.67",
-      "distinct_signatures": 2,
-      "can_identify_speed_class_from_car": true,
+      "distinct_signatures": 1,
+      "can_identify_speed_class_from_car": false,
       "HIGH": {
-        "car": "Lamborghini Huracán Gr.4",
+        "car": "Ferrari 458 Italia Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 606.44,
-        "power_hp": 295.0,
-        "torque_nm": 274.6,
-        "weight_kg": 1433.0,
-        "power_weight_hp_t": 205.86182833217026,
-        "weight_balance": "42:58",
-        "drivetrain": "4WD",
+        "pp": 606.83,
+        "power_hp": 315.0,
+        "torque_nm": 302.0,
+        "weight_kg": 1410.0,
+        "power_weight_hp_t": 223.40425531914894,
+        "weight_balance": "43:57",
+        "drivetrain": "MR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 13.85,
-          "0_1000m": 24.62,
-          "100_150_kmh": 4.49
+          "0_400m": 13.69,
+          "0_1000m": 24.42,
+          "100_150_kmh": 4.41
         },
         "rotational_g": {
-          "60_kmh": 1.28,
+          "60_kmh": 1.27,
           "120_kmh": 1.36,
-          "240_kmh": 1.47
+          "240_kmh": 1.46
         },
         "stability": {
-          "low_speed": "0.05 | N",
+          "low_speed": "-0.57 | U",
           "high_speed": "-1 | U"
         }
       },
       "MID": {
-        "car": "Lamborghini Huracán Gr.4",
+        "car": "Ferrari 458 Italia Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 605.37,
-        "power_hp": 291.0,
-        "torque_nm": 270.7,
-        "weight_kg": 1422.0,
-        "power_weight_hp_t": 204.64135021097047,
-        "weight_balance": "42:58",
-        "drivetrain": "4WD",
+        "pp": 606.83,
+        "power_hp": 315.0,
+        "torque_nm": 302.0,
+        "weight_kg": 1410.0,
+        "power_weight_hp_t": 223.40425531914894,
+        "weight_balance": "43:57",
+        "drivetrain": "MR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 13.9,
-          "0_1000m": 24.71,
-          "100_150_kmh": 4.53
+          "0_400m": 13.69,
+          "0_1000m": 24.42,
+          "100_150_kmh": 4.41
         },
         "rotational_g": {
-          "60_kmh": 1.28,
+          "60_kmh": 1.27,
           "120_kmh": 1.36,
-          "240_kmh": 1.47
+          "240_kmh": 1.46
         },
         "stability": {
-          "low_speed": "0.05 | N",
+          "low_speed": "-0.57 | U",
           "high_speed": "-1 | U"
         }
       },
       "LOW": {
-        "car": "Lamborghini Huracán Gr.4",
+        "car": "Ferrari 458 Italia Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "LOW",
-        "pp": 605.37,
-        "power_hp": 291.0,
-        "torque_nm": 270.7,
-        "weight_kg": 1422.0,
-        "power_weight_hp_t": 204.64135021097047,
-        "weight_balance": "42:58",
-        "drivetrain": "4WD",
+        "pp": 606.83,
+        "power_hp": 315.0,
+        "torque_nm": 302.0,
+        "weight_kg": 1410.0,
+        "power_weight_hp_t": 223.40425531914894,
+        "weight_balance": "43:57",
+        "drivetrain": "MR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 13.9,
-          "0_1000m": 24.71,
-          "100_150_kmh": 4.53
+          "0_400m": 13.69,
+          "0_1000m": 24.42,
+          "100_150_kmh": 4.41
         },
         "rotational_g": {
-          "60_kmh": 1.28,
+          "60_kmh": 1.27,
           "120_kmh": 1.36,
-          "240_kmh": 1.47
+          "240_kmh": 1.46
         },
         "stability": {
-          "low_speed": "0.05 | N",
+          "low_speed": "-0.57 | U",
           "high_speed": "-1 | U"
         }
       },
       "leaderboard_count": 1,
       "leaderboard_percentage": 0.1,
       "active_bop": {
-        "car": "Lamborghini Huracán Gr.4",
+        "car": "Ferrari 458 Italia Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 605.37,
-        "power_hp": 291.0,
-        "torque_nm": 270.7,
-        "weight_kg": 1422.0,
-        "power_weight_hp_t": 204.64135021097047,
-        "weight_balance": "42:58",
-        "drivetrain": "4WD",
+        "pp": 606.83,
+        "power_hp": 315.0,
+        "torque_nm": 302.0,
+        "weight_kg": 1410.0,
+        "power_weight_hp_t": 223.40425531914894,
+        "weight_balance": "43:57",
+        "drivetrain": "MR",
         "aspiration": "NA",
         "acceleration": {
-          "0_400m": 13.9,
-          "0_1000m": 24.71,
-          "100_150_kmh": 4.53
+          "0_400m": 13.69,
+          "0_1000m": 24.42,
+          "100_150_kmh": 4.41
         },
         "rotational_g": {
-          "60_kmh": 1.28,
+          "60_kmh": 1.27,
           "120_kmh": 1.36,
-          "240_kmh": 1.47
+          "240_kmh": 1.46
         },
         "stability": {
-          "low_speed": "0.05 | N",
+          "low_speed": "-0.57 | U",
           "high_speed": "-1 | U"
         }
       }
