@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-11-04T07:54:18.029163-03:00",
+  "timestamp": "2026-11-04T13:36:57.569742-03:00",
   "race": {
-    "description": "C Gr.4 Running Daily Race C i 00:00 Watkins Glen Long Course Lukas - Audi TT Cup '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
+    "description": "C Gr.4 Running Daily Race C i 00:00 Watkins Glen Long Course M. Rodríguez - Audi TT Cup '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
     "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBWkBEA28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
     "detection_mode": "explicit_running_local_block",
     "safety_validation": "PASSED",
@@ -14,163 +14,163 @@
     ],
     "start_date": null
   },
-  "total_drivers": 26268,
+  "total_drivers": 27074,
   "world_record": {
-    "score": 113927,
-    "laptime": "1:53.927",
-    "driver": "Lukas",
-    "psn_id": "Lukas2504-_-",
+    "score": 113917,
+    "laptime": "1:53.917",
+    "driver": "M. Rodríguez ",
+    "psn_id": "YT_ManuRodry94",
     "car_code": 3298,
     "car": "Audi TT Cup '16"
   },
   "benchmarks": {
     "103_percent": {
-      "score": 117345,
-      "laptime": "1:57.345"
+      "score": 117335,
+      "laptime": "1:57.335"
     },
     "105_percent": {
-      "score": 119623,
-      "laptime": "1:59.623"
+      "score": 119613,
+      "laptime": "1:59.613"
     }
   },
   "thresholds": {
     "1": {
-      "score": 113927,
-      "laptime": "1:53.927"
+      "score": 113917,
+      "laptime": "1:53.917"
     },
     "10": {
-      "score": 114071,
-      "laptime": "1:54.071"
+      "score": 114048,
+      "laptime": "1:54.048"
     },
     "50": {
-      "score": 114292,
-      "laptime": "1:54.292"
+      "score": 114284,
+      "laptime": "1:54.284"
     },
     "100": {
-      "score": 114399,
-      "laptime": "1:54.399"
+      "score": 114395,
+      "laptime": "1:54.395"
     },
     "250": {
-      "score": 114650,
-      "laptime": "1:54.650"
+      "score": 114631,
+      "laptime": "1:54.631"
     },
     "500": {
-      "score": 114867,
-      "laptime": "1:54.867"
+      "score": 114856,
+      "laptime": "1:54.856"
     },
     "1000": {
-      "score": 115173,
-      "laptime": "1:55.173"
+      "score": 115148,
+      "laptime": "1:55.148"
     },
     "2500": {
-      "score": 115756,
-      "laptime": "1:55.756"
+      "score": 115721,
+      "laptime": "1:55.721"
     },
     "5000": {
-      "score": 116423,
-      "laptime": "1:56.423"
+      "score": 116380,
+      "laptime": "1:56.380"
     },
     "10000": {
-      "score": 117587,
-      "laptime": "1:57.587"
+      "score": 117519,
+      "laptime": "1:57.519"
     }
   },
   "percentile_thresholds": {
     "10": {
       "percent": 10,
-      "rank": 2627,
-      "score": 115795,
-      "laptime": "1:55.795"
+      "rank": 2708,
+      "score": 115790,
+      "laptime": "1:55.790"
     },
     "5": {
       "percent": 5,
-      "rank": 1314,
-      "score": 115322,
-      "laptime": "1:55.322"
+      "rank": 1354,
+      "score": 115313,
+      "laptime": "1:55.313"
     }
   },
   "my_result": {
     "psn_id": "crazy_rooster74",
-    "rank": 2909,
+    "rank": 3023,
     "score": 115875,
     "laptime": "1:55.875",
     "car_code": 3298,
     "car": "Audi TT Cup '16",
     "country": "BR",
     "driver_rating": 5,
-    "gap_to_wr_ms": 1948,
-    "wr_percentage": 101.70986684455836,
-    "position_score": 8.892907450413066,
-    "elite_score": 7.5913510302866785,
-    "composite_rating": 6.200728355915972,
-    "percentile_ahead": 88.92907450413065,
-    "top_percent": 11.074310948682808,
+    "gap_to_wr_ms": 1958,
+    "wr_percentage": 101.71879526321797,
+    "position_score": 8.883758726406384,
+    "elite_score": 7.582317667201682,
+    "composite_rating": 6.189457055653177,
+    "percentile_ahead": 88.83758726406383,
+    "top_percent": 11.165694023786658,
     "pace_band": "ELITE",
-    "legacy_elite_score": 2.1624597141703292,
-    "legacy_general_score": 8.892907450413066,
-    "legacy_composite_rating": 6.200728355915972,
-    "cpi_score": 7.5913510302866785,
+    "legacy_elite_score": 2.1480045495233666,
+    "legacy_general_score": 8.883758726406384,
+    "legacy_composite_rating": 6.189457055653177,
+    "cpi_score": 7.582317667201682,
     "cpi_band": "VERY STRONG",
     "rating_model": "CPI_50_50_V1",
     "driver_rating_label": "A"
   },
   "same_car_stats": {
-    "rank": 2835,
-    "total": 17133
+    "rank": 2946,
+    "total": 17655
   },
   "country_stats": {
-    "rank": 162,
-    "total": 1756,
+    "rank": 164,
+    "total": 1781,
     "country": "BR"
   },
   "dr_stats": {
-    "rank": 1174,
-    "total": 2009,
+    "rank": 1206,
+    "total": 2057,
     "dr": 5,
     "label": "A"
   },
   "next_targets": [
     {
       "label": "Top 10%",
-      "rank": 2627,
-      "score": 115795,
-      "laptime": "1:55.795",
-      "gain_needed_ms": 80
+      "rank": 2708,
+      "score": 115790,
+      "laptime": "1:55.790",
+      "gain_needed_ms": 85
     },
     {
       "label": "Top 5%",
-      "rank": 1314,
-      "score": 115322,
-      "laptime": "1:55.322",
-      "gain_needed_ms": 553
+      "rank": 1354,
+      "score": 115313,
+      "laptime": "1:55.313",
+      "gain_needed_ms": 562
     },
     {
       "label": "Top 1000",
       "rank": 1000,
-      "score": 115173,
-      "laptime": "1:55.173",
-      "gain_needed_ms": 702
+      "score": 115148,
+      "laptime": "1:55.148",
+      "gain_needed_ms": 727
     },
     {
       "label": "Top 2%",
-      "rank": 526,
-      "score": 114890,
-      "laptime": "1:54.890",
-      "gain_needed_ms": 985
+      "rank": 542,
+      "score": 114885,
+      "laptime": "1:54.885",
+      "gain_needed_ms": 990
     }
   ],
   "top5_used_cars": [
     {
       "car_code": 3298,
       "car": "Audi TT Cup '16",
-      "count": 992,
-      "percentage": 99.2
+      "count": 989,
+      "percentage": 98.9
     },
     {
       "car_code": 3537,
       "car": "MAZDA3 Gr.4",
-      "count": 3,
-      "percentage": 0.3
+      "count": 4,
+      "percentage": 0.4
     },
     {
       "car_code": 3590,
@@ -195,23 +195,23 @@
     {
       "car_code": 3298,
       "car": "Audi TT Cup '16",
-      "all_count": 17133,
+      "all_count": 17655,
       "top100": 100,
-      "top1000": 992,
-      "oi100": 1.5331815794081598,
-      "oi1000": 1.5209161267728946,
-      "overperformance_index": 1.5295019436175803,
+      "top1000": 989,
+      "oi100": 1.533503256867743,
+      "oi1000": 1.5166347210421975,
+      "overperformance_index": 1.5284426961200792,
       "confidence": "High"
     }
   ],
   "car_comparison": {
     "my_car": "Audi TT Cup '16",
-    "my_car_best_score": 113927,
-    "my_car_best_laptime": "1:53.927",
-    "gap_to_best_same_car_ms": 1948,
+    "my_car_best_score": 113917,
+    "my_car_best_laptime": "1:53.917",
+    "gap_to_best_same_car_ms": 1958,
     "meta_car": "Audi TT Cup '16",
-    "meta_car_best_score": 113927,
-    "meta_car_best_laptime": "1:53.927",
+    "meta_car_best_score": 113917,
+    "meta_car_best_laptime": "1:53.917",
     "theoretical_car_gap_ms": 0
   },
   "car_database": {
@@ -228,7 +228,7 @@
     "source_mode": "live_page_data_parallel",
     "race_detection_mode": "explicit_running_local_block",
     "race_safety_validation": "PASSED",
-    "leaderboard_entries": 26268,
+    "leaderboard_entries": 27074,
     "my_driver_found": true,
     "warnings": []
   },
@@ -244,115 +244,115 @@
     "dr_percentage": 23,
     "sportsmanship_rating": 6,
     "source": "GTSH public profile",
-    "captured_at": "2026-11-04T10:54:45.095803+00:00"
+    "captured_at": "2026-11-04T16:37:35.106956+00:00"
   },
   "dr_laptime_stats": {
     "1": {
       "dr": 1,
       "label": "E",
-      "drivers": 847,
-      "average_score": 123530.66587957497,
-      "average_laptime": "2:03.531",
-      "stddev_ms": 4410.34766858408,
-      "stddev_seconds": 4.4103476685840795,
+      "drivers": 900,
+      "average_score": 123434.13555555555,
+      "average_laptime": "2:03.434",
+      "stddev_ms": 4305.368166404745,
+      "stddev_seconds": 4.305368166404746,
       "diagnostics": {
-        "raw_n": 863,
-        "clean_n": 847,
+        "raw_n": 916,
+        "clean_n": 900,
         "excluded_n": 16,
-        "median_ms": 122937.0,
-        "mad_ms": 2575.0,
-        "lower_fence_ms": 103848.525,
-        "upper_fence_ms": 142025.475
+        "median_ms": 122892.0,
+        "mad_ms": 2588.5,
+        "lower_fence_ms": 103703.4495,
+        "upper_fence_ms": 142080.5505
       }
     },
     "2": {
       "dr": 2,
       "label": "D",
-      "drivers": 7323,
-      "average_score": 121179.86412672402,
-      "average_laptime": "2:01.180",
-      "stddev_ms": 2874.0569809848193,
-      "stddev_seconds": 2.8740569809848195,
+      "drivers": 7599,
+      "average_score": 121170.6640347414,
+      "average_laptime": "2:01.171",
+      "stddev_ms": 2887.8522465456504,
+      "stddev_seconds": 2.88785224654565,
       "diagnostics": {
-        "raw_n": 7388,
-        "clean_n": 7323,
-        "excluded_n": 65,
-        "median_ms": 120668.5,
-        "mad_ms": 1742.5,
-        "lower_fence_ms": 107751.3475,
-        "upper_fence_ms": 133585.6525
+        "raw_n": 7671,
+        "clean_n": 7599,
+        "excluded_n": 72,
+        "median_ms": 120657.0,
+        "mad_ms": 1745.0,
+        "lower_fence_ms": 107721.315,
+        "upper_fence_ms": 133592.685
       }
     },
     "3": {
       "dr": 3,
       "label": "C",
-      "drivers": 6874,
-      "average_score": 118925.6232179226,
-      "average_laptime": "1:58.926",
-      "stddev_ms": 1920.1387163838715,
-      "stddev_seconds": 1.9201387163838715,
+      "drivers": 7070,
+      "average_score": 118913.41951909476,
+      "average_laptime": "1:58.913",
+      "stddev_ms": 1920.3058793840476,
+      "stddev_seconds": 1.9203058793840475,
       "diagnostics": {
-        "raw_n": 6926,
-        "clean_n": 6874,
-        "excluded_n": 52,
-        "median_ms": 118588.0,
-        "mad_ms": 1165.5,
-        "lower_fence_ms": 109948.1485,
-        "upper_fence_ms": 127227.8515
+        "raw_n": 7119,
+        "clean_n": 7070,
+        "excluded_n": 49,
+        "median_ms": 118581.0,
+        "mad_ms": 1167.0,
+        "lower_fence_ms": 109930.029,
+        "upper_fence_ms": 127231.971
       }
     },
     "4": {
       "dr": 4,
       "label": "B",
-      "drivers": 8452,
-      "average_score": 117376.73083293895,
-      "average_laptime": "1:57.377",
-      "stddev_ms": 1549.6062144488856,
-      "stddev_seconds": 1.5496062144488856,
+      "drivers": 8663,
+      "average_score": 117361.46865981762,
+      "average_laptime": "1:57.361",
+      "stddev_ms": 1551.4482239957974,
+      "stddev_seconds": 1.5514482239957974,
       "diagnostics": {
-        "raw_n": 8517,
-        "clean_n": 8452,
-        "excluded_n": 65,
-        "median_ms": 117051.0,
-        "mad_ms": 922.0,
-        "lower_fence_ms": 110216.214,
-        "upper_fence_ms": 123885.786
+        "raw_n": 8731,
+        "clean_n": 8663,
+        "excluded_n": 68,
+        "median_ms": 117038.0,
+        "mad_ms": 921.0,
+        "lower_fence_ms": 110210.62700000001,
+        "upper_fence_ms": 123865.37299999999
       }
     },
     "5": {
       "dr": 5,
       "label": "A",
-      "drivers": 1970,
-      "average_score": 115902.53299492385,
-      "average_laptime": "1:55.903",
-      "stddev_ms": 981.7140346687776,
-      "stddev_seconds": 0.9817140346687776,
+      "drivers": 2012,
+      "average_score": 115894.21023856859,
+      "average_laptime": "1:55.894",
+      "stddev_ms": 980.9233969938342,
+      "stddev_seconds": 0.9809233969938342,
       "diagnostics": {
-        "raw_n": 2009,
-        "clean_n": 1970,
-        "excluded_n": 39,
-        "median_ms": 115696.0,
-        "mad_ms": 562.0,
-        "lower_fence_ms": 111529.894,
-        "upper_fence_ms": 119862.106
+        "raw_n": 2057,
+        "clean_n": 2012,
+        "excluded_n": 45,
+        "median_ms": 115689.0,
+        "mad_ms": 557.0,
+        "lower_fence_ms": 111559.959,
+        "upper_fence_ms": 119818.041
       }
     },
     "6": {
       "dr": 6,
       "label": "A+",
-      "drivers": 550,
-      "average_score": 115025.62,
-      "average_laptime": "1:55.026",
-      "stddev_ms": 646.5765195241783,
-      "stddev_seconds": 0.6465765195241783,
+      "drivers": 562,
+      "average_score": 115016.51423487545,
+      "average_laptime": "1:55.017",
+      "stddev_ms": 653.2928315990622,
+      "stddev_seconds": 0.6532928315990622,
       "diagnostics": {
-        "raw_n": 564,
-        "clean_n": 550,
-        "excluded_n": 14,
-        "median_ms": 114900.0,
-        "mad_ms": 388.0,
-        "lower_fence_ms": 112023.756,
-        "upper_fence_ms": 117776.244
+        "raw_n": 579,
+        "clean_n": 562,
+        "excluded_n": 17,
+        "median_ms": 114897.0,
+        "mad_ms": 387.0,
+        "lower_fence_ms": 112028.169,
+        "upper_fence_ms": 117765.831
       }
     },
     "7": {
@@ -379,13 +379,13 @@
     "grid_size": 16,
     "dr": 5,
     "dr_label": "A",
-    "same_dr_population": 1970,
+    "same_dr_population": 2012,
     "my_score_ms": 115875.0,
-    "same_dr_mean_ms": 115902.53299492385,
-    "same_dr_std_ms": 981.7140346687776,
-    "z_score": -0.0280458401851621,
-    "probability_random_same_dr_opponent_faster": 0.48881279516501563,
-    "expected_position": 8.332191927475234,
+    "same_dr_mean_ms": 115894.21023856859,
+    "same_dr_std_ms": 980.9233969938342,
+    "z_score": -0.019583831548374613,
+    "probability_random_same_dr_opponent_faster": 0.4921876809581276,
+    "expected_position": 8.382815214371913,
     "most_likely_position": 8,
     "random_grid_interval_95": [
       5,
