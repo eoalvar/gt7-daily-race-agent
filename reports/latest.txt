@@ -1,87 +1,87 @@
 GT7 DAILY RACE C
 ==============================================================================
-Snapshot: 04/11/2026 13:36:57 - Sao Paulo
-C Gr.4 Running Daily Race C
+Snapshot: 05/11/2026 13:52:42 - Sao Paulo
+C Gr.4 Running 02 Nov 2026 Daily Race C
 Car category: Gr.4
 Watkins Glen Long Course
-Current WR: M. Rodríguez (1:53.917)
+Current WR: Lukas (1:53.887)
 Current WR Car: Audi TT Cup '16
-Race Setup: RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom
+Race Setup: 1:53.887 S1 — S2 — S3 — S4 — S5 — Theoretical Best Updating RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom
 Race detection: explicit_running_local_block
 Race validation: PASSED - Daily Race C only
-Total drivers: 27,074
+Total drivers: 31,981
 
 WHERE YOU ARE
 PSN             : crazy_rooster74
-Position        : #3,023 of 27,074
+Position        : #3,644 of 31,981
 Time            : 1:55.875
 Car             : Audi TT Cup '16
-Gap to WR       : +1.958s
-WR percentage   : 101.719%
-CPI             : 7.58 / 10 | VERY STRONG
+Gap to WR       : +1.988s
+WR percentage   : 101.746%
+CPI             : 7.56 / 10 | VERY STRONG
 Pace class      : ELITE
-Top percentile  : Top 11.17%
-Ahead of        : 88.84% of participants
-Country rank    : #164 of 1,781 (BR)
-DR A rank     : #1,206 of 2,057
+Top percentile  : Top 11.39%
+Ahead of        : 88.61% of participants
+Country rank    : #194 of 2,067 (BR)
+DR A rank     : #1,387 of 2,297
 DR progress      : DR A | 34,644 pts | 23% toward next DR
-Same-car rank   : #2,946 of 17,655
+Same-car rank   : #3,568 of 20,737
 
 EXPECTED START
-Expected position     : P8.4
-Most likely position  : P8
+Expected position     : P8.7
+Most likely position  : P9
 95% random-grid range : P5 to P12
 Your qualifying time  : 1:55.875
-DR A mean time       : 1:55.894
-DR A std deviation   : 0.981s
-Z-score               : -0.02
-Random opponent faster: 49.2%
-Population            : 2,012 DR A drivers
+DR A mean time       : 1:55.839
+DR A std deviation   : 0.974s
+Z-score               : +0.04
+Random opponent faster: 51.5%
+Population            : 2,242 DR A drivers
 Model                 : Normal fit from DR benchmark mean/SD + random 16-driver same-DR grid
 
 DR LAP-TIME BENCHMARKS - FULL LEADERBOARD
 Average qualifying lap time and population standard deviation by Driver Rating.
 DR S  : 1:54.299 average | SD N/A | 1 drivers
-DR A+ : 1:55.017 average | SD 0.653s | 562 drivers
-DR A  : 1:55.894 average | SD 0.981s | 2,012 drivers
-DR B  : 1:57.361 average | SD 1.551s | 8,663 drivers
-DR C  : 1:58.913 average | SD 1.920s | 7,070 drivers
-DR D  : 2:01.171 average | SD 2.888s | 7,599 drivers
-DR E  : 2:03.434 average | SD 4.305s | 900 drivers
+DR A+ : 1:54.986 average | SD 0.657s | 612 drivers
+DR A  : 1:55.839 average | SD 0.974s | 2,242 drivers
+DR B  : 1:57.291 average | SD 1.549s | 9,947 drivers
+DR C  : 1:58.845 average | SD 1.934s | 8,364 drivers
+DR D  : 2:01.136 average | SD 2.887s | 9,275 drivers
+DR E  : 2:03.594 average | SD 4.334s | 1,206 drivers
 
 WORLD RECORD & BENCHMARKS
-WR              : 1:53.917 | M. Rodríguez  | Audi TT Cup '16
-103% WR         : 1:57.335
-105% WR         : 1:59.613
-Top 10          : 1:54.048
-Top 100         : 1:54.395
-Top 500         : 1:54.856
-Top 1000        : 1:55.148
-Top 2500        : 1:55.721
-Top 5000        : 1:56.380
+WR              : 1:53.887 | Lukas | Audi TT Cup '16
+103% WR         : 1:57.304
+105% WR         : 1:59.581
+Top 10          : 1:54.037
+Top 100         : 1:54.356
+Top 500         : 1:54.777
+Top 1000        : 1:55.054
+Top 2500        : 1:55.580
+Top 5000        : 1:56.169
 
 WHERE YOU SHOULD AIM
-1. Top 10%: #2,708 | 1:55.790 | gain needed 0.085s
-2. Top 5%: #1,354 | 1:55.313 | gain needed 0.562s
-3. Top 1000: #1,000 | 1:55.148 | gain needed 0.727s
-4. Top 2%: #542 | 1:54.885 | gain needed 0.990s
+1. Top 10%: #3,199 | 1:55.771 | gain needed 0.104s
+2. Top 5%: #1,600 | 1:55.303 | gain needed 0.572s
+3. Top 1000: #1,000 | 1:55.054 | gain needed 0.821s
+4. Top 2%: #640 | 1:54.862 | gain needed 1.013s
 
 YOUR CAR VS META
-Your car best   : 1:53.917 | Audi TT Cup '16
-Gap to car best : +1.958s
-Meta car best   : 1:53.917 | Audi TT Cup '16
+Your car best   : 1:53.887 | Audi TT Cup '16
+Gap to car best : +1.988s
+Meta car best   : 1:53.887 | Audi TT Cup '16
 Best-lap delta  : 0.000s
 
 WHAT THE META IS - TOP 5 USED IN TOP 1000
-1. Audi TT Cup '16 | 989 drivers | 98.9%
-2. MAZDA3 Gr.4 | 4 drivers | 0.4%
-3. Hyundai ELANTRA N TC '24 | 3 drivers | 0.3%
-4. Honda NSX Gr.4 | 1 drivers | 0.1%
-5. Ferrari 458 Italia Gr.4 | 1 drivers | 0.1%
+1. Audi TT Cup '16 | 993 drivers | 99.3%
+2. MAZDA3 Gr.4 | 2 drivers | 0.2%
+3. Nissan GT-R Gr.4 | 1 drivers | 0.1%
+4. Ferrari 458 Italia Gr.4 | 1 drivers | 0.1%
+5. Honda NSX Gr.4 | 1 drivers | 0.1%
 
 CAR OVERPERFORMANCE INDEX
 Index > 1.00 = overrepresented among the fastest drivers.
-1. Audi TT Cup '16 | OI 1.53 | Top100 100 | Top1000 989 | High
+1. Audi TT Cup '16 | OI 1.54 | Top100 100 | Top1000 993 | High
 
 RACE STRATEGY FLAGS
 Fuel multiplier: x3
@@ -95,26 +95,54 @@ CARS TO TEST THIS WEEK
 Model: GR.4|MID | Technical evidence: 33%
 SCI = current-week signal | SSI = structural signal | Tech = learned BoP/circuit fit
 
-1. Renault Sport Mégane Gr.4 | PRIORITY TEST | Consensus 84% | SCI 44.7 | SSI 71.6 | Tech 60% | Usage 0.20% | Best #7772
-2. Mitsubishi Lancer Evolution Final Edition Gr.4 | STRONG ALTERNATIVE | Consensus 78% | SCI 44.1 | SSI 71.2 | Tech 50% | Usage 0.22% | Best #7089
-3. Hyundai Genesis Gr.4 | STRONG ALTERNATIVE | Consensus 75% | SCI 44.8 | SSI 64.7 | Tech 54% | Usage 0.18% | Best #15073
-4. Peugeot RCZ Gr.4 | STRONG ALTERNATIVE | Consensus 74% | SCI 38.9 | SSI 67.5 | Tech 61% | Usage 0.46% | Best #2177
-5. TOYOTA 86 Gr.4 | STRONG ALTERNATIVE | Consensus 74% | SCI 40.6 | SSI 66.8 | Tech 56% | Usage 0.34% | Best #5301
+1. Renault Sport Mégane Gr.4 | PRIORITY TEST | Consensus 82% | SCI 42.6 | SSI 70.8 | Tech 60% | Usage 0.23% | Best #9010
+2. Mitsubishi Lancer Evolution Final Edition Gr.4 | PRIORITY TEST | Consensus 81% | SCI 42.7 | SSI 72.2 | Tech 52% | Usage 0.22% | Best #8455
+3. Hyundai Genesis Gr.4 | STRONG ALTERNATIVE | Consensus 77% | SCI 44.1 | SSI 65.4 | Tech 54% | Usage 0.18% | Best #17748
+4. TOYOTA 86 Gr.4 | STRONG ALTERNATIVE | Consensus 77% | SCI 38.8 | SSI 68.7 | Tech 57% | Usage 0.36% | Best #3758
+5. Peugeot RCZ Gr.4 | STRONG ALTERNATIVE | Consensus 75% | SCI 37.1 | SSI 67.6 | Tech 61% | Usage 0.45% | Best #2298
 
 Note: this ranking is an experimental decision-support layer and does not replace the current leaderboard benchmarks.
 ==============================================================================
 
 FORECAST TO SUNDAY - V2
-Race start date unavailable.
+Model           : CURRENT_WEEK_HYBRID_V2
+Confidence      : MEDIUM
+Samples         : 9
+Observed span   : 76.0 h
+Historical model: not yet active (insufficient cross-week training data)
+
+PROJECTED LEADERBOARD
+WR             : 1:53.692 | MEDIUM | 9 samples
+Top 100        : 1:53.762 | MEDIUM | 9 samples
+Top 500        : 1:53.696 | MEDIUM | 9 samples
+Top 1000       : 1:53.593 | MEDIUM | 9 samples
+Top 10%        : 1:55.664 | DIRECT | MEDIUM
+Top 5%         : 1:55.185 | DIRECT | MEDIUM
+Drivers        : 31,981 -> ~62,478
+
+IF YOU DO NOT IMPROVE
+Current time    : 1:55.875
+Current rank    : #3,644
+Current Top %   : 11.39%
+Projected rank  : ~#6,163
+Projected Top % : ~9.86%
+Rank confidence : LOW
+
+TARGETS FOR SUNDAY
+Top 10% target  : 1:55.664 | gain needed 0.211s | DIRECT
+Top 5% target   : 1:55.185 | gain needed 0.690s | DIRECT
+
+Percentile mode : DIRECT = forecast learned from the observed Top 5%/10% series; FALLBACK = inferred from Top 500/1000 until enough direct snapshots exist.
+Forecast note   : V2 uses current-week leaderboard evolution. Cross-week historical learning will activate after sufficient multi-week intraday data exists.
 
 LONG-TERM COMPETITIVE PERFORMANCE
 CPI = Competitive Performance Index | 50% WR proximity + 50% leaderboard percentile
 Higher CPI is better. Lower Top % and WR gap are better.
 
 CURRENT WEEK
-CPI        : 7.58 / 10 | VERY STRONG
-Top %      : 11.17%
-WR gap     : +1.719%
+CPI        : 7.56 / 10 | VERY STRONG
+Top %      : 11.39%
+WR gap     : +1.746%
 
 LATEST FINALIZED WEEK
 Week       : 2026-10-26
@@ -123,9 +151,9 @@ Top %      : 10.78%
 WR gap     : +2.860%
 
 CURRENT WEEK VS LAST FINALIZED WEEK
-CPI        : 7.03 -> 7.58 (+0.55)
-Top %      : 10.78% -> 11.17% (+0.39 pp)
-WR gap     : +2.860% -> +1.719% (-1.141 pp)
+CPI        : 7.03 -> 7.56 (+0.53)
+Top %      : 10.78% -> 11.39% (+0.62 pp)
+WR gap     : +2.860% -> +1.746% (-1.115 pp)
 
 4-WEEK FINALIZED MOVING AVERAGE
 CPI        : 7.69
@@ -159,12 +187,12 @@ DATA QUALITY / HEALTH
 Race detector  : explicit_running_local_block
 Race validation: PASSED
 Primary source : GTSH-Rank (live_page_data_parallel)
-Entries        : 27,074
+Entries        : 31,981
 Car database   : 592 known cars
 Technical DB   : 33 validated/known records
 Car mapping    : 100.00% recognized
 Unknown codes  : 0 valid unmapped entries
-Invalid codes  : 6 entries
+Invalid codes  : 10 entries
 My PSN found   : Yes
 Weekly final   : No
 Percentile data: Top 10% and Top 5% direct snapshot stored

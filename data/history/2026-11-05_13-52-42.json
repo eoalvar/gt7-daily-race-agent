@@ -1,0 +1,320 @@
+{
+  "timestamp": "2026-11-05T13:52:42.378920-03:00",
+  "race": {
+    "description": "C Gr.4 Running 02 Nov 2026 Daily Race C i 00:00 Watkins Glen Long Course Lukas - Audi TT Cup '16 1:53.887 S1 — S2 — S3 — S4 — S5 — Theoretical Best Updating RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
+    "leaderboard_url": "https://gtsh-rank.com/daily/leaderboard?event=HFYfEk1IVkJvQ0M4RUNBWkBEA28BB1ZWX1ILEx1eSRMNRTdRXE0RG0deRUUeVklSTV5WQFFFXgkTUUpNUFgQU1BFRU5RUkNQGlNdVBVdVlFcTQAVUVVDREVOKC1DUBJbXEVSFVZJFg4eB1dN",
+    "detection_mode": "explicit_running_local_block",
+    "safety_validation": "PASSED",
+    "source_mode": "live_page_data_parallel",
+    "fuel_multiplier": 3,
+    "tyre_multiplier": 5,
+    "compounds": [
+      "RH",
+      "RM"
+    ],
+    "start_date": "2026-11-02T00:00:00-03:00"
+  },
+  "total_drivers": 31981,
+  "world_record": {
+    "score": 113887,
+    "laptime": "1:53.887",
+    "driver": "Lukas",
+    "psn_id": "Lukas2504-_-",
+    "car_code": 3298,
+    "car": "Audi TT Cup '16"
+  },
+  "benchmarks": {
+    "103_percent": {
+      "score": 117304,
+      "laptime": "1:57.304"
+    },
+    "105_percent": {
+      "score": 119581,
+      "laptime": "1:59.581"
+    }
+  },
+  "thresholds": {
+    "1": {
+      "score": 113887,
+      "laptime": "1:53.887"
+    },
+    "10": {
+      "score": 114037,
+      "laptime": "1:54.037"
+    },
+    "50": {
+      "score": 114249,
+      "laptime": "1:54.249"
+    },
+    "100": {
+      "score": 114356,
+      "laptime": "1:54.356"
+    },
+    "250": {
+      "score": 114557,
+      "laptime": "1:54.557"
+    },
+    "500": {
+      "score": 114777,
+      "laptime": "1:54.777"
+    },
+    "1000": {
+      "score": 115054,
+      "laptime": "1:55.054"
+    },
+    "2500": {
+      "score": 115580,
+      "laptime": "1:55.580"
+    },
+    "5000": {
+      "score": 116169,
+      "laptime": "1:56.169"
+    },
+    "10000": {
+      "score": 117150,
+      "laptime": "1:57.150"
+    }
+  },
+  "percentile_thresholds": {
+    "10": {
+      "percent": 10,
+      "rank": 3199,
+      "score": 115771,
+      "laptime": "1:55.771"
+    },
+    "5": {
+      "percent": 5,
+      "rank": 1600,
+      "score": 115303,
+      "laptime": "1:55.303"
+    }
+  },
+  "my_result": {
+    "psn_id": "crazy_rooster74",
+    "rank": 3644,
+    "score": 115875,
+    "laptime": "1:55.875",
+    "car_code": 3298,
+    "car": "Audi TT Cup '16",
+    "country": "BR",
+    "driver_rating": 5,
+    "gap_to_wr_ms": 1988,
+    "wr_percentage": 101.74558992685732,
+    "position_score": 8.860850531582239,
+    "elite_score": 2.0939761992947794,
+    "composite_rating": 6.154100798667256,
+    "percentile_ahead": 88.6085053158224,
+    "top_percent": 11.394265345048622,
+    "pace_band": "ELITE"
+  },
+  "same_car_stats": {
+    "rank": 3568,
+    "total": 20737
+  },
+  "country_stats": {
+    "rank": 194,
+    "total": 2067,
+    "country": "BR"
+  },
+  "dr_stats": {
+    "rank": 1387,
+    "total": 2297,
+    "dr": 5
+  },
+  "next_targets": [
+    {
+      "label": "Top 10%",
+      "rank": 3199,
+      "score": 115771,
+      "laptime": "1:55.771",
+      "gain_needed_ms": 104
+    },
+    {
+      "label": "Top 5%",
+      "rank": 1600,
+      "score": 115303,
+      "laptime": "1:55.303",
+      "gain_needed_ms": 572
+    },
+    {
+      "label": "Top 1000",
+      "rank": 1000,
+      "score": 115054,
+      "laptime": "1:55.054",
+      "gain_needed_ms": 821
+    },
+    {
+      "label": "Top 2%",
+      "rank": 640,
+      "score": 114862,
+      "laptime": "1:54.862",
+      "gain_needed_ms": 1013
+    }
+  ],
+  "top5_used_cars": [
+    {
+      "car_code": 3298,
+      "car": "Audi TT Cup '16",
+      "count": 993,
+      "percentage": 99.3
+    },
+    {
+      "car_code": 3537,
+      "car": "MAZDA3 Gr.4",
+      "count": 2,
+      "percentage": 0.2
+    },
+    {
+      "car_code": 2161,
+      "car": "Nissan GT-R Gr.4",
+      "count": 1,
+      "percentage": 0.1
+    },
+    {
+      "car_code": 3263,
+      "car": "Ferrari 458 Italia Gr.4",
+      "count": 1,
+      "percentage": 0.1
+    },
+    {
+      "car_code": 3251,
+      "car": "Honda NSX Gr.4",
+      "count": 1,
+      "percentage": 0.1
+    }
+  ],
+  "overperformance": [
+    {
+      "car_code": 3298,
+      "car": "Audi TT Cup '16",
+      "all_count": 20737,
+      "top100": 100,
+      "top1000": 993,
+      "oi100": 1.542219221681053,
+      "oi1000": 1.5314236871292857,
+      "overperformance_index": 1.538980561315523,
+      "confidence": "High"
+    }
+  ],
+  "car_comparison": {
+    "my_car": "Audi TT Cup '16",
+    "my_car_best_score": 113887,
+    "my_car_best_laptime": "1:53.887",
+    "gap_to_best_same_car_ms": 1988,
+    "meta_car": "Audi TT Cup '16",
+    "meta_car_best_score": 113887,
+    "meta_car_best_laptime": "1:53.887",
+    "theoretical_car_gap_ms": 0
+  },
+  "car_database": {
+    "total_known_cars": 592,
+    "technical_records": 33,
+    "discovered_this_run": 592,
+    "added_this_run": 0,
+    "updated_this_run": 0
+  },
+  "health": {
+    "unknown_car_share": 0.0,
+    "unknown_car_entries": 0,
+    "invalid_car_code_entries": 10,
+    "source_mode": "live_page_data_parallel",
+    "race_detection_mode": "explicit_running_local_block",
+    "race_safety_validation": "PASSED",
+    "leaderboard_entries": 31981,
+    "my_driver_found": true,
+    "warnings": []
+  },
+  "forecast_target": "2026-11-08T23:59:00-03:00",
+  "forecast_v2": {
+    "available": true,
+    "model": "CURRENT_WEEK_HYBRID_V2",
+    "historical_training": "INSUFFICIENT",
+    "samples": 9,
+    "span_hours": 76.02551625333334,
+    "confidence": "MEDIUM",
+    "world_record": {
+      "predicted": 113692.42332428397,
+      "current": 113887.0,
+      "slope_per_hour": -2.101862011498606,
+      "rmse": 53.88551773657553,
+      "samples": 9,
+      "span_hours": 76.02551625333334,
+      "confidence": "MEDIUM"
+    },
+    "top100": {
+      "predicted": 113762.26517908859,
+      "current": 114356.0,
+      "slope_per_hour": -6.039174159171624,
+      "rmse": 95.1884200776457,
+      "samples": 9,
+      "span_hours": 76.02551625333334,
+      "confidence": "MEDIUM"
+    },
+    "top500": {
+      "predicted": 113696.4164237961,
+      "current": 114777.0,
+      "slope_per_hour": -10.988663072259735,
+      "rmse": 180.27491299382658,
+      "samples": 9,
+      "span_hours": 76.02551625333334,
+      "confidence": "MEDIUM"
+    },
+    "top1000": {
+      "predicted": 113592.55473920077,
+      "current": 115054.0,
+      "slope_per_hour": -14.774246213593132,
+      "rmse": 250.10548853300497,
+      "samples": 9,
+      "span_hours": 76.02551625333334,
+      "confidence": "MEDIUM"
+    },
+    "top10_percent": {
+      "current_rank": 3199,
+      "current_score": 115771,
+      "predicted_score": 115664,
+      "estimated_change_ms": -107,
+      "mode": "DIRECT",
+      "confidence": "MEDIUM",
+      "samples": 9,
+      "span_hours": 76.02551625333334,
+      "rmse": 5.67304266934016
+    },
+    "top5_percent": {
+      "current_rank": 1600,
+      "current_score": 115303,
+      "predicted_score": 115185,
+      "estimated_change_ms": -118,
+      "mode": "DIRECT",
+      "confidence": "MEDIUM",
+      "samples": 9,
+      "span_hours": 76.02551625333334,
+      "rmse": 14.501853256688664
+    },
+    "total_drivers": {
+      "current": 31981,
+      "predicted": 62478,
+      "confidence": "MEDIUM",
+      "samples": 9
+    },
+    "personal": {
+      "score": 115875,
+      "current_rank": 3644,
+      "current_top_percent": 11.394265345048622,
+      "projected_rank": 6163,
+      "projected_top_percent": 9.864272223822786,
+      "rank_forecast_confidence": "LOW"
+    },
+    "targets": {
+      "top10": {
+        "score": 115664,
+        "gain_needed_ms": 211,
+        "mode": "DIRECT"
+      },
+      "top5": {
+        "score": 115185,
+        "gain_needed_ms": 690,
+        "mode": "DIRECT"
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-04T16:37:28.565434+00:00",
+  "generated_at": "2026-11-05T16:53:08.848538+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-11-04T13:36:57.569742-03:00",
-  "race_description": "C Gr.4 Running Daily Race C i 00:00 Watkins Glen Long Course M. Rodríguez - Audi TT Cup '16 RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
+  "snapshot_timestamp": "2026-11-05T13:52:42.378920-03:00",
+  "race_description": "C Gr.4 Running 02 Nov 2026 Daily Race C i 00:00 Watkins Glen Long Course Lukas - Audi TT Cup '16 1:53.887 S1 — S2 — S3 — S4 — S5 — Theoretical Best Updating RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
   "track": "Watkins Glen Long Course",
   "group": "GR.4",
   "model_key": "GR.4|MID",
@@ -238,8 +238,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 989,
-      "leaderboard_percentage": 98.9,
+      "leaderboard_count": 993,
+      "leaderboard_percentage": 99.3,
       "active_bop": {
         "car": "Audi TT Cup '16",
         "group": "GR.4",
@@ -364,8 +364,8 @@
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 4,
-      "leaderboard_percentage": 0.4,
+      "leaderboard_count": 2,
+      "leaderboard_percentage": 0.2,
       "active_bop": {
         "car": "Mazda MAZDA3 Gr.4",
         "group": "GR.4",
@@ -396,127 +396,253 @@
       }
     },
     {
-      "car": "Hyundai ELANTRA N TC '24",
+      "car": "Nissan GT-R Gr.4",
       "available": true,
       "match": {
-        "requested_name": "Hyundai ELANTRA N TC '24",
-        "matched_name": "Hyundai ELANTRA N TC '24",
+        "requested_name": "Nissan GT-R Gr.4",
+        "matched_name": "Nissan GT-R Gr.4",
         "match_score": 100
       },
       "bop_version": "1.67",
       "distinct_signatures": 1,
       "can_identify_speed_class_from_car": false,
       "HIGH": {
-        "car": "Hyundai ELANTRA N TC '24",
+        "car": "Nissan GT-R Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 612.54,
-        "power_hp": 332.0,
-        "torque_nm": 427.6,
-        "weight_kg": 1265.0,
-        "power_weight_hp_t": 262.4505928853755,
-        "weight_balance": "59:41",
-        "drivetrain": "FF",
+        "pp": 600.21,
+        "power_hp": 334.0,
+        "torque_nm": 389.3,
+        "weight_kg": 1460.0,
+        "power_weight_hp_t": 228.76712328767124,
+        "weight_balance": "54:46",
+        "drivetrain": "4WD",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 13.47,
-          "0_1000m": 24.1,
-          "100_150_kmh": 4.21
+          "0_400m": 12.91,
+          "0_1000m": 23.67,
+          "100_150_kmh": 4.5
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.39,
-          "240_kmh": 1.45
+          "60_kmh": 1.18,
+          "120_kmh": 1.36,
+          "240_kmh": 1.42
         },
         "stability": {
-          "low_speed": "-0.31 | N",
+          "low_speed": "-0.22 | N",
+          "high_speed": "-0.98 | U"
+        }
+      },
+      "MID": {
+        "car": "Nissan GT-R Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 600.21,
+        "power_hp": 334.0,
+        "torque_nm": 389.3,
+        "weight_kg": 1460.0,
+        "power_weight_hp_t": 228.76712328767124,
+        "weight_balance": "54:46",
+        "drivetrain": "4WD",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.91,
+          "0_1000m": 23.67,
+          "100_150_kmh": 4.5
+        },
+        "rotational_g": {
+          "60_kmh": 1.18,
+          "120_kmh": 1.36,
+          "240_kmh": 1.42
+        },
+        "stability": {
+          "low_speed": "-0.22 | N",
+          "high_speed": "-0.98 | U"
+        }
+      },
+      "LOW": {
+        "car": "Nissan GT-R Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 600.21,
+        "power_hp": 334.0,
+        "torque_nm": 389.3,
+        "weight_kg": 1460.0,
+        "power_weight_hp_t": 228.76712328767124,
+        "weight_balance": "54:46",
+        "drivetrain": "4WD",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.91,
+          "0_1000m": 23.67,
+          "100_150_kmh": 4.5
+        },
+        "rotational_g": {
+          "60_kmh": 1.18,
+          "120_kmh": 1.36,
+          "240_kmh": 1.42
+        },
+        "stability": {
+          "low_speed": "-0.22 | N",
+          "high_speed": "-0.98 | U"
+        }
+      },
+      "leaderboard_count": 1,
+      "leaderboard_percentage": 0.1,
+      "active_bop": {
+        "car": "Nissan GT-R Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 600.21,
+        "power_hp": 334.0,
+        "torque_nm": 389.3,
+        "weight_kg": 1460.0,
+        "power_weight_hp_t": 228.76712328767124,
+        "weight_balance": "54:46",
+        "drivetrain": "4WD",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 12.91,
+          "0_1000m": 23.67,
+          "100_150_kmh": 4.5
+        },
+        "rotational_g": {
+          "60_kmh": 1.18,
+          "120_kmh": 1.36,
+          "240_kmh": 1.42
+        },
+        "stability": {
+          "low_speed": "-0.22 | N",
+          "high_speed": "-0.98 | U"
+        }
+      }
+    },
+    {
+      "car": "Ferrari 458 Italia Gr.4",
+      "available": true,
+      "match": {
+        "requested_name": "Ferrari 458 Italia Gr.4",
+        "matched_name": "Ferrari 458 Italia Gr.4",
+        "match_score": 100
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 1,
+      "can_identify_speed_class_from_car": false,
+      "HIGH": {
+        "car": "Ferrari 458 Italia Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 606.83,
+        "power_hp": 315.0,
+        "torque_nm": 302.0,
+        "weight_kg": 1410.0,
+        "power_weight_hp_t": 223.40425531914894,
+        "weight_balance": "43:57",
+        "drivetrain": "MR",
+        "aspiration": "NA",
+        "acceleration": {
+          "0_400m": 13.69,
+          "0_1000m": 24.42,
+          "100_150_kmh": 4.41
+        },
+        "rotational_g": {
+          "60_kmh": 1.27,
+          "120_kmh": 1.36,
+          "240_kmh": 1.46
+        },
+        "stability": {
+          "low_speed": "-0.57 | U",
           "high_speed": "-1 | U"
         }
       },
       "MID": {
-        "car": "Hyundai ELANTRA N TC '24",
+        "car": "Ferrari 458 Italia Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 612.54,
-        "power_hp": 332.0,
-        "torque_nm": 427.6,
-        "weight_kg": 1265.0,
-        "power_weight_hp_t": 262.4505928853755,
-        "weight_balance": "59:41",
-        "drivetrain": "FF",
-        "aspiration": "TC",
+        "pp": 606.83,
+        "power_hp": 315.0,
+        "torque_nm": 302.0,
+        "weight_kg": 1410.0,
+        "power_weight_hp_t": 223.40425531914894,
+        "weight_balance": "43:57",
+        "drivetrain": "MR",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 13.47,
-          "0_1000m": 24.1,
-          "100_150_kmh": 4.21
+          "0_400m": 13.69,
+          "0_1000m": 24.42,
+          "100_150_kmh": 4.41
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.39,
-          "240_kmh": 1.45
+          "60_kmh": 1.27,
+          "120_kmh": 1.36,
+          "240_kmh": 1.46
         },
         "stability": {
-          "low_speed": "-0.31 | N",
+          "low_speed": "-0.57 | U",
           "high_speed": "-1 | U"
         }
       },
       "LOW": {
-        "car": "Hyundai ELANTRA N TC '24",
+        "car": "Ferrari 458 Italia Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "LOW",
-        "pp": 612.54,
-        "power_hp": 332.0,
-        "torque_nm": 427.6,
-        "weight_kg": 1265.0,
-        "power_weight_hp_t": 262.4505928853755,
-        "weight_balance": "59:41",
-        "drivetrain": "FF",
-        "aspiration": "TC",
+        "pp": 606.83,
+        "power_hp": 315.0,
+        "torque_nm": 302.0,
+        "weight_kg": 1410.0,
+        "power_weight_hp_t": 223.40425531914894,
+        "weight_balance": "43:57",
+        "drivetrain": "MR",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 13.47,
-          "0_1000m": 24.1,
-          "100_150_kmh": 4.21
+          "0_400m": 13.69,
+          "0_1000m": 24.42,
+          "100_150_kmh": 4.41
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.39,
-          "240_kmh": 1.45
+          "60_kmh": 1.27,
+          "120_kmh": 1.36,
+          "240_kmh": 1.46
         },
         "stability": {
-          "low_speed": "-0.31 | N",
+          "low_speed": "-0.57 | U",
           "high_speed": "-1 | U"
         }
       },
-      "leaderboard_count": 3,
-      "leaderboard_percentage": 0.3,
+      "leaderboard_count": 1,
+      "leaderboard_percentage": 0.1,
       "active_bop": {
-        "car": "Hyundai ELANTRA N TC '24",
+        "car": "Ferrari 458 Italia Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 612.54,
-        "power_hp": 332.0,
-        "torque_nm": 427.6,
-        "weight_kg": 1265.0,
-        "power_weight_hp_t": 262.4505928853755,
-        "weight_balance": "59:41",
-        "drivetrain": "FF",
-        "aspiration": "TC",
+        "pp": 606.83,
+        "power_hp": 315.0,
+        "torque_nm": 302.0,
+        "weight_kg": 1410.0,
+        "power_weight_hp_t": 223.40425531914894,
+        "weight_balance": "43:57",
+        "drivetrain": "MR",
+        "aspiration": "NA",
         "acceleration": {
-          "0_400m": 13.47,
-          "0_1000m": 24.1,
-          "100_150_kmh": 4.21
+          "0_400m": 13.69,
+          "0_1000m": 24.42,
+          "100_150_kmh": 4.41
         },
         "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.39,
-          "240_kmh": 1.45
+          "60_kmh": 1.27,
+          "120_kmh": 1.36,
+          "240_kmh": 1.46
         },
         "stability": {
-          "low_speed": "-0.31 | N",
+          "low_speed": "-0.57 | U",
           "high_speed": "-1 | U"
         }
       }
@@ -643,132 +769,6 @@
         },
         "stability": {
           "low_speed": "-0.48 | U",
-          "high_speed": "-1 | U"
-        }
-      }
-    },
-    {
-      "car": "Ferrari 458 Italia Gr.4",
-      "available": true,
-      "match": {
-        "requested_name": "Ferrari 458 Italia Gr.4",
-        "matched_name": "Ferrari 458 Italia Gr.4",
-        "match_score": 100
-      },
-      "bop_version": "1.67",
-      "distinct_signatures": 1,
-      "can_identify_speed_class_from_car": false,
-      "HIGH": {
-        "car": "Ferrari 458 Italia Gr.4",
-        "group": "GR.4",
-        "bop_version": "1.67",
-        "speed_class": "HIGH",
-        "pp": 606.83,
-        "power_hp": 315.0,
-        "torque_nm": 302.0,
-        "weight_kg": 1410.0,
-        "power_weight_hp_t": 223.40425531914894,
-        "weight_balance": "43:57",
-        "drivetrain": "MR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 13.69,
-          "0_1000m": 24.42,
-          "100_150_kmh": 4.41
-        },
-        "rotational_g": {
-          "60_kmh": 1.27,
-          "120_kmh": 1.36,
-          "240_kmh": 1.46
-        },
-        "stability": {
-          "low_speed": "-0.57 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "MID": {
-        "car": "Ferrari 458 Italia Gr.4",
-        "group": "GR.4",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 606.83,
-        "power_hp": 315.0,
-        "torque_nm": 302.0,
-        "weight_kg": 1410.0,
-        "power_weight_hp_t": 223.40425531914894,
-        "weight_balance": "43:57",
-        "drivetrain": "MR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 13.69,
-          "0_1000m": 24.42,
-          "100_150_kmh": 4.41
-        },
-        "rotational_g": {
-          "60_kmh": 1.27,
-          "120_kmh": 1.36,
-          "240_kmh": 1.46
-        },
-        "stability": {
-          "low_speed": "-0.57 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "LOW": {
-        "car": "Ferrari 458 Italia Gr.4",
-        "group": "GR.4",
-        "bop_version": "1.67",
-        "speed_class": "LOW",
-        "pp": 606.83,
-        "power_hp": 315.0,
-        "torque_nm": 302.0,
-        "weight_kg": 1410.0,
-        "power_weight_hp_t": 223.40425531914894,
-        "weight_balance": "43:57",
-        "drivetrain": "MR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 13.69,
-          "0_1000m": 24.42,
-          "100_150_kmh": 4.41
-        },
-        "rotational_g": {
-          "60_kmh": 1.27,
-          "120_kmh": 1.36,
-          "240_kmh": 1.46
-        },
-        "stability": {
-          "low_speed": "-0.57 | U",
-          "high_speed": "-1 | U"
-        }
-      },
-      "leaderboard_count": 1,
-      "leaderboard_percentage": 0.1,
-      "active_bop": {
-        "car": "Ferrari 458 Italia Gr.4",
-        "group": "GR.4",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 606.83,
-        "power_hp": 315.0,
-        "torque_nm": 302.0,
-        "weight_kg": 1410.0,
-        "power_weight_hp_t": 223.40425531914894,
-        "weight_balance": "43:57",
-        "drivetrain": "MR",
-        "aspiration": "NA",
-        "acceleration": {
-          "0_400m": 13.69,
-          "0_1000m": 24.42,
-          "100_150_kmh": 4.41
-        },
-        "rotational_g": {
-          "60_kmh": 1.27,
-          "120_kmh": 1.36,
-          "240_kmh": 1.46
-        },
-        "stability": {
-          "low_speed": "-0.57 | U",
           "high_speed": "-1 | U"
         }
       }
