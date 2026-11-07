@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-06T16:20:28.512029+00:00",
+  "generated_at": "2026-11-07T15:13:32.446090+00:00",
   "classifier_version": "2.0",
-  "snapshot_timestamp": "2026-11-06T13:19:58.908107-03:00",
-  "race_description": "C Gr.4 Running 02 Nov 2026 Daily Race C i 00:00 Watkins Glen Long Course RTR_Nyjah - Audi TT Cup '16 1:53.879 S1 — S2 — S3 — S4 — S5 — Theoretical Best Updating RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
+  "snapshot_timestamp": "2026-11-07T12:12:54.830757-03:00",
+  "race_description": "C Gr.4 Running 02 Nov 2026 Daily Race C i 00:00 Watkins Glen Long Course G. Rosson - Audi TT Cup '16 1:53.858 S1 — S2 — S3 — S4 — S5 — Theoretical Best Updating RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom",
   "track": "Watkins Glen Long Course",
   "group": "GR.4",
   "model_key": "GR.4|MID",
@@ -270,132 +270,6 @@
       }
     },
     {
-      "car": "MAZDA3 Gr.4",
-      "available": true,
-      "match": {
-        "requested_name": "MAZDA3 Gr.4",
-        "matched_name": "Mazda MAZDA3 Gr.4",
-        "match_score": 94
-      },
-      "bop_version": "1.67",
-      "distinct_signatures": 1,
-      "can_identify_speed_class_from_car": false,
-      "HIGH": {
-        "car": "Mazda MAZDA3 Gr.4",
-        "group": "GR.4",
-        "bop_version": "1.67",
-        "speed_class": "HIGH",
-        "pp": 615.14,
-        "power_hp": 327.0,
-        "torque_nm": 372.7,
-        "weight_kg": 1200.0,
-        "power_weight_hp_t": 272.5,
-        "weight_balance": "64:36",
-        "drivetrain": "FF",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 13.11,
-          "0_1000m": 23.71,
-          "100_150_kmh": 4.23
-        },
-        "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.38,
-          "240_kmh": 1.47
-        },
-        "stability": {
-          "low_speed": "-0.32 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "MID": {
-        "car": "Mazda MAZDA3 Gr.4",
-        "group": "GR.4",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 615.14,
-        "power_hp": 327.0,
-        "torque_nm": 372.7,
-        "weight_kg": 1200.0,
-        "power_weight_hp_t": 272.5,
-        "weight_balance": "64:36",
-        "drivetrain": "FF",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 13.11,
-          "0_1000m": 23.71,
-          "100_150_kmh": 4.23
-        },
-        "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.38,
-          "240_kmh": 1.47
-        },
-        "stability": {
-          "low_speed": "-0.32 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "LOW": {
-        "car": "Mazda MAZDA3 Gr.4",
-        "group": "GR.4",
-        "bop_version": "1.67",
-        "speed_class": "LOW",
-        "pp": 615.14,
-        "power_hp": 327.0,
-        "torque_nm": 372.7,
-        "weight_kg": 1200.0,
-        "power_weight_hp_t": 272.5,
-        "weight_balance": "64:36",
-        "drivetrain": "FF",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 13.11,
-          "0_1000m": 23.71,
-          "100_150_kmh": 4.23
-        },
-        "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.38,
-          "240_kmh": 1.47
-        },
-        "stability": {
-          "low_speed": "-0.32 | N",
-          "high_speed": "-1 | U"
-        }
-      },
-      "leaderboard_count": 2,
-      "leaderboard_percentage": 0.2,
-      "active_bop": {
-        "car": "Mazda MAZDA3 Gr.4",
-        "group": "GR.4",
-        "bop_version": "1.67",
-        "speed_class": "MID",
-        "pp": 615.14,
-        "power_hp": 327.0,
-        "torque_nm": 372.7,
-        "weight_kg": 1200.0,
-        "power_weight_hp_t": 272.5,
-        "weight_balance": "64:36",
-        "drivetrain": "FF",
-        "aspiration": "TC",
-        "acceleration": {
-          "0_400m": 13.11,
-          "0_1000m": 23.71,
-          "100_150_kmh": 4.23
-        },
-        "rotational_g": {
-          "60_kmh": 1.29,
-          "120_kmh": 1.38,
-          "240_kmh": 1.47
-        },
-        "stability": {
-          "low_speed": "-0.32 | N",
-          "high_speed": "-1 | U"
-        }
-      }
-    },
-    {
       "car": "Nissan GT-R Gr.4",
       "available": true,
       "match": {
@@ -490,8 +364,8 @@
           "high_speed": "-0.98 | U"
         }
       },
-      "leaderboard_count": 1,
-      "leaderboard_percentage": 0.1,
+      "leaderboard_count": 2,
+      "leaderboard_percentage": 0.2,
       "active_bop": {
         "car": "Nissan GT-R Gr.4",
         "group": "GR.4",
@@ -518,6 +392,132 @@
         "stability": {
           "low_speed": "-0.22 | N",
           "high_speed": "-0.98 | U"
+        }
+      }
+    },
+    {
+      "car": "MAZDA3 Gr.4",
+      "available": true,
+      "match": {
+        "requested_name": "MAZDA3 Gr.4",
+        "matched_name": "Mazda MAZDA3 Gr.4",
+        "match_score": 94
+      },
+      "bop_version": "1.67",
+      "distinct_signatures": 1,
+      "can_identify_speed_class_from_car": false,
+      "HIGH": {
+        "car": "Mazda MAZDA3 Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "HIGH",
+        "pp": 615.14,
+        "power_hp": 327.0,
+        "torque_nm": 372.7,
+        "weight_kg": 1200.0,
+        "power_weight_hp_t": 272.5,
+        "weight_balance": "64:36",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.11,
+          "0_1000m": 23.71,
+          "100_150_kmh": 4.23
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.47
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "MID": {
+        "car": "Mazda MAZDA3 Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 615.14,
+        "power_hp": 327.0,
+        "torque_nm": 372.7,
+        "weight_kg": 1200.0,
+        "power_weight_hp_t": 272.5,
+        "weight_balance": "64:36",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.11,
+          "0_1000m": 23.71,
+          "100_150_kmh": 4.23
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.47
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "LOW": {
+        "car": "Mazda MAZDA3 Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "LOW",
+        "pp": 615.14,
+        "power_hp": 327.0,
+        "torque_nm": 372.7,
+        "weight_kg": 1200.0,
+        "power_weight_hp_t": 272.5,
+        "weight_balance": "64:36",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.11,
+          "0_1000m": 23.71,
+          "100_150_kmh": 4.23
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.47
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
+        }
+      },
+      "leaderboard_count": 1,
+      "leaderboard_percentage": 0.1,
+      "active_bop": {
+        "car": "Mazda MAZDA3 Gr.4",
+        "group": "GR.4",
+        "bop_version": "1.67",
+        "speed_class": "MID",
+        "pp": 615.14,
+        "power_hp": 327.0,
+        "torque_nm": 372.7,
+        "weight_kg": 1200.0,
+        "power_weight_hp_t": 272.5,
+        "weight_balance": "64:36",
+        "drivetrain": "FF",
+        "aspiration": "TC",
+        "acceleration": {
+          "0_400m": 13.11,
+          "0_1000m": 23.71,
+          "100_150_kmh": 4.23
+        },
+        "rotational_g": {
+          "60_kmh": 1.29,
+          "120_kmh": 1.38,
+          "240_kmh": 1.47
+        },
+        "stability": {
+          "low_speed": "-0.32 | N",
+          "high_speed": "-1 | U"
         }
       }
     },
@@ -648,127 +648,127 @@
       }
     },
     {
-      "car": "Honda NSX Gr.4",
+      "car": "Volkswagen Scirocco Gr.4",
       "available": true,
       "match": {
-        "requested_name": "Honda NSX Gr.4",
-        "matched_name": "Honda NSX Gr.4",
+        "requested_name": "Volkswagen Scirocco Gr.4",
+        "matched_name": "Volkswagen Scirocco Gr.4",
         "match_score": 100
       },
       "bop_version": "1.67",
-      "distinct_signatures": 2,
-      "can_identify_speed_class_from_car": true,
+      "distinct_signatures": 1,
+      "can_identify_speed_class_from_car": false,
       "HIGH": {
-        "car": "Honda NSX Gr.4",
+        "car": "Volkswagen Scirocco Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "HIGH",
-        "pp": 608.0,
-        "power_hp": 320.0,
-        "torque_nm": 351.1,
-        "weight_kg": 1425.0,
-        "power_weight_hp_t": 224.56140350877192,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
+        "pp": 612.88,
+        "power_hp": 294.0,
+        "torque_nm": 324.6,
+        "weight_kg": 1090.0,
+        "power_weight_hp_t": 269.7247706422018,
+        "weight_balance": "60:40",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 13.42,
-          "0_1000m": 24.19,
-          "100_150_kmh": 4.51
+          "0_400m": 13.22,
+          "0_1000m": 23.87,
+          "100_150_kmh": 4.36
         },
         "rotational_g": {
-          "60_kmh": 1.28,
-          "120_kmh": 1.38,
-          "240_kmh": 1.48
+          "60_kmh": 1.33,
+          "120_kmh": 1.39,
+          "240_kmh": 1.45
         },
         "stability": {
-          "low_speed": "-0.48 | U",
+          "low_speed": "-0.31 | N",
           "high_speed": "-1 | U"
         }
       },
       "MID": {
-        "car": "Honda NSX Gr.4",
+        "car": "Volkswagen Scirocco Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 608.0,
-        "power_hp": 320.0,
-        "torque_nm": 351.1,
-        "weight_kg": 1425.0,
-        "power_weight_hp_t": 224.56140350877192,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
+        "pp": 612.88,
+        "power_hp": 294.0,
+        "torque_nm": 324.6,
+        "weight_kg": 1090.0,
+        "power_weight_hp_t": 269.7247706422018,
+        "weight_balance": "60:40",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 13.42,
-          "0_1000m": 24.19,
-          "100_150_kmh": 4.51
+          "0_400m": 13.22,
+          "0_1000m": 23.87,
+          "100_150_kmh": 4.36
         },
         "rotational_g": {
-          "60_kmh": 1.28,
-          "120_kmh": 1.38,
-          "240_kmh": 1.48
+          "60_kmh": 1.33,
+          "120_kmh": 1.39,
+          "240_kmh": 1.45
         },
         "stability": {
-          "low_speed": "-0.48 | U",
+          "low_speed": "-0.31 | N",
           "high_speed": "-1 | U"
         }
       },
       "LOW": {
-        "car": "Honda NSX Gr.4",
+        "car": "Volkswagen Scirocco Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "LOW",
-        "pp": 606.78,
-        "power_hp": 316.0,
-        "torque_nm": 347.2,
-        "weight_kg": 1415.0,
-        "power_weight_hp_t": 223.32155477031802,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
+        "pp": 612.88,
+        "power_hp": 294.0,
+        "torque_nm": 324.6,
+        "weight_kg": 1090.0,
+        "power_weight_hp_t": 269.7247706422018,
+        "weight_balance": "60:40",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 13.46,
-          "0_1000m": 24.26,
-          "100_150_kmh": 4.54
+          "0_400m": 13.22,
+          "0_1000m": 23.87,
+          "100_150_kmh": 4.36
         },
         "rotational_g": {
-          "60_kmh": 1.28,
-          "120_kmh": 1.38,
-          "240_kmh": 1.48
+          "60_kmh": 1.33,
+          "120_kmh": 1.39,
+          "240_kmh": 1.45
         },
         "stability": {
-          "low_speed": "-0.48 | U",
-          "high_speed": "-0.99 | U"
+          "low_speed": "-0.31 | N",
+          "high_speed": "-1 | U"
         }
       },
       "leaderboard_count": 1,
       "leaderboard_percentage": 0.1,
       "active_bop": {
-        "car": "Honda NSX Gr.4",
+        "car": "Volkswagen Scirocco Gr.4",
         "group": "GR.4",
         "bop_version": "1.67",
         "speed_class": "MID",
-        "pp": 608.0,
-        "power_hp": 320.0,
-        "torque_nm": 351.1,
-        "weight_kg": 1425.0,
-        "power_weight_hp_t": 224.56140350877192,
-        "weight_balance": "42:58",
-        "drivetrain": "MR",
+        "pp": 612.88,
+        "power_hp": 294.0,
+        "torque_nm": 324.6,
+        "weight_kg": 1090.0,
+        "power_weight_hp_t": 269.7247706422018,
+        "weight_balance": "60:40",
+        "drivetrain": "FF",
         "aspiration": "TC",
         "acceleration": {
-          "0_400m": 13.42,
-          "0_1000m": 24.19,
-          "100_150_kmh": 4.51
+          "0_400m": 13.22,
+          "0_1000m": 23.87,
+          "100_150_kmh": 4.36
         },
         "rotational_g": {
-          "60_kmh": 1.28,
-          "120_kmh": 1.38,
-          "240_kmh": 1.48
+          "60_kmh": 1.33,
+          "120_kmh": 1.39,
+          "240_kmh": 1.45
         },
         "stability": {
-          "low_speed": "-0.48 | U",
+          "low_speed": "-0.31 | N",
           "high_speed": "-1 | U"
         }
       }

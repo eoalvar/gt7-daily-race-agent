@@ -1,0 +1,187 @@
+GT7 DAILY RACE C
+==============================================================================
+Snapshot: 07/11/2026 12:12:54 - Sao Paulo
+C Gr.4 Running 02 Nov 2026 Daily Race C i 00:00 Watkins Glen Long Course G. Rosson - Audi TT Cup '16 1:53.858 S1 — S2 — S3 — S4 — S5 — Theoretical Best Updating RH RM BoP On Setup Allowed Damage Med Start Rolling Fuel x3 Tyres x5 Pit - Slipstream Custom
+Race detection: explicit_running_local_block
+Race validation: PASSED - Daily Race C only
+Total drivers: 39,597
+
+WHERE YOU ARE
+PSN             : crazy_rooster74
+Position        : #3,093 of 39,597
+Time            : 1:55.581
+Car             : Audi TT Cup '16
+Gap to WR       : +1.723s
+WR percentage   : 101.513%
+Pace class      : ELITE
+General rating  : 9.22 / 10
+Elite rating    : 2.41 / 10
+Composite       : 6.49 / 10
+Top percentile  : Top 7.81%
+Ahead of        : 92.19% of participants
+Country rank    : #159 of 2,520 (BR)
+DR rank         : #1,290 of 2,597 (DR 5)
+Same-car rank   : #3,052 of 25,155
+
+WORLD RECORD & BENCHMARKS
+WR              : 1:53.858 | G. Rosson | Audi TT Cup '16
+103% WR         : 1:57.274
+105% WR         : 1:59.551
+Top 10          : 1:54.013
+Top 100         : 1:54.297
+Top 500         : 1:54.706
+Top 1000        : 1:54.960
+Top 2500        : 1:55.436
+Top 5000        : 1:55.968
+
+WHERE YOU SHOULD AIM
+1. Top 5%: #1,980 | 1:55.302 | gain needed 0.279s
+2. Top 1000: #1,000 | 1:54.960 | gain needed 0.621s
+3. Top 2%: #792 | 1:54.864 | gain needed 0.717s
+4. Top 500: #500 | 1:54.706 | gain needed 0.875s
+
+YOUR CAR VS META
+Your car best   : 1:53.858 | Audi TT Cup '16
+Gap to car best : +1.723s
+Meta car best   : 1:53.858 | Audi TT Cup '16
+Best-lap delta  : 0.000s
+
+WHAT THE META IS - TOP 5 USED IN TOP 1000
+1. Audi TT Cup '16 | 993 drivers | 99.3%
+2. Nissan GT-R Gr.4 | 2 drivers | 0.2%
+3. MAZDA3 Gr.4 | 1 drivers | 0.1%
+4. Ferrari 458 Italia Gr.4 | 1 drivers | 0.1%
+5. Volkswagen Scirocco Gr.4 | 1 drivers | 0.1%
+
+CAR OVERPERFORMANCE INDEX
+Index > 1.00 = overrepresented among the fastest drivers.
+1. Audi TT Cup '16 | OI 1.57 | Top100 100 | Top1000 993 | High
+
+RACE STRATEGY FLAGS
+Fuel multiplier: x3
+Tyre multiplier: x5
+Compounds detected: RH, RM
+Tyre wear is high: prioritize consistency and axle protection.
+Fuel consumption may influence race pace.
+
+FORECAST TO SUNDAY - V2
+Model           : CURRENT_WEEK_HYBRID_V2
+Confidence      : HIGH
+Samples         : 12
+Observed span   : 122.4 h
+Historical model: not yet active (insufficient cross-week training data)
+
+PROJECTED LEADERBOARD
+WR             : 1:53.785 | HIGH | 12 samples
+Top 100        : 1:54.079 | HIGH | 12 samples
+Top 500        : 1:54.297 | HIGH | 12 samples
+Top 1000       : 1:54.400 | HIGH | 12 samples
+Top 10%        : 1:55.728 | DIRECT | HIGH
+Top 5%         : 1:55.253 | DIRECT | HIGH
+Drivers        : 39,597 -> ~51,973
+
+IF YOU DO NOT IMPROVE
+Current time    : 1:55.581
+Current rank    : #3,093
+Current Top %   : 7.81%
+Projected rank  : ~#3,561
+Projected Top % : ~6.85%
+Rank confidence : LOW
+
+TARGETS FOR SUNDAY
+Top 10% target  : 1:55.728 | gain needed 0.000s | DIRECT
+Top 5% target   : 1:55.253 | gain needed 0.328s | DIRECT
+
+Percentile mode : DIRECT = forecast learned from the observed Top 5%/10% series; FALLBACK = inferred from Top 500/1000 until enough direct snapshots exist.
+Forecast note   : V2 uses current-week leaderboard evolution. Cross-week historical learning will activate after sufficient multi-week intraday data exists.
+
+LONG-TERM RATING TREND
+Higher General, Elite and Composite ratings are better.
+Lower Top % and WR % are better.
+Only FINAL Sunday ratings are used for historical trend calculations.
+Current race status: PROVISIONAL
+
+CURRENT WEEK
+General    : 9.22
+Elite      : 2.41
+Composite  : 6.49
+Top %      : 7.81%
+WR %       : 101.513%
+
+LATEST FINALIZED WEEK
+Week       : 2026-10-26
+General    : 8.92
+Elite      : 7.03
+Composite  : 6.15
+Top %      : 10.78%
+WR %       : 102.860%
+
+CURRENT WEEK VS LAST FINALIZED WEEK
+General    : 8.92 -> 9.22 (+0.30) | BETTER
+Elite      : 7.03 -> 2.41 (-4.62) | WORSE
+Composite  : 6.15 -> 6.49 (+0.35) | BETTER
+Top %      : 10.78% -> 7.81% (-2.97 pp) | BETTER
+WR %       : 102.860% -> 101.513% (-1.347 pp) | BETTER
+
+Current week assessment : ABOVE LAST WEEK
+
+LATEST FINALIZED WEEK VS PRIOR FINALIZED WEEK
+General    : 9.24 -> 8.92 (-0.32)
+Elite      : 7.41 -> 7.03 (-0.38)
+Composite  : 6.50 -> 6.15 (-0.36)
+
+4-WEEK FINALIZED MOVING AVERAGE
+General    : 9.27
+Elite      : 7.69
+Composite  : 6.56
+Top %      : 7.28%
+WR %       : 102.184%
+
+8-WEEK FINALIZED TREND
+General    : STABLE
+Elite      : IMPROVING
+Composite  : STABLE
+Top %      : IMPROVING
+WR %       : IMPROVING
+
+PERFORMANCE SUMMARY
+Current week vs last final : ABOVE LAST WEEK
+Long-term Composite trend  : STABLE
+Long-term WR % trend       : IMPROVING
+Interpretation               : Current performance is broadly consistent with recent history.
+
+LAST FINALIZED RACES
+2026-08-31 | Gen 8.61 | Elite 6.21 | Comp 5.92 | Top 13.89% | WR 104.199%
+2026-09-07 | Gen 9.12 | Elite 7.53 | Comp 6.34 | Top 8.80% | WR 102.170%
+2026-09-14 | Gen 9.24 | Elite 7.61 | Comp 6.53 | Top 7.57% | WR 102.262%
+2026-09-21 | Gen 9.44 | Elite 8.07 | Comp 6.70 | Top 5.60% | WR 101.748%
+2026-09-28 | Gen 9.58 | Elite 8.34 | Comp 6.92 | Top 4.21% | WR 101.478%
+2026-10-12 | Gen 9.35 | Elite 7.98 | Comp 6.66 | Top 6.55% | WR 101.736%
+2026-10-19 | Gen 9.24 | Elite 7.41 | Comp 6.50 | Top 7.58% | WR 102.663%
+2026-10-26 | Gen 8.92 | Elite 7.03 | Comp 6.15 | Top 10.78% | WR 102.860%
+
+WHAT CHANGED SINCE PREVIOUS SNAPSHOT
+World Record   : -0.021s
+Top 500        : -0.041s
+My position    : #2,791 -> #3,093 (-302 positions)
+My time        : 0.000s
+General rating : 9.22 -> 9.22 (+0.00)
+Elite rating   : 7.97 -> 2.41 (-5.56)
+
+DATA QUALITY / HEALTH
+Race detector  : explicit_running_local_block
+Race validation: PASSED
+Primary source : GTSH-Rank (live_page_data_parallel)
+Entries        : 39,597
+Car database   : 592 known cars
+Technical DB   : 33 validated/known records
+Car mapping    : 100.00% recognized
+Unknown codes  : 0 valid unmapped entries
+Invalid codes  : 12 entries
+My PSN found   : Yes
+Weekly final   : No
+Percentile data: Top 10% and Top 5% direct snapshot stored
+GTSH car scan  : 592 discovered | 0 new | 0 updated
+Status         : OK
+
+==============================================================================
