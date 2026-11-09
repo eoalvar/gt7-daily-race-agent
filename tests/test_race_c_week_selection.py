@@ -49,6 +49,40 @@ class RaceCWeekSelectionTests(unittest.TestCase):
         with self.assertRaises(RaceCPendingPublication):
             find_current_race_c(soup, NOW)
 
+    def test_event_date_and_status_in_outer_card_header(self):
+        """Mirror GTSH: header sibling of the inner race/leaderboard."""
+        html = """
+        <main>
+          <article class="race-card">
+            <header>C Gr.3 Running <a href="/daily/week">09 Nov 2026</a></header>
+            <section>Daily Race C <h2>Michelin Raceway Road Atlanta</h2>
+              <a href="/daily/leaderboard?event=road-atlanta">Leaderboard</a>
+            </section>
+          </article>
+          <article class="race-card">
+            <header>C Gr.4 Archived <a href="/daily/week">02 Nov 2026</a></header>
+            <section>Daily Race C <h2>Watkins Glen Long Course</h2>
+              <a href="/daily/leaderboard?event=watkins">Leaderboard</a>
+            </section>
+          </article>
+        </main>"""
+        result = find_current_race_c(BeautifulSoup(html, "html.parser"), NOW)
+        self.assertIn("road-atlanta", result["url"])
+        self.assertTrue(result["running"])
+        self.assertEqual(result["date"].date(), NOW.date())
+        self.assertIn("Road Atlanta", result["text"])
+
+    def test_mixed_races_do_not_inherit_other_race_date(self):
+        html = """
+        <div>
+          <article><header>Daily Race A 09 Nov 2026 Running</header>
+            <a href="/daily/leaderboard?event=a">Leaderboard</a></article>
+          <article><header>Daily Race C 02 Nov 2026 Archived</header>
+            <a href="/daily/leaderboard?event=c">Leaderboard</a></article>
+        </div>"""
+        with self.assertRaises(RaceCPendingPublication):
+            find_current_race_c(BeautifulSoup(html, "html.parser"), NOW)
+
     def test_does_not_use_race_a_or_b(self):
         soup = page(("A", "09 Nov 2026", "Running"),
                     ("B", "09 Nov 2026", "Running"))
