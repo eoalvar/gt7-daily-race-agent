@@ -32,6 +32,22 @@ class LeaderboardIntegrityTests(unittest.TestCase):
         }
         exec(textwrap.dedent(load_injected_integrity_check()), namespace)
 
+    def test_injection_marker_matches_real_agent_source(self):
+        wrapper_tree = ast.parse(WRAPPER.read_text(encoding="utf-8"))
+        function = next(node for node in wrapper_tree.body
+                        if isinstance(node, ast.FunctionDef)
+                        and node.name == "_run_daily_agent")
+        assignment = next(node for node in function.body
+                          if isinstance(node, ast.Assign)
+                          and any(isinstance(target, ast.Name)
+                                  and target.id == "ranking_sort_marker"
+                                  for target in node.targets))
+        marker = ast.literal_eval(assignment.value)
+        agent_source = (ROOT / "src" / "test_race_detector.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertEqual(agent_source.count(marker), 1)
+
     def test_rejects_html_top_100(self):
         with self.assertRaises(FullLeaderboardUnavailable):
             self.check_source("initialRanking_fallback", [{}] * 100)
