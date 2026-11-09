@@ -207,75 +207,39 @@ def race_letters_in_text(text):
 
 
 def extract_local_race_block(link):
-
     """
-    Find the smallest local DOM block around a leaderboard link
-    that clearly refers to exactly ONE Daily Race.
+    Resolve the *complete* event card containing this leaderboard link.
 
-    This prevents a parent/container containing Race A + B + C
-    from being misclassified as Race C.
+    GTSH separates the event header (week date and Running/Archived
+    status) from the compact race details. Choosing the shortest text
+    block loses that header, so prefer the closest enclosing card that
+    carries a date and exactly one leaderboard link. Never climb into
+    a container spanning several races.
     """
-
     node = link
-
     best = None
-
-    for depth in range(8):
-
+    for depth in range(14):
         if node is None:
             break
 
-        try:
-
-            text = node.get_text(
-                " ",
-                strip=True
-            )
-
-        except Exception:
-
-            text = ""
-
-        text = re.sub(
-            r"\s+",
-            " ",
-            text
-        ).strip()
-
-        if text:
-
-            letters = race_letters_in_text(
-                text
-            )
-
-            if len(letters) == 1:
-
-                letter = next(
-                    iter(letters)
-                )
-
-                candidate = {
-                    "text": text,
-                    "letter": letter,
-                    "depth": depth
-                }
-
+        text = re.sub(r"\\s+", " ", node.get_text(" ", strip=True)).strip()
+        if text and race_letters_in_text(text) == {"C"}:
+            event_links = node.select(
+                'a[href*="/daily/leaderboard?event="], '
+                'a[href*="/daily/leaderboard/?event="]'
+            ) if hasattr(node, "select") else []
+            # The link itself has no descendants; count it explicitly.
+            link_count = len(event_links) + int(node is link)
+            if link_count == 1:
+                candidate = {"text": text, "letter": "C", "depth": depth}
                 if best is None:
-
                     best = candidate
-
-                else:
-
-                    # Prefer the smaller/closer block.
-                    if (
-                        len(text)
-                        < len(best["text"])
-                    ):
-
-                        best = candidate
+                if parse_race_date_from_text(text) is not None:
+                    # Closest date-bearing event card wins. The first
+                    # occurrence avoids inheriting dates from page headers.
+                    return candidate
 
         node = node.parent
-
     return best
 
 
