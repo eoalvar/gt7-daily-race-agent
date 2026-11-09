@@ -102,7 +102,9 @@ def _write_runtime_cache():
             result.append(entry)
 
     result.sort(key=lambda item: item.get("display_rank", 999999999))
-    complete = len(result) >= 1000 and (server_total is None or len(result) >= server_total)
+    # Fewer than 1,000 drivers is valid early in a new race week.
+    # Require the authoritative server total to prove completeness.
+    complete = server_total is not None and server_total > 0 and len(result) >= server_total
     if not complete:
         raise RuntimeError(
             f"Captured leaderboard incomplete: {len(result):,}/{server_total or '?'} entries"
@@ -317,6 +319,10 @@ def _parallel_page_data_block() -> str:
 '''
 
 
+class FullLeaderboardUnavailable(RuntimeError):
+    """Full-population leaderboard could not be verified."""
+
+
 def _run_daily_agent():
     source = AGENT_FILE.read_text(encoding="utf-8")
 
@@ -340,7 +346,22 @@ def _run_daily_agent():
         + source[fallback_start:]
     )
 
+    # Prevent inaccurate top-100 reports before any snapshot/history writes.
+    ranking_sort_marker = '    ranking.sort(\\n        key=lambda driver:\\n'
+    integrity_check = '''    if source_mode != "live_page_data_parallel":
+        raise FullLeaderboardUnavailable(
+            "Full GTSH leaderboard unavailable: "
+            f"source={source_mode}, entries={len(ranking) if ranking else 0}; "
+            "refusing partial population metrics."
+        )
+
+'''
+    if source.count(ranking_sort_marker) != 1:
+        raise RuntimeError("Leaderboard integrity patch marker not found exactly once.")
+    source = source.replace(ranking_sort_marker, integrity_check + ranking_sort_marker, 1)
+
     namespace = {
+        "FullLeaderboardUnavailable": FullLeaderboardUnavailable,
         "__name__": "__main__",
         "__file__": str(AGENT_FILE),
         "__package__": None,
@@ -348,6 +369,9 @@ def _run_daily_agent():
     try:
         exec(compile(source, str(AGENT_FILE), "exec"), namespace)
     except Exception as exc:
+        if isinstance(exc, FullLeaderboardUnavailable):
+            print(f"FULL_LEADERBOARD_UNAVAILABLE: {exc}", flush=True)
+            raise SystemExit(75) from None
         if type(exc).__name__ == "RaceCPendingPublication":
             print(f"RACE_C_PENDING_PUBLICATION: {exc}", flush=True)
             raise SystemExit(75) from None
