@@ -320,12 +320,6 @@ def _parallel_page_data_block() -> str:
 def _run_daily_agent():
     source = AGENT_FILE.read_text(encoding="utf-8")
 
-    date_marker = '''        selected[\n            "detection_mode"\n        ] = "explicit_running_local_block"\n'''
-    date_replacement = '''        # GTSH may omit the date from the compact RUNNING block.\n        # An explicitly running Daily Race is the current weekly event, whose\n        # GT7 week starts on the current Sao Paulo Monday.\n        if selected.get("date") is None:\n            selected["date"] = monday_of_week(now)\n            selected["date_inferred"] = True\n\n        selected[\n            "detection_mode"\n        ] = "explicit_running_local_block"\n'''
-    if date_marker not in source:
-        raise RuntimeError("Daily C date-inference patch marker not found; refusing silent fallback.")
-    source = source.replace(date_marker, date_replacement, 1)
-
     history_sort_marker = '''            item.get(\n                "week_start",\n                ""\n            )\n'''
     history_sort_replacement = '''            (item.get(\n                "week_start"\n            ) or "")\n'''
     if history_sort_marker not in source:
@@ -351,7 +345,13 @@ def _run_daily_agent():
         "__file__": str(AGENT_FILE),
         "__package__": None,
     }
-    exec(compile(source, str(AGENT_FILE), "exec"), namespace)
+    try:
+        exec(compile(source, str(AGENT_FILE), "exec"), namespace)
+    except Exception as exc:
+        if type(exc).__name__ == "RaceCPendingPublication":
+            print(f"RACE_C_PENDING_PUBLICATION: {exc}", flush=True)
+            raise SystemExit(75) from None
+        raise
 
 
 requests.Session.get = _cached_get
