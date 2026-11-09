@@ -1,5 +1,6 @@
 """Tests for fail-closed leaderboard integrity gate without network calls."""
 import ast
+import textwrap
 import unittest
 from pathlib import Path
 
@@ -29,7 +30,7 @@ class LeaderboardIntegrityTests(unittest.TestCase):
             "ranking": ranking,
             "FullLeaderboardUnavailable": FullLeaderboardUnavailable,
         }
-        exec(load_injected_integrity_check(), namespace)
+        exec(textwrap.dedent(load_injected_integrity_check()), namespace)
 
     def test_rejects_html_top_100(self):
         with self.assertRaises(FullLeaderboardUnavailable):
