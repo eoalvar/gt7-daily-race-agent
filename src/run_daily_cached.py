@@ -351,7 +351,13 @@ def _run_daily_agent():
         "__file__": str(AGENT_FILE),
         "__package__": None,
     }
-    exec(compile(source, str(AGENT_FILE), "exec"), namespace)
+    try:
+        exec(compile(source, str(AGENT_FILE), "exec"), namespace)
+    except Exception as exc:
+        if type(exc).__name__ == "RaceCPendingPublication":
+            print(f"RACE_C_PENDING_PUBLICATION: {exc}", flush=True)
+            raise SystemExit(75) from None
+        raise
 
 
 requests.Session.get = _cached_get
