@@ -94,28 +94,24 @@ jobs:
         run: python src/bop_track_classifier.py
 
       - name: Refresh current Sleeper Car Index
-        if: steps.daily_agent.outputs.ready == 'true'
         id: daily_sleeper_index
         if: steps.daily_agent.outputs.ready == 'true' && (steps.current_bop_context.outcome == 'success')
         continue-on-error: true
         run: python src/sleeper_car_lab_live.py
 
       - name: Refresh technical learning layer
-        if: steps.daily_agent.outputs.ready == 'true'
         id: daily_technical_learning
         if: steps.daily_agent.outputs.ready == 'true' && (steps.daily_sleeper_index.outcome == 'success')
         continue-on-error: true
         run: python src/sleeper_technical_learning.py
 
       - name: Refresh structural sleeper model
-        if: steps.daily_agent.outputs.ready == 'true'
         id: daily_structural_sleeper
         if: steps.daily_agent.outputs.ready == 'true' && (steps.daily_technical_learning.outcome == 'success')
         continue-on-error: true
         run: python src/structural_sleeper_model.py
 
       - name: Refresh weekly car recommendation consensus
-        if: steps.daily_agent.outputs.ready == 'true'
         id: daily_weekly_recommender
         if: steps.daily_agent.outputs.ready == 'true' && (steps.daily_structural_sleeper.outcome == 'success')
         continue-on-error: true
