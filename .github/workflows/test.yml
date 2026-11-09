@@ -69,46 +69,65 @@ jobs:
         run: python src/remove_current_week_from_final_history.py
 
       - name: Run GT7 Daily Race C Agent + build shared leaderboard cache
+        id: daily_agent
         env:
           FINAL_WEEKLY_SNAPSHOT: "0"
-        run: python src/run_daily_cached.py
+        shell: bash
+        run: |
+          set +e
+          python src/run_daily_cached.py
+          result=$?
+          set -e
+          if [ "$result" -eq 75 ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Race C pending publication; daily reporting skipped to avoid stale data."
+          elif [ "$result" -ne 0 ]; then
+            exit "$result"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Refresh current track/category BoP context
+        if: steps.daily_agent.outputs.ready == 'true'
         id: current_bop_context
         continue-on-error: true
         run: python src/bop_track_classifier.py
 
       - name: Refresh current Sleeper Car Index
+        if: steps.daily_agent.outputs.ready == 'true'
         id: daily_sleeper_index
-        if: steps.current_bop_context.outcome == 'success'
+        if: steps.daily_agent.outputs.ready == 'true' && (steps.current_bop_context.outcome == 'success')
         continue-on-error: true
         run: python src/sleeper_car_lab_live.py
 
       - name: Refresh technical learning layer
+        if: steps.daily_agent.outputs.ready == 'true'
         id: daily_technical_learning
-        if: steps.daily_sleeper_index.outcome == 'success'
+        if: steps.daily_agent.outputs.ready == 'true' && (steps.daily_sleeper_index.outcome == 'success')
         continue-on-error: true
         run: python src/sleeper_technical_learning.py
 
       - name: Refresh structural sleeper model
+        if: steps.daily_agent.outputs.ready == 'true'
         id: daily_structural_sleeper
-        if: steps.daily_technical_learning.outcome == 'success'
+        if: steps.daily_agent.outputs.ready == 'true' && (steps.daily_technical_learning.outcome == 'success')
         continue-on-error: true
         run: python src/structural_sleeper_model.py
 
       - name: Refresh weekly car recommendation consensus
+        if: steps.daily_agent.outputs.ready == 'true'
         id: daily_weekly_recommender
-        if: steps.daily_structural_sleeper.outcome == 'success'
+        if: steps.daily_agent.outputs.ready == 'true' && (steps.daily_structural_sleeper.outcome == 'success')
         continue-on-error: true
         run: python src/weekly_car_recommender.py
 
       - name: Append Cars to Test This Week to email report
-        if: steps.daily_weekly_recommender.outcome == 'success'
+        if: steps.daily_agent.outputs.ready == 'true' && (steps.daily_weekly_recommender.outcome == 'success')
         continue-on-error: true
         run: python src/append_weekly_car_recommendations.py
 
       - name: Build Monday combined report
-        if: ${{ steps.previous_week.outputs.is_monday == 'true' }}
+        if: steps.daily_agent.outputs.ready == 'true' && (steps.previous_week.outputs.is_monday == 'true')
         shell: bash
         run: |
           if [ -f reports/previous_week_final.txt ]; then
@@ -126,7 +145,7 @@ jobs:
           fi
 
       - name: Update Monday email subject
-        if: ${{ steps.previous_week.outputs.is_monday == 'true' }}
+        if: steps.daily_agent.outputs.ready == 'true' && (steps.previous_week.outputs.is_monday == 'true')
         shell: bash
         run: |
           if [ -f reports/email_subject.txt ]; then
@@ -141,27 +160,33 @@ jobs:
           fi
 
       - name: Apply CPI production model
+        if: steps.daily_agent.outputs.ready == 'true'
         run: python src/apply_cpi_production.py
 
       - name: Format final Daily C report layout
+        if: steps.daily_agent.outputs.ready == 'true'
         run: python src/format_daily_report_layout.py
 
       - name: Clean Monday combined report
-        if: ${{ steps.previous_week.outputs.is_monday == 'true' }}
+        if: steps.daily_agent.outputs.ready == 'true' && (steps.previous_week.outputs.is_monday == 'true')
         run: python src/clean_monday_combined_report.py
 
       - name: Add race lap count to email header
+        if: steps.daily_agent.outputs.ready == 'true'
         continue-on-error: true
         run: python src/append_race_laps.py
 
       - name: Add DR full-sample lap-time benchmarks
+        if: steps.daily_agent.outputs.ready == 'true'
         run: python src/append_dr_analysis.py
 
       - name: Add expected start range
+        if: steps.daily_agent.outputs.ready == 'true'
         continue-on-error: true
         run: python src/append_expected_start.py
 
       - name: Put car group first in email subject
+        if: steps.daily_agent.outputs.ready == 'true'
         run: python src/normalize_email_subject.py
 
       - name: Save report and snapshot
@@ -177,6 +202,7 @@ jobs:
           fi
 
       - name: Send report by email
+        if: steps.daily_agent.outputs.ready == 'true'
         env:
           EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
           EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
