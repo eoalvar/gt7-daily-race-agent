@@ -81,6 +81,18 @@ def main():
     html = page.text
     for term in ("page_data", "update=1", "initialRanking", "fetch(", "XMLHttpRequest"):
         print(f"html_reference_{term!r}={term in html}")
+    # Static client-side integration audit; print flags only, no tokens or
+    # snippets which might expose session secrets or personal information.
+    scripts = BeautifulSoup(html, "html.parser").find_all("script")
+    embedded_js = "\\n".join(tag.get_text() for tag in scripts if not tag.get("src"))
+    print(f"html_script_tags={len(scripts)}")
+    print(f"inline_page_data_references={embedded_js.count('page_data')}")
+    print(f"inline_fetch_references={embedded_js.count('fetch(')}")
+    print(f"inline_credentials_same_origin={'credentials: \\"same-origin\\"' in embedded_js or \"credentials: 'same-origin'\" in embedded_js}")
+    print(f"inline_credentials_include={'credentials: \\"include\\"' in embedded_js or \"credentials: 'include'\" in embedded_js}")
+    print(f"inline_csrf_reference={bool(re.search(r'csrf|xsrf', embedded_js, re.I))}")
+    print(f"inline_authorization_reference={bool(re.search(r'authorization|bearer', embedded_js, re.I))}")
+    print(f"inline_access_required_reference={'access_required' in embedded_js}")
     print(f"cookies_received={len(session.cookies)} (values not printed)")
 
     # First request replicates the production code using a modest page size.
