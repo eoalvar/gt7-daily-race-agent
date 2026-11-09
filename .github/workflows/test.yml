@@ -83,7 +83,7 @@ jobs:
           set -e
           if [ "$result" -eq 75 ]; then
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::Race C pending publication; daily reporting skipped to avoid stale data."
+            echo "::warning::Race C publication or complete leaderboard unavailable; daily reporting skipped to protect ranking integrity."
           elif [ "$result" -ne 0 ]; then
             exit "$result"
           else
