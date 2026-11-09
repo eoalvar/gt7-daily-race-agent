@@ -28,6 +28,19 @@ def describe(label, response):
         f"{label}: content_length={len(response.content)} "
         f"is_json={'json' in response.headers.get('Content-Type', '').lower()}"
     )
+    if response.status_code in (401, 403) and "json" in response.headers.get("Content-Type", "").lower():
+        try:
+            data = response.json()
+            if isinstance(data, dict):
+                safe_fields = ("error", "message", "code", "status")
+                safe = {
+                    k: str(data[k])[:150]
+                    for k in safe_fields
+                    if k in data and isinstance(data[k], (str, int))
+                }
+                print(f"{label}: auth_error={safe}")
+        except ValueError:
+            pass
     if "json" in response.headers.get("Content-Type", "").lower() and response.ok:
         try:
             payload = response.json()
