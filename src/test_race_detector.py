@@ -334,6 +334,10 @@ def validate_selected_race_c(
     return True
 
 
+class RaceCPendingPublication(RuntimeError):
+    """Current week's Race C is not safely identifiable yet."""
+
+
 def find_current_race_c(
     soup,
     now
@@ -441,163 +445,61 @@ def find_current_race_c(
             full_url
         )
 
-    if not candidates:
+    current_monday = monday_of_week(now)
 
-        raise RuntimeError(
-            "No unambiguous Daily Race C candidates were found."
-        )
+    # Diagnostics must be retained even when publication is pending.
+    print(f"Race C detection: {len(links)} leaderboard links; "
+          f"{len(candidates)} unambiguous C candidates; "
+          f"target week={current_monday.date()}", flush=True)
+    for item in candidates:
+        date = item.get("date")
+        print("Race C candidate: "
+              f"date={date.date() if date else 'missing'} "
+              f"running={item['running']} "
+              f"next_week={item['next_week']} "
+              f"url={item['url']} "
+              f"text={item['text'][:200]!r}", flush=True)
 
-    # ========================================================
-    # 1. Prefer explicit RUNNING Race C
-    # ========================================================
-
-    running_candidates = [
-        candidate
-        for candidate in candidates
-        if (
-            candidate[
-                "running"
-            ]
-            and not candidate[
-                "next_week"
-            ]
-        )
+    # A site label saying "Running" is not sufficient when it still
+    # refers to last week's race. Never select a dated prior week.
+    this_week = [
+        item for item in candidates
+        if item["date"] is not None
+        and item["date"].date() == current_monday.date()
+        and not item["next_week"]
     ]
-
-    if running_candidates:
-
-        running_candidates.sort(
-            key=lambda candidate:
-                (
-                    candidate[
-                        "date"
-                    ]
-                    or datetime.min.replace(
-                        tzinfo=SAO_PAULO
-                    ),
-                    -candidate.get(
-                        "local_depth",
-                        999
-                    )
-                ),
-            reverse=True
+    if len(this_week) == 1:
+        selected = this_week[0]
+        selected["detection_mode"] = "current_week_local_block"
+        validate_selected_race_c(selected)
+        return selected
+    if len(this_week) > 1:
+        raise RaceCPendingPublication(
+            "Multiple current-week Race C leaderboard candidates; "
+            "refusing ambiguous selection."
         )
 
-        selected = (
-            running_candidates[
-                0
-            ]
-        )
-
-        selected[
-            "detection_mode"
-        ] = "explicit_running_local_block"
-
-        validate_selected_race_c(
-            selected
-        )
-
+    # Some compact pages omit the date of the single running event.
+    # Do not infer the current week if any *dated* Running Race C
+    # contradicts that inference (especially during Monday rollover).
+    undated_running = [
+        item for item in candidates
+        if item["date"] is None and item["running"] and not item["next_week"]
+    ]
+    dated_running = [
+        item for item in candidates
+        if item["date"] is not None and item["running"]
+        and not item["next_week"]
+    ]
+    if len(undated_running) == 1 and not dated_running:
+        selected = undated_running[0]
+        selected["detection_mode"] = "explicit_running_local_block"
+        validate_selected_race_c(selected)
         return selected
 
-    # ========================================================
-    # 2. Current week date
-    # ========================================================
-
-    current_monday = monday_of_week(
-        now
-    )
-
-    current_week_candidates = [
-        candidate
-        for candidate in candidates
-        if (
-            candidate[
-                "date"
-            ]
-            and candidate[
-                "date"
-            ].date()
-            == current_monday.date()
-            and not candidate[
-                "next_week"
-            ]
-        )
-    ]
-
-    if current_week_candidates:
-
-        current_week_candidates.sort(
-            key=lambda candidate:
-                candidate.get(
-                    "local_depth",
-                    999
-                )
-        )
-
-        selected = (
-            current_week_candidates[
-                0
-            ]
-        )
-
-        selected[
-            "detection_mode"
-        ] = "current_week_local_block"
-
-        validate_selected_race_c(
-            selected
-        )
-
-        return selected
-
-    # ========================================================
-    # 3. Latest non-future Race C
-    # ========================================================
-
-    valid_past = [
-        candidate
-        for candidate in candidates
-        if (
-            candidate[
-                "date"
-            ]
-            and candidate[
-                "date"
-            ] <= now
-            and not candidate[
-                "next_week"
-            ]
-        )
-    ]
-
-    if valid_past:
-
-        valid_past.sort(
-            key=lambda candidate:
-                candidate[
-                    "date"
-                ],
-            reverse=True
-        )
-
-        selected = (
-            valid_past[
-                0
-            ]
-        )
-
-        selected[
-            "detection_mode"
-        ] = "latest_non_future_local_block"
-
-        validate_selected_race_c(
-            selected
-        )
-
-        return selected
-
-    raise RuntimeError(
-        "Could not safely determine the current Daily Race C."
+    raise RaceCPendingPublication(
+        f"Race C pending publication for week {current_monday.date()}: "
+        "no safe current-week leaderboard; refusing prior-week fallback."
     )
 
 
