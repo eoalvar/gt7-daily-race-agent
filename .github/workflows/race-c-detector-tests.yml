@@ -1,0 +1,25 @@
+name: Race C detector regression tests
+
+on:
+  pull_request:
+    paths:
+      - "src/test_race_detector.py"
+      - "tests/test_race_c_week_selection.py"
+      - ".github/workflows/race-c-detector-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-race-c-detector:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+      - name: Test Race C detector
+        run: python -m unittest discover -s tests -p 'test_race_c_week_selection.py' -v
