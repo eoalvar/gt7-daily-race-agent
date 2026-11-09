@@ -347,7 +347,7 @@ def _run_daily_agent():
     )
 
     # Prevent inaccurate top-100 reports before any snapshot/history writes.
-    ranking_sort_marker = '    ranking.sort(\\n        key=lambda driver:\\n'
+    ranking_sort_marker = '    ranking.sort(\n        key=lambda driver:\n'
     integrity_check = '''    if source_mode != "live_page_data_parallel":
         raise FullLeaderboardUnavailable(
             "Full GTSH leaderboard unavailable: "
