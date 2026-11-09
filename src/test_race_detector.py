@@ -493,6 +493,8 @@ def find_current_race_c(
     ]
     if len(undated_running) == 1 and not dated_running:
         selected = undated_running[0]
+        selected["date"] = current_monday
+        selected["date_inferred"] = True
         selected["detection_mode"] = "explicit_running_local_block"
         validate_selected_race_c(selected)
         return selected
