@@ -4,7 +4,9 @@ on:
   pull_request:
     paths:
       - "src/test_race_detector.py"
+      - "src/run_daily_cached.py"
       - "tests/test_race_c_week_selection.py"
+      - "tests/test_leaderboard_integrity.py"
       - ".github/workflows/race-c-detector-tests.yml"
   workflow_dispatch:
 
@@ -22,4 +24,4 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4
       - name: Test Race C detector
-        run: python -m unittest discover -s tests -p 'test_race_c_week_selection.py' -v
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
