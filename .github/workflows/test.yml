@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4
 
+      - name: Test current-week Race C detection
+        run: python -m unittest discover -s tests -p 'test_race_c_week_selection.py'
+
       - name: Repair missing historical week dates
         run: python src/repair_week_start.py
 
