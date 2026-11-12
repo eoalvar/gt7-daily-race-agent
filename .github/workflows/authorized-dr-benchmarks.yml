@@ -1,0 +1,50 @@
+name: GT7 Authorized DR Benchmarks
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 06:15 São Paulo (UTC-03:00); separate from legacy Daily C workflow.
+    - cron: "15 9 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  authorized-dr-benchmarks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install authorized-source dependencies
+        run: pip install requests
+      - name: Load and validate authorized DR sample
+        id: build
+        shell: bash
+        env:
+          GT7_DR_CSV_URL: ${{ secrets.GT7_DR_CSV_URL }}
+          GT7_DR_META_URL: ${{ secrets.GT7_DR_META_URL }}
+          GT7_DR_API_TOKEN: ${{ secrets.GT7_DR_API_TOKEN }}
+        run: |
+          set +e
+          python src/run_authorized_dr_report.py
+          status=$?
+          set -e
+          if [ "$status" -eq 75 ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Authorized DR source not yet configured; no email sent."
+          elif [ "$status" -ne 0 ]; then
+            echo "::error::Authorized DR sample failed download or validation; no email sent."
+            exit "$status"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Send verified DR statistics report by email
+        if: steps.build.outputs.ready == 'true'
+        env:
+          EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+          EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python src/send_email.py
