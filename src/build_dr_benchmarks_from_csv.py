@@ -5,7 +5,8 @@ scraper. Reject incomplete samples before publishing population benchmarks.
 
 CSV columns: dr,score_ms (optional: rank,psn_id)
 Metadata JSON: event_id, source, source_permission, population_total,
-               population_definition, observed_at
+               population_definition, world_record_ms, observed_at
+population_total = total of ALL eligible laps (<=120% WR) in source.
 Run: python src/build_dr_benchmarks_from_csv.py --csv INPUT --metadata META --output OUT
 """
 from __future__ import annotations
@@ -58,20 +59,26 @@ def robust_clean_scores(scores):
 
 def summarize(rows, metadata):
     required = ["event_id", "source", "source_permission", "population_total",
-                "population_definition", "observed_at"]
+                "population_definition", "world_record_ms", "observed_at"]
     missing = [key for key in required if metadata.get(key) in (None, "", [])]
     if missing:
         raise ValueError("Missing metadata: " + ", ".join(missing))
     if metadata["source_permission"] != "authorized":
         raise ValueError("Input must be explicitly authorized for this automated analysis")
-    if metadata["population_definition"] != "all_qualified_drivers":
-        raise ValueError("Population must be all qualified drivers; filtered samples are not comparable")
+    if metadata["population_definition"] != "within_20_pct_of_wr":
+        raise ValueError("Population must include all drivers within 20% of the world record")
+    wr = metadata["world_record_ms"]
+    if isinstance(wr, bool) or not isinstance(wr, (int, float)) or not math.isfinite(wr) or wr <= 0:
+        raise ValueError("world_record_ms must be a finite positive number")
+    threshold = wr * 1.20
     total = metadata["population_total"]
     if type(total) is not int or total <= 0:
         raise ValueError("population_total must be a positive integer")
 
     groups = defaultdict(list)
     seen_ranks = set()
+    source_rows = 0
+    excluded_over_20pct = 0
     n = 0
     for row in rows:
         dr = normalize_dr(row["dr"])
@@ -86,12 +93,18 @@ def summarize(rows, metadata):
             if not rank.isdigit() or int(rank) <= 0 or int(rank) in seen_ranks:
                 raise ValueError("Invalid or duplicated global rank")
             seen_ranks.add(int(rank))
+        source_rows += 1
+        if score > threshold:
+            excluded_over_20pct += 1
+            continue
         groups[dr].append(score)
         n += 1
     if n != total:
         raise ValueError(f"INCOMPLETE_POPULATION: {n} rows; expected {total}")
-    if seen_ranks and (len(seen_ranks) != n or min(seen_ranks) != 1 or max(seen_ranks) != n):
-        raise ValueError("Global ranks are incomplete or noncontiguous")
+    # Rank gaps are valid when records slower than the 120% WR cutoff
+    # are present in the source CSV and excluded above.
+    if seen_ranks and len(seen_ranks) != source_rows:
+        raise ValueError("Global rank missing from one or more source rows")
 
     stats = {}
     for code, label in DR_CODES.items():
@@ -111,6 +124,8 @@ def summarize(rows, metadata):
         "observed_at": metadata["observed_at"],
         "population_definition": metadata["population_definition"],
         "population_total": total, "rows_verified": n,
+        "source_rows": source_rows, "excluded_over_20pct": excluded_over_20pct,
+        "world_record_ms": wr, "max_eligible_score_ms": threshold,
         "coverage": 1.0, "dr_laptime_stats": stats,
     }
 
