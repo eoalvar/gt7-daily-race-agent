@@ -55,6 +55,14 @@ async def main():
                         payload = await response.json()
                         if isinstance(payload, dict):
                             item["json_field_names"] = sorted(payload.keys())[:25]
+                            item["data_kind"] = type(payload.get("data")).__name__
+                            if isinstance(payload.get("data"), (str, list, dict)):
+                                item["data_length"] = len(payload["data"])
+                            item["format_kind"] = type(payload.get("format")).__name__
+                            item["usage_kind"] = type(payload.get("usage")).__name__
+                            if isinstance(payload.get("usage"), dict):
+                                item["usage_keys"] = sorted(payload["usage"].keys())[:20]
+                            item["nonce_present"] = bool(payload.get("nonce"))
                             for field in ("total", "total_drivers", "totalDrivers", "count", "recordsTotal"):
                                 if isinstance(payload.get(field), (int, float)):
                                     item["declared_total"] = int(payload[field])
@@ -91,6 +99,17 @@ async def main():
             response = await page.goto(selected["url"], wait_until="domcontentloaded", timeout=45000)
             print(f"BROWSER_LEADERBOARD_HTML: status={response.status if response else 'no-response'}", flush=True)
             await page.wait_for_timeout(10000)
+            # Pagination control discovery: classes and labels only,
+            # never driver names or row contents.
+            pagination_selectors = (
+                'button[aria-label*="Next"]',
+                '[class*="pagination"]',
+                '[class*="pager"]',
+                'a[rel="next"]',
+                'button[data-page]',
+            )
+            for selector in pagination_selectors:
+                print(f"BROWSER_UI: {selector!r} count={await page.locator(selector).count()}", flush=True)
             # Native browser requests only. No custom headers, tokens or hidden endpoints.
             # Browser UI pagination is clicked only if an unambiguous standard next button exists.
             next_buttons = page.get_by_role("button", name="Next", exact=True)
