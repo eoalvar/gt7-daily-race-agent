@@ -46,6 +46,29 @@ async def main():
                         item["error"] = str(data.get("error", ""))[:100]
                 except Exception:
                     pass
+            if kind == "page_data":
+                from urllib.parse import parse_qs
+                item["query_parameter_names"] = sorted(parse_qs(url.query).keys())
+                # Log only safe aggregate counts and structural keys. No drivers.
+                if status == 200:
+                    try:
+                        payload = await response.json()
+                        if isinstance(payload, dict):
+                            item["json_field_names"] = sorted(payload.keys())[:25]
+                            for field in ("total", "total_drivers", "totalDrivers", "count", "recordsTotal"):
+                                if isinstance(payload.get(field), (int, float)):
+                                    item["declared_total"] = int(payload[field])
+                                    break
+                            for field in ("board", "ranking", "data", "entries", "results", "drivers"):
+                                if isinstance(payload.get(field), list):
+                                    item["returned_count"] = len(payload[field])
+                                    break
+                        elif isinstance(payload, list):
+                            item["returned_count"] = len(payload)
+                    except Exception:
+                        item["json_parse"] = "failed"
+                # Request header names only, never values or cookie/token data.
+                item["request_header_names"] = sorted(response.request.headers.keys())
             observed.append(item)
             print("BROWSER_RESPONSE: " + json.dumps(item, ensure_ascii=False), flush=True)
 
