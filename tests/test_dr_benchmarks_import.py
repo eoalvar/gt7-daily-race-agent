@@ -10,7 +10,8 @@ META = {
     "source": "test fixture",
     "source_permission": "authorized",
     "population_total": 4,
-    "population_definition": "all_qualified_drivers",
+    "population_definition": "within_20_pct_of_wr",
+    "world_record_ms": 78000,
     "observed_at": "2026-11-12T07:00:00-03:00",
 }
 ROWS = [
@@ -37,9 +38,35 @@ class BenchmarksTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "authorized"):
             summarize(ROWS, {**META, "source_permission": "unknown"})
 
-    def test_refuses_filtered_samples(self):
-        with self.assertRaisesRegex(ValueError, "all qualified"):
-            summarize(ROWS, {**META, "population_definition": "within_20_pct_of_wr"})
+    def test_refuses_population_without_20pct_rule(self):
+        with self.assertRaisesRegex(ValueError, "within 20%"):
+            summarize(ROWS, {**META, "population_definition": "all_qualified_drivers"})
+
+    def test_excludes_slower_than_120pct_world_record(self):
+        # WR=78,000ms; upper bound inclusive = 93,600ms.
+        extended = ROWS + [
+            {"dr": "D", "score_ms": "93600", "rank": "5"},
+            {"dr": "D", "score_ms": "93601", "rank": "6"},
+        ]
+        result = summarize(extended, {**META, "population_total": 5})
+        self.assertEqual(result["source_rows"], 6)
+        self.assertEqual(result["rows_verified"], 5)
+        self.assertEqual(result["excluded_over_20pct"], 1)
+        self.assertEqual(result["dr_laptime_stats"]["2"]["average_laptime"], "1:33.600")
+        self.assertEqual(result["dr_laptime_stats"]["2"]["drivers"], 1)
+
+    def test_filtered_population_count_must_be_complete(self):
+        extended = ROWS + [{"dr": "D", "score_ms": "93601", "rank": "5"}]
+        with self.assertRaisesRegex(ValueError, "INCOMPLETE_POPULATION"):
+            summarize(extended, {**META, "population_total": 5})
+
+    def test_world_record_required(self):
+        with self.assertRaisesRegex(ValueError, "Missing metadata"):
+            summarize(ROWS, {k: v for k, v in META.items() if k != "world_record_ms"})
+
+    def test_missing_or_invalid_world_record(self):
+        with self.assertRaisesRegex(ValueError, "world_record_ms"):
+            summarize(ROWS, {**META, "world_record_ms": 0})
 
     def test_refuses_duplicate_rank(self):
         with self.assertRaisesRegex(ValueError, "duplicated"):
