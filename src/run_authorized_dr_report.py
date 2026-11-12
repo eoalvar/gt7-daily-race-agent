@@ -12,7 +12,6 @@ from pathlib import Path
 from urllib.parse import urlsplit
 import requests
 
-from build_dr_benchmarks_from_csv import main as _unused  # shared standalone calculation module
 from build_dr_benchmarks_from_csv import summarize
 import csv
 import io
