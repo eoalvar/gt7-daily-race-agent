@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - "src/diagnose_gtsh_access.py"
+      - "src/diagnose_gtsh_browser.py"
       - ".github/workflows/diagnose-gtsh-access.yml"
 
 permissions:
@@ -20,6 +21,10 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install read-only diagnostics dependencies
-        run: pip install requests beautifulsoup4
+        run: |
+          pip install requests beautifulsoup4 playwright
+          python -m playwright install --with-deps chromium
       - name: Compare GTSH HTML and pagination endpoint responses
         run: python src/diagnose_gtsh_access.py
+      - name: Observe native Chromium leaderboard requests
+        run: python src/diagnose_gtsh_browser.py
