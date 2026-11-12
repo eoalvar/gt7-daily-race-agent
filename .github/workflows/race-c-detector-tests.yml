@@ -5,8 +5,13 @@ on:
     paths:
       - "src/test_race_detector.py"
       - "src/run_daily_cached.py"
+      - "src/build_dr_benchmarks_from_csv.py"
+      - "src/run_authorized_dr_report.py"
       - "tests/test_race_c_week_selection.py"
       - "tests/test_leaderboard_integrity.py"
+      - "tests/test_dr_benchmarks_import.py"
+      - "tests/test_authorized_dr_production.py"
+      - ".github/workflows/authorized-dr-benchmarks.yml"
       - ".github/workflows/race-c-detector-tests.yml"
   workflow_dispatch:
 
