@@ -62,6 +62,10 @@ async def main():
                             item["usage_kind"] = type(payload.get("usage")).__name__
                             if isinstance(payload.get("usage"), dict):
                                 item["usage_keys"] = sorted(payload["usage"].keys())[:20]
+                                for key in ("notice", "provider", "terms_url"):
+                                    value = payload["usage"].get(key)
+                                    if isinstance(value, str):
+                                        item["usage_" + key] = value[:260]
                             item["nonce_present"] = bool(payload.get("nonce"))
                             for field in ("total", "total_drivers", "totalDrivers", "count", "recordsTotal"):
                                 if isinstance(payload.get(field), (int, float)):
@@ -110,6 +114,18 @@ async def main():
             )
             for selector in pagination_selectors:
                 print(f"BROWSER_UI: {selector!r} count={await page.locator(selector).count()}", flush=True)
+            pager = page.locator('[class*="pagination"]').first
+            if await pager.count():
+                pager_info = await pager.evaluate("""el => ({
+                    tag: el.tagName,
+                    class: el.className,
+                    text: (el.innerText || '').slice(0, 250),
+                    buttons: Array.from(el.querySelectorAll('button,a')).slice(0, 20).map(
+                        b => ({tag:b.tagName, text:(b.innerText || '').slice(0, 24),
+                        aria:b.getAttribute('aria-label'), disabled:b.hasAttribute('disabled')})
+                    )
+                })""")
+                print("BROWSER_PAGER_STRUCTURE: " + json.dumps(pager_info), flush=True)
             # Native browser requests only. No custom headers, tokens or hidden endpoints.
             # Browser UI pagination is clicked only if an unambiguous standard next button exists.
             next_buttons = page.get_by_role("button", name="Next", exact=True)
