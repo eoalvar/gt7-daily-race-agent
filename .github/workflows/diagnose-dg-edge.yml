@@ -1,0 +1,30 @@
+name: Diagnose DG EDGE public leaderboard UI
+
+on:
+  pull_request:
+    paths:
+      - "src/diagnose_dg_edge_ui.py"
+      - "src/diagnose_dg_edge_http.py"
+      - ".github/workflows/diagnose-dg-edge.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe-dg-edge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install browser
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Compare ordinary HTTP access
+        run: python src/diagnose_dg_edge_http.py
+      - name: Observe one public event page
+        run: python src/diagnose_dg_edge_ui.py
